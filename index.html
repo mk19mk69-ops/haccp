@@ -980,6 +980,10 @@ var TESP=[
   {id:'neg1',nom:'Vitrine Négative 1',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]},
   {id:'neg2',nom:'Vitrine Négative 2',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]}
 ];
+var curType='viande';
+var dbReceptions=[],dbNettoyages=[],dbNonconfs=[],dbAlgos=[],dbTemps={},dbNuisibles=[],dbHaches=[],dbFabrications=[];
+var nzEmpState={},pnzState={};
+var curAppareil=null;
 TESP.forEach(function(e){dbTemps[e.id]=[];});
 
 function prenomSemaine(d){
