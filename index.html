@@ -289,7 +289,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="bb-ok" id="ok-temp">⬜</div>
         <i class="ti ti-thermometer bb-icon"></i>
         <div class="bb-title">🌡️ Température</div>
-        <div class="bb-sub">3 fois par jour</div>
+        <div class="bb-sub">2 fois par jour</div>
       </button>
       <button class="big-btn bb-nettoy" onclick="goTask('nettoyage')">
         <div class="bb-ok" id="ok-nettoy">⬜</div>
@@ -454,18 +454,15 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="etape-title">Morceau Bigard utilisé</div>
         <div class="etape-emoji">🏷️</div>
       </div>
-      <div class="etape-instruction">Choisis le morceau :</div>
-      <select class="big-input" id="hache-morceau-emp" style="font-size:18px;padding:14px">
-        <option value="">-- Choisir le morceau --</option>
-        <option value="BCU">BCU (Boule de collier)</option>
-        <option value="Broutard">Broutard</option>
-        <option value="Plat de côte">Plat de côte</option>
-        <option value="Col BC sans os">Col BC sans os</option>
-        <option value="Toro SOS">Toro SOS</option>
-        <option value="Avant SOS">Avant SOS</option>
-      </select>
-      <div class="etape-instruction" style="margin-top:12px">N° de lot (étiquette Bigard) :</div>
-      <input type="text" class="big-input" id="hache-lot-emp" placeholder="ex : BIG170626" style="font-size:20px;margin-top:6px">
+      <div class="etape-instruction">Choisis le(s) lot(s) :</div>
+      <div id="hache-lots-container">
+        <select class="big-input hache-lot-sel" style="font-size:13px;padding:12px;width:100%;margin-bottom:8px" id="hache-lot-sel-0">
+          <option value="">-- Choisir le lot --</option>
+        </select>
+      </div>
+      <button onclick="ajouterLotHache()" style="width:100%;padding:10px;background:var(--cbl);color:var(--cbd);border:2px dashed var(--cb);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px">
+        <i class="ti ti-plus"></i> Ajouter un autre lot
+      </button>
     </div>
 
     <button class="btn-valider btn-red" onclick="validerHacheEmploye()">
@@ -509,8 +506,30 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="etape-title">Lots de viande utilisés</div>
         <div class="etape-emoji">🏷️</div>
       </div>
-      <div class="etape-instruction">Écris les numéros de lots utilisés (regarde les étiquettes) :</div>
-      <input type="text" class="big-input" id="sau-lots-emp" placeholder="ex : BIG120626" style="font-size:18px">
+      <div class="etape-instruction">Sélectionne les lots par espèce :</div>
+      <div id="sau-lots-container">
+        <div style="font-size:11px;font-weight:700;color:var(--cgr);text-transform:uppercase;margin-bottom:5px">🐄 Bovin</div>
+        <div id="sau-lots-bovin">
+          <select class="big-input sau-lot-sel" data-espece="Bovin" style="font-size:13px;padding:10px;width:100%;margin-bottom:6px" id="sau-lot-bovin-0">
+            <option value="">-- Lot bovin --</option>
+          </select>
+        </div>
+        <button onclick="ajouterLotSau('bovin')" style="width:100%;padding:8px;background:var(--cbl);color:var(--cbd);border:2px dashed var(--cb);border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:10px"><i class="ti ti-plus"></i> Autre lot bovin</button>
+        <div style="font-size:11px;font-weight:700;color:var(--cgr);text-transform:uppercase;margin-bottom:5px">🐑 Ovin (agneau)</div>
+        <div id="sau-lots-ovin">
+          <select class="big-input sau-lot-sel" data-espece="Ovin" style="font-size:13px;padding:10px;width:100%;margin-bottom:6px" id="sau-lot-ovin-0">
+            <option value="">-- Lot agneau --</option>
+          </select>
+        </div>
+        <button onclick="ajouterLotSau('ovin')" style="width:100%;padding:8px;background:#FFF3CD;color:#856404;border:2px dashed #F59E0B;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:10px"><i class="ti ti-plus"></i> Autre lot agneau</button>
+        <div style="font-size:11px;font-weight:700;color:var(--cgr);text-transform:uppercase;margin-bottom:5px">🐄 Veau</div>
+        <div id="sau-lots-veau">
+          <select class="big-input sau-lot-sel" data-espece="Veau" style="font-size:13px;padding:10px;width:100%;margin-bottom:6px" id="sau-lot-veau-0">
+            <option value="">-- Lot veau --</option>
+          </select>
+        </div>
+        <button onclick="ajouterLotSau('veau')" style="width:100%;padding:8px;background:var(--cgl);color:var(--cgd);border:2px dashed var(--cg);border-radius:10px;font-size:12px;font-weight:600;cursor:pointer"><i class="ti ti-plus"></i> Autre lot veau</button>
+      </div>
     </div>
 
     <div class="etape">
@@ -633,6 +652,20 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
             <div class="pfi"><label>Avoir</label><input type="text" id="prav" placeholder="-7.3"></div>
             <div class="pfi"><label>Observations</label><input type="text" id="probs" placeholder="Anomalie..."></div>
           </div>
+          <div style="margin-top:10px;border-top:1px dashed var(--cb);padding-top:10px">
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px"><i class="ti ti-paperclip"></i> Bon de livraison (photo ou PDF)</label>
+            <div style="display:flex;gap:8px">
+              <button type="button" class="pbtn pbo" style="flex:1" onclick="document.getElementById('prbl-cam').click()"><i class="ti ti-camera"></i> Photo</button>
+              <button type="button" class="pbtn pbo" style="flex:1" onclick="document.getElementById('prbl-file').click()"><i class="ti ti-file-text"></i> Choisir PDF</button>
+            </div>
+            <input type="file" id="prbl-cam" accept="image/*" capture="environment" style="display:none" onchange="pBLSelect(this)">
+            <input type="file" id="prbl-file" accept="image/*,application/pdf" style="display:none" onchange="pBLSelect(this)">
+            <div id="prbl-preview" style="display:none;margin-top:8px;align-items:center;gap:10px;background:var(--cgr-bg,#eef7f0);padding:8px 10px;border-radius:8px">
+              <i class="ti ti-photo" style="font-size:22px;color:var(--cg)"></i>
+              <div style="flex:1"><div id="prbl-name" style="font-size:12px;font-weight:600;color:var(--cg)"></div><div id="prbl-size" style="font-size:11px;color:var(--cg)"></div></div>
+              <button type="button" class="pbtn" style="padding:4px 8px" onclick="pBLClear()"><i class="ti ti-x"></i></button>
+            </div>
+          </div>
           <div class="pbr">
             <button class="pbtn pbp" onclick="pAjouterRec()"><i class="ti ti-plus"></i> Enregistrer</button>
             <button class="pbtn pbo" onclick="pExportRec()"><i class="ti ti-download"></i> Exporter</button>
@@ -646,7 +679,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
             <select id="prffourn" onchange="pFilterTbl()"><option value="">Tous fournisseurs</option></select>
             <select id="prfmois" onchange="pFilterTbl()"><option value="">Tous les mois</option></select>
           </div>
-          <div class="ptw"><table class="pdt"><thead><tr><th>Lot</th><th>Date</th><th>Fournisseur</th><th>Produit</th><th>Poids</th><th>Temp.</th><th>Origine</th><th>Facture</th></tr></thead><tbody id="prec-tbody"></tbody></table></div>
+          <div class="ptw"><table class="pdt"><thead><tr><th>Lot</th><th>Date</th><th>Fournisseur</th><th>Produit</th><th>Poids</th><th>Temp.</th><th>Origine</th><th>Facture</th><th>BL</th></tr></thead><tbody id="prec-tbody"></tbody></table></div>
           <div style="font-size:10px;color:var(--cgr);margin-top:6px" id="prec-cnt"></div>
         </div>
       </div>
@@ -1060,6 +1093,7 @@ async function init(){
   var prh=document.getElementById('prh');if(prh)prh.value=nowH;
   var phh=document.getElementById('phh');if(phh)phh.value=nowH;
   checkRappelNettoyage();
+  initLotsSelects();
   updateClock();
   document.getElementById('loading').style.display='none';
   document.getElementById('app-employe').style.display='flex';
@@ -1150,13 +1184,14 @@ function goTask(name){
     document.querySelectorAll('.zone-btn').forEach(function(b){b.classList.remove('selected');});
   }
   if(name==='hachage'){
-    ['hache-poids-emp','hache-temp-emp','hache-lot-emp'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-    var hme=document.getElementById('hache-morceau-emp');if(hme)hme.value='';
+    initLotsSelects();
+    ['hache-poids-emp','hache-temp-emp'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
     document.getElementById('confirm-hache').classList.remove('show');
     document.getElementById('hache-alerte').classList.remove('show');
   }
   if(name==='saucisse'){
-    ['sau-poids-emp','sau-lots-emp','sau-temp-emp'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    initLotsSelects();
+    ['sau-poids-emp','sau-temp-emp'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
     document.getElementById('confirm-sau').classList.remove('show');
   }
 }
@@ -1315,6 +1350,57 @@ async function validerNzEmploye(freq){
   checkRappelNettoyage();buildZoneGridFreq();toast('Nettoyage enregistré !');
 }
 
+
+// ===== LOTS DYNAMIQUES =====
+var lotsBigardBovin=[];var lotsAgneau=[];var lotsVeau=[];var lotsSauBovin=[];
+
+function chargerLotsBigard(){
+  lotsBigardBovin=LOTS_HACHAGE.slice(0,60);
+  lotsSauBovin=LOTS_SAU_BOVIN.slice(0,60);
+  lotsAgneau=LOTS_SAU_AGNEAU.slice(0,60);
+  lotsVeau=LOTS_SAU_VEAU.slice(0,60);
+}
+
+function remplirSelect(sel, lots, label){
+  if(!sel)return;
+  sel.innerHTML='<option value="">-- '+label+' --</option>'+
+    lots.map(function(l){
+      return '<option value="'+l.lot+'">'+l.lot+' | '+l.fourn+' — '+l.produit+' ('+l.date+')</option>';
+    }).join('');
+}
+
+function initLotsSelects(){
+  chargerLotsBigard();
+  // Hachage
+  document.querySelectorAll('.hache-lot-sel').forEach(function(sel){remplirSelect(sel,lotsBigardBovin,'Lot viande');});
+  // Saucisse bovin
+  document.querySelectorAll('#sau-lots-bovin .sau-lot-sel').forEach(function(sel){remplirSelect(sel,lotsSauBovin,'Lot bovin');});
+  // Saucisse ovin
+  document.querySelectorAll('#sau-lots-ovin .sau-lot-sel').forEach(function(sel){remplirSelect(sel,lotsAgneau,'Lot agneau');});
+  // Saucisse veau
+  document.querySelectorAll('#sau-lots-veau .sau-lot-sel').forEach(function(sel){remplirSelect(sel,lotsVeau,'Lot veau');});
+}
+
+function ajouterLotHache(){
+  var container=document.getElementById('hache-lots-container');if(!container)return;
+  var div=document.createElement('div');
+  div.className='hache-lot-row';div.style.marginBottom='8px';
+  div.innerHTML='<select class="big-input hache-lot-sel" style="font-size:13px;padding:10px;width:100%"><option value="">-- Lot viande --</option>'+
+    lotsBigardBovin.map(function(l){return'<option value="'+l.lot+'">'+l.lot+' | '+l.fourn+' — '+l.produit+'</option>';}).join('')+'</select>';
+  container.appendChild(div);
+}
+
+function ajouterLotSau(espece){
+  var containerId='sau-lots-'+espece;
+  var container=document.getElementById(containerId);if(!container)return;
+  var lots=espece==='bovin'?lotsSauBovin:espece==='ovin'?lotsAgneau:lotsVeau;
+  var label=espece==='bovin'?'Lot bovin':espece==='ovin'?'Lot agneau':'Lot veau';
+  var div=document.createElement('div');
+  div.innerHTML='<select class="big-input sau-lot-sel" data-espece="'+(espece==='bovin'?'Bovin':espece==='ovin'?'Ovin':'Veau')+'" style="font-size:13px;padding:10px;width:100%;margin-bottom:6px"><option value="">-- '+label+' --</option>'+
+    lots.map(function(l){return'<option value="'+l.lot+'">'+l.lot+' | '+l.fourn+' — '+l.produit+'</option>';}).join('')+'</select>';
+  container.appendChild(div);
+}
+
 // ===== HACHAGE EMPLOYÉ =====
 function checkHacheTemp(){
   var v=parseFloat(document.getElementById('hache-temp-emp').value);
@@ -1324,10 +1410,13 @@ function checkHacheTemp(){
 async function validerHacheEmploye(){
   var poids=document.getElementById('hache-poids-emp').value;
   var temp=document.getElementById('hache-temp-emp').value;
-  var lot=document.getElementById('hache-lot-emp').value;
-  var morceau=document.getElementById('hache-morceau-emp').value;
   if(!poids){toast('Entre le poids','ko');return;}
-  if(!morceau){toast('Choisis le morceau','ko');return;}
+  // Récupérer les lots sélectionnés
+  var lotsSelectionnes=[];
+  document.querySelectorAll('.hache-lot-sel').forEach(function(sel){if(sel.value)lotsSelectionnes.push(sel.value);});
+  if(!lotsSelectionnes.length){toast('Choisis au moins un lot','ko');return;}
+  var lot=lotsSelectionnes.join(', ');
+  var morceau=lotsSelectionnes[0];
   var now=new Date();
   var produit='Muscle '+morceau+' Bigard — hachage demande';
   var r={type:'hache',date:now.toLocaleDateString('fr-FR'),heure:now.toTimeString().slice(0,5),fourn:'Bigard',produit:produit,poids:parseFloat(poids)||null,temp:parseFloat(temp)||null,lot:lot||('HAC'+now.toLocaleDateString('fr-FR').replace(/\//g,'')),origine:'France',obs:JSON.stringify({consommation:'Immediate',resp:prenomSemaine(new Date()),lot_utilise:lot,morceau:morceau,espece:'Bovin',fournisseur:'Bigard'})};
@@ -1339,9 +1428,13 @@ async function validerHacheEmploye(){
 // ===== SAUCISSE EMPLOYÉ =====
 async function validerSaucisseEmploye(){
   var poids=document.getElementById('sau-poids-emp').value;
-  var lots=document.getElementById('sau-lots-emp').value;
   var temp=document.getElementById('sau-temp-emp').value;
   if(!poids){toast('Entre le poids','ko');return;}
+  var lotsViandes=[];
+  document.querySelectorAll('.sau-lot-sel').forEach(function(sel){
+    if(sel.value)lotsViandes.push({lot:sel.value,espece:sel.dataset.espece||'Bovin'});
+  });
+  var lots=lotsViandes.map(function(l){return l.lot;}).join(', ');
   var now=new Date();var dlc=new Date(now);dlc.setDate(dlc.getDate()+3);
   var dlcStr=dlc.toLocaleDateString('fr-FR');
   var r={type:'fabrication',date:now.toLocaleDateString('fr-FR'),fourn:'ATELIER',produit:'Saucisse',poids:parseFloat(poids)||null,temp:parseFloat(temp)||null,lot:'SAU'+now.toLocaleDateString('fr-FR').replace(/\//g,''),origine:'France',obs:JSON.stringify({dlc:dlcStr,resp:prenomSemaine(new Date()),viandes:[{lot:lots,espece:'Bovin'}],ingredients:[{nom:'Sel'},{nom:'Epices'},{nom:'Chapelure'}],allergenes:['Gluten','Moutarde','Sulfites','Soja','Sesame','Celeri']})};
@@ -1453,16 +1546,17 @@ function pFilterTbl(){
   });
   var tb=document.getElementById('prec-tbody');if(!tb)return;
   var shown=new Set();
-  if(!filtered.length){tb.innerHTML='<tr><td colspan="8" class="pemp">Aucune donnée</td></tr>';return;}
+  if(!filtered.length){tb.innerHTML='<tr><td colspan="9" class="pemp">Aucune donnée</td></tr>';return;}
   tb.innerHTML=filtered.slice(0,300).map(function(r,i){
     var tkey=r.date+'|'+(r.fourn||'').toLowerCase();
     var t=parseFloat(r.temp);var tok=!r.temp||t<=7;
     var tHtml=r.temp?((!shown.has(tkey)?'<strong style="color:'+(tok?'var(--cgd)':'var(--cr)')+'">'+r.temp+'°C</strong>':'<span style="color:var(--cgr);font-size:10px">'+r.temp+'°C</span>')):'-';
     if(r.temp)shown.add(tkey);
     var ori=r.origine||getOrigine(r.fourn,r.produit);
-    return'<tr><td><span class="bd blot">'+(r.lot||'?')+'</span></td><td style="white-space:nowrap">'+r.date+'</td><td><strong>'+r.fourn+'</strong></td><td>'+r.produit+'</td><td>'+(r.poids?r.poids+' kg':'-')+'</td><td>'+tHtml+'</td><td><span class="bd '+(ori!=='France'?'bwn':'bok')+'">'+ori+'</span></td><td style="font-size:10px">'+(r.facture||'-')+'</td></tr>';
+    var blHtml=r.bl?'<a href="'+r.bl+'" target="_blank" title="Voir le BL"><i class="ti ti-eye" style="font-size:16px;color:var(--cb)"></i></a>':'<span style="color:var(--cgr)">-</span>';
+    return'<tr><td><span class="bd blot">'+(r.lot||'?')+'</span></td><td style="white-space:nowrap">'+r.date+'</td><td><strong>'+r.fourn+'</strong></td><td>'+r.produit+'</td><td>'+(r.poids?r.poids+' kg':'-')+'</td><td>'+tHtml+'</td><td><span class="bd '+(ori!=='France'?'bwn':'bok')+'">'+ori+'</span></td><td style="font-size:10px">'+(r.facture||'-')+'</td><td style="text-align:center">'+blHtml+'</td></tr>';
   }).join('');
-  if(filtered.length>300)tb.innerHTML+='<tr><td colspan="8" style="text-align:center;font-size:10px;color:var(--cgr)">...'+( filtered.length-300)+' lignes</td></tr>';
+  if(filtered.length>300)tb.innerHTML+='<tr><td colspan="9" style="text-align:center;font-size:10px;color:var(--cgr)">...'+( filtered.length-300)+' lignes</td></tr>';
   var rc=document.getElementById('prec-cnt');if(rc)rc.textContent=filtered.length+' ligne(s) sur '+pGetData().length;
 }
 function pUpdateLot(){
@@ -1480,6 +1574,42 @@ function pUpdateOrigine(){
   var ori=document.getElementById('prori');
   if(ori&&f&&p)ori.value=getOrigine(f,p);
 }
+var _prblData=null,_prblName='';
+function pBLClear(){_prblData=null;_prblName='';var pv=document.getElementById('prbl-preview');if(pv)pv.style.display='none';var c=document.getElementById('prbl-cam'),f=document.getElementById('prbl-file');if(c)c.value='';if(f)f.value='';}
+function pBLShow(name,size){_prblName=name;var pv=document.getElementById('prbl-preview');var nm=document.getElementById('prbl-name'),sz=document.getElementById('prbl-size');if(nm)nm.textContent=name;if(sz)sz.textContent=Math.round(size/1024)+' Ko'+(size<400000?' — compressé':'');if(pv)pv.style.display='flex';}
+function pBLSelect(input){
+  var file=input.files&&input.files[0];if(!file)return;
+  if(file.type==='application/pdf'){
+    var rP=new FileReader();rP.onload=function(){_prblData=rP.result;pBLShow(file.name,file.size);};rP.readAsDataURL(file);return;
+  }
+  var rI=new FileReader();
+  rI.onload=function(){
+    var img=new Image();
+    img.onload=function(){
+      var max=1600,w=img.width,h=img.height;
+      if(w>max||h>max){if(w>h){h=Math.round(h*max/w);w=max;}else{w=Math.round(w*max/h);h=max;}}
+      var cv=document.createElement('canvas');cv.width=w;cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      _prblData=cv.toDataURL('image/jpeg',0.7);
+      var approx=Math.round(_prblData.length*0.75);
+      pBLShow((file.name||'photo').replace(/\.[^.]+$/,'')+'.jpg',approx);
+    };
+    img.src=rI.result;
+  };
+  rI.readAsDataURL(file);
+}
+async function pUploadBL(lot){
+  if(!_prblData)return null;
+  try{
+    var m=/^data:([^;]+);base64,(.*)$/.exec(_prblData);if(!m)return null;
+    var ext=m[1]==='application/pdf'?'pdf':'jpg';
+    var bin=atob(m[2]);var arr=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
+    var path=lot+'_'+Date.now()+'.'+ext;
+    var resp=await fetch(SB_URL+'/storage/v1/object/bl/'+path,{method:'POST',headers:{'Authorization':'Bearer '+SB_KEY,'apikey':SB_KEY,'Content-Type':m[1]},body:arr});
+    if(resp.ok)return SB_URL+'/storage/v1/object/public/bl/'+path;
+    return null;
+  }catch(e){return null;}
+}
 async function pAjouterRec(){
   var fourn=document.getElementById('prf').value.trim();
   var date=document.getElementById('prd').value;
@@ -1488,9 +1618,12 @@ async function pAjouterRec(){
   var parts=date.split('-');
   var produit=document.getElementById('prprod').value;
   var r={type:curType,lot:pref+parts[2]+parts[1]+parts[0].slice(2),date:new Date(date).toLocaleDateString('fr-FR'),fourn:fourn,produit:produit,poids:parseFloat(document.getElementById('prpds').value)||null,prix:parseFloat(document.getElementById('prpx').value)||null,temp:parseFloat(document.getElementById('prt').value)||null,origine:document.getElementById('prori').value||getOrigine(fourn,produit),facture:document.getElementById('prfact').value,montant:parseFloat(document.getElementById('prmnt').value)||null,avoir:document.getElementById('prav').value,obs:document.getElementById('probs').value};
-  setSyncStatus('syncing');var ok=await sbInsert('receptions',r);
+  setSyncStatus('syncing');
+  if(_prblData){var url=await pUploadBL(r.lot);if(url)r.bl=url;}
+  var ok=await sbInsert('receptions',r);
   if(ok){dbReceptions.unshift(r);setSyncStatus('ok');toast('Réception enregistrée !');}
   else{setSyncStatus('offline');toast('Erreur','ko');}
+  pBLClear();
   ['prf','prprod','prpds','prpx','prt','prfact','prmnt','prav','probs'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
   var prd=document.getElementById('prd');if(prd)prd.value=today;
   var lv=document.getElementById('plotVal');if(lv)lv.textContent='—';
