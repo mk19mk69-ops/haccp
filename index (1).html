@@ -1008,7 +1008,7 @@ function getOrigine(fourn,produit){
   var isAgneau=MOTS_AGNEAU.some(function(m){return p.includes(m);});
   if(isAgneau&&FOURN_IRLANDE_AGNEAU.some(function(ir){return f.includes(ir);})) return 'Irlande';
   return 'France';
-}ull;
+}
 var TESP=[
   {id:'chambre',nom:'Chambre froide',min:0,max:4,ch:['Temp (°C)','Hygro (%)'],chMin:[0,75],chMax:[4,85]},
   {id:'vitrine',nom:'Vitrine réfrigérée',min:0,max:4,ch:['Temp haute (°C)','Temp basse (°C)'],chMin:[2,0],chMax:[4,3]},
@@ -1016,6 +1016,10 @@ var TESP=[
   {id:'neg1',nom:'Vitrine Négative 1',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]},
   {id:'neg2',nom:'Vitrine Négative 2',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]}
 ];
+var curType='viande';
+var dbReceptions=[],dbNettoyages=[],dbNonconfs=[],dbAlgos=[],dbTemps={},dbNuisibles=[],dbHaches=[],dbFabrications=[];
+var nzEmpState={},pnzState={};
+var curAppareil=null;
 TESP.forEach(function(e){dbTemps[e.id]=[];});
 
 function prenomSemaine(d){
