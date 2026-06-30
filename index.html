@@ -1086,7 +1086,6 @@ async function init(){
   genHistoNuisibles();
   initEmployeUI();
   // Init Patron
-  buildPTempFiches();
   buildPNzGrid();
   buildPAlgChecks();
   buildPControleList();
@@ -1480,7 +1479,7 @@ function pGoS(name){
   document.querySelectorAll('.pnav-btn').forEach(function(b){b.classList.remove('active');});
   var nb=document.getElementById('pnav-'+name);if(nb)nb.classList.add('active');
   if(name==='reception')pInitTbl();
-  if(name==='nettoyage'){pFilterNz();pInitNzMois();}
+  if(name==='nettoyage'){pFilterNz();}
   if(name==='hache')pFilterHache();
   if(name==='nuisibles')pFilterNuisibles();
   if(name==='atelier')pFilterFab();
@@ -1753,6 +1752,20 @@ function buildPNzGrid(){
   g.innerHTML=NZZ.map(function(z){pnzState[z.id]=false;return'<div class="pnzc" id="pnzc-'+z.id+'" onclick="pToggleNz(\''+z.id+'\')"><div class="pnzk" id="pnzk-'+z.id+'"><i class="ti ti-check" style="font-size:11px;display:none" id="pnzi-'+z.id+'"></i></div><div style="font-weight:600;font-size:12px">'+z.nom+'</div><div style="font-size:10px;color:var(--cgr)">'+z.f+'</div></div>';}).join('');
 }
 function pToggleNz(id){pnzState[id]=!pnzState[id];document.getElementById('pnzc-'+id).classList.toggle('done',pnzState[id]);document.getElementById('pnzi-'+id).style.display=pnzState[id]?'':'none';}
+async function pValNz(){
+  var zones=NZZ.filter(function(z){return pnzState[z.id];}).map(function(z){return z.nom;});
+  if(!zones.length){toast('Coche au moins une zone','ko');return;}
+  var produit=document.getElementById('pnzp').value||'Désinfectant B-Quat';
+  var resp=document.getElementById('pnzr').value||'';
+  var obs=document.getElementById('pnzo').value||'';
+  var now=new Date();
+  var n={date:now.toLocaleDateString('fr-FR'),zones:zones.join(', '),produit:produit,responsable:resp,obs:obs,heure:now.toTimeString().slice(0,5)};
+  setSyncStatus('syncing');await sbInsert('nettoyages',n);dbNettoyages.unshift(n);setSyncStatus('ok');
+  NZZ.forEach(function(z){pnzState[z.id]=false;var el=document.getElementById('pnzc-'+z.id);if(el)el.classList.remove('done');var iel=document.getElementById('pnzi-'+z.id);if(iel)iel.style.display='none';});
+  document.getElementById('pnzp').value='';document.getElementById('pnzo').value='';
+  toast('Nettoyage enregistré');pFilterNz();
+}
+
 function genHistoNettoyage(){
   if(dbNettoyages.length>0)return;
   NZ_DATA.forEach(function(n){
@@ -2256,7 +2269,7 @@ function chargerArchives(){
   toast('Archives chargées (' + _V_ARCH.length + ' réceptions supplémentaires)');
   pInitTbl();pFilterNz();pFilterHache();pFilterFab();
 }
-var _NZ_ARCH=NZ_ARCH;
+var _NZ_ARCH=[];
 
 // ===== EXPORT ANNUEL HACCP =====
 function exportAnnuel(){
