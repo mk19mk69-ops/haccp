@@ -1064,8 +1064,13 @@ setInterval(updateClock,1000);
 async function init(){
   var lmsg=document.getElementById('loading-msg');
   lmsg.textContent='Connexion...';
+  // Timeout 6 secondes - si Supabase ne répond pas, on continue sans données Supabase
+  var sbTimeout=new Promise(function(res){setTimeout(function(){res([null,null,null,null,null]);},6000);});
   try{
-    var r=await Promise.all([sbGetAll('receptions'),sbGetAll('nettoyages'),sbGetAll('nonconformites'),sbGetAll('allergenes'),sbGetAll('temperatures')]);
+    var r=await Promise.race([
+      Promise.all([sbGetAll('receptions'),sbGetAll('nettoyages'),sbGetAll('nonconformites'),sbGetAll('allergenes'),sbGetAll('temperatures')]),
+      sbTimeout
+    ]);
     var allRecs=Array.isArray(r[0])?r[0]:[];
     dbReceptions=allRecs.filter(function(x){return x.type!=='fabrication'&&x.type!=='hache';});
     var dbFabDB=allRecs.filter(function(x){return x.type==='fabrication';}).map(function(x){try{var o=JSON.parse(x.obs||'{}');return{date:x.date,produit:x.produit,poids:x.poids,dlc:o.dlc||'',responsable:o.resp||'',viandes:o.viandes||[],ingredients:o.ingredients||[],allergenes:o.allergenes||[],obs:''};}catch(e){return{date:x.date,produit:x.produit,poids:x.poids,dlc:'',responsable:'',viandes:[],ingredients:[],allergenes:[],obs:''};} });
@@ -1080,6 +1085,7 @@ async function init(){
     if(Array.isArray(r[4]))r[4].forEach(function(t){if(dbTemps[t.espace])dbTemps[t.espace].push(t);});
     setSyncStatus('ok');
   }catch(e){setSyncStatus('offline');console.error(e);}
+  if(!r||r[0]===null){setSyncStatus('offline');}
   lmsg.textContent='Génération historique...';
   genHistoTemp();
   genHistoNettoyage();
