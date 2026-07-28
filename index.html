@@ -500,8 +500,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="hache-lot-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
           <select class="big-input hache-morceau-sel" style="font-size:14px;padding:12px">
             <option value="">-- Morceau --</option>
-            <option>BCU</option><option>Broutard</option><option>Plat de côte</option>
-            <option>Col BC sans os</option><option>Toro SOS</option><option>Avant SOS</option>
+            <option>BCU</option><option>BCUH</option><option>Broutard</option><option>Plat de côte</option><option>Plat</option><option>Col BC sans os</option><option>Col BC</option><option>Toro SOS</option><option>Avant SOS</option><option>Dessus</option><option>AV5</option><option>Capa SOS</option><option>Gros bout SOS</option><option>Noix</option><option>Bas carré</option><option>Cuisseau</option><option>Veau</option><option>Veaux</option>
           </select>
           <select class="big-input hache-lot-sel" style="font-size:14px;padding:12px" id="hache-lot-select-0">
             <option value="">-- Lot bœuf/veau --</option>
@@ -827,8 +826,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
           <div class="pfi"><label>Morceau Bigard</label>
             <select id="phm">
               <option value="">-- Choisir --</option>
-              <option>BCU</option><option>Broutard</option><option>Plat de côte</option>
-              <option>Col BC sans os</option><option>Toro SOS</option><option>Avant SOS</option>
+              <option>BCU</option><option>BCUH</option><option>Broutard</option><option>Plat de côte</option><option>Plat</option><option>Col BC sans os</option><option>Col BC</option><option>Toro SOS</option><option>Avant SOS</option><option>Dessus</option><option>AV5</option><option>Capa SOS</option><option>Gros bout SOS</option><option>Noix</option><option>Bas carré</option><option>Cuisseau</option><option>Veau</option><option>Veaux</option>
             </select>
           </div>
           <div class="pfi"><label>Lot Bigard utilisé</label><input type="text" id="phl" placeholder="ex : BIG120626"></div>
@@ -1466,13 +1464,24 @@ var lotsBigardBovin=[];
 var lotsAgneau=[];
 var lotsVeau=[];
 
+function parseDateFr(s){
+  if(!s)return null;
+  var p=s.split('/');if(p.length<3)return null;
+  return new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));
+}
+function dansLes20Jours(dateStr){
+  var d=parseDateFr(dateStr);if(!d)return false;
+  var diff=(new Date()-d)/86400000;
+  return diff>=0&&diff<=20;
+}
+
 function chargerLotsBigard(){
-  // Charger les lots bœuf/veau (tous fournisseurs France) depuis l'historique
+  // Charger les lots bœuf/veau (tous fournisseurs France) depuis l'historique — 20 derniers jours seulement
   var bigardLots=new Map();
   VIANDE_HIST.concat(dbReceptions.filter(function(r){return r.type==='viande';})).forEach(function(r){
     var f=(r.fourn||'').toLowerCase();
     var p=(r.produit||'').toLowerCase();
-    if(FOURN_BOVIN_FRANCE.includes(f)&&!p.includes('agn')&&r.lot){
+    if(FOURN_BOVIN_FRANCE.includes(f)&&!p.includes('agn')&&r.lot&&dansLes20Jours(r.date)){
       if(!bigardLots.has(r.lot)){
         bigardLots.set(r.lot,{lot:r.lot,produit:r.produit,date:r.date,fourn:r.fourn});
       }
@@ -1481,31 +1490,31 @@ function chargerLotsBigard(){
   // Trier par date décroissante
   lotsBigardBovin=Array.from(bigardLots.values()).sort(function(a,b){
     return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
-  }).slice(0,50);
+  });
 
-  // Lots agneau
+  // Lots agneau — 20 derniers jours
   var agneauMap=new Map();
   VIANDE_HIST.concat(dbReceptions).forEach(function(r){
     var p=(r.produit||'').toLowerCase();
-    if((p.includes('agn')||p.includes('agnx'))&&r.lot&&!agneauMap.has(r.lot)){
+    if((p.includes('agn')||p.includes('agnx'))&&r.lot&&dansLes20Jours(r.date)&&!agneauMap.has(r.lot)){
       agneauMap.set(r.lot,{lot:r.lot,fourn:r.fourn,date:r.date});
     }
   });
   lotsAgneau=Array.from(agneauMap.values()).sort(function(a,b){
     return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
-  }).slice(0,30);
+  });
 
-  // Lots veau
+  // Lots veau — 20 derniers jours
   var veauMap=new Map();
   VIANDE_HIST.concat(dbReceptions).forEach(function(r){
     var p=(r.produit||'').toLowerCase();
-    if((p.includes('veau')||p.includes('veaux'))&&r.lot&&!veauMap.has(r.lot)){
+    if((p.includes('veau')||p.includes('veaux'))&&r.lot&&dansLes20Jours(r.date)&&!veauMap.has(r.lot)){
       veauMap.set(r.lot,{lot:r.lot,fourn:r.fourn,date:r.date});
     }
   });
   lotsVeau=Array.from(veauMap.values()).sort(function(a,b){
     return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
-  }).slice(0,30);
+  });
 }
 
 function remplirSelectBigard(sel){
@@ -1541,8 +1550,7 @@ function ajouterLotHache(){
   div.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px';
   div.innerHTML='<select class="big-input hache-morceau-sel" style="font-size:14px;padding:12px">'+
     '<option value="">-- Morceau --</option>'+
-    '<option>BCU</option><option>Broutard</option><option>Plat de côte</option>'+
-    '<option>Col BC sans os</option><option>Toro SOS</option><option>Avant SOS</option>'+
+    '<option>BCU</option><option>BCUH</option><option>Broutard</option><option>Plat de côte</option><option>Plat</option><option>Col BC sans os</option><option>Col BC</option><option>Toro SOS</option><option>Avant SOS</option><option>Dessus</option><option>AV5</option><option>Capa SOS</option><option>Gros bout SOS</option><option>Noix</option><option>Bas carré</option><option>Cuisseau</option><option>Veau</option><option>Veaux</option>'+
     '</select>'+
     '<select class="big-input hache-lot-sel" style="font-size:14px;padding:12px">'+
     '<option value="">-- Lot bœuf/veau --</option>'+
