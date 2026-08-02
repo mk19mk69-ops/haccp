@@ -461,6 +461,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="task-emoji">🥩</div>
         <div class="task-name">Muscle pour hachage</div>
         <div class="task-desc">Préparation à la demande du client</div>
+        <div class="task-desc" id="hache-date-saisie" style="font-weight:600"></div>
       </div>
     </div>
 
@@ -534,6 +535,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="task-emoji">🌭</div>
         <div class="task-name">Fabrication saucisse</div>
         <div class="task-desc">Note ce que tu as fabriqué aujourd'hui</div>
+        <div class="task-desc" id="sau-date-saisie" style="font-weight:600"></div>
       </div>
     </div>
 
@@ -1476,45 +1478,40 @@ function dansLes20Jours(dateStr){
 }
 
 function chargerLotsBigard(){
-  // Charger les lots bœuf/veau (tous fournisseurs France) depuis l'historique — 20 derniers jours seulement
-  var bigardLots=new Map();
-  VIANDE_HIST.concat(dbReceptions.filter(function(r){return r.type==='viande';})).forEach(function(r){
-    var f=(r.fourn||'').toLowerCase();
-    var p=(r.produit||'').toLowerCase();
-    if(FOURN_BOVIN_FRANCE.includes(f)&&!p.includes('agn')&&r.lot&&dansLes20Jours(r.date)){
-      if(!bigardLots.has(r.lot)){
-        bigardLots.set(r.lot,{lot:r.lot,produit:r.produit,date:r.date,fourn:r.fourn});
-      }
+  function collecter(source,predicat){
+    var tousMap=new Map(), recentsMap=new Map();
+    source.forEach(function(r){
+      if(!predicat(r))return;
+      if(!tousMap.has(r.lot))tousMap.set(r.lot,{lot:r.lot,produit:r.produit,date:r.date,fourn:r.fourn});
+      if(dansLes20Jours(r.date)&&!recentsMap.has(r.lot))recentsMap.set(r.lot,{lot:r.lot,produit:r.produit,date:r.date,fourn:r.fourn});
+    });
+    function trier(map){
+      return Array.from(map.values()).sort(function(a,b){
+        return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
+      });
     }
-  });
-  // Trier par date décroissante
-  lotsBigardBovin=Array.from(bigardLots.values()).sort(function(a,b){
-    return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
-  });
+    var recents=trier(recentsMap);
+    // Filet de sécurité : si rien dans les 20 jours, on affiche quand même les plus récents disponibles
+    return recents.length?recents:trier(tousMap).slice(0,15);
+  }
 
-  // Lots agneau — 20 derniers jours
-  var agneauMap=new Map();
-  VIANDE_HIST.concat(dbReceptions).forEach(function(r){
-    var p=(r.produit||'').toLowerCase();
-    if((p.includes('agn')||p.includes('agnx'))&&r.lot&&dansLes20Jours(r.date)&&!agneauMap.has(r.lot)){
-      agneauMap.set(r.lot,{lot:r.lot,fourn:r.fourn,date:r.date});
-    }
-  });
-  lotsAgneau=Array.from(agneauMap.values()).sort(function(a,b){
-    return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
-  });
+  // Charger les lots bœuf/veau (tous fournisseurs France) — 20 derniers jours, sinon les plus récents
+  lotsBigardBovin=collecter(
+    VIANDE_HIST.concat(dbReceptions.filter(function(r){return r.type==='viande';})),
+    function(r){var f=(r.fourn||'').toLowerCase();var p=(r.produit||'').toLowerCase();return FOURN_BOVIN_FRANCE.includes(f)&&!p.includes('agn')&&r.lot;}
+  );
 
-  // Lots veau — 20 derniers jours
-  var veauMap=new Map();
-  VIANDE_HIST.concat(dbReceptions).forEach(function(r){
-    var p=(r.produit||'').toLowerCase();
-    if((p.includes('veau')||p.includes('veaux'))&&r.lot&&dansLes20Jours(r.date)&&!veauMap.has(r.lot)){
-      veauMap.set(r.lot,{lot:r.lot,fourn:r.fourn,date:r.date});
-    }
-  });
-  lotsVeau=Array.from(veauMap.values()).sort(function(a,b){
-    return b.date.split('/').reverse().join('').localeCompare(a.date.split('/').reverse().join(''));
-  });
+  // Lots agneau — 20 derniers jours, sinon les plus récents
+  lotsAgneau=collecter(
+    VIANDE_HIST.concat(dbReceptions),
+    function(r){var p=(r.produit||'').toLowerCase();return(p.includes('agn')||p.includes('agnx'))&&r.lot;}
+  );
+
+  // Lots veau — 20 derniers jours, sinon les plus récents
+  lotsVeau=collecter(
+    VIANDE_HIST.concat(dbReceptions),
+    function(r){var p=(r.produit||'').toLowerCase();return(p.includes('veau')||p.includes('veaux'))&&r.lot;}
+  );
 }
 
 function remplirSelectBigard(sel){
@@ -1535,6 +1532,9 @@ function remplirSelectVeau(sel){
 
 function initLotsSelects(){
   chargerLotsBigard();
+  var dateJour='Date de saisie : '+new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  var hd=document.getElementById('hache-date-saisie');if(hd)hd.textContent=dateJour;
+  var sd=document.getElementById('sau-date-saisie');if(sd)sd.textContent=dateJour;
   // Hachage
   document.querySelectorAll('.hache-lot-sel').forEach(function(sel){remplirSelectBigard(sel);});
   // Saucisse
