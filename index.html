@@ -1891,9 +1891,12 @@ function pBuildAffiche(){
 // ===== TEMPÉRATURES ADMIN =====
 function genHistoTemp(){
   TESP.forEach(function(e){
-    if(dbTemps[e.id].length>0)return;
+    var existants=new Set(dbTemps[e.id].map(function(r){return r.date+'|'+r.heure;}));
     (TEMPS_DATA[e.id]||[]).forEach(function(t){
+      var cle=t.d+'|'+t.h;
+      if(existants.has(cle))return;
       dbTemps[e.id].push({espace:t.e,date:t.d,heure:t.h,valeurs:t.v,conforme:t.c,responsable:t.r||'',action:''});
+      existants.add(cle);
     });
   });
 }
@@ -1996,9 +1999,12 @@ function buildPNzGrid(){
 }
 function pToggleNz(id){pnzState[id]=!pnzState[id];document.getElementById('pnzc-'+id).classList.toggle('done',pnzState[id]);document.getElementById('pnzi-'+id).style.display=pnzState[id]?'':'none';}
 function genHistoNettoyage(){
-  if(dbNettoyages.length>0)return;
+  var existants=new Set(dbNettoyages.map(function(r){return r.date+'|'+(r.heure||'');}));
   NZ_DATA.forEach(function(n){
+    var cle=n.d+'|'+(n.h||'');
+    if(existants.has(cle))return;
     dbNettoyages.push({date:n.d,zones:n.z,produit:n.p,responsable:n.r,obs:n.o||'',heure:n.h||''});
+    existants.add(cle);
   });
 }
 function pInitNzMois(){
