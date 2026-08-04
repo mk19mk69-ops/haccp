@@ -1364,7 +1364,6 @@ function getZonesManquantes(){
   var todayFr=new Date().toLocaleDateString('fr-FR');
   var nzAujourd=dbNettoyages.filter(function(n){return n.date===todayFr;});
   var manquantes=[];
-  var h=new Date().getHours();
   // Vérifier zones quotidiennes
   Object.keys(NZ_FREQ_JOUR).forEach(function(zid){
     var freq=NZ_FREQ_JOUR[zid];
@@ -1501,12 +1500,16 @@ async function validerTemp(){
   ctxt.textContent=(conf?'✅ ':' ⚠️ ')+v+'°C — '+(conf?'Température normale':'Appelle l\'administrateur !');
   document.getElementById('confirm-temp').classList.add('show');
   document.getElementById('etape-saisie-temp').style.display='none';
+  document.getElementById('temp-val').value='';
+  curAppareil=null;
+  document.querySelectorAll('.app-btn').forEach(function(b){b.classList.remove('sel');});
   checkRappelNettoyage();
   toast(conf?'Enregistré !':'Anomalie signalée !',conf?'ok':'ko');
 }
 function autreTemp(){
   document.getElementById('confirm-temp').classList.remove('show');
   document.getElementById('etape-saisie-temp').style.display='none';
+  document.getElementById('temp-val').value='';
   curAppareil=null;
   document.querySelectorAll('.app-btn').forEach(function(b){b.classList.remove('sel');});
   document.getElementById('etape-appareil').className='etape active-step';
