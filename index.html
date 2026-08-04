@@ -1535,7 +1535,7 @@ async function validerTemp(){
   var vals=[{l:e.ch[0],v:v}];
   if(e.ch.length>1)vals.push({l:e.ch[1],v:randT(e.chMin[1],e.chMax[1])});
   var r={espace:curAppareil,date:now.toLocaleDateString('fr-FR'),heure:heure,valeurs:vals,conforme:conf,responsable:'',action:''};
-  setSyncStatus('syncing');await sbInsert('temperatures',r);dbTemps[curAppareil].unshift(r);
+  setSyncStatus('syncing');var ok=await sbInsert('temperatures',r);dbTemps[curAppareil].unshift(r);
   var ctxt=document.getElementById('confirm-temp-txt');
   ctxt.textContent=(conf?'✅ ':' ⚠️ ')+v+'°C — '+(conf?'Température normale':'Appelle l\'administrateur !');
   document.getElementById('confirm-temp').classList.add('show');
@@ -1544,7 +1544,8 @@ async function validerTemp(){
   curAppareil=null;
   document.querySelectorAll('.app-btn').forEach(function(b){b.classList.remove('sel');});
   checkRappelNettoyage();
-  toast(conf?'Enregistré !':'Anomalie signalée !',conf?'ok':'ko');
+  if(ok)toast(conf?'Enregistré !':'Anomalie signalée !',conf?'ok':'ko');
+  else avertirSiHorsLigne(ok);
 }
 function autreTemp(){
   document.getElementById('confirm-temp').classList.remove('show');
@@ -1573,9 +1574,10 @@ async function validerNzEmploye(freq){
   var produit=document.getElementById(produitId)?document.getElementById(produitId).value:'B-Quat';
   var now=new Date();
   var n={date:now.toLocaleDateString('fr-FR'),zones:zones.join(', '),produit:produit,responsable:prenomSemaine(now),obs:'',heure:now.toTimeString().slice(0,5)};
-  setSyncStatus('syncing');await sbInsert('nettoyages',n);dbNettoyages.unshift(n);
+  setSyncStatus('syncing');var ok=await sbInsert('nettoyages',n);dbNettoyages.unshift(n);
   document.getElementById('confirm-nz').classList.add('show');
-  checkRappelNettoyage();buildZoneGridFreq();toast('Nettoyage enregistré !');
+  checkRappelNettoyage();buildZoneGridFreq();
+  if(ok)toast('Nettoyage enregistré !');else avertirSiHorsLigne(ok);
 }
 
 
@@ -1720,9 +1722,9 @@ async function validerHacheEmploye(){
   var now=new Date();
   var produit='Muscle '+morceau+' Bigard — hachage demande';
   var r={type:'hache',date:now.toLocaleDateString('fr-FR'),heure:now.toTimeString().slice(0,5),fourn:'Bigard',produit:produit,poids:parseFloat(poids)||null,temp:parseFloat(temp)||null,lot:lot||('HAC'+now.toLocaleDateString('fr-FR').replace(/\//g,'')),origine:'France',obs:JSON.stringify({consommation:'Immediate',resp:prenomSemaine(new Date()),lot_utilise:lot,morceau:morceau,espece:'Bovin',fournisseur:'Bigard'})};
-  setSyncStatus('syncing');await sbInsert('receptions',r);dbHaches.unshift(r);
+  setSyncStatus('syncing');var ok=await sbInsert('receptions',r);dbHaches.unshift(r);
   document.getElementById('confirm-hache').classList.add('show');
-  toast('Préparation enregistrée !');
+  if(ok)toast('Préparation enregistrée !');else avertirSiHorsLigne(ok);
 }
 
 // ===== SAUCISSE EMPLOYÉ =====
@@ -1739,12 +1741,12 @@ async function validerSaucisseEmploye(){
   var now=new Date();var dlc=new Date(now);dlc.setDate(dlc.getDate()+3);
   var dlcStr=dlc.toLocaleDateString('fr-FR');
   var r={type:'fabrication',date:now.toLocaleDateString('fr-FR'),fourn:'ATELIER',produit:'Saucisse',poids:parseFloat(poids)||null,temp:parseFloat(temp)||null,lot:'SAU'+now.toLocaleDateString('fr-FR').replace(/\//g,''),origine:'France',obs:JSON.stringify({dlc:dlcStr,resp:prenomSemaine(new Date()),viandes:[{lot:lots,espece:'Bovin'}],ingredients:[{nom:'Sel'},{nom:'Epices'},{nom:'Chapelure'}],allergenes:['Gluten','Moutarde','Sulfites','Soja','Sesame','Celeri']})};
-  setSyncStatus('syncing');await sbInsert('receptions',r);
+  setSyncStatus('syncing');var ok=await sbInsert('receptions',r);
   dbFabrications.unshift({date:r.date,produit:'Saucisse',poids:poids,dlc:dlcStr,responsable:prenomSemaine(new Date()),viandes:[{lot:lots,espece:'Bovin'}],allergenes:['Gluten','Moutarde','Sulfites','Soja','Sesame','Celeri'],obs:''});
   var ctxt=document.getElementById('confirm-sau-txt');
   ctxt.textContent=poids+' kg — DLC : '+dlcStr+' 🌭';
   document.getElementById('confirm-sau').classList.add('show');
-  toast('Fabrication enregistrée !');
+  if(ok)toast('Fabrication enregistrée !');else avertirSiHorsLigne(ok);
 }
 
 // ===== PIN =====
@@ -2751,7 +2753,11 @@ function NZZ_compat(){}
 
 // ===== UTILS =====
 function dl(txt,name){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));a.download=name;a.click();}
-function toast(msg,type){var t=document.getElementById('toast');if(!t)return;t.innerHTML='<i class="ti ti-'+(type==='ko'?'alert-circle':'check')+'"></i> '+msg;t.className='toast '+(type||'ok')+' show';setTimeout(function(){t.className='toast';},3000);}
+function toast(msg,type,duree){var t=document.getElementById('toast');if(!t)return;t.innerHTML='<i class="ti ti-'+(type==='ko'?'alert-circle':'check')+'"></i> '+msg;t.className='toast '+(type||'ok')+' show';setTimeout(function(){t.className='toast';},duree||3000);}
+function avertirSiHorsLigne(ok){
+  if(ok)return;
+  toast('⚠️ Hors connexion — enregistré sur l\'appareil, sera envoyé automatiquement dès le retour du réseau','ko',6000);
+}
 
 // ===== DEMARRAGE =====
 init();
