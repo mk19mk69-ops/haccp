@@ -763,7 +763,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
           <div class="pfg pg3">
             <div class="pfi"><label>Produit</label><input type="text" id="palg-p" placeholder="ex : Merguez maison"></div>
             <div class="pfi"><label>Date</label><input type="date" id="palg-d"></div>
-            <div class="pfi"><label>Responsable</label><input type="text" id="palg-r" placeholder="Prénom Nom"></div>
+            <div class="pfi"><label>Responsable</label><select id="palg-r"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
           </div>
           <div class="palgg" id="palg-checks" style="margin-top:12px"></div>
           <div class="pbr"><button class="pbtn pbp" onclick="pAjouterAlg()"><i class="ti ti-plus"></i> Enregistrer</button></div>
@@ -822,7 +822,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="pnzg" id="pnz-grid"></div>
         <div class="pfg pg2" style="margin-top:7px">
           <div class="pfi"><label>Produit utilisé</label><input type="text" id="pnzp" placeholder="Désinfectant..."></div>
-          <div class="pfi"><label>Responsable</label><input type="text" id="pnzr" placeholder="Prénom Nom"></div>
+          <div class="pfi"><label>Responsable</label><select id="pnzr"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
         </div>
         <div class="pfi" style="margin-top:7px"><label>Observations</label><textarea id="pnzo" placeholder="Anomalie..." style="min-height:44px"></textarea></div>
         <div class="pbr"><button class="pbtn pbg" onclick="pValNz()"><i class="ti ti-check"></i> Valider</button><button class="pbtn pbo" onclick="pExpNz()"><i class="ti ti-download"></i> Exporter</button></div>
@@ -853,7 +853,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
             </select>
           </div>
           <div class="pfi"><label>Lot Bigard utilisé</label><input type="text" id="phl" placeholder="ex : BIG120626"></div>
-          <div class="pfi"><label>Responsable</label><input type="text" id="phr" placeholder="Prénom Nom"></div>
+          <div class="pfi"><label>Responsable</label><select id="phr"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
         </div>
         <div style="background:var(--cgl);border:1.5px solid var(--cg);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px;font-weight:600;color:var(--cgd)">
           ✅ Consommation immédiate — hachage à la demande client
@@ -883,7 +883,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
           </div>
           <div class="pfg pg3" style="margin-top:8px">
             <div class="pfi"><label>Poids fabriqué (kg)</label><input type="number" id="pat-poids" step="0.1" placeholder="ex : 15.5"></div>
-            <div class="pfi"><label>Responsable</label><input type="text" id="pat-resp" placeholder="Prénom Nom"></div>
+            <div class="pfi"><label>Responsable</label><select id="pat-resp"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
             <div class="pfi"><label>Temp. salle (°C)</label><input type="number" id="pat-temp" step="0.1" placeholder="max 12°C"></div>
           </div>
           <div class="pfg pg3" style="margin-top:8px">
@@ -985,7 +985,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div id="pnuis-zones" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px"></div>
         <div class="pfg pg3" style="margin-top:10px">
           <div class="pfi"><label>Produit / Appât</label><input type="text" id="pnuis-produit" placeholder="ex : Raticide Racumin"></div>
-          <div class="pfi"><label>Responsable</label><input type="text" id="pnuis-resp" placeholder="Prénom Nom"></div>
+          <div class="pfi"><label>Responsable</label><select id="pnuis-resp"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
           <div class="pfi"><label>Observations</label><input type="text" id="pnuis-obs" placeholder="ex : RAS..."></div>
         </div>
         <div class="pbr"><button class="pbtn pbg" onclick="pEnregistrerNuisibles()"><i class="ti ti-check"></i> Enregistrer</button></div>
@@ -1026,7 +1026,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="pfg pg2">
           <div class="pfi"><label>Raison sociale</label><input type="text" id="pctrl-nom" placeholder="Boucherie..."></div>
           <div class="pfi"><label>N° agrément sanitaire</label><input type="text" id="pctrl-agr" placeholder="FR XX XXX CE"></div>
-          <div class="pfi"><label>Responsable HACCP</label><input type="text" id="pctrl-resp" placeholder="Prénom Nom"></div>
+          <div class="pfi"><label>Responsable HACCP</label><select id="pctrl-resp"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
           <div class="pfi"><label>Date du contrôle</label><input type="date" id="pctrl-date"></div>
         </div>
       </div>
@@ -1192,6 +1192,12 @@ var VOLAILLE_HIST=_VOL.map(_ex);
 var today=new Date().toISOString().slice(0,10);
 var nowH=new Date().toTimeString().slice(0,5);
 var PRENOMS=['Mohamed','Mohamad','Moustapha','Souleymane','Boualem'];
+var PRENOMS_ACTIFS=['Mohamed','Mohamad','Moustapha','Boualem','Mehdi','Said','Moussa'];
+function prenomSemaineActif(d){
+  var sem=Math.floor((d-DATE_DEBUT)/86400000/7);
+  return PRENOMS_ACTIFS[((sem%PRENOMS_ACTIFS.length)+PRENOMS_ACTIFS.length)%PRENOMS_ACTIFS.length];
+}
+var OPTIONS_EMPLOYES='<option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option>';
 var JOURS_OUVERTS=[1,2,3,4,5]; // mar=1,mer=2,jeu=3,ven=4,sam=5 (weekday JS: mar=2,mer=3,jeu=4,ven=5,sam=6)
 var DATE_DEBUT=new Date('2026-01-02');
 var PIN_CODE='0001';
@@ -1325,7 +1331,7 @@ async function init(){
   buildPAlgChecks();
   buildPControleList();
   buildPNuisiblesGrid();
-  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=prenomSemaine(new Date());
+  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=prenomSemaineActif(new Date());
   renderProduitsNz();
   remplirSelectsProduitsNz();
   ['prd','palg-d','pncd','pat-date','phd','pctrl-date'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=today;});
@@ -2033,7 +2039,7 @@ function buildPTempFiches(){
       '<div class="pfg pg2" style="margin-bottom:9px"><div class="pfi"><label>Date</label><input type="date" id="ptf_'+e.id+'_d" value="'+today+'"></div><div class="pfi"><label>Heure</label><input type="time" id="ptf_'+e.id+'_h" value="'+nowH+'"></div></div>'+
       '<div class="pfg pg'+Math.min(e.ch.length,3)+'" style="margin-bottom:9px">'+chHtml+'</div>'+
       '<button type="button" class="pbtn pbo" style="margin-bottom:9px;font-size:11px" onclick="pReremplirTemp(\''+e.id+'\')"><i class="ti ti-refresh"></i> Valeur aléatoire</button>'+
-      '<div class="pfg pg2"><div class="pfi"><label>Responsable</label><input type="text" id="ptf_'+e.id+'_r" placeholder="Prénom Nom"></div><div class="pfi"><label>Action corrective</label><input type="text" id="ptf_'+e.id+'_a" placeholder="Si anomalie..."></div></div>'+
+      '<div class="pfg pg2"><div class="pfi"><label>Responsable</label><select id="ptf_'+e.id+'_r">'+OPTIONS_EMPLOYES+'</select></div><div class="pfi"><label>Action corrective</label><input type="text" id="ptf_'+e.id+'_a" placeholder="Si anomalie..."></div></div>'+
       '<div class="pbr"><button class="pbtn pbp" onclick="pAddTemp(\''+e.id+'\')"><i class="ti ti-plus"></i> Enregistrer</button><button class="pbtn pbo" onclick="pExpTemp(\''+e.id+'\')"><i class="ti ti-download"></i> Exporter</button></div></div>'+
       '<div class="pcard"><div class="pct"><i class="ti ti-history" style="color:var(--cb)"></i> Relevés — <span id="pcnt-t-'+e.id+'" style="font-weight:400;font-size:12px;color:var(--cgr)"></span></div>'+
       '<div class="psb2"><input type="text" id="psrch-t-'+e.id+'" placeholder="Rechercher date..." oninput="pFilterTemp(\''+e.id+'\')"><select id="pmois-t-'+e.id+'" onchange="pFilterTemp(\''+e.id+'\')"><option value="">Tous les mois</option></select></div>'+
@@ -2676,7 +2682,7 @@ async function pValNz(){
   setSyncStatus('syncing');await sbInsert('nettoyages',n);dbNettoyages.unshift(n);
   NZZ.forEach(function(z){pnzState[z.id]=false;var c=document.getElementById('pnzc-'+z.id);var ni=document.getElementById('pnzi-'+z.id);if(c)c.classList.remove('done');if(ni)ni.style.display='none';});
   ['pnzp','pnzo'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=prenomSemaine(new Date());
+  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=prenomSemaineActif(new Date());
   pFilterNz();checkRappelNettoyage();toast('Nettoyage sauvegardé !');
 }
 async function pRemplirTout(){
