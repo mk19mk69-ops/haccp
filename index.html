@@ -6,6 +6,11 @@
 <meta name="theme-color" content="#D63031">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="HACCP Boucherie">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>HACCP Boucherie</title>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -280,6 +285,19 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
 
   <!-- ÉCRAN ACCUEIL -->
   <div class="screen active" id="screen-home">
+    <div id="install-banner" style="display:none;background:var(--cr);color:white;padding:12px 16px;border-radius:14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 4px 14px rgba(214,48,49,.25)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <i class="ti ti-download" style="font-size:22px"></i>
+        <div>
+          <div style="font-weight:700;font-size:14px">Installer l'appli</div>
+          <div style="font-size:11px;opacity:.9">Un raccourci sur ton téléphone, comme une vraie appli</div>
+        </div>
+      </div>
+      <button onclick="installerAppli()" style="background:white;color:var(--cr);border:none;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap">Installer</button>
+    </div>
+    <div id="install-banner-ios" style="display:none;background:var(--cbl);color:var(--cbd);padding:12px 16px;border-radius:14px;margin-bottom:14px;font-size:12px;line-height:1.5">
+      <strong>📲 Installe l'appli :</strong> appuie sur <i class="ti ti-share-2"></i> (Partager) en bas de l'écran, puis <strong>"Sur l'écran d'accueil"</strong>.
+    </div>
     <div class="home-greeting">
       <div class="jour" id="home-jour"></div>
       <div class="heure" id="home-heure">--:--</div>
@@ -1274,8 +1292,45 @@ async function init(){
   checkRappelNettoyage();
   initLotsSelects();
   updateClock();
+  initInstallPwa();
   document.getElementById('loading').style.display='none';
   document.getElementById('app-employe').style.display='flex';
+}
+
+// ===== INSTALLATION APPLI (PWA) =====
+var deferredInstallPrompt=null;
+function initInstallPwa(){
+  // Enregistrer le service worker (nécessaire pour l'installation)
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  }
+
+  var dejaInstallee = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+  if(dejaInstallee) return; // déjà installée, aucune bannière
+
+  // Windows / Android / Chrome / Edge : capte l'évènement natif d'installation
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    var b=document.getElementById('install-banner'); if(b) b.style.display='flex';
+  });
+  window.addEventListener('appinstalled', function(){
+    var b=document.getElementById('install-banner'); if(b) b.style.display='none';
+    toast('Appli installée ! Retrouve-la sur ton écran d\'accueil.');
+  });
+
+  // iPhone / iPad (Safari ne propose pas d'installation automatique)
+  var ua=navigator.userAgent||'';
+  var estIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  var estSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua);
+  if(estIOS && estSafari){
+    var bi=document.getElementById('install-banner-ios'); if(bi) bi.style.display='block';
+  }
+}
+function installerAppli(){
+  if(!deferredInstallPrompt){ toast('Utilise le menu de ton navigateur : ⋮ → Installer l\'application','ko'); return; }
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.then(function(){ deferredInstallPrompt=null; });
 }
 
 // ===== RAPPEL NETTOYAGE =====
