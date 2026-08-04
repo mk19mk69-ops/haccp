@@ -293,7 +293,10 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
           <div style="font-size:11px;opacity:.9">Un raccourci sur ton téléphone, comme une vraie appli</div>
         </div>
       </div>
-      <button onclick="installerAppli()" style="background:white;color:var(--cr);border:none;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap">Installer</button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onclick="installerAppli()" style="background:white;color:var(--cr);border:none;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap">Installer</button>
+        <button onclick="fermerBanniereInstall()" style="background:transparent;border:none;color:white;font-size:20px;cursor:pointer;padding:4px 6px;opacity:.85" aria-label="Fermer">✕</button>
+      </div>
     </div>
     <div id="install-banner-ios" style="display:none;background:var(--cbl);color:var(--cbd);padding:12px 16px;border-radius:14px;margin-bottom:14px;font-size:12px;line-height:1.5">
       <strong>📲 Installe l'appli :</strong> appuie sur <i class="ti ti-share-2"></i> (Partager) en bas de l'écran, puis <strong>"Sur l'écran d'accueil"</strong>.
@@ -1299,27 +1302,33 @@ async function init(){
 
 // ===== INSTALLATION APPLI (PWA) =====
 var deferredInstallPrompt=null;
+function pwaDejaTraite(){
+  try{ return localStorage.getItem('haccp_pwa_installee')==='1' || localStorage.getItem('haccp_pwa_bannieres_fermee')==='1'; }
+  catch(e){ return false; }
+}
 function initInstallPwa(){
-  // Enregistrer le service worker (nécessaire pour l'installation)
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').catch(function(){});
   }
 
   var dejaInstallee = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
-  if(dejaInstallee) return; // déjà installée, aucune bannière
+  if(dejaInstallee){
+    try{ localStorage.setItem('haccp_pwa_installee','1'); }catch(e){}
+    return; // déjà installée, aucune bannière
+  }
+  if(pwaDejaTraite()) return; // l'employé a déjà installé ou fermé la bannière précédemment
 
-  // Windows / Android / Chrome / Edge : capte l'évènement natif d'installation
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
     deferredInstallPrompt = e;
     var b=document.getElementById('install-banner'); if(b) b.style.display='flex';
   });
   window.addEventListener('appinstalled', function(){
+    try{ localStorage.setItem('haccp_pwa_installee','1'); }catch(e){}
     var b=document.getElementById('install-banner'); if(b) b.style.display='none';
     toast('Appli installée ! Retrouve-la sur ton écran d\'accueil.');
   });
 
-  // iPhone / iPad (Safari ne propose pas d'installation automatique)
   var ua=navigator.userAgent||'';
   var estIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
   var estSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua);
@@ -1331,6 +1340,11 @@ function installerAppli(){
   if(!deferredInstallPrompt){ toast('Utilise le menu de ton navigateur : ⋮ → Installer l\'application','ko'); return; }
   deferredInstallPrompt.prompt();
   deferredInstallPrompt.userChoice.then(function(){ deferredInstallPrompt=null; });
+}
+function fermerBanniereInstall(){
+  try{ localStorage.setItem('haccp_pwa_bannieres_fermee','1'); }catch(e){}
+  var b=document.getElementById('install-banner'); if(b) b.style.display='none';
+  var bi=document.getElementById('install-banner-ios'); if(bi) bi.style.display='none';
 }
 
 // ===== RAPPEL NETTOYAGE =====
