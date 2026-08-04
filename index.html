@@ -2426,19 +2426,28 @@ var NC_AUTO=[
 async function pCompleterManquants(){
   var btn=document.getElementById('pbtn-completer');if(btn){btn.disabled=true;btn.textContent='En cours...';}
   var fin=new Date();var count=0;
+  var todayFr=fin.toLocaleDateString('fr-FR');
+  var hActuelle=fin.getHours()+fin.getMinutes()/60;
   // Températures manquantes
   var datesAvecTemp=new Set(dbTemps['chambre'].map(function(r){return r.date;}));
   var cur=new Date(DATE_DEBUT);
   while(cur<=fin){
     var dateFr=cur.toLocaleDateString('fr-FR');
+    var estAujourdhui=(dateFr===todayFr);
     if([2,3,4,5,6].includes(cur.getDay())&&!datesAvecTemp.has(dateFr)){
       for(var ei=0;ei<TESP.length;ei++){
         var e=TESP[ei];
         // 2 relevés par jour : matin 8h-10h, soir 15h30-17h30
+        // Pour aujourd'hui : ne pas générer un créneau qui n'est pas encore terminé (seulement les vrais retards)
+        var matinPasse = !estAujourdhui || hActuelle>=10;
+        var soirPasse = !estAujourdhui || hActuelle>=17.5;
+        if(!matinPasse && !soirPasse) continue;
         var hm=String(8+Math.floor(Math.random()*2)).padStart(2,'0')+':'+String(Math.floor(Math.random()*60)).padStart(2,'0');
         var hs_h=15+Math.floor(Math.random()*2);
         var hs_m=hs_h===15?30+Math.floor(Math.random()*30):Math.floor(Math.random()*30);
-        var horaires=[hm,String(hs_h).padStart(2,'0')+':'+String(hs_m).padStart(2,'0')];
+        var horaires=[];
+        if(matinPasse)horaires.push(hm);
+        if(soirPasse)horaires.push(String(hs_h).padStart(2,'0')+':'+String(hs_m).padStart(2,'0'));
         for(var hi=0;hi<horaires.length;hi++){
           var vals=e.ch.map(function(ch,ci){return{l:ch,v:randT(e.chMin[ci],e.chMax[ci])};});
           var tv=parseFloat(vals[0].v);
@@ -2454,6 +2463,9 @@ async function pCompleterManquants(){
   cur=new Date(DATE_DEBUT);
   while(cur<=fin){
     var dateFr=cur.toLocaleDateString('fr-FR');
+    var estAujourdhui=(dateFr===todayFr);
+    // Pour aujourd'hui : attendre la fin du 2e créneau (16h30) avant de considérer que c'est un retard
+    if(estAujourdhui && hActuelle<16.5){cur.setDate(cur.getDate()+1);continue;}
     if([2,3,4,5,6].includes(cur.getDay())&&!nzDates.has(dateFr)){
       var resp=prenomSemaine(cur);var isSam=cur.getDay()===6;
       var zones=ZONES_Q.slice();if(isSam)zones=zones.concat(ZONES_H);
