@@ -1554,12 +1554,15 @@ function dansLes20Jours(dateStr){
   var diff=(new Date()-d)/86400000;
   return diff>=0&&diff<=20;
 }
+// Abats et morceaux non utilisés pour le hachage / les saucisses
+var MOTS_ABATS=/abat|fress|tripe|pied|\bgras\b|crepine|crépine|queue|rognon|foie|coeur|cœur|tete|tête|pansette|panse|\bos\b/;
 
 function chargerLotsBigard(){
   function collecter(source,predicat){
     var tousMap=new Map(), recentsMap=new Map();
     source.forEach(function(r){
       if(!predicat(r))return;
+      if(MOTS_ABATS.test((r.produit||'').toLowerCase()))return;
       if(!tousMap.has(r.lot))tousMap.set(r.lot,{lot:r.lot,produit:r.produit,date:r.date,fourn:r.fourn});
       if(dansLes20Jours(r.date)&&!recentsMap.has(r.lot))recentsMap.set(r.lot,{lot:r.lot,produit:r.produit,date:r.date,fourn:r.fourn});
     });
