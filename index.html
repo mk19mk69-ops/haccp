@@ -1140,6 +1140,8 @@ const NZ_DATA=[{"d":"25/07/2026","z":"Salle de découpe, Vitrine réfrigérée, 
 async function sbF(t,m,b,p){var u=SB_URL+'/rest/v1/'+t+(p?'?'+p:'');var o={method:m||'GET',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'}};if(b)o.body=JSON.stringify(b);var r=await fetch(u,o);if((m||'GET')==='GET')return r.json();return r.ok;}
 async function sbInsert(t,d){return sbF(t,'POST',d,null);}
 async function sbGetAll(t){return sbF(t,'GET',null,'order=created_at.desc&limit=5000');}
+async function sbDelete(t,id){if(!id)return false;return sbF(t,'DELETE',null,'id=eq.'+id);}
+async function sbUpdate(t,id,patch){if(!id)return false;return sbF(t,'PATCH',patch,'id=eq.'+id);}
 
 // ===== DONNÉES HISTORIQUES =====
 function _ex(r){
@@ -1262,7 +1264,7 @@ async function init(){
     var r=await Promise.all([sbGetAll('receptions'),sbGetAll('nettoyages'),sbGetAll('nonconformites'),sbGetAll('allergenes'),sbGetAll('temperatures'),sbGetAll('produits_nettoyage')]);
     var allRecs=Array.isArray(r[0])?r[0]:[];
     dbReceptions=allRecs.filter(function(x){return x.type!=='fabrication'&&x.type!=='hache';});
-    var dbFabDB=allRecs.filter(function(x){return x.type==='fabrication';}).map(function(x){try{var o=JSON.parse(x.obs||'{}');return{date:x.date,produit:x.produit,poids:x.poids,dlc:o.dlc||'',responsable:o.resp||'',lot_fab:o.lot_fab||x.lot||'',cond:o.cond||'frais',sv:o.sv||null,dlc_lib:o.dlc_lib||'',dlc_temp:o.dlc_temp||'',viandes:o.viandes||[],ingredients:o.ingredients||[],allergenes:o.allergenes||[],obs:''};}catch(e){return{date:x.date,produit:x.produit,poids:x.poids,dlc:'',responsable:'',viandes:[],ingredients:[],allergenes:[],obs:''};} });
+    var dbFabDB=allRecs.filter(function(x){return x.type==='fabrication';}).map(function(x){try{var o=JSON.parse(x.obs||'{}');return{id:x.id,date:x.date,produit:x.produit,poids:x.poids,dlc:o.dlc||'',responsable:o.resp||'',lot_fab:o.lot_fab||x.lot||'',cond:o.cond||'frais',sv:o.sv||null,dlc_lib:o.dlc_lib||'',dlc_temp:o.dlc_temp||'',viandes:o.viandes||[],ingredients:o.ingredients||[],allergenes:o.allergenes||[],obs:''};}catch(e){return{id:x.id,date:x.date,produit:x.produit,poids:x.poids,dlc:'',responsable:'',viandes:[],ingredients:[],allergenes:[],obs:''};} });
     var dbHacheDB=allRecs.filter(function(x){return x.type==='hache';});
     // Injecter historiques
     dbFabrications=dbFabDB.concat(FAB_HIST.map(function(h){var o={};try{o=JSON.parse(h.obs||'{}');}catch(e){}return{date:h.date,produit:h.produit,poids:h.poids,dlc:o.dlc||'',responsable:o.resp||'',lot_fab:o.lot_fab||h.lot||'',cond:o.cond||'frais',sv:o.sv||null,dlc_lib:o.dlc_lib||'',dlc_temp:o.dlc_temp||'',viandes:o.viandes||[],ingredients:o.ingredients||[],allergenes:o.allergenes||[],obs:''};}) );
@@ -2519,8 +2521,9 @@ function pFermerCorrection(){
   correctionTable='';correctionIdx=-1;
 }
 
-function pSauvegarderCorrection(){
+async function pSauvegarderCorrection(){
   if(correctionIdx<0){toast('Erreur','ko');return;}
+  setSyncStatus('syncing');
   if(correctionTable==='receptions'){
     var data=pGetData()[correctionIdx];
     data.date=document.getElementById('corr-date').value;
@@ -2532,6 +2535,7 @@ function pSauvegarderCorrection(){
     data.lot=document.getElementById('corr-lot').value;
     data.facture=document.getElementById('corr-fact').value;
     data.obs=document.getElementById('corr-obs').value;
+    if(data.id)await sbUpdate('receptions',data.id,{date:data.date,fourn:data.fourn,produit:data.produit,poids:data.poids,temp:data.temp,origine:data.origine,lot:data.lot,obs:data.obs});
     pInitTbl();
   } else if(correctionTable==='temperatures'){
     var eid=document.getElementById('ptemp-fiches').querySelector('.pfi2.active');
@@ -2545,6 +2549,7 @@ function pSauvegarderCorrection(){
     var e=TESP.find(function(x){return x.id===espId;});
     if(e)data.conforme=tv>=e.min&&tv<=e.max;
     data.responsable=document.getElementById('corr-resp').value;
+    if(data.id)await sbUpdate('temperatures',data.id,{date:data.date,heure:data.heure,valeurs:vals,conforme:data.conforme,responsable:data.responsable});
     pFilterTemp(espId);
   } else if(correctionTable==='nettoyages'){
     var data=dbNettoyages[correctionIdx];
@@ -2553,6 +2558,7 @@ function pSauvegarderCorrection(){
     data.zones=document.getElementById('corr-zones').value;
     data.produit=document.getElementById('corr-produit').value;
     data.obs=document.getElementById('corr-obs').value;
+    if(data.id)await sbUpdate('nettoyages',data.id,{date:data.date,responsable:data.responsable,zones:data.zones,produit:data.produit,obs:data.obs});
     pFilterNz();
   } else if(correctionTable==='fabrications'){
     var data=dbFabrications[correctionIdx];
@@ -2560,25 +2566,49 @@ function pSauvegarderCorrection(){
     data.produit=document.getElementById('corr-produit').value;
     data.poids=document.getElementById('corr-poids').value;
     data.responsable=document.getElementById('corr-resp').value;
+    if(data.id)await sbUpdate('receptions',data.id,{date:data.date,produit:data.produit,poids:parseFloat(data.poids)||null});
     pFilterFab();
   } else if(correctionTable==='haches'){
     var data=dbHaches[correctionIdx];
     data.date=document.getElementById('corr-date').value;
     data.produit=document.getElementById('corr-produit').value;
     data.poids=parseFloat(document.getElementById('corr-poids').value)||null;
+    if(data.id)await sbUpdate('receptions',data.id,{date:data.date,produit:data.produit,poids:data.poids});
     pFilterHache();
   }
-  pFermerCorrection();toast('Correction enregistrée !');
+  setSyncStatus('ok');
+  pFermerCorrection();toast('Correction enregistrée et synchronisée !');
 }
 
-function pSupprimerLigne(){
+async function pSupprimerLigne(){
   if(correctionIdx<0){toast('Erreur','ko');return;}
-  if(!confirm('Supprimer cette ligne ?'))return;
-  if(correctionTable==='receptions'){var data=pGetData();data.splice(correctionIdx,1);pInitTbl();}
-  else if(correctionTable==='nettoyages'){dbNettoyages.splice(correctionIdx,1);pFilterNz();}
-  else if(correctionTable==='fabrications'){dbFabrications.splice(correctionIdx,1);pFilterFab();}
-  else if(correctionTable==='haches'){dbHaches.splice(correctionIdx,1);pFilterHache();}
-  pFermerCorrection();toast('Ligne supprimée !');
+  if(!confirm('Supprimer cette ligne ? (Cette action sera aussi supprimée définitivement de la base de données)'))return;
+  setSyncStatus('syncing');
+  if(correctionTable==='receptions'){
+    var data=pGetData();var item=data[correctionIdx];
+    if(item&&item.id)await sbDelete('receptions',item.id);
+    data.splice(correctionIdx,1);pInitTbl();
+  } else if(correctionTable==='temperatures'){
+    var eid=document.getElementById('ptemp-fiches').querySelector('.pfi2.active');
+    var espId=eid?eid.id.replace('ptfiche-',''):'chambre';
+    var item=dbTemps[espId][correctionIdx];
+    if(item&&item.id)await sbDelete('temperatures',item.id);
+    dbTemps[espId].splice(correctionIdx,1);pFilterTemp(espId);
+  } else if(correctionTable==='nettoyages'){
+    var item=dbNettoyages[correctionIdx];
+    if(item&&item.id)await sbDelete('nettoyages',item.id);
+    dbNettoyages.splice(correctionIdx,1);pFilterNz();
+  } else if(correctionTable==='fabrications'){
+    var item=dbFabrications[correctionIdx];
+    if(item&&item.id)await sbDelete('receptions',item.id);
+    dbFabrications.splice(correctionIdx,1);pFilterFab();
+  } else if(correctionTable==='haches'){
+    var item=dbHaches[correctionIdx];
+    if(item&&item.id)await sbDelete('receptions',item.id);
+    dbHaches.splice(correctionIdx,1);pFilterHache();
+  }
+  setSyncStatus('ok');
+  pFermerCorrection();toast('Ligne supprimée définitivement !');
 }
 
 // ===== ALIASES NAVIGATION =====
