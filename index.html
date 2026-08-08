@@ -373,6 +373,10 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="alerte-icon">🚨</div>
         <div class="alerte-txt">CHIFFRE ANORMAL !</div>
         <div class="alerte-txt" style="font-size:14px;margin-top:4px">Appelle l'administrateur maintenant</div>
+        <label style="display:flex;align-items:center;gap:8px;justify-content:center;margin-top:12px;font-size:14px;color:white;cursor:pointer">
+          <input type="checkbox" id="temp-degivrage" style="width:18px;height:18px">
+          ❄️ Dégivrage en cours (température normale une fois terminé)
+        </label>
       </div>
       <button class="btn-valider btn-ok" onclick="validerTemp()" id="btn-val-temp" style="margin-top:14px" disabled>
         <i class="ti ti-check"></i> ENREGISTRER
@@ -1535,18 +1539,21 @@ async function validerTemp(){
   var v=document.getElementById('temp-val').value;
   if(!v||!curAppareil){toast('Entre la température','ko');return;}
   var e=TESP.find(function(x){return x.id===curAppareil;});
-  var tv=parseFloat(v);var conf=tv>=e.min&&tv<=e.max;
+  var tv=parseFloat(v);var horsPlage=!(tv>=e.min&&tv<=e.max);
+  var estDegivrage=horsPlage&&document.getElementById('temp-degivrage').checked;
+  var conf=!horsPlage||estDegivrage;
   var now=new Date();
   var heure=now.toTimeString().slice(0,5);
   var vals=[{l:e.ch[0],v:v}];
   if(e.ch.length>1)vals.push({l:e.ch[1],v:randT(e.chMin[1],e.chMax[1])});
-  var r={espace:curAppareil,date:now.toLocaleDateString('fr-FR'),heure:heure,valeurs:vals,conforme:conf,responsable:'',action:''};
+  var r={espace:curAppareil,date:now.toLocaleDateString('fr-FR'),heure:heure,valeurs:vals,conforme:conf,responsable:'',action:estDegivrage?'Dégivrage en cours':''};
   setSyncStatus('syncing');var ok=await sbInsert('temperatures',r);dbTemps[curAppareil].unshift(r);
   var ctxt=document.getElementById('confirm-temp-txt');
-  ctxt.textContent=(conf?'✅ ':' ⚠️ ')+v+'°C — '+(conf?'Température normale':'Appelle l\'administrateur !');
+  ctxt.textContent=estDegivrage?('❄️ '+v+'°C — Dégivrage en cours, pas d\'anomalie'):((conf?'✅ ':' ⚠️ ')+v+'°C — '+(conf?'Température normale':'Appelle l\'administrateur !'));
   document.getElementById('confirm-temp').classList.add('show');
   document.getElementById('etape-saisie-temp').style.display='none';
   document.getElementById('temp-val').value='';
+  document.getElementById('temp-degivrage').checked=false;
   curAppareil=null;
   document.querySelectorAll('.app-btn').forEach(function(b){b.classList.remove('sel');});
   checkRappelNettoyage();
@@ -1557,6 +1564,7 @@ function autreTemp(){
   document.getElementById('confirm-temp').classList.remove('show');
   document.getElementById('etape-saisie-temp').style.display='none';
   document.getElementById('temp-val').value='';
+  document.getElementById('temp-degivrage').checked=false;
   curAppareil=null;
   document.querySelectorAll('.app-btn').forEach(function(b){b.classList.remove('sel');});
   document.getElementById('etape-appareil').className='etape active-step';
@@ -2068,7 +2076,7 @@ function pFilterTemp(eid){
   var e=TESP.find(function(x){return x.id===eid;});
   var tb=document.getElementById('ptbody-t-'+eid);if(!tb)return;
   if(!rows.length){tb.innerHTML='<tr><td colspan="'+(3+e.ch.length)+'" class="pemp">Aucun relevé</td></tr>';return;}
-  tb.innerHTML=rows.slice(0,200).map(function(x,i){var vals=Array.isArray(x.valeurs)?x.valeurs:(typeof x.valeurs==='string'?JSON.parse(x.valeurs):x.vals||[]);vals=vals.slice(0,e.ch.length);return'<tr onclick="pOuvrirCorrection(\"temperatures\",'+i+')" style="cursor:pointer" title="Cliquer pour corriger"><td>'+x.date+'</td><td>'+x.heure+'</td>'+vals.map(function(v){return'<td><strong>'+(v.v||v.value||'')+'°C</strong></td>';}).join('')+'<td><span class="bd '+(x.conforme?'bok':'bko')+'">'+(x.conforme?'OK':'ANOMALIE')+'</span></td><td style="font-size:10px">'+(x.responsable||'—')+'</td></tr>';}).join('');
+  tb.innerHTML=rows.slice(0,200).map(function(x,i){var vals=Array.isArray(x.valeurs)?x.valeurs:(typeof x.valeurs==='string'?JSON.parse(x.valeurs):x.vals||[]);vals=vals.slice(0,e.ch.length);var estDeg=x.action==='Dégivrage en cours';var badgeTxt=estDeg?'❄️ Dégivrage':(x.conforme?'OK':'ANOMALIE');var badgeCls=estDeg?'bwn':(x.conforme?'bok':'bko');return'<tr onclick="pOuvrirCorrection(\"temperatures\",'+i+')" style="cursor:pointer" title="Cliquer pour corriger"><td>'+x.date+'</td><td>'+x.heure+'</td>'+vals.map(function(v){return'<td><strong>'+(v.v||v.value||'')+'°C</strong></td>';}).join('')+'<td><span class="bd '+badgeCls+'">'+badgeTxt+'</span></td><td style="font-size:10px">'+(x.responsable||'—')+'</td></tr>';}).join('');
   if(rows.length>200)tb.innerHTML+='<tr><td colspan="'+(3+e.ch.length)+'" style="text-align:center;font-size:10px;color:var(--cgr)">...'+( rows.length-200)+' lignes</td></tr>';
   var cnt=document.getElementById('pcnt-t-'+eid);if(cnt)cnt.textContent=rows.length+' relevé(s)';
 }
