@@ -1421,7 +1421,7 @@ function getZonesManquantes(){
     if(!zone)return;
     var count=nzAujourd.filter(function(n){return n.zones&&n.zones.includes(zone.nom);}).length;
     if(count<freq){
-      manquantes.push({nom:zone.nom,icon:zone.icon||'⬜',fait:count,attendu:freq});
+      manquantes.push({nom:zone.nom,icon:zone.icon||'⬜',fait:count,attendu:freq,freq:freq});
     }
   });
   return manquantes;
@@ -1429,26 +1429,39 @@ function getZonesManquantes(){
 function dansCreneauRappelNz(){
   var now=new Date();
   var h=now.getHours(), m=now.getMinutes();
-  var creneau1 = h>=8 && h<12;                                   // 8h00 - 12h00
-  var creneau2 = (h>14 || (h===14)) && (h<16 || (h===16 && m<=30)); // 14h00 - 16h30
-  return {actif: creneau1||creneau2, urgent: creneau2};
+  // Zones nettoyées 2x/jour : un passage le matin, un l'après-midi
+  var matin = h>=8 && h<12;                                       // 8h00 - 12h00
+  var apresmidi = (h===14) || (h>14 && (h<16 || (h===16 && m<=30))); // 14h00 - 16h30
+  // Zones nettoyées 1x/jour : faites en fin de journée
+  var finJournee = (h===16 && m>30) || (h>16 && (h<18 || (h===18 && m<=30))); // 16h30 - 18h30
+  return {
+    actif2x: matin||apresmidi,
+    urgent2x: apresmidi,
+    actif1x: finJournee,
+    urgent1x: finJournee
+  };
 }
 function checkRappelNettoyage(){
   var todayFr=new Date().toLocaleDateString('fr-FR');
   var nzOk=dbNettoyages.some(function(n){return n.date===todayFr;});
   var ban=document.getElementById('rappel-nettoyage');
   if(!ban)return;
-  var manquantes=getZonesManquantes();
+  var toutes=getZonesManquantes();
   var creneau=dansCreneauRappelNz();
-  if(manquantes.length>0 && creneau.actif){
+  // On n'affiche que les zones dont le créneau horaire est actif en ce moment
+  var manquantes=toutes.filter(function(m){
+    return m.freq>=2 ? creneau.actif2x : creneau.actif1x;
+  });
+  var urgent=manquantes.some(function(m){return m.freq>=2?creneau.urgent2x:creneau.urgent1x;});
+  if(manquantes.length>0){
     ban.style.display='block';
-    ban.className='rappel'+(creneau.urgent?' urgent':'');
-    document.getElementById('rappel-title').textContent=(creneau.urgent?'⛔ URGENT — ':'⚠️ ')+manquantes.length+' zone(s) à nettoyer !';
+    ban.className='rappel'+(urgent?' urgent':'');
+    document.getElementById('rappel-title').textContent=(urgent?'⛔ URGENT — ':'⚠️ ')+manquantes.length+' zone(s) à nettoyer !';
     document.getElementById('rappel-sub').textContent=manquantes.map(function(m){return m.icon+' '+m.nom+' ('+m.fait+'/'+m.attendu+')';}).join(' — ');
     document.getElementById('ok-nettoy').textContent='🔴';
   }else{
     ban.style.display='none';
-    document.getElementById('ok-nettoy').textContent=manquantes.length>0?'⬜':'✅';
+    document.getElementById('ok-nettoy').textContent=toutes.length>0?'⬜':'✅';
   }
   // Check temp
   var tempOk=dbTemps['chambre'].some(function(t){return t.date===todayFr;});
