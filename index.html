@@ -1031,7 +1031,7 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
           <div class="pfi"><label>Raison sociale</label><input type="text" id="pctrl-nom" placeholder="Boucherie..." value="MKVH Distribution"></div>
           <div class="pfi"><label>Adresse</label><input type="text" id="pctrl-adresse" placeholder="Adresse du siège" value="Rue des Fontenelles, 78920 Ecquevilly"></div>
           <div class="pfi"><label>SIRET</label><input type="text" id="pctrl-siret" placeholder="XXX XXX XXX XXXXX" value="508 343 365 00013"></div>
-          <div class="pfi"><label>N° agrément sanitaire</label><input type="text" id="pctrl-agr" placeholder="FR XX XXX CE"></div>
+          <div class="pfi"><label>N° agrément sanitaire</label><input type="text" id="pctrl-agr" placeholder="FR XX XXX CE" value="78/06 63"></div>
           <div class="pfi"><label>Responsable HACCP</label><select id="pctrl-resp"><option value="">-- Choisir --</option><option value="Mohamed">Mohamed</option><option value="Mohamad">Mohamad</option><option value="Moustapha">Moustapha</option><option value="Boualem">Boualem</option><option value="Mehdi">Mehdi</option><option value="Said">Said</option><option value="Moussa">Moussa</option><option value="Souleymane" style="color:#D63031;font-weight:600" disabled>Souleymane (sorti)</option></select></div>
           <div class="pfi"><label>Date du contrôle</label><input type="date" id="pctrl-date"></div>
         </div>
@@ -2891,7 +2891,7 @@ function getEtab(){
     nom:     g('pctrl-nom')     || localStorage.getItem('etab_nom')     || 'MKVH Distribution',
     adresse: g('pctrl-adresse') || localStorage.getItem('etab_adresse') || 'Rue des Fontenelles, 78920 Ecquevilly',
     siret:   g('pctrl-siret')   || localStorage.getItem('etab_siret')   || '508 343 365 00013',
-    agr:     g('pctrl-agr')     || localStorage.getItem('etab_agr')     || '',
+    agr:     g('pctrl-agr')     || localStorage.getItem('etab_agr')     || '78/06 63',
     resp:    g('pctrl-resp')    || localStorage.getItem('etab_resp')    || ''
   };
 }
