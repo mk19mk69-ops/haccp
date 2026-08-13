@@ -394,6 +394,11 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <i class="ti ti-home"></i> Retour accueil
       </button>
     </div>
+
+    <div class="pcard" style="margin-top:18px">
+      <div class="pct"><i class="ti ti-history" style="color:var(--cbd)"></i> Derniers relevés</div>
+      <div id="histo-temp-emp" style="margin-top:8px"></div>
+    </div>
   </div>
 
   <!-- ÉCRAN NETTOYAGE -->
@@ -1499,6 +1504,7 @@ function goTask(name){
     document.getElementById('etape-saisie-temp').style.display='none';
     document.getElementById('confirm-temp').classList.remove('show');
     document.getElementById('etape-appareil').className='etape active-step';
+    renderHistoTempEmploye();
   }
   if(name==='nettoyage'){
     document.getElementById('confirm-nz').classList.remove('show');
@@ -1522,7 +1528,34 @@ function goTask(name){
   }
 }
 
-// ===== TEMPÉRATURE EMPLOYÉ =====
+function renderHistoTempEmploye(){
+  var c=document.getElementById('histo-temp-emp');
+  if(!c)return;
+  var toutes=[];
+  TESP.forEach(function(e){
+    (dbTemps[e.id]||[]).forEach(function(r){
+      toutes.push({espace:e.nom,date:r.date,heure:r.heure,valeurs:Array.isArray(r.valeurs)?r.valeurs:(r.vals||[]),conforme:r.conforme,action:r.action});
+    });
+  });
+  function pf(s){var p=(s||'').split('/');return p.length===3?new Date(p[2],p[1]-1,p[0]):new Date(0);}
+  toutes.sort(function(a,b){
+    var da=pf(a.date), db=pf(b.date);
+    if(da-db!==0)return db-da;
+    return (b.heure||'').localeCompare(a.heure||'');
+  });
+  toutes=toutes.slice(0,15);
+  if(!toutes.length){
+    c.innerHTML='<div style="font-size:12px;color:var(--cgr);text-align:center;padding:10px">Aucun relevé pour l\'instant</div>';
+    return;
+  }
+  c.innerHTML='<table class="pdt"><thead><tr><th>Appareil</th><th>Date</th><th>Heure</th><th>Valeur</th><th></th></tr></thead><tbody>'+
+    toutes.map(function(t){
+      var estDeg=t.action==='Dégivrage en cours';
+      var badge=estDeg?'<span class="bd bwn">❄️ Dégivrage</span>':'<span class="bd '+(t.conforme?'bok':'bko')+'">'+(t.conforme?'OK':'ANOMALIE')+'</span>';
+      var val=t.valeurs.map(function(v){return (v.v||v.value||'')+'°C';}).join(' / ');
+      return '<tr><td style="font-size:11px">'+t.espace+'</td><td style="font-size:11px">'+t.date+'</td><td style="font-size:11px">'+t.heure+'</td><td style="font-size:11px"><strong>'+val+'</strong></td><td>'+badge+'</td></tr>';
+    }).join('')+'</tbody></table>';
+}
 var APPAREILS_INFO={
   chambre:{label:'Chambre froide',cible:'entre 0°C et 4°C',min:0,max:4},
   vitrine:{label:'Vitrine réfrigérée',cible:'entre 0°C et 4°C',min:0,max:4},
@@ -1579,6 +1612,7 @@ async function validerTemp(){
   curAppareil=null;
   document.querySelectorAll('.app-btn').forEach(function(b){b.classList.remove('sel');});
   checkRappelNettoyage();
+  renderHistoTempEmploye();
   if(ok)toast(conf?'Enregistré !':'Anomalie signalée !',conf?'ok':'ko');
   else avertirSiHorsLigne(ok);
 }
