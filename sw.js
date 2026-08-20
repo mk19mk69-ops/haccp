@@ -1,4 +1,4 @@
-const CACHE_NAME = 'haccp-v1';
+const CACHE_NAME = 'haccp-v2-icon-bouclier';
 const CORE_ASSETS = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', function(e){
