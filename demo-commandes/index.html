@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MKVH — Registre des commandes (démo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rouge:#9b1c1f; --rouge-f:#7a1517; --vert:#1f5c3c; --vert-f:#174a30;
+    --creme:#f5f0e8; --papier:#faf7f2; --ligne:#e4dccf; --texte:#2c2620; --gris:#8a7f72;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--creme);color:var(--texte);font-family:'Jost',system-ui,sans-serif;font-size:16px}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 24px 40px}
+  .demo-bar{background:#2c2620;color:#f5f0e8;text-align:center;font-size:13px;letter-spacing:.04em;padding:7px 12px}
+  .demo-bar button{margin-left:10px;background:none;border:1px solid #f5f0e8;color:#f5f0e8;border-radius:6px;padding:2px 10px;font:inherit;cursor:pointer}
+  header{background:linear-gradient(135deg,var(--rouge),var(--rouge-f));color:#fff;border-radius:0 0 20px 20px;padding:22px 36px;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:16px}
+  .logo-mark{width:46px;height:46px;border:2.5px solid #fff;border-radius:50%;display:grid;place-items:center}
+  .logo h1{margin:0;font-family:'Cormorant Garamond',serif;font-size:48px;line-height:1;font-weight:700;letter-spacing:.02em}
+  .logo small{display:block;font-size:12px;letter-spacing:.42em;opacity:.85;margin-top:4px}
+  .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;flex:1}
+  .clock{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);border-radius:14px;padding:10px 24px;text-align:right}
+  .clock .d{font-size:12px;letter-spacing:.25em;text-transform:uppercase;opacity:.85}
+  .clock .t{font-family:'Cormorant Garamond',serif;font-size:38px;line-height:1.05}
+  main{display:grid;grid-template-columns:minmax(320px,500px) 1fr;gap:32px;margin-top:34px}
+  @media (max-width:900px){main{grid-template-columns:1fr} header{gap:16px} .tagline{font-size:24px}}
+  .card{background:#fff;border-radius:18px;box-shadow:0 2px 14px rgba(60,40,20,.07);overflow:hidden;align-self:start}
+  .card-h{padding:24px 30px;color:#fff;display:flex;align-items:center;gap:14px;font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600}
+  .card-h.r{background:linear-gradient(135deg,var(--rouge),var(--rouge-f))}
+  .card-h.v{background:linear-gradient(135deg,var(--vert),var(--vert-f))}
+  .card-b{padding:28px 30px}
+  label{display:block;font-size:13px;font-weight:600;letter-spacing:.18em;color:#8a6f55;margin:20px 0 9px;text-transform:uppercase}
+  label:first-child{margin-top:0}
+  input,textarea{width:100%;background:var(--papier);border:1px solid var(--ligne);border-radius:12px;padding:15px 18px;font:inherit;font-size:17px;color:var(--texte)}
+  textarea{min-height:120px;resize:vertical;line-height:1.55}
+  input:focus,textarea:focus{outline:2px solid #d9b9a9;border-color:transparent}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .btn-main{margin-top:28px;width:100%;border:0;border-radius:12px;padding:19px;background:linear-gradient(135deg,#c62f2c,var(--rouge));color:#fff;font:inherit;font-weight:600;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;display:flex;gap:12px;justify-content:center;align-items:center}
+  .btn-main:hover{filter:brightness(1.07)}
+  .tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .search{flex:1;min-width:220px}
+  .filters{display:flex;gap:10px;margin-left:auto}
+  .chip{border:1px solid var(--ligne);background:#fff;border-radius:12px;padding:11px 18px;font:inherit;font-weight:600;cursor:pointer;color:var(--texte)}
+  .chip.on{background:var(--vert);border-color:var(--vert);color:#fff}
+  .count{font-size:13px;font-weight:600;letter-spacing:.2em;color:#8a6f55;margin:24px 0 14px;text-transform:uppercase}
+  .list{display:flex;flex-direction:column;gap:14px}
+  .order{border:1px solid var(--ligne);border-left:5px solid var(--rouge);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 20px;align-items:start;background:#fff}
+  .order.ready{border-left-color:#c9962c}
+  .order.done{border-left-color:var(--vert);background:#f6faf7;opacity:.75}
+  .num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--rouge);line-height:1}
+  .who b{font-size:18px}
+  .who span{color:var(--gris);font-size:14px;margin-left:8px}
+  .prod{grid-column:2;white-space:pre-line;color:#4a4038;font-size:15px;line-height:1.5}
+  .meta{text-align:right;font-size:14px;color:var(--gris)}
+  .meta strong{display:block;color:var(--texte);font-size:16px}
+  .status{grid-column:3;grid-row:2 / span 2;display:flex;flex-direction:column;gap:7px;align-items:end;justify-content:end}
+  .badge{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:20px}
+  .b-todo{background:#f6e3e1;color:var(--rouge)} .b-ready{background:#f6ecd6;color:#8a6312} .b-done{background:#dfeee5;color:var(--vert)}
+  .act{border:1px solid var(--ligne);background:#fff;border-radius:9px;padding:7px 12px;font:inherit;font-size:14px;cursor:pointer}
+  .act:hover{background:var(--papier)}
+  .late{color:var(--rouge);font-weight:600}
+  .empty{text-align:center;padding:60px 10px;color:var(--gris);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px}
+  /* tickets */
+  .modal{position:fixed;inset:0;background:rgba(30,20,10,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
+  .modal.open{display:flex}
+  .modal-box{background:var(--creme);border-radius:18px;padding:26px;max-width:860px;width:100%;max-height:92vh;overflow:auto}
+  .modal-box h3{margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--rouge)}
+  .modal-box p{margin:0 0 18px;color:var(--gris)}
+  .tickets{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+  .tk{background:#fff;width:330px;padding:18px 20px;font-family:'Courier New',monospace;font-size:14px;line-height:1.45;box-shadow:0 2px 10px rgba(0,0,0,.12);animation:print .9s ease-out both}
+  .tk:nth-child(2){animation-delay:.35s}
+  @keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+  .tk .c{text-align:center} .tk .big{font-size:22px;font-weight:700} .tk hr{border:0;border-top:1px dashed #000;margin:8px 0}
+  .tk .where{font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-align:center;color:#555;margin-bottom:6px}
+  .close{margin-top:20px;display:block;margin-inline:auto}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--vert);color:#fff;padding:12px 22px;border-radius:12px;font-weight:500;opacity:0;transition:.3s;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="demo-bar">VERSION DÉMO — données fictives, aucune commande réelle <button id="reset">Réinitialiser</button></div>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/></svg>
+      </div>
+      <div><h1>MKVH</h1><small>BOUCHERIE · DISTRIBUTION</small></div>
+    </div>
+    <div class="tagline">Registre des commandes</div>
+    <div class="clock"><div class="d" id="cdate"></div><div class="t" id="ctime"></div></div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="card-h r">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M3 21l7-7M14 4l6 6-9 9-6-6z"/></svg>
+        Nouvelle commande
+      </div>
+      <form class="card-b" id="form" autocomplete="off">
+        <label for="nom">Nom du client</label>
+        <input id="nom" required placeholder="ex. Mme Durand">
+        <label for="tel">Téléphone</label>
+        <input id="tel" placeholder="06 00 00 00 00">
+        <label for="prod">Produits commandés (un par ligne)</label>
+        <textarea id="prod" required placeholder="2 kg de merguez&#10;1 gigot d'agneau&#10;3 kg de poulet fermier"></textarea>
+        <div class="row">
+          <div><label for="jour">Jour de retrait</label><input id="jour" type="date" required></div>
+          <div><label for="heure">Heure de retrait</label><input id="heure" type="time" required value="16:00"></div>
+        </div>
+        <button class="btn-main" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M8 14h8v7H8z"/></svg>
+          Enregistrer &amp; imprimer
+        </button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-h v">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+        Commandes
+      </div>
+      <div class="card-b">
+        <div class="tools">
+          <input class="search" id="q" placeholder="Rechercher (nom, n°, tél…)">
+          <div class="filters">
+            <button class="chip on" data-f="today">Aujourd'hui</button>
+            <button class="chip" data-f="pending">En attente</button>
+            <button class="chip" data-f="all">Toutes</button>
+          </div>
+        </div>
+        <div class="count" id="count"></div>
+        <div class="list" id="list"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3>Impression en cours…</h3>
+    <p>Deux tickets sortent automatiquement : un en salle de découpe, un à l'accueil.</p>
+    <div class="tickets" id="tickets"></div>
+    <button class="act close" id="closeM">Fermer</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const KEY='mkvh-demo-v1';
+  const pad=n=>String(n).padStart(2,'0');
+  const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+  const today=new Date(), T=iso(today), Y=iso(addDays(today,-1)), D1=iso(addDays(today,1)), D2=iso(addDays(today,2));
+  const mm=pad(today.getMonth()+1);
+
+  function seed(){
+    return {seq:9, orders:[
+      {n:1,nom:'Mme Lefèvre',tel:'06 12 34 56 78',prod:'1 gigot d\'agneau\n2 kg de côtes d\'agneau',jour:Y,heure:'11:00',st:'ready'},
+      {n:2,nom:'Restaurant Le Cèdre',tel:'01 30 00 00 00',prod:'10 kg de viande hachée\n5 kg de merguez\n4 kg de brochettes marinées',jour:T,heure:'09:30',st:'done'},
+      {n:3,nom:'M. Benali',tel:'07 21 43 65 87',prod:'1/2 mouton découpé',jour:T,heure:'12:30',st:'ready'},
+      {n:4,nom:'Mme Traoré',tel:'06 98 76 54 32',prod:'3 cartons de cuisses de poulet fermier\n8 pieds de veau coupés',jour:T,heure:'16:00',st:'todo'},
+      {n:5,nom:'M. Garnier',tel:'06 55 44 33 22',prod:'1 kg de bavette\n2 entrecôtes',jour:T,heure:'17:30',st:'todo'},
+      {n:6,nom:'Famille Haddad',tel:'07 11 22 33 44',prod:'1 agneau entier pour fête\nDécoupe : épaules en morceaux',jour:D1,heure:'10:00',st:'todo'},
+      {n:7,nom:'Snack Le Comptoir',tel:'01 39 00 00 00',prod:'15 kg d\'escalopes de poulet\n6 kg de kefta',jour:D1,heure:'09:00',st:'todo'},
+      {n:8,nom:'M. Dupont',tel:'06 87 65 43 21',prod:'2 kg de collier de veau\n1 kg de jarret',jour:D2,heure:'15:00',st:'todo'},
+      {n:9,nom:'Mme Diallo',tel:'07 66 55 44 33',prod:'1 chèvre entière (17 kg max)',jour:D2,heure:'11:30',st:'todo'}
+    ]};
+  }
+  let db;
+  try{db=JSON.parse(localStorage.getItem(KEY))}catch(e){db=null}
+  if(!db||!db.orders) db=seed();
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}};
+
+  const $=id=>document.getElementById(id);
+  $('jour').value=T;
+  let filter='today';
+
+  function tick(){
+    const n=new Date();
+    $('cdate').textContent=n.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+    $('ctime').textContent=pad(n.getHours())+'h'+pad(n.getMinutes());
+  }
+  tick(); setInterval(tick,15000);
+
+  const num=o=>mm+'-'+String(o.n).padStart(3,'0');
+  const fmtDay=d=>{ if(d===T)return"Aujourd'hui"; if(d===Y)return'Hier'; if(d===D1)return'Demain';
+    return new Date(d+'T12:00').toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'}); };
+  const label={todo:'À préparer',ready:'Prête',done:'Récupérée'};
+
+  function render(){
+    const q=$('q').value.trim().toLowerCase();
+    let rows=db.orders.slice();
+    if(filter==='today') rows=rows.filter(o=>o.jour===T);
+    if(filter==='pending') rows=rows.filter(o=>o.st!=='done');
+    if(q) rows=rows.filter(o=>(o.nom+' '+o.tel+' '+num(o)+' '+o.prod).toLowerCase().includes(q));
+    rows.sort((a,b)=>(a.jour+a.heure).localeCompare(b.jour+b.heure));
+    $('count').textContent=rows.length+' commande(s) affichée(s)';
+    const L=$('list'); L.innerHTML='';
+    if(!rows.length){L.innerHTML='<div class="empty">Aucune commande à afficher</div>';return}
+    rows.forEach(o=>{
+      const late=o.st!=='done'&&o.jour<T;
+      const el=document.createElement('div');
+      el.className='order'+(o.st==='ready'?' ready':'')+(o.st==='done'?' done':'');
+      el.innerHTML=
+        '<div class="num">'+num(o)+'</div>'+
+        '<div class="who"><b></b><span></span></div>'+
+        '<div class="meta"><strong>'+fmtDay(o.jour)+'</strong>'+o.heure.replace(':','h')+(late?'<div class="late">Non récupérée</div>':'')+'</div>'+
+        '<div class="prod"></div>'+
+        '<div class="status"><span class="badge b-'+o.st+'">'+label[o.st]+'</span></div>';
+      el.querySelector('.who b').textContent=o.nom;
+      el.querySelector('.who span').textContent=o.tel;
+      el.querySelector('.prod').textContent=o.prod;
+      const s=el.querySelector('.status');
+      if(o.st==='todo'){s.appendChild(btn('Marquer prête',()=>setSt(o,'ready')))}
+      if(o.st==='ready'){s.appendChild(btn('Client passé',()=>setSt(o,'done')))}
+      s.appendChild(btn('Réimprimer',()=>printT(o)));
+      L.appendChild(el);
+    });
+  }
+  function btn(t,f){const b=document.createElement('button');b.className='act';b.type='button';b.textContent=t;b.onclick=f;return b}
+  function setSt(o,st){o.st=st;save();render();toast(st==='ready'?'Commande '+num(o)+' prête':'Commande '+num(o)+' récupérée')}
+  function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1800)}
+
+  function ticket(o,kind){
+    const div=document.createElement('div'); div.className='tk';
+    const lines=o.prod.split('\n').map(l=>'&nbsp;&nbsp;'+esc(l)).join('<br>');
+    div.innerHTML='<div class="where">'+(kind==='d'?'Imprimante salle de découpe':'Imprimante accueil')+'</div>'+
+      '<div class="c big">MKVH</div><div class="c">BOUCHERIE - DISTRIBUTION</div><hr>'+
+      '<div class="c"><b>'+(kind==='d'?'BON DE PREPARATION':'BON DE RETRAIT')+'</b></div><hr>'+
+      '<div class="c big">N° '+num(o)+'</div><hr>'+
+      '<b>CLIENT :</b> '+esc(o.nom)+'<br>TEL : '+esc(o.tel||'-')+'<br>RETRAIT : '+fmtDay(o.jour)+' '+o.heure.replace(':','h')+'<hr>'+
+      '<b>PRODUITS</b><br>'+lines+'<hr>'+
+      (kind==='d'?'Prepare par : ..............<br>Poids total : ..............':'Recupere le : ..............<br>Signature : ................');
+    return div;
+  }
+  function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+  function printT(o){const t=$('tickets');t.innerHTML='';t.appendChild(ticket(o,'d'));t.appendChild(ticket(o,'a'));$('modal').classList.add('open')}
+  $('closeM').onclick=()=>$('modal').classList.remove('open');
+  $('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('open')};
+
+  $('form').onsubmit=e=>{
+    e.preventDefault();
+    const o={n:++db.seq,nom:$('nom').value.trim(),tel:$('tel').value.trim(),prod:$('prod').value.trim(),jour:$('jour').value,heure:$('heure').value,st:'todo'};
+    db.orders.push(o); save();
+    $('nom').value='';$('tel').value='';$('prod').value='';
+    filter=o.jour===T?'today':'all';
+    document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f===filter));
+    render(); printT(o);
+  };
+  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{filter=c.dataset.f;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));render()});
+  $('q').oninput=render;
+  $('reset').onclick=()=>{db=seed();save();filter='today';document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f==='today'));render();toast('Démo réinitialisée')};
+  render();
+})();
+</script>
+</body>
+</html>
