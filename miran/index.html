@@ -163,6 +163,10 @@ input:disabled + .carte { opacity: .38; cursor: not-allowed; }
 .confirme__detail b { color: var(--or-clair); font-weight: 600; }
 .confirme__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
 .confirme .mention { margin-top: 26px; }
+.confirme__agenda { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--ligne); }
+.confirme__agenda p { margin: 0 0 12px; font-weight: 600; }
+.confirme__agenda .boutons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.champ--large { grid-column: 1 / -1; }
 [hidden] { display: none !important; }
 
 /* Le salon */
@@ -347,6 +351,10 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
                 <label for="tel">Téléphone</label>
                 <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="06 12 34 56 78" required>
               </div>
+              <div class="champ champ--large">
+                <label for="mail">Adresse mail (facultatif, pour recevoir la confirmation)</label>
+                <input id="mail" name="mail" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="vous@exemple.fr">
+              </div>
             </div>
             <p class="mention">Votre nom et votre téléphone servent uniquement à gérer ce rendez-vous.
               <button class="lien" type="button" data-ouvre="confidentialite">Confidentialité</button></p>
@@ -372,12 +380,20 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
         <h3 id="c-titre">Rendez-vous confirmé</h3>
         <p class="confirme__detail" id="c-detail"></p>
         <p class="statut-notif" id="c-notif" aria-live="polite"></p>
+        <p class="statut-notif" id="c-mail" aria-live="polite"></p>
+        <div class="confirme__agenda">
+          <p>Ajoutez-le à votre agenda pour recevoir un rappel la veille et 1 h avant :</p>
+          <div class="boutons">
+            <a class="bouton" id="c-google" href="#" target="_blank" rel="noopener">Google Agenda</a>
+            <a class="bouton bouton--contour" id="c-ics" href="#" download="rdv-barber-miran.ics">iPhone, Outlook et autres</a>
+          </div>
+        </div>
         <p class="confirme__detail">82 rue de Preize, 10000 Troyes</p>
         <div class="confirme__actions">
           <button class="bouton" type="button" id="c-nouveau">Prendre un autre rendez-vous</button>
           <button class="bouton bouton--contour" type="button" id="c-annuler">Annuler ce rendez-vous</button>
         </div>
-        <p class="mention">Démonstration : aucun message n'est réellement envoyé.
+        <p class="mention">Démonstration : le coiffeur reçoit une notification de test.
           <button class="lien" type="button" data-ouvre-espace>Voir ce que reçoit le coiffeur</button></p>
       </div>
     </div>
@@ -541,7 +557,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     <p>MIRAN SAS (Barber Miran), 82 rue de Preize, 10000 Troyes.</p>
 
     <h4>Quelles données, et pourquoi</h4>
-    <p>Lors d'une réservation, nous enregistrons votre prénom, votre nom, votre numéro de téléphone, la prestation choisie, le jour et l'heure. Ces données servent uniquement à gérer votre rendez-vous et à vous prévenir en cas de changement. Elles sont nécessaires pour traiter votre demande de rendez-vous.</p>
+    <p>Lors d'une réservation, nous enregistrons votre prénom, votre nom, votre numéro de téléphone, votre adresse mail si vous la donnez (pour vous envoyer la confirmation), la prestation choisie, le jour et l'heure. Ces données servent uniquement à gérer votre rendez-vous et à vous prévenir en cas de changement. Elles sont nécessaires pour traiter votre demande de rendez-vous.</p>
 
     <h4>Qui y a accès</h4>
     <p>Le salon, et son prestataire technique pour l'hébergement : <span class="a-completer">à compléter</span>. Vos données ne sont ni vendues, ni utilisées pour de la publicité.</p>
@@ -596,6 +612,10 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     { id: "2", nom: "Coiffeur 2", canal: "barbermiran-c2-4866f6bcc567" }
   ];
   var NTFY = "https://ntfy.sh/";
+  // Mail de confirmation au client (EmailJS, gratuit jusqu'à 200 mails/mois).
+  // Remplir avec les identifiants du compte EmailJS ; laissé vide = pas d'envoi.
+  var EMAILJS = { service: "", modele: "", cle: "" };
+  var ADRESSE = "82 rue de Preize, 10000 Troyes";
   var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   var MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
   var PAS = 30, NB_JOURS = 14, CLE = "barber-miran-demo-rdv";
@@ -835,28 +855,98 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     return r.nom + " · " + r.tel + "\n" + jourLong(r.date) + " à " + hm(r.debut) + "\n" + r.libelle + " · " + r.total + " €";
   }
 
+  /* ---------- Agenda (rappels gérés par le téléphone du client) ---------- */
+  function dateRdv(r, decalage) {
+    var p = r.date.split("-"), m = r.debut + (decalage || 0);
+    return new Date(+p[0], +p[1] - 1, +p[2], Math.floor(m / 60), m % 60);
+  }
+  function horodatage(d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+  function echapIcs(t) { return String(t).replace(/\\/g, "\\\\").replace(/([,;])/g, "\\$1").replace(/\n/g, "\\n"); }
+  function lienGoogle(r) {
+    var debut = horodatage(dateRdv(r)), fin = horodatage(dateRdv(r, r.duree));
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent("Barber Miran · " + r.libelle)
+      + "&dates=" + debut + "/" + fin
+      + "&details=" + encodeURIComponent("Avec " + coiffeur(r.coiffeur).nom + ". Total : " + r.total + " €, paiement sur place.")
+      + "&location=" + encodeURIComponent("Barber Miran, " + ADRESSE);
+  }
+  function fichierIcs(r) {
+    var lignes = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Barber Miran//Rendez-vous//FR", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      "UID:" + r.id + "@barber-miran",
+      "DTSTAMP:" + horodatage(new Date()),
+      "DTSTART:" + horodatage(dateRdv(r)),
+      "DTEND:" + horodatage(dateRdv(r, r.duree)),
+      "SUMMARY:" + echapIcs("Barber Miran · " + r.libelle),
+      "LOCATION:" + echapIcs("Barber Miran, " + ADRESSE),
+      "DESCRIPTION:" + echapIcs("Avec " + coiffeur(r.coiffeur).nom + ". Total : " + r.total + " €, paiement sur place."),
+      "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + echapIcs("Rendez-vous demain chez Barber Miran"), "TRIGGER:-P1D", "END:VALARM",
+      "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + echapIcs("Rendez-vous dans 1 h chez Barber Miran"), "TRIGGER:-PT1H", "END:VALARM",
+      "END:VEVENT", "END:VCALENDAR"
+    ];
+    return URL.createObjectURL(new Blob([lignes.join("\r\n")], { type: "text/calendar;charset=utf-8" }));
+  }
+  var urlIcs = null;
+  function preparerAgenda(r) {
+    $("c-google").href = lienGoogle(r);
+    if (urlIcs) URL.revokeObjectURL(urlIcs);
+    urlIcs = fichierIcs(r);
+    $("c-ics").href = urlIcs;
+  }
+
+  /* ---------- Mail de confirmation au client (EmailJS) ---------- */
+  function envoyerMail(r) {
+    if (!r.mail) { $("c-mail").textContent = ""; return; }
+    if (!EMAILJS.service || !EMAILJS.modele || !EMAILJS.cle) {
+      $("c-mail").textContent = "Démo : le mail de confirmation à " + r.mail + " sera activé avec le compte du salon.";
+      return;
+    }
+    $("c-mail").textContent = "Envoi du mail de confirmation…";
+    fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        service_id: EMAILJS.service, template_id: EMAILJS.modele, user_id: EMAILJS.cle,
+        template_params: {
+          to_email: r.mail, client: r.nom, jour: jourLong(r.date), heure: hm(r.debut),
+          prestations: r.libelle, total: r.total + " €", coiffeur: coiffeur(r.coiffeur).nom,
+          adresse: ADRESSE, agenda: lienGoogle(r)
+        }
+      })
+    }).then(function (rep) {
+      if (!rep.ok) throw new Error("HTTP " + rep.status);
+      if (dernier === r) $("c-mail").textContent = "Mail de confirmation envoyé à " + r.mail + ".";
+    }).catch(function () {
+      if (dernier === r) $("c-mail").textContent = "Le mail n'a pas pu partir. Le rendez-vous est quand même enregistré.";
+    });
+  }
+
   /* ---------- Validation et confirmation ---------- */
   var dernier = null;
   function afficherFormulaire() { $("resa").hidden = false; $("confirme").hidden = true; }
   $("formulaire").addEventListener("submit", function (ev) {
     ev.preventDefault();
-    var nom = $("nom").value.trim(), tel = $("tel").value.replace(/[\s.\-]/g, ""), err = "";
+    var nom = $("nom").value.trim(), tel = $("tel").value.replace(/[\s.\-]/g, ""), mail = $("mail").value.trim(), err = "";
     if (!etat.date || etat.debut == null) err = "Choisissez un jour et une heure.";
     else if (nom.length < 2) err = "Indiquez votre prénom et votre nom.";
     else if (!/^(\+33|0)[1-9]\d{8}$/.test(tel)) err = "Indiquez un numéro de téléphone à 10 chiffres.";
+    else if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) err = "Vérifiez votre adresse mail, ou laissez le champ vide.";
     else if (!creneaux(etat.date, dureeSel(), etat.coiffeur).some(function (c) { return c.libre && c.debut === etat.debut; })) {
       err = "Ce créneau vient d'être pris. Choisissez une autre heure."; etat.debut = null; rendreHeures(); rendreRecap();
     }
     $("erreur").textContent = err;
     if (err) { if (!etat.date || etat.debut == null) $("choix-heure").scrollIntoView({ block: "center" }); return; }
 
-    dernier = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), date: etat.date, debut: etat.debut, prestation: etat.principale, options: etat.options.slice(), coiffeur: (function () { var k = null; creneaux(etat.date, dureeSel(), etat.coiffeur).forEach(function (x) { if (x.debut === etat.debut && x.libre) k = x.coiffeur; }); return k || "1"; })(), duree: dureeSel(), total: totalSel(), libelle: libelleSel(), nom: nom, tel: $("tel").value.trim() };
+    dernier = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), date: etat.date, debut: etat.debut, prestation: etat.principale, options: etat.options.slice(), coiffeur: (function () { var k = null; creneaux(etat.date, dureeSel(), etat.coiffeur).forEach(function (x) { if (x.debut === etat.debut && x.libre) k = x.coiffeur; }); return k || "1"; })(), duree: dureeSel(), total: totalSel(), libelle: libelleSel(), nom: nom, tel: $("tel").value.trim(), mail: mail };
     rdvs.push(dernier); sauver();
     $("c-titre").textContent = "C'est noté, " + nom.split(" ")[0];
     $("c-detail").textContent = "";
     $("c-detail").appendChild(el("b", null, dernier.libelle));
     $("c-detail").appendChild(document.createTextNode(", " + jourLong(dernier.date) + " à " + hm(dernier.debut) + " avec " + coiffeur(dernier.coiffeur).nom + " · " + dernier.total + " €"));
     var rdvEnvoye = dernier;
+    preparerAgenda(rdvEnvoye);
+    envoyerMail(rdvEnvoye);
     $("c-notif").textContent = "Envoi de la réservation à " + coiffeur(rdvEnvoye.coiffeur).nom + "…";
     notifier(rdvEnvoye.coiffeur, "Nouveau RDV", texteRdv(rdvEnvoye))
       .then(function (c) { if (dernier === rdvEnvoye) $("c-notif").textContent = c.nom + " a reçu la réservation sur son téléphone."; })
