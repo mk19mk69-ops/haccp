@@ -102,13 +102,22 @@ button, input { font: inherit; color: inherit; }
 
 /* Prestations : le tableau des tarifs */
 .tarifs { margin: clamp(32px, 5vw, 56px) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ligne); }
-.tarif { width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 24px; padding: 20px 4px; background: none; border: 0; border-bottom: 1px solid var(--ligne); text-align: left; cursor: pointer; transition: background-color .15s ease; }
+.tarif { width: 100%; display: grid; grid-template-columns: 1fr 8ch 8ch; align-items: baseline; gap: 4px 24px; padding: 20px 4px; background: none; border: 0; border-bottom: 1px solid var(--ligne); text-align: left; cursor: pointer; transition: background-color .15s ease; }
 .tarif:hover { background: var(--charbon); }
 .tarif__nom { font-family: var(--titre); font-size: clamp(1.5rem, 2.9vw, 2.1rem); line-height: 1.1; }
 .tarif__prix { font-family: var(--texte); font-weight: 600; font-size: clamp(1.35rem, 2.5vw, 1.8rem); color: var(--or-clair); min-width: 3.2ch; text-align: right; font-variant-numeric: lining-nums; }
 .tarif__detail { grid-column: 1 / -1; font-size: .92rem; color: var(--gris); }
 .tarif:hover .tarif__detail { color: var(--or-clair); }
 .mention { margin-top: 18px; font-size: .9rem; color: var(--gris); }
+.tarifs__entete { display: grid; grid-template-columns: 1fr 8ch 8ch; gap: 4px 24px; padding: 14px 4px 10px; border-bottom: 1px solid var(--ligne); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); }
+.tarifs__entete span:not(:first-child) { text-align: right; }
+.tarif__prix--sans { color: var(--gris); font-weight: 500; }
+.sous-titre { margin: 26px 0 12px; font-size: .95rem; color: var(--gris); }
+.choix--options .carte b::before { content: "+ "; color: var(--or); }
+.choix--options input:checked + .carte b::before { content: "\2713  "; }
+.recap__total { padding-top: 12px; border-top: 1px solid var(--ligne); }
+.recap__total dd { font-size: 1.5rem; color: var(--or-clair); font-variant-numeric: lining-nums; }
+@media (max-width: 640px) { .tarif, .tarifs__entete { grid-template-columns: 1fr auto auto; gap: 4px 18px; } .tarifs__entete { font-size: .72rem; } }
 
 /* Réservation */
 .resa { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(24px, 4vw, 48px); align-items: start; margin-top: clamp(32px, 5vw, 56px); }
@@ -287,20 +296,22 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     <div class="conteneur">
       <h2>Prestations et tarifs</h2>
       <ul class="tarifs" id="tarifs"></ul>
-      <p class="mention">Tarifs de l'affiche publiée par le salon, à confirmer.</p>
+      <p class="mention">Sans rendez-vous : tarifs habituels du salon. Sur rendez-vous : votre créneau est garanti, du lundi au samedi de 8h à 13h.</p>
     </div>
   </section>
 
   <section class="bloc bloc--clair" id="reserver">
     <div class="conteneur">
       <h2>Réserver un créneau</h2>
-      <p class="chapo">Choisissez votre prestation, le jour et l'heure. La réservation prend moins d'une minute.</p>
+      <p class="chapo">Créneaux sur rendez-vous du lundi au samedi, de 8h à 13h. Choisissez votre prestation, ajoutez ce que vous voulez en plus, puis le jour et l'heure.</p>
 
       <div class="resa" id="resa">
         <form id="formulaire" novalidate>
           <fieldset>
             <legend><span>1</span> Prestation</legend>
             <div class="choix" id="choix-prestation"></div>
+            <p class="sous-titre">En plus (facultatif, plusieurs choix possibles)</p>
+            <div class="choix choix--options" id="choix-options"></div>
           </fieldset>
           <fieldset>
             <legend><span>2</span> Jour</legend>
@@ -334,6 +345,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
             <div><dt>Prestation</dt><dd id="r-prestation">À choisir</dd></div>
             <div><dt>Jour</dt><dd id="r-jour">À choisir</dd></div>
             <div><dt>Heure</dt><dd id="r-heure">À choisir</dd></div>
+            <div class="recap__total"><dt>Total sur rendez-vous</dt><dd id="r-total">18 €</dd></div>
           </dl>
           <button class="bouton" type="submit" form="formulaire" id="valider">Confirmer le rendez-vous</button>
           <p class="mention">Paiement sur place, au salon.</p>
@@ -365,7 +377,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
         <p class="chapo">Barber Miran vous reçoit au 82 rue de Preize, à Troyes, depuis 2022.</p>
         <ul>
           <li>Coupe, barbe et soins du visage</li>
-          <li>Réservation en ligne ou par téléphone</li>
+          <li>Sur rendez-vous du lundi au samedi, de 8h à 13h</li>
           <li>Ouvert du mardi au samedi</li>
         </ul>
       </div>
@@ -414,7 +426,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
             <a class="bouton bouton--contour" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Barber+Miran%2C+82+Rue+de+Preize%2C+10000+Troyes">Itinéraire</a>
           </div>
         </div>
-        <table class="horaires" id="horaires"><caption style="text-align:left;font-weight:600;padding-bottom:8px">Horaires d'ouverture</caption><tbody></tbody></table>
+        <table class="horaires" id="horaires"><caption style="text-align:left;font-weight:600;padding-bottom:8px">Horaires d'ouverture, sans rendez-vous<br><span style="font-weight:400;color:var(--or-clair)">Sur rendez-vous : du lundi au samedi, de 8h à 13h</span></caption><tbody></tbody></table>
       </div>
     </div>
   </section>
@@ -518,17 +530,26 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
 
   /* ---------- Données du salon ---------- */
   // Noms et prix : affiche publiée par le salon. Durées : estimations pour la démo.
-  var PRESTATIONS = [
-    { id: "coupe", nom: "Coupe homme", duree: 30, prix: 10 },
-    { id: "enfant", nom: "Coupe enfant", detail: "Moins de 10 ans", duree: 30, prix: 8 },
-    { id: "barbe", nom: "Barbe", duree: 15, prix: 5 },
-    { id: "masque-cheveux", nom: "Masque cheveux / barbe", duree: 15, prix: 3 },
-    { id: "masque-visage", nom: "Masque visage", duree: 15, prix: 2 },
-    { id: "masque-gommage", nom: "Masque visage + gommage", duree: 30, prix: 5 },
-    { id: "cire", nom: "Cire visage", duree: 15, prix: 3 },
-    { id: "bougie", nom: "Bougie d'oreille", duree: 15, prix: 5 },
-    { id: "pack", nom: "Pack Luxury", detail: "Coupe, barbe, masque cheveux / barbe, masque visage et bougie d'oreille", duree: 60, prix: 22 }
+  // prix = sans rendez-vous (affiche du salon), resa = sur rendez-vous.
+  var PRINCIPALES = [
+    { id: "coupe", nom: "Coupe homme", duree: 30, prix: 10, resa: 18 },
+    { id: "enfant", nom: "Coupe enfant", detail: "Moins de 10 ans", duree: 30, prix: 8, resa: 14 },
+    { id: "barbe", nom: "Barbe", duree: 15, prix: 5, resa: 8 },
+    { id: "pack", nom: "Pack Luxury", detail: "Coupe, barbe, masque cheveux / barbe, masque visage et bougie d'oreille", duree: 60, prix: 22, resa: 35,
+      inclut: ["barbe", "masque-cheveux", "masque-visage", "masque-gommage", "bougie"] }
   ];
+  var OPTIONS = [
+    { id: "barbe", nom: "Barbe", duree: 15, prix: 5, resa: 8, pour: ["coupe"] },
+    { id: "masque-cheveux", nom: "Masque cheveux / barbe", duree: 15, prix: 3, resa: 5 },
+    { id: "masque-visage", nom: "Masque visage", duree: 15, prix: 2, resa: 4, exclut: "masque-gommage" },
+    { id: "masque-gommage", nom: "Masque visage + gommage", duree: 30, prix: 5, resa: 8, exclut: "masque-visage" },
+    { id: "cire", nom: "Cire visage", duree: 15, prix: 3, resa: 5 },
+    { id: "bougie", nom: "Bougie d'oreille", duree: 15, prix: 5, resa: 8 }
+  ];
+  // Liste affichée dans « Prestations et tarifs ».
+  var TARIFS = [PRINCIPALES[0], PRINCIPALES[1], PRINCIPALES[2]].concat(OPTIONS.slice(1), [PRINCIPALES[3]]);
+  // Créneaux sur rendez-vous : du lundi au samedi, 8h-13h.
+  var HORAIRES_RDV = [[], [[480, 780]], [[480, 780]], [[480, 780]], [[480, 780]], [[480, 780]], [[480, 780]]];
   // Minutes depuis minuit. Indice : 0 = dimanche ... 6 = samedi.
   var HORAIRES = [
     [], [],
@@ -552,7 +573,19 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   function iso(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
   function depuisIso(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function jourLong(s) { var d = depuisIso(s); return JOURS[d.getDay()] + " " + d.getDate() + " " + MOIS[d.getMonth()]; }
-  function prestation(id) { for (var i = 0; i < PRESTATIONS.length; i++) if (PRESTATIONS[i].id === id) return PRESTATIONS[i]; return null; }
+  function chercher(liste, id) { for (var i = 0; i < liste.length; i++) if (liste[i].id === id) return liste[i]; return null; }
+  function prestation(id) { return chercher(PRINCIPALES, id) || chercher(OPTIONS, id); }
+  function optionVisible(o, principale) { return !o.pour || o.pour.indexOf(principale) >= 0; }
+  function optionIncluse(o, principale) { var p = prestation(principale); return !!(p && p.inclut && p.inclut.indexOf(o.id) >= 0); }
+  function selection() {
+    return [prestation(etat.principale)].concat(etat.options.map(function (id) { return chercher(OPTIONS, id); }));
+  }
+  function dureeSel() { return selection().reduce(function (t, p) { return t + p.duree; }, 0); }
+  function totalSel() { return selection().reduce(function (t, p) { return t + p.resa; }, 0); }
+  function libelleSel() { return selection().map(function (p) { return p.nom; }).join(" + "); }
+  function nettoyerOptions() {
+    etat.options = etat.options.filter(function (id) { var o = chercher(OPTIONS, id); return o && optionVisible(o, etat.principale) && !optionIncluse(o, etat.principale); });
+  }
   function plages(creneaux) { return creneaux.map(function (c) { return hm(c[0]) + " – " + hm(c[1]); }).join(", "); }
 
   /* ---------- Rendez-vous (démo : gardés dans ce navigateur) ---------- */
@@ -569,21 +602,21 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   }
   function occupations(date) {
     var liste = [], jour = depuisIso(date).getDay();
-    HORAIRES[jour].forEach(function (p) {
+    HORAIRES_RDV[jour].forEach(function (p) {
       for (var t = p[0]; t + PAS <= p[1]; t += PAS) {
         if (exemplePris(date, t)) liste.push({ debut: t, fin: t + PAS, exemple: true });
       }
     });
     rdvs.forEach(function (r) {
-      var p = prestation(r.prestation);
-      if (p && r.date === date) liste.push({ debut: r.debut, fin: r.debut + p.duree, rdv: r });
+      var p = prestation(r.prestation), duree = r.duree || (p && p.duree);
+      if (duree && r.date === date) liste.push({ debut: r.debut, fin: r.debut + duree, rdv: r });
     });
     return liste.sort(function (a, b) { return a.debut - b.debut; });
   }
   function creneaux(date, duree) {
     var jour = depuisIso(date).getDay(), occ = occupations(date), res = [];
     var maintenant = new Date(), auj = iso(maintenant), minNow = maintenant.getHours() * 60 + maintenant.getMinutes() + 20;
-    HORAIRES[jour].forEach(function (p) {
+    HORAIRES_RDV[jour].forEach(function (p) {
       for (var t = p[0]; t + duree <= p[1]; t += PAS) {
         var libre = !(date === auj && t < minNow);
         for (var i = 0; libre && i < occ.length; i++) if (t < occ[i].fin && t + duree > occ[i].debut) libre = false;
@@ -594,17 +627,17 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   }
 
   /* ---------- État du formulaire ---------- */
-  var etat = { prestation: "coupe", date: null, debut: null };
+  var etat = { principale: "coupe", options: [], date: null, debut: null };
   var jours = [];
   (function () {
     var d = new Date();
     for (var i = 0; i < NB_JOURS; i++) {
       var x = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
-      jours.push({ iso: iso(x), date: x, ouvert: HORAIRES[x.getDay()].length > 0 });
+      jours.push({ iso: iso(x), date: x, ouvert: HORAIRES_RDV[x.getDay()].length > 0 });
     }
   })();
   function premierJourLibre() {
-    var duree = prestation(etat.prestation).duree;
+    var duree = dureeSel();
     for (var i = 0; i < jours.length; i++) {
       if (jours[i].ouvert && creneaux(jours[i].iso, duree).some(function (c) { return c.libre; })) return jours[i].iso;
     }
@@ -615,13 +648,27 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   /* ---------- Rendu ---------- */
   function rendreTarifs() {
     var ul = $("tarifs");
-    PRESTATIONS.forEach(function (p) {
-      var li = el("li"), b = el("button", { type: "button", "class": "tarif" });
+    var ent = el("li", { "class": "tarifs__entete", "aria-hidden": "true" });
+    ent.appendChild(el("span", null, "Prestation"));
+    ent.appendChild(el("span", null, "Sans RDV"));
+    ent.appendChild(el("span", null, "Sur RDV"));
+    ul.appendChild(ent);
+    TARIFS.forEach(function (p) {
+      var li = el("li"), b = el("button", { type: "button", "class": "tarif", "aria-label": p.nom + " : " + p.prix + " euros sans rendez-vous, " + p.resa + " euros sur rendez-vous. Réserver" });
       b.appendChild(el("span", { "class": "tarif__nom" }, p.nom));
-      b.appendChild(el("span", { "class": "tarif__prix" }, p.prix + " €"));
+      b.appendChild(el("span", { "class": "tarif__prix tarif__prix--sans" }, p.prix + " €"));
+      b.appendChild(el("span", { "class": "tarif__prix" }, p.resa + " €"));
       b.appendChild(el("span", { "class": "tarif__detail" }, (p.detail ? p.detail + ". " : "") + "Réserver"));
       b.addEventListener("click", function () {
-        etat.prestation = p.id; etat.debut = null;
+        if (chercher(PRINCIPALES, p.id) && !(p.id === "barbe" && etat.principale === "coupe")) { etat.principale = p.id; etat.options = []; }
+        else {
+          var o = chercher(OPTIONS, p.id);
+          if (!optionVisible(o, etat.principale) || optionIncluse(o, etat.principale)) { etat.principale = "coupe"; }
+          if (etat.options.indexOf(o.id) < 0) etat.options.push(o.id);
+          if (o.exclut) etat.options = etat.options.filter(function (x) { return x !== o.exclut; });
+          nettoyerOptions();
+        }
+        etat.debut = null;
         if (!etat.date) etat.date = premierJourLibre();
         afficherFormulaire(); rendreTout();
         $("reserver").scrollIntoView();
@@ -631,14 +678,34 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   }
   function rendrePrestations() {
     var c = $("choix-prestation"); c.textContent = "";
-    PRESTATIONS.forEach(function (p) {
+    PRINCIPALES.forEach(function (p) {
       var l = el("label");
-      var i = el("input", { type: "radio", name: "prestation", value: p.id, checked: etat.prestation === p.id });
-      i.addEventListener("change", function () { etat.prestation = p.id; etat.debut = null; rendreTout(); });
+      var i = el("input", { type: "radio", name: "prestation", value: p.id, checked: etat.principale === p.id });
+      i.addEventListener("change", function () { etat.principale = p.id; nettoyerOptions(); etat.debut = null; rendreTout(); });
       var s = el("span", { "class": "carte" });
       s.appendChild(el("b", null, p.nom));
-      s.appendChild(el("small", null, p.prix + " €"));
+      s.appendChild(el("small", null, p.resa + " €"));
       l.appendChild(i); l.appendChild(s); c.appendChild(l);
+    });
+    var o2 = $("choix-options"); o2.textContent = "";
+    OPTIONS.forEach(function (o) {
+      if (!optionVisible(o, etat.principale)) return;
+      var inclus = optionIncluse(o, etat.principale);
+      var l = el("label");
+      var i = el("input", { type: "checkbox", name: "options", value: o.id, checked: inclus || etat.options.indexOf(o.id) >= 0, disabled: inclus });
+      i.addEventListener("change", function () {
+        if (i.checked) {
+          etat.options.push(o.id);
+          if (o.exclut) etat.options = etat.options.filter(function (x) { return x !== o.exclut; });
+        } else {
+          etat.options = etat.options.filter(function (x) { return x !== o.id; });
+        }
+        etat.debut = null; rendreTout();
+      });
+      var s = el("span", { "class": "carte" });
+      s.appendChild(el("b", null, o.nom));
+      s.appendChild(el("small", null, inclus ? "Inclus dans le pack" : "+ " + o.resa + " €"));
+      l.appendChild(i); l.appendChild(s); o2.appendChild(l);
     });
   }
   function rendreJours(cible, nom, valeur, surChoix, toutOuvrir) {
@@ -657,7 +724,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   function rendreHeures() {
     var c = $("choix-heure"); c.textContent = "";
     if (!etat.date) { c.appendChild(el("p", { "class": "vide" }, "Choisissez un jour pour voir les heures disponibles.")); return; }
-    var liste = creneaux(etat.date, prestation(etat.prestation).duree);
+    var liste = creneaux(etat.date, dureeSel());
     if (!liste.some(function (x) { return x.libre; })) {
       etat.debut = null;
       c.appendChild(el("p", { "class": "vide" }, "Plus de créneau libre ce jour-là. Essayez un autre jour."));
@@ -674,8 +741,8 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     });
   }
   function rendreRecap() {
-    var p = prestation(etat.prestation);
-    $("r-prestation").textContent = p.nom + " · " + p.prix + " €";
+    $("r-prestation").textContent = libelleSel();
+    $("r-total").textContent = totalSel() + " €";
     $("r-jour").textContent = etat.date ? jourLong(etat.date) : "À choisir";
     $("r-heure").textContent = etat.debut != null ? hm(etat.debut) : "À choisir";
   }
@@ -694,19 +761,18 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     if (!etat.date || etat.debut == null) err = "Choisissez un jour et une heure.";
     else if (nom.length < 2) err = "Indiquez votre prénom et votre nom.";
     else if (!/^(\+33|0)[1-9]\d{8}$/.test(tel)) err = "Indiquez un numéro de téléphone à 10 chiffres.";
-    else if (!creneaux(etat.date, prestation(etat.prestation).duree).some(function (c) { return c.libre && c.debut === etat.debut; })) {
+    else if (!creneaux(etat.date, dureeSel()).some(function (c) { return c.libre && c.debut === etat.debut; })) {
       err = "Ce créneau vient d'être pris. Choisissez une autre heure."; etat.debut = null; rendreHeures(); rendreRecap();
     }
     $("erreur").textContent = err;
     if (err) { if (!etat.date || etat.debut == null) $("choix-heure").scrollIntoView({ block: "center" }); return; }
 
-    dernier = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), date: etat.date, debut: etat.debut, prestation: etat.prestation, nom: nom, tel: $("tel").value.trim() };
+    dernier = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), date: etat.date, debut: etat.debut, prestation: etat.principale, options: etat.options.slice(), duree: dureeSel(), total: totalSel(), libelle: libelleSel(), nom: nom, tel: $("tel").value.trim() };
     rdvs.push(dernier); sauver();
-    var p = prestation(dernier.prestation);
     $("c-titre").textContent = "C'est noté, " + nom.split(" ")[0];
     $("c-detail").textContent = "";
-    $("c-detail").appendChild(el("b", null, p.nom));
-    $("c-detail").appendChild(document.createTextNode(", " + jourLong(dernier.date) + " à " + hm(dernier.debut)));
+    $("c-detail").appendChild(el("b", null, dernier.libelle));
+    $("c-detail").appendChild(document.createTextNode(", " + jourLong(dernier.date) + " à " + hm(dernier.debut) + " · " + dernier.total + " €"));
     $("resa").hidden = true; $("confirme").hidden = false; $("confirme").focus();
     $("confirme").scrollIntoView({ block: "center" });
     etat.debut = null; rendreHeures(); rendreRecap();
@@ -731,7 +797,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
       var d = el("div");
       if (o.rdv) {
         d.appendChild(el("b", null, o.rdv.nom));
-        d.appendChild(el("small", null, prestation(o.rdv.prestation).nom + " · " + o.rdv.tel));
+        d.appendChild(el("small", null, (o.rdv.libelle || (prestation(o.rdv.prestation) || {}).nom || "") + " · " + o.rdv.tel));
         var b = el("button", { type: "button" }, "Annuler");
         b.addEventListener("click", function () {
           rdvs = rdvs.filter(function (r) { return r.id !== o.rdv.id; }); sauver();
