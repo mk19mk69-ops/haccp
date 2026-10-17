@@ -225,6 +225,17 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
 .planning .exemple b { color: var(--gris); font-weight: 500; }
 .planning button { min-height: 40px; padding: 6px 12px; background: none; border: 1px solid var(--ligne); border-radius: 2px; cursor: pointer; font-size: .9rem; }
 .planning button:hover { border-color: #f0a48f; color: #f0a48f; }
+.filtre { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+.filtre label { position: relative; cursor: pointer; }
+.filtre input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.filtre .carte { padding: 8px 14px; }
+.notif-test { margin-top: 26px; padding: 18px; border: 1px solid var(--ligne); background: var(--noir); }
+.notif-test h4 { margin: 0 0 8px; font-size: 1.05rem; }
+.notif-test ol { margin: 0 0 14px; padding-left: 20px; color: var(--gris); font-size: .95rem; }
+.notif-test code { color: var(--or-clair); font-size: .9rem; word-break: break-all; }
+.notif-test .boutons { display: flex; flex-wrap: wrap; gap: 10px; }
+.notif-test .bouton { min-height: 44px; padding: 8px 18px; }
+.statut-notif { margin-top: 10px; font-size: .92rem; color: var(--or-clair); }
 
 @media (max-width: 900px) {
   .menu { display: none; }
@@ -314,15 +325,19 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
             <div class="choix choix--options" id="choix-options"></div>
           </fieldset>
           <fieldset>
-            <legend><span>2</span> Jour</legend>
+            <legend><span>2</span> Coiffeur</legend>
+            <div class="choix" id="choix-coiffeur"></div>
+          </fieldset>
+          <fieldset>
+            <legend><span>3</span> Jour</legend>
             <div class="jours" id="choix-jour"></div>
           </fieldset>
           <fieldset>
-            <legend><span>3</span> Heure</legend>
+            <legend><span>4</span> Heure</legend>
             <div class="heures" id="choix-heure"></div>
           </fieldset>
           <fieldset>
-            <legend><span>4</span> Vos coordonnées</legend>
+            <legend><span>5</span> Vos coordonnées</legend>
             <div class="champs">
               <div class="champ">
                 <label for="nom">Prénom et nom</label>
@@ -343,6 +358,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
           <h3>Votre rendez-vous</h3>
           <dl>
             <div><dt>Prestation</dt><dd id="r-prestation">À choisir</dd></div>
+            <div><dt>Coiffeur</dt><dd id="r-coiffeur">Peu importe</dd></div>
             <div><dt>Jour</dt><dd id="r-jour">À choisir</dd></div>
             <div><dt>Heure</dt><dd id="r-heure">À choisir</dd></div>
             <div class="recap__total"><dt>Total sur rendez-vous</dt><dd id="r-total">18 €</dd></div>
@@ -355,6 +371,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
       <div class="confirme" id="confirme" hidden tabindex="-1">
         <h3 id="c-titre">Rendez-vous confirmé</h3>
         <p class="confirme__detail" id="c-detail"></p>
+        <p class="statut-notif" id="c-notif" aria-live="polite"></p>
         <p class="confirme__detail">82 rue de Preize, 10000 Troyes</p>
         <div class="confirme__actions">
           <button class="bouton" type="button" id="c-nouveau">Prendre un autre rendez-vous</button>
@@ -456,9 +473,25 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
       </div>
       <button class="fermer" type="button" id="espace-fermer">Fermer</button>
     </div>
+    <div class="filtre" id="espace-filtre"></div>
     <div class="jours" id="espace-jours"></div>
     <p class="mention" id="espace-compte" style="margin:0 0 12px"></p>
     <ul class="planning" id="planning"></ul>
+    <div class="notif-test">
+      <h4>Recevoir les réservations sur son téléphone</h4>
+      <ol>
+        <li>Installer l'appli gratuite <b>ntfy</b> (App Store ou Google Play).</li>
+        <li>Appuyer sur « + » et s'abonner au canal du coiffeur :<br>
+          Coiffeur 1 : <code>barbermiran-c1-aea05e63ef60</code><br>
+          Coiffeur 2 : <code>barbermiran-c2-4866f6bcc567</code></li>
+        <li>Envoyer une notification de test :</li>
+      </ol>
+      <div class="boutons">
+        <button class="bouton bouton--contour" type="button" data-test-notif="1">Test Coiffeur 1</button>
+        <button class="bouton bouton--contour" type="button" data-test-notif="2">Test Coiffeur 2</button>
+      </div>
+      <p class="statut-notif" id="statut-test" aria-live="polite"></p>
+    </div>
   </div>
 </dialog>
 
@@ -557,6 +590,12 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     [[600, 780], [900, 1140]],
     [[600, 780], [870, 1140]]
   ];
+  // Chaque coiffeur reçoit ses réservations par notification (appli ntfy, gratuite).
+  var COIFFEURS = [
+    { id: "1", nom: "Coiffeur 1", canal: "barbermiran-c1-aea05e63ef60" },
+    { id: "2", nom: "Coiffeur 2", canal: "barbermiran-c2-4866f6bcc567" }
+  ];
+  var NTFY = "https://ntfy.sh/";
   var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   var MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
   var PAS = 30, NB_JOURS = 14, CLE = "barber-miran-demo-rdv";
@@ -595,39 +634,50 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   function sauver() { try { localStorage.setItem(CLE, JSON.stringify(rdvs)); } catch (e) {} }
 
   // Créneaux « déjà pris » fictifs, toujours les mêmes pour un jour donné.
-  function exemplePris(date, debut) {
-    var s = date + ":" + debut, h = 2166136261;
+  function exemplePris(date, debut, c) {
+    var s = date + ":" + debut + ":" + c, h = 2166136261;
     for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
     return ((h >>> 0) % 100) < 26;
   }
-  function occupations(date) {
+  function coiffeur(id) { return chercher(COIFFEURS, id) || COIFFEURS[0]; }
+  function occupations(date, c) {
+    if (c == null) {
+      return occupations(date, "1").concat(occupations(date, "2")).sort(function (a, b) { return a.debut - b.debut || (a.coiffeur < b.coiffeur ? -1 : 1); });
+    }
     var liste = [], jour = depuisIso(date).getDay();
     HORAIRES_RDV[jour].forEach(function (p) {
       for (var t = p[0]; t + PAS <= p[1]; t += PAS) {
-        if (exemplePris(date, t)) liste.push({ debut: t, fin: t + PAS, exemple: true });
+        if (exemplePris(date, t, c)) liste.push({ debut: t, fin: t + PAS, exemple: true, coiffeur: c });
       }
     });
     rdvs.forEach(function (r) {
       var p = prestation(r.prestation), duree = r.duree || (p && p.duree);
-      if (duree && r.date === date) liste.push({ debut: r.debut, fin: r.debut + duree, rdv: r });
+      if (duree && r.date === date && (r.coiffeur || "1") === c) liste.push({ debut: r.debut, fin: r.debut + duree, rdv: r, coiffeur: c });
     });
     return liste.sort(function (a, b) { return a.debut - b.debut; });
   }
-  function creneaux(date, duree) {
-    var jour = depuisIso(date).getDay(), occ = occupations(date), res = [];
+  function creneaux(date, duree, choix) {
+    if (choix !== "1" && choix !== "2") {
+      var a = creneaux(date, duree, "1"), b = creneaux(date, duree, "2");
+      return a.map(function (x, i) {
+        var coiff = x.libre ? "1" : (b[i].libre ? "2" : null);
+        return { debut: x.debut, libre: !!coiff, coiffeur: coiff };
+      });
+    }
+    var jour = depuisIso(date).getDay(), occ = occupations(date, choix), res = [];
     var maintenant = new Date(), auj = iso(maintenant), minNow = maintenant.getHours() * 60 + maintenant.getMinutes() + 20;
     HORAIRES_RDV[jour].forEach(function (p) {
       for (var t = p[0]; t + duree <= p[1]; t += PAS) {
         var libre = !(date === auj && t < minNow);
         for (var i = 0; libre && i < occ.length; i++) if (t < occ[i].fin && t + duree > occ[i].debut) libre = false;
-        res.push({ debut: t, libre: libre });
+        res.push({ debut: t, libre: libre, coiffeur: choix });
       }
     });
     return res;
   }
 
   /* ---------- État du formulaire ---------- */
-  var etat = { principale: "coupe", options: [], date: null, debut: null };
+  var etat = { principale: "coupe", options: [], coiffeur: "indiff", date: null, debut: null };
   var jours = [];
   (function () {
     var d = new Date();
@@ -639,7 +689,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   function premierJourLibre() {
     var duree = dureeSel();
     for (var i = 0; i < jours.length; i++) {
-      if (jours[i].ouvert && creneaux(jours[i].iso, duree).some(function (c) { return c.libre; })) return jours[i].iso;
+      if (jours[i].ouvert && creneaux(jours[i].iso, duree, etat.coiffeur).some(function (c) { return c.libre; })) return jours[i].iso;
     }
     return null;
   }
@@ -724,7 +774,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   function rendreHeures() {
     var c = $("choix-heure"); c.textContent = "";
     if (!etat.date) { c.appendChild(el("p", { "class": "vide" }, "Choisissez un jour pour voir les heures disponibles.")); return; }
-    var liste = creneaux(etat.date, dureeSel());
+    var liste = creneaux(etat.date, dureeSel(), etat.coiffeur);
     if (!liste.some(function (x) { return x.libre; })) {
       etat.debut = null;
       c.appendChild(el("p", { "class": "vide" }, "Plus de créneau libre ce jour-là. Essayez un autre jour."));
@@ -743,13 +793,46 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   function rendreRecap() {
     $("r-prestation").textContent = libelleSel();
     $("r-total").textContent = totalSel() + " €";
+    var libreIci = null;
+    if (etat.date && etat.debut != null) {
+      creneaux(etat.date, dureeSel(), etat.coiffeur).forEach(function (x) { if (x.debut === etat.debut && x.libre) libreIci = x.coiffeur; });
+    }
+    $("r-coiffeur").textContent = etat.coiffeur === "indiff" ? (libreIci ? "Peu importe (" + coiffeur(libreIci).nom + ")" : "Peu importe") : coiffeur(etat.coiffeur).nom;
     $("r-jour").textContent = etat.date ? jourLong(etat.date) : "À choisir";
     $("r-heure").textContent = etat.debut != null ? hm(etat.debut) : "À choisir";
   }
+  function rendreCoiffeurs() {
+    var c = $("choix-coiffeur"); c.textContent = "";
+    COIFFEURS.concat([{ id: "indiff", nom: "Peu importe" }]).forEach(function (x) {
+      var l = el("label");
+      var i = el("input", { type: "radio", name: "coiffeur", value: x.id, checked: etat.coiffeur === x.id });
+      i.addEventListener("change", function () {
+        etat.coiffeur = x.id; etat.debut = null;
+        if (!etat.date) etat.date = premierJourLibre();
+        rendreTout();
+      });
+      var s = el("span", { "class": "carte" });
+      s.appendChild(el("b", null, x.nom));
+      s.appendChild(el("small", null, x.id === "indiff" ? "Le premier disponible" : "Choisir ce coiffeur"));
+      l.appendChild(i); l.appendChild(s); c.appendChild(l);
+    });
+  }
   function rendreTout() {
     rendrePrestations();
+    rendreCoiffeurs();
     rendreJours("choix-jour", "jour", etat.date, function (v) { etat.date = v; etat.debut = null; rendreHeures(); rendreRecap(); });
     rendreHeures(); rendreRecap();
+  }
+
+  /* ---------- Notifications aux coiffeurs (ntfy) ---------- */
+  function notifier(idCoiffeur, titre, message) {
+    var c = coiffeur(idCoiffeur);
+    // Corps JSON envoyé sans en-tête : requête simple, sans pré-vérification CORS.
+    return fetch(NTFY, { method: "POST", body: JSON.stringify({ topic: c.canal, title: titre, message: message, tags: ["scissors"], priority: 4 }) })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return c; });
+  }
+  function texteRdv(r) {
+    return r.nom + " · " + r.tel + "\n" + jourLong(r.date) + " à " + hm(r.debut) + "\n" + r.libelle + " · " + r.total + " €";
   }
 
   /* ---------- Validation et confirmation ---------- */
@@ -761,34 +844,52 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     if (!etat.date || etat.debut == null) err = "Choisissez un jour et une heure.";
     else if (nom.length < 2) err = "Indiquez votre prénom et votre nom.";
     else if (!/^(\+33|0)[1-9]\d{8}$/.test(tel)) err = "Indiquez un numéro de téléphone à 10 chiffres.";
-    else if (!creneaux(etat.date, dureeSel()).some(function (c) { return c.libre && c.debut === etat.debut; })) {
+    else if (!creneaux(etat.date, dureeSel(), etat.coiffeur).some(function (c) { return c.libre && c.debut === etat.debut; })) {
       err = "Ce créneau vient d'être pris. Choisissez une autre heure."; etat.debut = null; rendreHeures(); rendreRecap();
     }
     $("erreur").textContent = err;
     if (err) { if (!etat.date || etat.debut == null) $("choix-heure").scrollIntoView({ block: "center" }); return; }
 
-    dernier = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), date: etat.date, debut: etat.debut, prestation: etat.principale, options: etat.options.slice(), duree: dureeSel(), total: totalSel(), libelle: libelleSel(), nom: nom, tel: $("tel").value.trim() };
+    dernier = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), date: etat.date, debut: etat.debut, prestation: etat.principale, options: etat.options.slice(), coiffeur: (function () { var k = null; creneaux(etat.date, dureeSel(), etat.coiffeur).forEach(function (x) { if (x.debut === etat.debut && x.libre) k = x.coiffeur; }); return k || "1"; })(), duree: dureeSel(), total: totalSel(), libelle: libelleSel(), nom: nom, tel: $("tel").value.trim() };
     rdvs.push(dernier); sauver();
     $("c-titre").textContent = "C'est noté, " + nom.split(" ")[0];
     $("c-detail").textContent = "";
     $("c-detail").appendChild(el("b", null, dernier.libelle));
-    $("c-detail").appendChild(document.createTextNode(", " + jourLong(dernier.date) + " à " + hm(dernier.debut) + " · " + dernier.total + " €"));
+    $("c-detail").appendChild(document.createTextNode(", " + jourLong(dernier.date) + " à " + hm(dernier.debut) + " avec " + coiffeur(dernier.coiffeur).nom + " · " + dernier.total + " €"));
+    var rdvEnvoye = dernier;
+    $("c-notif").textContent = "Envoi de la réservation à " + coiffeur(rdvEnvoye.coiffeur).nom + "…";
+    notifier(rdvEnvoye.coiffeur, "Nouveau RDV", texteRdv(rdvEnvoye))
+      .then(function (c) { if (dernier === rdvEnvoye) $("c-notif").textContent = c.nom + " a reçu la réservation sur son téléphone."; })
+      .catch(function () { if (dernier === rdvEnvoye) $("c-notif").textContent = "La notification n'a pas pu partir (connexion ?). Le rendez-vous est quand même enregistré."; });
     $("resa").hidden = true; $("confirme").hidden = false; $("confirme").focus();
     $("confirme").scrollIntoView({ block: "center" });
     etat.debut = null; rendreHeures(); rendreRecap();
   });
   $("c-nouveau").addEventListener("click", function () { afficherFormulaire(); rendreTout(); $("reserver").scrollIntoView(); });
   $("c-annuler").addEventListener("click", function () {
-    if (dernier) { rdvs = rdvs.filter(function (r) { return r.id !== dernier.id; }); sauver(); dernier = null; }
+    if (dernier) {
+      notifier(dernier.coiffeur, "RDV annulé", texteRdv(dernier)).catch(function () {});
+      rdvs = rdvs.filter(function (r) { return r.id !== dernier.id; }); sauver(); dernier = null;
+    }
     afficherFormulaire(); rendreTout(); $("reserver").scrollIntoView();
   });
 
   /* ---------- Espace coiffeur ---------- */
-  var espace = $("espace"), jourEspace = null;
+  var espace = $("espace"), jourEspace = null, filtreEspace = "tous";
+  function rendreFiltre() {
+    var f = $("espace-filtre"); f.textContent = "";
+    [{ id: "tous", nom: "Tout le salon" }].concat(COIFFEURS).forEach(function (x) {
+      var l = el("label");
+      var i = el("input", { type: "radio", name: "filtre-espace", value: x.id, checked: filtreEspace === x.id });
+      i.addEventListener("change", function () { filtreEspace = x.id; rendrePlanning(); });
+      l.appendChild(i); l.appendChild(el("span", { "class": "carte" }, x.nom)); f.appendChild(l);
+    });
+  }
   function rendrePlanning() {
+    rendreFiltre();
     rendreJours("espace-jours", "jour-espace", jourEspace, function (v) { jourEspace = v; rendrePlanning(); }, true);
     var ul = $("planning"); ul.textContent = "";
-    var occ = occupations(jourEspace), reels = occ.filter(function (o) { return o.rdv; }).length;
+    var occ = occupations(jourEspace, filtreEspace === "tous" ? null : filtreEspace), reels = occ.filter(function (o) { return o.rdv; }).length;
     $("espace-compte").textContent = jourLong(jourEspace) + " : " + occ.length + " rendez-vous" + (reels ? ", dont " + reels + " pris depuis cette démo" : "");
     if (!occ.length) { ul.appendChild(el("li", null, "Aucun rendez-vous ce jour-là.")); return; }
     occ.forEach(function (o) {
@@ -797,16 +898,17 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
       var d = el("div");
       if (o.rdv) {
         d.appendChild(el("b", null, o.rdv.nom));
-        d.appendChild(el("small", null, (o.rdv.libelle || (prestation(o.rdv.prestation) || {}).nom || "") + " · " + o.rdv.tel));
+        d.appendChild(el("small", null, coiffeur(o.coiffeur).nom + " · " + (o.rdv.libelle || (prestation(o.rdv.prestation) || {}).nom || "") + " · " + o.rdv.tel));
         var b = el("button", { type: "button" }, "Annuler");
         b.addEventListener("click", function () {
+          if (o.rdv.libelle) notifier(o.coiffeur, "RDV annulé", texteRdv(o.rdv)).catch(function () {});
           rdvs = rdvs.filter(function (r) { return r.id !== o.rdv.id; }); sauver();
           rendrePlanning(); rendreHeures();
         });
         li.appendChild(d); li.appendChild(b);
       } else {
         d.appendChild(el("b", null, "Client (exemple)"));
-        d.appendChild(el("small", null, "Coupe homme"));
+        d.appendChild(el("small", null, coiffeur(o.coiffeur).nom + " · Coupe homme"));
         li.appendChild(d); li.appendChild(el("span"));
       }
       ul.appendChild(li);
@@ -817,6 +919,15 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
       jourEspace = (dernier && dernier.date) || etat.date || jours[0].iso;
       rendrePlanning();
       if (espace.showModal) espace.showModal(); else espace.setAttribute("open", "");
+    });
+  });
+  document.querySelectorAll("[data-test-notif]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var id = b.getAttribute("data-test-notif");
+      $("statut-test").textContent = "Envoi…";
+      notifier(id, "Test Barber Miran", "Si tu lis ça, " + coiffeur(id).nom + " recevra bien les réservations.")
+        .then(function (c) { $("statut-test").textContent = "Envoyé à " + c.nom + ". Regarde ton téléphone."; })
+        .catch(function () { $("statut-test").textContent = "Échec de l'envoi : vérifie ta connexion."; });
     });
   });
   $("espace-fermer").addEventListener("click", function () { if (espace.close) espace.close(); else espace.removeAttribute("open"); });
