@@ -65,6 +65,7 @@ sup a { color: inherit; }
 /* Boutons */
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 22px; border-radius: 980px; border: 0; background: var(--bleu); color: #fff; font-size: 17px; font-weight: 400; letter-spacing: -0.02em; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color .3s ease, color .3s ease, scale .15s ease-out; }
 .btn:hover { background: var(--bleu-survol); text-decoration: none; }
+.btn:disabled { opacity: .4; cursor: default; pointer-events: none; }
 .btn:active, .btn-lien:active, .seg button:active, .puce:active, .rond:active, .point:active, .lecture:active { scale: .97; }
 .btn--contour { background: transparent; color: var(--bleu); box-shadow: inset 0 0 0 1px var(--bleu); }
 .btn--contour:hover { background: var(--bleu); color: #fff; }
@@ -361,66 +362,298 @@ sup a { color: inherit; }
 .stat-txt { color: #A1A1A6; font-size: clamp(17px, 1.6vw, 19px); max-width: 24em; }
 .stat-txt b { color: #F5F5F7; font-weight: 600; }
 
-/* Démos */
+/* Démos : de vraies applis dans les appareils, et à côté ce que voit le commerçant */
 .demos { padding-block: clamp(90px, 11vw, 150px); }
-.demos-tete { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: 36px; }
-.demos-tete p.t-lead { color: var(--texte-2); max-width: 30em; }
-.seg-zone { text-align: center; margin-bottom: 34px; }
-.seg { position: relative; display: inline-flex; flex-wrap: wrap; justify-content: center; padding: 3px; border-radius: 99px; background: #E8E8ED; }
-.seg-pouce { position: absolute; top: 3px; left: 0; height: 38px; border-radius: 99px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04); transition: transform .5s var(--courbe), width .5s var(--courbe); }
-.seg button { position: relative; z-index: 1; min-height: 38px; padding: 6px 18px; border: 0; border-radius: 99px; background: none; color: var(--texte-2); font-size: 14px; cursor: pointer; transition: color .25s ease, scale .15s ease-out; }
-.seg button[aria-selected="true"] { color: var(--texte); font-weight: 600; }
-.demo { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 6vw, 72px); align-items: center; }
-.demo-texte { display: grid; gap: 14px; justify-items: start; }
-.demo-texte h3 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 600; letter-spacing: -0.032em; line-height: 1.1; }
-.demo-texte > p { color: var(--texte-2); font-size: 19px; line-height: 1.4; }
-.demo-texte ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.demo-texte li { display: flex; gap: 12px; align-items: flex-start; }
-.demo-texte li svg { flex: none; width: 20px; height: 20px; margin-top: 2px; color: var(--bleu); }
-.panneau { background: var(--fond); border-radius: 28px; padding: clamp(20px, 3vw, 32px); min-width: 0; }
-.panneau-haut { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
-.panneau-haut b { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
-.etiq { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: #fff; color: var(--texte-2); }
-.label { font-size: 14px; color: var(--texte-2); font-weight: 600; margin: 18px 0 8px; }
-.label:first-of-type { margin-top: 0; }
-.choix { display: flex; flex-wrap: wrap; gap: 8px; }
-.puce { min-height: 40px; padding: 8px 15px; border-radius: 12px; border: 1px solid transparent; background: #fff; cursor: pointer; font-size: 15px; transition: background-color .2s ease, color .2s ease, scale .15s ease-out; }
-.puce:hover { border-color: var(--ligne); }
-.puce[aria-pressed="true"] { background: var(--bleu); color: #fff; }
-.puce:disabled { opacity: .4; text-decoration: line-through; cursor: not-allowed; }
-.total { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--ligne); }
-.total span { color: var(--texte-2); font-size: 15px; }
-.total strong { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-.retour { margin-top: 12px; padding: 12px 16px; border-radius: 14px; background: #fff; color: var(--texte); font-size: 15px; }
-.large { width: 100%; margin-top: 14px; }
-.plats { display: grid; gap: 8px; }
-.plat { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 12px 10px 16px; border-radius: 14px; background: #fff; }
-.plat b { font-weight: 600; }
-.plat small { display: block; color: var(--texte-2); font-size: 13px; }
-.plat .px { font-variant-numeric: tabular-nums; font-size: 15px; color: var(--texte-2); }
-.compteur { display: flex; align-items: center; gap: 6px; }
-.rond { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--fond); cursor: pointer; font-size: 18px; line-height: 1; transition: scale .15s ease-out, background-color .2s ease; }
-.rond:hover { background: #E8E8ED; }
-.compteur span { min-width: 1.4ch; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
-.fid { background: linear-gradient(150deg, #2D6CD9, #123F8F); color: #fff; border-radius: 22px; padding: 24px; display: grid; gap: 18px; box-shadow: 0 24px 40px -24px rgba(18,63,143,.6); }
-.fid-haut { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.fid-haut b { font-size: 19px; font-weight: 600; }
-.fid-haut span { font-variant-numeric: tabular-nums; font-size: 15px; opacity: .8; }
-.tampons { display: grid; grid-template-columns: repeat(5, minmax(0, 46px)); gap: 10px; }
-.tampon { aspect-ratio: 1; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.5); display: grid; place-items: center; font-size: 13px; font-variant-numeric: tabular-nums; }
-.tampon.ok { background: #fff; color: #123F8F; border: 0; font-weight: 700; }
-.fid small { opacity: .8; font-size: 13px; }
-.haccp { width: 100%; border-collapse: collapse; font-size: 15px; }
-.haccp th { text-align: left; font-weight: 600; color: var(--texte-2); font-size: 12px; padding: 0 8px 8px; }
-.haccp td { padding: 11px 8px; border-top: 1px solid var(--ligne); font-variant-numeric: tabular-nums; }
-.etat { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-.etat--ok { background: #E3F5E8; color: var(--vert); }
-.etat--ko { background: #FDE7E9; color: var(--rouge); }
-.defile { overflow-x: auto; }
-.courbe svg { width: 100%; height: auto; display: block; }
-.nfc-demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: center; }
-.carte-plate { aspect-ratio: 1.586; max-width: 100%; border-radius: 16px; background: linear-gradient(145deg, #23262D, #0B0C0F); color: #F5F5F7; padding: 16px; display: grid; align-content: space-between; }
-.note { font-size: 56px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.demos-tete { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: 34px; }
+.demos-tete p.t-lead { color: var(--texte-2); max-width: 32em; }
+.onglets { position: relative; display: flex; justify-content: safe center; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 4px 2px 6px; margin-bottom: 26px; }
+.onglets::-webkit-scrollbar { display: none; }
+.onglet { flex: none; display: grid; justify-items: center; gap: 8px; min-width: 108px; padding: 14px 14px 12px; border: 0; border-radius: 18px; background: transparent; color: var(--texte-2); font-size: 14px; letter-spacing: -0.01em; cursor: pointer; transition: background-color .35s var(--courbe), color .25s ease, box-shadow .35s var(--courbe), scale .15s ease-out; }
+.onglet svg { width: 30px; height: 30px; transition: color .25s ease; }
+.onglet:hover { color: var(--texte); }
+.onglet:active { scale: .97; }
+.onglet[aria-selected="true"] { background: var(--fond); color: var(--texte); font-weight: 600; }
+.onglet[aria-selected="true"] svg { color: var(--bleu); }
+
+.scene-demo { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "texte tel" "comm tel"; column-gap: clamp(32px, 6vw, 88px); row-gap: 26px; align-items: center; background: var(--fond); border-radius: 32px; padding: clamp(24px, 5vw, 64px); overflow: hidden; }
+.scene-demo > .cote-texte { grid-area: texte; align-self: end; }
+.scene-demo > .tel { grid-area: tel; }
+.scene-demo > .commercant { grid-area: comm; align-self: start; }
+.cote-texte { display: grid; gap: 12px; justify-items: start; }
+.sur-demo { color: var(--orange); font-size: 15px; font-weight: 600; }
+.cote-texte h3 { font-size: clamp(30px, 3.6vw, 44px); font-weight: 600; letter-spacing: -0.034em; line-height: 1.06; }
+.cote-texte > p:not(.sur-demo) { color: var(--texte-2); font-size: 19px; line-height: 1.42; max-width: 26em; }
+.commercant { background: #fff; border-radius: 22px; padding: 18px 20px 20px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px -18px rgba(0,0,0,.18); display: grid; gap: 12px; min-width: 0; }
+.commercant-tete { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--texte-2); text-transform: uppercase; letter-spacing: .05em; }
+.direct { width: 8px; height: 8px; border-radius: 50%; background: #34C759; box-shadow: 0 0 0 0 rgba(52,199,89,.5); animation: direct 2s ease-out infinite; }
+@keyframes direct { 0% { box-shadow: 0 0 0 0 rgba(52,199,89,.55); } 80%, 100% { box-shadow: 0 0 0 8px rgba(52,199,89,0); } }
+.commercant-ligne { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.commercant-ligne b { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; }
+.commercant-ligne span { color: var(--texte-2); font-size: 14px; }
+.commercant-note { color: var(--texte-2); font-size: 13px; }
+.commercant .btn { justify-self: start; }
+.commercant-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.toast-comm { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: #E8F1FD; color: #0B4FA8; font-size: 14px; }
+.toast-comm svg { flex: none; width: 18px; height: 18px; }
+
+/* Agenda du coiffeur */
+.agenda { display: grid; gap: 6px; max-height: 236px; overflow-y: auto; scrollbar-width: thin; }
+.ag-ligne { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 12px; background: var(--fond); font-size: 14px; }
+.ag-ligne time { font-weight: 600; font-variant-numeric: tabular-nums; }
+.ag-ligne b { font-weight: 600; }
+.ag-ligne span { color: var(--texte-2); }
+.ag-ligne em { font-style: normal; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: #fff; color: var(--texte-2); }
+.ag-ligne.neuf { background: #E8F1FD; box-shadow: inset 0 0 0 1px rgba(0,113,227,.25); }
+.ag-ligne.neuf em { background: var(--bleu); color: #fff; }
+.ag-vide { color: var(--texte-3); font-size: 14px; padding: 8px 2px; }
+
+/* Tickets cuisine */
+.tickets { display: grid; gap: 8px; }
+.ticket { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: var(--fond); font-size: 14px; }
+.ticket b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.ticket small { grid-column: 1; color: var(--texte-2); font-size: 13px; }
+.ticket .etat-t { grid-row: 1 / span 2; grid-column: 2; }
+.ticket.neuf { background: #E8F1FD; box-shadow: inset 0 0 0 1px rgba(0,113,227,.25); }
+.pill-t { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: #E3F5E8; color: var(--vert); }
+.pill-t--prep { background: #FFF1DD; color: #A35200; }
+
+/* Caisse fidélité */
+.client-carte { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: var(--fond); }
+.client-carte .av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(150deg, #2D6CD9, #123F8F); color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 15px; flex: none; }
+.client-carte b { display: block; font-weight: 600; }
+.client-carte small { color: var(--texte-2); font-size: 13px; }
+.client-carte strong { margin-left: auto; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+
+/* Fiche avis */
+.fiche { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--fond); }
+.fiche .note-g { grid-row: 1 / span 2; font-size: 40px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.fiche .etoiles-g { color: #FF9F0A; letter-spacing: 2px; font-size: 15px; }
+.fiche small { color: var(--texte-2); font-size: 13px; }
+.avis-recu { padding: 12px 14px; border-radius: 14px; background: #E8F1FD; font-size: 14px; display: grid; gap: 2px; }
+.avis-recu b { font-weight: 600; }
+.avis-recu span { color: #FF9F0A; letter-spacing: 1px; }
+.nfc-comptoir { position: relative; height: 150px; display: grid; place-items: center; perspective: 900px; }
+.nfc-comptoir .carte-c { width: 190px; aspect-ratio: 1.586; border-radius: 12px; background: linear-gradient(145deg, #23262D, #0B0C0F); color: #F5F5F7; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; transform: rotateX(42deg) rotateZ(-10deg); box-shadow: 0 24px 36px -16px rgba(0,0,0,.45); }
+.nfc-comptoir .carte-c b { font-size: 15px; font-weight: 600; }
+.nfc-comptoir .carte-c small { font-size: 11px; opacity: .65; display: block; }
+.ondes-demo { position: absolute; left: 50%; top: 46%; width: 170px; aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
+.ondes-demo i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(0,113,227,.5); opacity: 0; transform: scale(.2); }
+.ondes-demo.actif i { animation: onde 1.6s ease-out 2; }
+.ondes-demo.actif i:nth-child(2) { animation-delay: .4s; } .ondes-demo.actif i:nth-child(3) { animation-delay: .8s; }
+
+/* Téléphone de démo et ses applis */
+.tel--demo { --l: 330px; }
+.tel--demo .tel-statut { position: absolute; inset: 0 0 auto; z-index: 8; transition: color .3s ease; }
+.tel-ecran.statut-clair .tel-statut { color: #fff; }
+.app { position: absolute; inset: 0; overflow: hidden; background: #fff; }
+.app--gris, .app--gris .ecr { background: #F2F2F7; }
+.ecr { position: absolute; inset: 0; display: flex; flex-direction: column; background: #fff; }
+.ecr-tete { padding: 3.8em 1.25em .7em; display: grid; gap: .15em; }
+.ecr-sur { font-size: .82em; color: var(--texte-2); font-weight: 500; }
+.ecr-titre { font-size: 2.05em; font-weight: 700; letter-spacing: -0.032em; line-height: 1.06; }
+.ecr-retour { justify-self: start; display: inline-flex; align-items: center; gap: .15em; background: none; border: 0; padding: .2em 0; color: var(--bleu); font-size: .95em; cursor: pointer; }
+.ecr-corps { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: .3em 1.25em 1.1em; display: grid; align-content: start; gap: .85em; }
+.ecr-corps::-webkit-scrollbar { display: none; }
+.ecr-pied { display: flex; align-items: center; gap: .9em; padding: .85em 1.25em 2.3em; border-top: 1px solid #ECECF0; background: rgba(255,255,255,.94); }
+.app--gris .ecr-pied { background: rgba(242,242,247,.94); }
+.total-app { flex: 1; display: grid; }
+.total-app small { color: var(--texte-2); font-size: .8em; }
+.total-app b { font-size: 1.45em; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.etapes-app { display: flex; gap: .3em; margin-top: .45em; }
+.etapes-app i { width: 1.6em; height: .26em; border-radius: 99px; background: #E3E3E8; transition: background-color .3s ease; }
+.etapes-app i.on { background: var(--bleu); }
+.btn-app { border: 0; border-radius: .95em; background: var(--bleu); color: #fff; font-weight: 600; font-size: 1em; padding: .82em 1.3em; cursor: pointer; transition: opacity .2s ease, scale .15s ease-out, background-color .2s ease; white-space: nowrap; }
+.btn-app:active:not(:disabled) { scale: .97; }
+.btn-app:disabled { opacity: .35; cursor: default; }
+.btn-app--gris { background: #E9E9EE; color: var(--bleu); }
+.app--gris .btn-app--gris { background: #fff; }
+.btn-app--plein { width: 100%; }
+.groupe-titre { font-size: .76em; font-weight: 600; color: var(--texte-2); text-transform: uppercase; letter-spacing: .03em; margin: .5em 0 -.45em .25em; }
+.liste-app { background: #F4F4F6; border-radius: 1em; overflow: hidden; }
+.app--gris .liste-app { background: #fff; }
+.ligne-app { width: 100%; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: .75em; padding: .78em .95em; border: 0; background: none; color: inherit; text-align: left; font-size: .95em; cursor: pointer; transition: background-color .15s ease; }
+.ligne-app:active:not(:disabled) { background: rgba(0,0,0,.04); }
+.ligne-app + .ligne-app { border-top: 1px solid #E4E4E9; }
+.ligne-app small { display: block; color: var(--texte-2); font-size: .8em; margin-top: .1em; }
+.ligne-app b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.ligne-app .coche { width: 1.35em; height: 1.35em; border-radius: 50%; border: 1.6px solid #C7C7CC; transition: background-color .2s ease, border-color .2s ease; }
+.ligne-app .coche.carre { border-radius: .4em; }
+.ligne-app[aria-checked="true"] .coche { border-color: var(--bleu); background: var(--bleu) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l3 2.8 6-6.4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.ligne-app:disabled { opacity: .4; cursor: default; }
+.ligne-statique { cursor: default; grid-template-columns: 1fr auto; }
+.seg-app { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: #EEEEF0; border-radius: .8em; padding: .18em; }
+.seg-app button { border: 0; background: none; border-radius: .65em; padding: .5em .2em; font-size: .8em; font-weight: 600; color: var(--texte-2); cursor: pointer; transition: background-color .25s ease, color .25s ease, box-shadow .25s ease; }
+.seg-app button[aria-pressed="true"] { background: #fff; color: var(--texte); box-shadow: 0 1px 3px rgba(0,0,0,.14); }
+.jours-app { display: grid; grid-template-columns: repeat(5, 1fr); gap: .4em; }
+.jours-app button { border: 0; border-radius: .95em; background: #F4F4F6; padding: .5em 0; font-size: .74em; color: var(--texte-2); cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.jours-app button b { display: block; font-size: 1.6em; color: var(--texte); font-weight: 600; line-height: 1.15; }
+.jours-app button[aria-pressed="true"] { background: var(--bleu); color: rgba(255,255,255,.85); }
+.jours-app button[aria-pressed="true"] b { color: #fff; }
+.creneaux-app { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45em; }
+.creneaux-app--ligne { grid-template-columns: repeat(5, 1fr); }
+.creneaux-app button { border: 0; border-radius: .75em; background: #F4F4F6; padding: .68em 0; font-size: .88em; font-weight: 600; font-variant-numeric: tabular-nums; cursor: pointer; transition: background-color .2s ease, color .2s ease, scale .15s ease-out; }
+.creneaux-app--ligne button { font-size: .78em; }
+.creneaux-app button:active:not(:disabled) { scale: .95; }
+.creneaux-app button:disabled { background: transparent; box-shadow: inset 0 0 0 1px #E6E6EB; color: #B8B8BD; text-decoration: line-through; font-weight: 400; cursor: default; }
+.creneaux-app button[aria-pressed="true"] { background: var(--bleu); color: #fff; }
+.ecr-fin { align-items: center; text-align: center; padding: 5.2em 1.35em 2.2em; gap: .85em; }
+.ecr-fin .recap-app { width: 100%; text-align: left; }
+.ecr-fin .btn-app--plein:last-child { margin-top: auto; }
+.coche-ok { width: 4.6em; height: 4.6em; }
+.fin-sous { color: var(--texte-2); font-size: .92em; }
+.recap-app { background: #F4F4F6; border-radius: 1em; padding: .85em 1em; display: grid; gap: .5em; font-size: .88em; }
+.recap-app div { display: flex; justify-content: space-between; gap: 1em; }
+.recap-app span { color: var(--texte-2); }
+.recap-app b { font-weight: 600; text-align: right; }
+.banniere { position: absolute; z-index: 10; top: .55em; left: .55em; right: .55em; display: flex; gap: .7em; align-items: center; padding: .75em .85em; border-radius: 1.35em; background: rgba(246,246,248,.92); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: 0 .6em 1.6em rgba(0,0,0,.18); }
+.banniere-icone { flex: none; width: 2.4em; height: 2.4em; border-radius: .6em; display: grid; place-items: center; color: #fff; background: var(--bleu); }
+.banniere-icone svg { width: 1.3em; height: 1.3em; }
+.banniere p { font-size: .84em; line-height: 1.3; min-width: 0; }
+.banniere b { display: block; font-weight: 600; }
+
+/* Appli resto */
+.resto-banniere { position: relative; height: 11.4em; flex: none; padding: 3.9em 1.25em 1em; display: flex; align-items: flex-end; justify-content: space-between; gap: .5em; color: #fff; background: radial-gradient(90% 120% at 90% 10%, #E4774C 0%, #B4431F 55%, #7E2B12 100%); overflow: hidden; }
+.resto-nom { font-family: Georgia, "Times New Roman", serif; font-size: 2em; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+.resto-info { font-size: .82em; opacity: .9; margin-top: .3em; display: flex; align-items: center; gap: .4em; }
+.resto-info::before { content: ""; width: .5em; height: .5em; border-radius: 50%; background: #7CF29A; }
+.resto-banniere svg { position: absolute; right: -1.6em; top: 2.4em; width: 9.5em; height: 9.5em; filter: drop-shadow(0 .8em 1em rgba(0,0,0,.25)); }
+.chips-app { display: flex; gap: .4em; overflow: hidden; }
+.chips-app span { flex: none; padding: .4em .9em; border-radius: 99px; background: #F4F4F6; font-size: .8em; font-weight: 600; color: var(--texte-2); }
+.chips-app span.on { background: var(--texte); color: #fff; }
+.menu-app { display: grid; gap: .55em; }
+.plat-app { display: grid; grid-template-columns: auto 1fr auto; gap: .75em; align-items: center; padding: .55em; border-radius: 1em; background: #fff; box-shadow: 0 0 0 1px #EFEFF2; }
+.vignette { width: 3.6em; height: 3.6em; border-radius: .9em; display: grid; place-items: center; }
+.vignette svg { width: 2.7em; height: 2.7em; }
+.plat-app b { display: block; font-size: .92em; font-weight: 600; }
+.plat-app small { display: block; color: var(--texte-2); font-size: .76em; line-height: 1.25; }
+.plat-app em { display: block; font-style: normal; font-size: .86em; font-weight: 600; margin-top: .2em; font-variant-numeric: tabular-nums; }
+.pas-app { display: flex; align-items: center; gap: .35em; }
+.pas-app button { width: 2em; height: 2em; border-radius: 50%; border: 0; background: #F0F0F3; color: var(--texte); font-size: 1.05em; line-height: 1; cursor: pointer; transition: scale .15s ease-out, background-color .2s ease; }
+.pas-app button.plus-seul { background: var(--bleu); color: #fff; }
+.pas-app button:active { scale: .9; }
+.pas-app span { min-width: 1.2em; text-align: center; font-weight: 600; font-size: .92em; font-variant-numeric: tabular-nums; }
+.btn-panier { display: flex; justify-content: space-between; align-items: center; }
+.btn-panier span:first-child { min-width: 1.7em; height: 1.7em; border-radius: 99px; background: rgba(255,255,255,.22); display: grid; place-items: center; font-size: .85em; }
+.voile-app { position: absolute; inset: 0; z-index: 6; background: rgba(0,0,0,.32); }
+.feuille { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; background: #fff; border-radius: 1.5em 1.5em 0 0; padding: .6em 1.25em 2.3em; display: grid; gap: .75em; box-shadow: 0 -1em 2em rgba(0,0,0,.12); max-height: 88%; overflow-y: auto; scrollbar-width: none; }
+.feuille-poignee { justify-self: center; width: 2.6em; height: .3em; border-radius: 99px; background: #D1D1D6; }
+.feuille-titre { font-size: 1.35em; font-weight: 700; letter-spacing: -0.02em; }
+.suivi { display: grid; gap: 0; padding: .3em .2em; }
+.suivi-pas { position: relative; display: grid; grid-template-columns: 1.7em 1fr; gap: .8em; padding-bottom: 1.3em; }
+.suivi-pas:last-child { padding-bottom: 0; }
+.suivi-pas::before { content: ""; position: absolute; left: .78em; top: 1.7em; bottom: .1em; width: .14em; background: #E3E3E8; }
+.suivi-pas:last-child::before { display: none; }
+.suivi-pas i { width: 1.7em; height: 1.7em; border-radius: 50%; border: .14em solid #D1D1D6; background: #fff; position: relative; z-index: 1; transition: background-color .3s ease, border-color .3s ease; }
+.suivi-pas b { display: block; font-weight: 600; font-size: .95em; }
+.suivi-pas small { color: var(--texte-2); font-size: .8em; }
+.suivi-pas.fait i { background: #34C759 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l3 2.8 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat; border-color: #34C759; }
+.suivi-pas.fait::before { background: #34C759; }
+.suivi-pas.encours i { border-color: var(--bleu); box-shadow: 0 0 0 .3em rgba(0,113,227,.15); }
+.suivi-pas.encours i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--bleu); animation: pouls 1.4s ease-in-out infinite; }
+@keyframes pouls { 50% { transform: scale(.6); opacity: .5; } }
+
+/* Carte de fidélité façon Wallet */
+.passe-app { position: relative; aspect-ratio: 1.586; perspective: 1200px; }
+.passe-pivot { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .9s var(--courbe); }
+.passe-app.retournee .passe-pivot { transform: rotateY(180deg); }
+.passe-face { position: absolute; inset: 0; border-radius: 1.1em; padding: 1.05em 1.1em; color: #fff; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 .8em 1.6em -.6em rgba(18,63,143,.55); }
+.passe-avant { background: linear-gradient(150deg, #2D6CD9 0%, #1A4FB0 55%, #123F8F 100%); }
+.passe-arriere { transform: rotateY(180deg); background: radial-gradient(120% 120% at 20% 0%, #FFD772 0%, #F5A623 50%, #D9780F 100%); color: #3A2200; align-items: center; justify-content: center; text-align: center; gap: .3em; }
+.passe-arriere svg { width: 2.6em; height: 2.6em; }
+.passe-arriere b { font-size: 1.15em; font-weight: 700; }
+.passe-arriere span { font-size: .85em; }
+.pa-haut { display: flex; justify-content: space-between; align-items: baseline; gap: .6em; }
+.pa-haut b { font-weight: 600; font-size: .95em; }
+.pa-haut span { font-size: .85em; opacity: .85; font-variant-numeric: tabular-nums; }
+.pa-tampons { display: grid; grid-template-columns: repeat(5, 1fr); gap: .5em; width: 80%; }
+.pa-tampons i { aspect-ratio: 1; border-radius: 50%; border: .12em dashed rgba(255,255,255,.55); display: grid; place-items: center; }
+.pa-tampons i.ok { background: #fff; border: 0; }
+.pa-tampons i.ok::after { content: ""; width: 55%; height: 55%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3c-3 0-5 2.4-5 5 0 2 1 3 1 4.5V15h8v-2.5c0-1.5 1-2.5 1-4.5 0-2.6-2-5-5-5Z' fill='%231A4FB0'/%3E%3C/svg%3E") center / contain no-repeat; }
+.pa-bas { display: flex; justify-content: space-between; gap: .6em; font-size: .74em; opacity: .9; }
+.qr-app { display: flex; gap: .9em; align-items: center; background: #fff; border-radius: 1em; padding: .8em; }
+.qr-app svg { width: 4.6em; height: 4.6em; flex: none; }
+.qr-app b { display: block; font-size: .92em; font-weight: 600; }
+.qr-app small { color: var(--texte-2); font-size: .78em; }
+
+/* iPad HACCP */
+.scene-demo--tab { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "texte comm" "tab tab"; align-items: end; }
+.scene-demo--tab > .tab { grid-area: tab; }
+.scene-demo--tab > .commercant { align-self: end; }
+.tab { container-type: inline-size; width: 100%; border-radius: 2.6% / 3.8%; padding: 1.6%; background: #1C1C1E; box-shadow: inset 0 0 0 1.5px #3A3A3C, 0 40px 80px -40px rgba(0,0,0,.45); }
+.tab-ecran { position: relative; aspect-ratio: 1.43; border-radius: 1.3cqw; overflow: hidden; background: #F2F2F7; color: var(--texte); font-size: clamp(9px, 1.55cqw, 15px); letter-spacing: -0.01em; text-align: left; display: grid; grid-template-columns: 30% 1fr; }
+.tab-cote { background: #fff; border-right: 1px solid #E5E5EA; padding: 2.2em 1.1em 1.4em; display: flex; flex-direction: column; gap: .35em; min-height: 0; min-width: 0; }
+.tab-titre { font-size: 1.9em; font-weight: 700; letter-spacing: -0.03em; padding: 0 .35em; }
+.tab-date { color: var(--texte-2); font-size: .9em; padding: 0 .4em .8em; }
+.tab-liste { display: grid; gap: .3em; }
+.eq { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .1em .6em; padding: .75em .85em; border: 0; border-radius: .9em; background: none; text-align: left; cursor: pointer; color: inherit; font-size: .95em; transition: background-color .2s ease; }
+.eq small { grid-column: 1; color: var(--texte-2); font-size: .82em; }
+.eq b { grid-row: 1 / span 2; grid-column: 2; display: flex; align-items: center; gap: .45em; font-weight: 600; font-variant-numeric: tabular-nums; }
+.eq b::after { content: ""; width: .6em; height: .6em; border-radius: 50%; background: #34C759; }
+.eq.ko b::after { background: #FF3B30; box-shadow: 0 0 0 .25em rgba(255,59,48,.2); }
+.eq[aria-pressed="true"] { background: #E8F1FD; }
+.tab-cote .btn-app { margin-top: auto; font-size: .9em; }
+.tab-main { position: relative; padding: 2.2em 2.2em 1.6em; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: .9em; min-width: 0; min-height: 0; }
+.tab-alerte { display: flex; gap: .7em; align-items: center; padding: .8em 1em; border-radius: 1em; background: #FFE5E3; color: #B3261E; font-size: .92em; font-weight: 500; }
+.tab-alerte svg { flex: none; width: 1.4em; height: 1.4em; }
+.tab-entete { display: flex; justify-content: space-between; align-items: flex-start; gap: 1em; }
+.tab-nom { font-size: 1.9em; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+.tab-consigne { color: var(--texte-2); font-size: .9em; margin-top: .2em; }
+.pastille-etat { font-size: .82em; font-weight: 600; padding: .35em .9em; border-radius: 99px; background: #E3F5E8; color: var(--vert); white-space: nowrap; }
+.pastille-etat.ko { background: #FFE5E3; color: #B3261E; }
+.tab-temp { font-size: 4.2em; font-weight: 600; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; }
+.tab-temp.ko { color: #D70015; }
+.tab-graph { width: 100%; height: 100%; min-height: 0; display: block; }
+.tab-bas { display: flex; flex-wrap: wrap; align-items: center; gap: .6em; }
+.tab-bas .btn-app { font-size: .9em; }
+.tab-bas small { margin-left: auto; color: var(--texte-2); font-size: .82em; }
+.toast-app { position: absolute; z-index: 5; left: 50%; bottom: 1.4em; translate: -50% 0; display: flex; gap: .6em; align-items: center; padding: .75em 1.1em; border-radius: 99px; background: rgba(29,29,31,.92); color: #fff; font-size: .9em; white-space: nowrap; box-shadow: 0 .6em 1.4em rgba(0,0,0,.2); }
+.toast-app svg { width: 1.2em; height: 1.2em; color: #34C759; }
+.liste-faits { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.liste-faits li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--ligne); font-size: 15px; }
+.liste-faits li:last-child { border-bottom: 0; padding-bottom: 0; }
+.liste-faits b { font-weight: 600; }
+.liste-faits span { color: var(--texte-2); }
+@container (max-width: 560px) {
+  .tab-ecran { aspect-ratio: .7; font-size: 3.5cqw; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .tab-cote { border-right: 0; border-bottom: 1px solid #E5E5EA; padding: 1.4em 1em .9em; }
+  .tab-date { display: none; }
+  .tab-titre { font-size: 1.5em; }
+  .tab-liste { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; }
+  .eq { padding: .55em .8em; background: #F2F2F7; }
+  .tab-cote .btn-app { display: none; }
+  .tab-main { padding: 1.3em 1.2em 1.2em; }
+  .tab-temp { font-size: 3.4em; }
+}
+
+/* Avis NFC */
+.avis-ecr .ecr-tete { padding-bottom: .4em; }
+.note-app { display: flex; align-items: center; gap: .4em; font-size: .85em; color: var(--texte-2); }
+.note-app b { color: var(--texte); }
+.note-app span { color: #FF9F0A; }
+.qui-app { display: flex; align-items: center; gap: .7em; }
+.qui-app i { width: 2.4em; height: 2.4em; border-radius: 50%; background: #5E5CE6; color: #fff; font-style: normal; font-weight: 600; display: grid; place-items: center; }
+.qui-app b { display: block; font-size: .92em; font-weight: 600; }
+.qui-app small { color: var(--texte-2); font-size: .76em; }
+.etoiles-app { display: flex; justify-content: space-between; gap: .2em; padding: .2em .3em; }
+.etoiles-app button { border: 0; background: none; padding: 0; font-size: 2.5em; line-height: 1; color: #D1D1D6; cursor: pointer; transition: color .15s ease, scale .2s var(--courbe); }
+.etoiles-app button.on { color: #FF9F0A; }
+.etoiles-app button:active { scale: .85; }
+.chips-avis { display: flex; flex-wrap: wrap; gap: .4em; }
+.chips-avis button { border: 0; border-radius: 99px; padding: .45em .85em; background: #F0F0F3; font-size: .8em; font-weight: 500; color: var(--texte); cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.chips-avis button[aria-pressed="true"] { background: var(--texte); color: #fff; }
+.texte-avis { min-height: 4.8em; border-radius: .9em; background: #F4F4F6; padding: .75em .85em; font-size: .86em; color: var(--texte); }
+.texte-avis:empty::before { content: "Partagez votre expérience…"; color: var(--texte-3); }
+.verrou-astuce { position: absolute; left: 50%; bottom: 3.6em; translate: -50% 0; display: flex; align-items: center; gap: .5em; padding: .55em 1em; border-radius: 99px; background: rgba(255,255,255,.22); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: .8em; white-space: nowrap; }
+
+@media (max-width: 833px) {
+  .scene-demo { grid-template-columns: 1fr; grid-template-areas: "texte" "tel" "comm"; justify-items: center; text-align: center; }
+  .scene-demo > .cote-texte { justify-items: center; align-self: auto; }
+  .scene-demo > .commercant { width: 100%; max-width: 440px; text-align: left; }
+  .scene-demo--tab { grid-template-areas: "texte" "tab" "comm"; }
+  .tel--demo { --l: min(320px, 84vw); }
+  .onglets { justify-content: flex-start; margin-inline: calc(-1 * var(--gouttiere-g)); padding-inline: var(--gouttiere-g); }
+  .onglet { min-width: 92px; padding: 12px 10px 10px; font-size: 13px; }
+}
 
 /* Réalisations : tuiles façon page d'accueil */
 .tuiles-section { padding-block: clamp(90px, 11vw, 150px) 12px; }
@@ -957,118 +1190,271 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
   </section>
 
   <section class="demos fond-blanc bande" id="demos">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+        <symbol id="i-sac" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8V7a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+        <symbol id="i-etoile" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" fill="currentColor"/></symbol>
+        <symbol id="i-cadeau" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M12 9v11.5M12 9S10.5 4 8 4.5 7.5 9 12 9Zm0 0s1.5-5 4-4.5S16.5 9 12 9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+        <symbol id="i-alerte" viewBox="0 0 24 24"><path d="M12 3.5 2.8 19.5h18.4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10v4.5M12 17.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+        <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m7.5 12.3 3 2.9 6-6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="p-tacos" viewBox="0 0 40 40"><path d="M5 28a15 15 0 0 1 30 0Z" fill="#E9B44C"/><path d="M8.5 26.5a11.5 11.5 0 0 1 23 0" fill="none" stroke="#6E9C44" stroke-width="3.2" stroke-linecap="round"/><circle cx="14" cy="22" r="2.2" fill="#B5542E"/><circle cx="20" cy="19.5" r="2.2" fill="#B5542E"/><circle cx="26" cy="22" r="2.2" fill="#B5542E"/><path d="M5 28h30" stroke="#C99632" stroke-width="2" stroke-linecap="round"/></symbol>
+        <symbol id="p-burger" viewBox="0 0 40 40"><path d="M7 18a13 9 0 0 1 26 0Z" fill="#E3A24A"/><circle cx="15" cy="13" r=".9" fill="#FFF3D6"/><circle cx="21" cy="11.5" r=".9" fill="#FFF3D6"/><circle cx="26" cy="14" r=".9" fill="#FFF3D6"/><path d="M6.5 20.5h27" stroke="#6E9C44" stroke-width="3" stroke-linecap="round"/><rect x="7" y="22" width="26" height="5" rx="2.5" fill="#6B3A22"/><path d="M8 24.5h24" stroke="#F2C230" stroke-width="1.6"/><path d="M7 29h26a0 0 0 0 1 0 0v1a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3Z" fill="#E3A24A"/></symbol>
+        <symbol id="p-frites" viewBox="0 0 40 40"><g fill="#F2C230"><rect x="12" y="7" width="3" height="16" rx="1.2" transform="rotate(-8 13 15)"/><rect x="16.5" y="5" width="3" height="18" rx="1.2"/><rect x="21" y="6" width="3" height="17" rx="1.2" transform="rotate(6 22 14)"/><rect x="25" y="8" width="3" height="15" rx="1.2" transform="rotate(12 26 15)"/></g><path d="M10 17h20l-2.5 17h-15Z" fill="#D7322A"/><path d="M15 23a5 5 0 0 0 10 0" fill="none" stroke="#fff" stroke-width="1.6"/></symbol>
+        <symbol id="p-boisson" viewBox="0 0 40 40"><rect x="13" y="7" width="14" height="27" rx="3.5" fill="#2F7DD8"/><rect x="13" y="7" width="14" height="4" rx="2" fill="#C9D3DE"/><rect x="13" y="30" width="14" height="4" rx="2" fill="#C9D3DE"/><path d="M16 16h8M16 20h5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></symbol>
+        <symbol id="p-dessert" viewBox="0 0 40 40"><rect x="8" y="12" width="24" height="20" rx="3" fill="#F3E6CF"/><rect x="8" y="12" width="24" height="5" rx="2.5" fill="#6B3A22"/><rect x="8" y="21" width="24" height="3" fill="#C8955A"/><rect x="8" y="27" width="24" height="2.5" fill="#C8955A"/></symbol>
+      </defs>
+    </svg>
     <div class="cadre">
       <div class="demos-tete apparait">
         <h2 class="t-section">Essayez. <span class="gris">Comme vos clients.</span></h2>
-        <p class="t-lead">Tout fonctionne ici, avec des données d'exemple. Rien n'est envoyé.<sup><a href="#note-3">3</a></sup></p>
+        <p class="t-lead">Cinq démos qui marchent vraiment. Touchez l'écran : à côté, vous voyez ce que reçoit le commerçant.<sup><a href="#note-3">3</a></sup></p>
       </div>
-      <div class="seg-zone">
-        <div class="seg" role="tablist" aria-label="Démos">
-          <span class="seg-pouce" id="seg-pouce" aria-hidden="true"></span>
-          <button role="tab" id="t-resa" aria-controls="p-resa" aria-selected="true">Réservation</button>
-          <button role="tab" id="t-cmd" aria-controls="p-cmd" aria-selected="false">Commande</button>
-          <button role="tab" id="t-fid" aria-controls="p-fid" aria-selected="false">Fidélité</button>
-          <button role="tab" id="t-log" aria-controls="p-log" aria-selected="false">Sur mesure</button>
-          <button role="tab" id="t-nfc" aria-controls="p-nfc" aria-selected="false">Avis NFC</button>
-        </div>
+      <div class="onglets" role="tablist" aria-label="Démos" id="onglets">
+        <button class="onglet" role="tab" id="t-resa" aria-controls="p-resa" aria-selected="true"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="22" height="20" rx="4"/><path d="M4 12h22M10 3.5v5M20 3.5v5M11 19l3 3 5.5-6"/></svg><span>Réservation</span></button>
+        <button class="onglet" role="tab" id="t-cmd" aria-controls="p-cmd" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 10h18l-1.5 14.5a2.5 2.5 0 0 1-2.5 2.2H10a2.5 2.5 0 0 1-2.5-2.2Z"/><path d="M11 10V8.5a4 4 0 0 1 8 0V10"/></svg><span>Commande</span></button>
+        <button class="onglet" role="tab" id="t-fid" aria-controls="p-fid" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.5" y="7" width="23" height="16" rx="3.5"/><path d="m15 10.5 1.4 2.9 3.2.5-2.3 2.2.5 3.1-2.8-1.5-2.8 1.5.5-3.1-2.3-2.2 3.2-.5Z"/></svg><span>Fidélité</span></button>
+        <button class="onglet" role="tab" id="t-log" aria-controls="p-log" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="24" height="18" rx="3"/><path d="M7.5 18l4.5-5 4 3 6-7"/><path d="M11 26.5h8"/></svg><span>Sur mesure</span></button>
+        <button class="onglet" role="tab" id="t-nfc" aria-controls="p-nfc" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 10a7 7 0 0 1 0 10"/><path d="M14.5 6.5a12 12 0 0 1 0 17"/><path d="M19 3a17 17 0 0 1 0 24"/></svg><span>Avis NFC</span></button>
       </div>
 
-      <div class="demo" role="tabpanel" id="p-resa" aria-labelledby="t-resa">
-        <div class="demo-texte">
-          <h3>Réserver en trente secondes.</h3>
-          <p>Une prestation, des options, un créneau. Le prix se calcule tout seul.</p>
-          <ul><li><svg><use href="#i-coche"/></svg>Le coiffeur reçoit une notification</li><li><svg><use href="#i-coche"/></svg>Le client reçoit son mail et un rappel</li><li><svg><use href="#i-coche"/></svg>Un tarif différent sur rendez-vous, si vous voulez</li></ul>
-          <a class="btn-lien" href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Voir la démo complète d'un barbier</a>
+      <!-- 1. Réservation -->
+      <div class="scene-demo" role="tabpanel" id="p-resa" aria-labelledby="t-resa">
+        <div class="cote-texte">
+          <p class="sur-demo">Réservation en ligne</p>
+          <h3>Trente secondes.<br>Zéro coup de fil.</h3>
+          <p>Choisissez une prestation, ajoutez des options, prenez un créneau libre. Le coiffeur le voit arriver aussitôt dans son agenda.</p>
         </div>
-        <div class="panneau">
-          <div class="panneau-haut"><b>Salon Atlas</b><span class="etiq">Démo</span></div>
-          <p class="label">Prestation</p>
-          <div class="choix" id="r-principal"></div>
-          <p class="label">En plus</p>
-          <div class="choix" id="r-options"></div>
-          <p class="label">Samedi 24</p>
-          <div class="choix" id="r-heures"></div>
-          <div class="total"><span id="r-libelle">Coupe</span><strong id="r-total">18 €</strong></div>
-          <button class="btn large" type="button" id="r-valider">Confirmer le rendez-vous</button>
-          <p class="retour" id="r-message" hidden></p>
-        </div>
-      </div>
-
-      <div class="demo" role="tabpanel" id="p-cmd" aria-labelledby="t-cmd" hidden>
-        <div class="demo-texte">
-          <h3>Commander avant d'arriver.</h3>
-          <p>Le client compose sa commande et choisit son heure de retrait. Vous la recevez en direct, sans commission.</p>
-          <ul><li><svg><use href="#i-coche"/></svg>Votre carte, vos prix, modifiables</li><li><svg><use href="#i-coche"/></svg>Des créneaux de retrait pour lisser le rush</li><li><svg><use href="#i-coche"/></svg>Snack, restaurant, boulangerie, boucherie</li></ul>
-        </div>
-        <div class="panneau">
-          <div class="panneau-haut"><b>Le Comptoir · À emporter</b><span class="etiq">Démo</span></div>
-          <div class="plats" id="c-plats"></div>
-          <p class="label" style="margin-top:18px">Retrait</p>
-          <div class="choix" id="c-retrait"></div>
-          <div class="total"><span id="c-nb">0 article</span><strong id="c-total">0,00 €</strong></div>
-          <button class="btn large" type="button" id="c-valider">Valider la commande</button>
-          <p class="retour" id="c-message" hidden></p>
-        </div>
-      </div>
-
-      <div class="demo" role="tabpanel" id="p-fid" aria-labelledby="t-fid" hidden>
-        <div class="demo-texte">
-          <h3>Une carte qui ne se perd pas.</h3>
-          <p>Le client est reconnu à son numéro et consulte sa carte par un simple lien, sans appli.</p>
-          <ul><li><svg><use href="#i-coche"/></svg>Récompense au choix : coupe, café, remise</li><li><svg><use href="#i-coche"/></svg>Vos clients fidèles et leur fréquence</li><li><svg><use href="#i-coche"/></svg>Aucune carte en carton à imprimer</li></ul>
-        </div>
-        <div class="panneau">
-          <div class="panneau-haut"><b>Carte de Sofia</b><span class="etiq">Démo</span></div>
-          <div class="fid">
-            <div class="fid-haut"><b>Boulangerie du Pont</b><span id="f-compte">6 / 10</span></div>
-            <div class="tampons" id="f-tampons"></div>
-            <small>10e passage : une viennoiserie offerte</small>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
-            <button class="btn btn--petit" type="button" id="f-ajouter">Valider un passage</button>
-            <button class="btn btn--petit btn--contour" type="button" id="f-reset">Recommencer</button>
-          </div>
-          <p class="retour" id="f-message" hidden></p>
-        </div>
-      </div>
-
-      <div class="demo" role="tabpanel" id="p-log" aria-labelledby="t-log" hidden>
-        <div class="demo-texte">
-          <h3>Un logiciel à votre mesure.</h3>
-          <p>Exemple : les températures d'une boucherie. Chaque relevé est daté et prêt pour un contrôle sanitaire.</p>
-          <ul><li><svg><use href="#i-coche"/></svg>Alerte si une chambre froide dérive</li><li><svg><use href="#i-coche"/></svg>Historique pour les services vétérinaires</li><li><svg><use href="#i-coche"/></svg>Même principe pour stocks, commandes, planning</li></ul>
-        </div>
-        <div class="panneau">
-          <div class="panneau-haut"><b>Relevés HACCP</b><span class="etiq">Démo</span></div>
-          <div class="defile">
-            <table class="haccp"><thead><tr><th>Équipement</th><th>Consigne</th><th>Relevé</th><th>État</th></tr></thead><tbody id="h-lignes"></tbody></table>
-          </div>
-          <div class="courbe"><p class="label" style="margin-top:16px">Chambre froide · 7 derniers relevés (°C)</p><svg id="h-graphe" viewBox="0 0 320 110" role="img" aria-label="Courbe des températures"></svg></div>
-          <button class="btn btn--petit" type="button" id="h-relever" style="margin-top:12px">Nouveau relevé</button>
-        </div>
-      </div>
-
-      <div class="demo" role="tabpanel" id="p-nfc" aria-labelledby="t-nfc" hidden>
-        <div class="demo-texte">
-          <h3>Plus d'avis, sans insister.</h3>
-          <p>Une carte sur le comptoir. Le client approche son téléphone et arrive directement sur la page pour laisser un avis.</p>
-          <ul><li><svg><use href="#i-coche"/></svg>Aux couleurs de votre commerce</li><li><svg><use href="#i-coche"/></svg>Sans appli, iPhone et Android</li><li><svg><use href="#i-coche"/></svg>QR code au dos pour les autres</li></ul>
-        </div>
-        <div class="panneau">
-          <div class="panneau-haut"><b>Fiche Google</b><span class="etiq">Simulation</span></div>
-          <div class="nfc-demo">
-            <div class="carte-plate" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 7.5a6.5 6.5 0 0 1 0 9"/><path d="M12 4.5a10.5 10.5 0 0 1 0 15"/><path d="M15.5 1.8a14 14 0 0 1 0 20.4"/></svg>
-              <div><b style="font-size:17px;font-weight:600">Votre avis compte</b><div style="font-size:13px;opacity:.65">Approchez votre téléphone</div></div>
-            </div>
-            <div style="display:grid;gap:6px">
-              <span class="note" id="n-note">4,3</span>
-              <span style="color:#FF9F0A;letter-spacing:2px" aria-hidden="true">★★★★★</span>
-              <span style="color:var(--texte-2);font-size:15px" id="n-nb">48 avis</span>
+        <div class="tel tel--demo">
+          <div class="tel-ecran" id="r-ecran">
+            <div class="tel-ilot"></div>
+            <div class="tel-statut" data-heure="9:41"></div>
+            <div class="app">
+              <div class="ecr" id="r-e1">
+                <div class="ecr-tete"><p class="ecr-sur">Salon Atlas · Troyes</p><p class="ecr-titre">Réserver</p><div class="etapes-app" aria-hidden="true"><i class="on"></i><i></i><i></i></div></div>
+                <div class="ecr-corps">
+                  <p class="groupe-titre">Prestation</p>
+                  <div class="liste-app" id="r-prestas" role="radiogroup" aria-label="Prestation"></div>
+                  <p class="groupe-titre">En plus</p>
+                  <div class="liste-app" id="r-extras" role="group" aria-label="Options"></div>
+                </div>
+                <div class="ecr-pied"><div class="total-app"><small id="r-duree">45 min</small><b id="r-total">26 €</b></div><button class="btn-app" type="button" id="r-suite">Continuer</button></div>
+              </div>
+              <div class="ecr" id="r-e2" hidden>
+                <div class="ecr-tete"><button class="ecr-retour" type="button" id="r-retour">‹ Prestation</button><p class="ecr-titre">Créneau</p><div class="etapes-app" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div></div>
+                <div class="ecr-corps">
+                  <div class="seg-app" id="r-coiffeurs" role="group" aria-label="Coiffeur"></div>
+                  <div class="jours-app" id="r-jours" role="group" aria-label="Jour"></div>
+                  <p class="groupe-titre" id="r-jour-nom">Samedi 24 · matin</p>
+                  <div class="creneaux-app" id="r-heures" role="group" aria-label="Horaire"></div>
+                </div>
+                <div class="ecr-pied"><div class="total-app"><small id="r-recap">Choisissez un horaire</small><b id="r-total2">26 €</b></div><button class="btn-app" type="button" id="r-confirmer" disabled>Confirmer</button></div>
+              </div>
+              <div class="ecr ecr-fin" id="r-e3" hidden>
+                <svg class="coche-ok" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="25" fill="#34C759"/><path id="r-coche" d="M15 27l7 7 15-16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+                <p class="ecr-titre">C'est réservé&nbsp;!</p>
+                <p class="fin-sous">Un mail de confirmation vient de partir.</p>
+                <div class="recap-app" id="r-fin-recap"></div>
+                <button class="btn-app btn-app--gris btn-app--plein" type="button" id="r-cal">Ajouter au calendrier</button>
+                <button class="btn-app btn-app--plein" type="button" id="r-nouveau">Nouvelle réservation</button>
+              </div>
+              <div class="banniere" id="r-banniere" hidden><span class="banniere-icone"><svg><use href="#i-mail"/></svg></span><p><b class="bn-t"></b><span class="bn-x"></span></p></div>
             </div>
           </div>
-          <button class="btn btn--petit" type="button" id="n-simuler" style="margin-top:18px">Simuler 3 mois avec la carte</button>
-          <p class="retour" id="n-message" hidden></p>
+        </div>
+        <div class="commercant" aria-live="polite">
+          <div class="commercant-tete"><span class="direct"></span>Agenda du coiffeur · en direct</div>
+          <div class="commercant-ligne"><b id="a-titre">Coiffeur 1 · samedi 24</b><span id="a-nb">3 rendez-vous</span></div>
+          <div class="agenda" id="a-liste"></div>
+          <div class="toast-comm" id="a-toast" hidden><svg><use href="#i-ok"/></svg><span></span></div>
+        </div>
+      </div>
+
+      <!-- 2. Commande -->
+      <div class="scene-demo" role="tabpanel" id="p-cmd" aria-labelledby="t-cmd" hidden>
+        <div class="cote-texte">
+          <p class="sur-demo">Click &amp; collect</p>
+          <h3>Commandé avant d'arriver.<br>Prêt quand il arrive.</h3>
+          <p>Votre carte, vos prix, des heures de retrait pour lisser le rush. La commande tombe en cuisine, sans commission de plateforme.</p>
+        </div>
+        <div class="tel tel--demo">
+          <div class="tel-ecran statut-clair" id="c-ecran">
+            <div class="tel-ilot"></div>
+            <div class="tel-statut" data-heure="11:52"></div>
+            <div class="app">
+              <div class="ecr" id="c-e1" data-statut="clair">
+                <div class="resto-banniere"><div><p class="resto-nom">Le Comptoir</p><p class="resto-info">Ouvert · prêt en 15 min</p></div><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#assiette"/></svg></div>
+                <div class="ecr-corps" style="padding-top:.9em">
+                  <div class="chips-app" aria-hidden="true"><span class="on">Tout</span><span>Plats</span><span>À côté</span><span>Boissons</span></div>
+                  <div class="menu-app" id="c-menu"></div>
+                </div>
+                <div class="ecr-pied"><button class="btn-app btn-app--plein btn-panier" type="button" id="c-voir" disabled><span id="c-voir-nb">0</span><span>Voir le panier</span><span id="c-voir-total">0,00 €</span></button></div>
+              </div>
+              <div class="voile-app" id="c-voile" hidden></div>
+              <div class="feuille" id="c-feuille" hidden>
+                <div class="feuille-poignee"></div>
+                <p class="feuille-titre">Votre commande</p>
+                <div class="liste-app" id="c-recap"></div>
+                <p class="groupe-titre">Heure de retrait</p>
+                <div class="creneaux-app creneaux-app--ligne" id="c-heures" role="group" aria-label="Heure de retrait"></div>
+                <button class="btn-app btn-app--plein" type="button" id="c-commander">Commander</button>
+                <button class="ecr-retour" type="button" id="c-fermer" style="justify-self:center">Continuer mes achats</button>
+              </div>
+              <div class="ecr" id="c-e2" hidden>
+                <div class="ecr-tete"><p class="ecr-sur">Le Comptoir · à emporter</p><p class="ecr-titre" id="c-num">Commande n° 0427</p><p class="fin-sous" id="c-retrait-txt">Retrait à 12h15</p></div>
+                <div class="ecr-corps">
+                  <div class="suivi" id="c-suivi">
+                    <div class="suivi-pas fait"><i></i><div><b>Reçue</b><small>Le restaurant a votre commande</small></div></div>
+                    <div class="suivi-pas encours"><i></i><div><b>En préparation</b><small>En cuisine en ce moment</small></div></div>
+                    <div class="suivi-pas"><i></i><div><b>Prête</b><small>Venez la récupérer au comptoir</small></div></div>
+                  </div>
+                  <div class="recap-app" id="c-fin-recap"></div>
+                </div>
+                <div class="ecr-pied"><button class="btn-app btn-app--gris btn-app--plein" type="button" id="c-nouveau">Nouvelle commande</button></div>
+              </div>
+              <div class="banniere" id="c-banniere" hidden><span class="banniere-icone" style="background:#C4552D"><svg><use href="#i-sac"/></svg></span><p><b class="bn-t"></b><span class="bn-x"></span></p></div>
+            </div>
+          </div>
+        </div>
+        <div class="commercant" aria-live="polite">
+          <div class="commercant-tete"><span class="direct"></span>Écran cuisine · en direct</div>
+          <div class="tickets" id="k-liste"></div>
+          <p class="commercant-note">Appuyez sur « Prête » : le client est prévenu sur son téléphone.</p>
+        </div>
+      </div>
+
+      <!-- 3. Fidélité -->
+      <div class="scene-demo" role="tabpanel" id="p-fid" aria-labelledby="t-fid" hidden>
+        <div class="cote-texte">
+          <p class="sur-demo">Carte de fidélité</p>
+          <h3>Dans le téléphone.<br>Jamais oubliée.</h3>
+          <p>Le client est reconnu à son numéro. Validez un passage à la caisse : le tampon apparaît sur sa carte, sans appli à installer.</p>
+        </div>
+        <div class="tel tel--demo">
+          <div class="tel-ecran" id="f-ecran">
+            <div class="tel-ilot"></div>
+            <div class="tel-statut" data-heure="8:12"></div>
+            <div class="app app--gris">
+              <div class="ecr">
+                <div class="ecr-tete"><p class="ecr-sur">Boulangerie du Pont</p><p class="ecr-titre">Ma carte</p></div>
+                <div class="ecr-corps">
+                  <div class="passe-app" id="f-passe">
+                    <div class="passe-pivot">
+                      <div class="passe-face passe-avant">
+                        <div class="pa-haut"><b>Boulangerie du Pont</b><span id="f-compte">6 / 10</span></div>
+                        <div class="pa-tampons" id="f-tampons"></div>
+                        <div class="pa-bas"><span>Sofia M.</span><span>10e passage : viennoiserie offerte</span></div>
+                      </div>
+                      <div class="passe-face passe-arriere"><svg aria-hidden="true"><use href="#i-cadeau"/></svg><b>Récompense débloquée</b><span>Une viennoiserie offerte</span></div>
+                    </div>
+                  </div>
+                  <div class="qr-app"><svg viewBox="0 0 21 21" aria-hidden="true"><path fill="#1D1D1F" d="M0 0h7v7H0zM2 2v3h3V2zM14 0h7v7h-7zm2 2v3h3V2zM0 14h7v7H0zm2 2v3h3v-3zM9 0h2v2H9zm2 2h2v3h-2zM9 6h2v3H9zm4 2h2v2h-2zM8 10h3v2H8zm5 2h3v2h-3zm4-3h4v2h-4zm-8 6h2v2H9zm4 2h2v4h-2zm4-2h4v2h-4zm2 4h2v2h-2zm-10 2h2v-2h2v2H9z"/></svg><div><b>À présenter en caisse</b><small>ou donnez simplement votre numéro</small></div></div>
+                  <div class="liste-app">
+                    <div class="ligne-app ligne-statique"><span>Dernier passage</span><b id="f-dernier">mardi</b></div>
+                    <div class="ligne-app ligne-statique"><span>Récompenses obtenues</span><b id="f-recomp">2</b></div>
+                    <div class="ligne-app ligne-statique"><span>Membre depuis</span><b>mars 2026</b></div>
+                  </div>
+                </div>
+                <div class="ecr-pied"><button class="btn-app btn-app--plein" type="button" id="f-utiliser" disabled>Plus que 4 passages</button></div>
+              </div>
+              <div class="banniere" id="f-banniere" hidden><span class="banniere-icone" style="background:#1A4FB0"><svg><use href="#i-etoile"/></svg></span><p><b class="bn-t"></b><span class="bn-x"></span></p></div>
+            </div>
+          </div>
+        </div>
+        <div class="commercant" aria-live="polite">
+          <div class="commercant-tete"><span class="direct"></span>Caisse · côté boulangerie</div>
+          <div class="client-carte"><span class="av">SM</span><div><b>Sofia M.</b><small>06 •• •• 42 18</small></div><strong id="k-passages">6</strong></div>
+          <div class="commercant-btns"><button class="btn btn--petit" type="button" id="f-ajouter">Valider un passage</button><button class="btn btn--petit btn--contour" type="button" id="f-reset">Recommencer</button></div>
+          <p class="commercant-note">38 clients fidèles ce mois-ci · 12 récompenses offertes</p>
+        </div>
+      </div>
+
+      <!-- 4. Sur mesure : HACCP -->
+      <div class="scene-demo scene-demo--tab" role="tabpanel" id="p-log" aria-labelledby="t-log" hidden>
+        <div class="cote-texte">
+          <p class="sur-demo">Logiciel sur mesure</p>
+          <h3>Le cahier HACCP,<br>sans le cahier.</h3>
+          <p>Exemple réel : les températures d'une boucherie. Choisissez un équipement, faites un relevé, ou simulez une panne pour voir l'alerte.</p>
+        </div>
+        <div class="commercant">
+          <div class="commercant-tete">Ce que ça change</div>
+          <ul class="liste-faits">
+            <li><b>Relevés papier</b><span>plus aucun</span></li>
+            <li><b>Temps par jour</b><span>2 minutes</span></li>
+            <li><b>Contrôle sanitaire</b><span>export en un clic</span></li>
+          </ul>
+        </div>
+        <div class="tab">
+          <div class="tab-ecran" id="app-haccp">
+            <aside class="tab-cote">
+              <p class="tab-titre">Relevés</p>
+              <p class="tab-date">Samedi 24 octobre</p>
+              <div class="tab-liste" id="h-liste" role="group" aria-label="Équipements"></div>
+              <button class="btn-app btn-app--gris" type="button" id="h-export">Exporter pour le contrôle</button>
+            </aside>
+            <section class="tab-main">
+              <div class="tab-alerte" id="h-alerte" hidden><svg aria-hidden="true"><use href="#i-alerte"/></svg><span></span></div>
+              <div class="tab-entete"><div><p class="tab-nom" id="h-nom">Chambre froide</p><p class="tab-consigne" id="h-consigne">Consigne 0 à 4 °C</p></div><span class="pastille-etat" id="h-etat">Conforme</span></div>
+              <p class="tab-temp" id="h-temp">2,4 °C</p>
+              <svg class="tab-graph" id="h-graph" viewBox="0 0 400 150" preserveAspectRatio="none" role="img" aria-label="Courbe des derniers relevés"></svg>
+              <div class="tab-bas"><button class="btn-app" type="button" id="h-relever">Nouveau relevé</button><button class="btn-app btn-app--gris" type="button" id="h-panne">Simuler une panne</button><small id="h-maj">Dernier relevé à 18h</small></div>
+            </section>
+            <div class="toast-app" id="h-toast" hidden><svg aria-hidden="true"><use href="#i-ok"/></svg><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Avis NFC -->
+      <div class="scene-demo" role="tabpanel" id="p-nfc" aria-labelledby="t-nfc" hidden>
+        <div class="cote-texte">
+          <p class="sur-demo">Carte avis NFC</p>
+          <h3>Un geste.<br>Un avis de plus.</h3>
+          <p>Le client approche son téléphone de la carte posée sur le comptoir. La page pour laisser un avis s'ouvre toute seule, sans appli.</p>
+        </div>
+        <div class="tel tel--demo" id="n-tel">
+          <div class="tel-ecran statut-clair" id="n-ecran">
+            <div class="tel-ilot"></div>
+            <div class="tel-statut" data-heure=""></div>
+            <div class="app">
+              <div class="ecr" id="n-e0" data-statut="clair">
+                <div class="verrou verrou--soir">
+                  <div style="height:3.6em"></div>
+                  <p class="verrou-date">samedi 24 octobre</p>
+                  <p class="verrou-heure">18:42</p>
+                  <span class="verrou-astuce"><svg width="14" height="14" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 10a7 7 0 0 1 0 10"/><path d="M14.5 6.5a12 12 0 0 1 0 17"/><path d="M19 3a17 17 0 0 1 0 24"/></svg>Approchez de la carte</span>
+                  <span class="verrou-barre"></span>
+                </div>
+              </div>
+              <div class="ecr avis-ecr" id="n-e1" hidden>
+                <div class="ecr-tete"><p class="ecr-sur">Avis Google</p><p class="ecr-titre">Salon Atlas</p><p class="note-app"><b id="n-note-app">4,3</b><span>★★★★★</span><span style="color:inherit" id="n-nb-app">48 avis</span></p></div>
+                <div class="ecr-corps">
+                  <div class="qui-app"><i>K</i><div><b>Karim</b><small>Publié avec votre nom</small></div></div>
+                  <div class="etoiles-app" id="n-etoiles" role="group" aria-label="Votre note"></div>
+                  <div class="chips-avis" id="n-chips"></div>
+                  <div class="texte-avis" id="n-texte"></div>
+                </div>
+                <div class="ecr-pied"><button class="btn-app btn-app--plein" type="button" id="n-publier" disabled>Publier</button></div>
+              </div>
+              <div class="ecr ecr-fin" id="n-e2" hidden>
+                <svg class="coche-ok" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="25" fill="#34C759"/><path id="n-coche" d="M15 27l7 7 15-16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+                <p class="ecr-titre">Merci Karim&nbsp;!</p>
+                <p class="fin-sous">Votre avis est en ligne. Il aide Salon Atlas à se faire connaître.</p>
+                <button class="btn-app btn-app--plein" type="button" id="n-recommencer">Recommencer</button>
+              </div>
+              <div class="banniere" id="n-banniere" hidden><span class="banniere-icone" style="background:#5E5CE6"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 10a7 7 0 0 1 0 10"/><path d="M14.5 6.5a12 12 0 0 1 0 17"/><path d="M19 3a17 17 0 0 1 0 24"/></svg></span><p><b class="bn-t"></b><span class="bn-x"></span></p></div>
+            </div>
+          </div>
+        </div>
+        <div class="commercant" aria-live="polite">
+          <div class="commercant-tete">Sur le comptoir</div>
+          <div class="nfc-comptoir" aria-hidden="true">
+            <div class="carte-c"><svg width="20" height="20" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M10 10a7 7 0 0 1 0 10"/><path d="M14.5 6.5a12 12 0 0 1 0 17"/><path d="M19 3a17 17 0 0 1 0 24"/></svg><div><b>Votre avis compte</b><small>Approchez votre téléphone</small></div></div>
+            <div class="ondes-demo" id="n-ondes"><i></i><i></i><i></i></div>
+          </div>
+          <button class="btn btn--petit" type="button" id="n-approcher">Approcher le téléphone</button>
+          <div class="fiche"><span class="note-g" id="n-note">4,3</span><span class="etoiles-g" aria-hidden="true">★★★★★</span><small><span id="n-nb">48 avis</span> · fiche Google de Salon Atlas</small></div>
+          <div class="avis-recu" id="n-recu" hidden></div>
+          <button class="btn-lien" type="button" id="n-simuler" style="font-size:14px;justify-self:start">Simuler 3 mois avec la carte</button>
         </div>
       </div>
     </div>
@@ -1162,7 +1548,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
           <span class="col-badge"></span>
           <h3>Vitrine</h3>
           <p class="col-tag">Être trouvé et bien présenté.</p>
-          <p class="col-prix">350 €<sup><a href="#note-1">1</a></sup><small>payé une fois</small></p>
+          <p class="col-prix">280 €<sup><a href="#note-1">1</a></sup><small>payé une fois</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Vitrine">Choisir</a><a class="btn-lien" href="#points-forts">En savoir plus</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Site une page, mobile et ordinateur</li>
@@ -1178,7 +1564,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
           <span class="col-badge">Le plus demandé</span>
           <h3>Réservation</h3>
           <p class="col-tag">Vos clients réservent ou commandent seuls.</p>
-          <p class="col-prix">590 €<sup><a href="#note-1">1</a></sup><small>payé une fois</small></p>
+          <p class="col-prix">420 €<sup><a href="#note-1">1</a></sup><small>payé une fois</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Réservation">Choisir</a><a class="btn-lien" href="#parcours">En savoir plus</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Tout le pack Vitrine</li>
@@ -1194,7 +1580,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
           <span class="col-badge"></span>
           <h3>Sur mesure</h3>
           <p class="col-tag">L'outil exact de votre métier.</p>
-          <p class="col-prix">dès 900 €<sup><a href="#note-1">1</a></sup><small>sur devis</small></p>
+          <p class="col-prix">dès 550 €<sup><a href="#note-1">1</a></sup><small>sur devis</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Sur mesure">Parler de mon projet</a><a class="btn-lien" href="#demos" data-ouvre="t-log">Voir un exemple</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="20" height="20" rx="3"/><path d="M10 11h10M10 15h10M10 19h6"/></svg>HACCP, stocks, commandes, planning</li>
@@ -1369,21 +1755,51 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     pisteVisible = v;
   }, { threshold: .4 }).observe(piste);
 
-  /* Contrôle segmenté des démos */
-  var onglets = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]')), pouce = $("seg-pouce");
-  function ongletActif() { return onglets.filter(function (b) { return b.getAttribute("aria-selected") === "true"; })[0]; }
-  function placerPouce(btn) { pouce.style.width = btn.offsetWidth + "px"; pouce.style.transform = "translate(" + btn.offsetLeft + "px," + (btn.offsetTop - 3) + "px)"; }
-  function ouvrir(btn, anime) {
+  /* ---------- Démos : outils communs ---------- */
+  var anime = !calme && !!window.gsap;
+  function majStatut(ecran, vue) { if (ecran) ecran.classList.toggle("statut-clair", vue.getAttribute("data-statut") === "clair"); }
+  function pousser(de, vers, sens, ecran) {
+    vers.hidden = false; majStatut(ecran, vers);
+    if (!anime) { de.hidden = true; return; }
+    gsap.fromTo(vers, { xPercent: 100 * sens }, { xPercent: 0, duration: .55, ease: "power3.out" });
+    gsap.fromTo(de, { xPercent: 0 }, { xPercent: -30 * sens, duration: .55, ease: "power3.out", onComplete: function () { de.hidden = true; gsap.set(de, { xPercent: 0 }); } });
+  }
+  function fondu(de, vers, ecran) {
+    vers.hidden = false; majStatut(ecran, vers);
+    if (!anime) { de.hidden = true; return; }
+    gsap.fromTo(vers, { autoAlpha: 0, scale: 1.04 }, { autoAlpha: 1, scale: 1, duration: .5, ease: "power3.out", onComplete: function () { de.hidden = true; } });
+  }
+  function banniere(el, titre, texte) {
+    el.querySelector(".bn-t").textContent = titre; el.querySelector(".bn-x").textContent = texte;
+    el.hidden = false; clearTimeout(el._t);
+    if (!anime) { el._t = setTimeout(function () { el.hidden = true; }, 4000); return; }
+    gsap.killTweensOf(el);
+    gsap.timeline().fromTo(el, { yPercent: -140, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: .6, ease: "power3.out" })
+      .to(el, { yPercent: -140, autoAlpha: 0, duration: .45, ease: "power2.in", delay: 3, onComplete: function () { el.hidden = true; } });
+  }
+  function toast(el, texte) {
+    el.querySelector("span").textContent = texte; el.hidden = false; clearTimeout(el._t);
+    if (anime) gsap.fromTo(el, { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: "power3.out" });
+    el._t = setTimeout(function () { if (anime) gsap.to(el, { autoAlpha: 0, duration: .3, onComplete: function () { el.hidden = true; } }); else el.hidden = true; }, 3800);
+  }
+  function arrivee(el) { if (anime && el) gsap.fromTo(el, { y: -14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .55, ease: "power3.out" }); }
+  function cocher(path) { if (anime) gsap.fromTo(path, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .6, delay: .25, ease: "power2.out" }); }
+  function prix(v) { return (v % 1 ? v.toFixed(2).replace(".", ",") : v) + " €"; }
+
+  /* ---------- Onglets ---------- */
+  var onglets = Array.prototype.slice.call(document.querySelectorAll(".onglet")), barreOnglets = $("onglets");
+  function ouvrir(btn, anim) {
     onglets.forEach(function (b) {
       var oui = b === btn;
       b.setAttribute("aria-selected", oui ? "true" : "false");
       b.tabIndex = oui ? 0 : -1;
       $(b.getAttribute("aria-controls")).hidden = !oui;
     });
-    placerPouce(btn);
-    if (anime && window.gsap && !calme) {
-      var p = $(btn.getAttribute("aria-controls"));
-      gsap.fromTo(p.children, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .6, ease: "power3.out", stagger: .06, overwrite: true });
+    barreOnglets.scrollTo({ left: btn.offsetLeft - (barreOnglets.clientWidth - btn.offsetWidth) / 2, behavior: calme ? "auto" : "smooth" });
+    if (anim && anime) {
+      var p = $(btn.getAttribute("aria-controls")), dev = p.querySelector(".tel, .tab");
+      gsap.fromTo(p, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .6, ease: "power3.out" });
+      if (dev) gsap.fromTo(dev, { y: 50 }, { y: 0, duration: .9, ease: "power3.out" });
     }
   }
   onglets.forEach(function (b, i) {
@@ -1392,139 +1808,357 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       if (e.key === "ArrowRight" || e.key === "ArrowLeft") { var j = (i + (e.key === "ArrowRight" ? 1 : onglets.length - 1)) % onglets.length; onglets[j].focus(); ouvrir(onglets[j], true); }
     });
   });
-  ouvrir(onglets[0], false);
-  window.addEventListener("resize", function () { placerPouce(ongletActif()); });
-  if (document.fonts) document.fonts.ready.then(function () { placerPouce(ongletActif()); });
   document.querySelectorAll("[data-ouvre]").forEach(function (a) {
     a.addEventListener("click", function (e) { e.preventDefault(); ouvrir($(a.getAttribute("data-ouvre")), true); $("demos").scrollIntoView({ behavior: calme ? "auto" : "smooth" }); });
   });
 
-  /* Démo réservation */
-  var PRINC = [{ id: "coupe", nom: "Coupe", p: 18 }, { id: "barbe", nom: "Barbe", p: 8 }, { id: "pack", nom: "Pack complet", p: 35 }];
-  var OPTS = [{ id: "barbe", nom: "Barbe", p: 8 }, { id: "masque", nom: "Masque visage", p: 4 }, { id: "cire", nom: "Cire", p: 5 }];
-  var HEURES = ["8h", "8h30", "9h", "9h30", "10h", "10h30", "11h", "11h30", "12h"], PRISES = ["8h30", "10h", "11h"];
-  var resa = { principal: "coupe", options: [], heure: null };
-  function rendreResa() {
-    var c = $("r-principal"); c.textContent = "";
-    PRINC.forEach(function (x) {
-      var b = el("button", { type: "button", "class": "puce", "aria-pressed": resa.principal === x.id ? "true" : "false" }, x.nom + " · " + x.p + " €");
-      b.addEventListener("click", function () { resa.principal = x.id; resa.options = resa.options.filter(function (o) { return x.id === "coupe" || o !== "barbe"; }); if (x.id === "pack") resa.options = []; rendreResa(); });
-      c.appendChild(b);
-    });
-    var o = $("r-options"); o.textContent = "";
-    OPTS.forEach(function (x) {
-      var inclus = resa.principal === "pack";
-      if (x.id === "barbe" && resa.principal !== "coupe") return;
-      var b = el("button", { type: "button", "class": "puce", "aria-pressed": resa.options.indexOf(x.id) >= 0 ? "true" : "false", disabled: inclus }, "+ " + x.nom + (inclus ? " (inclus)" : " · " + x.p + " €"));
-      b.addEventListener("click", function () { var i = resa.options.indexOf(x.id); if (i >= 0) resa.options.splice(i, 1); else resa.options.push(x.id); rendreResa(); });
-      o.appendChild(b);
-    });
-    var h = $("r-heures"); h.textContent = "";
-    HEURES.forEach(function (x) {
-      var pris = PRISES.indexOf(x) >= 0;
-      var b = el("button", { type: "button", "class": "puce", "aria-pressed": resa.heure === x ? "true" : "false", disabled: pris, "aria-label": x + (pris ? ", complet" : "") }, x);
-      b.addEventListener("click", function () { resa.heure = x; rendreResa(); });
-      h.appendChild(b);
-    });
-    var p = PRINC.filter(function (x) { return x.id === resa.principal; })[0], total = p.p, noms = [p.nom];
-    resa.options.forEach(function (id) { var x = OPTS.filter(function (y) { return y.id === id; })[0]; total += x.p; noms.push(x.nom); });
-    $("r-libelle").textContent = noms.join(" + ") + (resa.heure ? " · " + resa.heure : "");
-    $("r-total").textContent = total + " €";
+  /* ---------- 1. Réservation ---------- */
+  var PRESTAS = [
+    { id: "coupe", nom: "Coupe homme", d: 30, p: 18 },
+    { id: "enfant", nom: "Coupe enfant", d: 20, p: 14 },
+    { id: "barbe", nom: "Barbe", d: 15, p: 8 },
+    { id: "pack", nom: "Pack Luxury", d: 50, p: 35, note: "barbe, masque et soin inclus" }
+  ];
+  var EXTRAS = [{ id: "barbe", nom: "Barbe", d: 15, p: 8, si: ["coupe", "enfant"] }, { id: "masque", nom: "Masque visage", d: 10, p: 4 }, { id: "cire", nom: "Cire coiffante", d: 5, p: 5 }];
+  var JOURS = [{ id: "20", c: "mar.", n: "Mardi 20" }, { id: "21", c: "mer.", n: "Mercredi 21" }, { id: "22", c: "jeu.", n: "Jeudi 22" }, { id: "23", c: "ven.", n: "Vendredi 23" }, { id: "24", c: "sam.", n: "Samedi 24" }];
+  var HEURES = ["8h", "8h30", "9h", "9h30", "10h", "10h30", "11h", "11h30", "12h", "12h30"];
+  var COIFFEURS = [{ id: "c1", nom: "Coiffeur 1" }, { id: "c2", nom: "Coiffeur 2" }, { id: "c0", nom: "Peu importe" }];
+  var AGENDA = {
+    "20": { c1: [["9h", "Yanis", "Coupe"], ["11h", "Adam", "Barbe"]], c2: [["8h30", "Lucas", "Coupe enfant"]] },
+    "21": { c1: [["10h", "Mehdi", "Pack Luxury"]], c2: [["9h", "Sami", "Coupe"], ["12h", "Nathan", "Coupe"]] },
+    "22": { c1: [["8h", "Rayan", "Coupe"], ["8h30", "Ilyes", "Barbe"], ["11h30", "Hugo", "Coupe"]], c2: [] },
+    "23": { c1: [["9h30", "Omar", "Coupe"]], c2: [["10h", "Théo", "Coupe + barbe"], ["10h30", "Bilal", "Barbe"]] },
+    "24": { c1: [["8h30", "Yanis", "Coupe"], ["10h", "Mehdi", "Coupe + barbe"], ["11h", "Adam", "Pack Luxury"]], c2: [["9h", "Lucas", "Coupe"], ["9h30", "Sami", "Barbe"], ["11h30", "Hugo", "Coupe enfant"]] }
+  };
+  var r = { presta: "coupe", extras: ["barbe"], coiffeur: "c1", jour: "24", heure: null, neuf: null };
+  function rCalc() {
+    var p = PRESTAS.filter(function (x) { return x.id === r.presta; })[0], tot = p.p, d = p.d, noms = [p.nom];
+    r.extras.forEach(function (id) { var x = EXTRAS.filter(function (e) { return e.id === id; })[0]; tot += x.p; d += x.d; noms.push(x.nom); });
+    return { tot: tot, d: d, lib: noms.join(" + ") };
   }
-  $("r-valider").addEventListener("click", function () {
-    var m = $("r-message"); m.hidden = false;
-    m.textContent = resa.heure ? "Réservé pour samedi " + resa.heure + ". Le coiffeur vient d'être prévenu, le client reçoit son mail." : "Choisissez d'abord un créneau.";
-  });
-  rendreResa();
-
-  /* Démo commande */
-  var PLATS = [{ id: "tacos", nom: "Tacos poulet", d: "Frites maison", p: 8.5 }, { id: "burger", nom: "Burger du chef", d: "Bœuf, cheddar affiné", p: 10.9 }, { id: "salade", nom: "Salade grecque", d: "Feta, olives, concombre", p: 9 }, { id: "boisson", nom: "Boisson 33 cl", d: "Au choix", p: 2 }];
-  var RETRAITS = ["12h00", "12h15", "12h30", "12h45", "13h00"], panier = { tacos: 1, salade: 1, boisson: 2 }, retrait = "12h15";
-  function rendreCmd() {
-    var c = $("c-plats"); c.textContent = ""; var total = 0, nb = 0;
-    PLATS.forEach(function (x) {
-      var q = panier[x.id] || 0; total += q * x.p; nb += q;
-      var l = el("div", { "class": "plat" }), t = el("div");
-      t.appendChild(el("b", null, x.nom)); t.appendChild(el("small", null, x.d));
-      var cpt = el("div", { "class": "compteur" });
-      var moins = el("button", { type: "button", "class": "rond", "aria-label": "Retirer " + x.nom }, "−");
-      var plus = el("button", { type: "button", "class": "rond", "aria-label": "Ajouter " + x.nom }, "+");
-      moins.addEventListener("click", function () { panier[x.id] = Math.max(0, q - 1); rendreCmd(); });
-      plus.addEventListener("click", function () { panier[x.id] = q + 1; rendreCmd(); });
-      cpt.appendChild(moins); cpt.appendChild(el("span", null, String(q))); cpt.appendChild(plus);
-      l.appendChild(t); l.appendChild(el("span", { "class": "px" }, euros(x.p))); l.appendChild(cpt); c.appendChild(l);
+  function pris(j, c, h) { return AGENDA[j][c].some(function (x) { return x[0] === h; }); }
+  function libre(j, c, h) { return c === "c0" ? (!pris(j, "c1", h) || !pris(j, "c2", h)) : !pris(j, c, h); }
+  function ligneChoix(role, oui, html, dis) {
+    var b = el("button", { type: "button", "class": "ligne-app", role: role, "aria-checked": oui ? "true" : "false", disabled: dis });
+    b.innerHTML = html; return b;
+  }
+  function rEtape1() {
+    var lp = $("r-prestas"); lp.textContent = "";
+    PRESTAS.forEach(function (x) {
+      var b = ligneChoix("radio", r.presta === x.id, "<span>" + x.nom + "<small>" + x.d + " min" + (x.note ? " · " + x.note : "") + "</small></span><b>" + prix(x.p) + "</b><i class=\"coche\"></i>");
+      b.addEventListener("click", function () {
+        r.presta = x.id;
+        r.extras = r.extras.filter(function (e) { var ex = EXTRAS.filter(function (y) { return y.id === e; })[0]; return x.id !== "pack" && (!ex.si || ex.si.indexOf(x.id) >= 0); });
+        rEtape1();
+      });
+      lp.appendChild(b);
     });
-    var r = $("c-retrait"); r.textContent = "";
+    var le = $("r-extras"); le.textContent = "";
+    EXTRAS.forEach(function (x) {
+      var dispo = r.presta !== "pack" && (!x.si || x.si.indexOf(r.presta) >= 0);
+      var b = ligneChoix("checkbox", r.extras.indexOf(x.id) >= 0, "<span>" + x.nom + "<small>" + (r.presta === "pack" ? "inclus dans le pack" : (dispo ? "+ " + x.d + " min" : "avec une coupe")) + "</small></span><b>+ " + prix(x.p) + "</b><i class=\"coche carre\"></i>", !dispo);
+      b.addEventListener("click", function () { var i = r.extras.indexOf(x.id); if (i >= 0) r.extras.splice(i, 1); else r.extras.push(x.id); rEtape1(); });
+      le.appendChild(b);
+    });
+    var c = rCalc();
+    $("r-total").textContent = prix(c.tot); $("r-total2").textContent = prix(c.tot);
+    $("r-duree").textContent = c.d + " min · " + c.lib;
+  }
+  function rEtape2() {
+    var lc = $("r-coiffeurs"); lc.textContent = "";
+    COIFFEURS.forEach(function (x) {
+      var b = el("button", { type: "button", "aria-pressed": r.coiffeur === x.id ? "true" : "false" }, x.nom);
+      b.addEventListener("click", function () { r.coiffeur = x.id; if (r.heure && !libre(r.jour, r.coiffeur, r.heure)) r.heure = null; rEtape2(); rAgenda(); });
+      lc.appendChild(b);
+    });
+    var lj = $("r-jours"); lj.textContent = "";
+    JOURS.forEach(function (x) {
+      var b = el("button", { type: "button", "aria-pressed": r.jour === x.id ? "true" : "false", "aria-label": x.n });
+      b.innerHTML = x.c + "<b>" + x.id + "</b>";
+      b.addEventListener("click", function () { r.jour = x.id; r.heure = null; rEtape2(); rAgenda(); });
+      lj.appendChild(b);
+    });
+    var j = JOURS.filter(function (x) { return x.id === r.jour; })[0];
+    $("r-jour-nom").textContent = j.n + " · matin";
+    var lh = $("r-heures"); lh.textContent = "";
+    HEURES.forEach(function (h) {
+      var ok = libre(r.jour, r.coiffeur, h);
+      var b = el("button", { type: "button", "aria-pressed": r.heure === h ? "true" : "false", disabled: !ok, "aria-label": h + (ok ? "" : ", complet") }, h);
+      b.addEventListener("click", function () { r.heure = h; rEtape2(); });
+      lh.appendChild(b);
+    });
+    $("r-recap").textContent = r.heure ? j.c + " " + j.id + " · " + r.heure : "Choisissez un horaire";
+    $("r-confirmer").disabled = !r.heure;
+  }
+  function rAgenda() {
+    var j = JOURS.filter(function (x) { return x.id === r.jour; })[0];
+    var cs = r.coiffeur === "c0" ? ["c1", "c2"] : [r.coiffeur], lignes = [];
+    cs.forEach(function (c) { AGENDA[r.jour][c].forEach(function (x) { lignes.push({ h: x[0], n: x[1], p: x[2], c: c }); }); });
+    lignes.sort(function (a, b) { return HEURES.indexOf(a.h) - HEURES.indexOf(b.h); });
+    $("a-titre").textContent = (r.coiffeur === "c0" ? "Les deux coiffeurs" : (r.coiffeur === "c1" ? "Coiffeur 1" : "Coiffeur 2")) + " · " + j.n.toLowerCase();
+    $("a-nb").textContent = lignes.length + (lignes.length > 1 ? " rendez-vous" : " rendez-vous");
+    var l = $("a-liste"); l.textContent = ""; var nouveau = null;
+    if (!lignes.length) l.appendChild(el("p", { "class": "ag-vide" }, "Aucun rendez-vous pour l'instant."));
+    lignes.forEach(function (x) {
+      var estNeuf = r.neuf && r.neuf.j === r.jour && r.neuf.c === x.c && r.neuf.h === x.h;
+      var d = el("div", { "class": "ag-ligne" + (estNeuf ? " neuf" : "") });
+      d.appendChild(el("time", null, x.h));
+      var s = el("span"); s.appendChild(el("b", null, x.n)); s.appendChild(document.createTextNode(" · " + x.p)); d.appendChild(s);
+      d.appendChild(el("em", null, estNeuf ? "Nouveau" : (cs.length > 1 ? (x.c === "c1" ? "C1" : "C2") : "")));
+      if (!estNeuf && cs.length < 2) d.lastChild.remove();
+      l.appendChild(d); if (estNeuf) nouveau = d;
+    });
+    return nouveau;
+  }
+  $("r-suite").addEventListener("click", function () { rEtape2(); pousser($("r-e1"), $("r-e2"), 1, $("r-ecran")); });
+  $("r-retour").addEventListener("click", function () { pousser($("r-e2"), $("r-e1"), -1, $("r-ecran")); });
+  $("r-confirmer").addEventListener("click", function () {
+    var c = r.coiffeur === "c0" ? (pris(r.jour, "c1", r.heure) ? "c2" : "c1") : r.coiffeur, calc = rCalc(), j = JOURS.filter(function (x) { return x.id === r.jour; })[0];
+    AGENDA[r.jour][c].push([r.heure, "Karim", calc.lib.replace("Coupe homme", "Coupe")]);
+    r.neuf = { j: r.jour, c: c, h: r.heure };
+    var rec = $("r-fin-recap"); rec.textContent = "";
+    [["Quand", j.n.toLowerCase() + " · " + r.heure], ["Prestation", calc.lib], ["Avec", c === "c1" ? "Coiffeur 1" : "Coiffeur 2"], ["Durée", calc.d + " min"], ["Prix", prix(calc.tot)]].forEach(function (x) {
+      var d = el("div"); d.appendChild(el("span", null, x[0])); d.appendChild(el("b", null, x[1])); rec.appendChild(d);
+    });
+    $("r-cal").textContent = "Ajouter au calendrier";
+    pousser($("r-e2"), $("r-e3"), 1, $("r-ecran"));
+    cocher($("r-coche"));
+    var nouveau = rAgenda(); arrivee(nouveau);
+    if (nouveau) nouveau.scrollIntoView({ block: "nearest" });
+    toast($("a-toast"), "Notification envoyée au " + (c === "c1" ? "Coiffeur 1" : "Coiffeur 2") + " : Karim, " + r.heure);
+    setTimeout(function () { banniere($("r-banniere"), "Mail · Salon Atlas", "Votre rendez-vous " + j.c + " " + j.id + " à " + r.heure + " est confirmé."); }, 900);
+  });
+  $("r-cal").addEventListener("click", function () { this.textContent = "Ajouté au calendrier ✓"; });
+  $("r-nouveau").addEventListener("click", function () { r.heure = null; r.neuf = null; rEtape1(); rAgenda(); pousser($("r-e3"), $("r-e1"), -1, $("r-ecran")); });
+  rEtape1(); rEtape2(); rAgenda();
+
+  /* ---------- 2. Commande ---------- */
+  var CARTE = [
+    { id: "tacos", nom: "Tacos poulet", d: "Frites maison, sauce fromagère", p: 8.5, ic: "p-tacos", bg: "#FCEFD6" },
+    { id: "burger", nom: "Burger du chef", d: "Bœuf, cheddar affiné, oignons", p: 10.9, ic: "p-burger", bg: "#FBE7D6" },
+    { id: "salade", nom: "Salade grecque", d: "Feta, olives, concombre", p: 9, ic: "assiette", bg: "#EAF3DF" },
+    { id: "frites", nom: "Frites maison", d: "Coupées sur place", p: 3.5, ic: "p-frites", bg: "#FDECEA" },
+    { id: "boisson", nom: "Boisson 33 cl", d: "Au choix au comptoir", p: 2, ic: "p-boisson", bg: "#E5F0FC" },
+    { id: "dessert", nom: "Tiramisu", d: "Fait maison", p: 4.5, ic: "p-dessert", bg: "#F4ECE2" }
+  ];
+  var RETRAITS = [["12h00", true], ["12h15", true], ["12h30", false], ["12h45", true], ["13h00", true]];
+  var panier = {}, retrait = "12h15", numero = 427, enCours = null;
+  var TICKETS = [{ n: "0425", h: "12h00", t: "2 Tacos poulet · 1 Boisson", prete: true }, { n: "0426", h: "12h15", t: "1 Burger du chef · 1 Frites maison", prete: false }];
+  function totalPanier() { var t = 0, n = 0; CARTE.forEach(function (x) { var q = panier[x.id] || 0; t += q * x.p; n += q; }); return { t: t, n: n }; }
+  function euros2(v) { return v.toFixed(2).replace(".", ",") + " €"; }
+  function cMenu() {
+    var m = $("c-menu"); m.textContent = "";
+    CARTE.forEach(function (x) {
+      var q = panier[x.id] || 0, d = el("div", { "class": "plat-app" });
+      var v = el("span", { "class": "vignette", style: "background:" + x.bg }); v.innerHTML = '<svg viewBox="' + (x.ic === "assiette" ? "0 0 120 120" : "0 0 40 40") + '" aria-hidden="true"><use href="#' + x.ic + '"/></svg>'; d.appendChild(v);
+      var t = el("div"); t.appendChild(el("b", null, x.nom)); t.appendChild(el("small", null, x.d)); t.appendChild(el("em", null, euros2(x.p))); d.appendChild(t);
+      var pas = el("div", { "class": "pas-app" });
+      if (q) {
+        var moins = el("button", { type: "button", "aria-label": "Retirer " + x.nom }, "−"); moins.addEventListener("click", function () { panier[x.id] = q - 1; cMenu(); }); pas.appendChild(moins);
+        pas.appendChild(el("span", null, String(q)));
+      }
+      var plus = el("button", { type: "button", "class": q ? "" : "plus-seul", "aria-label": "Ajouter " + x.nom }, "+");
+      plus.addEventListener("click", function () { panier[x.id] = q + 1; cMenu(); if (anime) gsap.fromTo("#c-voir", { scale: 1.04 }, { scale: 1, duration: .4, ease: "power3.out" }); });
+      pas.appendChild(plus); d.appendChild(pas); m.appendChild(d);
+    });
+    var tp = totalPanier();
+    $("c-voir-nb").textContent = tp.n; $("c-voir-total").textContent = euros2(tp.t); $("c-voir").disabled = !tp.n;
+  }
+  function cFeuille() {
+    var rc = $("c-recap"); rc.textContent = "";
+    CARTE.forEach(function (x) { var q = panier[x.id]; if (!q) return; var d = el("div", { "class": "ligne-app ligne-statique" }); d.appendChild(el("span", null, q + " × " + x.nom)); d.appendChild(el("b", null, euros2(q * x.p))); rc.appendChild(d); });
+    var lh = $("c-heures"); lh.textContent = "";
     RETRAITS.forEach(function (x) {
-      var b = el("button", { type: "button", "class": "puce", "aria-pressed": retrait === x ? "true" : "false", disabled: x === "12h30" }, x);
-      b.addEventListener("click", function () { retrait = x; rendreCmd(); });
-      r.appendChild(b);
+      var b = el("button", { type: "button", "aria-pressed": retrait === x[0] ? "true" : "false", disabled: !x[1], "aria-label": x[0] + (x[1] ? "" : ", complet") }, x[0]);
+      b.addEventListener("click", function () { retrait = x[0]; cFeuille(); });
+      lh.appendChild(b);
     });
-    $("c-nb").textContent = nb + (nb > 1 ? " articles" : " article") + " · retrait " + retrait;
-    $("c-total").textContent = euros(total);
+    $("c-commander").textContent = "Commander · " + euros2(totalPanier().t);
   }
-  $("c-valider").addEventListener("click", function () {
-    var nb = 0; for (var k in panier) nb += panier[k];
-    var m = $("c-message"); m.hidden = false;
-    m.textContent = nb ? "Commande n° 0427 reçue en cuisine. Prête à " + retrait + ", le client est prévenu." : "Ajoutez au moins un article.";
+  function ouvrirFeuille() {
+    cFeuille(); $("c-voile").hidden = false; $("c-feuille").hidden = false;
+    if (anime) { gsap.fromTo("#c-voile", { opacity: 0 }, { opacity: 1, duration: .3 }); gsap.fromTo("#c-feuille", { yPercent: 100 }, { yPercent: 0, duration: .55, ease: "power3.out" }); }
+  }
+  function fermerFeuille(fin) {
+    function cacher() { $("c-voile").hidden = true; $("c-feuille").hidden = true; if (fin) fin(); }
+    if (!anime) { cacher(); return; }
+    gsap.to("#c-voile", { opacity: 0, duration: .3 }); gsap.to("#c-feuille", { yPercent: 100, duration: .4, ease: "power2.in", onComplete: cacher });
+  }
+  function cTickets(neuf) {
+    var l = $("k-liste"); l.textContent = ""; var nouveau = null;
+    TICKETS.slice().reverse().forEach(function (t) {
+      var d = el("div", { "class": "ticket" + (t.n === neuf ? " neuf" : "") });
+      d.appendChild(el("b", null, "N° " + t.n + " · retrait " + t.h));
+      var etat = el("span", { "class": "etat-t" });
+      if (t.prete) etat.appendChild(el("span", { "class": "pill-t" }, "Prête"));
+      else { var b = el("button", { type: "button", "class": "btn btn--mini" }, "Marquer prête"); b.addEventListener("click", function () { t.prete = true; cTickets(); if (enCours === t.n) cPrete(); }); etat.appendChild(b); }
+      d.appendChild(etat);
+      d.appendChild(el("small", null, t.t));
+      l.appendChild(d); if (t.n === neuf) nouveau = d;
+    });
+    return nouveau;
+  }
+  function cPrete() {
+    var pas = $("c-suivi").querySelectorAll(".suivi-pas");
+    pas[1].className = "suivi-pas fait"; pas[2].className = "suivi-pas fait";
+    if (anime) gsap.fromTo(pas[2].querySelector("i"), { scale: .4 }, { scale: 1, duration: .5, ease: "back.out(2.4)" });
+    banniere($("c-banniere"), "Le Comptoir", "Votre commande n° " + enCours + " est prête. À tout de suite !");
+  }
+  $("c-voir").addEventListener("click", ouvrirFeuille);
+  $("c-voile").addEventListener("click", function () { fermerFeuille(); });
+  $("c-fermer").addEventListener("click", function () { fermerFeuille(); });
+  $("c-commander").addEventListener("click", function () {
+    var n = String(numero).padStart(4, "0"), lignes = [];
+    CARTE.forEach(function (x) { if (panier[x.id]) lignes.push(panier[x.id] + " " + x.nom); });
+    TICKETS.push({ n: n, h: retrait, t: lignes.join(" · "), prete: false }); enCours = n; numero++;
+    $("c-num").textContent = "Commande n° " + n; $("c-retrait-txt").textContent = "Retrait à " + retrait + " · " + euros2(totalPanier().t);
+    var pas = $("c-suivi").querySelectorAll(".suivi-pas"); pas[0].className = "suivi-pas fait"; pas[1].className = "suivi-pas encours"; pas[2].className = "suivi-pas";
+    var rec = $("c-fin-recap"); rec.textContent = "";
+    CARTE.forEach(function (x) { var q = panier[x.id]; if (!q) return; var d = el("div"); d.appendChild(el("span", null, q + " × " + x.nom)); d.appendChild(el("b", null, euros2(q * x.p))); rec.appendChild(d); });
+    fermerFeuille(function () { pousser($("c-e1"), $("c-e2"), 1, $("c-ecran")); });
+    arrivee(cTickets(n));
   });
-  rendreCmd();
+  $("c-nouveau").addEventListener("click", function () { panier = {}; enCours = null; cMenu(); pousser($("c-e2"), $("c-e1"), -1, $("c-ecran")); });
+  panier = { tacos: 1, frites: 1, boisson: 1 };
+  cMenu(); cTickets();
 
-  /* Démo fidélité */
-  var passages = 6;
-  function rendreFid() {
+  /* ---------- 3. Fidélité ---------- */
+  var passages = 6, recompenses = 2;
+  function fRendre(nouveau) {
     var t = $("f-tampons"); t.textContent = "";
-    for (var i = 1; i <= 10; i++) t.appendChild(el("span", { "class": "tampon" + (i <= passages ? " ok" : ""), "aria-label": "Passage " + i + (i <= passages ? ", validé" : "") }, i === 10 ? "★" : String(i)));
-    $("f-compte").textContent = passages + " / 10";
+    for (var i = 1; i <= 10; i++) t.appendChild(el("i", { "class": i <= passages ? "ok" : "" }));
+    $("f-compte").textContent = passages + " / 10"; $("k-passages").textContent = passages; $("f-recomp").textContent = recompenses;
+    var reste = 10 - passages, b = $("f-utiliser");
+    b.disabled = reste > 0; b.textContent = reste > 0 ? "Plus que " + reste + " passage" + (reste > 1 ? "s" : "") : "Utiliser ma récompense";
+    $("f-passe").classList.toggle("retournee", passages >= 10);
+    if (nouveau && anime) { var d = t.children[passages - 1]; gsap.fromTo(d, { scale: 1.8, rotation: -20, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: .55, ease: "back.out(2)" }); }
   }
   $("f-ajouter").addEventListener("click", function () {
-    var m = $("f-message"); m.hidden = false;
-    if (passages >= 10) { passages = 0; rendreFid(); m.textContent = "Récompense offerte. Une nouvelle carte démarre."; return; }
-    passages++; rendreFid();
-    m.textContent = passages === 10 ? "10e passage ! Sofia reçoit sa viennoiserie offerte." : "Passage validé. Encore " + (10 - passages) + " avant la récompense.";
-    if (window.gsap && !calme) {
-      var ok = document.querySelectorAll("#f-tampons .tampon.ok"), d = ok[ok.length - 1];
-      gsap.fromTo(d, { scale: 1.5, rotation: -14 }, { scale: 1, rotation: 0, duration: .5, ease: "back.out(2.2)" });
-    }
+    if (passages >= 10) { banniere($("f-banniere"), "Boulangerie du Pont", "Sofia a une récompense à utiliser."); return; }
+    passages++; $("f-dernier").textContent = "aujourd'hui"; fRendre(true);
+    banniere($("f-banniere"), "Boulangerie du Pont", passages >= 10 ? "Bravo Sofia, votre viennoiserie est offerte !" : "+1 tampon. Plus que " + (10 - passages) + " avant votre récompense.");
+    if (anime) gsap.fromTo("#k-passages", { scale: 1.4 }, { scale: 1, duration: .45, ease: "power3.out" });
   });
-  $("f-reset").addEventListener("click", function () { passages = 6; $("f-message").hidden = true; rendreFid(); });
-  rendreFid();
+  $("f-utiliser").addEventListener("click", function () { passages = 0; recompenses++; fRendre(); banniere($("f-banniere"), "Boulangerie du Pont", "Récompense utilisée. Bon appétit !"); });
+  $("f-reset").addEventListener("click", function () { passages = 6; recompenses = 2; $("f-dernier").textContent = "mardi"; fRendre(); });
+  fRendre();
 
-  /* Démo HACCP */
-  var EQUIP = [{ nom: "Chambre froide", min: 0, max: 4, t: 2.4 }, { nom: "Vitrine réfrigérée", min: 0, max: 4, t: 3.1 }, { nom: "Armoire positive", min: 0, max: 4, t: 3.8 }, { nom: "Vitrine négative", min: -25, max: -18, t: -19.5 }];
-  var hist = [2.1, 2.6, 2.3, 3.0, 2.7, 2.2, 2.4];
-  function fmt(v) { return (v > 0 ? "+" : "") + v.toFixed(1).replace(".", ",") + " °C"; }
-  function rendreHaccp() {
-    var tb = $("h-lignes"); tb.textContent = "";
-    EQUIP.forEach(function (e) {
-      var ok = e.t >= e.min && e.t <= e.max, tr = el("tr");
-      tr.appendChild(el("td", null, e.nom)); tr.appendChild(el("td", null, e.min + " à " + e.max)); tr.appendChild(el("td", null, fmt(e.t)));
-      var td = el("td"); td.appendChild(el("span", { "class": "etat " + (ok ? "etat--ok" : "etat--ko") }, ok ? "Conforme" : "Alerte")); tr.appendChild(td); tb.appendChild(tr);
+  /* ---------- 4. HACCP ---------- */
+  var HH = ["6h", "8h", "10h", "12h", "14h", "16h", "18h"];
+  var EQ = [
+    { nom: "Chambre froide", min: 0, max: 4, v: [2.1, 2.6, 2.3, 3.0, 2.7, 2.2, 2.4] },
+    { nom: "Vitrine réfrigérée", min: 0, max: 4, v: [3.2, 3.0, 3.4, 3.1, 3.5, 3.3, 3.1] },
+    { nom: "Armoire positive", min: 0, max: 4, v: [2.9, 3.1, 3.3, 3.0, 2.8, 3.4, 3.6] },
+    { nom: "Vitrine négative", min: -25, max: -18, v: [-20.1, -19.8, -20.4, -19.6, -20.0, -19.7, -19.5] }
+  ];
+  var hSel = 0, hHeure = 18;
+  function fmtT(v) { return (v > 0 ? "" : "") + v.toFixed(1).replace(".", ",").replace("-", "−") + " °C"; }
+  function horsNorme(e) { var v = e.v[e.v.length - 1]; return v < e.min || v > e.max; }
+  function hRendre() {
+    var l = $("h-liste"); l.textContent = "";
+    EQ.forEach(function (e, i) {
+      var b = el("button", { type: "button", "class": "eq" + (horsNorme(e) ? " ko" : ""), "aria-pressed": i === hSel ? "true" : "false" });
+      b.appendChild(el("span", null, e.nom)); b.appendChild(el("b", null, fmtT(e.v[e.v.length - 1]))); b.appendChild(el("small", null, e.min + " à " + e.max + " °C"));
+      b.addEventListener("click", function () { hSel = i; hRendre(); if (anime) gsap.fromTo([$("h-temp"), $("h-graph")], { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: .45, ease: "power3.out", stagger: .05 }); });
+      l.appendChild(b);
     });
-    var W = 320, H = 110, g = 26, d = 8, haut = 12, y = function (v) { return haut + (6 - v) / 6 * (H - haut - 18); }, x = function (i) { return g + i * ((W - g - d) / (hist.length - 1)); }, s = "";
-    [0, 2, 4, 6].forEach(function (v) { s += '<line x1="' + g + '" x2="' + (W - d) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="rgba(0,0,0,.08)"/><text x="' + (g - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="10" fill="#86868B">' + v + '</text>'; });
-    s += '<rect x="' + g + '" y="' + y(4) + '" width="' + (W - g - d) + '" height="' + (y(0) - y(4)) + '" fill="#E3F5E8" opacity=".7"/>';
-    s += '<polyline points="' + hist.map(function (v, i) { return x(i) + "," + y(v); }).join(" ") + '" fill="none" stroke="#0071E3" stroke-width="2.4" stroke-linejoin="round"/>';
-    hist.forEach(function (v, i) { s += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="' + (i === hist.length - 1 ? 4.5 : 2.6) + '" fill="' + (v > 4 || v < 0 ? "#D70015" : "#0071E3") + '"/>'; });
-    $("h-graphe").innerHTML = s;
+    var e = EQ[hSel], ko = horsNorme(e), der = e.v[e.v.length - 1];
+    $("h-nom").textContent = e.nom; $("h-consigne").textContent = "Consigne " + e.min + " à " + e.max + " °C";
+    $("h-temp").textContent = fmtT(der); $("h-temp").classList.toggle("ko", ko);
+    $("h-etat").textContent = ko ? "Alerte" : "Conforme"; $("h-etat").classList.toggle("ko", ko);
+    var al = $("h-alerte"), alertes = EQ.filter(horsNorme);
+    if (alertes.length) { al.querySelector("span").textContent = "Alerte : " + alertes[0].nom.toLowerCase() + " à " + fmtT(alertes[0].v[alertes[0].v.length - 1]) + ". Vérifiez la porte et le groupe froid."; al.hidden = false; }
+    else al.hidden = true;
+    var W = 400, H = 150, g = 34, dr = 10, bas = 20, haut = 10, mn = e.min - 3, mx = e.max + 3;
+    e.v.forEach(function (v) { mn = Math.min(mn, v - 1); mx = Math.max(mx, v + 1); });
+    var y = function (v) { return haut + (mx - v) / (mx - mn) * (H - haut - bas); }, x = function (i) { return g + i * ((W - g - dr) / (e.v.length - 1)); }, s = "";
+    s += '<rect x="' + g + '" y="' + y(e.max) + '" width="' + (W - g - dr) + '" height="' + (y(e.min) - y(e.max)) + '" fill="rgba(52,199,89,.12)" rx="4"/>';
+    [e.min, e.max].forEach(function (v) { s += '<line x1="' + g + '" x2="' + (W - dr) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="rgba(29,138,63,.35)" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/><text x="' + (g - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="10" fill="#86868B">' + String(v).replace("-", "−") + '</text>'; });
+    var pts = e.v.map(function (v, i) { return x(i) + "," + y(v); }).join(" ");
+    s += '<polygon points="' + x(0) + "," + (H - bas) + " " + pts + " " + x(e.v.length - 1) + "," + (H - bas) + '" fill="' + (ko ? "rgba(255,59,48,.10)" : "rgba(0,113,227,.10)") + '"/>';
+    s += '<polyline points="' + pts + '" fill="none" stroke="' + (ko ? "#FF3B30" : "#0071E3") + '" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>';
+    e.v.forEach(function (v, i) { var hn = v < e.min || v > e.max; s += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="' + (i === e.v.length - 1 ? 4.5 : 3) + '" fill="' + (hn ? "#FF3B30" : "#0071E3") + '" stroke="#fff" stroke-width="1.5"/>'; });
+    var labels = HH.slice(-e.v.length);
+    labels.forEach(function (h, i) { s += '<text x="' + x(i) + '" y="' + (H - 4) + '" text-anchor="middle" font-size="10" fill="#86868B">' + h + '</text>'; });
+    $("h-graph").innerHTML = s;
+    $("h-maj").textContent = "Dernier relevé à " + hHeure + "h";
   }
-  $("h-relever").addEventListener("click", function () {
-    EQUIP.forEach(function (e, i) { var c = (e.min + e.max) / 2, ec = (e.max - e.min) / 2; e.t = Math.round((c + (Math.random() * 2 - 1) * ec * (i === 2 ? 1.5 : .9)) * 10) / 10; });
-    hist.push(EQUIP[0].t); if (hist.length > 7) hist.shift(); rendreHaccp();
-  });
-  rendreHaccp();
+  function hReleve(panne) {
+    hHeure = hHeure >= 22 ? 6 : hHeure + 2; HH.push(hHeure + "h"); HH.shift();
+    EQ.forEach(function (e, i) {
+      var c = (e.min + e.max) / 2, ec = (e.max - e.min) / 2, v;
+      if (panne && i === hSel) v = e.max + 2.4 + Math.random() * 1.2;
+      else v = c + (Math.random() * 2 - 1) * ec * .55;
+      e.v.push(Math.round(v * 10) / 10); e.v.shift();
+    });
+    hRendre();
+    if (anime) gsap.fromTo("#h-temp", { scale: .92, opacity: .4 }, { scale: 1, opacity: 1, duration: .5, ease: "power3.out" });
+    if (panne && anime) gsap.fromTo("#h-alerte", { y: -12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" });
+  }
+  $("h-relever").addEventListener("click", function () { hReleve(false); });
+  $("h-panne").addEventListener("click", function () { hReleve(true); });
+  $("h-export").addEventListener("click", function () { toast($("h-toast"), "PDF prêt : relevés d'octobre, 186 lignes"); });
+  hRendre();
 
-  /* Démo NFC */
-  var nfcFait = false;
-  $("n-simuler").addEventListener("click", function () {
-    var m = $("n-message"), b = this;
-    if (nfcFait) { $("n-note").textContent = "4,3"; $("n-nb").textContent = "48 avis"; b.textContent = "Simuler 3 mois avec la carte"; m.hidden = true; nfcFait = false; return; }
-    var k = 0, timer = setInterval(function () {
-      k++; $("n-nb").textContent = Math.round(48 + 64 * k / 20) + " avis"; $("n-note").textContent = (4.3 + .4 * k / 20).toFixed(1).replace(".", ",");
-      if (k >= 20) { clearInterval(timer); m.hidden = false; m.textContent = "Exemple illustratif : quand laisser un avis prend deux secondes, beaucoup plus de clients satisfaits le font."; }
-    }, 40);
-    b.textContent = "Revenir au départ"; nfcFait = true;
+  /* ---------- 5. Avis NFC ---------- */
+  var nNote = 0, nNb = 48, nMoy = 4.3, nChips = [], nFait = false;
+  var CHIPS = ["Accueil au top", "Rapide", "Coupe impeccable", "Propre", "Bons conseils"];
+  function nAffiche() {
+    $("n-note").textContent = nMoy.toFixed(1).replace(".", ","); $("n-nb").textContent = nNb + " avis";
+    $("n-note-app").textContent = nMoy.toFixed(1).replace(".", ","); $("n-nb-app").textContent = nNb + " avis";
+  }
+  function nEtoiles() {
+    var z = $("n-etoiles"); z.textContent = "";
+    for (var i = 1; i <= 5; i++) (function (i) {
+      var b = el("button", { type: "button", "class": i <= nNote ? "on" : "", "aria-label": i + " étoile" + (i > 1 ? "s" : ""), "aria-pressed": i === nNote ? "true" : "false" }, "★");
+      b.addEventListener("click", function () { nNote = i; nEtoiles(); $("n-publier").disabled = false; if (anime) gsap.fromTo($("n-etoiles").children, { scale: .7 }, { scale: 1, duration: .45, ease: "back.out(3)", stagger: .04 }); });
+      z.appendChild(b);
+    })(i);
+  }
+  function nChipsRendre() {
+    var z = $("n-chips"); z.textContent = "";
+    CHIPS.forEach(function (c) {
+      var b = el("button", { type: "button", "aria-pressed": nChips.indexOf(c) >= 0 ? "true" : "false" }, c);
+      b.addEventListener("click", function () { var i = nChips.indexOf(c); if (i >= 0) nChips.splice(i, 1); else nChips.push(c); nChipsRendre(); });
+      z.appendChild(b);
+    });
+    $("n-texte").textContent = nChips.length ? nChips.join(", ") + "." : "";
+  }
+  function nReset() {
+    nNote = 0; nChips = []; nEtoiles(); nChipsRendre(); $("n-publier").disabled = true;
+    ["n-e1", "n-e2"].forEach(function (id) { $(id).hidden = true; }); $("n-e0").hidden = false; majStatut($("n-ecran"), $("n-e0"));
+    $("n-approcher").disabled = false;
+  }
+  $("n-approcher").addEventListener("click", function () {
+    var b = this; b.disabled = true;
+    var o = $("n-ondes"); o.classList.remove("actif"); void o.offsetWidth; o.classList.add("actif");
+    var etroit = matchMedia("(max-width: 833px)").matches;
+    function ouvrirPage() {
+      banniere($("n-banniere"), "Salon Atlas", "Touchez pour laisser un avis");
+      setTimeout(function () { fondu($("n-e0"), $("n-e1"), $("n-ecran")); }, 1100);
+    }
+    if (anime) gsap.timeline({ onComplete: ouvrirPage }).to("#n-tel", etroit ? { y: 40, rotation: -3, duration: .5, ease: "power2.inOut" } : { x: -50, rotation: -5, duration: .5, ease: "power2.inOut" }).to("#n-tel", { x: 0, y: 0, rotation: 0, duration: .6, ease: "power3.out", delay: .25 });
+    else ouvrirPage();
   });
+  $("n-publier").addEventListener("click", function () {
+    nMoy = (nMoy * nNb + nNote) / (nNb + 1); nNb++; nAffiche();
+    var rc = $("n-recu"); rc.textContent = ""; rc.hidden = false;
+    rc.appendChild(el("b", null, "Karim · à l'instant"));
+    rc.appendChild(el("span", null, "★★★★★".slice(0, nNote) + "☆☆☆☆☆".slice(0, 5 - nNote)));
+    rc.appendChild(el("p", null, $("n-texte").textContent || "Sans commentaire."));
+    arrivee(rc);
+    pousser($("n-e1"), $("n-e2"), 1, $("n-ecran")); cocher($("n-coche"));
+  });
+  $("n-recommencer").addEventListener("click", nReset);
+  $("n-simuler").addEventListener("click", function () {
+    var b = this;
+    if (nFait) { nNb = 48; nMoy = 4.3; nAffiche(); $("n-recu").hidden = true; b.textContent = "Simuler 3 mois avec la carte"; nFait = false; return; }
+    var dep = { n: nNb, m: nMoy }, fin = { n: nNb + 64, m: 4.7 };
+    if (anime) { var o = { k: 0 }; gsap.to(o, { k: 1, duration: 1.4, ease: "power2.out", onUpdate: function () { nNb = Math.round(dep.n + (fin.n - dep.n) * o.k); nMoy = dep.m + (fin.m - dep.m) * o.k; nAffiche(); } }); }
+    else { nNb = fin.n; nMoy = fin.m; nAffiche(); }
+    b.textContent = "Exemple illustratif · revenir au départ"; nFait = true;
+  });
+  nReset(); nAffiche();
 
   /* Formules -> formulaire */
   document.querySelectorAll("[data-formule]").forEach(function (a) { a.addEventListener("click", function () { $("f-formule").value = a.getAttribute("data-formule"); }); });
@@ -1644,7 +2278,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
 
     /* 9. Titres et blocs de texte */
     ScrollTrigger.batch(".apparait", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux, stagger: .1 }); } });
-    ScrollTrigger.batch("#p-resa .panneau, #formulaire", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux }); } });
+    ScrollTrigger.batch("#formulaire", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux }); } });
 
     if (document.fonts) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
     return function () { document.getElementById("parcours").classList.remove("story--anime"); window.__animCarte = null; };
