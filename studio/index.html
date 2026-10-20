@@ -94,7 +94,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .arche::before { content: ""; position: absolute; inset: 14px; border-radius: 999px 999px 10px 10px; border: 1px solid rgb(255 255 255 / .35); }
 .telephone { position: relative; width: min(260px, 82%); background: var(--carte); border-radius: 28px; padding: 18px 16px; box-shadow: 0 24px 48px rgb(10 25 50 / .35); display: grid; gap: 10px; font-size: .88rem; }
 .telephone .barre { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .72rem; color: var(--gris); }
-.notif { background: var(--encre); color: #fff; border-radius: 14px; padding: 10px 12px; display: grid; gap: 2px; animation: arrive 4s ease-in-out infinite; }
+.notif { background: var(--encre); color: #fff; border-radius: 14px; padding: 10px 12px; display: grid; gap: 2px; }
 .notif small { color: #B9C7DD; font-size: .75rem; }
 .mini-carte { border: 1px solid var(--ligne); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; background: #fff; }
 .mini-carte b { font-family: var(--titre); font-weight: 600; font-size: 1.05rem; }
@@ -102,7 +102,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .mini-creneaux span { text-align: center; padding: 6px 0; border-radius: 8px; border: 1px solid var(--ligne); font-family: var(--mono); font-size: .75rem; }
 .mini-creneaux .pris { opacity: .4; text-decoration: line-through; }
 .mini-creneaux .choisi { background: var(--egee); color: #fff; border-color: var(--egee); }
-@keyframes arrive { 0%, 12% { transform: translateY(-6px); opacity: .0; } 22%, 88% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+.mot { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
+.mot > span { display: inline-block; will-change: transform; }
+.arche, .telephone { will-change: transform; }
 
 /* Offres */
 .offres { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
@@ -280,7 +282,7 @@ form { background: var(--carte); border: 1px solid var(--ligne); border-radius: 
     <div class="int">
       <div>
         <p class="etiquette">Troyes · Paris · Yvelines</p>
-        <h1>Le site, la réservation et les outils <em>sur mesure</em> de votre commerce.</h1>
+        <h1 aria-label="Le site, la réservation et les outils sur mesure de votre commerce."><span aria-hidden="true"><span class="mot"><span>Le</span></span> <span class="mot"><span>site,</span></span> <span class="mot"><span>la</span></span> <span class="mot"><span>réservation</span></span> <span class="mot"><span>et</span></span> <span class="mot"><span>les</span></span> <span class="mot"><span>outils</span></span> <em><span class="mot"><span>sur</span></span> <span class="mot"><span>mesure</span></span></em> <span class="mot"><span>de</span></span> <span class="mot"><span>votre</span></span> <span class="mot"><span>commerce.</span></span></span></h1>
         <p class="chapo">Je crée des sites internet rapides et soignés, je branche la prise de rendez-vous ou la commande en ligne, et je développe les petits logiciels qui vous font gagner du temps au quotidien. Sans abonnement imposé, sans commission sur vos ventes.</p>
         <div class="actions">
           <a class="bouton" href="#contact">Obtenir une maquette gratuite</a>
@@ -295,13 +297,13 @@ form { background: var(--carte); border: 1px solid var(--ligne); border-radius: 
       <div class="arche" aria-label="Exemple : notification de réservation sur le téléphone d'un coiffeur">
         <div class="telephone" aria-hidden="true">
           <div class="barre"><span>9:41</span><span>Barber · Espace pro</span></div>
-          <div class="notif"><b>Nouveau RDV · Karim</b><small>Sam. 9h30 · Coupe + Barbe · 26 €</small></div>
+          <div class="notif" id="h-notif"><b>Nouveau RDV · Karim</b><small>Sam. 9h30 · Coupe + Barbe · 26 €</small></div>
           <div class="mini-carte">
             <b>Samedi 24</b>
             <span style="color:var(--gris);font-size:.8rem">Créneaux du matin</span>
-            <div class="mini-creneaux"><span>8h</span><span class="pris">8h30</span><span>9h</span><span class="choisi">9h30</span><span class="pris">10h</span><span>10h30</span></div>
+            <div class="mini-creneaux"><span>8h</span><span class="pris">8h30</span><span>9h</span><span class="choisi" id="h-930">9h30</span><span class="pris">10h</span><span>10h30</span></div>
           </div>
-          <div class="mini-carte"><span style="font-size:.8rem;color:var(--gris)">Aujourd'hui</span><b>7 rendez-vous · 164 €</b></div>
+          <div class="mini-carte"><span style="font-size:.8rem;color:var(--gris)">Aujourd'hui</span><b id="h-jour">7 rendez-vous · 164 €</b></div>
         </div>
       </div>
     </div>
@@ -636,6 +638,8 @@ form { background: var(--carte); border: 1px solid var(--ligne); border-radius: 
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function () {
   "use strict";
@@ -869,6 +873,94 @@ form { background: var(--carte); border: 1px solid var(--ligne); border-radius: 
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(function () { b.textContent = "Message copié"; }, function () { b.textContent = "Sélectionnez le texte ci-dessus"; });
     });
     box.appendChild(b);
+  });
+})();
+</script>
+
+<script>
+/* Animations GSAP : intro du héros, boucle « nouvelle réservation », révélations au défilement (transform seulement, le contenu reste lisible au repos). */
+(function () {
+  if (!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ ease: "power3.out", duration: 0.8 });
+  var mm = gsap.matchMedia();
+
+  mm.add("(prefers-reduced-motion: no-preference)", function () {
+    /* 1. Intro du héros */
+    var intro = gsap.timeline({ defaults: { ease: "power4.out" } });
+    intro.from(".heros .etiquette", { y: 14, autoAlpha: 0, duration: 0.6 })
+      .from(".heros h1 .mot > span", { yPercent: 110, duration: 0.9, stagger: 0.045 }, "<0.1")
+      .from(".heros .chapo", { y: 18, autoAlpha: 0, duration: 0.7 }, "-=0.5")
+      .from(".heros .actions > *", { y: 16, autoAlpha: 0, stagger: 0.08, duration: 0.6 }, "-=0.45")
+      .from(".heros .faits > *", { y: 10, autoAlpha: 0, stagger: 0.06, duration: 0.5 }, "-=0.35")
+      .from(".arche", { scale: 0.92, y: 30, autoAlpha: 0, duration: 1.1, ease: "expo.out" }, 0.15)
+      .from(".telephone", { y: 70, rotation: -5, autoAlpha: 0, duration: 1.1, ease: "back.out(1.4)" }, 0.45);
+
+    /* 2. Boucle : une réservation arrive sur le téléphone du coiffeur */
+    var jour = document.getElementById("h-jour"), slot = document.getElementById("h-930");
+    var boucle = gsap.timeline({ repeat: -1, repeatDelay: 1.6, delay: 1.6 });
+    boucle.set(slot, { className: "" })
+      .set(jour, { textContent: "7 rendez-vous · 164 €" })
+      .fromTo("#h-notif", { y: -24, autoAlpha: 0, scale: 0.96 }, { y: 0, autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" })
+      .set(slot, { className: "choisi" }, "+=0.5")
+      .fromTo(slot, { scale: 0.8 }, { scale: 1, duration: 0.45, ease: "elastic.out(1, 0.45)" }, "<")
+      .set(jour, { textContent: "8 rendez-vous · 190 €" }, "+=0.3")
+      .fromTo(jour, { y: 6, autoAlpha: 0.3 }, { y: 0, autoAlpha: 1, duration: 0.4 }, "<")
+      .to("#h-notif", { y: -10, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, "+=2.4");
+
+    /* 3. Parallaxe douce de l'arche et frise qui défile */
+    gsap.to(".arche", { y: -36, ease: "none", scrollTrigger: { trigger: ".heros", start: "top top", end: "bottom top", scrub: 1 } });
+    gsap.to(".frise", { backgroundPositionX: "+=168px", ease: "none", scrollTrigger: { trigger: ".frise", start: "top bottom", end: "bottom top", scrub: true } });
+
+    /* 4. Révélations : décalage + légère rotation, sans jamais masquer le contenu */
+    function reveler(selecteur, vars) {
+      ScrollTrigger.batch(selecteur, {
+        start: "top 88%",
+        once: true,
+        onEnter: function (els) {
+          gsap.fromTo(els, Object.assign({ y: 56 }, vars || {}), { y: 0, rotation: 0, scale: 1, duration: 0.9, stagger: 0.09, ease: "power3.out", overwrite: true });
+        }
+      });
+    }
+    reveler(".offre", { rotation: 1.2 });
+    reveler(".projet", { scale: 0.97 });
+    reveler(".formule");
+    reveler(".etape", { y: 40 });
+    reveler(".faq details", { y: 24 });
+    reveler(".atout", { y: 24 });
+    reveler(".tete h2", { y: 28 });
+
+    /* 5. Compteurs des tarifs : partent de 0 seulement quand on arrive dessus */
+    document.querySelectorAll(".montant").forEach(function (m) {
+      var noeud = m.firstChild, txt = noeud && noeud.nodeValue, n = txt && parseInt(txt.replace(/\D/g, ""), 10);
+      if (!n) return;
+      var prefixe = txt.slice(0, txt.search(/\d/)), suffixe = txt.slice(txt.search(/\d/) + String(n).length);
+      ScrollTrigger.create({
+        trigger: m, start: "top 90%", once: true,
+        onEnter: function () {
+          var o = { v: 0 };
+          gsap.to(o, { v: n, duration: 1.1, ease: "power2.out", onUpdate: function () { noeud.nodeValue = prefixe + Math.round(o.v) + suffixe; } });
+        }
+      });
+    });
+
+    /* 6. Changement d'onglet des démos */
+    document.querySelectorAll('[role="tab"]').forEach(function (b) {
+      b.addEventListener("click", function () {
+        var p = document.getElementById(b.getAttribute("aria-controls"));
+        gsap.fromTo(p.querySelector(".ecran"), { y: 24, autoAlpha: 0.4 }, { y: 0, autoAlpha: 1, duration: 0.55, overwrite: true });
+        gsap.fromTo(p.querySelectorAll(".scene__texte > *"), { x: -16 }, { x: 0, duration: 0.5, stagger: 0.05, overwrite: true });
+      });
+    });
+
+    /* 7. Tampon de fidélité qui « tape » */
+    document.getElementById("f-ajouter").addEventListener("click", function () {
+      var ok = document.querySelectorAll("#f-tampons .tampon.ok");
+      var dernier = ok[ok.length - 1];
+      if (dernier) gsap.fromTo(dernier, { scale: 1.6, rotation: -18 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.5)" });
+    });
+
+    document.fonts && document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   });
 })();
 </script>
