@@ -667,14 +667,14 @@ sup a { color: inherit; }
 .tuile.sombre .tuile-etiq { color: #F56300; }
 .tuile-etiq--ok { color: var(--vert); }
 .tuile .ctas { margin-top: 18px; position: relative; z-index: 2; }
-.tuile-visuel { position: absolute; left: 50%; bottom: 0; translate: -50% 0; display: flex; justify-content: center; }
+.tuile-visuel { position: absolute; left: 50%; top: 262px; translate: -50% 0; display: flex; justify-content: center; }
 .tuile--bleue { background: linear-gradient(160deg, #0A57C2 0%, #1F86F0 55%, #6CC4F5 100%); color: #fff; }
 .tuile--bleue .btn { background: #fff; color: var(--bleu); }
 .tuile--rouge { background: linear-gradient(170deg, #5E0B16 0%, #8C1D2C 60%, #B4343F 100%); color: #fff; }
 .tuile--rouge .btn { background: #fff; color: #8C1D2C; }
 .tuile--rouge .tuile-etiq, .tuile--bleue .tuile-etiq { color: rgba(255,255,255,.8); }
-.tel--tuile { --l: min(270px, 62vw); margin-bottom: -48%; }
-.ipad--tuile { width: min(560px, 92vw); margin-bottom: -22%; }
+.tel--tuile { --l: min(270px, 62vw); }
+.ipad--tuile { width: min(560px, 92vw); }
 .nfc-duo { position: relative; width: min(420px, 82vw); height: 290px; }
 .nfc-duo > div { position: absolute; width: 74%; aspect-ratio: 1.586; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; box-shadow: 0 30px 50px -20px rgba(0,0,0,.5); }
 .nfc-recto { left: 0; top: 10px; background: linear-gradient(145deg, #F3EDE1, #DCCFB6); color: #4A1A10; transform: rotate(-8deg); }
@@ -682,7 +682,7 @@ sup a { color: inherit; }
 .nfc-recto b, .nfc-verso b { font-size: 20px; letter-spacing: -0.02em; font-weight: 600; }
 .nfc-recto small, .nfc-verso small { font-size: 12px; opacity: .7; }
 .qr { width: 64px; height: 64px; align-self: flex-end; background: #fff; border-radius: 6px; padding: 6px; }
-.vide { width: min(250px, 58vw); aspect-ratio: 1 / 2.1667; margin-bottom: -60%; border-radius: 42px; border: 2px dashed rgba(255,255,255,.6); display: grid; justify-items: center; align-content: start; padding-top: 34%; gap: 12px; color: #fff; }
+.vide { width: min(250px, 58vw); aspect-ratio: 1 / 2.1667; border-radius: 42px; border: 2px dashed rgba(255,255,255,.6); display: grid; justify-items: center; align-content: start; padding-top: 34%; gap: 12px; color: #fff; }
 .vide span { width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,.2); display: grid; place-items: center; font-size: 30px; font-weight: 300; }
 
 /* Tarifs façon « comparer les modèles » */
@@ -801,8 +801,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
   .options-grille, .champs { grid-template-columns: 1fr; }
   .nfc-demo { grid-template-columns: 1fr; }
   .tuile { padding-top: 44px; height: 560px; }
-  .tel--tuile { --l: min(230px, 56vw); margin-bottom: -78%; }
-  .ipad--tuile { margin-bottom: -30%; }
+  .tel--tuile { --l: min(240px, 60vw); }
   .sb { padding: 0 2.4em; }
 }
 @media (prefers-reduced-transparency: reduce) {
@@ -1517,7 +1516,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
         <h3 class="tuile-titre">Cartes NFC</h3>
         <p class="tuile-sous">L'avis Google d'un geste.</p>
         <div class="ctas"><a class="btn btn--petit" href="#demos" data-ouvre="t-nfc">Voir la simulation</a></div>
-        <div class="tuile-visuel" style="bottom:36px" aria-hidden="true">
+        <div class="tuile-visuel" aria-hidden="true">
           <div class="nfc-duo">
             <div class="nfc-recto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 7.5a6.5 6.5 0 0 1 0 9"/><path d="M12 4.5a10.5 10.5 0 0 1 0 15"/><path d="M15.5 1.8a14 14 0 0 1 0 20.4"/></svg><div><b>Boucherie du Marché</b><br><small>Votre avis compte</small></div></div>
             <div class="nfc-verso"><small>Ou scannez</small><svg class="qr" viewBox="0 0 21 21"><path fill="#111" d="M0 0h7v7H0zM2 2v3h3V2zM14 0h7v7h-7zm2 2v3h3V2zM0 14h7v7H0zm2 2v3h3v-3zM9 0h2v2H9zm2 2h2v3h-2zM9 6h2v3H9zm4 2h2v2h-2zM8 10h3v2H8zm5 2h3v2h-3zm4-3h4v2h-4zm-8 6h2v2H9zm4 2h2v4h-2zm4-2h4v2h-4zm2 4h2v2h-2zm-10 2h2v-2h2v2H9z"/></svg></div>
@@ -2267,7 +2266,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     /* 7. Tuiles des réalisations : apparition puis léger parallaxe des visuels */
     ScrollTrigger.batch(".tuile", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux, stagger: .12 }); } });
     document.querySelectorAll(".tuile-visuel > *").forEach(function (v) {
-      gsap.fromTo(v, { y: 70 }, { y: -10, ease: "none", scrollTrigger: { trigger: v.closest(".tuile"), start: "top bottom", end: "bottom top", scrub: .6 } });
+      gsap.fromTo(v, { y: 50 }, { y: -8, ease: "none", scrollTrigger: { trigger: v.closest(".tuile"), start: "top bottom", end: "bottom top", scrub: .6 } });
     });
 
     /* 8. Tarifs, options, cartes « pourquoi », questions */
