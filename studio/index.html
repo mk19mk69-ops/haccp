@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mokrani Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sites internet, réservation en ligne, logiciels sur mesure et accompagnement informatique pour les commerces de Troyes, Paris et des Yvelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Mise en page : bandes pleine largeur ivoire / sable, conteneur 1120px, arches cycladiques comme cadres, frise grecque comme seul ornement. */
+:root {
+  --ivoire: #F4EFE6;
+  --ivoire-2: #EBE4D6;
+  --carte: #FBF8F2;
+  --encre: #13233B;
+  --egee: #1D4E8F;
+  --egee-fonce: #143A6B;
+  --egee-pale: #DCE6F2;
+  --sable: #A9864E;
+  --gris: #59637A;
+  --ligne: #D9D0BF;
+  --ok: #2F7A4F;
+  --alerte: #B4442E;
+  --titre: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --texte: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --conteneur: 1120px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(76px + env(safe-area-inset-top, 0px)); }
+body {
+  margin: 0; background: var(--ivoire); color: var(--encre);
+  font-family: var(--texte); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ivoire); }
+h1, h2, h3 { font-family: var(--titre); font-weight: 500; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+h3 { font-size: 1.35rem; }
+p { margin: 0; }
+a { color: var(--egee); text-underline-offset: 3px; }
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--egee); outline-offset: 3px; }
+
+.bande { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bande--sable { background: var(--ivoire-2); }
+.bande--nuit { background: var(--egee-fonce); color: var(--ivoire); }
+.int { max-width: var(--conteneur); margin: 0 auto; padding-block: clamp(64px, 9vw, 112px); }
+.etiquette { font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sable); }
+.chapo { margin-top: 16px; max-width: 60ch; color: var(--gris); font-size: 1.08rem; }
+.tete { display: grid; gap: 4px; margin-bottom: clamp(32px, 5vw, 52px); }
+.tete h2 { margin-top: 8px; }
+
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 50px; padding: 12px 24px; border-radius: 999px; border: 1px solid var(--egee);
+  background: var(--egee); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.bouton:hover { background: var(--egee-fonce); border-color: var(--egee-fonce); }
+.bouton--clair { background: transparent; color: var(--egee); }
+.bouton--clair:hover { background: var(--egee-pale); color: var(--egee-fonce); }
+.bouton--petit { min-height: 40px; padding: 8px 16px; font-size: .92rem; }
+
+/* Frise grecque */
+.frise { height: 14px; background-repeat: repeat-x; background-size: 28px 14px; opacity: .55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M0 13H6V1H18V9H10V5H14' fill='none' stroke='%23A9864E' stroke-width='1.6'/%3E%3Cpath d='M14 13H28' fill='none' stroke='%23A9864E' stroke-width='1.6'/%3E%3C/svg%3E"); }
+
+/* En-tête */
+.entete { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgb(244 239 230 / .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--ligne); }
+.entete .int { padding-block: 0; height: 72px; display: flex; align-items: center; gap: 28px; }
+.marque { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; color: var(--encre); }
+.marque svg { flex: none; }
+.marque b { font-family: var(--titre); font-weight: 600; font-size: 1.3rem; letter-spacing: -.01em; }
+.menu { display: flex; gap: 22px; }
+.menu a { color: var(--gris); text-decoration: none; font-weight: 600; font-size: .95rem; padding: 6px 0; border-bottom: 2px solid transparent; }
+.menu a:hover { color: var(--encre); border-bottom-color: var(--sable); }
+
+/* Héros */
+.heros .int { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 6vw, 72px); align-items: center; padding-block: clamp(48px, 7vw, 88px) clamp(48px, 6vw, 72px); }
+.heros h1 { font-size: clamp(2.5rem, 5.6vw, 4.3rem); margin-top: 14px; }
+.heros h1 em { font-style: italic; color: var(--egee); }
+.heros .chapo { font-size: 1.15rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.faits { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--ligne); color: var(--gris); font-size: .95rem; }
+.faits b { color: var(--encre); }
+
+.arche { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 18px 18px; background: var(--egee); overflow: hidden; display: grid; place-items: center; padding: 28px; }
+.arche::before { content: ""; position: absolute; inset: 14px; border-radius: 999px 999px 10px 10px; border: 1px solid rgb(255 255 255 / .35); }
+.telephone { position: relative; width: min(260px, 82%); background: var(--carte); border-radius: 28px; padding: 18px 16px; box-shadow: 0 24px 48px rgb(10 25 50 / .35); display: grid; gap: 10px; font-size: .88rem; }
+.telephone .barre { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .72rem; color: var(--gris); }
+.notif { background: var(--encre); color: #fff; border-radius: 14px; padding: 10px 12px; display: grid; gap: 2px; animation: arrive 4s ease-in-out infinite; }
+.notif small { color: #B9C7DD; font-size: .75rem; }
+.mini-carte { border: 1px solid var(--ligne); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; background: #fff; }
+.mini-carte b { font-family: var(--titre); font-weight: 600; font-size: 1.05rem; }
+.mini-creneaux { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.mini-creneaux span { text-align: center; padding: 6px 0; border-radius: 8px; border: 1px solid var(--ligne); font-family: var(--mono); font-size: .75rem; }
+.mini-creneaux .pris { opacity: .4; text-decoration: line-through; }
+.mini-creneaux .choisi { background: var(--egee); color: #fff; border-color: var(--egee); }
+@keyframes arrive { 0%, 12% { transform: translateY(-6px); opacity: .0; } 22%, 88% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+
+/* Offres */
+.offres { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.offre { background: var(--carte); border: 1px solid var(--ligne); border-radius: 18px; padding: 26px 22px; display: grid; gap: 12px; align-content: start; }
+.offre .icone { width: 46px; height: 54px; border-radius: 999px 999px 6px 6px; background: var(--egee-pale); display: grid; place-items: center; color: var(--egee); }
+.offre p { color: var(--gris); font-size: .97rem; }
+.offre ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: .93rem; }
+.offre li { display: flex; gap: 8px; }
+.offre li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%; background: var(--sable); }
+.offre .prix { margin-top: 4px; font-family: var(--mono); font-size: .85rem; color: var(--egee); }
+
+/* Démos */
+.onglets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.onglets button { min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 1px solid var(--ligne); background: var(--carte); font-weight: 600; cursor: pointer; }
+.onglets button[aria-selected="true"] { background: var(--encre); color: var(--ivoire); border-color: var(--encre); }
+.scene { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+.scene__texte { display: grid; gap: 14px; align-content: start; }
+.scene__texte p { color: var(--gris); }
+.scene__texte ul { margin: 0; padding-left: 18px; color: var(--gris); display: grid; gap: 4px; }
+.ecran { background: var(--carte); border: 1px solid var(--ligne); border-radius: 22px; padding: 22px; box-shadow: 0 18px 40px rgb(19 35 59 / .08); min-width: 0; }
+.ecran__haut { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--ligne); }
+.ecran__haut b { font-family: var(--titre); font-weight: 600; font-size: 1.2rem; }
+.badge-demo { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--egee-pale); color: var(--egee-fonce); }
+.choix { display: flex; flex-wrap: wrap; gap: 8px; }
+.puce { min-height: 40px; padding: 6px 14px; border-radius: 10px; border: 1px solid var(--ligne); background: #fff; cursor: pointer; font-size: .92rem; }
+.puce[aria-pressed="true"] { background: var(--egee); color: #fff; border-color: var(--egee); }
+.puce:disabled { opacity: .4; text-decoration: line-through; cursor: not-allowed; }
+.ligne-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--ligne); }
+.ligne-total strong { font-family: var(--titre); font-size: 1.6rem; font-weight: 600; color: var(--egee); font-variant-numeric: tabular-nums; }
+.message { margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--egee-pale); color: var(--egee-fonce); font-size: .93rem; }
+.sous { font-size: .85rem; color: var(--gris); margin: 14px 0 8px; font-weight: 600; }
+
+.plats { display: grid; gap: 8px; }
+.plat { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid var(--ligne); border-radius: 12px; background: #fff; }
+.plat small { display: block; color: var(--gris); font-size: .82rem; }
+.plat .px { font-family: var(--mono); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.compteur { display: flex; align-items: center; gap: 6px; }
+.compteur button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--ligne); background: var(--carte); cursor: pointer; font-weight: 700; }
+.compteur span { min-width: 1.5ch; text-align: center; font-variant-numeric: tabular-nums; }
+
+.fidelite { background: var(--egee); color: #fff; border-radius: 18px; padding: 22px; display: grid; gap: 14px; }
+.fidelite b { font-family: var(--titre); font-size: 1.4rem; font-weight: 500; }
+.tampons { display: grid; grid-template-columns: repeat(5, minmax(0, 46px)); gap: 10px; justify-content: start; }
+.tampon { aspect-ratio: 1; border-radius: 50%; border: 1.5px dashed rgb(255 255 255 / .55); display: grid; place-items: center; font-family: var(--mono); font-size: .8rem; }
+.tampon.ok { background: var(--ivoire); color: var(--egee); border: none; font-weight: 600; }
+.tampon.cadeau { border-style: solid; border-color: var(--sable); }
+
+.frigos { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.frigos th { text-align: left; font-weight: 600; color: var(--gris); font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; padding: 0 8px 8px; }
+.frigos td { padding: 10px 8px; border-top: 1px solid var(--ligne); }
+.frigos td.t { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.etat { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.etat--ok { background: #E1EFE6; color: var(--ok); }
+.etat--ko { background: #F6E1DB; color: var(--alerte); }
+.tableau-scroll { overflow-x: auto; }
+.graphe { margin-top: 14px; }
+.graphe svg { width: 100%; height: auto; display: block; }
+
+.nfc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: center; }
+.carte-nfc { aspect-ratio: 85.6 / 54; max-width: 100%; border-radius: 14px; background: var(--encre); color: var(--ivoire); padding: 16px; display: grid; align-content: space-between; box-shadow: 0 14px 28px rgb(19 35 59 / .25); }
+.carte-nfc b { font-family: var(--titre); font-size: 1.25rem; font-weight: 500; }
+.etoiles { display: flex; gap: 4px; color: var(--sable); }
+.note-g { font-family: var(--titre); font-size: 2.6rem; font-weight: 600; color: var(--egee); line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* Réalisations */
+.projets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.projet { background: var(--carte); border: 1px solid var(--ligne); border-radius: 18px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.projet__visuel { aspect-ratio: 16 / 10; max-width: 100%; display: grid; place-items: center; padding: 18px; }
+.projet__corps { padding: 20px 22px 24px; display: grid; gap: 10px; align-content: start; }
+.projet__corps p { color: var(--gris); font-size: .95rem; }
+.statut { justify-self: start; font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--ligne); color: var(--gris); }
+.statut--prod { border-color: var(--ok); color: var(--ok); }
+
+/* Méthode */
+.etapes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; counter-reset: etape; border-top: 1px solid rgb(244 239 230 / .25); }
+.etape { padding: 26px 22px 0 0; display: grid; gap: 10px; align-content: start; }
+.etape::before { counter-increment: etape; content: counter(etape); font-family: var(--titre); font-size: 2.6rem; color: var(--sable); line-height: 1; }
+.etape p { color: #C9D4E6; font-size: .97rem; }
+.etape .duree { font-family: var(--mono); font-size: .8rem; color: #E9DDC4; }
+
+/* Tarifs */
+.formules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+.formule { background: var(--carte); border: 1px solid var(--ligne); border-radius: 22px; padding: 28px 24px; display: grid; gap: 14px; align-content: start; }
+.formule--phare { border: 2px solid var(--egee); position: relative; }
+.formule--phare::before { content: "Le plus demandé"; position: absolute; top: -13px; left: 22px; background: var(--egee); color: #fff; font-size: .75rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+.montant { font-family: var(--titre); font-size: 2.7rem; font-weight: 500; line-height: 1; font-variant-numeric: lining-nums; }
+.montant small { font-family: var(--texte); font-size: .9rem; color: var(--gris); font-weight: 500; }
+.formule ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: .95rem; }
+.formule li { display: flex; gap: 10px; }
+.formule li::before { content: ""; flex: none; width: 14px; height: 8px; margin-top: 7px; border-left: 2px solid var(--egee); border-bottom: 2px solid var(--egee); transform: rotate(-45deg); }
+.formule .bouton { margin-top: 6px; }
+.options { margin-top: 28px; width: 100%; border-collapse: collapse; background: var(--carte); border-radius: 16px; overflow: hidden; }
+.options td { padding: 14px 18px; border-top: 1px solid var(--ligne); }
+.options tr:first-child td { border-top: 0; }
+.options td:last-child { text-align: right; font-family: var(--mono); white-space: nowrap; color: var(--egee-fonce); }
+.options small { display: block; color: var(--gris); font-size: .85rem; }
+.mention { margin-top: 14px; font-size: .85rem; color: var(--gris); }
+
+/* À propos */
+.apropos { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.portrait { aspect-ratio: 3 / 4; max-width: 340px; width: 100%; border-radius: 999px 999px 16px 16px; background: var(--egee-pale); display: grid; place-items: center; border: 1px solid var(--ligne); }
+.portrait span { font-family: var(--titre); font-size: 5rem; color: var(--egee); }
+.atouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; margin-top: 26px; }
+.atout b { display: block; margin-bottom: 4px; }
+.atout p { color: var(--gris); font-size: .95rem; }
+
+/* FAQ */
+.faq { display: grid; gap: 0; border-top: 1px solid var(--ligne); max-width: 820px; }
+.faq details { border-bottom: 1px solid var(--ligne); }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 40px 20px 0; position: relative; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 6px; top: 16px; font-family: var(--titre); font-size: 1.6rem; color: var(--egee); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding: 0 0 20px; color: var(--gris); max-width: 68ch; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); }
+.coord { display: grid; gap: 16px; align-content: start; margin-top: 24px; }
+.coord div { display: grid; gap: 2px; }
+.coord small { color: var(--gris); font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; }
+.coord span { font-weight: 700; font-size: 1.1rem; user-select: all; }
+.copier { justify-self: start; margin-top: 4px; }
+form { background: var(--carte); border: 1px solid var(--ligne); border-radius: 22px; padding: clamp(20px, 4vw, 32px); display: grid; gap: 16px; }
+.champs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.champ { display: grid; gap: 6px; }
+.champ--large { grid-column: 1 / -1; }
+.champ label { font-size: .9rem; font-weight: 600; color: var(--gris); }
+.champ input, .champ select, .champ textarea { width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid var(--ligne); border-radius: 12px; background: #fff; }
+.champ textarea { min-height: 120px; resize: vertical; }
+.champ input:focus, .champ select:focus, .champ textarea:focus { outline: none; border-color: var(--egee); box-shadow: 0 0 0 3px var(--egee-pale); }
+.erreur { color: var(--alerte); font-size: .9rem; min-height: 1.2em; }
+.envoye { padding: 14px 16px; border-radius: 12px; background: var(--egee-pale); color: var(--egee-fonce); }
+
+/* Pied */
+.pied { font-size: .9rem; color: var(--gris); }
+.pied .int { padding-block: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; }
+
+@media (max-width: 980px) {
+  .offres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .formules, .projets { grid-template-columns: 1fr; }
+  .etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .menu { display: none; }
+}
+@media (max-width: 760px) {
+  .heros .int, .scene, .apropos, .contact, .nfc { grid-template-columns: 1fr; }
+  .arche { max-width: 360px; margin: 0 auto; width: 100%; }
+  .offres, .etapes, .atouts, .champs { grid-template-columns: 1fr; }
+  .entete .bouton { display: none; }
+  .portrait { max-width: 240px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+
+</head>
+<body>
+<header class="entete bande">
+  <div class="int">
+    <a class="marque" href="#accueil" aria-label="Mokrani Studio, accueil">
+      <svg width="30" height="36" viewBox="0 0 30 36" aria-hidden="true"><path d="M2 35V15A13 13 0 0 1 28 15V35Z" fill="#1D4E8F"/><path d="M9 30V17l6 7 6-7v13" fill="none" stroke="#F4EFE6" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <b>Mokrani Studio</b>
+    </a>
+    <nav class="menu" aria-label="Sections">
+      <a href="#offres">Offres</a>
+      <a href="#demos">Démos</a>
+      <a href="#methode">Méthode</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="bouton bouton--petit" href="#contact">Demander un devis</a>
+  </div>
+</header>
+
+<main>
+  <section class="heros bande" id="accueil">
+    <div class="int">
+      <div>
+        <p class="etiquette">Troyes · Paris · Yvelines</p>
+        <h1>Le site, la réservation et les outils <em>sur mesure</em> de votre commerce.</h1>
+        <p class="chapo">Je crée des sites internet rapides et soignés, je branche la prise de rendez-vous ou la commande en ligne, et je développe les petits logiciels qui vous font gagner du temps au quotidien. Sans abonnement imposé, sans commission sur vos ventes.</p>
+        <div class="actions">
+          <a class="bouton" href="#contact">Obtenir une maquette gratuite</a>
+          <a class="bouton bouton--clair" href="#demos">Essayer les démos</a>
+        </div>
+        <div class="faits">
+          <span><b>Maquette offerte</b> sous 72 h</span>
+          <span><b>Site en ligne</b> en 1 à 2 semaines</span>
+          <span><b>Un seul interlocuteur</b>, du début à la fin</span>
+        </div>
+      </div>
+      <div class="arche" aria-label="Exemple : notification de réservation sur le téléphone d'un coiffeur">
+        <div class="telephone" aria-hidden="true">
+          <div class="barre"><span>9:41</span><span>Barber · Espace pro</span></div>
+          <div class="notif"><b>Nouveau RDV · Karim</b><small>Sam. 9h30 · Coupe + Barbe · 26 €</small></div>
+          <div class="mini-carte">
+            <b>Samedi 24</b>
+            <span style="color:var(--gris);font-size:.8rem">Créneaux du matin</span>
+            <div class="mini-creneaux"><span>8h</span><span class="pris">8h30</span><span>9h</span><span class="choisi">9h30</span><span class="pris">10h</span><span>10h30</span></div>
+          </div>
+          <div class="mini-carte"><span style="font-size:.8rem;color:var(--gris)">Aujourd'hui</span><b>7 rendez-vous · 164 €</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="int" style="padding-block:0 28px"><div class="frise" aria-hidden="true"></div></div>
+  </section>
+
+  <section class="bande bande--sable" id="offres">
+    <div class="int">
+      <div class="tete">
+        <p class="etiquette">Ce que je fais</p>
+        <h2>Quatre services, pensés pour les commerçants.</h2>
+        <p class="chapo">Coiffeurs, restaurants, boucheries, garages, instituts : je pars de votre façon de travailler, pas d'un modèle tout fait.</p>
+      </div>
+      <div class="offres">
+        <article class="offre">
+          <div class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h3>Site vitrine</h3>
+          <p>Votre commerce bien présenté sur téléphone et ordinateur, et facile à trouver sur Google.</p>
+          <ul><li>Photos, carte ou prestations, horaires</li><li>Itinéraire, appel en un clic, avis Google</li><li>Nom de domaine à votre nom</li></ul>
+          <span class="prix">dès 350 €</span>
+        </article>
+        <article class="offre">
+          <div class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <h3>Réservation et commande</h3>
+          <p>Vos clients réservent ou commandent seuls, vous êtes prévenu sur votre téléphone.</p>
+          <ul><li>Prestations cumulables, plusieurs employés</li><li>Notification instantanée à chaque RDV</li><li>Mail de confirmation et rappel agenda</li></ul>
+          <span class="prix">dès 590 €</span>
+        </article>
+        <article class="offre">
+          <div class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
+          <h3>Logiciel sur mesure</h3>
+          <p>L'outil exact qui remplace vos feuilles papier et vos tableaux Excel.</p>
+          <ul><li>Relevés HACCP, traçabilité, stocks</li><li>Prise de commandes, planning, caisse du soir</li><li>Utilisable sur tablette, même à plusieurs</li></ul>
+          <span class="prix">sur devis, dès 900 €</span>
+        </article>
+        <article class="offre">
+          <div class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></div>
+          <h3>Accompagnement informatique</h3>
+          <p>Je m'occupe de la partie technique pour que vous restiez sur votre métier.</p>
+          <ul><li>Fiche Google, cartes NFC pour les avis</li><li>Carte de fidélité digitale</li><li>Installation, formation, dépannage</li></ul>
+          <span class="prix">dès 30 € / heure</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande" id="demos">
+    <div class="int">
+      <div class="tete">
+        <p class="etiquette">Démos à essayer</p>
+        <h2>Testez-les comme le ferait votre client.</h2>
+        <p class="chapo">Ces démos tournent ici même, avec des données d'exemple. Rien n'est envoyé.</p>
+      </div>
+      <div class="onglets" role="tablist" aria-label="Démos">
+        <button role="tab" id="t-resa" aria-controls="p-resa" aria-selected="true">Réservation</button>
+        <button role="tab" id="t-cmd" aria-controls="p-cmd" aria-selected="false">Commande à emporter</button>
+        <button role="tab" id="t-fid" aria-controls="p-fid" aria-selected="false">Carte de fidélité</button>
+        <button role="tab" id="t-log" aria-controls="p-log" aria-selected="false">Logiciel sur mesure</button>
+        <button role="tab" id="t-nfc" aria-controls="p-nfc" aria-selected="false">Avis Google NFC</button>
+      </div>
+
+      <div class="scene" role="tabpanel" id="p-resa" aria-labelledby="t-resa">
+        <div class="scene__texte">
+          <h3>Un client réserve en 30 secondes</h3>
+          <p>Il choisit sa prestation principale, ajoute ce qu'il veut en plus, puis son créneau. Le prix se calcule tout seul.</p>
+          <ul><li>Le coiffeur reçoit une notification sur son téléphone</li><li>Le client reçoit son mail et ajoute le RDV à son agenda</li><li>Tarif différent sur rendez-vous possible</li></ul>
+          <a class="bouton bouton--clair bouton--petit" href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Voir la démo complète d'un barbier</a>
+        </div>
+        <div class="ecran">
+          <div class="ecran__haut"><b>Salon Atlas · Réserver</b><span class="badge-demo">Démo</span></div>
+          <p class="sous" style="margin-top:0">Prestation principale</p>
+          <div class="choix" id="r-principal"></div>
+          <p class="sous">En plus (plusieurs choix possibles)</p>
+          <div class="choix" id="r-options"></div>
+          <p class="sous">Samedi 24 · créneau</p>
+          <div class="choix" id="r-heures"></div>
+          <div class="ligne-total"><span id="r-libelle">Coupe</span><strong id="r-total">18 €</strong></div>
+          <button class="bouton" type="button" id="r-valider" style="margin-top:14px;width:100%">Confirmer le rendez-vous</button>
+          <p class="message" id="r-message" hidden></p>
+        </div>
+      </div>
+
+      <div class="scene" role="tabpanel" id="p-cmd" aria-labelledby="t-cmd" hidden>
+        <div class="scene__texte">
+          <h3>Commander avant d'arriver, sans file d'attente</h3>
+          <p>Le client compose sa commande et choisit son heure de retrait. Vous la recevez en direct, sans payer de commission à une plateforme de livraison.</p>
+          <ul><li>Votre carte et vos prix, modifiables par vous</li><li>Créneaux de retrait pour lisser le rush du midi</li><li>Idéal pour snack, restaurant, boulangerie, boucherie</li></ul>
+        </div>
+        <div class="ecran">
+          <div class="ecran__haut"><b>Le Comptoir · À emporter</b><span class="badge-demo">Démo</span></div>
+          <div class="plats" id="c-plats"></div>
+          <p class="sous">Retrait</p>
+          <div class="choix" id="c-retrait"></div>
+          <div class="ligne-total"><span id="c-nb">0 article</span><strong id="c-total">0,00 €</strong></div>
+          <button class="bouton" type="button" id="c-valider" style="margin-top:14px;width:100%">Valider la commande</button>
+          <p class="message" id="c-message" hidden></p>
+        </div>
+      </div>
+
+      <div class="scene" role="tabpanel" id="p-fid" aria-labelledby="t-fid" hidden>
+        <div class="scene__texte">
+          <h3>La carte de fidélité qui ne se perd jamais</h3>
+          <p>Plus de carte en carton oubliée à la maison. Le client est reconnu à son numéro de téléphone, le commerçant valide le passage en un geste.</p>
+          <ul><li>Récompense au choix : 10e coupe offerte, café, remise</li><li>Le client consulte sa carte par un simple lien</li><li>Vous voyez vos clients fidèles et leur fréquence</li></ul>
+        </div>
+        <div class="ecran">
+          <div class="ecran__haut"><b>Carte de Sofia · 06 •• •• 42</b><span class="badge-demo">Démo</span></div>
+          <div class="fidelite">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><b>Boulangerie du Pont</b><span style="font-family:var(--mono);font-size:.8rem" id="f-compte">6 / 10</span></div>
+            <div class="tampons" id="f-tampons"></div>
+            <span style="font-size:.9rem;color:#D6E1F0">10e passage : une viennoiserie offerte</span>
+          </div>
+          <div class="actions" style="margin-top:16px">
+            <button class="bouton bouton--petit" type="button" id="f-ajouter">Valider un passage</button>
+            <button class="bouton bouton--clair bouton--petit" type="button" id="f-reset">Recommencer</button>
+          </div>
+          <p class="message" id="f-message" hidden></p>
+        </div>
+      </div>
+
+      <div class="scene" role="tabpanel" id="p-log" aria-labelledby="t-log" hidden>
+        <div class="scene__texte">
+          <h3>Un logiciel fait pour votre métier</h3>
+          <p>Exemple : le suivi des températures d'une boucherie. Fini le classeur papier, chaque relevé est daté, signé et prêt pour un contrôle sanitaire.</p>
+          <ul><li>Alerte immédiate si une chambre froide dérive</li><li>Historique exportable pour les services vétérinaires</li><li>Le même principe marche pour les stocks, les commandes ou le planning</li></ul>
+        </div>
+        <div class="ecran">
+          <div class="ecran__haut"><b>Relevés HACCP · ce matin</b><span class="badge-demo">Démo</span></div>
+          <div class="tableau-scroll">
+            <table class="frigos">
+              <thead><tr><th>Équipement</th><th>Consigne</th><th>Relevé</th><th>État</th></tr></thead>
+              <tbody id="h-lignes"></tbody>
+            </table>
+          </div>
+          <div class="graphe" aria-label="Température de la chambre froide sur 7 relevés">
+            <p class="sous" style="margin-top:6px">Chambre froide · 7 derniers relevés (°C)</p>
+            <svg id="h-graphe" viewBox="0 0 320 110" role="img" aria-label="Courbe des températures"></svg>
+          </div>
+          <button class="bouton bouton--petit" type="button" id="h-relever" style="margin-top:10px">Faire un nouveau relevé</button>
+        </div>
+      </div>
+
+      <div class="scene" role="tabpanel" id="p-nfc" aria-labelledby="t-nfc" hidden>
+        <div class="scene__texte">
+          <h3>Plus d'avis Google, sans demander deux fois</h3>
+          <p>Une carte posée sur le comptoir : le client approche son téléphone et tombe directement sur la page pour laisser un avis. Un QR code au dos pour les autres.</p>
+          <ul><li>Carte personnalisée aux couleurs du commerce</li><li>Fonctionne sans appli, iPhone et Android</li><li>Un avis de plus, c'est plus de clients qui vous trouvent</li></ul>
+        </div>
+        <div class="ecran">
+          <div class="ecran__haut"><b>Effet sur la fiche Google</b><span class="badge-demo">Simulation</span></div>
+          <div class="nfc">
+            <div class="carte-nfc" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 7.5a6.5 6.5 0 0 1 0 9"/><path d="M12 4.5a10.5 10.5 0 0 1 0 15"/><path d="M15.5 1.8a14 14 0 0 1 0 20.4"/></svg>
+              <div><b>Votre avis compte</b><div style="font-size:.78rem;opacity:.75">Approchez votre téléphone</div></div>
+            </div>
+            <div style="display:grid;gap:8px">
+              <span class="note-g" id="n-note">4,3</span>
+              <div class="etoiles" aria-hidden="true">★★★★★</div>
+              <span style="color:var(--gris);font-size:.9rem" id="n-nb">48 avis</span>
+            </div>
+          </div>
+          <button class="bouton bouton--petit" type="button" id="n-simuler" style="margin-top:18px">Simuler 3 mois avec la carte</button>
+          <p class="message" id="n-message" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande bande--sable" id="realisations">
+    <div class="int">
+      <div class="tete">
+        <p class="etiquette">Réalisations</p>
+        <h2>Des projets concrets, pour de vrais commerces.</h2>
+      </div>
+      <div class="projets">
+        <article class="projet">
+          <div class="projet__visuel" style="background:#100F0E">
+            <div style="text-align:center;color:#F3EDE1"><div style="font-family:var(--titre);font-style:italic;font-size:2rem">Barber</div><div style="font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:#C9A45C">TROYES</div></div>
+          </div>
+          <div class="projet__corps">
+            <span class="statut">Maquette</span>
+            <h3>Site et réservation d'un barbier</h3>
+            <p>Prestations cumulables, deux coiffeurs, tarif sur rendez-vous, notification au coiffeur, mail et rappel agenda au client.</p>
+            <a href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Ouvrir la démo</a>
+          </div>
+        </article>
+        <article class="projet">
+          <div class="projet__visuel" style="background:var(--egee)">
+            <svg width="120" height="80" viewBox="0 0 120 80" aria-hidden="true"><rect x="4" y="6" width="112" height="68" rx="8" fill="#F4EFE6"/><rect x="14" y="18" width="40" height="8" rx="3" fill="#1D4E8F"/><rect x="14" y="34" width="92" height="6" rx="3" fill="#D9D0BF"/><rect x="14" y="46" width="92" height="6" rx="3" fill="#D9D0BF"/><rect x="14" y="58" width="60" height="6" rx="3" fill="#D9D0BF"/><circle cx="100" cy="22" r="6" fill="#2F7A4F"/></svg>
+          </div>
+          <div class="projet__corps">
+            <span class="statut statut--prod">En service</span>
+            <h3>Logiciel HACCP et commandes</h3>
+            <p>Pour une boucherie de demi-gros des Yvelines : relevés de températures, traçabilité et prise de commandes sur tablette.</p>
+          </div>
+        </article>
+        <article class="projet">
+          <div class="projet__visuel" style="background:#7E1B27">
+            <div style="text-align:center;color:#fff"><div style="font-family:var(--titre);font-size:1.8rem">Carte NFC</div><div style="font-size:.8rem;opacity:.8">avis Google · recto / verso</div></div>
+          </div>
+          <div class="projet__corps">
+            <span class="statut">Maquette</span>
+            <h3>Cartes avis Google pour une boucherie</h3>
+            <p>Carte sans contact aux couleurs du magasin, avec QR code au dos, pour récolter des avis au comptoir.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande bande--nuit" id="methode">
+    <div class="int">
+      <div class="tete">
+        <p class="etiquette" style="color:#E9DDC4">Méthode</p>
+        <h2>De l'appel à la mise en ligne, en quatre étapes.</h2>
+      </div>
+      <div class="etapes">
+        <div class="etape"><h3>On se parle</h3><p>Un appel ou un passage en boutique pour comprendre votre métier et vos besoins.</p><span class="duree">20 minutes · gratuit</span></div>
+        <div class="etape"><h3>Je vous montre</h3><p>Une maquette à vos couleurs, cliquable sur votre téléphone, avant de vous engager.</p><span class="duree">sous 72 h · gratuit</span></div>
+        <div class="etape"><h3>On met en ligne</h3><p>Textes, photos, nom de domaine, fiche Google : je m'occupe de tout le technique.</p><span class="duree">1 à 2 semaines</span></div>
+        <div class="etape"><h3>Je reste là</h3><p>Une modification d'horaires ou de prix ? Un message suffit. Je vous forme aussi à faire seul.</p><span class="duree">suivi inclus 1 mois</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande" id="tarifs">
+    <div class="int">
+      <div class="tete">
+        <p class="etiquette">Tarifs</p>
+        <h2>Des prix clairs, payés une fois.</h2>
+        <p class="chapo">Le site vous appartient. Pas d'abonnement obligatoire, pas de commission sur vos ventes ou vos rendez-vous.</p>
+      </div>
+      <div class="formules">
+        <article class="formule">
+          <h3>Vitrine</h3>
+          <div class="montant">350 € <small>une fois</small></div>
+          <ul><li>Site une page, mobile et ordinateur</li><li>Prestations ou carte, horaires, photos</li><li>Bouton appel, itinéraire, avis Google</li><li>Référencement Google de base</li></ul>
+          <a class="bouton bouton--clair" href="#contact" data-formule="Vitrine">Choisir Vitrine</a>
+        </article>
+        <article class="formule formule--phare">
+          <h3>Réservation</h3>
+          <div class="montant">590 € <small>une fois</small></div>
+          <ul><li>Tout le pack Vitrine</li><li>Réservation ou commande en ligne</li><li>Notifications au commerçant</li><li>Mail de confirmation et rappel agenda</li><li>Espace pro pour voir son planning</li></ul>
+          <a class="bouton" href="#contact" data-formule="Réservation">Choisir Réservation</a>
+        </article>
+        <article class="formule">
+          <h3>Sur mesure</h3>
+          <div class="montant">dès 900 € <small>sur devis</small></div>
+          <ul><li>Logiciel adapté à votre métier</li><li>HACCP, stocks, commandes, planning</li><li>Sur tablette, ordinateur ou téléphone</li><li>Formation de l'équipe incluse</li></ul>
+          <a class="bouton bouton--clair" href="#contact" data-formule="Sur mesure">Parler de mon projet</a>
+        </article>
+      </div>
+      <table class="options">
+        <tbody>
+          <tr><td>Nom de domaine et hébergement, 1re année<small>Ensuite environ 5 € par mois, payés directement par vous</small></td><td>50 €</td></tr>
+          <tr><td>Carte NFC avis Google<small>Personnalisée, avec QR code au dos</small></td><td>dès 25 €</td></tr>
+          <tr><td>Carte de fidélité digitale<small>Ajoutée à votre site ou seule</small></td><td>dès 150 €</td></tr>
+          <tr><td>Accompagnement informatique<small>Installation, fiche Google, formation, dépannage</small></td><td>30 € / h</td></tr>
+        </tbody>
+      </table>
+      <p class="mention">TVA non applicable, art. 293 B du CGI. Prix indicatifs : le devis final dépend de votre projet.</p>
+    </div>
+  </section>
+
+  <section class="bande bande--sable" id="apropos">
+    <div class="int apropos">
+      <div class="portrait" aria-hidden="true"><span>AM</span></div>
+      <div>
+        <p class="etiquette">Qui suis-je</p>
+        <h2 style="margin-top:8px">Ali Mokrani, étudiant ingénieur et artisan du web.</h2>
+        <p class="chapo">Élève ingénieur à l'EPF, j'ai grandi entre les commerces de ma famille. Je sais ce que coûte une heure perdue sur la paperasse un jour de rush. Je construis donc des outils simples, qui marchent, et je reste joignable.</p>
+        <div class="atouts">
+          <div class="atout"><b>Local</b><p>Je passe vous voir à Troyes, en région parisienne ou dans les Yvelines.</p></div>
+          <div class="atout"><b>Réactif</b><p>Réponse sous 24 h, maquette sous 72 h.</p></div>
+          <div class="atout"><b>Sans jargon</b><p>Je vous explique tout simplement, et vous gardez la main sur votre site.</p></div>
+          <div class="atout"><b>Vrai terrain</b><p>Des outils déjà utilisés au quotidien dans une boucherie de demi-gros.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande" id="faq">
+    <div class="int">
+      <div class="tete">
+        <p class="etiquette">Questions fréquentes</p>
+        <h2>Ce qu'on me demande souvent.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Combien de temps pour avoir mon site ?</summary><p>La maquette arrive sous 72 h. Une fois vos textes et photos réunis, le site est en ligne en une à deux semaines. Un logiciel sur mesure prend en général trois à six semaines.</p></details>
+        <details><summary>Le site m'appartient-il vraiment ?</summary><p>Oui. Le nom de domaine est à votre nom et vous recevez tous les fichiers. Si un jour vous changez de prestataire, vous partez avec votre site.</p></details>
+        <details><summary>Quelle différence avec Planity ou Uber Eats ?</summary><p>Ces plateformes prennent un abonnement mensuel ou une commission sur chaque commande, et vos clients voient aussi vos concurrents. Ici, vous payez une fois, la réservation se fait sur votre propre site, et les clients restent les vôtres.</p></details>
+        <details><summary>Et si je veux changer un prix ou mes horaires ?</summary><p>Pendant le premier mois, c'est inclus. Ensuite, un message suffit pour une petite modification, ou je vous montre comment la faire vous-même en deux minutes.</p></details>
+        <details><summary>Comment se passe le paiement ?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
+        <details><summary>Je ne suis pas à l'aise avec l'informatique. C'est un problème ?</summary><p>Non, c'est justement pour ça que j'existe. Je m'occupe de tout le technique et je vous forme sur place, à votre rythme.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande bande--sable" id="contact">
+    <div class="int contact">
+      <div>
+        <p class="etiquette">Contact</p>
+        <h2 style="margin-top:8px">Parlons de votre commerce.</h2>
+        <p class="chapo">Décrivez votre activité en quelques mots : je reviens vers vous sous 24 h avec une première idée et un prix.</p>
+        <div class="coord">
+          <div><small>Téléphone</small><span id="tel">07 82 02 36 57</span></div>
+          <div><small>Mail</small><span id="mail">aligibril2007@gmail.com</span><button class="bouton bouton--clair bouton--petit copier" type="button" data-copier="mail">Copier l'adresse</button></div>
+          <div><small>Zones</small><span style="user-select:auto">Troyes · Paris · Yvelines</span></div>
+        </div>
+      </div>
+      <form id="formulaire" novalidate>
+        <div class="champs">
+          <div class="champ"><label for="f-nom">Votre nom</label><input id="f-nom" autocomplete="name" required></div>
+          <div class="champ"><label for="f-commerce">Votre commerce</label><input id="f-commerce" placeholder="Ex. : salon de coiffure, restaurant"></div>
+          <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78"></div>
+          <div class="champ"><label for="f-formule">Ce qui vous intéresse</label>
+            <select id="f-formule"><option>Vitrine</option><option selected>Réservation</option><option>Sur mesure</option><option>Accompagnement informatique</option><option>Je ne sais pas encore</option></select></div>
+          <div class="champ champ--large"><label for="f-msg">Votre besoin</label><textarea id="f-msg" placeholder="Ex. : je veux que mes clients puissent réserver le samedi matin."></textarea></div>
+        </div>
+        <p class="erreur" id="f-erreur" role="alert"></p>
+        <button class="bouton" type="submit">Préparer ma demande</button>
+        <div class="envoye" id="f-envoye" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="pied bande">
+  <div class="int">
+    <span>© 2026 Mokrani Studio · Ali Mokrani, entrepreneur individuel · SIRET 106 632 243 00015</span>
+    <span>Sites internet · Réservation en ligne · Logiciels sur mesure · Accompagnement informatique</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function el(tag, attrs, txt) {
+    var n = document.createElement(tag);
+    for (var k in attrs || {}) if (attrs[k] !== false && attrs[k] != null) n.setAttribute(k, attrs[k] === true ? "" : attrs[k]);
+    if (txt != null) n.textContent = txt;
+    return n;
+  }
+  function euros(v) { return v.toFixed(2).replace(".", ",") + " €"; }
+
+  /* Onglets */
+  var onglets = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function ouvrir(btn) {
+    onglets.forEach(function (b) {
+      var actif = b === btn;
+      b.setAttribute("aria-selected", actif ? "true" : "false");
+      b.tabIndex = actif ? 0 : -1;
+      $(b.getAttribute("aria-controls")).hidden = !actif;
+    });
+  }
+  onglets.forEach(function (b, i) {
+    b.addEventListener("click", function () { ouvrir(b); });
+    b.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        var j = (i + (e.key === "ArrowRight" ? 1 : onglets.length - 1)) % onglets.length;
+        onglets[j].focus(); ouvrir(onglets[j]);
+      }
+    });
+  });
+  ouvrir(onglets[0]);
+
+  /* Démo réservation */
+  var PRINC = [{ id: "coupe", nom: "Coupe", p: 18 }, { id: "barbe", nom: "Barbe", p: 8 }, { id: "pack", nom: "Pack complet", p: 35 }];
+  var OPTS = [{ id: "barbe", nom: "Barbe", p: 8 }, { id: "masque", nom: "Masque visage", p: 4 }, { id: "cire", nom: "Cire", p: 5 }];
+  var HEURES = ["8h", "8h30", "9h", "9h30", "10h", "10h30", "11h", "11h30", "12h"], PRISES = ["8h30", "10h", "11h"];
+  var resa = { principal: "coupe", options: [], heure: null };
+  function rendreResa() {
+    var c = $("r-principal"); c.textContent = "";
+    PRINC.forEach(function (x) {
+      var b = el("button", { type: "button", "class": "puce", "aria-pressed": resa.principal === x.id ? "true" : "false" }, x.nom + " · " + x.p + " €");
+      b.addEventListener("click", function () { resa.principal = x.id; resa.options = resa.options.filter(function (o) { return x.id === "coupe" || o !== "barbe"; }); if (x.id === "pack") resa.options = []; rendreResa(); });
+      c.appendChild(b);
+    });
+    var o = $("r-options"); o.textContent = "";
+    OPTS.forEach(function (x) {
+      var inclus = resa.principal === "pack", cache = x.id === "barbe" && resa.principal !== "coupe";
+      if (cache) return;
+      var b = el("button", { type: "button", "class": "puce", "aria-pressed": resa.options.indexOf(x.id) >= 0 ? "true" : "false", disabled: inclus }, "+ " + x.nom + (inclus ? " (inclus)" : " · " + x.p + " €"));
+      b.addEventListener("click", function () {
+        var i = resa.options.indexOf(x.id);
+        if (i >= 0) resa.options.splice(i, 1); else resa.options.push(x.id);
+        rendreResa();
+      });
+      o.appendChild(b);
+    });
+    var h = $("r-heures"); h.textContent = "";
+    HEURES.forEach(function (x) {
+      var b = el("button", { type: "button", "class": "puce", "aria-pressed": resa.heure === x ? "true" : "false", disabled: PRISES.indexOf(x) >= 0, "aria-label": x + (PRISES.indexOf(x) >= 0 ? ", complet" : "") }, x);
+      b.addEventListener("click", function () { resa.heure = x; rendreResa(); });
+      h.appendChild(b);
+    });
+    var p = PRINC.filter(function (x) { return x.id === resa.principal; })[0];
+    var total = p.p, noms = [p.nom];
+    resa.options.forEach(function (id) { var x = OPTS.filter(function (y) { return y.id === id; })[0]; total += x.p; noms.push(x.nom); });
+    $("r-libelle").textContent = noms.join(" + ") + (resa.heure ? " · " + resa.heure : "");
+    $("r-total").textContent = total + " €";
+  }
+  $("r-valider").addEventListener("click", function () {
+    var m = $("r-message"); m.hidden = false;
+    if (!resa.heure) { m.textContent = "Choisissez d'abord un créneau."; return; }
+    m.textContent = "C'est réservé pour samedi " + resa.heure + ". Le coiffeur vient de recevoir une notification, et le client son mail de confirmation.";
+  });
+  rendreResa();
+
+  /* Démo commande */
+  var PLATS = [
+    { id: "tacos", nom: "Tacos poulet", d: "Frites maison, sauce au choix", p: 8.5 },
+    { id: "burger", nom: "Burger du chef", d: "Bœuf, cheddar affiné", p: 10.9 },
+    { id: "salade", nom: "Salade grecque", d: "Feta, olives, concombre", p: 9.0 },
+    { id: "boisson", nom: "Boisson 33 cl", d: "Au choix sur place", p: 2.0 }
+  ];
+  var RETRAITS = ["12h00", "12h15", "12h30", "12h45", "13h00"];
+  var panier = { tacos: 1, salade: 1, boisson: 2 }, retrait = "12h15";
+  function rendreCmd() {
+    var c = $("c-plats"); c.textContent = "";
+    var total = 0, nb = 0;
+    PLATS.forEach(function (x) {
+      var q = panier[x.id] || 0; total += q * x.p; nb += q;
+      var l = el("div", { "class": "plat" });
+      var t = el("div"); t.appendChild(el("b", null, x.nom)); t.appendChild(el("small", null, x.d));
+      var px = el("span", { "class": "px" }, euros(x.p));
+      var cpt = el("div", { "class": "compteur" });
+      var moins = el("button", { type: "button", "aria-label": "Retirer un " + x.nom }, "−");
+      var plus = el("button", { type: "button", "aria-label": "Ajouter un " + x.nom }, "+");
+      moins.addEventListener("click", function () { panier[x.id] = Math.max(0, q - 1); rendreCmd(); });
+      plus.addEventListener("click", function () { panier[x.id] = q + 1; rendreCmd(); });
+      cpt.appendChild(moins); cpt.appendChild(el("span", { "aria-live": "polite" }, String(q))); cpt.appendChild(plus);
+      l.appendChild(t); l.appendChild(px); l.appendChild(cpt); c.appendChild(l);
+    });
+    var r = $("c-retrait"); r.textContent = "";
+    RETRAITS.forEach(function (x) {
+      var b = el("button", { type: "button", "class": "puce", "aria-pressed": retrait === x ? "true" : "false", disabled: x === "12h30" }, x);
+      b.addEventListener("click", function () { retrait = x; rendreCmd(); });
+      r.appendChild(b);
+    });
+    $("c-nb").textContent = nb + (nb > 1 ? " articles" : " article") + " · retrait " + retrait;
+    $("c-total").textContent = euros(total);
+  }
+  $("c-valider").addEventListener("click", function () {
+    var nb = 0; for (var k in panier) nb += panier[k];
+    var m = $("c-message"); m.hidden = false;
+    m.textContent = nb ? "Commande n° 0427 reçue en cuisine. Elle sera prête à " + retrait + ", le client est prévenu." : "Ajoutez au moins un article.";
+  });
+  rendreCmd();
+
+  /* Démo fidélité */
+  var passages = 6;
+  function rendreFid() {
+    var t = $("f-tampons"); t.textContent = "";
+    for (var i = 1; i <= 10; i++) {
+      var cls = "tampon" + (i <= passages ? " ok" : "") + (i === 10 ? " cadeau" : "");
+      t.appendChild(el("span", { "class": cls, "aria-label": "Passage " + i + (i <= passages ? ", validé" : "") }, i === 10 ? "★" : String(i)));
+    }
+    $("f-compte").textContent = passages + " / 10";
+  }
+  $("f-ajouter").addEventListener("click", function () {
+    var m = $("f-message");
+    if (passages >= 10) { m.hidden = false; m.textContent = "Carte complète : la récompense a été offerte. Une nouvelle carte démarre."; passages = 0; rendreFid(); return; }
+    passages++; rendreFid(); m.hidden = false;
+    m.textContent = passages === 10 ? "10e passage ! Sofia reçoit sa viennoiserie offerte." : "Passage validé. Encore " + (10 - passages) + " avant la récompense.";
+  });
+  $("f-reset").addEventListener("click", function () { passages = 6; $("f-message").hidden = true; rendreFid(); });
+  rendreFid();
+
+  /* Démo HACCP */
+  var EQUIP = [
+    { nom: "Chambre froide", min: 0, max: 4, t: 2.4 },
+    { nom: "Vitrine réfrigérée", min: 0, max: 4, t: 3.1 },
+    { nom: "Armoire positive", min: 0, max: 4, t: 3.8 },
+    { nom: "Vitrine négative", min: -25, max: -18, t: -19.5 }
+  ];
+  var historique = [2.1, 2.6, 2.3, 3.0, 2.7, 2.2, 2.4];
+  function fmt(v) { return (v > 0 ? "+" : "") + v.toFixed(1).replace(".", ",") + " °C"; }
+  function rendreHaccp() {
+    var tb = $("h-lignes"); tb.textContent = "";
+    EQUIP.forEach(function (e) {
+      var ok = e.t >= e.min && e.t <= e.max;
+      var tr = el("tr");
+      tr.appendChild(el("td", null, e.nom));
+      tr.appendChild(el("td", { "class": "t" }, e.min + " à " + e.max));
+      tr.appendChild(el("td", { "class": "t" }, fmt(e.t)));
+      var td = el("td"); td.appendChild(el("span", { "class": "etat " + (ok ? "etat--ok" : "etat--ko") }, ok ? "Conforme" : "Alerte"));
+      tr.appendChild(td); tb.appendChild(tr);
+    });
+    var svg = $("h-graphe"), W = 320, H = 110, g = 28, d = 8, haut = 14;
+    var y = function (v) { return haut + (6 - v) / 6 * (H - haut - 20); };
+    var x = function (i) { return g + i * ((W - g - d) / (historique.length - 1)); };
+    var s = "";
+    [0, 2, 4, 6].forEach(function (v) {
+      s += '<line x1="' + g + '" x2="' + (W - d) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="#D9D0BF" stroke-width="1"/>';
+      s += '<text x="' + (g - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="10" fill="#59637A" font-family="IBM Plex Mono, monospace">' + v + '</text>';
+    });
+    s += '<rect x="' + g + '" y="' + y(4) + '" width="' + (W - g - d) + '" height="' + (y(0) - y(4)) + '" fill="#DCE6F2" opacity=".55"/>';
+    var pts = historique.map(function (v, i) { return x(i) + "," + y(v); }).join(" ");
+    s += '<polyline points="' + pts + '" fill="none" stroke="#1D4E8F" stroke-width="2.2" stroke-linejoin="round"/>';
+    historique.forEach(function (v, i) {
+      var dern = i === historique.length - 1, ko = v > 4 || v < 0;
+      s += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="' + (dern ? 4.5 : 2.6) + '" fill="' + (ko ? "#B4442E" : "#1D4E8F") + '"/>';
+    });
+    svg.innerHTML = s;
+  }
+  $("h-relever").addEventListener("click", function () {
+    EQUIP.forEach(function (e, i) {
+      var centre = (e.min + e.max) / 2, ecart = (e.max - e.min) / 2;
+      var v = centre + (Math.random() * 2 - 1) * ecart * (i === 2 ? 1.5 : 0.9);
+      e.t = Math.round(v * 10) / 10;
+    });
+    historique.push(EQUIP[0].t); if (historique.length > 7) historique.shift();
+    rendreHaccp();
+  });
+  rendreHaccp();
+
+  /* Démo NFC */
+  var nfcFait = false;
+  $("n-simuler").addEventListener("click", function () {
+    var m = $("n-message"); m.hidden = false;
+    if (nfcFait) { $("n-note").textContent = "4,3"; $("n-nb").textContent = "48 avis"; $("n-simuler").textContent = "Simuler 3 mois avec la carte"; m.hidden = true; nfcFait = false; return; }
+    var n = 48, note = 4.3, cible = 112, k = 0;
+    var timer = setInterval(function () {
+      k++; n = Math.round(48 + (cible - 48) * k / 20); note = 4.3 + 0.4 * k / 20;
+      $("n-nb").textContent = n + " avis"; $("n-note").textContent = note.toFixed(1).replace(".", ",");
+      if (k >= 20) { clearInterval(timer); m.textContent = "Exemple illustratif : quand demander un avis prend deux secondes, beaucoup plus de clients satisfaits le laissent."; }
+    }, 40);
+    $("n-simuler").textContent = "Revenir au départ"; nfcFait = true;
+  });
+
+  /* Boutons de formule -> présélection du formulaire */
+  document.querySelectorAll("[data-formule]").forEach(function (a) {
+    a.addEventListener("click", function () { $("f-formule").value = a.getAttribute("data-formule"); });
+  });
+
+  /* Copier */
+  document.querySelectorAll("[data-copier]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var cible = $(b.getAttribute("data-copier")), texte = cible.textContent.trim();
+      function selection() { var r = document.createRange(); r.selectNodeContents(cible); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texte).then(function () { b.textContent = "Adresse copiée"; }, function () { selection(); b.textContent = "Sélectionnée, faites Copier"; });
+      } else { selection(); b.textContent = "Sélectionnée, faites Copier"; }
+    });
+  });
+
+  /* Formulaire : prépare un message prêt à envoyer */
+  $("formulaire").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nom = $("f-nom").value.trim(), tel = $("f-tel").value.trim();
+    var err = !nom ? "Indiquez votre nom." : (!tel ? "Indiquez un numéro pour que je puisse vous rappeler." : "");
+    $("f-erreur").textContent = err;
+    if (err) return;
+    var texte = "Bonjour Ali, je suis " + nom + (($("f-commerce").value.trim()) ? " (" + $("f-commerce").value.trim() + ")" : "") +
+      ". Je suis intéressé par : " + $("f-formule").value + ". " + ($("f-msg").value.trim() || "") + " Mon numéro : " + tel + ".";
+    var box = $("f-envoye"); box.hidden = false; box.textContent = "";
+    box.appendChild(el("p", { style: "font-weight:700;margin-bottom:6px" }, "Votre demande est prête."));
+    box.appendChild(el("p", { style: "margin-bottom:10px" }, "Envoyez-la par SMS au 07 82 02 36 57 ou par mail à aligibril2007@gmail.com :"));
+    var zone = el("p", { id: "f-texte", style: "background:#fff;border:1px solid var(--ligne);border-radius:10px;padding:10px 12px;user-select:all" }, texte);
+    box.appendChild(zone);
+    var b = el("button", { type: "button", "class": "bouton bouton--petit", style: "margin-top:10px" }, "Copier le message");
+    b.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(function () { b.textContent = "Message copié"; }, function () { b.textContent = "Sélectionnez le texte ci-dessus"; });
+    });
+    box.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
