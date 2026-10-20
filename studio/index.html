@@ -362,6 +362,20 @@ sup a { color: inherit; }
 .stat-txt { color: #A1A1A6; font-size: clamp(17px, 1.6vw, 19px); max-width: 24em; }
 .stat-txt b { color: #F5F5F7; font-weight: 600; }
 
+/* Flèches de défilement (façon galeries Apple) */
+.paddles { display: flex; justify-content: flex-end; gap: 14px; }
+.rond-nav { width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: rgba(210,210,215,.64); color: rgba(0,0,0,.6); display: grid; place-items: center; cursor: pointer; transition: background-color .2s ease, opacity .2s ease, scale .15s ease-out; }
+.rond-nav:hover { background: rgba(223,223,227,.9); }
+.rond-nav:active { scale: .94; }
+.rond-nav:disabled { opacity: .35; cursor: default; }
+.pq .paddles { max-width: var(--large); margin: 0 auto; }
+.paddles--mobile, .astuce-mobile { display: none; }
+.astuce-mobile { text-align: center; color: var(--texte-2); font-size: 13px; margin-top: 10px; }
+.story-nav { display: none; align-items: center; gap: 12px; margin-top: 26px; }
+.story--anime .story-nav { display: flex; }
+.story-nav span { color: var(--texte-2); font-size: 13px; }
+.story--anime .tel--story { touch-action: pan-y; cursor: grab; }
+
 /* Démos : de vraies applis dans les appareils, et à côté ce que voit le commerçant */
 .demos { padding-block: clamp(90px, 11vw, 150px); }
 .demos-tete { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: 34px; }
@@ -614,12 +628,15 @@ sup a { color: inherit; }
 .liste-faits b { font-weight: 600; }
 .liste-faits span { color: var(--texte-2); }
 @container (max-width: 560px) {
-  .tab-ecran { aspect-ratio: .7; font-size: 3.5cqw; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .tab-ecran { aspect-ratio: auto; font-size: 3.5cqw; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; }
+  .tab-graph { height: 10em; }
+  .tab-main { grid-template-rows: none; }
   .tab-cote { border-right: 0; border-bottom: 1px solid #E5E5EA; padding: 1.4em 1em .9em; }
   .tab-date { display: none; }
   .tab-titre { font-size: 1.5em; }
-  .tab-liste { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; }
-  .eq { padding: .55em .8em; background: #F2F2F7; }
+  .tab-liste { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .4em; }
+  .eq { padding: .55em .7em; background: #F2F2F7; font-size: .88em; }
+  .eq span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tab-cote .btn-app { display: none; }
   .tab-main { padding: 1.3em 1.2em 1.2em; }
   .tab-temp { font-size: 3.4em; }
@@ -651,8 +668,13 @@ sup a { color: inherit; }
   .scene-demo > .commercant { width: 100%; max-width: 440px; text-align: left; }
   .scene-demo--tab { grid-template-areas: "texte" "tab" "comm"; }
   .tel--demo { --l: min(320px, 84vw); }
-  .onglets { justify-content: flex-start; margin-inline: calc(-1 * var(--gouttiere-g)); padding-inline: var(--gouttiere-g); }
-  .onglet { min-width: 92px; padding: 12px 10px 10px; font-size: 13px; }
+  .onglets { justify-content: stretch; gap: 2px; overflow: visible; }
+  .onglet { flex: 1 1 0; min-width: 0; padding: 10px 2px 8px; font-size: 11px; gap: 6px; border-radius: 14px; }
+  .onglet svg { width: 24px; height: 24px; }
+  .paddles--mobile { display: flex; justify-content: center; margin-top: 14px; }
+  .astuce-mobile { display: block; }
+  .story-nav { justify-content: center; margin: 8px 0 6px; }
+  .story-nav span { display: none; }
 }
 
 /* Réalisations : tuiles façon page d'accueil */
@@ -776,8 +798,13 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
   .gnav-menu { display: block; }
   .story-grille { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 28px; }
   .story-progres { justify-content: center; }
-  .story--anime .tel--story { --l: min(250px, calc((100svh - 340px) * .4615)); }
-  .story--anime .story-pas-liste { height: 10.5em; width: 100%; }
+  .story--anime .tel--story { --l: min(250px, calc((100svh - 300px) * .4615)); }
+  .story--anime .story-pas-liste { height: 8.6em; width: 100%; }
+  .story--anime .story-grille { gap: 14px; }
+  .story-progres { margin-bottom: 0; }
+  .story-pas h3 { font-size: 24px; }
+  .story-pas p:last-child { font-size: 15px; margin-top: 6px; }
+  .story-num { margin-bottom: 2px; font-size: 13px; }
   .stats-grille { grid-template-columns: 1fr; }
   .demo { grid-template-columns: 1fr; }
   .tuiles { grid-template-columns: 1fr; }
@@ -1088,6 +1115,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     </div>
     <div class="hl-nav bande" id="hl-nav">
       <div class="points" id="points" role="group" aria-label="Choisir un point fort"></div>
+<div class="paddles" data-cible="hl-piste"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
       <button class="lecture" type="button" id="lecture" aria-label="Mettre en pause"><svg viewBox="0 0 14 14" id="lecture-icone"><rect x="2" y="1" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" rx="1" fill="currentColor"/></svg></button>
     </div>
   </section>
@@ -1165,6 +1193,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
         </div>
         <div class="story-droite">
           <div class="story-progres" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="story-nav"><button class="rond-nav" type="button" id="s-prec" aria-label="Étape précédente"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" id="s-suiv" aria-label="Étape suivante"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>Défilez ou faites glisser le téléphone</span></div>
           <div class="story-pas-liste">
             <div class="story-pas"><p class="story-num">Étape 1</p><h3>Le client choisit.</h3><p>Une prestation principale, puis les options. Le prix se calcule tout seul.</p></div>
             <div class="story-pas"><p class="story-num">Étape 2</p><h3>Il prend son créneau.</h3><p>Seuls les horaires libres s'affichent. Impossible de réserver deux fois la même place.</p></div>
@@ -1539,7 +1568,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
         <h2 class="t-section">Quelle formule vous correspond&nbsp;?</h2>
         <a class="btn-lien" href="#options">Voir les options</a>
       </div>
-      <div class="compare">
+      <div class="compare" id="compare">
         <div class="col">
           <div class="col-visuel" aria-hidden="true">
             <svg viewBox="0 0 180 130"><rect x="10" y="8" width="160" height="104" rx="9" fill="#1D1D1F"/><rect x="15" y="13" width="150" height="94" rx="4" fill="#FBF4EA"/><rect x="25" y="25" width="60" height="9" rx="4" fill="#C4552D"/><rect x="25" y="42" width="70" height="5" rx="2.5" fill="#E2D3BF"/><rect x="25" y="52" width="55" height="5" rx="2.5" fill="#E2D3BF"/><circle cx="128" cy="58" r="26" fill="#F2C9A0"/><circle cx="128" cy="58" r="18" fill="#fff"/><circle cx="128" cy="58" r="12" fill="#7FAE52"/><rect x="0" y="112" width="180" height="8" rx="4" fill="#C7C8CC"/></svg>
@@ -1590,6 +1619,9 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
         </div>
       </div>
 
+      <div class="paddles paddles--mobile" data-cible="compare"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <p class="astuce-mobile">Faites glisser pour comparer les 3 formules</p>
+
       <h3 class="options-titre apparait" id="options">Ajoutez ce qu'il vous faut.</h3>
       <div class="options-grille">
         <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="17" cy="17" r="12"/><path d="M5 17h24M17 5c3.5 3.4 5 7.4 5 12s-1.5 8.6-5 12c-3.5-3.4-5-7.4-5-12s1.5-8.6 5-12Z"/></svg><b>Domaine et hébergement</b><p>Première année. Ensuite environ 5 € par mois, à votre nom.</p><strong>50 €</strong></div>
@@ -1604,7 +1636,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     <div class="bande"><div class="cadre apparait">
       <h2 class="t-section" id="pq-titre">Pourquoi travailler avec moi.</h2>
     </div></div>
-    <div class="pq-piste">
+    <div class="pq-piste" id="pq-piste">
       <div class="pq-carte pq-carte--moi"><span class="initiales">AM</span><p><b>Ali Mokrani.</b> Élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants pressés.</p></div>
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0071E3" stroke-width="2"><path d="M20 35s11-9.7 11-17.5a11 11 0 0 0-22 0C9 25.3 20 35 20 35Z"/><circle cx="20" cy="17.5" r="4"/></svg><p><b>Local.</b> Je passe vous voir à Troyes, en région parisienne ou dans les Yvelines.</p></div>
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#F56300" stroke-width="2" stroke-linejoin="round"><path d="M22 4 8 23h11l-2 13 15-20H21Z"/></svg><p><b>Réactif.</b> Réponse sous 24 h, maquette sous 72 h.</p></div>
@@ -1612,6 +1644,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#8E44E0" stroke-width="2"><path d="M6 16 9 7h22l3 9M6 16h28v17H6Z" stroke-linejoin="round"/><path d="M16 33v-9h8v9"/></svg><p><b>Du vrai terrain.</b> Des outils utilisés chaque jour dans une boucherie de demi-gros.</p></div>
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0071E3" stroke-width="2"><circle cx="14" cy="20" r="7"/><path d="M21 20h14M30 20v5M35 20v4"/></svg><p><b>Chez vous.</b> Nom de domaine à votre nom, tous les fichiers fournis.</p></div>
     </div>
+    <div class="bande"><div class="paddles" data-cible="pq-piste"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
   </section>
 
   <section class="faq fond-blanc bande" id="faq">
@@ -1753,6 +1786,16 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     if (v && !pisteVisible && window.__animCarte) window.__animCarte(actif);
     pisteVisible = v;
   }, { threshold: .4 }).observe(piste);
+
+  /* Flèches des galeries */
+  document.querySelectorAll(".paddles").forEach(function (pd) {
+    var c = $(pd.getAttribute("data-cible")), bs = pd.querySelectorAll("button");
+    function pas() { var it = c.children[0], g = parseFloat(getComputedStyle(c).columnGap) || 0; return it ? it.getBoundingClientRect().width + g : c.clientWidth * .8; }
+    function maj() { bs[0].disabled = c.scrollLeft < 4; bs[1].disabled = c.scrollLeft + c.clientWidth > c.scrollWidth - 4; }
+    bs[0].addEventListener("click", function () { if (c.id === "hl-piste") arreter(); c.scrollBy({ left: -pas(), behavior: calme ? "auto" : "smooth" }); });
+    bs[1].addEventListener("click", function () { if (c.id === "hl-piste") arreter(); c.scrollBy({ left: pas(), behavior: calme ? "auto" : "smooth" }); });
+    c.addEventListener("scroll", maj, { passive: true }); window.addEventListener("resize", maj); maj();
+  });
 
   /* ---------- Démos : outils communs ---------- */
   var anime = !calme && !!window.gsap;
@@ -2231,7 +2274,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     gsap.set([vues[1], vues[3]], { xPercent: 100 });
     gsap.set(vues[2], { autoAlpha: 0, scale: 1.08 });
     gsap.set(barres, { "--p": 0 }); gsap.set(barres[0], { "--p": 1 });
-    var tl = gsap.timeline({ defaults: { ease: "power2.inOut" }, scrollTrigger: { trigger: "#story-scene", start: "top top", end: "+=280%", pin: true, scrub: .6, snap: { snapTo: "labels", duration: { min: .2, max: .6 }, delay: .08, ease: "power1.inOut" } } });
+    var tl = gsap.timeline({ defaults: { ease: "power2.inOut" }, scrollTrigger: { trigger: "#story-scene", start: "top top", end: "+=280%", pin: true, scrub: .6, snap: { snapTo: "labels", directional: false, inertia: false, duration: { min: .2, max: .6 }, delay: .1, ease: "power1.inOut" } } });
     tl.addLabel("e0")
       .to(vues[0], { xPercent: -30, duration: 1 }, "e0")
       .to(vues[1], { xPercent: 0, duration: 1 }, "e0")
@@ -2251,6 +2294,18 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       .to(barres[3], { "--p": 1, duration: 1, ease: "none" }, "e2")
       .addLabel("e3")
       .to({}, { duration: .35 });
+    var st = tl.scrollTrigger;
+    function etapeActuelle() { var t = st.progress * tl.duration(), best = 0; for (var k = 0; k < 4; k++) if (t >= tl.labels["e" + k] - .05) best = k; return best; }
+    function allerEtape(k) { k = Math.max(0, Math.min(3, k)); window.scrollTo({ top: Math.round(st.start + (st.end - st.start) * (tl.labels["e" + k] / tl.duration())) + 2, behavior: "instant" }); }
+    document.getElementById("s-prec").addEventListener("click", function () { allerEtape(etapeActuelle() - 1); });
+    document.getElementById("s-suiv").addEventListener("click", function () { allerEtape(etapeActuelle() + 1); });
+    var telS = story.querySelector(".tel--story"), x0 = null, y0 = null;
+    telS.addEventListener("pointerdown", function (e) { x0 = e.clientX; y0 = e.clientY; });
+    telS.addEventListener("pointerup", function (e) {
+      if (x0 === null) return; var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+      if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.2) allerEtape(etapeActuelle() + (dx < 0 ? 1 : -1));
+    });
+    telS.addEventListener("pointercancel", function () { x0 = null; });
     gsap.from(".tel--story", { y: 80, autoAlpha: 0, duration: 1.1, ease: doux, scrollTrigger: { trigger: "#story-scene", start: "top 80%", once: true } });
 
     /* 6. Chiffres qui défilent */

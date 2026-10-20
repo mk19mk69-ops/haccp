@@ -273,6 +273,25 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* Choix condensés : tout se voit d'un coup, les options en petites pastilles */
+.choix { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.choix .carte { padding: 12px 14px 11px; }
+.choix .carte b { font-size: .98rem; line-height: 1.25; }
+.choix .carte small { margin-top: 2px; font-size: .86rem; color: var(--or-clair); }
+.sous-titre { margin: 18px 0 8px; font-size: .85rem; }
+.choix.choix--options { display: flex; flex-wrap: wrap; gap: 6px; }
+.choix.choix--options .carte { display: inline-flex; align-items: baseline; gap: 6px; padding: 7px 12px; border-radius: 999px; font-size: .86rem; }
+.choix.choix--options .carte b { font-size: .86rem; font-weight: 500; }
+.choix.choix--options .carte small { margin: 0; font-size: .8rem; color: var(--gris); }
+.choix.choix--options input:checked + .carte small { color: var(--or-clair); }
+@media (max-width: 640px) {
+  .choix { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .choix .carte { display: block; padding: 10px 12px; }
+  .choix .carte small { margin-top: 2px; }
+  .choix.choix--options { display: flex; }
+  .choix.choix--options .carte { display: inline-flex; padding: 6px 11px; }
+}
 </style>
 </head>
 <body>
@@ -325,7 +344,7 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
           <fieldset>
             <legend><span>1</span> Prestation</legend>
             <div class="choix" id="choix-prestation"></div>
-            <p class="sous-titre">En plus (facultatif, plusieurs choix possibles)</p>
+            <p class="sous-titre">En plus · facultatif, plusieurs choix possibles</p>
             <div class="choix choix--options" id="choix-options"></div>
           </fieldset>
           <fieldset>
