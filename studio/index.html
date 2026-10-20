@@ -739,7 +739,14 @@ sup a { color: inherit; }
 .pc-tete { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: clamp(40px, 6vw, 64px); }
 .pc-tete .sur { margin-bottom: -4px; }
 .pc-tete .t-lead { color: var(--texte-2); max-width: 32em; }
-.pc-grille { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.pc-grille { display: grid; grid-auto-flow: column; grid-auto-columns: 272px; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; padding-bottom: 6px; }
+.pc-grille::-webkit-scrollbar { display: none; }
+.pc-col { scroll-snap-align: start; }
+.pc-paddles { margin-top: 18px; }
+.pc-col--autre { background: #fff; box-shadow: inset 0 0 0 1.5px rgba(0,113,227,.25); }
+.pc-autres { list-style: none; margin: 16px 0 20px; padding: 0; width: 100%; text-align: left; border-top: 1px solid var(--ligne); }
+.pc-autres li { padding: 10px 2px 10px 24px; border-bottom: 1px solid var(--ligne); font-size: 13px; position: relative; }
+.pc-autres li::before { content: ""; position: absolute; left: 2px; top: 13px; width: 13px; height: 13px; border-radius: 50%; background: var(--bleu) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l3 2.8 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
 .pc-col { background: #fff; border-radius: 24px; padding: 30px 20px 26px; display: grid; justify-items: center; align-content: start; text-align: center; gap: 6px; min-width: 0; }
 .pc-visuel { width: 100%; height: 112px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 18px; }
 .pc-visuel svg { height: 100%; width: auto; max-width: 100%; }
@@ -764,9 +771,9 @@ sup a { color: inherit; }
 .inclus-item b { font-weight: 600; font-size: 17px; letter-spacing: -0.02em; }
 .inclus-item small { color: #A1A1A6; font-size: 14px; line-height: 1.4; }
 @media (max-width: 833px) {
-  .pc-grille { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: min(290px, 76vw); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; }
-  .pc-grille::-webkit-scrollbar { display: none; }
+  .pc-grille { grid-auto-columns: min(290px, 76vw); }
   .pc-col { scroll-snap-align: center; }
+  .pc-paddles { justify-content: center; }
   .inclus { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) { .inclus-grille { grid-template-columns: 1fr; } }
@@ -1606,7 +1613,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       <div class="pc-tete apparait">
         <p class="sur" style="color:var(--orange)">Ordinateurs</p>
         <h2 class="t-section">Pas d'ordinateur&nbsp;? <span class="gris">Je vous le fournis, prêt à l'emploi.</span></h2>
-        <p class="t-lead">Je choisis avec vous le bon modèle, je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
+        <p class="t-lead">Voici mes 5 recommandations, mais je fournis tous les modèles et toutes les marques. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
       </div>
       <div class="pc-grille" id="pc-grille">
         <article class="pc-col">
@@ -1625,6 +1632,23 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
             <li><span>Système</span><b>Windows 11 Famille</b></li>
           </ul>
           <a class="btn btn--petit" href="#contact" data-pc="HP 250R G9">Choisir ce modèle</a>
+        </article>
+        <article class="pc-col">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="30" y="9" width="140" height="92" rx="6" fill="#2B2E33"/><rect x="35" y="14" width="130" height="82" rx="2" fill="url(#pc-ecran-5)"/><path d="M11 103h178l-5 9a6 6 0 0 1-5 3H21a6 6 0 0 1-5-3Z" fill="#3A3D43"/><rect x="87" y="103" width="26" height="3" rx="1.5" fill="#55585E"/><defs><linearGradient id="pc-ecran-5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38B6F0"/><stop offset=".55" stop-color="#1A6CC4"/><stop offset="1" stop-color="#0B2F6B"/></linearGradient></defs></svg>
+          </div>
+          <span class="pc-badge"></span>
+          <h3>Dell Pro 14 Essential</h3>
+          <p class="pc-tag">Le portable pro de Dell, léger, avec lecteur d'empreintes.</p>
+          <p class="pc-prix">environ 1 150 €<sup><a href="#note-4">4</a></sup><small>Réf. PV14250</small></p>
+          <ul class="pc-specs">
+            <li><span>Processeur</span><b>Intel Core 5 120U</b></li>
+            <li><span>Mémoire</span><b>16 Go</b></li>
+            <li><span>Stockage</span><b>SSD 512 Go</b></li>
+            <li><span>Écran</span><b>14 pouces</b></li>
+            <li><span>Système</span><b>Windows 11 Pro</b></li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="Dell Pro 14 Essential">Choisir ce modèle</a>
         </article>
         <article class="pc-col">
           <div class="pc-visuel" aria-hidden="true">
@@ -1677,9 +1701,24 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
           </ul>
           <a class="btn btn--petit" href="#contact" data-pc="Apple Mac mini M4">Choisir ce modèle</a>
         </article>
+        <article class="pc-col pc-col--autre">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="56" y="14" width="88" height="88" rx="22" fill="none" stroke="#0071E3" stroke-width="3" stroke-dasharray="8 7"/><path d="M100 42v32M84 58h32" stroke="#0071E3" stroke-width="4" stroke-linecap="round"/></svg>
+          </div>
+          <span class="pc-badge"></span>
+          <h3>Un autre modèle&nbsp;?</h3>
+          <p class="pc-tag">Je vous fournis l'ordinateur qu'il vous faut, de toutes les marques.</p>
+          <ul class="pc-autres">
+            <li>Dell, HP, Lenovo, Asus, Acer, Apple</li>
+            <li>Portable, fixe ou tout-en-un</li>
+            <li>Écran, imprimante, douchette, tiroir-caisse</li>
+            <li>Reconditionné garanti pour un petit budget</li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="un ordinateur (à conseiller)">Demander un conseil</a>
+        </article>
       </div>
-      <div class="paddles paddles--mobile" data-cible="pc-grille"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
-      <p class="astuce-mobile">Faites glisser pour voir les 4 modèles</p>
+      <div class="paddles pc-paddles" data-cible="pc-grille"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <p class="astuce-mobile">Faites glisser pour voir les 5 modèles</p>
 
       <div class="inclus apparait">
         <div>
@@ -1794,7 +1833,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
         <details><summary>Quelle différence avec Planity ou Uber Eats&nbsp;?</summary><p>Ces plateformes prennent un abonnement ou une commission sur chaque commande, et vos clients y voient aussi vos concurrents. Ici, vous payez une fois, la réservation se fait sur votre propre site et les clients restent les vôtres.</p></details>
         <details><summary>Et si je veux changer un prix ou mes horaires&nbsp;?</summary><p>Pendant le premier mois, c'est inclus. Ensuite, un message suffit pour une petite modification, ou je vous montre comment la faire vous-même.</p></details>
         <details><summary>Comment se passe le paiement&nbsp;?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
-        <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un&nbsp;?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
+        <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un&nbsp;?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Je fournis toutes les marques (Dell, HP, Lenovo, Apple…), neuf ou reconditionné. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
         <details><summary>Je ne suis pas à l'aise avec l'informatique.</summary><p>C'est justement pour ça que j'existe. Je m'occupe du technique et je vous forme sur place, à votre rythme.</p></details>
       </div>
     </div>
