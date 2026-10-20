@@ -743,6 +743,8 @@ sup a { color: inherit; }
 .pc-grille::-webkit-scrollbar { display: none; }
 .pc-col { scroll-snap-align: start; }
 .pc-paddles { margin-top: 18px; }
+.pc-col--stock { box-shadow: inset 0 0 0 2px rgba(29,138,63,.45); }
+.pc-badge.pc-badge--stock { color: var(--vert); }
 .pc-col--autre { background: #fff; box-shadow: inset 0 0 0 1.5px rgba(0,113,227,.25); }
 .pc-autres { list-style: none; margin: 16px 0 20px; padding: 0; width: 100%; text-align: left; border-top: 1px solid var(--ligne); }
 .pc-autres li { padding: 10px 2px 10px 24px; border-bottom: 1px solid var(--ligne); font-size: 13px; position: relative; }
@@ -1613,9 +1615,26 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       <div class="pc-tete apparait">
         <p class="sur" style="color:var(--orange)">Ordinateurs</p>
         <h2 class="t-section">Pas d'ordinateur&nbsp;? <span class="gris">Je vous le fournis, prêt à l'emploi.</span></h2>
-        <p class="t-lead">Voici mes 5 recommandations, mais je fournis tous les modèles et toutes les marques. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
+        <p class="t-lead">Un modèle en stock, 4 recommandations, et tous les autres modèles sur demande, de toutes les marques. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
       </div>
       <div class="pc-grille" id="pc-grille">
+        <article class="pc-col pc-col--stock">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="26" y="8" width="148" height="94" rx="6" fill="#2B2E33"/><rect x="31" y="13" width="138" height="84" rx="2" fill="url(#pc-ecran-5)"/><path d="M8 104h184l-5 9a6 6 0 0 1-5 3H18a6 6 0 0 1-5-3Z" fill="#3A3D43"/><rect x="86" y="104" width="28" height="3" rx="1.5" fill="#55585E"/><defs><linearGradient id="pc-ecran-5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38B6F0"/><stop offset=".55" stop-color="#1A6CC4"/><stop offset="1" stop-color="#0B2F6B"/></linearGradient></defs></svg>
+          </div>
+          <span class="pc-badge pc-badge--stock">En stock à Troyes · reconditionné</span>
+          <h3>Dell Latitude 5591</h3>
+          <p class="pc-tag">Très puissant pour le prix. Révisé, prêt à l'emploi, disponible tout de suite.</p>
+          <p class="pc-prix">545 €<small>Occasion révisée · un seul exemplaire</small></p>
+          <ul class="pc-specs">
+            <li><span>Processeur</span><b>Intel Core i7</b></li>
+            <li><span>Mémoire</span><b>32 Go</b></li>
+            <li><span>Stockage</span><b>SSD 1 To</b></li>
+            <li><span>Écran</span><b>15,6 pouces</b></li>
+            <li><span>Système</span><b>Windows 11 Pro</b></li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="Dell Latitude 5591 (i7, 32 Go, 1 To) à 545 €">Je le veux</a>
+        </article>
         <article class="pc-col">
           <div class="pc-visuel" aria-hidden="true">
             <svg viewBox="0 0 200 120"><rect x="28" y="8" width="144" height="94" rx="7" fill="#C9CBD0"/><rect x="33" y="13" width="134" height="84" rx="3" fill="#0E2A4F"/><rect x="33" y="13" width="134" height="84" rx="3" fill="url(#pc-ecran-1)"/><path d="M10 104h180l-6 9a6 6 0 0 1-5 3H21a6 6 0 0 1-5-3Z" fill="#D9DBE0"/><rect x="86" y="104" width="28" height="3" rx="1.5" fill="#B4B6BB"/><defs><linearGradient id="pc-ecran-1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F6FD1"/><stop offset="1" stop-color="#0A2E66"/></linearGradient></defs></svg>
@@ -1632,23 +1651,6 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
             <li><span>Système</span><b>Windows 11 Famille</b></li>
           </ul>
           <a class="btn btn--petit" href="#contact" data-pc="HP 250R G9">Choisir ce modèle</a>
-        </article>
-        <article class="pc-col">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="30" y="9" width="140" height="92" rx="6" fill="#2B2E33"/><rect x="35" y="14" width="130" height="82" rx="2" fill="url(#pc-ecran-5)"/><path d="M11 103h178l-5 9a6 6 0 0 1-5 3H21a6 6 0 0 1-5-3Z" fill="#3A3D43"/><rect x="87" y="103" width="26" height="3" rx="1.5" fill="#55585E"/><defs><linearGradient id="pc-ecran-5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38B6F0"/><stop offset=".55" stop-color="#1A6CC4"/><stop offset="1" stop-color="#0B2F6B"/></linearGradient></defs></svg>
-          </div>
-          <span class="pc-badge"></span>
-          <h3>Dell Pro 14 Essential</h3>
-          <p class="pc-tag">Le portable pro de Dell, léger, avec lecteur d'empreintes.</p>
-          <p class="pc-prix">environ 1 150 €<sup><a href="#note-4">4</a></sup><small>Réf. PV14250</small></p>
-          <ul class="pc-specs">
-            <li><span>Processeur</span><b>Intel Core 5 120U</b></li>
-            <li><span>Mémoire</span><b>16 Go</b></li>
-            <li><span>Stockage</span><b>SSD 512 Go</b></li>
-            <li><span>Écran</span><b>14 pouces</b></li>
-            <li><span>Système</span><b>Windows 11 Pro</b></li>
-          </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="Dell Pro 14 Essential">Choisir ce modèle</a>
         </article>
         <article class="pc-col">
           <div class="pc-visuel" aria-hidden="true">
