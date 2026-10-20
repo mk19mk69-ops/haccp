@@ -734,6 +734,43 @@ sup a { color: inherit; }
 .option p { font-size: 14px; color: var(--texte-2); }
 .option strong { margin-top: 6px; font-size: 17px; font-weight: 600; }
 
+/* Ordinateurs préconfigurés */
+.pc { padding-block: clamp(90px, 11vw, 150px); }
+.pc-tete { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: clamp(40px, 6vw, 64px); }
+.pc-tete .sur { margin-bottom: -4px; }
+.pc-tete .t-lead { color: var(--texte-2); max-width: 32em; }
+.pc-grille { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.pc-col { background: #fff; border-radius: 24px; padding: 30px 20px 26px; display: grid; justify-items: center; align-content: start; text-align: center; gap: 6px; min-width: 0; }
+.pc-visuel { width: 100%; height: 112px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 18px; }
+.pc-visuel svg { height: 100%; width: auto; max-width: 100%; }
+.pc-badge { min-height: 18px; font-size: 12px; font-weight: 600; color: var(--orange); }
+.pc-col h3 { font-size: 21px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; min-height: 2.3em; display: grid; align-items: center; }
+.pc-tag { font-size: 14px; color: var(--texte-2); line-height: 1.38; min-height: 3.9em; }
+.pc-prix { margin-top: 8px; font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
+.pc-prix small { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--texte-3); letter-spacing: 0; }
+.pc-specs { list-style: none; margin: 16px 0 18px; padding: 0; width: 100%; border-top: 1px solid var(--ligne); text-align: left; }
+.pc-specs li { display: flex; justify-content: space-between; gap: 10px; padding: 9px 2px; border-bottom: 1px solid var(--ligne); font-size: 13px; }
+.pc-specs span { color: var(--texte-2); }
+.pc-specs b { font-weight: 600; text-align: right; }
+.inclus { margin-top: clamp(40px, 6vw, 72px); background: #000; color: #F5F5F7; border-radius: 28px; padding: clamp(28px, 5vw, 60px); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.inclus h3 { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.034em; line-height: 1.05; }
+.inclus > div:first-child > p { color: #A1A1A6; font-size: 17px; margin-top: 14px; max-width: 26em; }
+.inclus .inclus-prix { color: #F5F5F7 !important; }
+.inclus-prix b { font-weight: 600; color: var(--lien-sombre); }
+.inclus .btn { margin-top: 22px; }
+.inclus-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 26px; }
+.inclus-item { display: grid; gap: 4px; }
+.inclus-item svg { width: 28px; height: 28px; color: var(--lien-sombre); margin-bottom: 6px; }
+.inclus-item b { font-weight: 600; font-size: 17px; letter-spacing: -0.02em; }
+.inclus-item small { color: #A1A1A6; font-size: 14px; line-height: 1.4; }
+@media (max-width: 833px) {
+  .pc-grille { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: min(290px, 76vw); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; }
+  .pc-grille::-webkit-scrollbar { display: none; }
+  .pc-col { scroll-snap-align: center; }
+  .inclus { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) { .inclus-grille { grid-template-columns: 1fr; } }
+
 /* Pourquoi */
 .pq { padding-block: clamp(90px, 11vw, 150px); }
 .pq-piste { display: grid; grid-auto-flow: column; grid-auto-columns: 300px; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 8px max(var(--gouttiere-g), calc((100% - var(--large)) / 2)) 30px; scroll-padding-inline: max(var(--gouttiere-g), calc((100% - var(--large)) / 2)); margin-top: clamp(28px, 4vw, 44px); }
@@ -885,6 +922,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       <li><a href="#parcours">Réservation</a></li>
       <li><a href="#demos">Démos</a></li>
       <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#ordinateurs">Ordinateurs</a></li>
       <li><a href="#tarifs">Tarifs</a></li>
       <li><a href="#faq">Aide</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -897,6 +935,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
   <a href="#parcours" style="--i:1">Réservation</a>
   <a href="#demos" style="--i:2">Démos</a>
   <a href="#realisations" style="--i:3">Réalisations</a>
+  <a href="#ordinateurs" style="--i:4">Ordinateurs</a>
   <a href="#tarifs" style="--i:4">Tarifs</a>
   <a href="#faq" style="--i:5">Aide</a>
   <a href="#contact" style="--i:6">Contact</a>
@@ -1562,6 +1601,105 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     </div>
   </section>
 
+  <section class="pc fond-gris bande" id="ordinateurs">
+    <div class="cadre">
+      <div class="pc-tete apparait">
+        <p class="sur" style="color:var(--orange)">Ordinateurs</p>
+        <h2 class="t-section">Pas d'ordinateur&nbsp;? <span class="gris">Je vous le fournis, prêt à l'emploi.</span></h2>
+        <p class="t-lead">Je choisis avec vous le bon modèle, je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
+      </div>
+      <div class="pc-grille" id="pc-grille">
+        <article class="pc-col">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="28" y="8" width="144" height="94" rx="7" fill="#C9CBD0"/><rect x="33" y="13" width="134" height="84" rx="3" fill="#0E2A4F"/><rect x="33" y="13" width="134" height="84" rx="3" fill="url(#pc-ecran-1)"/><path d="M10 104h180l-6 9a6 6 0 0 1-5 3H21a6 6 0 0 1-5-3Z" fill="#D9DBE0"/><rect x="86" y="104" width="28" height="3" rx="1.5" fill="#B4B6BB"/><defs><linearGradient id="pc-ecran-1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F6FD1"/><stop offset="1" stop-color="#0A2E66"/></linearGradient></defs></svg>
+          </div>
+          <span class="pc-badge"></span>
+          <h3>HP 250R G9</h3>
+          <p class="pc-tag">Le portable du quotidien : factures, mails, commandes.</p>
+          <p class="pc-prix">environ 750 €<sup><a href="#note-4">4</a></sup><small>Réf. C38K9AT</small></p>
+          <ul class="pc-specs">
+            <li><span>Processeur</span><b>Intel Core 5 120U</b></li>
+            <li><span>Mémoire</span><b>16 Go</b></li>
+            <li><span>Stockage</span><b>SSD 512 Go</b></li>
+            <li><span>Écran</span><b>15,6 pouces</b></li>
+            <li><span>Système</span><b>Windows 11 Famille</b></li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="HP 250R G9">Choisir ce modèle</a>
+        </article>
+        <article class="pc-col">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="32" y="10" width="136" height="90" rx="6" fill="#1D1D1F"/><rect x="37" y="15" width="126" height="80" rx="2" fill="url(#pc-ecran-2)"/><path d="M12 102h176l-5 9a6 6 0 0 1-5 3H22a6 6 0 0 1-5-3Z" fill="#2A2A2D"/><rect x="88" y="102" width="24" height="3" rx="1.5" fill="#46464A"/><circle cx="160" cy="108" r="1.8" fill="#E2231A"/><defs><linearGradient id="pc-ecran-2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3A8DDE"/><stop offset=".6" stop-color="#1B4E9B"/><stop offset="1" stop-color="#132A57"/></linearGradient></defs></svg>
+          </div>
+          <span class="pc-badge">Le plus solide</span>
+          <h3>Lenovo ThinkPad E14 Gen 7</h3>
+          <p class="pc-tag">Le portable pro, robuste, pour ceux qui l'emmènent partout.</p>
+          <p class="pc-prix">environ 1 270 €<sup><a href="#note-4">4</a></sup><small>Réf. 21U2002SFR</small></p>
+          <ul class="pc-specs">
+            <li><span>Processeur</span><b>Intel Core Ultra 5 226V</b></li>
+            <li><span>Mémoire</span><b>16 Go</b></li>
+            <li><span>Stockage</span><b>SSD 512 Go</b></li>
+            <li><span>Écran</span><b>14 pouces</b></li>
+            <li><span>Système</span><b>Windows 11</b></li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="Lenovo ThinkPad E14 Gen 7">Choisir ce modèle</a>
+        </article>
+        <article class="pc-col">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="64" y="6" width="112" height="72" rx="5" fill="#2A2A2D"/><rect x="68" y="10" width="104" height="64" rx="2" fill="url(#pc-ecran-3)"/><rect x="114" y="78" width="12" height="18" fill="#3A3A3D"/><rect x="96" y="96" width="48" height="5" rx="2.5" fill="#3A3A3D"/><rect x="18" y="74" width="40" height="34" rx="4" fill="#1D1D1F"/><rect x="22" y="80" width="16" height="2" rx="1" fill="#4A4A4F"/><circle cx="51" cy="81" r="1.6" fill="#30D158"/><rect x="22" y="100" width="32" height="2" rx="1" fill="#2E2E31"/><defs><linearGradient id="pc-ecran-3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2E8DA"/><stop offset="1" stop-color="#E2CDB0"/></linearGradient></defs></svg>
+          </div>
+          <span class="pc-badge">Idéal en caisse</span>
+          <h3>Lenovo ThinkCentre neo 50q Gen 4</h3>
+          <p class="pc-tag">Le mini PC de comptoir, caché derrière l'écran.</p>
+          <p class="pc-prix">environ 930 €<sup><a href="#note-4">4</a></sup><small>Réf. 12LN001YFR · écran en option</small></p>
+          <ul class="pc-specs">
+            <li><span>Processeur</span><b>Intel Core i5-13420H</b></li>
+            <li><span>Mémoire</span><b>16 Go</b></li>
+            <li><span>Stockage</span><b>SSD 512 Go</b></li>
+            <li><span>Format</span><b>Mini PC (Tiny)</b></li>
+            <li><span>Système</span><b>Windows 11 Pro</b></li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="Lenovo ThinkCentre neo 50q Gen 4">Choisir ce modèle</a>
+        </article>
+        <article class="pc-col">
+          <div class="pc-visuel" aria-hidden="true">
+            <svg viewBox="0 0 200 120"><rect x="62" y="6" width="116" height="74" rx="5" fill="#D6D8DD"/><rect x="66" y="10" width="108" height="66" rx="2" fill="url(#pc-ecran-4)"/><path d="M110 80h20l4 18h-28Z" fill="#C3C5CA"/><rect x="98" y="98" width="44" height="4" rx="2" fill="#B9BBC0"/><rect x="14" y="88" width="42" height="16" rx="5" fill="#E3E4E8"/><rect x="14" y="100" width="42" height="4" rx="2" fill="#C9CBD0"/><defs><linearGradient id="pc-ecran-4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A5CF0"/><stop offset=".5" stop-color="#2F7DE0"/><stop offset="1" stop-color="#2BC3D4"/></linearGradient></defs></svg>
+          </div>
+          <span class="pc-badge"></span>
+          <h3>Apple Mac mini M4</h3>
+          <p class="pc-tag">Pour ceux qui préfèrent Apple. Silencieux et très rapide.</p>
+          <p class="pc-prix">environ 700 €<sup><a href="#note-4">4</a></sup><small>Réf. MU9D3FN/A · écran en option</small></p>
+          <ul class="pc-specs">
+            <li><span>Puce</span><b>Apple M4</b></li>
+            <li><span>Mémoire</span><b>16 Go</b></li>
+            <li><span>Stockage</span><b>SSD 256 Go</b></li>
+            <li><span>Format</span><b>Mini (12,7 cm)</b></li>
+            <li><span>Système</span><b>macOS</b></li>
+          </ul>
+          <a class="btn btn--petit" href="#contact" data-pc="Apple Mac mini M4">Choisir ce modèle</a>
+        </article>
+      </div>
+      <div class="paddles paddles--mobile" data-cible="pc-grille"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <p class="astuce-mobile">Faites glisser pour voir les 4 modèles</p>
+
+      <div class="inclus apparait">
+        <div>
+          <h3>Préconfiguré.<br>Livré. Installé.</h3>
+          <p>Vous n'avez rien à faire. Je prépare l'ordinateur chez moi, puis je l'installe dans votre commerce et je vous montre comment vous en servir.</p>
+          <p class="inclus-prix">Préconfiguration et installation sur place : <span style="white-space:nowrap"><b>59&nbsp;€</b><sup><a href="#note-1">1</a></sup></span></p>
+          <a class="btn" href="#contact" data-pc="un ordinateur (à conseiller)">Me conseiller un ordinateur</a>
+        </div>
+        <div class="inclus-grille">
+          <div class="inclus-item"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 14a9 9 0 1 1-2.6-6.4"/><path d="M23 4v5h-5"/></svg><b>Tout à jour</b><small>Système, pilotes et mises à jour installés.</small></div>
+          <div class="inclus-item"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="8" height="8" rx="2"/><rect x="16" y="4" width="8" height="8" rx="2"/><rect x="4" y="16" width="8" height="8" rx="2"/><rect x="16" y="16" width="8" height="8" rx="2"/></svg><b>Vos logiciels</b><small>Navigateur, PDF, bureautique, logiciel de caisse ou métier.</small></div>
+          <div class="inclus-item"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M14 3 5 6.5v6.5c0 5.6 3.8 10 9 12 5.2-2 9-6.4 9-12V6.5Z"/><path d="m10 14 3 3 5.5-6" stroke-linecap="round"/></svg><b>Sécurité et sauvegarde</b><small>Antivirus réglé, sauvegarde automatique de vos fichiers.</small></div>
+          <div class="inclus-item"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="7" y="4" width="14" height="7" rx="1.5"/><rect x="4" y="11" width="20" height="9" rx="2.5"/><rect x="8" y="17" width="12" height="7" rx="1.5"/></svg><b>Tout branché</b><small>Wifi, imprimante, scanner et balance connectés.</small></div>
+          <div class="inclus-item"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h15M15 5l4 4-4 4"/><path d="M24 19H9M13 15l-4 4 4 4"/></svg><b>Vos fichiers récupérés</b><small>Transfert depuis l'ancien ordinateur.</small></div>
+          <div class="inclus-item"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="14" cy="9" r="4.5"/><path d="M5 24c0-4.6 4-8 9-8s9 3.4 9 8"/></svg><b>Prise en main</b><small>30 minutes avec vous et votre équipe.</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="tarifs fond-blanc bande" id="tarifs">
     <div class="cadre">
       <div class="tarifs-tete apparait">
@@ -1656,6 +1794,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
         <details><summary>Quelle différence avec Planity ou Uber Eats&nbsp;?</summary><p>Ces plateformes prennent un abonnement ou une commission sur chaque commande, et vos clients y voient aussi vos concurrents. Ici, vous payez une fois, la réservation se fait sur votre propre site et les clients restent les vôtres.</p></details>
         <details><summary>Et si je veux changer un prix ou mes horaires&nbsp;?</summary><p>Pendant le premier mois, c'est inclus. Ensuite, un message suffit pour une petite modification, ou je vous montre comment la faire vous-même.</p></details>
         <details><summary>Comment se passe le paiement&nbsp;?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
+        <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un&nbsp;?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
         <details><summary>Je ne suis pas à l'aise avec l'informatique.</summary><p>C'est justement pour ça que j'existe. Je m'occupe du technique et je vous forme sur place, à votre rythme.</p></details>
       </div>
     </div>
@@ -1677,7 +1816,7 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
           <div class="champ"><input id="f-nom" autocomplete="name" placeholder=" "><label for="f-nom">Votre nom</label></div>
           <div class="champ"><input id="f-commerce" placeholder=" "><label for="f-commerce">Votre commerce</label></div>
           <div class="champ"><input id="f-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder=" "><label for="f-tel">Téléphone</label></div>
-          <div class="champ"><select id="f-formule"><option>Vitrine</option><option selected>Réservation</option><option>Sur mesure</option><option>Accompagnement informatique</option><option>Je ne sais pas encore</option></select><label for="f-formule">Ce qui vous intéresse</label></div>
+          <div class="champ"><select id="f-formule"><option>Vitrine</option><option selected>Réservation</option><option>Sur mesure</option><option>Accompagnement informatique</option><option>Ordinateur préconfiguré</option><option>Je ne sais pas encore</option></select><label for="f-formule">Ce qui vous intéresse</label></div>
           <div class="champ champ--large"><textarea id="f-msg" placeholder=" "></textarea><label for="f-msg">Votre besoin, en quelques mots</label></div>
         </div>
         <p class="erreur" id="f-erreur" role="alert"></p>
@@ -1694,10 +1833,11 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
       <li id="note-1">TVA non applicable, art. 293 B du CGI. Prix indicatifs : le devis final dépend de votre projet.</li>
       <li id="note-2">Maquette réalisée à partir de vos informations, sans obligation de commande.</li>
       <li id="note-3">Les démos, les noms de commerces et les chiffres affichés sont des exemples fictifs, à titre d'illustration.</li>
+      <li id="note-4">Prix indicatifs du matériel relevés en octobre 2026 chez les revendeurs français. Ils changent souvent : le prix exact est confirmé sur votre devis.</li>
     </ol>
     <div class="pied-cols">
       <div><b>Offres</b><a href="#points-forts">Site vitrine</a><a href="#parcours">Réservation</a><a href="#tarifs">Sur mesure</a><a href="#options">Options</a></div>
-      <div><b>Découvrir</b><a href="#demos">Démos</a><a href="#realisations">Réalisations</a><a href="#tarifs">Tarifs</a></div>
+      <div><b>Découvrir</b><a href="#demos">Démos</a><a href="#realisations">Réalisations</a><a href="#ordinateurs">Ordinateurs</a><a href="#tarifs">Tarifs</a></div>
       <div><b>Studio</b><a href="#pq-titre">Pourquoi moi</a><a href="#faq">Questions fréquentes</a></div>
       <div><b>Contact</b><a href="#contact">Demander un devis</a><a href="#contact">07 82 02 36 57</a></div>
     </div>
@@ -2202,6 +2342,9 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
   });
   nReset(); nAffiche();
 
+  /* Choix d'un ordinateur -> formulaire */
+  document.querySelectorAll("[data-pc]").forEach(function (a) { a.addEventListener("click", function () { $("f-formule").value = "Ordinateur préconfiguré"; var m = $("f-msg"); if (!m.value.trim()) m.value = "Je suis intéressé par " + (a.getAttribute("data-pc").indexOf("un ") === 0 ? "" : "le ") + a.getAttribute("data-pc") + ", préconfiguré et installé."; }); });
+
   /* Formules -> formulaire */
   document.querySelectorAll("[data-formule]").forEach(function (a) { a.addEventListener("click", function () { $("f-formule").value = a.getAttribute("data-formule"); }); });
 
@@ -2325,8 +2468,8 @@ footer .cadre { padding-block: 20px 26px; border-top: 1px solid var(--ligne); }
     });
 
     /* 8. Tarifs, options, cartes « pourquoi », questions */
-    ScrollTrigger.batch(".col", { start: "top 85%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: doux, stagger: .12 }); } });
-    ScrollTrigger.batch(".option", { start: "top 90%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: doux, stagger: .08 }); } });
+    ScrollTrigger.batch(".col, .pc-col", { start: "top 85%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: doux, stagger: .12 }); } });
+    ScrollTrigger.batch(".option, .inclus-item", { start: "top 90%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: doux, stagger: .08 }); } });
     ScrollTrigger.batch(".pq-carte", { start: "top 90%", once: true, onEnter: function (els) { gsap.fromTo(els, { x: 80, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1, ease: doux, stagger: .08 }); } });
     ScrollTrigger.batch(".faq details", { start: "top 92%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, ease: doux, stagger: .05 }); } });
 
