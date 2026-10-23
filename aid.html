@@ -42,6 +42,20 @@ body{font-size:15px}
 .tk-cond{margin-top:8px;font-size:10.5px;line-height:1.4;border-top:1px solid #999;padding-top:6px;white-space:pre-line}
 .tk-must{margin-top:6px;font-size:12px;font-weight:700;text-align:center;border:2px solid #000;padding:4px}
 .tk-bye{margin-top:4px;font-size:12px;text-align:center}
+/* tickets A5 : tout tient sur une page (recto), le verso bovins sur la suivante */
+.tk table{font-size:10.5px} .tk td{padding:3px 5px}
+.tk-client{font-size:16px} .tk-tel{font-size:12px;margin-bottom:5px}
+.tk-num{font-size:30px} .tk-title{margin:4px 0 2px;font-size:12px}
+.tk-hor{font-size:11.5px;padding:4px 7px;margin:5px 0}
+.tk-total{font-size:15px;padding:6px 8px;margin-top:6px}
+.tk-cond{font-size:9px;line-height:1.3;margin-top:6px;padding-top:4px}
+.tk-must{font-size:10.5px;margin-top:5px;padding:3px}
+.tk-bye{font-size:10.5px;margin-top:3px}
+.tk-foot{margin-top:8px;font-size:10px}
+.tk-bar .qr svg{width:70px!important;height:70px!important}
+.tk{height:190mm;overflow:hidden}
+.tk-verso{display:flex;align-items:center;justify-content:center;height:190mm}
+.tk-verso img{max-width:100%;max-height:190mm;object-fit:contain}
 .tk-foot{margin-top:14px;font-size:11px;display:flex;justify-content:space-between;gap:12px}
 .pr h1{font-family:Arial,sans-serif;font-size:20px;margin:0 0 4px}
 .pr .s{font-family:Arial,sans-serif;font-size:12px;margin-bottom:8px}
@@ -458,13 +472,13 @@ const sb = window.supabase.createClient(SB_URL, SB_KEY);
 
 const BOV = ["veau","boeuf","broutard"];
 const S = { cfg:null, resas:new Map(), groupes:new Map(), user:null };
-const BOUTIQUE_DEF = { adresse:"Rue des Fontenelles, 78920 Ecquevilly", tel:"" };
+const BOUTIQUE_DEF = { adresse:"Rue des Fontenelles, 78920 Ecquevilly", tel:"01 30 04 26 53" };
 const COND_BOVIN_DEF = "Pour les parts de bovins — retrait de votre commande :\n- Découpe Normale : à partir du J+1 pour les groupes constitués entiers.\n- Découpe Détaillée : à partir du J+3 pour les groupes entiers, sous réserve de l'avancement de la découpe.\nMerci de respecter les dates et heures de retrait qui vous seront communiquées par message ultérieurement.\nLe reste à payer n'est connu qu'après l'abattage : il est calculé sur le poids réel de la carcasse.";
 const COND_AGNEAU_DEF = "Merci de respecter le jour et l'heure de retrait indiqués sur ce ticket.";
 const HORAIRES_AGNEAU_DEF = { R1:"Attendez notre message pour l'heure exacte d'arrivée du camion (estimée vers 17h)", R2:"À partir de 9h", R3:"À partir de 9h" };
 const PIED_DEF = "N'oubliez pas de scanner le QR code pour rejoindre le groupe WhatsApp. Bonne fête de l'Aïd ! — MKVH Distribution";
 function withDefaults(c){
-  c.boutique = Object.assign({}, BOUTIQUE_DEF, c.boutique||{}); delete c.boutique.siret;
+  c.boutique = Object.assign({}, BOUTIQUE_DEF, c.boutique||{}); delete c.boutique.siret; if (!c.boutique.tel) c.boutique.tel = BOUTIQUE_DEF.tel;
   if (c.condBovin==null) c.condBovin = COND_BOVIN_DEF;
   if (c.condAgneau==null) c.condAgneau = COND_AGNEAU_DEF;
   if (c.pied==null) c.pied = PIED_DEF;
@@ -1101,7 +1115,8 @@ function doPrint(html, size){
   $("#pageSize").textContent = `@page{size:${size};margin:10mm}`;
   $("#printArea").innerHTML = html;
   if (window.qrcode) for (const el of document.querySelectorAll("#printArea .qr")) { try { const q = qrcode(0, "M"); q.addData(el.dataset.code); q.make(); el.innerHTML = q.createSvgTag({cellSize:3, margin:0, scalable:true}); } catch(e){} }
-  setTimeout(() => window.print(), 50);
+  const imgs = [...document.querySelectorAll("#printArea img")].filter(im => !im.complete);
+  Promise.all(imgs.map(im => new Promise(res => { im.onload = im.onerror = res; }))).then(() => setTimeout(() => window.print(), 50));
 }
 function ticketHTML(r, mode){
   const c = S.cfg, g = S.groupes.get(r.groupeId), e = c.especes[r.espece];
@@ -1141,9 +1156,13 @@ function ticketHTML(r, mode){
     <div class="tk-foot"><span>${mode==="retrait" ? "Retiré le ____/____ à ____h____" : "Présentez ce bon le jour du retrait."}</span><span>${mode==="retrait" ? "Signature client :" : "Vendeur : " + esc(r.vendeur||"")}</span></div>
   </div>`;
 }
+const VERSO_BOVINS = `<div class="tk tk-verso"><img src="aid-img/verso-bovins.jpg" alt="Un bœuf pour l'Aïd : on vous explique tout"></div>`;
+(new Image()).src = "aid-img/verso-bovins.jpg";
 function printTickets(list, mode){
   if (!list.length){ $("#iMsg").innerHTML = '<div class="msg warn">Aucune réservation à imprimer pour ce jour.</div>'; return; }
-  doPrint(list.map(r=>ticketHTML(r, mode)).join(""), "A5");
+  // En recto-verso, chaque bon occupe 2 pages : verso explicatif pour les bovins, page blanche pour les agneaux si le lot est mélangé.
+  const avecVerso = mode==="bon" && list.some(r=>r.espece!=="agneau");
+  doPrint(list.map(r=>ticketHTML(r, mode) + (avecVerso ? (r.espece!=="agneau" ? VERSO_BOVINS : '<div class="tk"></div>') : "")).join(""), "A5");
 }
 function printFiches(groups){
   if (!groups.length){ $("#iMsg").innerHTML = '<div class="msg warn">Aucun groupe à imprimer.</div>'; return; }
