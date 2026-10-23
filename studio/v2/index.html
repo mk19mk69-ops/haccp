@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mokrani Studio · Sites et logiciels pour commerçants</title>
-<meta name="theme-color" content="#FBF9F4">
+<meta name="theme-color" content="#FDFCF9">
 <meta property="og:title" content="Mokrani Studio · Sites et logiciels pour commerçants">
 <meta property="og:description" content="Site vitrine, réservation en ligne, logiciels sur mesure et ordinateurs préconfigurés pour les commerces de Troyes, Paris et des Yvelines.">
 <meta property="og:type" content="website">
@@ -18,21 +18,21 @@
 @font-face { font-family: "Inter"; font-style: normal; font-display: swap; font-weight: 100 900; src: url(assets/inter-latin-ext-wght-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: "Instrument Serif"; font-style: italic; font-display: swap; font-weight: 400; src: url(assets/instrument-serif-latin-400-italic.woff2) format("woff2"); }
 @font-face { font-family: "Instrument Serif"; font-style: normal; font-display: swap; font-weight: 400; src: url(assets/instrument-serif-latin-400-normal.woff2) format("woff2"); }
-/* Identité Mokrani Studio : ivoire, encre et vert tissu. Titres Inter, touches en serif italique. */
+/* Identité Mokrani Studio : blanc cassé, encre et bleu grec. Titres Inter, touches en serif italique. */
 :root {
-  --blanc: #FBF9F4;
-  --fond: #F2EEE4;
-  --noir: #0F1411;
-  --tuile-noire: #1A211D;
-  --texte: #17201B;
-  --texte-2: #5A625C;
-  --texte-3: #8B918C;
-  --ligne: #E2DCCF;
-  --bleu: #2F6B4F;
-  --bleu-survol: #275A42;
-  --lien: #2F6B4F;
-  --lien-sombre: #9ED1B4;
-  --or: #B08D57;
+  --blanc: #FDFCF9;
+  --fond: #F4F2EC;
+  --noir: #0B1622;
+  --tuile-noire: #15202D;
+  --texte: #121A24;
+  --texte-2: #5B6470;
+  --texte-3: #8B929B;
+  --ligne: #E4E2DB;
+  --bleu: #0D5EAF;
+  --bleu-survol: #0A4F94;
+  --lien: #0D5EAF;
+  --lien-sombre: #8FBDF0;
+  --or: #0D5EAF;
   --orange: #A3541E;
   --vert: #2F7A4A;
   --rouge: #C4291C;
@@ -70,12 +70,12 @@ sup a { color: inherit; }
 .sur { font-size: clamp(17px, 1.8vw, 21px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px; }
 .gris { color: var(--texte-3); }
 .degrade { color: var(--bleu); }
-.degrade-sombre { background: linear-gradient(95deg, #A9D8BC 0%, #E3CF9E 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.degrade-sombre { background: linear-gradient(95deg, #A9CBF2 0%, #E6F0FB 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 /* La touche de la marque : serif italique */
 .accent, .t-section .gris, .t-heros .gris { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.012em; font-size: 1.1em; line-height: .95; }
 .accent { color: var(--bleu); }
-.t-section .gris { color: #4E7A62; }
-.fond-noir .t-section .gris { color: #A9D8BC; }
+.t-section .gris { color: #3E6F9F; }
+.fond-noir .t-section .gris { color: #A9CBF2; }
 
 /* Boutons */
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 22px; border-radius: 980px; border: 0; background: var(--bleu); color: #fff; font-size: 17px; font-weight: 400; letter-spacing: -0.02em; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color .3s ease, color .3s ease, scale .15s ease-out; }
@@ -336,7 +336,7 @@ sup a { color: inherit; }
 .carte-nfc small { font-size: 4cqw; opacity: .65; display: block; }
 .carte-nfc svg { width: 11cqw; height: auto; }
 .ondes { position: absolute; left: 50%; top: 38%; width: 70%; aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
-.ondes i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(47,107,79,.45); transform: scale(.2); opacity: 0; animation: onde 2.6s ease-out infinite; }
+.ondes i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(13,94,175,.45); transform: scale(.2); opacity: 0; animation: onde 2.6s ease-out infinite; }
 .ondes i:nth-child(2) { animation-delay: .85s; } .ondes i:nth-child(3) { animation-delay: 1.7s; }
 @keyframes onde { 0% { transform: scale(.2); opacity: .9; } 100% { transform: scale(1); opacity: 0; } }
 .tel--hl5 { --l: min(28cqw, 33cqh); transform: rotate(8deg) translateY(-4%); }
@@ -422,7 +422,7 @@ sup a { color: inherit; }
 .commercant-note { color: var(--texte-2); font-size: 13px; }
 .commercant .btn { justify-self: start; }
 .commercant-btns { display: flex; flex-wrap: wrap; gap: 10px; }
-.toast-comm { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: #E7F0EA; color: #24543D; font-size: 14px; }
+.toast-comm { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: #E8F0FA; color: #0A4580; font-size: 14px; }
 .toast-comm svg { flex: none; width: 18px; height: 18px; }
 
 /* Agenda du coiffeur */
@@ -432,7 +432,7 @@ sup a { color: inherit; }
 .ag-ligne b { font-weight: 600; }
 .ag-ligne span { color: var(--texte-2); }
 .ag-ligne em { font-style: normal; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: #fff; color: var(--texte-2); }
-.ag-ligne.neuf { background: #E7F0EA; box-shadow: inset 0 0 0 1px rgba(47,107,79,.25); }
+.ag-ligne.neuf { background: #E8F0FA; box-shadow: inset 0 0 0 1px rgba(13,94,175,.25); }
 .ag-ligne.neuf em { background: var(--bleu); color: #fff; }
 .ag-vide { color: var(--texte-3); font-size: 14px; padding: 8px 2px; }
 
@@ -442,7 +442,7 @@ sup a { color: inherit; }
 .ticket b { font-weight: 600; font-variant-numeric: tabular-nums; }
 .ticket small { grid-column: 1; color: var(--texte-2); font-size: 13px; }
 .ticket .etat-t { grid-row: 1 / span 2; grid-column: 2; }
-.ticket.neuf { background: #E7F0EA; box-shadow: inset 0 0 0 1px rgba(47,107,79,.25); }
+.ticket.neuf { background: #E8F0FA; box-shadow: inset 0 0 0 1px rgba(13,94,175,.25); }
 .pill-t { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: #E3F5E8; color: var(--vert); }
 .pill-t--prep { background: #FFF1DD; color: #A35200; }
 
@@ -458,7 +458,7 @@ sup a { color: inherit; }
 .fiche .note-g { grid-row: 1 / span 2; font-size: 40px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
 .fiche .etoiles-g { color: #FF9F0A; letter-spacing: 2px; font-size: 15px; }
 .fiche small { color: var(--texte-2); font-size: 13px; }
-.avis-recu { padding: 12px 14px; border-radius: 14px; background: #E7F0EA; font-size: 14px; display: grid; gap: 2px; }
+.avis-recu { padding: 12px 14px; border-radius: 14px; background: #E8F0FA; font-size: 14px; display: grid; gap: 2px; }
 .avis-recu b { font-weight: 600; }
 .avis-recu span { color: #FF9F0A; letter-spacing: 1px; }
 .nfc-comptoir { position: relative; height: 150px; display: grid; place-items: center; perspective: 900px; }
@@ -466,7 +466,7 @@ sup a { color: inherit; }
 .nfc-comptoir .carte-c b { font-size: 15px; font-weight: 600; }
 .nfc-comptoir .carte-c small { font-size: 11px; opacity: .65; display: block; }
 .ondes-demo { position: absolute; left: 50%; top: 46%; width: 170px; aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
-.ondes-demo i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(47,107,79,.5); opacity: 0; transform: scale(.2); }
+.ondes-demo i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(13,94,175,.5); opacity: 0; transform: scale(.2); }
 .ondes-demo.actif i { animation: onde 1.6s ease-out 2; }
 .ondes-demo.actif i:nth-child(2) { animation-delay: .4s; } .ondes-demo.actif i:nth-child(3) { animation-delay: .8s; }
 
@@ -577,7 +577,7 @@ sup a { color: inherit; }
 .suivi-pas small { color: var(--texte-2); font-size: .8em; }
 .suivi-pas.fait i { background: #34C759 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l3 2.8 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat; border-color: #34C759; }
 .suivi-pas.fait::before { background: #34C759; }
-.suivi-pas.encours i { border-color: var(--bleu); box-shadow: 0 0 0 .3em rgba(47,107,79,.15); }
+.suivi-pas.encours i { border-color: var(--bleu); box-shadow: 0 0 0 .3em rgba(13,94,175,.15); }
 .suivi-pas.encours i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--bleu); animation: pouls 1.4s ease-in-out infinite; }
 @keyframes pouls { 50% { transform: scale(.6); opacity: .5; } }
 
@@ -619,7 +619,7 @@ sup a { color: inherit; }
 .eq b { grid-row: 1 / span 2; grid-column: 2; display: flex; align-items: center; gap: .45em; font-weight: 600; font-variant-numeric: tabular-nums; }
 .eq b::after { content: ""; width: .6em; height: .6em; border-radius: 50%; background: #34C759; }
 .eq.ko b::after { background: #FF3B30; box-shadow: 0 0 0 .25em rgba(255,59,48,.2); }
-.eq[aria-pressed="true"] { background: #E7F0EA; }
+.eq[aria-pressed="true"] { background: #E8F0FA; }
 .tab-cote .btn-app { margin-top: auto; font-size: .9em; }
 .tab-main { position: relative; padding: 2.2em 2.2em 1.6em; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: .9em; min-width: 0; min-height: 0; }
 .tab-alerte { display: flex; gap: .7em; align-items: center; padding: .8em 1em; border-radius: 1em; background: #FFE5E3; color: #B3261E; font-size: .92em; font-weight: 500; }
@@ -758,9 +758,10 @@ sup a { color: inherit; }
 .pc-grille::-webkit-scrollbar { display: none; }
 .pc-col { scroll-snap-align: start; }
 .pc-paddles { margin-top: 18px; }
+@media (min-width: 834px) { .pc-grille { justify-content: center; grid-auto-columns: 290px; gap: 20px; } .pc-paddles { display: none; } }
 .pc-col--stock { box-shadow: inset 0 0 0 2px rgba(29,138,63,.45); }
 .pc-badge.pc-badge--stock { color: var(--vert); }
-.pc-col--autre { background: #fff; box-shadow: inset 0 0 0 1.5px rgba(47,107,79,.25); }
+.pc-col--autre { background: #fff; box-shadow: inset 0 0 0 1.5px rgba(13,94,175,.25); }
 .pc-autres { list-style: none; margin: 16px 0 20px; padding: 0; width: 100%; text-align: left; border-top: 1px solid var(--ligne); }
 .pc-autres li { padding: 10px 2px 10px 24px; border-bottom: 1px solid var(--ligne); font-size: 13px; position: relative; }
 .pc-autres li::before { content: ""; position: absolute; left: 2px; top: 13px; width: 13px; height: 13px; border-radius: 50%; background: var(--bleu) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l3 2.8 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
@@ -807,7 +808,7 @@ sup a { color: inherit; }
 .pq-carte--moi { background: #000; }
 .pq-carte--moi p { color: #A1A1A6; }
 .pq-carte--moi p b { color: #F5F5F7; }
-.initiales { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(150deg, #3C8463, #1F4A36); display: grid; place-items: center; font-weight: 600; font-size: 19px; color: #fff; }
+.initiales { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(150deg, #2E7BD0, #0A4580); display: grid; place-items: center; font-weight: 600; font-size: 19px; color: #fff; }
 
 /* FAQ */
 .faq { padding-block: clamp(90px, 11vw, 150px); }
@@ -837,7 +838,7 @@ form { background: #fff; border-radius: 28px; padding: clamp(22px, 4vw, 40px); d
 .champ textarea { height: 130px; resize: vertical; padding-top: 28px; }
 .champ label { position: absolute; left: 17px; top: 17px; color: var(--texte-2); font-size: 17px; pointer-events: none; transform-origin: 0 0; transition: transform .2s var(--courbe); }
 .champ input:focus + label, .champ input:not(:placeholder-shown) + label, .champ textarea:focus + label, .champ textarea:not(:placeholder-shown) + label, .champ select + label { transform: translateY(-9px) scale(.72); }
-.champ input:focus, .champ select:focus, .champ textarea:focus { outline: none; border-color: var(--bleu); box-shadow: 0 0 0 4px rgba(47,107,79,.18); }
+.champ input:focus, .champ select:focus, .champ textarea:focus { outline: none; border-color: var(--bleu); box-shadow: 0 0 0 4px rgba(13,94,175,.18); }
 .erreur { color: var(--rouge); font-size: 14px; min-height: 1.2em; }
 .pret { padding: 18px; border-radius: 16px; background: var(--fond); display: grid; gap: 10px; }
 .pret p { font-size: 15px; color: var(--texte-2); }
@@ -902,8 +903,8 @@ body { letter-spacing: -0.011em; }
 .btn--contour:hover { color: #fff; }
 
 /* Barre unique */
-.lnav { background: rgba(251, 249, 244, .78); }
-.lnav.colle { background: rgba(251, 249, 244, .9); box-shadow: 0 1px 0 var(--ligne); }
+.lnav { background: rgba(253, 252, 249, .78); }
+.lnav.colle { background: rgba(253, 252, 249, .9); box-shadow: 0 1px 0 var(--ligne); }
 .lnav .cadre { max-width: 1080px; gap: 28px; }
 .lnav-titre { display: inline-flex; align-items: center; gap: 9px; font-size: 19px; }
 .lnav-titre em { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.12em; color: var(--bleu); letter-spacing: 0; }
@@ -920,12 +921,12 @@ body { letter-spacing: -0.011em; }
 .menu-plein .menu-actions .btn--contour { color: var(--bleu); }
 
 /* Héros */
-.heros { background: radial-gradient(70% 45% at 50% 78%, rgba(47,107,79,.11) 0%, rgba(47,107,79,0) 70%), radial-gradient(40% 30% at 85% 20%, rgba(176,141,87,.10) 0%, rgba(176,141,87,0) 70%), var(--blanc); }
+.heros { background: radial-gradient(70% 45% at 50% 78%, rgba(13,94,175,.11) 0%, rgba(13,94,175,0) 70%), radial-gradient(40% 30% at 85% 20%, rgba(13,94,175,.05) 0%, rgba(13,94,175,0) 70%), var(--blanc); }
 .heros-sur { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--texte-2); padding: 7px 14px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--ligne); margin-bottom: 22px; }
-.heros-sur i { width: 7px; height: 7px; border-radius: 50%; background: var(--bleu); box-shadow: 0 0 0 3px rgba(47,107,79,.18); }
+.heros-sur i { width: 7px; height: 7px; border-radius: 50%; background: var(--bleu); box-shadow: 0 0 0 3px rgba(13,94,175,.18); }
 .heros-titre .accent { font-size: 1.12em; padding-bottom: .04em; }
-.prix-rapides { display: inline-grid; grid-template-columns: repeat(3, auto); margin-top: 26px; border-radius: 18px; background: #fff; box-shadow: inset 0 0 0 1px var(--ligne), 0 10px 30px -18px rgba(23,32,27,.25); color: var(--texte); overflow: hidden; transition: box-shadow .3s ease, translate .3s var(--courbe); }
-.prix-rapides:hover { text-decoration: none; translate: 0 -2px; box-shadow: inset 0 0 0 1px #CFC7B6, 0 14px 34px -18px rgba(23,32,27,.3); }
+.prix-rapides { display: inline-grid; grid-template-columns: repeat(3, auto); margin-top: 26px; border-radius: 18px; background: #fff; box-shadow: inset 0 0 0 1px var(--ligne), 0 10px 30px -18px rgba(18,26,36,.25); color: var(--texte); overflow: hidden; transition: box-shadow .3s ease, translate .3s var(--courbe); }
+.prix-rapides:hover { text-decoration: none; translate: 0 -2px; box-shadow: inset 0 0 0 1px #CCCAC2, 0 14px 34px -18px rgba(18,26,36,.3); }
 .prix-rapides span { display: grid; gap: 1px; padding: 12px 22px; text-align: center; }
 .prix-rapides span + span { box-shadow: -1px 0 0 var(--ligne); }
 .prix-rapides small { font-size: 12px; color: var(--texte-2); }
@@ -933,17 +934,17 @@ body { letter-spacing: -0.011em; }
 .prix-rapides span:nth-child(2) b { color: var(--bleu); }
 
 /* Sections sombres : encre, pas noir pur */
-.fond-noir { background: var(--noir); color: #F1EEE6; }
-.mots { color: #F1EEE6; }
+.fond-noir { background: var(--noir); color: #EEF2F7; }
+.mots { color: #EEF2F7; }
 .stat { background: var(--tuile-noire); }
-.stat-label { color: #9AA39C; }
-.stat-txt { color: #A9B1AB; }
-.stat-txt b { color: #F1EEE6; }
+.stat-label { color: #98A2AE; }
+.stat-txt { color: #A7B0BB; }
+.stat-txt b { color: #EEF2F7; }
 .inclus { background: var(--noir); }
 .pq-carte--moi { background: var(--noir); }
-.hl-c2 { background: radial-gradient(70% 55% at 25% 15%, #3C8463 0%, rgba(60,132,99,0) 70%), radial-gradient(55% 45% at 85% 80%, #B08D57 0%, rgba(176,141,87,0) 70%), #0E1411; }
+.hl-c2 { background: radial-gradient(70% 55% at 25% 15%, #2E7BD0 0%, rgba(30,111,194,0) 70%), radial-gradient(55% 45% at 85% 80%, #5FA4E6 0%, rgba(95,164,230,0) 70%), #0A1420; }
 .tuile.sombre { background: var(--noir); }
-.tuile--bleue { background: radial-gradient(80% 60% at 50% 0%, #3C7A5C 0%, rgba(60,122,92,0) 70%), #18231D; }
+.tuile--bleue { background: radial-gradient(80% 60% at 50% 0%, #1E6FC2 0%, rgba(30,111,194,0) 70%), #0B1A2B; }
 .tuile--bleue .btn { color: var(--bleu); }
 .option svg, .coord svg { color: var(--bleu); }
 .col-badge, .pc-badge { color: var(--or); }
@@ -952,7 +953,7 @@ body { letter-spacing: -0.011em; }
 /* Contact et formulaire */
 .coord a { display: block; color: var(--texte); font-size: 19px; font-weight: 600; letter-spacing: -0.02em; overflow-wrap: anywhere; }
 .coord a:hover { color: var(--bleu); text-decoration: none; }
-.champ input, .champ select, .champ textarea { border-color: #CFC8B8; }
+.champ input, .champ select, .champ textarea { border-color: #CFCDC6; }
 .envois { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .copier { font-size: 14px; justify-self: start; }
 .rgpd { font-size: 13px; color: var(--texte-2); }
@@ -971,7 +972,7 @@ footer { background: var(--fond); }
   .lnav-titre { margin-right: auto; font-size: 18px; }
   .lnav .btn--mini { min-height: 34px; padding: 6px 14px; font-size: 13px; }
 
-  .barre-action { display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px; position: fixed; z-index: 55; left: 0; right: 0; bottom: 0; padding: 10px max(16px, env(safe-area-inset-left, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(251, 249, 244, .9); backdrop-filter: saturate(160%) blur(18px); -webkit-backdrop-filter: saturate(160%) blur(18px); box-shadow: 0 -1px 0 var(--ligne); transform: translateY(110%); transition: transform .45s var(--courbe); }
+  .barre-action { display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px; position: fixed; z-index: 55; left: 0; right: 0; bottom: 0; padding: 10px max(16px, env(safe-area-inset-left, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(253, 252, 249, .9); backdrop-filter: saturate(160%) blur(18px); -webkit-backdrop-filter: saturate(160%) blur(18px); box-shadow: 0 -1px 0 var(--ligne); transform: translateY(110%); transition: transform .45s var(--courbe); }
   .barre-action.visible { transform: none; }
   .barre-action .btn { gap: 8px; min-height: 48px; }
   footer .cadre { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
@@ -991,8 +992,8 @@ footer { background: var(--fond); }
 
   /* Tarifs : les trois formules visibles d'un coup, sans glisser */
   .compare { display: grid; grid-auto-flow: row; grid-template-columns: 1fr; overflow: visible; gap: 14px; padding: 0; text-align: left; }
-  .col { background: #fff; border-radius: 22px; padding: 22px 20px 8px; justify-items: stretch; box-shadow: 0 1px 2px rgba(23,32,27,.05), 0 14px 34px -24px rgba(23,32,27,.35); }
-  .col:nth-child(2) { box-shadow: inset 0 0 0 2px var(--bleu), 0 14px 34px -24px rgba(23,32,27,.35); }
+  .col { background: #fff; border-radius: 22px; padding: 22px 20px 8px; justify-items: stretch; box-shadow: 0 1px 2px rgba(18,26,36,.05), 0 14px 34px -24px rgba(18,26,36,.35); }
+  .col:nth-child(2) { box-shadow: inset 0 0 0 2px var(--bleu), 0 14px 34px -24px rgba(18,26,36,.35); }
   .col-visuel { display: none; }
   .col-badge { height: auto; order: -1; }
   .col-badge:empty { display: none; }
@@ -1106,7 +1107,7 @@ footer { background: var(--fond); }
 <header class="lnav bande" id="lnav">
   <div class="cadre">
     <a class="lnav-titre" href="#vue-ensemble" aria-label="Mokrani Studio, accueil">
-      <svg width="18" height="21" viewBox="0 0 22 26" aria-hidden="true"><path d="M1 25V11a10 10 0 0 1 20 0v14Z" fill="var(--bleu)"/><path d="M6.5 21V12l4.5 5 4.5-5v9" fill="none" stroke="#FBF9F4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <svg width="18" height="21" viewBox="0 0 22 26" aria-hidden="true"><path d="M1 25V11a10 10 0 0 1 20 0v14Z" fill="var(--bleu)"/><path d="M6.5 21V12l4.5 5 4.5-5v9" fill="none" stroke="#FDFCF9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
       <span>Mokrani <em>Studio</em></span>
     </a>
     <nav class="lnav-liens" aria-label="Navigation principale">
@@ -1256,9 +1257,9 @@ footer { background: var(--fond); }
                 <p class="verrou-date">samedi 24 octobre</p>
                 <p class="verrou-heure">9:41</p>
                 <div class="verrou-notifs">
-                  <div class="notif"><span class="notif-icone" style="background:#2F6B4F"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>maintenant</time></b><span>Karim · Coupe + barbe · sam. 10h · 26 €</span></span></div>
-                  <div class="notif"><span class="notif-icone" style="background:#2F6B4F"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>il y a 12 min</time></b><span>Yanis · Barbe · sam. 11h30 · 8 €</span></span></div>
-                  <div class="notif"><span class="notif-icone" style="background:#2F6B4F"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>il y a 40 min</time></b><span>Sofia · Coupe enfant · mar. 17h · 14 €</span></span></div>
+                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>maintenant</time></b><span>Karim · Coupe + barbe · sam. 10h · 26 €</span></span></div>
+                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>il y a 12 min</time></b><span>Yanis · Barbe · sam. 11h30 · 8 €</span></span></div>
+                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>il y a 40 min</time></b><span>Sofia · Coupe enfant · mar. 17h · 14 €</span></span></div>
                 </div>
                 <span class="verrou-barre"></span>
               </div>
@@ -1293,13 +1294,13 @@ footer { background: var(--fond); }
                 <p class="ip-etat">2,4 °C · Conforme · consigne 0 à 4 °C</p>
                 <div class="ip-graph">
                   <svg viewBox="0 0 400 150">
-                    <defs><linearGradient id="aire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ED1B4" stop-opacity=".45"/><stop offset="1" stop-color="#9ED1B4" stop-opacity="0"/></linearGradient></defs>
+                    <defs><linearGradient id="aire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FBDF0" stop-opacity=".45"/><stop offset="1" stop-color="#8FBDF0" stop-opacity="0"/></linearGradient></defs>
                     <rect x="0" y="20" width="400" height="100" fill="rgba(48,209,88,.07)"/>
                     <line x1="0" y1="20" x2="400" y2="20" stroke="rgba(255,255,255,.12)" stroke-dasharray="4 4"/>
                     <line x1="0" y1="120" x2="400" y2="120" stroke="rgba(255,255,255,.12)" stroke-dasharray="4 4"/>
                     <path id="aire-path" d="M0 78 C30 70 50 60 80 64 S130 84 160 74 S210 50 240 58 S300 82 330 70 S380 56 400 60 L400 150 L0 150 Z" fill="url(#aire)"/>
-                    <path id="ligne-path" d="M0 78 C30 70 50 60 80 64 S130 84 160 74 S210 50 240 58 S300 82 330 70 S380 56 400 60" fill="none" stroke="#9ED1B4" stroke-width="3" stroke-linecap="round" pathLength="1"/>
-                    <circle cx="398" cy="60" r="5" fill="#9ED1B4"/>
+                    <path id="ligne-path" d="M0 78 C30 70 50 60 80 64 S130 84 160 74 S210 50 240 58 S300 82 330 70 S380 56 400 60" fill="none" stroke="#8FBDF0" stroke-width="3" stroke-linecap="round" pathLength="1"/>
+                    <circle cx="398" cy="60" r="5" fill="#8FBDF0"/>
                   </svg>
                 </div>
                 <div class="ip-stats"><div>Minimum<b>1,9 °C</b></div><div>Maximum<b>3,2 °C</b></div><div>Relevés<b>42</b></div></div>
@@ -1389,7 +1390,7 @@ footer { background: var(--fond); }
                 <p class="verrou-date">samedi 24 octobre</p>
                 <p class="verrou-heure">9:26</p>
                 <div class="verrou-notifs">
-                  <div class="notif"><span class="notif-icone" style="background:#2F6B4F"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>maintenant</time></b><span>Karim · Coupe + barbe · aujourd'hui 9h30 · 26 €</span></span></div>
+                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>maintenant</time></b><span>Karim · Coupe + barbe · aujourd'hui 9h30 · 26 €</span></span></div>
                 </div>
                 <span class="verrou-barre"></span>
               </div>
@@ -1789,7 +1790,7 @@ footer { background: var(--fond); }
       <div class="pc-tete apparait">
         <p class="sur" style="color:var(--orange)">Ordinateurs</p>
         <h2 class="t-section">Pas d'ordinateur&nbsp;? <span class="gris">Je vous le fournis, prêt à l'emploi.</span></h2>
-        <p class="t-lead">Un modèle en stock, 4 recommandations, et tous les autres modèles sur demande, de toutes les marques. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
+        <p class="t-lead">Mon modèle en stock, deux recommandations, et tous les autres modèles sur demande, de toutes les marques. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
       </div>
       <div class="pc-grille" id="pc-grille">
         <article class="pc-col pc-col--stock">
@@ -1811,43 +1812,26 @@ footer { background: var(--fond); }
         </article>
         <article class="pc-col">
           <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="28" y="8" width="144" height="94" rx="7" fill="#C9CBD0"/><rect x="33" y="13" width="134" height="84" rx="3" fill="#0E2A4F"/><rect x="33" y="13" width="134" height="84" rx="3" fill="url(#pc-ecran-1)"/><path d="M10 104h180l-6 9a6 6 0 0 1-5 3H21a6 6 0 0 1-5-3Z" fill="#D9DBE0"/><rect x="86" y="104" width="28" height="3" rx="1.5" fill="#B4B6BB"/><defs><linearGradient id="pc-ecran-1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F6FD1"/><stop offset="1" stop-color="#0A2E66"/></linearGradient></defs></svg>
+            <svg viewBox="0 0 200 120"><rect x="30" y="8" width="140" height="92" rx="7" fill="#C9CCD2"/><rect x="34" y="12" width="132" height="84" rx="3" fill="url(#pc-ecran-mac)"/><rect x="92" y="12" width="16" height="3" rx="1.5" fill="#1D1D1F"/><path d="M8 102h184l-3 6a8 8 0 0 1-7 4H18a8 8 0 0 1-7-4Z" fill="#D8DADF"/><rect x="84" y="102" width="32" height="3" rx="1.5" fill="#B3B6BC"/><defs><linearGradient id="pc-ecran-mac" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6FB3E8"/><stop offset=".55" stop-color="#0D5EAF"/><stop offset="1" stop-color="#0A2D5C"/></linearGradient></defs></svg>
           </div>
-          <span class="pc-badge"></span>
-          <h3>HP 250R G9</h3>
-          <p class="pc-tag">Le portable du quotidien : factures, mails, commandes.</p>
-          <p class="pc-prix">environ 750 €<sup><a href="#note-4">4</a></sup><small>Réf. C38K9AT</small></p>
+          <span class="pc-badge">Pour ceux qui préfèrent Apple</span>
+          <h3>Apple MacBook Air 13 pouces (M5)</h3>
+          <p class="pc-tag">Léger, silencieux et très autonome. Il tient la journée sans chargeur.</p>
+          <p class="pc-prix">environ 1 399 €<sup><a href="#note-4">4</a></sup><small>Neuf · 16 Go · 512 Go</small></p>
           <ul class="pc-specs">
-            <li><span>Processeur</span><b>Intel Core 5 120U</b></li>
+            <li><span>Puce</span><b>Apple M5</b></li>
             <li><span>Mémoire</span><b>16 Go</b></li>
             <li><span>Stockage</span><b>SSD 512 Go</b></li>
-            <li><span>Écran</span><b>15,6 pouces</b></li>
-            <li><span>Système</span><b>Windows 11 Famille</b></li>
+            <li><span>Écran</span><b>13,6 pouces</b></li>
+            <li><span>Système</span><b>macOS</b></li>
           </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="HP 250R G9">Choisir ce modèle</a>
-        </article>
-        <article class="pc-col">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="32" y="10" width="136" height="90" rx="6" fill="#1D1D1F"/><rect x="37" y="15" width="126" height="80" rx="2" fill="url(#pc-ecran-2)"/><path d="M12 102h176l-5 9a6 6 0 0 1-5 3H22a6 6 0 0 1-5-3Z" fill="#2A2A2D"/><rect x="88" y="102" width="24" height="3" rx="1.5" fill="#46464A"/><circle cx="160" cy="108" r="1.8" fill="#E2231A"/><defs><linearGradient id="pc-ecran-2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3A8DDE"/><stop offset=".6" stop-color="#1B4E9B"/><stop offset="1" stop-color="#132A57"/></linearGradient></defs></svg>
-          </div>
-          <span class="pc-badge">Le plus solide</span>
-          <h3>Lenovo ThinkPad E14 Gen 7</h3>
-          <p class="pc-tag">Le portable pro, robuste, pour ceux qui l'emmènent partout.</p>
-          <p class="pc-prix">environ 1 270 €<sup><a href="#note-4">4</a></sup><small>Réf. 21U2002SFR</small></p>
-          <ul class="pc-specs">
-            <li><span>Processeur</span><b>Intel Core Ultra 5 226V</b></li>
-            <li><span>Mémoire</span><b>16 Go</b></li>
-            <li><span>Stockage</span><b>SSD 512 Go</b></li>
-            <li><span>Écran</span><b>14 pouces</b></li>
-            <li><span>Système</span><b>Windows 11</b></li>
-          </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="Lenovo ThinkPad E14 Gen 7">Choisir ce modèle</a>
+          <a class="btn btn--petit" href="#contact" data-pc="Apple MacBook Air 13 pouces (M5)">Choisir ce modèle</a>
         </article>
         <article class="pc-col">
           <div class="pc-visuel" aria-hidden="true">
             <svg viewBox="0 0 200 120"><rect x="64" y="6" width="112" height="72" rx="5" fill="#2A2A2D"/><rect x="68" y="10" width="104" height="64" rx="2" fill="url(#pc-ecran-3)"/><rect x="114" y="78" width="12" height="18" fill="#3A3A3D"/><rect x="96" y="96" width="48" height="5" rx="2.5" fill="#3A3A3D"/><rect x="18" y="74" width="40" height="34" rx="4" fill="#1D1D1F"/><rect x="22" y="80" width="16" height="2" rx="1" fill="#4A4A4F"/><circle cx="51" cy="81" r="1.6" fill="#30D158"/><rect x="22" y="100" width="32" height="2" rx="1" fill="#2E2E31"/><defs><linearGradient id="pc-ecran-3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2E8DA"/><stop offset="1" stop-color="#E2CDB0"/></linearGradient></defs></svg>
           </div>
-          <span class="pc-badge">Idéal en caisse</span>
+          <span class="pc-badge">PC fixe · idéal en caisse</span>
           <h3>Lenovo ThinkCentre neo 50q Gen 4</h3>
           <p class="pc-tag">Le mini PC de comptoir, caché derrière l'écran.</p>
           <p class="pc-prix">environ 930 €<sup><a href="#note-4">4</a></sup><small>Réf. 12LN001YFR · écran en option</small></p>
@@ -1860,41 +1844,9 @@ footer { background: var(--fond); }
           </ul>
           <a class="btn btn--petit" href="#contact" data-pc="Lenovo ThinkCentre neo 50q Gen 4">Choisir ce modèle</a>
         </article>
-        <article class="pc-col">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="62" y="6" width="116" height="74" rx="5" fill="#D6D8DD"/><rect x="66" y="10" width="108" height="66" rx="2" fill="url(#pc-ecran-4)"/><path d="M110 80h20l4 18h-28Z" fill="#C3C5CA"/><rect x="98" y="98" width="44" height="4" rx="2" fill="#B9BBC0"/><rect x="14" y="88" width="42" height="16" rx="5" fill="#E3E4E8"/><rect x="14" y="100" width="42" height="4" rx="2" fill="#C9CBD0"/><defs><linearGradient id="pc-ecran-4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A5CF0"/><stop offset=".5" stop-color="#2F7DE0"/><stop offset="1" stop-color="#2BC3D4"/></linearGradient></defs></svg>
-          </div>
-          <span class="pc-badge"></span>
-          <h3>Apple Mac mini M4</h3>
-          <p class="pc-tag">Pour ceux qui préfèrent Apple. Silencieux et très rapide.</p>
-          <p class="pc-prix">environ 700 €<sup><a href="#note-4">4</a></sup><small>Réf. MU9D3FN/A · écran en option</small></p>
-          <ul class="pc-specs">
-            <li><span>Puce</span><b>Apple M4</b></li>
-            <li><span>Mémoire</span><b>16 Go</b></li>
-            <li><span>Stockage</span><b>SSD 256 Go</b></li>
-            <li><span>Format</span><b>Mini (12,7 cm)</b></li>
-            <li><span>Système</span><b>macOS</b></li>
-          </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="Apple Mac mini M4">Choisir ce modèle</a>
-        </article>
-        <article class="pc-col pc-col--autre">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="56" y="14" width="88" height="88" rx="22" fill="none" stroke="#2F6B4F" stroke-width="3" stroke-dasharray="8 7"/><path d="M100 42v32M84 58h32" stroke="#2F6B4F" stroke-width="4" stroke-linecap="round"/></svg>
-          </div>
-          <span class="pc-badge"></span>
-          <h3>Un autre modèle&nbsp;?</h3>
-          <p class="pc-tag">Je vous fournis l'ordinateur qu'il vous faut, de toutes les marques.</p>
-          <ul class="pc-autres">
-            <li>Dell, HP, Lenovo, Asus, Acer, Apple</li>
-            <li>Portable, fixe ou tout-en-un</li>
-            <li>Écran, imprimante, douchette, tiroir-caisse</li>
-            <li>Reconditionné garanti pour un petit budget</li>
-          </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="un ordinateur (à conseiller)">Demander un conseil</a>
-        </article>
       </div>
       <div class="paddles pc-paddles" data-cible="pc-grille"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
-      <p class="astuce-mobile">Faites glisser pour voir les 5 modèles</p>
+      <p class="astuce-mobile">Faites glisser pour voir les 3 modèles</p>
 
       <div class="inclus apparait">
         <div>
@@ -1940,7 +1892,7 @@ footer { background: var(--fond); }
         </div>
         <div class="col">
           <div class="col-visuel" aria-hidden="true">
-            <svg viewBox="0 0 90 150"><rect x="5" y="2" width="80" height="146" rx="16" fill="#3A3A3D"/><rect x="9" y="6" width="72" height="138" rx="12.5" fill="#fff"/><rect x="33" y="10" width="24" height="6" rx="3" fill="#000"/><text x="16" y="36" font-size="11" font-weight="700" fill="#1D1D1F" font-family="Inter, sans-serif">Réserver</text><g fill="#F2F2F4"><rect x="16" y="46" width="17" height="11" rx="3"/><rect x="37" y="46" width="17" height="11" rx="3"/><rect x="58" y="46" width="17" height="11" rx="3"/><rect x="16" y="61" width="17" height="11" rx="3"/><rect x="58" y="61" width="17" height="11" rx="3"/><rect x="16" y="76" width="17" height="11" rx="3"/><rect x="37" y="76" width="17" height="11" rx="3"/></g><rect x="37" y="61" width="17" height="11" rx="3" fill="#2F6B4F"/><rect x="16" y="120" width="58" height="13" rx="5" fill="#2F6B4F"/></svg>
+            <svg viewBox="0 0 90 150"><rect x="5" y="2" width="80" height="146" rx="16" fill="#3A3A3D"/><rect x="9" y="6" width="72" height="138" rx="12.5" fill="#fff"/><rect x="33" y="10" width="24" height="6" rx="3" fill="#000"/><text x="16" y="36" font-size="11" font-weight="700" fill="#1D1D1F" font-family="Inter, sans-serif">Réserver</text><g fill="#F2F2F4"><rect x="16" y="46" width="17" height="11" rx="3"/><rect x="37" y="46" width="17" height="11" rx="3"/><rect x="58" y="46" width="17" height="11" rx="3"/><rect x="16" y="61" width="17" height="11" rx="3"/><rect x="58" y="61" width="17" height="11" rx="3"/><rect x="16" y="76" width="17" height="11" rx="3"/><rect x="37" y="76" width="17" height="11" rx="3"/></g><rect x="37" y="61" width="17" height="11" rx="3" fill="#0D5EAF"/><rect x="16" y="120" width="58" height="13" rx="5" fill="#0D5EAF"/></svg>
           </div>
           <span class="col-badge">Le plus demandé</span>
           <h3>Réservation</h3>
@@ -1956,7 +1908,7 @@ footer { background: var(--fond); }
         </div>
         <div class="col">
           <div class="col-visuel" aria-hidden="true">
-            <svg viewBox="0 0 190 140"><rect x="4" y="6" width="182" height="128" rx="12" fill="#1D1D1F"/><rect x="10" y="12" width="170" height="116" rx="7" fill="#0D0D0F"/><rect x="10" y="12" width="48" height="116" fill="#161618"/><g fill="#2C2C2E"><rect x="15" y="26" width="38" height="9" rx="3"/><rect x="15" y="40" width="38" height="9" rx="3"/><rect x="15" y="54" width="38" height="9" rx="3"/></g><path d="M66 92 C80 84 92 76 106 80 S130 96 144 86 S166 70 174 74" fill="none" stroke="#9ED1B4" stroke-width="3" stroke-linecap="round"/><rect x="66" y="24" width="60" height="9" rx="4" fill="#F5F5F7"/><circle cx="72" cy="44" r="3.5" fill="#30D158"/><rect x="80" y="41" width="40" height="6" rx="3" fill="#30D158" opacity=".7"/></svg>
+            <svg viewBox="0 0 190 140"><rect x="4" y="6" width="182" height="128" rx="12" fill="#1D1D1F"/><rect x="10" y="12" width="170" height="116" rx="7" fill="#0D0D0F"/><rect x="10" y="12" width="48" height="116" fill="#161618"/><g fill="#2C2C2E"><rect x="15" y="26" width="38" height="9" rx="3"/><rect x="15" y="40" width="38" height="9" rx="3"/><rect x="15" y="54" width="38" height="9" rx="3"/></g><path d="M66 92 C80 84 92 76 106 80 S130 96 144 86 S166 70 174 74" fill="none" stroke="#8FBDF0" stroke-width="3" stroke-linecap="round"/><rect x="66" y="24" width="60" height="9" rx="4" fill="#F5F5F7"/><circle cx="72" cy="44" r="3.5" fill="#30D158"/><rect x="80" y="41" width="40" height="6" rx="3" fill="#30D158" opacity=".7"/></svg>
           </div>
           <span class="col-badge"></span>
           <h3>Sur mesure</h3>
@@ -1991,11 +1943,11 @@ footer { background: var(--fond); }
     </div></div>
     <div class="pq-piste" id="pq-piste">
       <div class="pq-carte pq-carte--moi"><span class="initiales">AM</span><p><b>Ali Mokrani.</b> Élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants pressés.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#2F6B4F" stroke-width="2"><path d="M20 35s11-9.7 11-17.5a11 11 0 0 0-22 0C9 25.3 20 35 20 35Z"/><circle cx="20" cy="17.5" r="4"/></svg><p><b>Local.</b> Je passe vous voir à Troyes, en région parisienne ou dans les Yvelines.</p></div>
+      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0D5EAF" stroke-width="2"><path d="M20 35s11-9.7 11-17.5a11 11 0 0 0-22 0C9 25.3 20 35 20 35Z"/><circle cx="20" cy="17.5" r="4"/></svg><p><b>Local.</b> Je passe vous voir à Troyes, en région parisienne ou dans les Yvelines.</p></div>
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#F56300" stroke-width="2" stroke-linejoin="round"><path d="M22 4 8 23h11l-2 13 15-20H21Z"/></svg><p><b>Réactif.</b> Réponse sous 24 h, maquette sous 72 h.</p></div>
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#1D8A3F" stroke-width="2"><path d="M7 9h26v18H18l-7 6v-6H7Z" stroke-linejoin="round"/><path d="M13 16h14M13 21h9"/></svg><p><b>Sans jargon.</b> Tout est expliqué simplement. Vous gardez la main sur votre site.</p></div>
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#8E44E0" stroke-width="2"><path d="M6 16 9 7h22l3 9M6 16h28v17H6Z" stroke-linejoin="round"/><path d="M16 33v-9h8v9"/></svg><p><b>Du vrai terrain.</b> Des outils utilisés chaque jour dans une boucherie de demi-gros.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#2F6B4F" stroke-width="2"><circle cx="14" cy="20" r="7"/><path d="M21 20h14M30 20v5M35 20v4"/></svg><p><b>Chez vous.</b> Nom de domaine à votre nom, tous les fichiers fournis.</p></div>
+      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0D5EAF" stroke-width="2"><circle cx="14" cy="20" r="7"/><path d="M21 20h14M30 20v5M35 20v4"/></svg><p><b>Chez vous.</b> Nom de domaine à votre nom, tous les fichiers fournis.</p></div>
     </div>
     <div class="bande"><div class="paddles" data-cible="pq-piste"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
   </section>
@@ -2491,9 +2443,9 @@ footer { background: var(--fond); }
     s += '<rect x="' + g + '" y="' + y(e.max) + '" width="' + (W - g - dr) + '" height="' + (y(e.min) - y(e.max)) + '" fill="rgba(52,199,89,.12)" rx="4"/>';
     [e.min, e.max].forEach(function (v) { s += '<line x1="' + g + '" x2="' + (W - dr) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="rgba(29,138,63,.35)" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/><text x="' + (g - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="10" fill="#86868B">' + String(v).replace("-", "−") + '</text>'; });
     var pts = e.v.map(function (v, i) { return x(i) + "," + y(v); }).join(" ");
-    s += '<polygon points="' + x(0) + "," + (H - bas) + " " + pts + " " + x(e.v.length - 1) + "," + (H - bas) + '" fill="' + (ko ? "rgba(255,59,48,.10)" : "rgba(47,107,79,.10)") + '"/>';
-    s += '<polyline points="' + pts + '" fill="none" stroke="' + (ko ? "#FF3B30" : "#2F6B4F") + '" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>';
-    e.v.forEach(function (v, i) { var hn = v < e.min || v > e.max; s += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="' + (i === e.v.length - 1 ? 4.5 : 3) + '" fill="' + (hn ? "#FF3B30" : "#2F6B4F") + '" stroke="#fff" stroke-width="1.5"/>'; });
+    s += '<polygon points="' + x(0) + "," + (H - bas) + " " + pts + " " + x(e.v.length - 1) + "," + (H - bas) + '" fill="' + (ko ? "rgba(255,59,48,.10)" : "rgba(13,94,175,.10)") + '"/>';
+    s += '<polyline points="' + pts + '" fill="none" stroke="' + (ko ? "#FF3B30" : "#0D5EAF") + '" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>';
+    e.v.forEach(function (v, i) { var hn = v < e.min || v > e.max; s += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="' + (i === e.v.length - 1 ? 4.5 : 3) + '" fill="' + (hn ? "#FF3B30" : "#0D5EAF") + '" stroke="#fff" stroke-width="1.5"/>'; });
     var labels = HH.slice(-e.v.length);
     labels.forEach(function (h, i) { s += '<text x="' + x(i) + '" y="' + (H - 4) + '" text-anchor="middle" font-size="10" fill="#86868B">' + h + '</text>'; });
     $("h-graph").innerHTML = s;
