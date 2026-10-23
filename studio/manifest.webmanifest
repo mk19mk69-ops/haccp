@@ -1,0 +1,16 @@
+{
+  "name": "Mokrani Studio",
+  "short_name": "Mokrani",
+  "description": "Sites internet, réservation en ligne et logiciels pour commerçants.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FDFCF9",
+  "theme_color": "#0171EF",
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
