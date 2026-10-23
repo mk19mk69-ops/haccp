@@ -112,6 +112,12 @@ button, input { font: inherit; color: inherit; }
 .tarifs__entete { display: grid; grid-template-columns: 1fr 8ch 8ch; gap: 4px 24px; padding: 14px 4px 10px; border-bottom: 1px solid var(--ligne); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); }
 .tarifs__entete span:not(:first-child) { text-align: right; }
 .tarif__prix--sans { color: var(--gris); font-weight: 500; }
+.opts { margin-top: 26px; }
+.opts__titre { display: flex; justify-content: space-between; gap: 12px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); padding-bottom: 8px; border-bottom: 1px solid var(--ligne); }
+.opts__liste { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+.opts__liste li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--ligne); font-size: .9rem; color: var(--gris); }
+.opt__prix { color: var(--ivoire); white-space: nowrap; font-variant-numeric: lining-nums; }
+@media (max-width: 640px) { .opts__liste { grid-template-columns: 1fr; } }
 .sous-titre { margin: 26px 0 12px; font-size: .95rem; color: var(--gris); }
 .choix--options .carte b::before { content: "+ "; color: var(--or); }
 .choix--options input:checked + .carte b::before { content: "\2713  "; }
@@ -330,6 +336,10 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     <div class="conteneur">
       <h2>Prestations et tarifs</h2>
       <ul class="tarifs" id="tarifs"></ul>
+      <div class="opts">
+        <p class="opts__titre">En option <span>sans RDV · sur RDV</span></p>
+        <ul class="opts__liste" id="tarifs-options"></ul>
+      </div>
       <p class="mention">Sans rendez-vous : tarifs habituels du salon. Sur rendez-vous : votre créneau est garanti, du lundi au samedi de 8h à 13h.</p>
     </div>
   </section>
@@ -615,7 +625,9 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
     { id: "bougie", nom: "Bougie d'oreille", duree: 15, prix: 5, resa: 8 }
   ];
   // Liste affichée dans « Prestations et tarifs ».
-  var TARIFS = [PRINCIPALES[0], PRINCIPALES[1], PRINCIPALES[2]].concat(OPTIONS.slice(1), [PRINCIPALES[3]]);
+  var TARIFS = PRINCIPALES.slice();
+  // Options : affichées en petit, sous le tableau.
+  var TARIFS_OPTIONS = OPTIONS.slice(1);
   // Créneaux sur rendez-vous : du lundi au samedi, 8h-13h.
   var HORAIRES_RDV = [[], [[480, 780]], [[480, 780]], [[480, 780]], [[480, 780]], [[480, 780]], [[480, 780]]];
   // Minutes depuis minuit. Indice : 0 = dimanche ... 6 = samedi.
@@ -763,6 +775,13 @@ dialog::backdrop { background: rgb(0 0 0 / .72); }
         $("reserver").scrollIntoView();
       });
       li.appendChild(b); ul.appendChild(li);
+    });
+    var lo = $("tarifs-options");
+    TARIFS_OPTIONS.forEach(function (o) {
+      var li = el("li");
+      li.appendChild(el("span", null, o.nom));
+      li.appendChild(el("span", { "class": "opt__prix" }, o.prix + " € · " + o.resa + " €"));
+      lo.appendChild(li);
     });
   }
   function rendrePrestations() {
