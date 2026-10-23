@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <style>
 [hidden]{display:none!important}
 html,body{margin:0}
@@ -29,6 +30,15 @@ body{font-size:15px}
 .tk td{border:1px solid #999;padding:4px 6px;vertical-align:top}
 .tk td:first-child{font-weight:700;width:38%}
 .tk-total{margin-top:8px;border:2px solid #000;padding:8px;font-size:18px;font-weight:700;display:flex;justify-content:space-between}
+.tk-shop{font-size:10px;line-height:1.35;margin-top:2px}
+.tk-bar{display:flex;justify-content:space-between;align-items:center;margin:6px 0 2px}
+.tk-bar .qr svg{width:84px;height:84px;display:block}
+.qrwrap{text-align:center}
+.qrtxt{font-size:9px;margin-top:2px}
+.tk-hor{font-size:13px;font-weight:700;border:1px dashed #000;padding:5px 8px;margin:6px 0}
+.tk-cond{margin-top:8px;font-size:10.5px;line-height:1.4;border-top:1px solid #999;padding-top:6px;white-space:pre-line}
+.tk-must{margin-top:6px;font-size:12px;font-weight:700;text-align:center;border:2px solid #000;padding:4px}
+.tk-bye{margin-top:4px;font-size:12px;text-align:center}
 .tk-foot{margin-top:14px;font-size:11px;display:flex;justify-content:space-between;gap:12px}
 .pr h1{font-family:Arial,sans-serif;font-size:20px;margin:0 0 4px}
 .pr .s{font-family:Arial,sans-serif;font-size:12px;margin-bottom:8px}
@@ -226,7 +236,7 @@ tr.cancel td{color:var(--muted);text-decoration:line-through}
   <section id="v-reservations" hidden>
     <h2>Réservations</h2>
     <div class="row" style="margin-bottom:10px">
-      <input type="search" id="rSearch" placeholder="Nom, téléphone ou n°" style="flex:1 1 220px;width:auto">
+      <input type="search" id="rSearch" placeholder="Nom, téléphone ou n° de réservation" style="flex:1 1 220px;width:auto">
       <select id="rEsp" style="width:auto"></select>
       <select id="rRetrait" style="width:auto"></select>
       <select id="rStatut" style="width:auto"><option value="actif">Actives</option><option value="recupere">Récupérées</option><option value="annule">Annulées</option><option value="">Toutes</option></select>
@@ -287,6 +297,22 @@ const sb = window.supabase.createClient(SB_URL, SB_KEY);
 
 const BOV = ["veau","boeuf","broutard"];
 const S = { cfg:null, resas:new Map(), groupes:new Map(), user:null };
+const BOUTIQUE_DEF = { adresse:"Rue des Fontenelles, 78920 Ecquevilly", tel:"" };
+const COND_BOVIN_DEF = "Pour les parts de bovins — retrait de votre commande :\n- Découpe Normale : à partir du J+1 pour les groupes constitués entiers.\n- Découpe Détaillée : à partir du J+3 pour les groupes entiers, sous réserve de l'avancement de la découpe.\nMerci de respecter les dates et heures de retrait qui vous seront communiquées par message ultérieurement.\nLe reste à payer n'est connu qu'après l'abattage : il est calculé sur le poids réel de la carcasse.";
+const COND_AGNEAU_DEF = "Merci de respecter le jour et l'heure de retrait indiqués sur ce ticket.";
+const HORAIRES_AGNEAU_DEF = { R1:"Attendez notre message pour l'heure exacte d'arrivée du camion (estimée vers 17h)", R2:"À partir de 9h", R3:"À partir de 9h" };
+const PIED_DEF = "N'oubliez pas de scanner le QR code pour rejoindre le groupe WhatsApp. Bonne fête de l'Aïd ! — MKVH Distribution";
+function withDefaults(c){
+  c.boutique = Object.assign({}, BOUTIQUE_DEF, c.boutique||{}); delete c.boutique.siret;
+  if (c.condBovin==null) c.condBovin = COND_BOVIN_DEF;
+  if (c.condAgneau==null) c.condAgneau = COND_AGNEAU_DEF;
+  if (c.pied==null) c.pied = PIED_DEF;
+  c.horaires = Object.keys(c.horaires||{}).length ? c.horaires : {...HORAIRES_AGNEAU_DEF};
+  c.whatsapp = Object.assign({agneau:{}, bovin:{}}, c.whatsapp||{});
+  return c;
+}
+function lienWhatsapp(r){ const w = S.cfg.whatsapp||{}; return r.espece==="agneau" ? (w.agneau||{})[r.retrait] || "" : (w.bovin||{})[r.espece+"_"+r.coupe] || ""; }
+const horaire = id => (S.cfg.horaires||{})[id] || "";
 
 /* ---------- Utilitaires ---------- */
 const $ = s => document.querySelector(s);
@@ -372,7 +398,7 @@ async function loadAll(){
     const [cfg, resas, groupes] = await Promise.all([sb.from("aid_config").select("data").eq("id",1).maybeSingle(), fetchAll("aid_resas"), fetchAll("aid_groupes")]);
     if (cfg.error) throw cfg.error;
     if (!cfg.data) throw new Error("Réglages introuvables : le script SQL n'a pas été lancé dans Supabase.");
-    S.cfg = cfg.data.data;
+    S.cfg = withDefaults(cfg.data.data);
     S.resas = new Map(resas.map(x => [x.id, fromResa(x)]));
     S.groupes = new Map(groupes.map(x => [x.id, fromGroupe(x)]));
     $("#syncDot").classList.add("on");
@@ -521,6 +547,7 @@ function renderList(){
   }).join("") : `<tr><td colspan="9"><div class="empty">${S.resas.size? "Aucune réservation ne correspond à ces filtres." : "Aucune réservation pour l'instant. Commence par l'onglet « Nouvelle réservation »."}</div></td></tr>`;
 }
 for (const id of ["rSearch","rEsp","rRetrait","rStatut"]) $("#"+id).addEventListener("input", renderList);
+$("#rSearch").addEventListener("keydown", e => { if (e.key!=="Enter") return; const v = e.target.value.trim().toUpperCase(); if (S.resas.has(v)){ $("#rStatut").value=""; renderList(); openId = v; confirmCancel=false; renderDrawer(); } });
 
 /* ---------- Fiche réservation ---------- */
 let openId = null, confirmCancel = false;
@@ -683,7 +710,23 @@ function renderSettings(){
     <div class="field"><label class="label" for="sAnnee">Année</label><input type="number" id="sAnnee" value="${c.annee}"></div>
     <div class="field"><label class="label" for="sOrg">Entreprise</label><input type="text" id="sOrg" value="${esc(c.org)}"></div>
     <div class="field"><label class="label" for="sVend">Vendeurs (séparés par des virgules)</label><input type="text" id="sVend" value="${esc(c.vendeurs.join(", "))}"></div></div>
-    <div class="field"><label class="label" for="sRet">Jours de retrait (séparés par des virgules, dans l'ordre)</label><input type="text" id="sRet" value="${esc(c.retraits.map(r=>r.label).join(", "))}"></div></div>
+    <div class="field"><label class="label" for="sRet">Jours de retrait (séparés par des virgules, dans l'ordre)</label><input type="text" id="sRet" value="${esc(c.retraits.map(r=>r.label).join(", "))}"></div>
+    <div class="field"><span class="label">Horaires de retrait des agneaux (imprimés sur les tickets)</span><div class="grid g3">${c.retraits.map(r=>`<div class="field"><label class="hint" for="sH_${r.id}">${esc(r.label)}</label><input type="text" id="sH_${r.id}" value="${esc(horaire(r.id))}" placeholder="ex. 8h – 13h"></div>`).join("")}</div></div></div>
+  <div class="panel stack"><h3>QR codes WhatsApp sur les tickets</h3>
+    <p class="hint" style="margin:0">Colle le lien d'invitation de chaque groupe (WhatsApp → infos du groupe → « Inviter via un lien » → copier). Laisse vide s'il n'y en a pas : le ticket s'imprime alors sans QR code.</p>
+    <div class="tablewrap"><table><thead><tr><th>Agneaux</th><th>Lien du groupe WhatsApp</th></tr></thead><tbody>
+    ${c.agneau.jours.map(j=>`<tr><td>${esc(retraitLabel(j.retrait))}</td><td><input type="text" id="sWA_${j.retrait}" value="${esc(c.whatsapp.agneau[j.retrait]||"")}" placeholder="https://chat.whatsapp.com/…"></td></tr>`).join("")}
+    </tbody></table></div>
+    <div class="tablewrap"><table><thead><tr><th>Bovins</th><th>Lien du groupe WhatsApp</th></tr></thead><tbody>
+    ${BOV.flatMap(e=>c.coupes.map(cp=>`<tr><td>${esc(espLabel(e))} — ${esc(cp.label)}</td><td><input type="text" id="sWB_${e}_${cp.id}" value="${esc(c.whatsapp.bovin[e+"_"+cp.id]||"")}" placeholder="https://chat.whatsapp.com/…"></td></tr>`)).join("")}
+    </tbody></table></div></div>
+  <div class="panel stack"><h3>Infos de la boutique sur les bons</h3><div class="grid g2">
+    <div class="field"><label class="label" for="sBAdr">Adresse</label><input type="text" id="sBAdr" value="${esc(c.boutique.adresse)}"></div>
+    <div class="field"><label class="label" for="sBTel">Téléphone</label><input type="text" id="sBTel" value="${esc(c.boutique.tel)}"></div>
+</div>
+    <div class="field"><label class="label" for="sCondB">Texte en bas des tickets — bovins</label><textarea id="sCondB" rows="6">${esc(c.condBovin)}</textarea></div>
+    <div class="field"><label class="label" for="sCondA">Texte en bas des tickets — agneaux</label><textarea id="sCondA" rows="3">${esc(c.condAgneau)}</textarea></div>
+    <div class="field"><label class="label" for="sPied">Dernière ligne des tickets</label><input type="text" id="sPied" value="${esc(c.pied)}"></div></div>
   <div class="panel stack"><h3>Agneaux</h3><div class="tablewrap"><table><thead><tr><th>Jour</th><th>Prix (€)</th><th>Stock</th></tr></thead><tbody>
     ${c.agneau.jours.map((j,i)=>`<tr><td><select id="sAJ${i}">${c.retraits.map(r=>`<option value="${r.id}" ${r.id===j.retrait?"selected":""}>${esc(r.label)}</option>`).join("")}</select></td><td><input type="number" id="sAP${i}" value="${j.prix}"></td><td><input type="number" id="sAS${i}" value="${j.stock}"></td></tr>`).join("")}
     </tbody></table></div>
@@ -703,6 +746,12 @@ $("#sForm").addEventListener("click", async e => {
   const c = structuredClone(S.cfg), m = $("#sMsg");
   c.annee = +$("#sAnnee").value || c.annee; c.org = $("#sOrg").value.trim() || c.org;
   c.vendeurs = $("#sVend").value.split(",").map(s=>s.trim()).filter(Boolean);
+  c.horaires = {}; for (const r of S.cfg.retraits){ const el = $("#sH_"+r.id); if (el && el.value.trim()) c.horaires[r.id] = el.value.trim(); }
+  c.boutique = {adresse:$("#sBAdr").value.trim(), tel:$("#sBTel").value.trim()};
+  c.whatsapp = {agneau:{}, bovin:{}};
+  for (const j of S.cfg.agneau.jours){ const el=$("#sWA_"+j.retrait); if (el && el.value.trim()) c.whatsapp.agneau[j.retrait]=el.value.trim(); }
+  for (const e of BOV) for (const cp of S.cfg.coupes){ const el=$(`#sWB_${e}_${cp.id}`); if (el && el.value.trim()) c.whatsapp.bovin[e+"_"+cp.id]=el.value.trim(); }
+  c.condBovin = $("#sCondB").value.trim(); c.condAgneau = $("#sCondA").value.trim(); c.pied = $("#sPied").value.trim();
   c.retraits = $("#sRet").value.split(",").map(s=>s.trim()).filter(Boolean).map((l,i)=>({id:"R"+(i+1), label:l}));
   c.agneau.jours = c.agneau.jours.map((j,i)=>({retrait:$("#sAJ"+i).value, prix:+$("#sAP"+i).value||0, stock:+$("#sAS"+i).value||0}));
   c.agneau.decoupes = $("#sDec").value.split("\n").map(s=>s.trim()).filter(Boolean).map((l,i)=>{ const p=l.split(";").map(x=>x.trim()); return p.length>=3 ? {code:+p[0]||0, label:p[1], supp:+p[2]||0} : {code:i, label:p[0], supp:+(p[1]||0)||0}; });
@@ -716,6 +765,7 @@ $("#sForm").addEventListener("click", async e => {
 function doPrint(html, size){
   $("#pageSize").textContent = `@page{size:${size};margin:10mm}`;
   $("#printArea").innerHTML = html;
+  if (window.qrcode) for (const el of document.querySelectorAll("#printArea .qr")) { try { const q = qrcode(0, "M"); q.addData(el.dataset.code); q.make(); el.innerHTML = q.createSvgTag({cellSize:3, margin:0, scalable:true}); } catch(e){} }
   setTimeout(() => window.print(), 50);
 }
 function ticketHTML(r, mode){
@@ -726,26 +776,32 @@ function ticketHTML(r, mode){
   } else {
     const pp = poidsPart(r);
     rows.push(["Produit",`${e.label} — ${r.parts===e.parts?"bête entière":r.parts+(r.parts>1?" parts":" part")} sur ${e.parts}`],
-      ["Groupe",g?`${groupName(g)} — part${r.parts>1?"s":""} n° ${r.partNos.join(", ")}`:"—"],
-      ["Poids de la bête",r.poids],["Découpe",coupeLabel(r.coupe)],["Jour de retrait",retraitLabel(r.retrait)]);
-    if (g && g.boucle) rows.push(["N° de boucle", g.boucle]);
-    rows.push(["Poids carcasse", g&&g.poidsReel ? kg(g.poidsReel) : "à la pesée"],
-      ["Poids de votre part", pp==null ? "à la pesée" : `${kg(pp)}  (${kg(g.poidsReel)} ÷ ${g.parts} × ${r.parts})`],
-      ["Prix au kg", eur(r.prixKg)],
-      ["Total", du(r)==null ? "calculé au poids réel" : `${eur(du(r))}  (${kg(pp)} × ${eur(r.prixKg)})`]);
+      ["Poids de la bête",r.poids],["Découpe",coupeLabel(r.coupe)],["Jour de retrait",retraitLabel(r.retrait)],["Prix au kg", eur(r.prixKg)]);
+    if (mode==="retrait" && pp!=null)
+      rows.push(["Poids de votre part", kg(pp)], ["Total", `${eur(du(r))}  (${kg(pp)} × ${eur(r.prixKg)})`]);
+    else
+      rows.push(["Poids et prix", "connus uniquement après l'abattage"]);
   }
-  for (const p of r.paiements) rows.push([`Payé le ${new Date(p.date).toLocaleDateString("fr-FR")}`, `${eur(p.montant)} — ${p.mode}${p.ref?" "+p.ref:""}`]);
+  for (const p of r.paiements) rows.push([p.date && !isNaN(new Date(p.date)) ? `Payé le ${new Date(p.date).toLocaleDateString("fr-FR")}` : "Payé", `${eur(p.montant)} — ${p.mode}${p.ref?" "+p.ref:""}`]);
   rows.push(["Total déjà payé", eur(paye(r))]);
   if (r.notes) rows.push(["Notes", r.notes]);
-  const rs = reste(r);
+  const b = c.boutique, hor = horaire(r.retrait);
+  const rs = (mode==="bon" && r.espece!=="agneau") ? null : reste(r);
   const titre = mode==="retrait" ? "Ticket de retrait" : "Bon de réservation";
+  const shop = [b.adresse, b.tel && "Tél. "+b.tel].filter(Boolean).map(esc).join(" · ");
+  const isA = r.espece==="agneau";
+  const box = isA ? `Retrait : ${esc(retraitLabel(r.retrait))}${hor ? " — " + esc(hor) : ""}` : `Retrait à partir du : ${esc(retraitLabel(r.retrait))} — date et heure exactes communiquées par message`;
   return `<div class="tk">
-    <div class="tk-h"><div><div class="tk-org">${esc(c.org)}</div><div class="tk-sub">Aïd al-Adha ${c.annee}</div></div><div class="tk-num">${esc(r.id)}</div></div>
-    <div class="tk-title">${titre}</div>
+    <div class="tk-h"><div><div class="tk-org">${esc(c.org)}</div><div class="tk-shop">${shop}</div><div class="tk-sub">Aïd al-Adha ${c.annee}</div></div><div class="tk-num">${esc(r.id)}</div></div>
+    <div class="tk-bar"><div class="tk-title" style="margin:0">${titre}</div>${lienWhatsapp(r) ? `<div class="qrwrap"><div class="qr" data-code="${esc(lienWhatsapp(r))}"></div><div class="qrtxt">Groupe WhatsApp</div></div>` : ""}</div>
     <div class="tk-client">${esc(r.client)}</div><div class="tk-tel">Tél. ${esc(r.tel)}</div>
+    <div class="tk-hor">${box}</div>
     <table>${rows.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td></tr>`).join("")}</table>
-    <div class="tk-total"><span>${rs!=null && rs<=0 ? "Soldé" : "Reste à payer"}</span><span>${rs==null ? "au retrait" : eur(Math.max(0,rs))}</span></div>
+    <div class="tk-total"><span>${rs!=null && rs<=0 ? "Soldé" : "Reste à payer"}</span><span>${rs==null ? "connu après l'abattage" : eur(Math.max(0,rs))}</span></div>
     ${rs!=null && rs<0 ? `<div class="tk-sub" style="margin-top:4px">Trop-perçu à rendre : ${eur(-rs)}</div>` : ""}
+    ${(isA?c.condAgneau:c.condBovin) ? `<div class="tk-cond">${esc(isA?c.condAgneau:c.condBovin)}</div>` : ""}
+    <div class="tk-must">Ticket à rapporter impérativement le jour du retrait</div>
+    ${c.pied ? `<div class="tk-bye">${esc(c.pied)}</div>` : ""}
     <div class="tk-foot"><span>${mode==="retrait" ? "Retiré le ____/____ à ____h____" : "Présentez ce bon le jour du retrait."}</span><span>${mode==="retrait" ? "Signature client :" : "Vendeur : " + esc(r.vendeur||"")}</span></div>
   </div>`;
 }
