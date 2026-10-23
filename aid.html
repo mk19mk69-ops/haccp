@@ -196,7 +196,8 @@ input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent)}
 .chip:active:not(:disabled),.btn:active:not(:disabled),.tile-sp:active{transform:scale(.97);transition:transform .08s}
 
 /* Le choix du produit : quatre gravures */
-.species{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.species{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media (max-width:1100px) and (min-width:641px){.species{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:640px){.species{grid-template-columns:repeat(2,1fr)}}
 .tile-sp{position:relative;font:inherit;text-align:left;border:1px solid var(--line-2);cursor:pointer;background:var(--paper);color:#1f211c;border-radius:var(--r);padding:0 0 12px;display:flex;flex-direction:column;gap:2px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .1s}
 .tile-sp img{width:100%;aspect-ratio:4/3;object-fit:contain;padding:6px 10px 0;transform-origin:50% 80%;will-change:transform}
@@ -471,6 +472,7 @@ const SB_KEY = "sb_publishable_E2Ic62BdTxTKrwUWns0y9Q_n-HbqP92";
 const sb = window.supabase.createClient(SB_URL, SB_KEY);
 
 const BOV = ["veau","boeuf","broutard"];
+const PIECE = e => e==="agneau" || e==="mouton";
 const S = { cfg:null, resas:new Map(), groupes:new Map(), user:null };
 const BOUTIQUE_DEF = { adresse:"Rue des Fontenelles, 78920 Ecquevilly", tel:"01 30 04 26 53" };
 const COND_BOVIN_DEF = "Pour les parts de bovins — retrait de votre commande :\n- Découpe Normale : à partir du J+1 pour les groupes constitués entiers.\n- Découpe Détaillée : à partir du J+3 pour les groupes entiers, sous réserve de l'avancement de la découpe.\nMerci de respecter les dates et heures de retrait qui vous seront communiquées par message ultérieurement.\nLe reste à payer n'est connu qu'après l'abattage : il est calculé sur le poids réel de la carcasse.";
@@ -483,11 +485,12 @@ function withDefaults(c){
   if (c.condAgneau==null) c.condAgneau = COND_AGNEAU_DEF;
   if (c.pied==null) c.pied = PIED_DEF;
   c.horaires = Object.keys(c.horaires||{}).length ? c.horaires : {...HORAIRES_AGNEAU_DEF};
-  c.whatsapp = Object.assign({agneau:{}, bovin:{}}, c.whatsapp||{});
+  c.whatsapp = Object.assign({agneau:{}, bovin:{}, mouton:""}, c.whatsapp||{});
+  c.mouton = Object.assign({retrait:"R1", prix:0, stock:50}, c.mouton||{});
   c.coupes = (c.coupes||[]).map(cp => ({...cp, supp: cp.supp ?? ({N:0, D:15, DP:15}[cp.id] ?? 0)}));
   return c;
 }
-function lienWhatsapp(r){ const w = S.cfg.whatsapp||{}; return r.espece==="agneau" ? (w.agneau||{})[r.retrait] || "" : (w.bovin||{})[r.espece+"_"+r.coupe] || ""; }
+function lienWhatsapp(r){ const w = S.cfg.whatsapp||{}; return r.espece==="mouton" ? (w.mouton||"") : PIECE(r.espece) ? (w.agneau||{})[r.retrait] || "" : (w.bovin||{})[r.espece+"_"+r.coupe] || ""; }
 const horaire = id => (S.cfg.horaires||{})[id] || "";
 
 /* ---------- Utilitaires ---------- */
@@ -500,7 +503,8 @@ const norm = s => String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerC
 const byNum = (a,b) => a.localeCompare(b, "fr", {numeric:true});
 const retraitLabel = id => (S.cfg.retraits.find(r=>r.id===id)||{}).label || id || "—";
 const coupeLabel = id => (S.cfg.coupes.find(c=>c.id===id)||{}).label || id || "—";
-const espLabel = e => e==="agneau" ? "Agneau" : (S.cfg.especes[e]||{}).label || e;
+const espLabel = e => e==="agneau" ? "Agneau" : e==="mouton" ? "Mouton" : (S.cfg.especes[e]||{}).label || e;
+const joursPiece = e => e==="mouton" ? [S.cfg.mouton] : S.cfg.agneau.jours;
 const paye = r => (r.paiements||[]).reduce((a,p)=>a+(+p.montant||0),0);
 const groupName = g => g ? `${g.prefixe} ${pad(g.numero)}` : "—";
 const fromResa = x => ({id:x.id, espece:x.espece, client:x.client, tel:x.tel, vendeur:x.vendeur, notes:x.notes, statut:x.statut, retrait:x.retrait, cree:x.cree,
@@ -511,15 +515,15 @@ const fromGroupe = x => ({id:x.id, prefixe:x.prefixe, numero:x.numero, espece:x.
 function occupancy(gid){ const u=[]; for (const r of S.resas.values()) if (r.groupeId===gid && r.statut!=="annule") u.push(...r.partNos); return u; }
 const sameKey = (g,k) => g.espece===k.espece && g.poids===k.poids && g.coupe===k.coupe && g.retrait===k.retrait;
 function poidsPart(r){ const g=S.groupes.get(r.groupeId); return (g && g.poidsReel) ? g.poidsReel / g.parts * r.parts : null; }
-function suppCoupeUnit(r){ return r.espece==="agneau" ? 0 : (+((S.cfg.coupes.find(c=>c.id===r.coupe)||{}).supp) || 0); }
+function suppCoupeUnit(r){ return PIECE(r.espece) ? 0 : (+((S.cfg.coupes.find(c=>c.id===r.coupe)||{}).supp) || 0); }
 function suppCoupe(r){ return suppCoupeUnit(r) * (r.parts||0); }
 function du(r){
-  if (r.espece==="agneau") return (r.prix||0) + (r.supp||0);
+  if (PIECE(r.espece)) return (r.prix||0) + (r.supp||0);
   const p = poidsPart(r); return p==null ? null : Math.round((p * r.prixKg + suppCoupe(r)) * 100)/100;
 }
 function reste(r){ const d = du(r); return d==null ? null : Math.round((d - paye(r))*100)/100; }
 function articleTxt(r){
-  if (r.espece==="agneau") return `Agneau · ${r.decoupeLabel||""}`;
+  if (PIECE(r.espece)) return `${espLabel(r.espece)} · ${r.decoupeLabel||""}`;
   const e = S.cfg.especes[r.espece]; const ent = e && r.parts===e.parts;
   return `${espLabel(r.espece)} · ${ent ? "entier" : r.parts + (r.parts>1?" parts":" part")} · ${r.poids} · ${coupeLabel(r.coupe)}`;
 }
@@ -701,20 +705,21 @@ $("#tabs").addEventListener("click", e => { const b=e.target.closest("button"); 
 /* ---------- Nouvelle réservation ---------- */
 const N = { espece:"agneau", jourA:null, parts:1, poids:null, coupe:"N", retrait:null };
 function chip(attr, val, label, pressed, small, disabled){ return `<button type="button" class="chip" data-${attr}="${esc(val)}" aria-pressed="${pressed}" ${disabled?"disabled":""}>${esc(label)}${small?` <small>${esc(small)}</small>`:""}</button>`; }
-function vendusAgneau(ret){ return [...S.resas.values()].filter(r=>r.espece==="agneau"&&r.statut!=="annule"&&r.retrait===ret).length; }
+function vendusAgneau(ret, esp="agneau"){ return [...S.resas.values()].filter(r=>r.espece===esp&&r.statut!=="annule"&&r.retrait===ret).length; }
 function renderNew(){
   const c = S.cfg;
-  $("#nEsp").innerHTML = ["agneau",...BOV].map(e=>{
-    const sub = e==="agneau" ? `${c.agneau.jours.length} jours de retrait` : `${c.especes[e].parts} parts, ${eur(c.especes[e].prixKg)}/kg`;
-    return `<button type="button" class="tile-sp ${e==="agneau"?"lamb":""}" data-esp="${e}" aria-pressed="${N.espece===e}"><img src="aid-img/${e}.webp" alt="" draggable="false"><b>${esc(espLabel(e))}</b><span>${esc(sub)}</span></button>`;
+  $("#nEsp").innerHTML = ["agneau","mouton",...BOV].map(e=>{
+    const sub = e==="agneau" ? `${c.agneau.jours.length} jours de retrait` : e==="mouton" ? (c.mouton.prix ? `${eur(c.mouton.prix)}, ${retraitLabel(c.mouton.retrait)}` : "prix à régler") : `${c.especes[e].parts} parts, ${eur(c.especes[e].prixKg)}/kg`;
+    return `<button type="button" class="tile-sp ${PIECE(e)?"lamb":""}" data-esp="${e}" aria-pressed="${N.espece===e}"><img src="aid-img/${e}.webp" alt="" draggable="false"><b>${esc(espLabel(e))}</b><span>${esc(sub)}</span></button>`;
   }).join("");
   const vs = $("#nVendeur"); let keep = vs.value; if (!keep){ try{ keep = localStorage.getItem("aid_vendeur"); }catch(e){} }
   vs.innerHTML = c.vendeurs.map(v=>`<option ${v===keep?"selected":""}>${esc(v)}</option>`).join("");
-  const isA = N.espece==="agneau";
+  const isA = PIECE(N.espece);
   $("#nAgneau").hidden = !isA; $("#nBovin").hidden = isA;
   if (isA){
-    if (!c.agneau.jours.some(j=>j.retrait===N.jourA)) N.jourA = c.agneau.jours[0]?.retrait;
-    $("#nJourA").innerHTML = c.agneau.jours.map(j=> chip("joura", j.retrait, retraitLabel(j.retrait), N.jourA===j.retrait, `${eur(j.prix)} · ${Math.max(0,j.stock-vendusAgneau(j.retrait))} restants`)).join("");
+    const jp = joursPiece(N.espece);
+    if (!jp.some(j=>j.retrait===N.jourA)) N.jourA = jp[0]?.retrait;
+    $("#nJourA").innerHTML = jp.map(j=> chip("joura", j.retrait, retraitLabel(j.retrait), N.jourA===j.retrait, `${eur(j.prix)} · ${Math.max(0,j.stock-vendusAgneau(j.retrait, N.espece))} restants`)).join("");
     const d = $("#nDecoupe"); const cur = d.value;
     d.innerHTML = c.agneau.decoupes.map(x=>`<option value="${x.code}" ${String(x.code)===cur?"selected":""}>${x.code} – ${esc(x.label)}${x.supp?` (+${x.supp} €)`:" (sans supplément)"}</option>`).join("");
     if (!cur){ const n = c.agneau.decoupes.find(x=>/normale/i.test(x.label)); if (n) d.value = n.code; }
@@ -755,11 +760,11 @@ function popSpecies(){
 }
 function renderPreview(){
   const p = $("#nPreview"); const c = S.cfg;
-  if (N.espece==="agneau"){
-    const j = c.agneau.jours.find(x=>x.retrait===N.jourA) || c.agneau.jours[0];
+  if (PIECE(N.espece)){
+    const jp = joursPiece(N.espece); const j = jp.find(x=>x.retrait===N.jourA) || jp[0];
     const d = c.agneau.decoupes.find(x=>String(x.code)===$("#nDecoupe").value) || c.agneau.decoupes[0];
     p.className = "preview lamb";
-    p.innerHTML = `Agneau ${esc(retraitLabel(j.retrait))} · ${esc(d.label)} — <strong>${eur(j.prix + (d.supp||0))}</strong>` + (vendusAgneau(j.retrait)>=j.stock ? ` <span class="pill p-bad">Stock atteint (${j.stock})</span>` : "");
+    p.innerHTML = `${esc(espLabel(N.espece))} ${esc(retraitLabel(j.retrait))} · ${esc(d.label)} — <strong>${eur(j.prix + (d.supp||0))}</strong>` + (vendusAgneau(j.retrait, N.espece)>=j.stock ? ` <span class="pill p-bad">Stock atteint (${j.stock})</span>` : "");
     if (!$("#nMontant").dataset.touched) $("#nMontant").value = j.prix + (d.supp||0);
     return;
   }
@@ -797,17 +802,18 @@ $("#fNew").addEventListener("submit", async e => {
   const msg = $("#nMsg"); msg.innerHTML = "";
   const nom = $("#nNom").value.trim(), tel = $("#nTel").value.trim();
   if (!nom || !tel){ msg.innerHTML = '<div class="msg err">Indique le nom et le téléphone du client.</div>'; return; }
-  if (N.espece!=="agneau" && (!N.poids || !N.coupe || !N.retrait)){ msg.innerHTML = '<div class="msg err">Choisis le poids, la découpe et le jour de retrait.</div>'; return; }
+  if (!PIECE(N.espece) && (!N.poids || !N.coupe || !N.retrait)){ msg.innerHTML = '<div class="msg err">Choisis le poids, la découpe et le jour de retrait.</div>'; return; }
   const montant = +$("#nMontant").value || 0;
   const p = { espece:N.espece, client:nom, tel, vendeur:$("#nVendeur").value, notes:$("#nNotes").value.trim(),
     paiements: montant>0 ? [{montant, mode:$("#nMode").value, ref:$("#nRef").value.trim(), date:new Date().toISOString()}] : [] };
-  if (N.espece==="agneau"){ p.retrait = N.jourA; p.decoupe = +$("#nDecoupe").value; }
+  if (N.espece==="mouton" && !S.cfg.mouton.prix){ msg.innerHTML = '<div class="msg err">Le prix du mouton n\'est pas encore réglé. Va dans Réglages, partie Moutons.</div>'; return; }
+  if (PIECE(N.espece)){ p.retrait = N.jourA; p.decoupe = +$("#nDecoupe").value; }
   else Object.assign(p, {poids:N.poids, coupe:N.coupe, retrait:N.retrait, parts:N.parts, avec:$("#nAvec").value.trim()});
   $("#nSave").disabled = true;
   try {
     const out = fromResa(await rpc("aid_reserver", {p}));
     const g = S.groupes.get(out.groupeId);
-    const lot = (out.espece!=="agneau" && /Bête entière/.test(out.notes||"")) ? [...S.resas.values()].filter(r=>r.groupeId===out.groupeId && r.client===out.client && r.statut!=="annule").sort((a,b)=>byNum(a.id,b.id)) : [out];
+    const lot = (!PIECE(out.espece) && /Bête entière/.test(out.notes||"")) ? [...S.resas.values()].filter(r=>r.groupeId===out.groupeId && r.client===out.client && r.statut!=="annule").sort((a,b)=>byNum(a.id,b.id)) : [out];
     const ids = lot.map(r=>r.id);
     const titre = lot.length>1 ? `<strong>${esc(ids[0])} à ${esc(ids[ids.length-1])}</strong> enregistrées pour ${esc(out.client)} — ${esc(groupName(g))} entier, un numéro par part` : `<strong>${esc(out.id)}</strong> enregistrée pour ${esc(out.client)}${g?` — ${esc(groupName(g))}, part${out.parts>1?"s":""} ${out.partNos.join(", ")}`:""}`;
     msg.innerHTML = `<div class="msg ok row" style="justify-content:space-between"><span>${titre}.</span><button class="btn small" type="button" data-bons="${esc(ids.join(","))}">Imprimer ${lot.length>1?"les "+lot.length+" bons":"le bon"}</button></div>`;
@@ -820,7 +826,7 @@ $("#fNew").addEventListener("submit", async e => {
 /* ---------- Liste ---------- */
 function fillSelect(sel, opts, all){ const cur = sel.value; sel.innerHTML = `<option value="">${all}</option>` + opts.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(""); sel.value = opts.some(o=>o[0]===cur) ? cur : ""; }
 function renderList(){
-  fillSelect($("#rEsp"), [["agneau","Agneaux"],...BOV.map(e=>[e,espLabel(e)])], "Tous produits");
+  fillSelect($("#rEsp"), [["agneau","Agneaux"],["mouton","Moutons"],...BOV.map(e=>[e,espLabel(e)])], "Tous produits");
   fillSelect($("#rRetrait"), S.cfg.retraits.map(r=>[r.id,r.label]), "Tous les jours");
   const q = norm($("#rSearch").value), fe = $("#rEsp").value, fr = $("#rRetrait").value, fs = $("#rStatut").value;
   const rows = [...S.resas.values()].filter(r =>
@@ -830,7 +836,7 @@ function renderList(){
   $("#rBody").innerHTML = rows.length ? rows.map(r=>{
     const g = S.groupes.get(r.groupeId); const rs = reste(r);
     return `<tr class="click ${r.statut==="annule"?"cancel":""}" data-open="${esc(r.id)}"><td class="num">${esc(r.id)}</td><td>${esc(r.client)}</td><td class="num">${esc(r.tel)}</td>
-      <td><span class="pill ${r.espece==="agneau"?"p-lamb":"p-bov"}">${esc(espLabel(r.espece))}</span> ${esc(articleTxt(r).split(" · ").slice(1).join(" · "))}</td>
+      <td><span class="pill ${PIECE(r.espece)?"p-lamb":"p-bov"}">${esc(espLabel(r.espece))}</span> ${esc(articleTxt(r).split(" · ").slice(1).join(" · "))}</td>
       <td>${g?esc(groupName(g))+` <span class="hint">pt ${r.partNos.join(",")}</span>`:"—"}</td><td>${esc(retraitLabel(r.retrait))}</td>
       <td class="num">${eur(paye(r))}</td><td class="num">${rs==null?'<span class="hint">à la pesée</span>':eur(rs)}</td><td>${statutPill(r)}</td></tr>`;
   }).join("") : `<tr><td colspan="9"><div class="empty" style="border:0"><img class="illu" src="aid-img/planche.webp" alt="">${S.resas.size? "Aucune réservation ne correspond à ces filtres." : "Aucune réservation pour l'instant. Commence par l'onglet « Nouvelle réservation »."}</div></td></tr>`;
@@ -852,10 +858,10 @@ document.addEventListener("keydown", e => { if (e.key==="Escape" && !$("#drawer"
 function closeDrawer(velocity){ openId=null; closeSheet(velocity||0); }
 function renderDrawer(){
   const r = S.resas.get(openId); if (!r){ closeDrawer(); return; }
-  const c = S.cfg, isA = r.espece==="agneau", g = S.groupes.get(r.groupeId), rs = reste(r), e = c.especes[r.espece];
+  const c = S.cfg, isA = PIECE(r.espece), g = S.groupes.get(r.groupeId), rs = reste(r), e = c.especes[r.espece];
   let edit;
   if (isA){
-    edit = `<div class="grid g2"><div class="field"><label class="label" for="dJour">Jour</label><select id="dJour">${c.agneau.jours.map(j=>`<option value="${j.retrait}" ${j.retrait===r.retrait?"selected":""}>${esc(retraitLabel(j.retrait))} (${eur(j.prix)})</option>`).join("")}</select></div>
+    edit = `<div class="grid g2"><div class="field"><label class="label" for="dJour">Jour</label><select id="dJour">${joursPiece(r.espece).map(j=>`<option value="${j.retrait}" ${j.retrait===r.retrait?"selected":""}>${esc(retraitLabel(j.retrait))} (${eur(j.prix)})</option>`).join("")}</select></div>
       <div class="field"><label class="label" for="dDec">Découpe</label><select id="dDec">${c.agneau.decoupes.map(x=>`<option value="${x.code}" ${x.code===r.decoupe?"selected":""}>${x.code} – ${esc(x.label)}${x.supp?` (+${x.supp} €)`:""}</option>`).join("")}</select></div></div>`;
   } else {
     edit = `<div class="grid g2">
@@ -911,8 +917,8 @@ $("#sheet").addEventListener("click", async e => {
     if (id==="dClose") return closeDrawer();
     if (id==="dSave"){
       const patch = {client:$("#dNom").value.trim(), tel:$("#dTel").value.trim(), notes:$("#dNotes").value.trim()};
-      if (r.espece==="agneau"){
-        const j = S.cfg.agneau.jours.find(x=>x.retrait===$("#dJour").value); const d = S.cfg.agneau.decoupes.find(x=>String(x.code)===$("#dDec").value);
+      if (PIECE(r.espece)){
+        const j = joursPiece(r.espece).find(x=>x.retrait===$("#dJour").value); const d = S.cfg.agneau.decoupes.find(x=>String(x.code)===$("#dDec").value);
         Object.assign(patch, {retrait:j.retrait, prix: j.retrait===r.retrait ? r.prix : j.prix, decoupe:d.code, decoupe_label:d.label, supp:d.supp||0});
         await upd("aid_resas", r.id, patch);
       } else {
@@ -1036,6 +1042,8 @@ function renderDash(){
   const act = [...S.resas.values()].filter(r=>r.statut!=="annule");
   const enc = act.reduce((a,r)=>a+paye(r),0);
   const agn = S.cfg.agneau.jours.map(j=>{ const n = vendusAgneau(j.retrait); return `<div><div class="row" style="justify-content:space-between"><span>${esc(retraitLabel(j.retrait))}</span><span class="num">${n} / ${j.stock}</span></div><div class="bar"><i style="width:${Math.min(100,n/j.stock*100)}%"></i></div></div>`; }).join("");
+  const mt = S.cfg.mouton; const nm = vendusAgneau(mt.retrait, "mouton");
+  const mout = `<div><div class="row" style="justify-content:space-between"><span>Moutons, ${esc(retraitLabel(mt.retrait))}</span><span class="num">${nm} / ${mt.stock}</span></div><div class="bar"><i style="width:${Math.min(100, mt.stock? nm/mt.stock*100 : 0)}%"></i></div></div>`;
   const bov = BOV.map(e=>{
     const gs = [...S.groupes.values()].filter(g=>g.espece===e); const full = gs.filter(g=>occupancy(g.id).length===g.parts).length;
     const parts = act.filter(r=>r.espece===e).reduce((a,r)=>a+r.parts,0);
@@ -1049,7 +1057,7 @@ function renderDash(){
       ${bov}
     </div>
     <div class="grid g2">
-      <div class="panel stack"><h3>Agneaux vendus / stock</h3>${agn}</div>
+      <div class="panel stack"><h3>Agneaux et moutons vendus / stock</h3>${agn}${mout}</div>
       <div class="panel stack"><h3>Groupes à compléter</h3>${incompl.length? `<div class="tablewrap"><table><thead><tr><th>Groupe</th><th>Conditions</th><th>Libres</th></tr></thead><tbody>${incompl.map(x=>`<tr><td><strong>${esc(groupName(x.g))}</strong></td><td>${esc(x.g.poids)} · ${esc(coupeLabel(x.g.coupe))} · ${esc(retraitLabel(x.g.retrait))}</td><td class="num">${x.free}</td></tr>`).join("")}</tbody></table></div>` : '<p class="hint">Aucun groupe entamé à compléter.</p>'}</div>
     </div></div>`;
 }
@@ -1067,8 +1075,9 @@ function renderSettings(){
     <div class="field"><span class="label">Horaires de retrait des agneaux (imprimés sur les tickets)</span><div class="grid g3">${c.retraits.map(r=>`<div class="field"><label class="hint" for="sH_${r.id}">${esc(r.label)}</label><input type="text" id="sH_${r.id}" value="${esc(horaire(r.id))}" placeholder="ex. 8h – 13h"></div>`).join("")}</div></div></div>
   <div class="panel stack"><h3>QR codes WhatsApp sur les tickets</h3>
     <p class="hint" style="margin:0">Colle le lien d'invitation de chaque groupe (WhatsApp → infos du groupe → « Inviter via un lien » → copier). Laisse vide s'il n'y en a pas : le ticket s'imprime alors sans QR code.</p>
-    <div class="tablewrap"><table><thead><tr><th>Agneaux</th><th>Lien du groupe WhatsApp</th></tr></thead><tbody>
+    <div class="tablewrap"><table><thead><tr><th>Agneaux et moutons</th><th>Lien du groupe WhatsApp</th></tr></thead><tbody>
     ${c.agneau.jours.map(j=>`<tr><td>${esc(retraitLabel(j.retrait))}</td><td><input type="text" id="sWA_${j.retrait}" value="${esc(c.whatsapp.agneau[j.retrait]||"")}" placeholder="https://chat.whatsapp.com/…"></td></tr>`).join("")}
+    <tr><td>Moutons</td><td><input type="text" id="sWM" value="${esc(c.whatsapp.mouton||"")}" placeholder="https://chat.whatsapp.com/…"></td></tr>
     </tbody></table></div>
     <div class="tablewrap"><table><thead><tr><th>Bovins</th><th>Lien du groupe WhatsApp</th></tr></thead><tbody>
     ${BOV.flatMap(e=>c.coupes.map(cp=>`<tr><td>${esc(espLabel(e))} — ${esc(cp.label)}</td><td><input type="text" id="sWB_${e}_${cp.id}" value="${esc(c.whatsapp.bovin[e+"_"+cp.id]||"")}" placeholder="https://chat.whatsapp.com/…"></td></tr>`)).join("")}
@@ -1083,6 +1092,11 @@ function renderSettings(){
   <div class="panel stack"><h3>Agneaux</h3><div class="tablewrap"><table><thead><tr><th>Jour</th><th>Prix (€)</th><th>Stock</th></tr></thead><tbody>
     ${c.agneau.jours.map((j,i)=>`<tr><td><select id="sAJ${i}">${c.retraits.map(r=>`<option value="${r.id}" ${r.id===j.retrait?"selected":""}>${esc(r.label)}</option>`).join("")}</select></td><td><input type="number" id="sAP${i}" value="${j.prix}"></td><td><input type="number" id="sAS${i}" value="${j.stock}"></td></tr>`).join("")}
     </tbody></table></div>
+    <h3 style="margin-top:6px">Moutons</h3>
+    <div class="tablewrap"><table><thead><tr><th>Jour de retrait (un seul)</th><th>Prix du mouton (€)</th><th>Stock</th></tr></thead><tbody>
+    <tr><td><select id="sMJ">${c.retraits.map(r=>`<option value="${r.id}" ${r.id===c.mouton.retrait?"selected":""}>${esc(r.label)}</option>`).join("")}</select></td><td><input type="number" id="sMP" value="${c.mouton.prix}"></td><td><input type="number" id="sMS" value="${c.mouton.stock}"></td></tr>
+    </tbody></table></div>
+    <p class="hint" style="margin:0">Les moutons utilisent les mêmes découpes et suppléments que les agneaux.</p>
     <div class="field"><label class="label" for="sDec">Découpes agneau — une par ligne : code ; libellé ; supplément €</label><textarea id="sDec" rows="10">${esc(c.agneau.decoupes.map(d=>`${d.code} ; ${d.label} ; ${d.supp}`).join("\n"))}</textarea></div></div>
   <div class="panel stack"><h3>Veau, bœuf, broutard</h3><div class="tablewrap"><table><thead><tr><th>Espèce</th><th>Parts</th><th>Prix/kg</th><th>Acompte/part</th><th>Tranches de poids (virgules)</th></tr></thead><tbody>
     ${BOV.map(e=>{const x=c.especes[e]; return `<tr><td>${esc(x.label)}</td><td><input type="number" id="sP_${e}" value="${x.parts}" style="width:70px"></td><td><input type="number" step="0.01" id="sK_${e}" value="${x.prixKg}" style="width:90px"></td><td><input type="number" id="sC_${e}" value="${x.acompte}" style="width:90px"></td><td><input type="text" id="sT_${e}" value="${esc(x.tranches.join(", "))}" style="min-width:220px"></td></tr>`;}).join("")}
@@ -1101,11 +1115,12 @@ $("#sForm").addEventListener("click", async e => {
   c.vendeurs = $("#sVend").value.split(",").map(s=>s.trim()).filter(Boolean);
   c.horaires = {}; for (const r of S.cfg.retraits){ const el = $("#sH_"+r.id); if (el && el.value.trim()) c.horaires[r.id] = el.value.trim(); }
   c.boutique = {adresse:$("#sBAdr").value.trim(), tel:$("#sBTel").value.trim()};
-  c.whatsapp = {agneau:{}, bovin:{}};
+  c.whatsapp = {agneau:{}, bovin:{}, mouton:($("#sWM")||{value:""}).value.trim()};
   for (const j of S.cfg.agneau.jours){ const el=$("#sWA_"+j.retrait); if (el && el.value.trim()) c.whatsapp.agneau[j.retrait]=el.value.trim(); }
   for (const e of BOV) for (const cp of S.cfg.coupes){ const el=$(`#sWB_${e}_${cp.id}`); if (el && el.value.trim()) c.whatsapp.bovin[e+"_"+cp.id]=el.value.trim(); }
   c.condBovin = $("#sCondB").value.trim(); c.condAgneau = $("#sCondA").value.trim(); c.pied = $("#sPied").value.trim();
   c.retraits = $("#sRet").value.split(",").map(s=>s.trim()).filter(Boolean).map((l,i)=>({id:"R"+(i+1), label:l}));
+  c.mouton = {retrait:$("#sMJ").value, prix:+$("#sMP").value||0, stock:+$("#sMS").value||0};
   c.agneau.jours = c.agneau.jours.map((j,i)=>({retrait:$("#sAJ"+i).value, prix:+$("#sAP"+i).value||0, stock:+$("#sAS"+i).value||0}));
   c.agneau.decoupes = $("#sDec").value.split("\n").map(s=>s.trim()).filter(Boolean).map((l,i)=>{ const p=l.split(";").map(x=>x.trim()); return p.length>=3 ? {code:+p[0]||0, label:p[1], supp:+p[2]||0} : {code:i, label:p[0], supp:+(p[1]||0)||0}; });
   for (const e of BOV){ const x=c.especes[e]; x.parts=+$("#sP_"+e).value||x.parts; x.prixKg=+$("#sK_"+e).value||x.prixKg; x.acompte=+$("#sC_"+e).value||0; x.tranches=$("#sT_"+e).value.split(",").map(s=>s.trim()).filter(Boolean); }
@@ -1125,8 +1140,8 @@ function doPrint(html, size){
 function ticketHTML(r, mode){
   const c = S.cfg, g = S.groupes.get(r.groupeId), e = c.especes[r.espece];
   const rows = [];
-  if (r.espece==="agneau"){
-    rows.push(["Produit","Agneau"],["Jour de retrait",retraitLabel(r.retrait)],["Découpe",`${r.decoupe} – ${r.decoupeLabel}`],["Prix de l'agneau",eur(r.prix)],["Supplément découpe",r.supp?eur(r.supp):"aucun"],["Total",eur(du(r))]);
+  if (PIECE(r.espece)){
+    rows.push(["Produit",espLabel(r.espece)],["Jour de retrait",retraitLabel(r.retrait)],["Découpe",`${r.decoupe} – ${r.decoupeLabel}`],[r.espece==="mouton" ? "Prix du mouton" : "Prix de l'agneau",eur(r.prix)],["Supplément découpe",r.supp?eur(r.supp):"aucun"],["Total",eur(du(r))]);
   } else {
     const pp = poidsPart(r);
     rows.push(["Produit",`${e.label} — ${r.parts===e.parts?"bête entière":r.parts+(r.parts>1?" parts":" part")} sur ${e.parts}`],
@@ -1141,10 +1156,10 @@ function ticketHTML(r, mode){
   rows.push(["Total déjà payé", eur(paye(r))]);
   if (r.notes) rows.push(["Notes", r.notes]);
   const b = c.boutique, hor = horaire(r.retrait);
-  const rs = (mode==="bon" && r.espece!=="agneau") ? null : reste(r);
+  const rs = (mode==="bon" && !PIECE(r.espece)) ? null : reste(r);
   const titre = mode==="retrait" ? "Ticket de retrait" : "Bon de réservation";
   const shop = [b.adresse, b.tel && "Tél. "+b.tel].filter(Boolean).map(esc).join(" · ");
-  const isA = r.espece==="agneau";
+  const isA = PIECE(r.espece);
   const box = isA ? `Retrait : ${esc(retraitLabel(r.retrait))}${hor ? " — " + esc(hor) : ""}` : `Retrait à partir du : ${esc(retraitLabel(r.retrait))} — date et heure exactes communiquées par message`;
   return `<div class="tk">
     <div class="tk-h"><div><div class="tk-org">${esc(c.org)}</div><div class="tk-shop">${shop}</div><div class="tk-sub">Aïd al-Adha ${c.annee}</div></div><div class="tk-num">${esc(r.id)}</div></div>
@@ -1165,8 +1180,8 @@ const VERSO_BOVINS = `<div class="tk tk-verso"><img src="aid-img/verso-bovins.jp
 function printTickets(list, mode){
   if (!list.length){ $("#iMsg").innerHTML = '<div class="msg warn">Aucune réservation à imprimer pour ce jour.</div>'; return; }
   // En recto-verso, chaque bon occupe 2 pages : verso explicatif pour les bovins, page blanche pour les agneaux si le lot est mélangé.
-  const avecVerso = mode==="bon" && list.some(r=>r.espece!=="agneau");
-  doPrint(list.map(r=>ticketHTML(r, mode) + (avecVerso ? (r.espece!=="agneau" ? VERSO_BOVINS : '<div class="tk"></div>') : "")).join(""), "A5");
+  const avecVerso = mode==="bon" && list.some(r=>!PIECE(r.espece));
+  doPrint(list.map(r=>ticketHTML(r, mode) + (avecVerso ? (!PIECE(r.espece) ? VERSO_BOVINS : '<div class="tk"></div>') : "")).join(""), "A5");
 }
 function printFiches(groups){
   if (!groups.length){ $("#iMsg").innerHTML = '<div class="msg warn">Aucun groupe à imprimer.</div>'; return; }
@@ -1183,21 +1198,21 @@ function printFiches(groups){
 function printListe(rid){
   const c = S.cfg;
   const act = [...S.resas.values()].filter(r=>r.statut!=="annule" && r.retrait===rid);
-  const bov = act.filter(r=>r.espece!=="agneau").sort((a,b)=> byNum(a.groupeId||"", b.groupeId||"") || (a.partNos[0]-b.partNos[0]));
-  const agn = act.filter(r=>r.espece==="agneau").sort((a,b)=>byNum(a.id,b.id));
-  const tr = r => `<tr><td>${esc(r.id)}</td><td>${esc(r.client)}</td><td>${esc(r.tel)}</td><td>${r.espece==="agneau"?"Agneau":`${esc(espLabel(r.espece))} ${r.parts} part(s)`}</td><td>${r.groupeId?`${esc(groupName(S.groupes.get(r.groupeId)))} / ${r.partNos.join(",")}`:""}</td><td>${r.espece==="agneau"?esc(`${r.decoupe} – ${r.decoupeLabel}`):esc(coupeLabel(r.coupe))}</td><td>${poidsPart(r)==null?"":kg(poidsPart(r))}</td><td>${eur(paye(r))}</td><td>${reste(r)==null?"à la pesée":eur(reste(r))}</td><td>${r.statut==="recupere"?"oui":""}</td></tr>`;
+  const bov = act.filter(r=>!PIECE(r.espece)).sort((a,b)=> byNum(a.groupeId||"", b.groupeId||"") || (a.partNos[0]-b.partNos[0]));
+  const agn = act.filter(r=>PIECE(r.espece)).sort((a,b)=>byNum(a.id,b.id));
+  const tr = r => `<tr><td>${esc(r.id)}</td><td>${esc(r.client)}</td><td>${esc(r.tel)}</td><td>${PIECE(r.espece)?esc(espLabel(r.espece)):`${esc(espLabel(r.espece))} ${r.parts} part(s)`}</td><td>${r.groupeId?`${esc(groupName(S.groupes.get(r.groupeId)))} / ${r.partNos.join(",")}`:""}</td><td>${PIECE(r.espece)?esc(`${r.decoupe} – ${r.decoupeLabel}`):esc(coupeLabel(r.coupe))}</td><td>${poidsPart(r)==null?"":kg(poidsPart(r))}</td><td>${eur(paye(r))}</td><td>${reste(r)==null?"à la pesée":eur(reste(r))}</td><td>${r.statut==="recupere"?"oui":""}</td></tr>`;
   doPrint(`<div class="pr"><h1>${esc(c.org)} — Retraits ${esc(retraitLabel(rid))} — Aïd ${c.annee}</h1>
-    <div class="s">${bov.length} réservation(s) bovines, ${agn.length} agneau(x). Imprimé le ${new Date().toLocaleString("fr-FR")}</div>
+    <div class="s">${bov.length} réservation(s) bovines, ${agn.length} agneau(x) ou mouton(s). Imprimé le ${new Date().toLocaleString("fr-FR")}</div>
     <table><thead><tr><th>Résa</th><th>Client</th><th>Téléphone</th><th>Article</th><th>Groupe / parts</th><th>Découpe</th><th>Poids part</th><th>Payé</th><th>Reste</th><th>Retiré</th></tr></thead><tbody>${[...bov,...agn].map(tr).join("")}</tbody></table></div>`, "A4 landscape");
 }
 function excelAll(){
   const rows = [...S.resas.values()].sort((a,b)=>byNum(a.id,b.id));
   const modes = r => r.paiements.map(p=>`${p.mode} ${p.montant}${p.ref?" "+p.ref:""}`).join(" | ");
-  const A = rows.filter(r=>r.espece==="agneau").map(r=>({"N°":r.id,"Client":r.client,"Téléphone":r.tel,"Jour":retraitLabel(r.retrait),"Découpe":`${r.decoupe} – ${r.decoupeLabel}`,"Prix":r.prix,"Supplément":r.supp,"Total":du(r),"Payé":paye(r),"Reste":reste(r),"Paiements":modes(r),"Statut":r.statut,"Vendeur":r.vendeur,"Créée":r.cree,"Notes":r.notes}));
-  const B = rows.filter(r=>r.espece!=="agneau").map(r=>({"N°":r.id,"Client":r.client,"Téléphone":r.tel,"Espèce":espLabel(r.espece),"Parts":r.parts,"Groupe":r.groupeId?groupName(S.groupes.get(r.groupeId)):"","N° parts":r.partNos.join(","),"Poids bête":r.poids,"Découpe":coupeLabel(r.coupe),"Retrait":retraitLabel(r.retrait),"Poids part (kg)":poidsPart(r),"Prix/kg":r.prixKg,"Suppl. découpe":suppCoupe(r),"Total":du(r),"Payé":paye(r),"Reste":reste(r),"Paiements":modes(r),"Statut":r.statut,"Vendeur":r.vendeur,"Créée":r.cree,"Notes":r.notes}));
+  const A = rows.filter(r=>PIECE(r.espece)).map(r=>({"N°":r.id,"Espèce":espLabel(r.espece),"Client":r.client,"Téléphone":r.tel,"Jour":retraitLabel(r.retrait),"Découpe":`${r.decoupe} – ${r.decoupeLabel}`,"Prix":r.prix,"Supplément":r.supp,"Total":du(r),"Payé":paye(r),"Reste":reste(r),"Paiements":modes(r),"Statut":r.statut,"Vendeur":r.vendeur,"Créée":r.cree,"Notes":r.notes}));
+  const B = rows.filter(r=>!PIECE(r.espece)).map(r=>({"N°":r.id,"Client":r.client,"Téléphone":r.tel,"Espèce":espLabel(r.espece),"Parts":r.parts,"Groupe":r.groupeId?groupName(S.groupes.get(r.groupeId)):"","N° parts":r.partNos.join(","),"Poids bête":r.poids,"Découpe":coupeLabel(r.coupe),"Retrait":retraitLabel(r.retrait),"Poids part (kg)":poidsPart(r),"Prix/kg":r.prixKg,"Suppl. découpe":suppCoupe(r),"Total":du(r),"Payé":paye(r),"Reste":reste(r),"Paiements":modes(r),"Statut":r.statut,"Vendeur":r.vendeur,"Créée":r.cree,"Notes":r.notes}));
   const G = [...S.groupes.values()].sort((a,b)=>a.prefixe.localeCompare(b.prefixe)||a.numero-b.numero).map(g=>({"Groupe":groupName(g),"Espèce":espLabel(g.espece),"Poids":g.poids,"Découpe":coupeLabel(g.coupe),"Retrait":retraitLabel(g.retrait),"Parts":g.parts,"Occupées":occupancy(g.id).length,"Libres":g.parts-occupancy(g.id).length,"Poids carcasse":g.poidsReel??"","Boucle":g.boucle||""}));
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(A.length?A:[{"N°":""}]), "Agneaux");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(A.length?A:[{"N°":""}]), "Agneaux et moutons");
   XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(B.length?B:[{"N°":""}]), "Bovins");
   XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(G.length?G:[{"Groupe":""}]), "Groupes");
   XLSX.writeFile(wb, `Reservations Aid ${S.cfg.annee}.xlsx`);
