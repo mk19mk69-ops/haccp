@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Réservations Aïd MKVH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-size:15px}
+#printArea{display:none}
+.login{max-width:380px;margin:12vh auto 0;display:flex;flex-direction:column;gap:12px}
+/* Impression */
+.tk{font-family:Arial,Helvetica,sans-serif;color:#000;page-break-after:always;break-after:page}
+.tk:last-child{page-break-after:auto;break-after:auto}
+.tk-h{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #000;padding-bottom:6px}
+.tk-org{font-weight:700;font-size:15px}
+.tk-sub{font-size:11px}
+.tk-num{font-size:34px;font-weight:700;line-height:1}
+.tk-title{margin:8px 0 4px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.tk-client{font-size:18px;font-weight:700}
+.tk-tel{font-size:13px;margin-bottom:8px}
+.tk table{width:100%;border-collapse:collapse;font-size:12px}
+.tk td{border:1px solid #999;padding:4px 6px;vertical-align:top}
+.tk td:first-child{font-weight:700;width:38%}
+.tk-total{margin-top:8px;border:2px solid #000;padding:8px;font-size:18px;font-weight:700;display:flex;justify-content:space-between}
+.tk-foot{margin-top:14px;font-size:11px;display:flex;justify-content:space-between;gap:12px}
+.pr h1{font-family:Arial,sans-serif;font-size:20px;margin:0 0 4px}
+.pr .s{font-family:Arial,sans-serif;font-size:12px;margin-bottom:8px}
+.pr table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px}
+.pr th,.pr td{border:1px solid #888;padding:4px 5px;text-align:left}
+.pr th{background:#eee}
+.fiche{page-break-after:always;break-after:page;font-family:Arial,sans-serif}
+.fiche:last-child{page-break-after:auto;break-after:auto}
+.fiche .gn{font-size:54px;font-weight:700;line-height:1}
+.fiche .gm{font-size:16px;margin:6px 0 12px}
+.fiche table{width:100%;border-collapse:collapse;font-size:14px}
+.fiche td,.fiche th{border:1px solid #555;padding:10px 6px;text-align:left}
+@media print{
+  body{background:#fff!important}
+  body>*:not(#printArea){display:none!important}
+  #printArea{display:block!important}
+}
+</style>
+<style>
+/* Layout : barre d'onglets en haut, une vue à la fois ; formulaires en puces cliquables pour éviter la saisie libre. */
+:root{
+  --bg:#f3f2ee; --surface:#ffffff; --line:#d9d6cd; --ink:#1d2329; --muted:#5f6670;
+  --accent:#8c1d2b; --accent-ink:#ffffff; --accent-soft:#f6e3e5;
+  --lamb:#3d6b3a; --lamb-soft:#e3eedf;
+  --ok:#2f6f43; --ok-soft:#dcefe2; --warn:#9a5b00; --warn-soft:#fbecd3; --bad:#a3222f; --bad-soft:#f8dcdf;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#16191c; --surface:#1f2327; --line:#353a40; --ink:#e9e7e2; --muted:#a3a9b0;
+  --accent:#d9636f; --accent-ink:#1a0d0f; --accent-soft:#3a2226;
+  --lamb:#8cc083; --lamb-soft:#24331f;
+  --ok:#7cc792; --ok-soft:#1f3326; --warn:#e6a94a; --warn-soft:#3a2d17; --bad:#ef7b86; --bad-soft:#3c1f23; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#16191c; --surface:#1f2327; --line:#353a40; --ink:#e9e7e2; --muted:#a3a9b0;
+  --accent:#d9636f; --accent-ink:#1a0d0f; --accent-soft:#3a2226;
+  --lamb:#8cc083; --lamb-soft:#24331f;
+  --ok:#7cc792; --ok-soft:#1f3326; --warn:#e6a94a; --warn-soft:#3a2d17; --bad:#ef7b86; --bad-soft:#3c1f23; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top .wrap{padding-block:10px 0;display:flex;flex-direction:column;gap:8px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{font-family:var(--f-display);font-weight:700;font-size:26px;letter-spacing:.01em;margin:0;text-wrap:balance}
+.brand .sub{color:var(--muted);font-size:13px}
+.sync{margin-left:auto;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.dot.on{background:var(--ok)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{font-family:var(--f-display);font-weight:600;font-size:16px;letter-spacing:.02em;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:8px 12px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+nav.tabs button:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main section{padding-top:18px}
+h2{font-family:var(--f-display);font-weight:700;font-size:22px;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:600;font-size:17px;margin:0 0 8px;letter-spacing:.02em}
+.label{font-family:var(--f-display);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.stack{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+input[type=text],input[type=tel],input[type=number],input[type=search],select,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:9px 10px;width:100%;min-width:0}
+textarea{min-height:60px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline}
+.chip small{color:var(--muted);font-size:12px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] small{color:inherit;opacity:.8}
+.chip:disabled{opacity:.4;cursor:not-allowed}
+.species .chip{font-family:var(--f-display);font-weight:600;font-size:17px;padding:9px 18px;border-radius:6px}
+.btn{font-family:var(--f-display);font-weight:600;font-size:16px;letter-spacing:.02em;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:9px 16px;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.small{font-size:14px;padding:5px 10px}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.preview{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 12px;border-radius:0 6px 6px 0;font-size:14px}
+.preview.lamb{border-color:var(--lamb);background:var(--lamb-soft)}
+.msg{padding:10px 12px;border-radius:6px;font-size:14px}
+.msg.ok{background:var(--ok-soft);color:var(--ok)}
+.msg.err{background:var(--bad-soft);color:var(--bad)}
+.msg.warn{background:var(--warn-soft);color:var(--warn)}
+.pill{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-mut{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.p-lamb{background:var(--lamb-soft);color:var(--lamb)} .p-bov{background:var(--accent-soft);color:var(--accent)}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface);position:sticky;top:0}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.click{cursor:pointer} tr.click:hover td{background:var(--bg)}
+tr.cancel td{color:var(--muted);text-decoration:line-through}
+.tiles{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile .big{font-family:var(--f-display);font-weight:700;font-size:30px;line-height:1.1}
+.bar{height:8px;border-radius:4px;background:var(--bg);border:1px solid var(--line);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--lamb)}
+.gcards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.gcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:8px}
+.gcard .gh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.gcard .gname{font-family:var(--f-display);font-weight:700;font-size:22px}
+.gcard .meta{font-size:13px;color:var(--muted)}
+.slots{display:flex;flex-direction:column;gap:3px}
+.slot{display:grid;grid-template-columns:22px 52px 1fr;gap:6px;font-size:13px;padding:4px 6px;border-radius:4px;background:var(--bg);min-width:0}
+.slot span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot.free{background:none;border:1px dashed var(--line);color:var(--muted)}
+.slot .num{color:var(--muted)}
+.drawer{position:fixed;inset:0;z-index:20;background:rgba(10,12,14,.45);display:flex;justify-content:flex-end}
+.drawer .sheet{background:var(--bg);width:min(560px,100%);height:100%;overflow-y:auto;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) 16px;display:flex;flex-direction:column;gap:14px;padding-top:calc(18px + env(safe-area-inset-top,0px))}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}
+.kv dt{color:var(--muted)} .kv dd{margin:0}
+.empty{color:var(--muted);padding:24px;text-align:center;border:1px dashed var(--line);border-radius:var(--r)}
+.hint{color:var(--muted);font-size:13px}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--bad-soft);padding:8px 10px;border-radius:6px;font-size:14px;color:var(--bad)}
+@media (prefers-reduced-motion: no-preference){.chip,.btn{transition:background .12s,color .12s}}
+</style>
+</head>
+<body>
+<style id="pageSize">@page{size:A4;margin:10mm}</style>
+
+<!-- CONNEXION -->
+<div id="loginView" class="wrap" hidden>
+  <form class="login panel" id="fLogin">
+    <h2 style="margin:0">Réservations Aïd</h2>
+    <p class="hint" style="margin:0">MKVH Distribution — accès réservé</p>
+    <div class="field"><label class="label" for="lEmail">E-mail</label><input type="text" id="lEmail" autocomplete="username" inputmode="email"></div>
+    <div class="field"><label class="label" for="lPass">Mot de passe</label><input type="password" id="lPass" autocomplete="current-password" style="font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)"></div>
+    <button class="btn primary" type="submit">Se connecter</button>
+    <div id="lMsg"></div>
+  </form>
+</div>
+
+<div id="appView" hidden>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Réservations Aïd</h1>
+      <span class="sub" id="brandSub">MKVH Distribution</span>
+      <span class="sync"><span class="dot" id="syncDot"></span><span id="syncTxt">Connexion…</span> <button class="btn small" id="logout" type="button">Déconnexion</button></span>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs">
+      <button role="tab" data-v="tableau">Tableau de bord</button>
+      <button role="tab" data-v="nouvelle">Nouvelle réservation</button>
+      <button role="tab" data-v="reservations">Réservations</button>
+      <button role="tab" data-v="groupes">Groupes</button>
+      <button role="tab" data-v="impression">Impression</button>
+      <button role="tab" data-v="reglages">Réglages</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="v-tableau" hidden><h2>Tableau de bord</h2><div id="dash"></div></section>
+
+  <section id="v-nouvelle" hidden>
+    <h2>Nouvelle réservation</h2>
+    <form id="fNew" class="stack" autocomplete="off">
+      <div class="panel stack">
+        <div class="field"><span class="label">Produit</span><div class="chips species" id="nEsp"></div></div>
+        <div class="grid g3">
+          <div class="field"><label class="label" for="nNom">Nom du client</label><input type="text" id="nNom"></div>
+          <div class="field"><label class="label" for="nTel">Téléphone</label><input type="tel" id="nTel"></div>
+          <div class="field"><label class="label" for="nVendeur">Vendeur</label><select id="nVendeur"></select></div>
+        </div>
+      </div>
+      <div class="panel stack" id="nAgneau">
+        <div class="field"><span class="label">Jour</span><div class="chips" id="nJourA"></div></div>
+        <div class="field"><label class="label" for="nDecoupe">Découpe</label><select id="nDecoupe"></select></div>
+      </div>
+      <div class="panel stack" id="nBovin">
+        <div class="field"><span class="label">Nombre de parts</span><div class="chips" id="nParts"></div></div>
+        <div class="field"><span class="label">Poids de la bête</span><div class="chips" id="nPoids"></div></div>
+        <div class="field"><span class="label">Découpe</span><div class="chips" id="nCoupe"></div></div>
+        <div class="field"><span class="label">Jour de retrait</span><div class="chips" id="nRetrait"></div></div>
+        <div class="field"><label class="label" for="nAvec">Mettre dans le même groupe que la réservation n° (facultatif)</label><input type="text" id="nAvec" placeholder="ex. P012"></div>
+      </div>
+      <div class="panel stack">
+        <div class="grid g3">
+          <div class="field"><label class="label" for="nMontant">Montant encaissé (€)</label><input type="number" id="nMontant" min="0" step="1"></div>
+          <div class="field"><label class="label" for="nMode">Mode de paiement</label><select id="nMode"><option>Espèces</option><option>CB</option><option>Chèque</option><option>Virement</option></select></div>
+          <div class="field"><label class="label" for="nRef">N° de chèque / référence</label><input type="text" id="nRef"></div>
+        </div>
+        <div class="field"><label class="label" for="nNotes">Notes</label><textarea id="nNotes"></textarea></div>
+      </div>
+      <div id="nPreview" class="preview"></div>
+      <div id="nMsg"></div>
+      <div class="row"><button class="btn primary" type="submit" id="nSave">Enregistrer la réservation</button><button class="btn" type="button" id="nReset">Effacer</button></div>
+    </form>
+  </section>
+
+  <section id="v-reservations" hidden>
+    <h2>Réservations</h2>
+    <div class="row" style="margin-bottom:10px">
+      <input type="search" id="rSearch" placeholder="Nom, téléphone ou n°" style="flex:1 1 220px;width:auto">
+      <select id="rEsp" style="width:auto"></select>
+      <select id="rRetrait" style="width:auto"></select>
+      <select id="rStatut" style="width:auto"><option value="actif">Actives</option><option value="recupere">Récupérées</option><option value="annule">Annulées</option><option value="">Toutes</option></select>
+    </div>
+    <div class="hint" id="rCount" style="margin-bottom:6px"></div>
+    <div class="tablewrap"><table><thead><tr><th>N°</th><th>Client</th><th>Téléphone</th><th>Article</th><th>Groupe</th><th>Retrait</th><th>Payé</th><th>Reste</th><th>Statut</th></tr></thead><tbody id="rBody"></tbody></table></div>
+  </section>
+
+  <section id="v-groupes" hidden>
+    <h2>Groupes</h2>
+    <p class="hint" style="margin-top:-6px">Les groupes se forment tout seuls : même espèce, même poids, même découpe et même jour de retrait.</p>
+    <div class="row" style="margin-bottom:12px">
+      <select id="gEsp" style="width:auto"></select>
+      <select id="gRetrait" style="width:auto"></select>
+      <select id="gEtat" style="width:auto"><option value="">Tous les groupes</option><option value="incomplet">À compléter</option><option value="complet">Complets</option></select>
+    </div>
+    <div id="gList" class="gcards"></div>
+  </section>
+
+  <section id="v-impression" hidden>
+    <h2>Impression</h2>
+    <div class="grid g2">
+      <div class="panel stack">
+        <h3>Par jour de retrait</h3>
+        <div class="field"><label class="label" for="iRetrait">Jour</label><select id="iRetrait"></select></div>
+        <div class="row">
+          <button class="btn primary" id="iTickets">Tickets de retrait du jour</button>
+          <button class="btn" id="iListe">Liste de retrait</button>
+          <button class="btn" id="iFiches">Fiches des groupes du jour</button>
+        </div>
+        <p class="hint">Les tickets de retrait reprennent toutes les infos du client : poids de sa part, total, paiements et reste à payer. Saisis d'abord le poids carcasse des groupes.</p>
+      </div>
+      <div class="panel stack">
+        <h3>Tout</h3>
+        <div class="row">
+          <button class="btn" id="iFichesAll">Toutes les fiches de groupes</button>
+          <button class="btn" id="iExcel">Export Excel complet</button>
+        </div>
+        <p class="hint">L'export Excel sert de sauvegarde et de base pour la compta.</p>
+      </div>
+    </div>
+    <div id="iMsg" style="margin-top:12px"></div>
+  </section>
+
+  <section id="v-reglages" hidden><h2>Réglages</h2><div id="sForm" class="stack"></div></section>
+</main>
+</div>
+
+<div id="drawer" class="drawer" hidden><div class="sheet" id="sheet"></div></div>
+<div id="printArea"></div>
+
+<script>
+"use strict";
+/* ---------- Connexion à la base (même projet Supabase que l'appli HACCP) ---------- */
+const SB_URL = "https://csabceieahciwnbnlibm.supabase.co";
+const SB_KEY = "sb_publishable_cak5dA9CeKaysvsDAcu_Lw_X4nGWByA";
+const sb = window.supabase.createClient(SB_URL, SB_KEY);
+
+const BOV = ["veau","boeuf","broutard"];
+const S = { cfg:null, resas:new Map(), groupes:new Map(), user:null };
+
+/* ---------- Utilitaires ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur = n => (n==null||isNaN(n)) ? "—" : (Math.round(n*100)/100).toLocaleString("fr-FR",{minimumFractionDigits:0,maximumFractionDigits:2}) + " €";
+const kg = n => (n==null||isNaN(n)) ? "—" : (Math.round(n*10)/10).toLocaleString("fr-FR") + " kg";
+const pad = n => String(n).padStart(3,"0");
+const norm = s => String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/\s+/g," ").trim();
+const byNum = (a,b) => a.localeCompare(b, "fr", {numeric:true});
+const retraitLabel = id => (S.cfg.retraits.find(r=>r.id===id)||{}).label || id || "—";
+const coupeLabel = id => (S.cfg.coupes.find(c=>c.id===id)||{}).label || id || "—";
+const espLabel = e => e==="agneau" ? "Agneau" : (S.cfg.especes[e]||{}).label || e;
+const paye = r => (r.paiements||[]).reduce((a,p)=>a+(+p.montant||0),0);
+const groupName = g => g ? `${g.prefixe} ${pad(g.numero)}` : "—";
+const fromResa = x => ({id:x.id, espece:x.espece, client:x.client, tel:x.tel, vendeur:x.vendeur, notes:x.notes, statut:x.statut, retrait:x.retrait, cree:x.cree,
+  prix:x.prix==null?null:+x.prix, decoupe:x.decoupe, decoupeLabel:x.decoupe_label, supp:+x.supp||0, parts:x.parts, partNos:x.part_nos||[], groupeId:x.groupe_id,
+  poids:x.poids, coupe:x.coupe, prixKg:x.prix_kg==null?null:+x.prix_kg, ancienGroupe:x.ancien_groupe, paiements:x.paiements||[]});
+const fromGroupe = x => ({id:x.id, prefixe:x.prefixe, numero:x.numero, espece:x.espece, poids:x.poids, coupe:x.coupe, retrait:x.retrait, parts:x.parts, poidsReel:x.poids_reel==null?null:+x.poids_reel, boucle:x.boucle});
+
+function occupancy(gid){ const u=[]; for (const r of S.resas.values()) if (r.groupeId===gid && r.statut!=="annule") u.push(...r.partNos); return u; }
+const sameKey = (g,k) => g.espece===k.espece && g.poids===k.poids && g.coupe===k.coupe && g.retrait===k.retrait;
+function poidsPart(r){ const g=S.groupes.get(r.groupeId); return (g && g.poidsReel) ? g.poidsReel / g.parts * r.parts : null; }
+function du(r){
+  if (r.espece==="agneau") return (r.prix||0) + (r.supp||0);
+  const p = poidsPart(r); return p==null ? null : Math.round(p * r.prixKg * 100)/100;
+}
+function reste(r){ const d = du(r); return d==null ? null : Math.round((d - paye(r))*100)/100; }
+function articleTxt(r){
+  if (r.espece==="agneau") return `Agneau · ${r.decoupeLabel||""}`;
+  const e = S.cfg.especes[r.espece]; const ent = e && r.parts===e.parts;
+  return `${espLabel(r.espece)} · ${ent ? "entier" : r.parts + (r.parts>1?" parts":" part")} · ${r.poids} · ${coupeLabel(r.coupe)}`;
+}
+function statutPill(r){
+  if (r.statut==="annule") return '<span class="pill p-mut">Annulée</span>';
+  if (r.statut==="recupere") return '<span class="pill p-ok">Récupérée</span>';
+  const rs = reste(r);
+  if (rs!=null && rs<=0) return '<span class="pill p-ok">Soldée</span>';
+  return '<span class="pill p-warn">À solder</span>';
+}
+function errMsg(e){ return (e && (e.message || e.error_description)) || String(e); }
+
+/* ---------- Connexion / chargement ---------- */
+async function start(){
+  const { data } = await sb.auth.getSession();
+  if (data.session){ S.user = data.session.user; enterApp(); } else showLogin();
+  sb.auth.onAuthStateChange((ev, session) => { if (ev==="SIGNED_OUT") showLogin(); });
+}
+function showLogin(){ $("#appView").hidden = true; $("#loginView").hidden = false; }
+$("#fLogin").addEventListener("submit", async e => {
+  e.preventDefault(); $("#lMsg").innerHTML = "";
+  const { data, error } = await sb.auth.signInWithPassword({ email:$("#lEmail").value.trim(), password:$("#lPass").value });
+  if (error){ $("#lMsg").innerHTML = '<div class="msg err">E-mail ou mot de passe incorrect.</div>'; return; }
+  S.user = data.user; enterApp();
+});
+$("#logout").addEventListener("click", async () => { await sb.auth.signOut(); showLogin(); });
+
+let channel = null, pollTimer = null, loadTimer = null;
+async function enterApp(){
+  $("#loginView").hidden = true; $("#appView").hidden = false;
+  await loadAll();
+  show(view);
+  if (!channel){
+    channel = sb.channel("aid-live")
+      .on("postgres_changes", {event:"*", schema:"public", table:"aid_resas"}, scheduleLoad)
+      .on("postgres_changes", {event:"*", schema:"public", table:"aid_groupes"}, scheduleLoad)
+      .on("postgres_changes", {event:"*", schema:"public", table:"aid_config"}, scheduleLoad)
+      .subscribe();
+    pollTimer = setInterval(() => { if (!document.hidden) loadAll(); }, 20000);
+  }
+}
+function scheduleLoad(){ clearTimeout(loadTimer); loadTimer = setTimeout(loadAll, 300); }
+async function fetchAll(table){
+  const out = []; let from = 0;
+  for(;;){
+    const { data, error } = await sb.from(table).select("*").range(from, from+999);
+    if (error) throw error;
+    out.push(...data); if (data.length < 1000) break; from += 1000;
+  }
+  return out;
+}
+async function loadAll(){
+  try {
+    const [cfg, resas, groupes] = await Promise.all([sb.from("aid_config").select("data").eq("id",1).maybeSingle(), fetchAll("aid_resas"), fetchAll("aid_groupes")]);
+    if (cfg.error) throw cfg.error;
+    if (!cfg.data) throw new Error("Réglages introuvables : le script SQL n'a pas été lancé dans Supabase.");
+    S.cfg = cfg.data.data;
+    S.resas = new Map(resas.map(x => [x.id, fromResa(x)]));
+    S.groupes = new Map(groupes.map(x => [x.id, fromGroupe(x)]));
+    $("#syncDot").classList.add("on");
+    $("#syncTxt").textContent = `${[...S.resas.values()].filter(r=>r.statut!=="annule").length} réservations · ${S.user?.email||""}`;
+    renderAll();
+  } catch(e){
+    $("#syncDot").classList.remove("on");
+    $("#syncTxt").textContent = "Connexion impossible : " + errMsg(e);
+  }
+}
+async function rpc(fn, args){ const { data, error } = await sb.rpc(fn, args); if (error) throw error; await loadAll(); return data; }
+async function upd(table, id, patch){ const { error } = await sb.from(table).update(patch).eq("id", id); if (error) throw error; await loadAll(); }
+
+/* ---------- Navigation ---------- */
+const VIEWS = ["tableau","nouvelle","reservations","groupes","impression","reglages"];
+let view = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "nouvelle";
+function show(v){
+  view = v;
+  for (const x of VIEWS) $("#v-"+x).hidden = x!==v;
+  for (const b of document.querySelectorAll("#tabs button")) b.setAttribute("aria-selected", b.dataset.v===v);
+  try { history.replaceState(null,"","#"+v); } catch(e){}
+  renderAll();
+}
+$("#tabs").addEventListener("click", e => { const b=e.target.closest("button"); if(b) show(b.dataset.v); });
+
+/* ---------- Nouvelle réservation ---------- */
+const N = { espece:"agneau", jourA:null, parts:1, poids:null, coupe:"N", retrait:null };
+function chip(attr, val, label, pressed, small, disabled){ return `<button type="button" class="chip" data-${attr}="${esc(val)}" aria-pressed="${pressed}" ${disabled?"disabled":""}>${esc(label)}${small?` <small>${esc(small)}</small>`:""}</button>`; }
+function vendusAgneau(ret){ return [...S.resas.values()].filter(r=>r.espece==="agneau"&&r.statut!=="annule"&&r.retrait===ret).length; }
+function renderNew(){
+  const c = S.cfg;
+  $("#nEsp").innerHTML = ["agneau",...BOV].map(e=>chip("esp",e,espLabel(e),N.espece===e)).join("");
+  const vs = $("#nVendeur"); let keep = vs.value; if (!keep){ try{ keep = localStorage.getItem("aid_vendeur"); }catch(e){} }
+  vs.innerHTML = c.vendeurs.map(v=>`<option ${v===keep?"selected":""}>${esc(v)}</option>`).join("");
+  const isA = N.espece==="agneau";
+  $("#nAgneau").hidden = !isA; $("#nBovin").hidden = isA;
+  if (isA){
+    if (!c.agneau.jours.some(j=>j.retrait===N.jourA)) N.jourA = c.agneau.jours[0]?.retrait;
+    $("#nJourA").innerHTML = c.agneau.jours.map(j=> chip("joura", j.retrait, retraitLabel(j.retrait), N.jourA===j.retrait, `${eur(j.prix)} · ${Math.max(0,j.stock-vendusAgneau(j.retrait))} restants`)).join("");
+    const d = $("#nDecoupe"); const cur = d.value;
+    d.innerHTML = c.agneau.decoupes.map(x=>`<option value="${x.code}" ${String(x.code)===cur?"selected":""}>${x.code} – ${esc(x.label)}${x.supp?` (+${x.supp} €)`:" (sans supplément)"}</option>`).join("");
+    if (!cur){ const n = c.agneau.decoupes.find(x=>/normale/i.test(x.label)); if (n) d.value = n.code; }
+  } else {
+    const e = c.especes[N.espece];
+    if (N.parts>e.parts) N.parts = 1;
+    const opts = []; for (let i=1;i<e.parts;i++) opts.push(chip("parts",i, i===1?"1 part":`${i} parts`, N.parts===i));
+    opts.push(chip("parts", e.parts, `${e.label} entier`, N.parts===e.parts, `${e.parts} parts`));
+    $("#nParts").innerHTML = opts.join("");
+    if (!e.tranches.includes(N.poids)) N.poids = null;
+    $("#nPoids").innerHTML = e.tranches.map(t=>chip("poids",t,t,N.poids===t)).join("");
+    $("#nCoupe").innerHTML = c.coupes.map(x=>chip("coupe",x.id,x.label,N.coupe===x.id)).join("");
+    const allowed = (c.coupes.find(x=>x.id===N.coupe)||{retraits:[]}).retraits;
+    if (!allowed.includes(N.retrait)) N.retrait = allowed.length===1 ? allowed[0] : null;
+    $("#nRetrait").innerHTML = c.retraits.map(r=>chip("retrait",r.id,r.label,N.retrait===r.id,null,!allowed.includes(r.id))).join("");
+  }
+  renderPreview();
+}
+function previewGroup(k, parts, avec){
+  const e = S.cfg.especes[k.espece];
+  if (avec){
+    const m = avec.toUpperCase().match(/^([A-Z]+)\s*0*(\d+)$/); const o = m && S.resas.get(m[1]+pad(+m[2]));
+    if (!o || !o.groupeId) return {error:`Réservation ${avec} introuvable ou sans groupe.`};
+    const g = S.groupes.get(o.groupeId);
+    if (!sameKey(g,k)) return {error:`${groupName(g)} n'a pas les mêmes conditions : choisis le même poids, la même découpe et le même jour.`};
+    const free = g.parts - occupancy(g.id).length;
+    if (free < parts) return {error:`${groupName(g)} n'a plus que ${free} part(s) libre(s).`};
+    return {g, free};
+  }
+  const c = [...S.groupes.values()].filter(g=>sameKey(g,k)).map(g=>({g,free:g.parts-occupancy(g.id).length})).filter(x=>x.free>=parts).sort((a,b)=>a.free-b.free||a.g.numero-b.g.numero);
+  return c[0] || {nouveau:true, e};
+}
+function renderPreview(){
+  const p = $("#nPreview"); const c = S.cfg;
+  if (N.espece==="agneau"){
+    const j = c.agneau.jours.find(x=>x.retrait===N.jourA) || c.agneau.jours[0];
+    const d = c.agneau.decoupes.find(x=>String(x.code)===$("#nDecoupe").value) || c.agneau.decoupes[0];
+    p.className = "preview lamb";
+    p.innerHTML = `Agneau ${esc(retraitLabel(j.retrait))} · ${esc(d.label)} — <strong>${eur(j.prix + (d.supp||0))}</strong>` + (vendusAgneau(j.retrait)>=j.stock ? ` <span class="pill p-bad">Stock atteint (${j.stock})</span>` : "");
+    if (!$("#nMontant").dataset.touched) $("#nMontant").value = j.prix + (d.supp||0);
+    return;
+  }
+  p.className = "preview";
+  const e = c.especes[N.espece];
+  if (!$("#nMontant").dataset.touched) $("#nMontant").value = e.acompte * N.parts;
+  if (!N.poids || !N.coupe || !N.retrait){ p.innerHTML = "Choisis le poids, la découpe et le jour de retrait : le groupe sera trouvé automatiquement."; return; }
+  const a = previewGroup({espece:N.espece,poids:N.poids,coupe:N.coupe,retrait:N.retrait}, N.parts, $("#nAvec").value.trim());
+  if (a.error){ p.innerHTML = `<span style="color:var(--bad)">${esc(a.error)}</span>`; return; }
+  p.innerHTML = a.nouveau
+    ? `Ouvrira un <strong>nouveau groupe ${esc(e.label.toLowerCase())}</strong> (${esc(N.poids)} · ${esc(coupeLabel(N.coupe))} · ${esc(retraitLabel(N.retrait))}). Acompte conseillé : ${eur(e.acompte*N.parts)}.`
+    : `Ira dans <strong>${esc(groupName(a.g))}</strong>. Il restera ${a.free - N.parts} part(s) libre(s). Acompte conseillé : ${eur(e.acompte*N.parts)}.`;
+}
+$("#fNew").addEventListener("click", e => {
+  const b = e.target.closest("button.chip"); if (!b) return;
+  if (b.dataset.esp){ N.espece = b.dataset.esp; delete $("#nMontant").dataset.touched; }
+  if (b.dataset.joura){ N.jourA = b.dataset.joura; delete $("#nMontant").dataset.touched; }
+  if (b.dataset.parts){ N.parts = +b.dataset.parts; delete $("#nMontant").dataset.touched; }
+  if (b.dataset.poids) N.poids = b.dataset.poids;
+  if (b.dataset.coupe) N.coupe = b.dataset.coupe;
+  if (b.dataset.retrait) N.retrait = b.dataset.retrait;
+  renderNew();
+});
+$("#nDecoupe").addEventListener("change", ()=>{ delete $("#nMontant").dataset.touched; renderPreview(); });
+$("#nAvec").addEventListener("input", renderPreview);
+$("#nMontant").addEventListener("input", e => e.target.dataset.touched = "1");
+$("#nVendeur").addEventListener("change", e => { try{ localStorage.setItem("aid_vendeur", e.target.value); }catch(_){} });
+$("#nReset").addEventListener("click", resetNew);
+function resetNew(){ for (const id of ["nNom","nTel","nAvec","nRef","nNotes","nMontant"]) $("#"+id).value=""; delete $("#nMontant").dataset.touched; renderNew(); }
+
+$("#fNew").addEventListener("submit", async e => {
+  e.preventDefault();
+  const msg = $("#nMsg"); msg.innerHTML = "";
+  const nom = $("#nNom").value.trim(), tel = $("#nTel").value.trim();
+  if (!nom || !tel){ msg.innerHTML = '<div class="msg err">Indique le nom et le téléphone du client.</div>'; return; }
+  if (N.espece!=="agneau" && (!N.poids || !N.coupe || !N.retrait)){ msg.innerHTML = '<div class="msg err">Choisis le poids, la découpe et le jour de retrait.</div>'; return; }
+  const montant = +$("#nMontant").value || 0;
+  const p = { espece:N.espece, client:nom, tel, vendeur:$("#nVendeur").value, notes:$("#nNotes").value.trim(),
+    paiements: montant>0 ? [{montant, mode:$("#nMode").value, ref:$("#nRef").value.trim(), date:new Date().toISOString()}] : [] };
+  if (N.espece==="agneau"){ p.retrait = N.jourA; p.decoupe = +$("#nDecoupe").value; }
+  else Object.assign(p, {poids:N.poids, coupe:N.coupe, retrait:N.retrait, parts:N.parts, avec:$("#nAvec").value.trim()});
+  $("#nSave").disabled = true;
+  try {
+    const out = fromResa(await rpc("aid_reserver", {p}));
+    const g = S.groupes.get(out.groupeId);
+    msg.innerHTML = `<div class="msg ok row" style="justify-content:space-between"><span><strong>${esc(out.id)}</strong> enregistrée pour ${esc(out.client)}${g?` — ${esc(groupName(g))}, part${out.parts>1?"s":""} ${out.partNos.join(", ")}`:""}.</span><button class="btn small" type="button" data-bon="${esc(out.id)}">Imprimer le bon</button></div>`;
+    resetNew();
+  } catch(err){ msg.innerHTML = `<div class="msg err">${esc(errMsg(err))}</div>`; }
+  finally { $("#nSave").disabled = false; }
+});
+
+/* ---------- Liste ---------- */
+function fillSelect(sel, opts, all){ const cur = sel.value; sel.innerHTML = `<option value="">${all}</option>` + opts.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(""); sel.value = opts.some(o=>o[0]===cur) ? cur : ""; }
+function renderList(){
+  fillSelect($("#rEsp"), [["agneau","Agneaux"],...BOV.map(e=>[e,espLabel(e)])], "Tous produits");
+  fillSelect($("#rRetrait"), S.cfg.retraits.map(r=>[r.id,r.label]), "Tous les jours");
+  const q = norm($("#rSearch").value), fe = $("#rEsp").value, fr = $("#rRetrait").value, fs = $("#rStatut").value;
+  const rows = [...S.resas.values()].filter(r =>
+    (!fe || r.espece===fe) && (!fr || r.retrait===fr) && (!fs || r.statut===fs) &&
+    (!q || norm(r.client).includes(q) || norm(r.tel).replace(/\s/g,"").includes(q.replace(/\s/g,"")) || norm(r.id).includes(q))).sort((a,b)=>byNum(a.id,b.id));
+  $("#rCount").textContent = `${rows.length} réservation(s)`;
+  $("#rBody").innerHTML = rows.length ? rows.map(r=>{
+    const g = S.groupes.get(r.groupeId); const rs = reste(r);
+    return `<tr class="click ${r.statut==="annule"?"cancel":""}" data-open="${esc(r.id)}"><td class="num">${esc(r.id)}</td><td>${esc(r.client)}</td><td class="num">${esc(r.tel)}</td>
+      <td><span class="pill ${r.espece==="agneau"?"p-lamb":"p-bov"}">${esc(espLabel(r.espece))}</span> ${esc(articleTxt(r).split(" · ").slice(1).join(" · "))}</td>
+      <td>${g?esc(groupName(g))+` <span class="hint">pt ${r.partNos.join(",")}</span>`:"—"}</td><td>${esc(retraitLabel(r.retrait))}</td>
+      <td class="num">${eur(paye(r))}</td><td class="num">${rs==null?'<span class="hint">à la pesée</span>':eur(rs)}</td><td>${statutPill(r)}</td></tr>`;
+  }).join("") : `<tr><td colspan="9"><div class="empty">${S.resas.size? "Aucune réservation ne correspond à ces filtres." : "Aucune réservation pour l'instant. Commence par l'onglet « Nouvelle réservation »."}</div></td></tr>`;
+}
+for (const id of ["rSearch","rEsp","rRetrait","rStatut"]) $("#"+id).addEventListener("input", renderList);
+
+/* ---------- Fiche réservation ---------- */
+let openId = null, confirmCancel = false;
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-open]"); if (o){ openId = o.dataset.open; confirmCancel=false; renderDrawer(); return; }
+  const b = e.target.closest("[data-bon]"); if (b){ printTickets([S.resas.get(b.dataset.bon)].filter(Boolean), "bon"); return; }
+  const t = e.target.closest("[data-retrait-ticket]"); if (t){ printTickets([S.resas.get(t.dataset.retraitTicket)].filter(Boolean), "retrait"); return; }
+  const f = e.target.closest("[data-fiche]"); if (f){ printFiches([S.groupes.get(f.dataset.fiche)].filter(Boolean)); return; }
+});
+$("#drawer").addEventListener("click", e => { if (e.target.id==="drawer") closeDrawer(); });
+document.addEventListener("keydown", e => { if (e.key==="Escape" && openId) closeDrawer(); });
+function closeDrawer(){ openId=null; $("#drawer").hidden = true; }
+function renderDrawer(){
+  const r = S.resas.get(openId); if (!r){ closeDrawer(); return; }
+  const c = S.cfg, isA = r.espece==="agneau", g = S.groupes.get(r.groupeId), rs = reste(r), e = c.especes[r.espece];
+  let edit;
+  if (isA){
+    edit = `<div class="grid g2"><div class="field"><label class="label" for="dJour">Jour</label><select id="dJour">${c.agneau.jours.map(j=>`<option value="${j.retrait}" ${j.retrait===r.retrait?"selected":""}>${esc(retraitLabel(j.retrait))} (${eur(j.prix)})</option>`).join("")}</select></div>
+      <div class="field"><label class="label" for="dDec">Découpe</label><select id="dDec">${c.agneau.decoupes.map(x=>`<option value="${x.code}" ${x.code===r.decoupe?"selected":""}>${x.code} – ${esc(x.label)}${x.supp?` (+${x.supp} €)`:""}</option>`).join("")}</select></div></div>`;
+  } else {
+    edit = `<div class="grid g2">
+      <div class="field"><label class="label" for="dParts">Parts</label><select id="dParts">${Array.from({length:e.parts},(_,i)=>i+1).map(i=>`<option ${i===r.parts?"selected":""} value="${i}">${i===e.parts?`${i} (entier)`:i}</option>`).join("")}</select></div>
+      <div class="field"><label class="label" for="dPoids">Poids</label><select id="dPoids">${e.tranches.map(t=>`<option ${t===r.poids?"selected":""}>${esc(t)}</option>`).join("")}</select></div>
+      <div class="field"><label class="label" for="dCoupe">Découpe</label><select id="dCoupe">${c.coupes.map(x=>`<option value="${x.id}" ${x.id===r.coupe?"selected":""}>${esc(x.label)}</option>`).join("")}</select></div>
+      <div class="field"><label class="label" for="dRetrait">Retrait</label><select id="dRetrait">${c.retraits.map(x=>`<option value="${x.id}" ${x.id===r.retrait?"selected":""}>${esc(x.label)}</option>`).join("")}</select></div></div>
+      <p class="hint">Si tu changes le poids, la découpe, le jour ou le nombre de parts, la réservation est replacée automatiquement dans un groupe compatible.</p>`;
+  }
+  const moves = isA || r.statut==="annule" ? [] : [...S.groupes.values()].filter(x=>x.id!==r.groupeId && sameKey(x,r) && x.parts - occupancy(x.id).length >= r.parts).sort((a,b)=>a.numero-b.numero);
+  const pp = poidsPart(r);
+  $("#sheet").innerHTML = `
+    <div class="row" style="justify-content:space-between"><h2 style="margin:0"><span class="num">${esc(r.id)}</span> · ${esc(r.client)}</h2><button class="btn small" id="dClose">Fermer</button></div>
+    <div class="row">${statutPill(r)} <span class="pill ${isA?"p-lamb":"p-bov"}">${esc(articleTxt(r))}</span></div>
+    <div class="row"><button class="btn primary" data-retrait-ticket="${esc(r.id)}">Ticket de retrait</button><button class="btn" data-bon="${esc(r.id)}">Bon de réservation</button></div>
+    <dl class="kv panel">
+      ${g?`<dt>Groupe</dt><dd><strong>${esc(groupName(g))}</strong> · part${r.parts>1?"s":""} ${r.partNos.join(", ")}</dd>`:""}
+      <dt>Retrait</dt><dd>${esc(retraitLabel(r.retrait))}</dd>
+      ${isA?"":`<dt>Poids de la part</dt><dd class="num">${pp==null?"poids carcasse pas encore saisi":kg(pp)}</dd>`}
+      <dt>Vendeur</dt><dd>${esc(r.vendeur||"—")}</dd>
+      <dt>Créée le</dt><dd>${new Date(r.cree).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})}</dd>
+      <dt>Total dû</dt><dd class="num">${du(r)==null?`à la pesée (${eur(r.prixKg)}/kg)`:eur(du(r))}</dd>
+      <dt>Payé</dt><dd class="num">${eur(paye(r))}</dd>
+      <dt>Reste</dt><dd class="num"><strong>${rs==null?"—":eur(rs)}</strong></dd>
+    </dl>
+    <div class="panel stack">
+      <h3>Client et réservation</h3>
+      <div class="grid g2"><div class="field"><label class="label" for="dNom">Nom</label><input type="text" id="dNom" value="${esc(r.client)}"></div>
+      <div class="field"><label class="label" for="dTel">Téléphone</label><input type="tel" id="dTel" value="${esc(r.tel)}"></div></div>
+      ${edit}
+      <div class="field"><label class="label" for="dNotes">Notes</label><textarea id="dNotes">${esc(r.notes||"")}</textarea></div>
+      <div class="row"><button class="btn primary" id="dSave" ${r.statut==="annule"?"disabled":""}>Enregistrer les modifications</button></div>
+      <div id="dMsg"></div>
+    </div>
+    <div class="panel stack">
+      <h3>Paiements</h3>
+      ${r.paiements.length ? `<div class="tablewrap"><table><tbody>${r.paiements.map((p,i)=>`<tr><td>${new Date(p.date).toLocaleDateString("fr-FR")}</td><td>${esc(p.mode)}${p.ref?` <span class="hint">${esc(p.ref)}</span>`:""}</td><td class="num">${eur(p.montant)}</td><td><button class="btn small" data-delpay="${i}">Retirer</button></td></tr>`).join("")}</tbody></table></div>` : '<p class="hint">Aucun paiement.</p>'}
+      <div class="row"><input type="number" id="pMont" placeholder="Montant €" style="width:120px"><select id="pMode" style="width:auto"><option>Espèces</option><option>CB</option><option>Chèque</option><option>Virement</option></select><input type="text" id="pRef" placeholder="Réf." style="width:110px"><button class="btn small" id="pAdd">Ajouter</button></div>
+    </div>
+    ${moves.length?`<div class="panel stack"><h3>Changer de groupe</h3><div class="row"><select id="mTo" style="width:auto">${moves.map(x=>`<option value="${x.id}">${esc(groupName(x))} (${x.parts-occupancy(x.id).length} libres)</option>`).join("")}</select><button class="btn small" id="mGo">Déplacer</button></div></div>`:""}
+    <div class="row">
+      ${r.statut==="actif"?`<button class="btn" id="dRecup">Marquer récupérée</button>`:""}
+      ${r.statut==="recupere"?`<button class="btn" id="dUnrecup">Annuler « récupérée »</button>`:""}
+      ${r.statut!=="annule"?`<button class="btn danger" id="dCancel">Annuler la réservation</button>`:`<button class="btn" id="dReact">Réactiver</button>`}
+    </div>
+    ${confirmCancel?`<div class="confirm">Annuler ${esc(r.id)} ? ${isA?"L'agneau redevient disponible.":"Ses parts seront libérées."} <button class="btn small danger" id="dCancelYes">Oui, annuler</button><button class="btn small" id="dCancelNo">Non</button></div>`:""}`;
+  $("#drawer").hidden = false;
+}
+$("#sheet").addEventListener("click", async e => {
+  const id = e.target.id; const r = S.resas.get(openId); if (!r) return;
+  const say = (t,k="err") => { const m=$("#dMsg"); if(m) m.innerHTML=`<div class="msg ${k}">${esc(t)}</div>`; };
+  try {
+    if (id==="dClose") return closeDrawer();
+    if (id==="dSave"){
+      const patch = {client:$("#dNom").value.trim(), tel:$("#dTel").value.trim(), notes:$("#dNotes").value.trim()};
+      if (r.espece==="agneau"){
+        const j = S.cfg.agneau.jours.find(x=>x.retrait===$("#dJour").value); const d = S.cfg.agneau.decoupes.find(x=>String(x.code)===$("#dDec").value);
+        Object.assign(patch, {retrait:j.retrait, prix: j.retrait===r.retrait ? r.prix : j.prix, decoupe:d.code, decoupe_label:d.label, supp:d.supp||0});
+        await upd("aid_resas", r.id, patch);
+      } else {
+        const k = {poids:$("#dPoids").value, coupe:$("#dCoupe").value, retrait:$("#dRetrait").value, parts:+$("#dParts").value};
+        await upd("aid_resas", r.id, patch);
+        if (k.poids!==r.poids || k.coupe!==r.coupe || k.retrait!==r.retrait || k.parts!==r.parts)
+          await rpc("aid_modifier_bovin", {p_id:r.id, p_poids:k.poids, p_coupe:k.coupe, p_retrait:k.retrait, p_parts:k.parts});
+      }
+      say("Modifications enregistrées.","ok"); return;
+    }
+    if (id==="pAdd"){ const m = +$("#pMont").value; if (!m) return;
+      await upd("aid_resas", r.id, {paiements:[...r.paiements, {montant:m, mode:$("#pMode").value, ref:$("#pRef").value.trim(), date:new Date().toISOString()}]}); return; }
+    if (e.target.dataset.delpay!=null){ const p=[...r.paiements]; p.splice(+e.target.dataset.delpay,1); await upd("aid_resas", r.id, {paiements:p}); return; }
+    if (id==="mGo"){ await rpc("aid_deplacer", {p_id:r.id, p_groupe:$("#mTo").value}); return; }
+    if (id==="dRecup"){ await upd("aid_resas", r.id, {statut:"recupere"}); return; }
+    if (id==="dUnrecup"){ await upd("aid_resas", r.id, {statut:"actif"}); return; }
+    if (id==="dCancel"){ confirmCancel=true; renderDrawer(); return; }
+    if (id==="dCancelNo"){ confirmCancel=false; renderDrawer(); return; }
+    if (id==="dCancelYes"){ confirmCancel=false; await rpc("aid_annuler", {p_id:r.id}); return; }
+    if (id==="dReact"){ await rpc("aid_reactiver", {p_id:r.id}); return; }
+  } catch(err){ say(errMsg(err)); }
+});
+
+/* ---------- Groupes ---------- */
+function renderGroups(){
+  fillSelect($("#gEsp"), BOV.map(e=>[e,espLabel(e)]), "Toutes espèces");
+  fillSelect($("#gRetrait"), S.cfg.retraits.map(r=>[r.id,r.label]), "Tous les jours");
+  const fe=$("#gEsp").value, fr=$("#gRetrait").value, ft=$("#gEtat").value;
+  const list = [...S.groupes.values()].filter(g=>(!fe||g.espece===fe)&&(!fr||g.retrait===fr)).map(g=>({g,used:occupancy(g.id)}))
+    .filter(x=> !ft || (ft==="complet" ? x.used.length===x.g.parts : x.used.length<x.g.parts))
+    .sort((a,b)=> a.g.prefixe.localeCompare(b.g.prefixe) || a.g.numero-b.g.numero);
+  $("#gList").innerHTML = list.length ? list.map(({g,used})=>{
+    const free = g.parts-used.length;
+    const byPart = {}; for (const r of S.resas.values()) if (r.groupeId===g.id && r.statut!=="annule") for (const p of r.partNos) byPart[p]=r;
+    const slots = Array.from({length:g.parts},(_,i)=>i+1).map(p=>{ const r=byPart[p]; return r ? `<div class="slot" data-open="${esc(r.id)}" style="cursor:pointer"><span class="num">${p}</span><span class="num">${esc(r.id)}</span><span>${esc(r.client)}</span></div>` : `<div class="slot free"><span class="num">${p}</span><span></span><span>libre</span></div>`; }).join("");
+    return `<article class="gcard"><div class="gh"><span class="gname">${esc(groupName(g))}</span><span class="pill p-bov">${esc(espLabel(g.espece))}</span>${free===0?'<span class="pill p-ok">Complet</span>':free===g.parts?'<span class="pill p-mut">Vide</span>':`<span class="pill p-warn">${free} libre${free>1?"s":""}</span>`}</div>
+      <div class="meta">${esc(g.poids)} · ${esc(coupeLabel(g.coupe))} · ${esc(retraitLabel(g.retrait))}</div>
+      <div class="slots">${slots}</div>
+      <div class="row"><input type="number" step="0.1" placeholder="Poids carcasse kg" value="${g.poidsReel??""}" data-gpoids="${g.id}" style="width:150px" aria-label="Poids carcasse de ${esc(groupName(g))}"><input type="text" placeholder="N° boucle" value="${esc(g.boucle||"")}" data-gboucle="${g.id}" style="width:110px" aria-label="Numéro de boucle"></div>
+      <div class="row"><button class="btn small" data-fiche="${g.id}">Fiche du groupe</button>${used.length===0?`<button class="btn small danger" data-gdel="${g.id}">Supprimer le groupe vide</button>`:""}</div></article>`;
+  }).join("") : `<div class="empty">${S.groupes.size?"Aucun groupe avec ces filtres.":"Aucun groupe. Ils apparaissent dès la première réservation de veau, bœuf ou broutard."}</div>`;
+}
+for (const id of ["gEsp","gRetrait","gEtat"]) $("#"+id).addEventListener("input", renderGroups);
+$("#gList").addEventListener("change", async e => {
+  const t = e.target;
+  try {
+    if (t.dataset.gpoids) await upd("aid_groupes", t.dataset.gpoids, {poids_reel: t.value==="" ? null : +t.value});
+    if (t.dataset.gboucle) await upd("aid_groupes", t.dataset.gboucle, {boucle: t.value.trim()});
+  } catch(err){ alert(errMsg(err)); }
+});
+$("#gList").addEventListener("click", async e => {
+  const b=e.target.closest("[data-gdel]"); if (!b || occupancy(b.dataset.gdel).length) return;
+  const { error } = await sb.from("aid_groupes").delete().eq("id", b.dataset.gdel); if (error) alert(errMsg(error)); else loadAll();
+});
+
+/* ---------- Tableau de bord ---------- */
+function renderDash(){
+  const act = [...S.resas.values()].filter(r=>r.statut!=="annule");
+  const enc = act.reduce((a,r)=>a+paye(r),0);
+  const agn = S.cfg.agneau.jours.map(j=>{ const n = vendusAgneau(j.retrait); return `<div><div class="row" style="justify-content:space-between"><span>${esc(retraitLabel(j.retrait))}</span><span class="num">${n} / ${j.stock}</span></div><div class="bar"><i style="width:${Math.min(100,n/j.stock*100)}%"></i></div></div>`; }).join("");
+  const bov = BOV.map(e=>{
+    const gs = [...S.groupes.values()].filter(g=>g.espece===e); const full = gs.filter(g=>occupancy(g.id).length===g.parts).length;
+    const parts = act.filter(r=>r.espece===e).reduce((a,r)=>a+r.parts,0);
+    return `<div class="panel tile"><div class="label">${esc(espLabel(e))}</div><div class="big num">${parts} <span style="font-size:15px;font-weight:500">parts</span></div><div class="hint">${gs.length} groupe(s), dont ${full} complet(s)</div></div>`;
+  }).join("");
+  const incompl = [...S.groupes.values()].map(g=>({g,free:g.parts-occupancy(g.id).length})).filter(x=>x.free>0 && x.free<x.g.parts).sort((a,b)=>a.g.retrait.localeCompare(b.g.retrait)||a.free-b.free);
+  $("#dash").innerHTML = `<div class="stack">
+    <div class="tiles">
+      <div class="panel tile"><div class="label">Réservations actives</div><div class="big num">${act.length}</div></div>
+      <div class="panel tile"><div class="label">Encaissé</div><div class="big num">${eur(enc)}</div></div>
+      ${bov}
+    </div>
+    <div class="grid g2">
+      <div class="panel stack"><h3>Agneaux vendus / stock</h3>${agn}</div>
+      <div class="panel stack"><h3>Groupes à compléter</h3>${incompl.length? `<div class="tablewrap"><table><thead><tr><th>Groupe</th><th>Conditions</th><th>Libres</th></tr></thead><tbody>${incompl.map(x=>`<tr><td><strong>${esc(groupName(x.g))}</strong></td><td>${esc(x.g.poids)} · ${esc(coupeLabel(x.g.coupe))} · ${esc(retraitLabel(x.g.retrait))}</td><td class="num">${x.free}</td></tr>`).join("")}</tbody></table></div>` : '<p class="hint">Aucun groupe entamé à compléter.</p>'}</div>
+    </div></div>`;
+}
+
+/* ---------- Réglages ---------- */
+function renderSettings(){
+  if (document.activeElement && $("#sForm").contains(document.activeElement)) return;
+  const c = S.cfg;
+  $("#sForm").innerHTML = `
+  <div class="panel stack"><h3>Général</h3><div class="grid g3">
+    <div class="field"><label class="label" for="sAnnee">Année</label><input type="number" id="sAnnee" value="${c.annee}"></div>
+    <div class="field"><label class="label" for="sOrg">Entreprise</label><input type="text" id="sOrg" value="${esc(c.org)}"></div>
+    <div class="field"><label class="label" for="sVend">Vendeurs (séparés par des virgules)</label><input type="text" id="sVend" value="${esc(c.vendeurs.join(", "))}"></div></div>
+    <div class="field"><label class="label" for="sRet">Jours de retrait (séparés par des virgules, dans l'ordre)</label><input type="text" id="sRet" value="${esc(c.retraits.map(r=>r.label).join(", "))}"></div></div>
+  <div class="panel stack"><h3>Agneaux</h3><div class="tablewrap"><table><thead><tr><th>Jour</th><th>Prix (€)</th><th>Stock</th></tr></thead><tbody>
+    ${c.agneau.jours.map((j,i)=>`<tr><td><select id="sAJ${i}">${c.retraits.map(r=>`<option value="${r.id}" ${r.id===j.retrait?"selected":""}>${esc(r.label)}</option>`).join("")}</select></td><td><input type="number" id="sAP${i}" value="${j.prix}"></td><td><input type="number" id="sAS${i}" value="${j.stock}"></td></tr>`).join("")}
+    </tbody></table></div>
+    <div class="field"><label class="label" for="sDec">Découpes agneau — une par ligne : code ; libellé ; supplément €</label><textarea id="sDec" rows="10">${esc(c.agneau.decoupes.map(d=>`${d.code} ; ${d.label} ; ${d.supp}`).join("\n"))}</textarea></div></div>
+  <div class="panel stack"><h3>Veau, bœuf, broutard</h3><div class="tablewrap"><table><thead><tr><th>Espèce</th><th>Parts</th><th>Prix/kg</th><th>Acompte/part</th><th>Tranches de poids (virgules)</th></tr></thead><tbody>
+    ${BOV.map(e=>{const x=c.especes[e]; return `<tr><td>${esc(x.label)}</td><td><input type="number" id="sP_${e}" value="${x.parts}" style="width:70px"></td><td><input type="number" step="0.01" id="sK_${e}" value="${x.prixKg}" style="width:90px"></td><td><input type="number" id="sC_${e}" value="${x.acompte}" style="width:90px"></td><td><input type="text" id="sT_${e}" value="${esc(x.tranches.join(", "))}" style="min-width:220px"></td></tr>`;}).join("")}
+    </tbody></table></div>
+    <div class="field"><span class="label">Jours de retrait autorisés par découpe</span>
+    <div class="tablewrap"><table><thead><tr><th>Découpe</th>${c.retraits.map(r=>`<th>${esc(r.label)}</th>`).join("")}</tr></thead><tbody>
+    ${c.coupes.map(cp=>`<tr><td>${esc(cp.label)}</td>${c.retraits.map(r=>`<td><input type="checkbox" id="sM_${cp.id}_${r.id}" ${cp.retraits.includes(r.id)?"checked":""} aria-label="${esc(cp.label)} ${esc(r.label)}"></td>`).join("")}</tr>`).join("")}
+    </tbody></table></div></div>
+    <p class="hint">Les prix déjà enregistrés sur une réservation ne changent pas : seules les nouvelles réservations prennent les nouveaux prix. Ne change pas le nombre de parts une fois les réservations commencées.</p></div>
+  <div class="row"><button class="btn primary" id="sSave">Enregistrer les réglages</button><span id="sMsg"></span></div>`;
+}
+$("#sForm").addEventListener("click", async e => {
+  if (e.target.id!=="sSave") return;
+  const c = structuredClone(S.cfg), m = $("#sMsg");
+  c.annee = +$("#sAnnee").value || c.annee; c.org = $("#sOrg").value.trim() || c.org;
+  c.vendeurs = $("#sVend").value.split(",").map(s=>s.trim()).filter(Boolean);
+  c.retraits = $("#sRet").value.split(",").map(s=>s.trim()).filter(Boolean).map((l,i)=>({id:"R"+(i+1), label:l}));
+  c.agneau.jours = c.agneau.jours.map((j,i)=>({retrait:$("#sAJ"+i).value, prix:+$("#sAP"+i).value||0, stock:+$("#sAS"+i).value||0}));
+  c.agneau.decoupes = $("#sDec").value.split("\n").map(s=>s.trim()).filter(Boolean).map((l,i)=>{ const p=l.split(";").map(x=>x.trim()); return p.length>=3 ? {code:+p[0]||0, label:p[1], supp:+p[2]||0} : {code:i, label:p[0], supp:+(p[1]||0)||0}; });
+  for (const e of BOV){ const x=c.especes[e]; x.parts=+$("#sP_"+e).value||x.parts; x.prixKg=+$("#sK_"+e).value||x.prixKg; x.acompte=+$("#sC_"+e).value||0; x.tranches=$("#sT_"+e).value.split(",").map(s=>s.trim()).filter(Boolean); }
+  c.coupes = c.coupes.map(cp=>({...cp, retraits:S.cfg.retraits.map(r=>r.id).filter(id=>{const b=$(`#sM_${cp.id}_${id}`); return b && b.checked;})}));
+  try { await upd("aid_config", 1, {data:c}); m.innerHTML='<span class="msg ok">Réglages enregistrés pour tout le monde.</span>'; }
+  catch(err){ m.innerHTML=`<span class="msg err">${esc(errMsg(err))}</span>`; }
+});
+
+/* ---------- Impression ---------- */
+function doPrint(html, size){
+  $("#pageSize").textContent = `@page{size:${size};margin:10mm}`;
+  $("#printArea").innerHTML = html;
+  setTimeout(() => window.print(), 50);
+}
+function ticketHTML(r, mode){
+  const c = S.cfg, g = S.groupes.get(r.groupeId), e = c.especes[r.espece];
+  const rows = [];
+  if (r.espece==="agneau"){
+    rows.push(["Produit","Agneau"],["Jour de retrait",retraitLabel(r.retrait)],["Découpe",`${r.decoupe} – ${r.decoupeLabel}`],["Prix de l'agneau",eur(r.prix)],["Supplément découpe",r.supp?eur(r.supp):"aucun"],["Total",eur(du(r))]);
+  } else {
+    const pp = poidsPart(r);
+    rows.push(["Produit",`${e.label} — ${r.parts===e.parts?"bête entière":r.parts+(r.parts>1?" parts":" part")} sur ${e.parts}`],
+      ["Groupe",g?`${groupName(g)} — part${r.parts>1?"s":""} n° ${r.partNos.join(", ")}`:"—"],
+      ["Poids de la bête",r.poids],["Découpe",coupeLabel(r.coupe)],["Jour de retrait",retraitLabel(r.retrait)]);
+    if (g && g.boucle) rows.push(["N° de boucle", g.boucle]);
+    rows.push(["Poids carcasse", g&&g.poidsReel ? kg(g.poidsReel) : "à la pesée"],
+      ["Poids de votre part", pp==null ? "à la pesée" : `${kg(pp)}  (${kg(g.poidsReel)} ÷ ${g.parts} × ${r.parts})`],
+      ["Prix au kg", eur(r.prixKg)],
+      ["Total", du(r)==null ? "calculé au poids réel" : `${eur(du(r))}  (${kg(pp)} × ${eur(r.prixKg)})`]);
+  }
+  for (const p of r.paiements) rows.push([`Payé le ${new Date(p.date).toLocaleDateString("fr-FR")}`, `${eur(p.montant)} — ${p.mode}${p.ref?" "+p.ref:""}`]);
+  rows.push(["Total déjà payé", eur(paye(r))]);
+  if (r.notes) rows.push(["Notes", r.notes]);
+  const rs = reste(r);
+  const titre = mode==="retrait" ? "Ticket de retrait" : "Bon de réservation";
+  return `<div class="tk">
+    <div class="tk-h"><div><div class="tk-org">${esc(c.org)}</div><div class="tk-sub">Aïd al-Adha ${c.annee}</div></div><div class="tk-num">${esc(r.id)}</div></div>
+    <div class="tk-title">${titre}</div>
+    <div class="tk-client">${esc(r.client)}</div><div class="tk-tel">Tél. ${esc(r.tel)}</div>
+    <table>${rows.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td></tr>`).join("")}</table>
+    <div class="tk-total"><span>${rs!=null && rs<=0 ? "Soldé" : "Reste à payer"}</span><span>${rs==null ? "au retrait" : eur(Math.max(0,rs))}</span></div>
+    ${rs!=null && rs<0 ? `<div class="tk-sub" style="margin-top:4px">Trop-perçu à rendre : ${eur(-rs)}</div>` : ""}
+    <div class="tk-foot"><span>${mode==="retrait" ? "Retiré le ____/____ à ____h____" : "Présentez ce bon le jour du retrait."}</span><span>${mode==="retrait" ? "Signature client :" : "Vendeur : " + esc(r.vendeur||"")}</span></div>
+  </div>`;
+}
+function printTickets(list, mode){
+  if (!list.length){ $("#iMsg").innerHTML = '<div class="msg warn">Aucune réservation à imprimer pour ce jour.</div>'; return; }
+  doPrint(list.map(r=>ticketHTML(r, mode)).join(""), "A5");
+}
+function printFiches(groups){
+  if (!groups.length){ $("#iMsg").innerHTML = '<div class="msg warn">Aucun groupe à imprimer.</div>'; return; }
+  const c = S.cfg;
+  doPrint(groups.map(g=>{
+    const byPart = {}; for (const r of S.resas.values()) if (r.groupeId===g.id && r.statut!=="annule") for (const p of r.partNos) byPart[p]=r;
+    const rows = Array.from({length:g.parts},(_,k)=>k+1).map(p=>{ const r=byPart[p]; return r ? `<tr><td>${p}</td><td>${esc(r.id)}</td><td>${esc(r.client)}</td><td>${esc(r.tel)}</td><td>${eur(paye(r))}</td><td>${reste(r)==null?"":eur(reste(r))}</td><td></td></tr>` : `<tr><td>${p}</td><td></td><td><b>LIBRE</b></td><td></td><td></td><td></td><td></td></tr>`; }).join("");
+    return `<div class="fiche"><div style="font-size:13px">${esc(c.org)} — Aïd ${c.annee}</div><div class="gn">${esc(groupName(g))}</div>
+      <div class="gm">${esc(espLabel(g.espece))} · ${esc(g.poids)} · Découpe <b>${esc(coupeLabel(g.coupe))}</b> · Retrait <b>${esc(retraitLabel(g.retrait))}</b></div>
+      <div class="gm">Poids carcasse : <b>${g.poidsReel?kg(g.poidsReel):"__________ kg"}</b> &nbsp;&nbsp; N° boucle : <b>${esc(g.boucle||"______________")}</b></div>
+      <table><thead><tr><th>Part</th><th>Résa</th><th>Client</th><th>Téléphone</th><th>Payé</th><th>Reste</th><th>Retiré</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }).join(""), "A4");
+}
+function printListe(rid){
+  const c = S.cfg;
+  const act = [...S.resas.values()].filter(r=>r.statut!=="annule" && r.retrait===rid);
+  const bov = act.filter(r=>r.espece!=="agneau").sort((a,b)=> byNum(a.groupeId||"", b.groupeId||"") || (a.partNos[0]-b.partNos[0]));
+  const agn = act.filter(r=>r.espece==="agneau").sort((a,b)=>byNum(a.id,b.id));
+  const tr = r => `<tr><td>${esc(r.id)}</td><td>${esc(r.client)}</td><td>${esc(r.tel)}</td><td>${r.espece==="agneau"?"Agneau":`${esc(espLabel(r.espece))} ${r.parts} part(s)`}</td><td>${r.groupeId?`${esc(groupName(S.groupes.get(r.groupeId)))} / ${r.partNos.join(",")}`:""}</td><td>${r.espece==="agneau"?esc(`${r.decoupe} – ${r.decoupeLabel}`):esc(coupeLabel(r.coupe))}</td><td>${poidsPart(r)==null?"":kg(poidsPart(r))}</td><td>${eur(paye(r))}</td><td>${reste(r)==null?"à la pesée":eur(reste(r))}</td><td>${r.statut==="recupere"?"oui":""}</td></tr>`;
+  doPrint(`<div class="pr"><h1>${esc(c.org)} — Retraits ${esc(retraitLabel(rid))} — Aïd ${c.annee}</h1>
+    <div class="s">${bov.length} réservation(s) bovines, ${agn.length} agneau(x). Imprimé le ${new Date().toLocaleString("fr-FR")}</div>
+    <table><thead><tr><th>Résa</th><th>Client</th><th>Téléphone</th><th>Article</th><th>Groupe / parts</th><th>Découpe</th><th>Poids part</th><th>Payé</th><th>Reste</th><th>Retiré</th></tr></thead><tbody>${[...bov,...agn].map(tr).join("")}</tbody></table></div>`, "A4 landscape");
+}
+function excelAll(){
+  const rows = [...S.resas.values()].sort((a,b)=>byNum(a.id,b.id));
+  const modes = r => r.paiements.map(p=>`${p.mode} ${p.montant}${p.ref?" "+p.ref:""}`).join(" | ");
+  const A = rows.filter(r=>r.espece==="agneau").map(r=>({"N°":r.id,"Client":r.client,"Téléphone":r.tel,"Jour":retraitLabel(r.retrait),"Découpe":`${r.decoupe} – ${r.decoupeLabel}`,"Prix":r.prix,"Supplément":r.supp,"Total":du(r),"Payé":paye(r),"Reste":reste(r),"Paiements":modes(r),"Statut":r.statut,"Vendeur":r.vendeur,"Créée":r.cree,"Notes":r.notes}));
+  const B = rows.filter(r=>r.espece!=="agneau").map(r=>({"N°":r.id,"Client":r.client,"Téléphone":r.tel,"Espèce":espLabel(r.espece),"Parts":r.parts,"Groupe":r.groupeId?groupName(S.groupes.get(r.groupeId)):"","N° parts":r.partNos.join(","),"Poids bête":r.poids,"Découpe":coupeLabel(r.coupe),"Retrait":retraitLabel(r.retrait),"Poids part (kg)":poidsPart(r),"Prix/kg":r.prixKg,"Total":du(r),"Payé":paye(r),"Reste":reste(r),"Paiements":modes(r),"Statut":r.statut,"Vendeur":r.vendeur,"Créée":r.cree,"Notes":r.notes}));
+  const G = [...S.groupes.values()].sort((a,b)=>a.prefixe.localeCompare(b.prefixe)||a.numero-b.numero).map(g=>({"Groupe":groupName(g),"Espèce":espLabel(g.espece),"Poids":g.poids,"Découpe":coupeLabel(g.coupe),"Retrait":retraitLabel(g.retrait),"Parts":g.parts,"Occupées":occupancy(g.id).length,"Libres":g.parts-occupancy(g.id).length,"Poids carcasse":g.poidsReel??"","Boucle":g.boucle||""}));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(A.length?A:[{"N°":""}]), "Agneaux");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(B.length?B:[{"N°":""}]), "Bovins");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(G.length?G:[{"Groupe":""}]), "Groupes");
+  XLSX.writeFile(wb, `Reservations Aid ${S.cfg.annee}.xlsx`);
+}
+function renderPrint(){ fillSelect($("#iRetrait"), S.cfg.retraits.map(r=>[r.id,r.label]), "Choisir un jour"); if (!$("#iRetrait").value && S.cfg.retraits[0]) $("#iRetrait").value = S.cfg.retraits[0].id; }
+const dayResas = () => [...S.resas.values()].filter(r=>r.statut!=="annule"&&r.retrait===$("#iRetrait").value).sort((a,b)=>byNum(a.id,b.id));
+const dayGroups = () => [...S.groupes.values()].filter(g=>g.retrait===$("#iRetrait").value && occupancy(g.id).length).sort((a,b)=>a.prefixe.localeCompare(b.prefixe)||a.numero-b.numero);
+$("#iTickets").addEventListener("click", ()=> printTickets(dayResas(), "retrait"));
+$("#iListe").addEventListener("click", ()=> printListe($("#iRetrait").value));
+$("#iFiches").addEventListener("click", ()=> printFiches(dayGroups()));
+$("#iFichesAll").addEventListener("click", ()=> printFiches([...S.groupes.values()].filter(g=>occupancy(g.id).length).sort((a,b)=>a.prefixe.localeCompare(b.prefixe)||a.numero-b.numero)));
+$("#iExcel").addEventListener("click", excelAll);
+
+/* ---------- Rendu ---------- */
+function renderAll(){
+  if (!S.cfg) return;
+  $("#brandSub").textContent = `${S.cfg.org} · ${S.cfg.annee}`;
+  if (view==="nouvelle") renderNew();
+  if (view==="reservations") renderList();
+  if (view==="groupes") renderGroups();
+  if (view==="tableau") renderDash();
+  if (view==="impression") renderPrint();
+  if (view==="reglages") renderSettings();
+  if (openId && !$("#drawer").hidden){ const a=document.activeElement; if (!a || !$("#sheet").contains(a) || a.tagName==="BUTTON") renderDrawer(); }
+}
+start();
+</script>
+</body>
+</html>
