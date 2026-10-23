@@ -770,7 +770,7 @@ function renderPreview(){
   const a = previewGroup({espece:N.espece,poids:N.poids,coupe:N.coupe,retrait:N.retrait}, N.parts, $("#nAvec").value.trim());
   if (a.error){ p.innerHTML = `<span style="color:var(--bad)">${esc(a.error)}</span>`; return; }
   const su = (+((c.coupes.find(x=>x.id===N.coupe)||{}).supp)||0) * N.parts;
-  const suppTxt = su ? ` Supplément découpe : ${eur(su)}, à régler au retrait.` : "";
+  const suppTxt = (su ? ` Supplément découpe : ${eur(su)}, à régler au retrait.` : "") + (N.parts===e.parts ? ` Bête entière : ${e.parts} numéros de réservation seront créés, un par part, et l'acompte sera réparti entre eux.` : "");
   p.innerHTML = a.nouveau
     ? `Ouvrira un <strong>nouveau groupe ${esc(e.label.toLowerCase())}</strong> (${esc(N.poids)} · ${esc(coupeLabel(N.coupe))} · ${esc(retraitLabel(N.retrait))}). Acompte conseillé : ${eur(e.acompte*N.parts)}.${suppTxt}`
     : `Ira dans <strong>${esc(groupName(a.g))}</strong>. Il restera ${a.free - N.parts} part(s) libre(s). Acompte conseillé : ${eur(e.acompte*N.parts)}.${suppTxt}`;
@@ -807,8 +807,11 @@ $("#fNew").addEventListener("submit", async e => {
   try {
     const out = fromResa(await rpc("aid_reserver", {p}));
     const g = S.groupes.get(out.groupeId);
-    msg.innerHTML = `<div class="msg ok row" style="justify-content:space-between"><span><strong>${esc(out.id)}</strong> enregistrée pour ${esc(out.client)}${g?` — ${esc(groupName(g))}, part${out.parts>1?"s":""} ${out.partNos.join(", ")}`:""}.</span><button class="btn small" type="button" data-bon="${esc(out.id)}">Imprimer le bon</button></div>`;
-    toast(`${out.id} enregistrée pour ${out.client}`);
+    const lot = (out.espece!=="agneau" && /Bête entière/.test(out.notes||"")) ? [...S.resas.values()].filter(r=>r.groupeId===out.groupeId && r.client===out.client && r.statut!=="annule").sort((a,b)=>byNum(a.id,b.id)) : [out];
+    const ids = lot.map(r=>r.id);
+    const titre = lot.length>1 ? `<strong>${esc(ids[0])} à ${esc(ids[ids.length-1])}</strong> enregistrées pour ${esc(out.client)} — ${esc(groupName(g))} entier, un numéro par part` : `<strong>${esc(out.id)}</strong> enregistrée pour ${esc(out.client)}${g?` — ${esc(groupName(g))}, part${out.parts>1?"s":""} ${out.partNos.join(", ")}`:""}`;
+    msg.innerHTML = `<div class="msg ok row" style="justify-content:space-between"><span>${titre}.</span><button class="btn small" type="button" data-bons="${esc(ids.join(","))}">Imprimer ${lot.length>1?"les "+lot.length+" bons":"le bon"}</button></div>`;
+    toast(lot.length>1 ? `${ids[0]} à ${ids[ids.length-1]} enregistrées` : `${out.id} enregistrée pour ${out.client}`);
     resetNew();
   } catch(err){ msg.innerHTML = `<div class="msg err">${esc(errMsg(err))}</div>`; toast("Réservation non enregistrée", "err"); }
   finally { $("#nSave").disabled = false; }
@@ -840,6 +843,7 @@ let openId = null, confirmCancel = false;
 document.addEventListener("click", e => {
   const o = e.target.closest("[data-open]"); if (o){ openId = o.dataset.open; confirmCancel=false; renderDrawer(); return; }
   const b = e.target.closest("[data-bon]"); if (b){ printTickets([S.resas.get(b.dataset.bon)].filter(Boolean), "bon"); return; }
+  const bs = e.target.closest("[data-bons]"); if (bs){ printTickets(bs.dataset.bons.split(",").map(id=>S.resas.get(id)).filter(Boolean), "bon"); return; }
   const t = e.target.closest("[data-retrait-ticket]"); if (t){ printTickets([S.resas.get(t.dataset.retraitTicket)].filter(Boolean), "retrait"); return; }
   const f = e.target.closest("[data-fiche]"); if (f){ printFiches([S.groupes.get(f.dataset.fiche)].filter(Boolean)); return; }
 });
