@@ -7,22 +7,19 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#FDFCF9">
 <style>
-@font-face { font-family: "Inter"; font-style: normal; font-display: swap; font-weight: 100 900; src: url(assets/inter-latin-wght-normal.woff2) format("woff2"); }
-@font-face { font-family: "Instrument Serif"; font-style: italic; font-display: swap; font-weight: 400; src: url(assets/instrument-serif-latin-400-italic.woff2) format("woff2"); }
-:root { --fond: #FDFCF9; --texte: #121A24; --texte-2: #5B6470; --ligne: #E4E2DB; --vert: #0D5EAF; }
+@font-face { font-family: "Poppins"; font-display: swap; font-weight: 600; src: url(assets/poppins-latin-600-normal.woff2) format("woff2"); }
+h1, h2 { font-family: "Poppins", system-ui, sans-serif; font-weight: 600; }
+.marque img { display: block; height: 24px; width: auto; }
+:root { --fond: #FDFCF9; --texte: #121A24; --texte-2: #5B6470; --ligne: #E4E2DB; --vert: #0B63CE; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--fond); color: var(--texte); font: 16px/1.6 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--fond); color: var(--texte); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 header { position: sticky; top: 0; background: rgba(253,252,249,.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--ligne); }
 header div, main, footer { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
 header div { height: 52px; display: flex; align-items: center; justify-content: space-between; }
 header a { color: var(--texte); text-decoration: none; font-weight: 600; }
-@font-face { font-family: "Bricolage Grotesque"; font-display: swap; font-weight: 200 800; src: url(assets/bricolage-grotesque-latin-wght-normal.woff2) format("woff2"); }
-.marque { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800 !important; font-size: 20px; letter-spacing: -0.045em; }
-header a em { font-style: normal; font-weight: 400; color: var(--vert); }
 header a + a { font-weight: 500; color: var(--vert); font-size: 15px; }
 main { padding-top: 48px; padding-bottom: 64px; }
 h1 { font-size: clamp(32px, 7vw, 46px); line-height: 1.08; letter-spacing: -0.035em; margin: 0 0 8px; }
-h1 em { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; color: var(--vert); }
 .maj { color: var(--texte-2); font-size: 14px; margin: 0 0 32px; }
 h2 { font-size: 21px; letter-spacing: -0.02em; margin: 36px 0 8px; padding-top: 24px; border-top: 1px solid var(--ligne); }
 p, li { color: #28313C; }
@@ -34,9 +31,9 @@ footer a { color: var(--texte); }
 </style>
 </head>
 <body>
-<header><div><a href="./" class="marque">Mokrani<em>studio</em></a><a href="./#contact">Devis gratuit</a></div></header>
+<header><div><a href="./" class="marque"><img src="assets/logo-mokrani.svg" alt="Mokrani Studio"></a><a href="./#contact">Devis gratuit</a></div></header>
 <main>
-<h1>Mentions <em>légales</em></h1>
+<h1>Mentions légales</h1>
 <p class="maj">Mise à jour : octobre 2026</p>
 
 <h2>Éditeur du site</h2>
@@ -54,7 +51,7 @@ TVA non applicable, article 293 B du Code général des impôts.</p>
 <a href="https://support.github.com/">support.github.com</a></p>
 
 <h2>Propriété intellectuelle</h2>
-<p>Les textes, illustrations et le code de ce site appartiennent à Ali Mokrani, sauf mention contraire. Les polices Inter et Instrument Serif sont utilisées sous licence SIL Open Font License. La bibliothèque d'animation GSAP est utilisée selon sa licence d'utilisation.</p>
+<p>Les textes, illustrations et le code de ce site appartiennent à Ali Mokrani, sauf mention contraire. La police Poppins est utilisée sous licence SIL Open Font License. La bibliothèque d'animation GSAP est utilisée selon sa licence d'utilisation.</p>
 <p>Les commerces, noms, prix et chiffres présentés dans les démonstrations sont fictifs et servent uniquement d'illustration.</p>
 
 <h2>Données personnelles et cookies</h2>
