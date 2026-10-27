@@ -1226,7 +1226,7 @@ var pinCurrent='';
 //  - Sovileg, Bichon : fournisseurs de mouton/chevre exclusivement -> FRANCE
 //  - ICM : fournisseur de mouton -> IRLANDE (agneau et tous ses abats)
 //  - Bigard, Coutances, Socopa, Finel, Sobeval, Tendriade : boeuf/veau FRANCE,
-//    mais leur agneau est IRLANDE
+//    leur agneau est FRANCE, sauf si 'irl' est precise (ex. agnx irl, epaule irl, gigot irl) -> IRLANDE (regle du 27/10/2026)
 //  - Volaille : FRANCE
 //
 // Pour un produit sans espece precisee (fressure, tetes, pieds, crepine...),
@@ -1257,7 +1257,8 @@ function getOrigine(fourn,produit){
 
   // 3. Fournisseurs boeuf/veau : France, sauf agneau explicite
   if(FOURN_BOVIN_FRANCE.includes(f)){
-    return MOTS_AGNEAU.test(p) ? 'Irlande' : 'France';
+    // Regle 27/10/2026 : hors ICM, l'agneau est FRANCE sauf mention explicite 'irl'
+    return (MOTS_AGNEAU.test(p) && /irl/.test(p)) ? 'Irlande' : 'France';
   }
 
   // 4. Volaille et fournisseurs non listes
