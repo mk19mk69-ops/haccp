@@ -1282,6 +1282,11 @@ function prenomSemaine(d){
   var sem=(d-DATE_DEBUT)/86400000/7|0;
   return PRENOMS[sem%PRENOMS.length];
 }
+function respNettoyage(d){
+  var j=Math.floor((d-new Date(2026,5,1))/86400000);
+  if(j<0)return prenomSemaine(d);
+  return (j%6===5)?'Mohamed':'Mehdi';
+}
 function randT(mn,mx){return Math.round((Math.random()*(mx-mn)+mn)*10)/10;}
 
 // Heure aléatoire dans une plage
@@ -1348,7 +1353,7 @@ async function init(){
   buildPAlgChecks();
   buildPControleList();
   buildPNuisiblesGrid();
-  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=prenomSemaineActif(new Date());
+  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=respNettoyage(new Date());
   renderProduitsNz();
   remplirSelectsProduitsNz();
   ['prd','palg-d','pncd','pat-date','phd','pctrl-date'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=today;});
@@ -1642,7 +1647,7 @@ async function validerNzEmploye(freq){
   var produitId=freq==='hebdo'?'nz-produit-hebdo':freq==='mensuel'?'nz-produit-mensuel':'nz-produit-emp';
   var produit=document.getElementById(produitId)?document.getElementById(produitId).value:'B-Quat';
   var now=new Date();
-  var n={date:now.toLocaleDateString('fr-FR'),zones:zones.join(', '),produit:produit,responsable:prenomSemaine(now),obs:'',heure:now.toTimeString().slice(0,5)};
+  var n={date:now.toLocaleDateString('fr-FR'),zones:zones.join(', '),produit:produit,responsable:respNettoyage(now),obs:'',heure:now.toTimeString().slice(0,5)};
   setSyncStatus('syncing');var ok=await sbInsert('nettoyages',n);dbNettoyages.unshift(n);
   document.getElementById('confirm-nz').classList.add('show');
   checkRappelNettoyage();buildZoneGridFreq();
@@ -2577,7 +2582,7 @@ async function pCompleterManquants(){
     // Pour aujourd'hui : attendre la fin du 2e créneau (16h30) avant de considérer que c'est un retard
     if(estAujourdhui && hActuelle<16.5){cur.setDate(cur.getDate()+1);continue;}
     if([2,3,4,5,6].includes(cur.getDay())&&!nzDates.has(dateFr)){
-      var resp=prenomSemaine(cur);var isSam=cur.getDay()===6;
+      var resp=respNettoyage(cur);var isSam=cur.getDay()===6;
       var zones=ZONES_Q.slice();if(isSam)zones=zones.concat(ZONES_H);
       var heure='09:'+String(30+Math.floor(Math.random()*30)).padStart(2,'0');
       var n={date:dateFr,zones:zones.join(', '),produit:PRODUITS_NZ[Math.floor(Math.random()*PRODUITS_NZ.length)],responsable:resp,obs:'',heure:heure};
@@ -2747,7 +2752,7 @@ async function pValNz(){
   setSyncStatus('syncing');await sbInsert('nettoyages',n);dbNettoyages.unshift(n);
   NZZ.forEach(function(z){pnzState[z.id]=false;var c=document.getElementById('pnzc-'+z.id);var ni=document.getElementById('pnzi-'+z.id);if(c)c.classList.remove('done');if(ni)ni.style.display='none';});
   ['pnzp','pnzo'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=prenomSemaineActif(new Date());
+  var pnzr=document.getElementById('pnzr');if(pnzr)pnzr.value=respNettoyage(new Date());
   pFilterNz();checkRappelNettoyage();toast('Nettoyage sauvegardé !');
 }
 async function pRemplirTout(){
