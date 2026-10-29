@@ -1117,6 +1117,28 @@ body { letter-spacing: 0; }
   .ctas .btn { flex: 0 1 auto; }
 }
 
+/* ===================== Du réel plutôt que des effets ===================== */
+.apercu { padding-top: clamp(36px, 5vw, 56px); padding-bottom: clamp(56px, 8vw, 96px); }
+.apercu-cadre { position: relative; max-width: 1080px; margin: 0 auto; padding-right: clamp(40px, 9vw, 120px); }
+.apercu-ordi { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--ligne); box-shadow: 0 18px 40px -28px rgba(18,26,36,.45); }
+.apercu-tel { position: absolute; right: 0; bottom: 34px; width: clamp(110px, 19vw, 210px); height: auto; border-radius: 20px; border: 5px solid #121A24; background: #121A24; box-shadow: 0 16px 34px -20px rgba(18,26,36,.6); }
+.apercu-cadre figcaption { margin-top: 14px; font-size: 14px; color: var(--texte-2); }
+.notes li { padding-left: 0; }
+.notes li::before { content: none; }
+.pq-piste { grid-auto-flow: row; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); overflow: visible; max-width: calc(var(--large) + 32px); margin-left: auto; margin-right: auto; padding: 8px 16px 0; }
+.pq .paddles { display: none; }
+.pq-carte { padding: 24px 22px; box-shadow: none; border: 1px solid var(--ligne); }
+.pq-carte:hover { translate: none; box-shadow: none; }
+.pq-carte p { font-size: 18px; }
+@media (max-width: 600px) {
+  .apercu-cadre { padding-right: 56px; }
+  .apercu-tel { width: 92px; top: 14%; bottom: auto; border-width: 4px; border-radius: 15px; }
+  .apercu-cadre figcaption { padding-right: 96px; }
+}
+.story:not(.story--anime) .story-progres { display: none; }
+.story:not(.story--anime) .story-pas h3 { font-size: clamp(19px, 2vw, 24px); }
+.story:not(.story--anime) .story-pas-liste { gap: 28px; }
+
 @media (prefers-reduced-transparency: reduce) {
   .barre-action, .lnav, .points, .lecture, .notif, .ap-bas { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
@@ -1166,7 +1188,7 @@ body { letter-spacing: 0; }
   <div class="cadre">
     <a class="lnav-titre" href="#vue-ensemble"><img src="assets/logo-mokrani.svg" alt="Mokrani Studio" width="174" height="26"></a>
     <nav class="lnav-liens" aria-label="Navigation principale">
-      <a href="#points-forts">Offres</a>
+      <a href="#tarifs">Offres</a>
       <a href="#demos">Démos</a>
       <a href="#ordinateurs">Ordinateurs</a>
       <a href="#tarifs">Tarifs</a>
@@ -1177,7 +1199,7 @@ body { letter-spacing: 0; }
   </div>
 </header>
 <div class="menu-plein" id="menu-plein" hidden>
-  <a href="#points-forts" style="--i:0">Offres</a>
+  <a href="#tarifs" style="--i:0">Offres</a>
   <a href="#parcours" style="--i:1">Réservation en ligne</a>
   <a href="#demos" style="--i:2">Démos</a>
   <a href="#realisations" style="--i:3">Réalisations</a>
@@ -1191,203 +1213,22 @@ body { letter-spacing: 0; }
   <section class="heros" id="vue-ensemble">
     <div class="heros-texte bande">
       <h1 class="t-heros heros-titre"><span class="ligne">Votre commerce.</span><span class="ligne accent">Enfin en ligne.</span></h1>
-      <p class="t-lead heros-lead">Sites, réservation en ligne et logiciels sur mesure pour les commerçants. Payés une fois, sans abonnement ni commission.</p>
+      <p class="t-lead heros-lead">Je crée des sites, la réservation en ligne et des petits logiciels pour les commerçants de Troyes et des environs. Vous payez une fois : pas d'abonnement, pas de commission.</p>
       <div class="ctas" id="ctas-heros"><a class="btn" href="#contact">Demander un devis</a><a class="btn btn--contour" href="#demos">Voir les démos</a></div>
       <a class="prix-rapides" href="#tarifs" aria-label="Voir les tarifs">
         <span><small>Vitrine</small><b>280 €</b></span>
         <span><small>Réservation</small><b>420 €</b></span>
         <span><small>Sur mesure</small><b>dès 550 €</b></span>
       </a>
-      <p class="heros-note">Maquette gratuite et sans engagement sous 72 h.<sup><a href="#note-2">2</a></sup></p>
+      <p class="heros-note">Maquette gratuite et sans engagement sous 72 h.</p>
     </div>
 
-    <div class="mac-scene bande" id="mac-scene">
-      <div class="mac-boite" role="img" aria-label="Un MacBook affiche le site d'un barbier, et un iPhone sa page de réservation">
-        <div class="mac" aria-hidden="true">
-          <div class="mac-capot" id="mac-capot">
-            <span class="mac-encoche"></span>
-            <div class="mac-ecran">
-              <div class="sb">
-                <div class="sb-nav"><b class="sb-logo">ATLAS</b><span class="sb-liens"><span>Prestations</span><span>Équipe</span><span>Horaires</span><span>Contact</span></span><span class="sb-pill">Réserver</span></div>
-                <div class="sb-heros">
-                  <div>
-                    <p class="sb-sur">Barbershop · Troyes</p>
-                    <p class="sb-titre">L'art de la coupe,<br>sans attendre.</p>
-                    <p class="sb-txt">Coupe, barbe et soins. Réservez votre place en ligne en trente secondes.</p>
-                    <div class="sb-btns"><span class="sb-pill">Prendre rendez-vous</span><span class="sb-pill sb-pill--contour">Nos prestations</span></div>
-                    <p class="sb-note">Ouvert du mardi au samedi · 8h – 19h</p>
-                  </div>
-                  <div class="sb-carte">
-                    <p class="sb-carte-t">Prestations</p>
-                    <div class="sb-ligne"><span>Coupe homme<small>30 min</small></span><b>18 €</b></div>
-                    <div class="sb-ligne"><span>Barbe<small>15 min</small></span><b>8 €</b></div>
-                    <div class="sb-ligne"><span>Coupe + barbe<small>45 min</small></span><b>26 €</b></div>
-                    <div class="sb-ligne"><span>Pack Luxury<small>50 min</small></span><b>35 €</b></div>
-                    <p class="sb-dispo"><i></i>Prochain créneau : aujourd'hui 14h30</p>
-                  </div>
-                </div>
-              </div>
-              <span class="mac-reflet"></span>
-              <span class="mac-noir" id="mac-noir"></span>
-            </div>
-          </div>
-          <div class="mac-socle"><span></span></div>
-        </div>
-        <div class="tel tel--heros" id="tel-heros" aria-hidden="true">
-          <div class="tel-ecran">
-            <div class="tel-ilot"></div>
-            <div class="tel-statut" data-heure="9:41"></div>
-            <div class="ap">
-              <p class="ap-mini">Salon Atlas</p>
-              <p class="ap-titre">Réserver</p>
-              <div class="ap-seg"><span class="on">Coiffeur 1</span><span>Coiffeur 2</span></div>
-              <div class="ap-jours"><span>mar.<b>20</b></span><span>mer.<b>21</b></span><span>jeu.<b>22</b></span><span>ven.<b>23</b></span><span class="on">sam.<b>24</b></span></div>
-              <div class="ap-creneaux"><span>9h</span><span class="non">9h30</span><span class="on">10h</span><span>10h30</span><span class="non">11h</span><span>11h30</span></div>
-              <div class="ap-recap"><span>Coupe + barbe</span><b>26 €</b></div>
-              <span class="ap-btn">Confirmer · sam. 10h</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hl" id="points-forts" aria-labelledby="hl-titre">
-    <div class="bande"><div class="cadre hl-tete apparait">
-      <h2 class="t-section" id="hl-titre">Ce que je fais pour vous</h2>
-      <a class="btn-lien" href="#demos">Essayer les démos</a>
-    </div></div>
-    <div class="hl-piste" id="hl-piste" tabindex="0" aria-label="Points forts, faites défiler horizontalement">
-      <article class="hl-carte hl-c1" aria-label="1 sur 5">
-        <p class="hl-legende">Un site qui donne envie d'entrer. Sur ordinateur comme sur téléphone.</p>
-        <div class="hl-v1" aria-hidden="true">
-          <div class="fenetre">
-            <div class="fenetre-barre"><i></i><i></i><i></i><span class="fenetre-url">lecomptoir-rosieres.fr</span></div>
-            <div class="fenetre-ecran">
-              <div class="rc">
-                <div class="rc-nav"><span class="rc-logo">Le Comptoir</span><i>La carte</i><i>Horaires</i><i>Accès</i><span class="rc-pill">Commander</span></div>
-                <div class="rc-heros">
-                  <div>
-                    <span class="rc-ouvert">Ouvert · ferme à 22 h</span>
-                    <p class="rc-titre">Fait maison.<br>Servi vite.</p>
-                    <p class="rc-txt">Cuisine du marché à Rosières. Sur place, à emporter ou commandé en ligne.</p>
-                    <div class="rc-btns"><span class="rc-pill">Commander à emporter</span><span class="rc-pill rc-pill--clair">Voir la carte</span></div>
-                  </div>
-                  <div class="rc-visuel"><svg viewBox="0 0 120 120"><use href="#assiette"/></svg></div>
-                </div>
-                <div class="rc-carte"><div class="rc-plat"><span>Tacos poulet</span><b>8,50 €</b></div><div class="rc-plat"><span>Burger du chef</span><b>10,90 €</b></div><div class="rc-plat"><span>Salade grecque</span><b>9,00 €</b></div></div>
-              </div>
-            </div>
-          </div>
-          <div class="tel tel--hl1">
-            <div class="tel-ecran">
-              <div class="tel-ilot"></div>
-              <div class="rcm">
-                <span class="rc-logo">Le Comptoir</span>
-                <span class="rc-ouvert" style="justify-self:start;margin:0">Ouvert</span>
-                <p class="rc-titre">Fait maison. Servi vite.</p>
-                <div class="rc-visuel"><svg viewBox="0 0 120 120"><use href="#assiette"/></svg></div>
-                <span class="rc-pill">Commander</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="hl-carte hl-c2" aria-label="2 sur 5">
-        <p class="hl-legende clair">Une réservation arrive. Le coiffeur est prévenu, à la seconde.</p>
-        <div class="hl-v2" aria-hidden="true">
-          <div class="tel tel--hl2">
-            <div class="tel-ecran">
-              <div class="tel-ilot"></div>
-              <div class="verrou">
-                <div class="tel-statut" data-heure=""></div>
-                <p class="verrou-date">samedi 24 octobre</p>
-                <p class="verrou-heure">9:41</p>
-                <div class="verrou-notifs">
-                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>maintenant</time></b><span>Karim · Coupe + barbe · sam. 10h · 26 €</span></span></div>
-                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>il y a 12 min</time></b><span>Yanis · Barbe · sam. 11h30 · 8 €</span></span></div>
-                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>il y a 40 min</time></b><span>Sofia · Coupe enfant · mar. 17h · 14 €</span></span></div>
-                </div>
-                <span class="verrou-barre"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="hl-carte hl-c3" aria-label="3 sur 5">
-        <p class="hl-legende">La carte de fidélité qu'on n'oublie jamais à la maison.</p>
-        <div class="hl-v3" aria-hidden="true">
-          <div class="passe passe-1"><div class="passe-haut"><b>Boucherie du Marché</b><span>3 / 10</span></div><div class="passe-tampons"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="passe-bas"><span>Mehdi B.</span><span>−10 % au 10e passage</span></div></div>
-          <div class="passe passe-2"><div class="passe-haut"><b>Salon Atlas</b><span>8 / 10</span></div><div class="passe-tampons"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i><i></i></div><div class="passe-bas"><span>Karim D.</span><span>Coupe offerte au 10e</span></div></div>
-          <div class="passe passe-3"><div class="passe-haut"><b>Boulangerie du Pont</b><span>6 / 10</span></div><div class="passe-tampons"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i><i></i><i></i><i></i></div><div class="passe-bas"><span>Sofia M.</span><span>Une viennoiserie offerte</span></div></div>
-        </div>
-      </article>
-
-      <article class="hl-carte hl-c4" aria-label="4 sur 5">
-        <p class="hl-legende clair">Des relevés HACCP sans un seul papier. Prêts pour le contrôle.</p>
-        <div class="hl-v4" aria-hidden="true">
-          <div class="ipad">
-            <div class="ipad-ecran">
-              <div class="ip-cote">
-                <p>Relevés</p>
-                <div class="ip-ligne on"><span>Chambre froide</span><b>2,4 °C</b></div>
-                <div class="ip-ligne"><span>Vitrine</span><b>3,1 °C</b></div>
-                <div class="ip-ligne"><span>Armoire positive</span><b>3,6 °C</b></div>
-                <div class="ip-ligne"><span>Vitrine négative</span><b>−19,5 °C</b></div>
-              </div>
-              <div class="ip-main">
-                <h4>Chambre froide</h4>
-                <p class="ip-etat">2,4 °C · Conforme · consigne 0 à 4 °C</p>
-                <div class="ip-graph">
-                  <svg viewBox="0 0 400 150">
-                    <defs><linearGradient id="aire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FBDF0" stop-opacity=".45"/><stop offset="1" stop-color="#8FBDF0" stop-opacity="0"/></linearGradient></defs>
-                    <rect x="0" y="20" width="400" height="100" fill="rgba(48,209,88,.07)"/>
-                    <line x1="0" y1="20" x2="400" y2="20" stroke="rgba(255,255,255,.12)" stroke-dasharray="4 4"/>
-                    <line x1="0" y1="120" x2="400" y2="120" stroke="rgba(255,255,255,.12)" stroke-dasharray="4 4"/>
-                    <path id="aire-path" d="M0 78 C30 70 50 60 80 64 S130 84 160 74 S210 50 240 58 S300 82 330 70 S380 56 400 60 L400 150 L0 150 Z" fill="url(#aire)"/>
-                    <path id="ligne-path" d="M0 78 C30 70 50 60 80 64 S130 84 160 74 S210 50 240 58 S300 82 330 70 S380 56 400 60" fill="none" stroke="#8FBDF0" stroke-width="3" stroke-linecap="round" pathLength="1"/>
-                    <circle cx="398" cy="60" r="5" fill="#8FBDF0"/>
-                  </svg>
-                </div>
-                <div class="ip-stats"><div>Minimum<b>1,9 °C</b></div><div>Maximum<b>3,2 °C</b></div><div>Relevés<b>42</b></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="hl-carte hl-c5" aria-label="5 sur 5">
-        <p class="hl-legende">Un avis Google en deux secondes. Le client approche juste son téléphone.</p>
-        <div class="hl-v5" aria-hidden="true">
-          <div class="nfc-zone">
-            <div class="carte-nfc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 7.5a6.5 6.5 0 0 1 0 9"/><path d="M12 4.5a10.5 10.5 0 0 1 0 15"/><path d="M15.5 1.8a14 14 0 0 1 0 20.4"/></svg>
-              <div><b>Votre avis compte</b><small>Approchez votre téléphone</small></div>
-            </div>
-            <div class="ondes"><i></i><i></i><i></i></div>
-          </div>
-          <div class="tel tel--hl5">
-            <div class="tel-ecran">
-              <div class="tel-ilot"></div>
-              <div class="avis">
-                <span class="avatar">SA</span>
-                <p>Salon Atlas</p>
-                <small>Publier un avis</small>
-                <span class="etoiles">★★★★★</span>
-                <span class="avis-champ">Accueil au top, coupe impeccable.</span>
-                <span class="ap-btn">Publier</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-    <div class="hl-nav bande" id="hl-nav">
-      <div class="points" id="points" role="group" aria-label="Choisir un point fort"></div>
-<div class="paddles" data-cible="hl-piste"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
-      <button class="lecture" type="button" id="lecture" aria-label="Mettre en pause"><svg viewBox="0 0 14 14" id="lecture-icone"><rect x="2" y="1" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" rx="1" fill="currentColor"/></svg></button>
+    <div class="apercu bande">
+      <figure class="apercu-cadre">
+        <img class="apercu-ordi" src="assets/miran-ordinateur.webp" alt="Page d'accueil du site réalisé pour un barbier de Troyes, sur ordinateur" width="1600" height="1000">
+        <img class="apercu-tel" src="assets/miran-telephone.webp" alt="Le même site affiché sur un téléphone" width="560" height="1211">
+        <figcaption>Maquette réalisée pour Barber Miran, barbier rue de Preize à Troyes. <a href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Ouvrir le site</a></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -1494,7 +1335,7 @@ body { letter-spacing: 0; }
     <div class="cadre">
       <div class="demos-tete apparait">
         <h2 class="t-section">Essayez les démos</h2>
-        <p class="t-lead">Cinq démos qui marchent vraiment. Touchez l'écran : à côté, vous voyez ce que reçoit le commerçant.<sup><a href="#note-3">3</a></sup></p>
+        <p class="t-lead">Cinq démos qui marchent vraiment. Touchez l'écran : à côté, vous voyez ce que reçoit le commerçant.</p>
       </div>
       <div class="onglets" role="tablist" aria-label="Démos" id="onglets">
         <button class="onglet" role="tab" id="t-resa" aria-controls="p-resa" aria-selected="true"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="22" height="20" rx="4"/><path d="M4 12h22M10 3.5v5M20 3.5v5M11 19l3 3 5.5-6"/></svg><span>Réservation</span></button>
@@ -1810,13 +1651,6 @@ body { letter-spacing: 0; }
           </div>
         </div>
       </article>
-      <article class="tuile tuile--bleue">
-        <p class="tuile-etiq">À venir</p>
-        <h3 class="tuile-titre">Votre commerce</h3>
-        <p class="tuile-sous">Maquette offerte sous 72 h.</p>
-        <div class="ctas"><a class="btn btn--petit" href="#contact">Demander ma maquette</a></div>
-        <div class="tuile-visuel" aria-hidden="true"><div class="vide"><span>+</span><b style="font-weight:600;letter-spacing:-0.02em">Votre logo ici</b></div></div>
-      </article>
     </div>
   </section>
 
@@ -1851,7 +1685,7 @@ body { letter-spacing: 0; }
           <span class="pc-badge">Pour ceux qui préfèrent Apple</span>
           <h3>Apple MacBook Air 13 pouces (M5)</h3>
           <p class="pc-tag">Léger, silencieux et très autonome. Il tient la journée sans chargeur.</p>
-          <p class="pc-prix">environ 1 399 €<sup><a href="#note-4">4</a></sup><small>Neuf · 16 Go · 512 Go</small></p>
+          <p class="pc-prix">environ 1 399 €<small>Neuf · 16 Go · 512 Go</small></p>
           <ul class="pc-specs">
             <li><span>Puce</span><b>Apple M5</b></li>
             <li><span>Mémoire</span><b>16 Go</b></li>
@@ -1868,7 +1702,7 @@ body { letter-spacing: 0; }
           <span class="pc-badge">PC fixe · idéal en caisse</span>
           <h3>Lenovo ThinkCentre neo 50q Gen 4</h3>
           <p class="pc-tag">Le mini PC de comptoir, caché derrière l'écran.</p>
-          <p class="pc-prix">environ 930 €<sup><a href="#note-4">4</a></sup><small>Réf. 12LN001YFR · écran en option</small></p>
+          <p class="pc-prix">environ 930 €<small>Réf. 12LN001YFR · écran en option</small></p>
           <ul class="pc-specs">
             <li><span>Processeur</span><b>Intel Core i5-13420H</b></li>
             <li><span>Mémoire</span><b>16 Go</b></li>
@@ -1886,7 +1720,7 @@ body { letter-spacing: 0; }
         <div>
           <h3>Je le prépare, je le livre et je l'installe</h3>
           <p>Vous n'avez rien à faire. Je prépare l'ordinateur chez moi, puis je l'installe dans votre commerce et je vous montre comment vous en servir.</p>
-          <p class="inclus-prix">Préconfiguration et installation sur place : <span style="white-space:nowrap"><b>59&nbsp;€</b><sup><a href="#note-1">1</a></sup></span></p>
+          <p class="inclus-prix">Préconfiguration et installation sur place : <span style="white-space:nowrap"><b>59&nbsp;€</b></span></p>
           <a class="btn" href="#contact" data-pc="un ordinateur (à conseiller)">Me conseiller un ordinateur</a>
         </div>
         <div class="inclus-grille">
@@ -1915,8 +1749,8 @@ body { letter-spacing: 0; }
           <span class="col-badge"></span>
           <h3>Vitrine</h3>
           <p class="col-tag">Être trouvé et bien présenté.</p>
-          <p class="col-prix">280 €<sup><a href="#note-1">1</a></sup><small>payé une fois</small></p>
-          <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Vitrine">Choisir</a><a class="btn-lien" href="#points-forts">En savoir plus</a></div>
+          <p class="col-prix">280 €<small>payé une fois</small></p>
+          <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Vitrine">Choisir</a><a class="btn-lien" href="#demos">Voir les démos</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Site une page, mobile et ordinateur</li>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 26s8-7.2 8-13a8 8 0 0 0-16 0c0 5.8 8 13 8 13Z"/><circle cx="15" cy="13" r="3"/></svg>Appel, itinéraire et avis Google</li>
@@ -1931,7 +1765,7 @@ body { letter-spacing: 0; }
           <span class="col-badge">Le plus demandé</span>
           <h3>Réservation</h3>
           <p class="col-tag">Vos clients réservent ou commandent seuls.</p>
-          <p class="col-prix">420 €<sup><a href="#note-1">1</a></sup><small>payé une fois</small></p>
+          <p class="col-prix">420 €<small>payé une fois</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Réservation">Choisir</a><a class="btn-lien" href="#parcours">En savoir plus</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Tout le pack Vitrine</li>
@@ -1947,7 +1781,7 @@ body { letter-spacing: 0; }
           <span class="col-badge"></span>
           <h3>Sur mesure</h3>
           <p class="col-tag">L'outil exact de votre métier.</p>
-          <p class="col-prix">dès 550 €<sup><a href="#note-1">1</a></sup><small>sur devis</small></p>
+          <p class="col-prix">dès 550 €<small>sur devis</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Sur mesure">Parler de mon projet</a><a class="btn-lien" href="#demos" data-ouvre="t-log">Voir un exemple</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="20" height="20" rx="3"/><path d="M10 11h10M10 15h10M10 19h6"/></svg>HACCP, stocks, commandes, planning</li>
@@ -2043,7 +1877,7 @@ body { letter-spacing: 0; }
       <li id="note-4">Prix indicatifs du matériel relevés en octobre 2026 chez les revendeurs français. Ils changent souvent : le prix exact est confirmé sur votre devis.</li>
     </ol>
     <div class="pied-cols">
-      <div><b>Offres</b><a href="#points-forts">Site vitrine</a><a href="#parcours">Réservation</a><a href="#tarifs">Sur mesure</a><a href="#options">Options</a></div>
+      <div><b>Offres</b><a href="#tarifs">Site vitrine</a><a href="#parcours">Réservation</a><a href="#tarifs">Sur mesure</a><a href="#options">Options</a></div>
       <div><b>Découvrir</b><a href="#demos">Démos</a><a href="#realisations">Réalisations</a><a href="#ordinateurs">Ordinateurs</a><a href="#tarifs">Tarifs</a></div>
       <div><b>Studio</b><a href="#pq-titre">Pourquoi moi</a><a href="#faq">Questions fréquentes</a></div>
       <div><b>Contact</b><a href="#contact">Demander un devis</a><a href="tel:+33782023657">07 82 02 36 57</a></div>
@@ -2101,51 +1935,6 @@ body { letter-spacing: 0; }
   /* Navigation locale : filet quand elle colle */
   var lnav = $("lnav");
   new IntersectionObserver(function (e) { lnav.classList.toggle("colle", !e[0].isIntersecting); }, { rootMargin: "-1px 0px 0px 0px" }).observe($("repere-lnav"));
-
-  /* Carrousel des points forts */
-  var piste = $("hl-piste"), cartes = Array.prototype.slice.call(piste.querySelectorAll(".hl-carte")), points = $("points"), nav = $("hl-nav"), lecture = $("lecture");
-  var actif = 0, pisteVisible = false, enPause = false;
-  cartes.forEach(function (c, i) {
-    var b = el("button", { type: "button", "class": "point" + (i === 0 ? " actif" : ""), "aria-label": "Point fort " + (i + 1) + " sur " + cartes.length });
-    b.appendChild(el("span"));
-    b.addEventListener("click", function () { arreter(); aller(i); });
-    points.appendChild(b);
-  });
-  var boutons = points.querySelectorAll(".point");
-  function pad() { return parseFloat(getComputedStyle(piste).scrollPaddingLeft) || 0; }
-  function aller(i) { piste.scrollTo({ left: cartes[i].offsetLeft - pad(), behavior: calme ? "auto" : "smooth" }); }
-  function activer(i) {
-    if (i === actif) return;
-    actif = i;
-    boutons.forEach(function (b, j) { b.classList.toggle("actif", j === i); });
-    if (pisteVisible && window.__animCarte) window.__animCarte(i);
-  }
-  piste.addEventListener("scroll", function () {
-    var x = piste.scrollLeft + pad(), best = 0, d = Infinity;
-    cartes.forEach(function (c, i) { var dd = Math.abs(c.offsetLeft - x); if (dd < d) { d = dd; best = i; } });
-    activer(best);
-  }, { passive: true });
-  function majLecture() {
-    var pause = !nav.classList.contains("auto") || enPause;
-    lecture.setAttribute("aria-label", pause ? "Lire" : "Mettre en pause");
-    $("lecture-icone").innerHTML = pause ? '<path d="M3 1.5v11l9.5-5.5z" fill="currentColor"/>' : '<rect x="2" y="1" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" rx="1" fill="currentColor"/>';
-  }
-  function arreter() { if (!nav.classList.contains("auto")) return; enPause = true; nav.classList.add("pause"); majLecture(); }
-  if (!calme) nav.classList.add("auto");
-  majLecture();
-  lecture.addEventListener("click", function () {
-    if (!nav.classList.contains("auto")) { nav.classList.add("auto"); enPause = false; nav.classList.remove("pause"); }
-    else { enPause = !enPause; nav.classList.toggle("pause", enPause); }
-    majLecture();
-  });
-  points.addEventListener("animationend", function () { if (!enPause) aller((actif + 1) % cartes.length); });
-  ["pointerdown", "wheel", "touchstart"].forEach(function (t) { piste.addEventListener(t, arreter, { passive: true }); });
-  new IntersectionObserver(function (e) {
-    var v = e[0].isIntersecting;
-    nav.classList.toggle("cache", !v);
-    if (v && !pisteVisible && window.__animCarte) window.__animCarte(actif);
-    pisteVisible = v;
-  }, { threshold: .4 }).observe(piste);
 
   /* Flèches des galeries */
   document.querySelectorAll(".paddles").forEach(function (pd) {
@@ -2625,104 +2414,8 @@ body { letter-spacing: 0; }
       gsap.fromTo(lettres, { scaleY: 1 }, { scaleY: .82, scaleX: 1.08, duration: .09, yoyo: true, repeat: 1, ease: "power1.out", stagger: .055, delay: .45 + .62 });
     }
 
-    /* 2. L'écran du MacBook se relève et s'allume, l'iPhone monte devant */
-    if (matchMedia("(max-width: 600px)").matches) gsap.from("#tel-heros", { y: 70, autoAlpha: 0, duration: 1.2, ease: doux, delay: .35 });
-    else gsap.timeline({ scrollTrigger: { trigger: "#mac-scene", start: "top 92%", end: "center 52%", scrub: .7 } })
-      .fromTo("#mac-capot", { rotationX: 74 }, { rotationX: 0, ease: "power2.out", duration: 1 }, 0)
-      .fromTo("#mac-noir", { opacity: .92 }, { opacity: 0, ease: "power1.in", duration: .7 }, .3)
-      .fromTo(".mac", { scale: .9 }, { scale: 1, ease: "none", duration: 1 }, 0)
-      .fromTo("#tel-heros", { yPercent: 55, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: doux, duration: .6 }, .45);
-
-    /* 4. Points forts : les cartes glissent depuis la droite, chaque visuel s'anime quand sa carte arrive */
-    gsap.from(".hl-carte", { x: 140, opacity: 0, duration: 1.2, ease: doux, stagger: .1, scrollTrigger: { trigger: "#hl-piste", start: "top 85%", once: true } });
-    var anims = [
-      function (c) { return gsap.timeline().from(c.querySelector(".fenetre"), { y: 80, autoAlpha: 0, duration: 1, ease: doux }).from(c.querySelector(".tel--hl1"), { y: 120, autoAlpha: 0, duration: 1, ease: doux }, "<.25"); },
-      function (c) { return gsap.timeline().from(c.querySelector(".tel--hl2"), { y: 60, duration: 1, ease: doux }).from(c.querySelectorAll(".notif"), { y: -40, scale: .92, autoAlpha: 0, duration: .7, ease: doux, stagger: { each: .35, from: "end" } }, "<.3"); },
-      function (c) { return gsap.timeline().from(c.querySelectorAll(".passe"), { x: 0, y: 70, rotation: 0, autoAlpha: 0, duration: 1.1, ease: doux, stagger: .12 }); },
-      function (c) { return gsap.timeline().from(c.querySelector(".ipad"), { y: 90, autoAlpha: 0, duration: 1, ease: doux }).fromTo(c.querySelector("#ligne-path"), { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, "<.4").from(c.querySelector("#aire-path"), { autoAlpha: 0, duration: .8 }, "<.6"); },
-      function (c) { return gsap.timeline().from(c.querySelector(".nfc-zone"), { y: 60, autoAlpha: 0, duration: 1, ease: doux }).from(c.querySelector(".tel--hl5"), { x: 120, y: 40, autoAlpha: 0, duration: 1.1, ease: doux }, "<.2").from(c.querySelectorAll(".avis > *"), { y: 14, autoAlpha: 0, stagger: .06, duration: .5, ease: doux }, "-=.4"); }
-    ];
-    var cartes = document.querySelectorAll(".hl-carte"), encours = [];
-    window.__animCarte = function (i) {
-      if (encours[i]) encours[i].progress(1).kill();
-      encours[i] = anims[i](cartes[i]);
-    };
-
-    /* 6. Chiffres qui défilent */
-    document.querySelectorAll(".compte").forEach(function (n) {
-      var cible = +n.getAttribute("data-v"), depart = +(n.getAttribute("data-depuis") || 0), o = { v: depart };
-      n.textContent = depart;
-      ScrollTrigger.create({ trigger: n, start: "top 88%", once: true, onEnter: function () {
-        gsap.to(o, { v: cible, duration: 1.6, ease: "power2.out", onUpdate: function () { n.textContent = Math.round(o.v); } });
-      } });
-    });
-    ScrollTrigger.batch(".stat", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: doux, stagger: .1 }); } });
-
-    /* 7. Tuiles des réalisations : apparition puis léger parallaxe des visuels */
-    ScrollTrigger.batch(".tuile", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux, stagger: .12 }); } });
-    document.querySelectorAll(".tuile-visuel > *").forEach(function (v) {
-      gsap.fromTo(v, { y: 50 }, { y: -8, ease: "none", scrollTrigger: { trigger: v.closest(".tuile"), start: "top bottom", end: "bottom top", scrub: .6 } });
-    });
-
-    /* 8. Tarifs, options, cartes « pourquoi », questions */
-    ScrollTrigger.batch(".col, .pc-col", { start: "top 85%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: doux, stagger: .12 }); } });
-    ScrollTrigger.batch(".option, .inclus-item", { start: "top 90%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: doux, stagger: .08 }); } });
-    ScrollTrigger.batch(".pq-carte", { start: "top 90%", once: true, onEnter: function (els) { gsap.fromTo(els, { x: 80, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1, ease: doux, stagger: .08 }); } });
-    ScrollTrigger.batch(".faq details", { start: "top 92%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, ease: doux, stagger: .05 }); } });
-
-    /* 9. Titres et blocs de texte */
-    ScrollTrigger.batch(".apparait", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux, stagger: .1 }); } });
-    ScrollTrigger.batch("#formulaire", { start: "top 88%", once: true, onEnter: function (els) { gsap.fromTo(els, { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: doux }); } });
-
     if (document.fonts) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
-    return function () { window.__animCarte = null; };
-  });
-  /* Sur téléphone, pas d'épinglage : les quatre étapes s'affichent comme une liste. */
-  mm.add("(prefers-reduced-motion: no-preference) and (min-width: 834px)", function () {
-    var doux = "power3.out";
-    /* 5. Récit épinglé : l'écran du téléphone change à chaque étape */
-    var story = document.getElementById("parcours");
-    story.classList.add("story--anime");
-    var vues = story.querySelectorAll(".vue"), pas = story.querySelectorAll(".story-pas"), barres = story.querySelectorAll(".story-progres span");
-    gsap.set([pas[1], pas[2], pas[3]], { autoAlpha: 0 });
-    gsap.set([vues[1], vues[3]], { xPercent: 100 });
-    gsap.set(vues[2], { autoAlpha: 0, scale: 1.08 });
-    gsap.set(barres, { "--p": 0 }); gsap.set(barres[0], { "--p": 1 });
-    var tl = gsap.timeline({ defaults: { ease: "power2.inOut" }, scrollTrigger: { trigger: "#story-scene", start: "top top", end: "+=280%", pin: true, scrub: .6, snap: { snapTo: "labels", directional: false, inertia: false, duration: { min: .2, max: .6 }, delay: .1, ease: "power1.inOut" } } });
-    tl.addLabel("e0")
-      .to(vues[0], { xPercent: -30, duration: 1 }, "e0")
-      .to(vues[1], { xPercent: 0, duration: 1 }, "e0")
-      .to(pas[0], { autoAlpha: 0, y: -24, duration: .45 }, "e0")
-      .fromTo(pas[1], { y: 24 }, { autoAlpha: 1, y: 0, duration: .45 }, "e0+=.55")
-      .to(barres[1], { "--p": 1, duration: 1, ease: "none" }, "e0")
-      .addLabel("e1")
-      .to(vues[2], { autoAlpha: 1, scale: 1, duration: 1 }, "e1")
-      .to(pas[1], { autoAlpha: 0, y: -24, duration: .45 }, "e1")
-      .fromTo(pas[2], { y: 24 }, { autoAlpha: 1, y: 0, duration: .45 }, "e1+=.55")
-      .to(barres[2], { "--p": 1, duration: 1, ease: "none" }, "e1")
-      .addLabel("e2")
-      .to(vues[3], { xPercent: 0, duration: 1 }, "e2")
-      .to(vues[2], { xPercent: -30, duration: 1 }, "e2")
-      .to(pas[2], { autoAlpha: 0, y: -24, duration: .45 }, "e2")
-      .fromTo(pas[3], { y: 24 }, { autoAlpha: 1, y: 0, duration: .45 }, "e2+=.55")
-      .to(barres[3], { "--p": 1, duration: 1, ease: "none" }, "e2")
-      .addLabel("e3")
-      .to({}, { duration: .35 });
-    var st = tl.scrollTrigger;
-    function etapeActuelle() { var t = st.progress * tl.duration(), best = 0; for (var k = 0; k < 4; k++) if (t >= tl.labels["e" + k] - .05) best = k; return best; }
-    function allerEtape(k) { k = Math.max(0, Math.min(3, k)); window.scrollTo({ top: Math.round(st.start + (st.end - st.start) * (tl.labels["e" + k] / tl.duration())) + 2, behavior: "instant" }); }
-    document.getElementById("s-prec").addEventListener("click", function () { allerEtape(etapeActuelle() - 1); });
-    document.getElementById("s-suiv").addEventListener("click", function () { allerEtape(etapeActuelle() + 1); });
-    var telS = story.querySelector(".tel--story"), x0 = null, y0 = null;
-    telS.addEventListener("pointerdown", function (e) { x0 = e.clientX; y0 = e.clientY; });
-    telS.addEventListener("pointerup", function (e) {
-      if (x0 === null) return; var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
-      if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.2) allerEtape(etapeActuelle() + (dx < 0 ? 1 : -1));
-    });
-    telS.addEventListener("pointercancel", function () { x0 = null; });
-    gsap.from(".tel--story", { y: 80, autoAlpha: 0, duration: 1.1, ease: doux, scrollTrigger: { trigger: "#story-scene", start: "top 80%", once: true } });
-
-    return function () { document.getElementById("parcours").classList.remove("story--anime"); };
+    return function () {};
   });
 })();
 </script>
