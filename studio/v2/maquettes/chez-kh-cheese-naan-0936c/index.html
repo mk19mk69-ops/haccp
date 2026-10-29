@@ -6,14 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Chez KH Cheese Naan</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Chez KH Cheese Naan. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#2E1B10">
+<meta name="theme-color" content="#B9DCDA">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Bagel Fat One";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/bagel-fat-one-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/onest-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/onest-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/onest-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/onest-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Young Serif";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/young-serif-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/sora-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/sora-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/sora-latin-600-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -103,141 +102,129 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#1E110A}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#EEEBF3}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.kh{--jaune:#FFC12E;--jaune-c:#FFD970;--creme:#FFF5DE;--brun:#2E1B10;--vert:#2E8B4E;--rouge:#D9481F;
-  background:var(--creme);color:var(--brun);font:400 17px/1.55 Onest,system-ui,sans-serif}
-.kh h1,.kh h2,.kh h3,.kh-marque,.kh-sticker b,.kh-plat b{font-family:"Bagel Fat One","Arial Rounded MT Bold",sans-serif;font-weight:400;line-height:.95}
-.kh-tete{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:10px clamp(16px,3cqi,40px);background:var(--brun);color:var(--creme)}
-.kh-marque{font-size:1.6rem;text-decoration:none;color:var(--jaune)}
-.kh-tete-c{font-weight:700;text-decoration:none;padding:7px 14px;background:var(--jaune);color:var(--brun);border-radius:99px}
+.kh{--menthe:#B9DCDA;--menthe-f:#9CCBC8;--lilas:#EEEBF3;--nuit:#1E2A44;--beurre:#F3C64F;--gris:#5C6577;
+  background:var(--lilas);color:var(--nuit);font:400 16.5px/1.6 Sora,system-ui,sans-serif}
+.kh h1,.kh h2,.kh h3,.kh-logo{font-family:"Young Serif",Georgia,serif;font-weight:400}
+.kh-k{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.kh-tete{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(18px,4cqi,48px);background:var(--lilas)}
+.kh-logo{font-size:1.5rem;text-decoration:none}
+.kh-nav{display:none;gap:30px;font-size:.92rem}
+.kh-nav a{text-decoration:none}.kh-nav a:hover{text-decoration:underline;text-underline-offset:5px}
+.kh-cta{padding:9px 18px;border-radius:999px;background:var(--nuit);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
+@container site (min-width:900px){.kh-nav{display:flex}}
 
-.kh-affiche{position:relative;display:grid;gap:22px;padding:158px clamp(16px,3cqi,40px) 56px;overflow:hidden;background:var(--creme)}
-.kh-coule{position:absolute;top:0;left:0;width:100%;height:150px;fill:var(--jaune);filter:drop-shadow(0 3px 0 #E7A50E)}
-.kh-g{transform-box:fill-box;transform-origin:top}
-@media (prefers-reduced-motion:no-preference){.kh-g{animation:kh-coule 1.6s cubic-bezier(.5,0,.3,1) both}@keyframes kh-coule{from{transform:scaleY(.3)}}}
-.kh-txt{position:relative;z-index:2}
-.kh h1{display:grid;font-size:clamp(4rem,19cqi,10.5rem);letter-spacing:-.02em;color:var(--brun)}
-.kh h1 span{justify-self:start;font-size:.24em;word-spacing:.18em;padding:8px 16px 6px;margin-bottom:10px;background:var(--vert);color:var(--creme);border-radius:99px;transform:rotate(-4deg)}
-.kh-dit{margin-top:18px;max-width:34ch;font-size:1.2rem;font-weight:500}
-.kh-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:22px}
-.kh-btn{background:var(--brun);color:var(--jaune);font-weight:700;font-size:1.05rem;border-radius:99px;padding:0 26px}
-.kh-btn:hover{background:var(--rouge);color:#fff}
-.kh-tel{font-weight:700;font-variant-numeric:tabular-nums}
-.kh-rond{position:relative;justify-self:end;width:min(92%,420px);aspect-ratio:1;margin:0 -12% 0 0;border-radius:50%;overflow:hidden;border:10px solid var(--jaune);box-shadow:0 20px 40px -18px rgba(46,27,16,.6)}
-.kh-rond img{width:100%;height:100%;object-fit:cover;transform:scale(1.25)}
-.kh-rond .illu{right:30%;bottom:10%}
-.kh-sticker{position:absolute;z-index:3;display:grid;place-items:center;text-align:center;font-weight:700;line-height:1.15;box-shadow:0 6px 0 rgba(46,27,16,.18)}
-.kh-s1{left:clamp(16px,3cqi,40px);bottom:24px;padding:10px 16px;background:var(--brun);color:var(--creme);border-radius:8px;transform:rotate(-3deg);position:relative;justify-self:start;left:0;bottom:0}
-.kh-s2{right:6%;top:52%;width:118px;height:118px;padding:10px;background:var(--vert);color:var(--creme);border-radius:50%;transform:rotate(10deg);font-size:.85rem}
-.kh-s2 b{font-size:2.2rem;display:block}
-.kh-s3{left:auto;right:auto;position:relative;justify-self:start;display:inline-flex;gap:8px;padding:8px 14px;background:#fff;border:2px dashed var(--brun);border-radius:99px;transform:rotate(2deg);font-size:.95rem;box-shadow:none}
-.kh-s3 i{width:9px;height:9px;border-radius:50%;background:var(--vert)}.kh-s3.ferme i{background:var(--rouge)}
+.kh-une{position:relative;display:grid;background:var(--menthe);overflow:hidden}
+.kh-une-f{position:relative;margin:0;aspect-ratio:3/2}
+.kh-une-f img{width:100%;height:100%;object-fit:cover}
+.kh-une-t{display:grid;justify-items:center;gap:14px;padding:30px clamp(18px,4cqi,48px) 48px;text-align:center}
+.kh h1{font-size:clamp(2.4rem,7cqi,4.6rem);line-height:1.05;max-width:13ch}
+.kh-une-t>p:not(.kh-k):not(.kh-info){max-width:34ch;color:#34405A}
+.kh-btn{background:var(--nuit);color:#fff;border-radius:999px;font-weight:600;padding:0 26px}
+.kh-btn:hover{background:#2C3B5E}
+.kh-info{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:.88rem;color:#34405A}
+.kh-st{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--nuit)}
+.kh-st i{width:8px;height:8px;border-radius:50%;background:#2E8B57}.kh-st.ferme i{background:#C2553E}
 @container site (min-width:900px){
-  .kh-affiche{grid-template-columns:1.1fr .9fr;grid-template-rows:auto auto auto;align-items:center;min-height:min(84svh,760px);padding-top:140px;column-gap:20px}
-  .kh-txt{grid-row:1/3}
-  .kh-rond{grid-column:2;grid-row:1/4;width:min(140%,640px);margin:0 -30% 0 0}
-  .kh-s1{grid-column:1;grid-row:3;align-self:start}
-  .kh-s2{top:auto;bottom:10%;right:auto;left:52%;width:136px;height:136px}
-  .kh-s3{position:absolute;top:170px;right:30%;left:auto}
+  .kh-une{grid-template-columns:.85fr 1.15fr;min-height:min(80svh,700px)}
+  .kh-une-f{grid-column:2;grid-row:1;aspect-ratio:auto;min-height:100%}
+  .kh-une-f img{position:absolute;inset:0;object-position:72% 50%}
+  .kh-une-t{grid-column:1;grid-row:1;align-self:center;justify-items:start;text-align:left;padding:48px clamp(24px,4cqi,64px)}
+  .kh-info{justify-content:flex-start}
 }
+@media (prefers-reduced-motion:no-preference){.kh-une-f img{animation:kh-tourne 2.4s cubic-bezier(.2,.7,.2,1) both}@keyframes kh-tourne{from{transform:rotate(-8deg) scale(1.12)}}}
 
-.kh-in{max-width:1140px;margin:0 auto;padding:0 clamp(16px,3cqi,40px)}
-.kh-carte{padding:clamp(56px,8cqi,100px) 0;background:var(--jaune)}
-.kh h2{font-size:clamp(2.8rem,10cqi,5.6rem);letter-spacing:-.02em}
-.kh-ex{margin-top:6px;font-weight:500}
-.kh-plats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px;margin-top:34px}
-.kh-plat{display:grid;justify-items:center;text-align:center;gap:8px}
-.kh-plat figure{position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid var(--creme);background:var(--jaune-c)}
-.kh-plat img{width:100%;height:100%;object-fit:cover}
-.kh-p1 figure{transform:rotate(-6deg)}.kh-p2 figure{transform:rotate(5deg)}
-.kh-plat h3{font-size:1.25rem;max-width:12ch;line-height:1.05}
-.kh-plat b{font-size:2rem;color:var(--creme);background:var(--brun);padding:6px 14px 4px;border-radius:99px}
-.kh-cote{margin-top:44px;max-width:520px;padding:18px 22px;background:var(--creme);border-radius:18px}
-.kh-cote h3{font-size:1.5rem}
-.kh-cote li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:2px dotted #E2C98F}
-.kh-cote b{font-weight:700;font-variant-numeric:tabular-nums}
-@container site (min-width:860px){.kh-plats{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px}}
+.kh-carte{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,48px);text-align:center}
+.kh h2{font-size:clamp(2.2rem,5.6cqi,3.8rem);line-height:1.05}
+.kh-ex{margin-top:8px;color:var(--gris)}
+.kh-pls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 16px;margin-top:40px;text-align:left}
+.kh-pl figure{position:relative;margin:0 0 12px;aspect-ratio:1;border-radius:28px;overflow:hidden;background:var(--menthe)}
+.kh-pl img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.kh-pl:hover img{transform:scale(1.05) rotate(1deg)}
+.kh-pl h3{font-size:1.3rem;line-height:1.15}
+.kh-pl p{display:inline-block;margin-top:8px;padding:3px 12px;border-radius:999px;background:var(--beurre);font-weight:600;font-variant-numeric:tabular-nums}
+.kh-cote{max-width:520px;margin:44px auto 0;padding:22px 26px;background:#fff;border-radius:24px;text-align:left}
+.kh-cote h3{font-size:1.4rem;margin-bottom:6px}
+.kh-cote li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E3E0EA}
+.kh-cote b{font-weight:600}
+@container site (min-width:900px){.kh-pls{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}}
 
-.kh-cmd{padding:clamp(56px,8cqi,100px) 0;background:var(--creme)}
-.kh-sous{margin-top:8px;max-width:48ch}
-.kh-cmd .s-resa{margin-top:28px}
-.kh-cmd .s-resa-q{font:400 1.4rem/1 "Bagel Fat One",sans-serif}
-.kh-cmd .s-cmd-ligne{border-bottom:2px dotted #E2C98F}
-.kh-cmd .s-cmd-ligne small{display:block;color:#6C5A4A;font-variant-numeric:tabular-nums}
-.kh-cmd .s-pas-b{background:var(--jaune);color:var(--brun);border-radius:50%;font-weight:700}
-.kh-cmd .s-puce,.kh-cmd .s-heure{background:#FFE9B0;border-radius:14px}
-.kh-cmd .s-puce.on,.kh-cmd .s-heure.on{background:var(--brun);color:var(--jaune)}
-.kh-cmd .s-resa-pied{border-top:3px solid var(--brun)}
-.kh-cmd .s-btn{background:var(--brun);color:var(--jaune);font-weight:700;border-radius:99px}
-.kh-cmd .s-btn--2{background:transparent;color:var(--brun);box-shadow:inset 0 0 0 2px var(--brun)}
-.kh-cmd .s-champ input{border:2px solid var(--brun);border-radius:14px;background:#fff}
-.kh-cmd .s-fin-titre{font:400 2.2rem/1 "Bagel Fat One",sans-serif}
-.kh-cmd .s-coche{color:var(--vert)}
+.kh-four{position:relative;margin:0 clamp(12px,3cqi,40px)}
+.kh-four img{width:100%;height:clamp(260px,40cqi,480px);object-fit:cover;border-radius:32px}
+.kh-four figcaption{margin:10px 8px 0;font-size:.85rem;color:var(--gris)}
+.kh-four figcaption em{font-style:normal;opacity:.8}
 
-.kh-cite{padding:clamp(56px,8cqi,100px) 0;background:var(--brun);color:var(--creme)}
-.kh-cite h2{color:var(--jaune)}
-.kh-cite-g{display:grid;gap:30px}
-.kh-adr{margin-top:14px;font-size:1.15rem}
+.kh-cmd{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,48px);text-align:center}
+.kh-cmd .s-resa{max-width:1080px;margin:36px auto 0;padding:clamp(18px,3cqi,34px);background:#fff;border-radius:32px;text-align:left}
+.kh-cmd .s-resa-q{font:400 1.25rem/1 "Young Serif",serif}
+.kh-cmd .s-cmd-ligne{border-bottom:1px solid #E3E0EA}
+.kh-cmd .s-cmd-ligne small{display:block;color:var(--gris);font-variant-numeric:tabular-nums}
+.kh-cmd .s-pas-b{background:var(--menthe);color:var(--nuit);border-radius:50%;font-weight:600}
+.kh-cmd .s-puce{background:var(--lilas);border-radius:18px}.kh-cmd .s-heure{background:var(--lilas);border-radius:999px}
+.kh-cmd .s-puce.on,.kh-cmd .s-heure.on{background:var(--nuit);color:#fff}
+.kh-cmd .s-resa-pied{border-top:1px solid #E3E0EA}
+.kh-cmd .s-btn{background:var(--nuit);color:#fff;border-radius:999px;font-weight:600}
+.kh-cmd .s-btn--2{background:transparent;color:var(--nuit);box-shadow:inset 0 0 0 1.5px var(--nuit)}
+.kh-cmd .s-champ input{border:1.5px solid #D6D2DF;border-radius:14px;background:#fff}
+.kh-cmd .s-fin-titre{font:400 2rem/1 "Young Serif",serif}
+.kh-cmd .s-coche{color:#2E8B57}
+
+.kh-venir{display:grid;gap:30px;margin:0 clamp(12px,3cqi,40px) clamp(12px,3cqi,40px);padding:clamp(48px,7cqi,90px) clamp(18px,4cqi,56px);background:var(--menthe);border-radius:32px}
+.kh-adr{margin-top:12px;font-size:1.1rem}
 .kh-adr a{font-weight:600}
-.kh-hor{max-width:460px}
-.kh-hor div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid rgba(255,245,222,.18)}
+.kh-hor div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(30,42,68,.14)}
 .kh-hor dt{font-weight:600}.kh-hor dd{text-align:right;font-variant-numeric:tabular-nums}
-.kh-hn{margin-top:8px;font-size:.85rem;color:#CDB99C}
-@container site (min-width:860px){.kh-cite-g{grid-template-columns:1fr 1fr;align-items:end}}
-.kh-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:18px clamp(16px,3cqi,40px) 26px;background:#1E110A;color:#CDB99C;font-size:.9rem}
-.kh-pied span{margin-right:auto;font:400 1.2rem/1 "Bagel Fat One",sans-serif;color:var(--jaune)}
-.kh .legal h1{display:block;font-size:2.6rem}
+.kh-hn{margin-top:8px;font-size:.84rem;color:#34405A}
+@container site (min-width:860px){.kh-venir{grid-template-columns:1fr 1fr;align-items:end}}
+.kh-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:22px clamp(18px,4cqi,48px) 30px;font-size:.86rem;color:var(--gris)}
+.kh-pied span{margin-right:auto;font:400 1.15rem/1 "Young Serif",serif;color:var(--nuit)}
+.kh .legal h1{font-family:"Young Serif",serif;font-weight:400;font-size:2.4rem}
 </style>
 </head>
 <body>
 <aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Chez KH Cheese Naan</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Chez KH Cheese Naan</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Votre carte en ligne (Uber Eats, Deliveroo) n&#39;était pas lisible d&#39;ici : les prix et les horaires sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de vos naans.</p><ul><li>Ce site a été dessiné pour Chez KH Cheese Naan, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Chez%20KH%20Cheese%20Naan.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site kh" data-metier="snack"><main data-page="accueil">
 <header class="kh-tete" data-sec="tete">
-  <a class="kh-marque" href="#page-accueil">Chez KH</a>
-  <a class="kh-tete-c" href="#commander">Commander</a>
+  <a class="kh-logo" href="#page-accueil">Chez KH</a>
+  <nav class="kh-nav"><a href="#carte">La carte</a><a href="#commander">À emporter</a><a href="#venir">Venir</a></nav>
+  <a class="kh-cta" href="#commander">Commander</a>
 </header>
 
-<section class="kh-affiche" data-sec="affiche">
-  <svg class="kh-coule" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="0" width="1200" height="30"/><rect class="kh-g" style="animation-delay:0.15s" x="43" y="0" width="34" height="100" rx="17"/><rect class="kh-g" style="animation-delay:0.27s" x="137" y="0" width="26" height="70" rx="13"/><rect class="kh-g" style="animation-delay:0.39s" x="215" y="0" width="30" height="126" rx="15"/><rect class="kh-g" style="animation-delay:0.51s" x="319" y="0" width="22" height="82" rx="11"/><rect class="kh-g" style="animation-delay:0.63s" x="403" y="0" width="34" height="150" rx="17"/><rect class="kh-g" style="animation-delay:0.15s" x="507" y="0" width="26" height="90" rx="13"/><rect class="kh-g" style="animation-delay:0.27s" x="595" y="0" width="30" height="114" rx="15"/><rect class="kh-g" style="animation-delay:0.39s" x="688" y="0" width="24" height="74" rx="12"/><rect class="kh-g" style="animation-delay:0.51s" x="773" y="0" width="34" height="138" rx="17"/><rect class="kh-g" style="animation-delay:0.63s" x="877" y="0" width="26" height="88" rx="13"/><rect class="kh-g" style="animation-delay:0.15s" x="965" y="0" width="30" height="120" rx="15"/><rect class="kh-g" style="animation-delay:0.27s" x="1058" y="0" width="24" height="80" rx="12"/><rect class="kh-g" style="animation-delay:0.39s" x="1135" y="0" width="30" height="104" rx="15"/></svg>
-  <div class="kh-txt">
-    <h1><span>Chez KH</span>Cheese naan</h1>
-    <p class="kh-dit">Le naan sort du four, le fromage coule. Sur place, à emporter, ou commandé avant pour ne pas attendre.</p>
-    <div class="kh-act"><a class="s-btn kh-btn" href="#commander">Commander à emporter</a><a class="kh-tel" href="tel:+33954405255">09 54 40 52 55</a></div>
+<section class="kh-une" data-sec="une">
+  <figure class="kh-une-f"><img class="" src="../../atelier/photos/naan/35066813.webp" srcset="../../atelier/photos/naan/35066813-m.webp 760w, ../../atelier/photos/naan/35066813.webp 1600w" sizes="100vw" alt="Cheese naan sur une assiette blanche, fond menthe (photo d&#39;illustration)" data-illu style="background-color:#bcbdb5" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+  <div class="kh-une-t">
+    <p class="kh-k">47 rue de la Cité · Troyes</p>
+    <h1>Le cheese naan, chaud, qui file.</h1>
+    <p>Sur place, à emporter, ou commandé avant pour ne pas attendre.</p>
+    <a class="s-btn kh-btn" href="#commander">Commander à emporter</a>
+    <p class="kh-info"><span class="kh-st" data-statut><i></i><span></span></span><span>4,5 sur Google · 244 avis</span></p>
   </div>
-  <figure class="kh-rond"><img class="" src="../../atelier/photos/naan/10337726.webp" srcset="../../atelier/photos/naan/10337726-m.webp 760w, ../../atelier/photos/naan/10337726.webp 1600w" sizes="(min-width: 900px) 640px, 90vw" alt="Cheese naan coupé en deux (photo d&#39;illustration)" data-illu style="background-color:#7c7162" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
-  <p class="kh-sticker kh-s1">47 rue de la Cité</p>
-  <p class="kh-sticker kh-s2"><b>4,5</b> sur Google<br>244 avis</p>
-  <p class="kh-sticker kh-s3" data-statut><i></i><span></span></p>
 </section>
 
 <section class="kh-carte" id="carte" data-sec="carte">
-  <div class="kh-in">
-    <h2>La carte</h2>
-    <p class="kh-ex">Prix d'exemple : on met ceux de la boutique.</p>
-    <ul class="kh-plats"><li class="kh-plat kh-p0"><figure><img class="" src="../../atelier/photos/naan/10337726.webp" srcset="../../atelier/photos/naan/10337726-m.webp 760w, ../../atelier/photos/naan/10337726.webp 1600w" sizes="220px" alt="Cheese naan (photo d&#39;illustration)" data-illu style="background-color:#7c7162" loading="lazy" decoding="async"></figure><h3>Cheese naan</h3><b>6 €</b></li><li class="kh-plat kh-p1"><figure><img class="" src="../../atelier/photos/naan/30203311.webp" srcset="../../atelier/photos/naan/30203311-m.webp 760w, ../../atelier/photos/naan/30203311.webp 1600w" sizes="220px" alt="Cheese naan poulet (photo d&#39;illustration)" data-illu style="background-color:#968666" loading="lazy" decoding="async"></figure><h3>Cheese naan poulet</h3><b>8 €</b></li><li class="kh-plat kh-p2"><figure><img class="" src="../../atelier/photos/naan/38163958.webp" srcset="../../atelier/photos/naan/38163958-m.webp 760w, ../../atelier/photos/naan/38163958.webp 1200w" sizes="220px" alt="Cheese naan kebab (photo d&#39;illustration)" data-illu style="background-color:#9d8157" loading="lazy" decoding="async"></figure><h3>Cheese naan kebab</h3><b>8,50 €</b></li><li class="kh-plat kh-p3"><figure><img class="" src="../../atelier/photos/naan/1117862.webp" srcset="../../atelier/photos/naan/1117862-m.webp 760w, ../../atelier/photos/naan/1117862.webp 1600w" sizes="220px" alt="Menu cheese naan, frites et boisson (photo d&#39;illustration)" data-illu style="background-color:#844523" loading="lazy" decoding="async"></figure><h3>Menu cheese naan, frites et boisson</h3><b>11 €</b></li></ul>
-    <div class="kh-cote"><h3>À côté</h3><ul><li><span>Frites</span><b>3 €</b></li><li><span>Boisson 33 cl</span><b>2 €</b></li></ul></div>
-  </div>
+  <h2>La carte</h2>
+  <p class="kh-ex">Prix donnés en exemple : on met ceux de la boutique.</p>
+  <div class="kh-pls"><article class="kh-pl"><figure><img class="" src="../../atelier/photos/naan/16851842.webp" srcset="../../atelier/photos/naan/16851842-m.webp 760w, ../../atelier/photos/naan/16851842.webp 1067w" sizes="(min-width: 900px) 24vw, 50vw" alt="Cheese naan (photo d&#39;illustration)" data-illu style="background-color:#8f8571" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>Cheese naan</h3><p>6 €</p></article><article class="kh-pl"><figure><img class="" src="../../atelier/photos/naan/30203311.webp" srcset="../../atelier/photos/naan/30203311-m.webp 760w, ../../atelier/photos/naan/30203311.webp 1600w" sizes="(min-width: 900px) 24vw, 50vw" alt="Cheese naan poulet (photo d&#39;illustration)" data-illu style="background-color:#968666" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>Cheese naan poulet</h3><p>8 €</p></article><article class="kh-pl"><figure><img class="" src="../../atelier/photos/naan/29253337.webp" srcset="../../atelier/photos/naan/29253337-m.webp 760w, ../../atelier/photos/naan/29253337.webp 1280w" sizes="(min-width: 900px) 24vw, 50vw" alt="Cheese naan kebab (photo d&#39;illustration)" data-illu style="background-color:#6d5847" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>Cheese naan kebab</h3><p>8,50 €</p></article><article class="kh-pl"><figure><img class="" src="../../atelier/photos/naan/6183640.webp" srcset="../../atelier/photos/naan/6183640-m.webp 760w, ../../atelier/photos/naan/6183640.webp 1600w" sizes="(min-width: 900px) 24vw, 50vw" alt="Menu cheese naan, frites et boisson (photo d&#39;illustration)" data-illu style="background-color:#5b473a" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>Menu cheese naan, frites et boisson</h3><p>11 €</p></article></div>
+  <div class="kh-cote"><h3>À côté</h3><ul><li><span>Frites</span><b>3 €</b></li><li><span>Boisson 33 cl</span><b>2 €</b></li></ul></div>
 </section>
+
+<figure class="kh-four" data-sec="four"><img class="" src="../../atelier/photos/naan/3624709.webp" srcset="../../atelier/photos/naan/3624709-m.webp 760w, ../../atelier/photos/naan/3624709.webp 1600w" sizes="100vw" alt="Pains plats dorés devant le four (photo d&#39;illustration)" data-illu style="background-color:#6a3919" loading="lazy" decoding="async"><figcaption>Du four à votre main. <em>Photo d'illustration.</em></figcaption></figure>
 
 <section class="kh-cmd" id="commander" data-sec="commande">
-  <div class="kh-in">
-    <h2>Commander, passer, repartir</h2>
-    <p class="kh-sous">Choisissez, donnez l'heure, c'est chaud quand vous arrivez. Vous payez sur place.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Cheese naan" data-prix="6" data-unite=""><p><b>Cheese naan</b><small>6 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Cheese naan poulet" data-prix="8" data-unite=""><p><b>Cheese naan poulet</b><small>8 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Cheese naan kebab" data-prix="8,50" data-unite=""><p><b>Cheese naan kebab</b><small>8,50 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu cheese naan, frites et boisson" data-prix="11" data-unite=""><p><b>Menu cheese naan, frites et boisson</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Frites" data-prix="3" data-unite=""><p><b>Frites</b><small>3 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Boisson 33 cl" data-prix="2" data-unite=""><p><b>Boisson 33 cl</b><small>2 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
+  <h2>Commander, passer, repartir</h2>
+  <p class="kh-ex">Choisissez, donnez l'heure : c'est chaud quand vous arrivez. Vous payez sur place.</p>
+  <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Cheese naan" data-prix="6" data-unite=""><p><b>Cheese naan</b><small>6 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Cheese naan poulet" data-prix="8" data-unite=""><p><b>Cheese naan poulet</b><small>8 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Cheese naan kebab" data-prix="8,50" data-unite=""><p><b>Cheese naan kebab</b><small>8,50 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu cheese naan, frites et boisson" data-prix="11" data-unite=""><p><b>Menu cheese naan, frites et boisson</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Frites" data-prix="3" data-unite=""><p><b>Frites</b><small>3 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Boisson 33 cl" data-prix="2" data-unite=""><p><b>Boisson 33 cl</b><small>2 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="kh-cite" data-sec="venir">
-  <div class="kh-in kh-cite-g">
-    <div>
-      <h2>Rue de la Cité</h2>
-      <p class="kh-adr">47 rue de la Cité, 10000 Troyes<br><a href="https://www.google.com/maps/search/?api=1&query=Chez%20KH%20Cheese%20Naan%2047%20rue%20de%20la%20Cit%C3%A9%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a> · <a href="tel:+33954405255">09 54 40 52 55</a></p>
-    </div>
-    <div>
-      <dl class="kh-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
-      <p class="kh-hn">Horaires d'exemple, à confirmer.</p>
-    </div>
+<section class="kh-venir" id="venir" data-sec="venir">
+  <div>
+    <h2>Rue de la Cité</h2>
+    <p class="kh-adr">47 rue de la Cité, 10000 Troyes<br><a href="https://www.google.com/maps/search/?api=1&query=Chez%20KH%20Cheese%20Naan%2047%20rue%20de%20la%20Cit%C3%A9%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a> · <a href="tel:+33954405255">09 54 40 52 55</a></p>
+  </div>
+  <div>
+    <dl class="kh-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
+    <p class="kh-hn">Horaires donnés en exemple, à confirmer.</p>
   </div>
 </section>
 <footer class="kh-pied" data-sec="pied"><span>Chez KH Cheese Naan</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Chez KH Cheese Naan, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 47 rue de la Cité, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 09 54 40 52 55</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Chez KH Cheese Naan. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Chez KH Cheese Naan au 09 54 40 52 55. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
@@ -600,6 +587,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#1E110A}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"09 54 40 52 55","email":"","nom":"Chez KH Cheese Naan"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#2E8B4E;color:#fff">C</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Chez KH Cheese Naan. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"09 54 40 52 55","email":"","nom":"Chez KH Cheese Naan"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#1E2A44;color:#fff">C</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Chez KH Cheese Naan. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>

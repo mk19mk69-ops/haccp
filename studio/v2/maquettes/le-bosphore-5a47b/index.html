@@ -6,14 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Le Bosphore</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Le Bosphore. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#1B3F8B">
+<meta name="theme-color" content="#141A26">
 <link rel="icon" href="data:,">
 <style>
 @font-face{font-family:"Gilda Display";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/gilda-display-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Literata";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/literata-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Literata";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/literata-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Literata";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/literata-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Literata";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/literata-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/newsreader-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/newsreader-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/newsreader-latin-400-italic.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -103,150 +102,152 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#0E1730}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#141A26}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.bs{--cobalt:#1B3F8B;--cobalt-f:#14213D;--turq:#1FA2A6;--creme:#F7F2E7;--rouge:#C8372D;--encre:#1D2433;--gris:#5E6577;
-  background:var(--creme);color:var(--encre);font:400 17.5px/1.6 Literata,Georgia,serif}
-.bs h1,.bs h2,.bs h3,.bs-marque{font-family:"Gilda Display",Didot,serif;font-weight:400;line-height:1}
-.bs-tete{display:flex;justify-content:space-between;align-items:center;padding:12px clamp(16px,3cqi,40px);background:var(--creme);border-bottom:1px solid #DCD3C0}
-.bs-marque{font-size:1.5rem;text-decoration:none;color:var(--cobalt)}
-.bs-tete-t{font-weight:500;text-decoration:none;font-variant-numeric:tabular-nums;color:var(--cobalt)}
+.bs{--nuit:#141A26;--nuit-c:#1F2738;--creme:#F1EADD;--creme-f:#E6DCCB;--brique:#9D3B2B;--encre:#1E1C1A;--gris:#6F6559;
+  background:var(--creme);color:var(--encre);font:400 18px/1.62 Newsreader,Georgia,serif}
+.bs h1,.bs h2,.bs h3,.bs-logo,.bs-adr,.bs-k,.bs-tuile b,.bs-nav,.bs-cta,.bs-liens{font-family:"Gilda Display",Didot,serif;font-weight:400}
+.bs-k,.bs-nav,.bs-cta,.bs-liens{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase}
+.bs-tete{display:grid;grid-template-columns:1fr auto;align-items:center;padding:16px clamp(18px,4cqi,56px);background:var(--nuit);color:var(--creme)}
+.bs-nav{display:none;gap:26px}
+.bs-nav a{text-decoration:none}.bs-nav a:hover{color:#D9C7A6}
+.bs-logo{font-size:1.25rem;letter-spacing:.34em;text-transform:uppercase;text-decoration:none}
+.bs-cta{justify-self:end;padding:9px 16px;border:1px solid var(--creme);border-radius:999px;text-decoration:none;letter-spacing:.16em}
+.bs-cta:hover{background:var(--creme);color:var(--nuit)}
+@container site (min-width:900px){.bs-tete{grid-template-columns:1fr auto 1fr}.bs-nav{display:flex}}
 
-.bs-table{position:relative;display:grid;padding:clamp(150px,22cqi,200px) clamp(14px,3cqi,40px) 70px;background:var(--cobalt-f);overflow:hidden}
-.bs-nappe{position:absolute;inset:0}
-.bs-nappe img{width:100%;height:100%;object-fit:cover}
-.bs-nappe::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(20,33,61,.05),rgba(20,33,61,.35))}
-.bs-nappe .illu{z-index:2;top:10px;bottom:auto}
-.bs-carte-couv{position:relative;z-index:2;width:min(100%,520px);padding:14px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%231B3F8B%22%2F%3E%3Cg%20fill%3D%22%23F7F2E7%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2213%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2227%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2220%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2220%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%223.4%22%20fill%3D%22%23C8372D%22%2F%3E%3Cg%20fill%3D%22%231FA2A6%22%3E%3Cellipse%20cx%3D%224%22%20cy%3D%224%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(45%204%204)%22%2F%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%2236%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(45%2036%2036)%22%2F%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%224%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(-45%2036%204)%22%2F%3E%3Cellipse%20cx%3D%224%22%20cy%3D%2236%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(-45%204%2036)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0/32px 32px;box-shadow:0 30px 50px -20px rgba(0,0,0,.6);transform:rotate(-1.5deg)}
-.bs-couv-in{padding:clamp(24px,4cqi,40px) clamp(20px,3.4cqi,36px);background:var(--cobalt);color:var(--creme);text-align:center;outline:1.5px solid var(--creme);outline-offset:-8px}
-.bs-couv-k{font-style:italic;color:#BFD6F0}
-.bs h1{margin-top:6px;font-size:clamp(3rem,11cqi,5.2rem);letter-spacing:.005em}
-.bs-couv-a{margin-top:10px;font-size:.92rem;letter-spacing:.08em;text-transform:uppercase;color:#BFD6F0}
-.bs-couv-d{margin:18px auto 0;max-width:30ch}
-.bs-act{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 22px;margin-top:22px}
-.bs-btn{background:var(--creme);color:var(--cobalt);font-weight:600;border-radius:0}
-.bs-btn:hover{background:#fff}
-.bs-lien{font-weight:500}
-.bs-st{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:.92rem;color:#DCE7F5}
-.bs-st i{width:9px;height:9px;border-radius:50%;background:var(--turq)}.bs-st.ferme i{background:#8C93A5}
-.bs-eau{position:absolute;z-index:3;left:0;right:0;bottom:0;height:80px}
-.bs-eau svg:first-child{position:absolute;inset:0;width:100%;height:100%}
-.bs-v1{fill:var(--turq);opacity:.9}.bs-v2{fill:var(--cobalt)}
-.bs-ferry{position:absolute;left:68%;bottom:34px;width:96px;height:40px}
-@container site (min-width:900px){
-  .bs-table{min-height:min(84svh,760px);align-content:center;padding:80px 6cqi 110px}
-  .bs-carte-couv{width:500px}
-  .bs-ferry{width:130px;height:54px;bottom:30px}
-}
-@media (prefers-reduced-motion:no-preference){
-  .bs-ferry{animation:bs-traverse 7s .4s cubic-bezier(.25,.6,.35,1) both}
-  @keyframes bs-traverse{from{left:-140px}}
-}
+.bs-une{display:grid;justify-items:center;gap:22px;padding:clamp(56px,8cqi,110px) clamp(18px,4cqi,56px) clamp(40px,6cqi,80px);background:var(--nuit);color:var(--creme);text-align:center}
+.bs-une .bs-k{color:#B9AE98}
+.bs h1{max-width:22ch;font-size:clamp(1.7rem,4.2cqi,3rem);line-height:1.35;letter-spacing:.14em;text-transform:uppercase}
+.bs-liens{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px}
+.bs-liens a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.bs-cp{margin:22px 0 0;width:100%;max-width:1120px;padding:10px;border:1px solid rgba(241,234,221,.35)}
+.bs-cp img{width:100%;aspect-ratio:16/8;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.bs-cp figcaption,.bs-cadre figcaption{margin-top:10px;font-size:.84rem;font-style:italic;color:#B9AE98;text-align:left}
+.bs-cp figcaption em,.bs-cadre figcaption em{font-style:normal}
+@media (prefers-reduced-motion:no-preference){.bs-cp img{animation:bs-teinte 3s .4s ease-out both}@keyframes bs-teinte{from{filter:grayscale(1) contrast(1.05) brightness(.6)}}}
 
-.bs-int{padding:clamp(48px,7cqi,90px) clamp(10px,3cqi,40px);background:var(--cobalt)}
-.bs-livre{display:grid;max-width:1080px;margin:0 auto;padding:12px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%231B3F8B%22%2F%3E%3Cg%20fill%3D%22%23F7F2E7%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2213%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2227%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2220%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2220%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%223.4%22%20fill%3D%22%23C8372D%22%2F%3E%3Cg%20fill%3D%22%231FA2A6%22%3E%3Cellipse%20cx%3D%224%22%20cy%3D%224%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(45%204%204)%22%2F%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%2236%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(45%2036%2036)%22%2F%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%224%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(-45%2036%204)%22%2F%3E%3Cellipse%20cx%3D%224%22%20cy%3D%2236%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(-45%204%2036)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0/32px 32px;box-shadow:0 30px 50px -24px rgba(0,0,0,.6)}
-.bs-page{padding:clamp(26px,4cqi,48px);background:var(--creme)}
-.bs-page+.bs-page{border-top:1px solid #DCD3C0}
-.bs-rub+.bs-rub{margin-top:34px}
-.bs-rub h3{font-size:clamp(1.7rem,4cqi,2.3rem);color:var(--cobalt);text-align:center}
-.bs-rub h3::after{content:"";display:block;width:64px;height:10px;margin:10px auto 6px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%231B3F8B%22%2F%3E%3Cg%20fill%3D%22%23F7F2E7%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2213%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2227%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2220%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2220%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%223.4%22%20fill%3D%22%23C8372D%22%2F%3E%3Cg%20fill%3D%22%231FA2A6%22%3E%3Cellipse%20cx%3D%224%22%20cy%3D%224%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(45%204%204)%22%2F%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%2236%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(45%2036%2036)%22%2F%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%224%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(-45%2036%204)%22%2F%3E%3Cellipse%20cx%3D%224%22%20cy%3D%2236%22%20rx%3D%225%22%20ry%3D%222.4%22%20transform%3D%22rotate(-45%204%2036)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0/10px 10px}
-.bs-rub li{display:flex;align-items:baseline;gap:8px;padding:10px 0}
-.bs-rub p{min-width:0}
-.bs-rub span{font-weight:500;font-size:1.08rem}
-.bs-rub small{display:block;font-style:italic;color:var(--gris);font-size:.9rem}
-.bs-rub i{flex:1;border-bottom:1.5px dotted #B8AE98;transform:translateY(-5px);min-width:20px}
-.bs-rub b{font-weight:600;white-space:nowrap;color:var(--cobalt);font-variant-numeric:tabular-nums}
-.bs-ex{margin-top:28px;text-align:center;font-style:italic;font-size:.88rem;color:var(--gris)}
-@container site (min-width:860px){.bs-livre{grid-template-columns:1fr 1fr}.bs-page+.bs-page{border-top:0;border-left:1px solid #DCD3C0}}
+.bs-recit{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px)}
+.bs-chapo{max-width:900px;margin:0 auto;font:400 clamp(1.5rem,3.4cqi,2.2rem)/1.4 "Gilda Display",serif;letter-spacing:.04em}
+.bs-chapo span{display:block;padding-left:clamp(0px,10cqi,120px)}
+.bs-recit-g{display:grid;gap:30px;max-width:1000px;margin:56px auto 0}
+.bs-cadre{margin:0;padding:8px;border:1px solid var(--encre);box-shadow:inset 0 0 0 4px var(--creme),inset 0 0 0 5px var(--encre)}
+.bs-cadre img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.bs-cadre figcaption{color:var(--gris)}
+.bs-recit-t{display:grid;gap:16px;align-content:center}
+.bs-st{display:inline-flex;align-items:center;gap:9px;font-weight:500}
+.bs-st i{width:7px;height:7px;border-radius:50%;background:#4E7A4A}.bs-st.ferme i{background:var(--brique)}
+.bs-note{font-style:italic;color:var(--gris)}
+@container site (min-width:860px){.bs-recit-g{grid-template-columns:.8fr 1.2fr;gap:64px}}
 
-.bs-in{max-width:1100px;margin:0 auto;padding:0 clamp(16px,3cqi,40px)}
-.bs-cmd{padding:clamp(56px,8cqi,100px) 0;background:var(--creme)}
-.bs h2{font-size:clamp(2.4rem,7cqi,4rem);color:var(--cobalt)}
-.bs-sous{margin-top:10px;max-width:52ch}
-.bs-cmd .s-resa{margin-top:28px}
-.bs-cmd .s-resa-q{font-style:italic;color:var(--turq);font-weight:500}
-.bs-cmd .s-cmd-ligne{border-bottom:1px solid #DCD3C0}
-.bs-cmd .s-cmd-ligne small{display:block;color:var(--gris);font-variant-numeric:tabular-nums}
-.bs-cmd .s-pas-b{background:transparent;color:var(--cobalt);box-shadow:inset 0 0 0 1px var(--cobalt);border-radius:50%}
-.bs-cmd .s-puce,.bs-cmd .s-heure{background:#EDE6D6}
-.bs-cmd .s-puce.on,.bs-cmd .s-heure.on{background:var(--cobalt);color:var(--creme)}
-.bs-cmd .s-resa-pied{border-top:1px solid var(--cobalt)}
-.bs-cmd .s-btn{background:var(--cobalt);color:var(--creme);font-weight:600;border-radius:0}
-.bs-cmd .s-btn--2{background:transparent;color:var(--cobalt);box-shadow:inset 0 0 0 1px var(--cobalt)}
-.bs-cmd .s-champ input{border:1px solid #B8AE98;border-radius:0;background:#fff}
-.bs-cmd .s-fin-titre{font:400 2.2rem/1 "Gilda Display",serif;color:var(--cobalt)}
-.bs-cmd .s-coche{color:var(--turq)}
+.bs-tuiles{display:grid;justify-items:center;gap:18px;padding:0 clamp(18px,4cqi,56px) clamp(64px,9cqi,120px);text-align:center}
+.bs-points{letter-spacing:.3em;color:var(--brique)}
+.bs h2{font-size:clamp(1.6rem,3.6cqi,2.4rem);letter-spacing:.2em;text-transform:uppercase;line-height:1.25}
+.bs-tuiles-g{display:grid;gap:16px;width:100%;max-width:1180px;margin-top:20px}
+.bs-tuile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;text-decoration:none}
+.bs-tuile figure{position:absolute;inset:0;margin:0}
+.bs-tuile img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.bs-tuile:hover img{transform:scale(1.05)}
+.bs-tuile span{position:absolute;left:8%;right:8%;top:12%;display:grid;gap:4px;padding:14px 10px;background:var(--creme);border:1px solid var(--encre);box-shadow:inset 0 0 0 3px var(--creme),inset 0 0 0 4px var(--encre)}
+.bs-tuile b{font-weight:400;font-size:1.15rem;letter-spacing:.26em;text-transform:uppercase}
+.bs-tuile em{font-size:.95rem}
+.bs-illu{font-size:.82rem;font-style:italic;color:var(--gris)}
+@container site (min-width:820px){.bs-tuiles-g{grid-template-columns:repeat(3,1fr)}}
 
-.bs-venir{padding:clamp(56px,8cqi,100px) 0;background:var(--cobalt-f);color:var(--creme)}
-.bs-venir h2{color:var(--creme)}
-.bs-venir-g{display:grid;gap:30px}
-.bs-adr{margin-top:12px;font-size:1.12rem}
-.bs-avis{margin-top:12px;color:#8FD3D5}
-.bs-hor{max-width:460px}
-.bs-hor div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid rgba(247,242,231,.16)}
-.bs-hor dt{font-weight:500}.bs-hor dd{text-align:right;font-variant-numeric:tabular-nums}
-.bs-hn{margin-top:8px;font-size:.85rem;font-style:italic;color:#AEB6C8}
-@container site (min-width:860px){.bs-venir-g{grid-template-columns:1fr 1fr;align-items:end}}
-.bs-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:18px clamp(16px,3cqi,40px) 26px;background:#0E1730;color:#AEB6C8;font-size:.9rem}
-.bs-pied span{margin-right:auto;font:400 1.3rem/1 "Gilda Display",serif;color:var(--creme)}
-.bs .legal h1{font-size:2.6rem;color:var(--cobalt)}
+.bs-carte{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px);background:var(--creme-f);text-align:center}
+.bs-ex{margin-top:8px;font-style:italic;color:var(--gris);text-align:center}
+.bs-rubs{display:grid;gap:40px;max-width:1000px;margin:44px auto 0;text-align:left}
+.bs h3{font-size:.95rem;letter-spacing:.28em;text-transform:uppercase;text-align:center;color:var(--brique);margin-bottom:14px}
+.bs-rub li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px dotted rgba(30,28,26,.35)}
+.bs-rub p{font-size:1.15rem;font-weight:500}
+.bs-rub small{font-style:italic;color:var(--gris)}
+.bs-rub b{font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+@container site (min-width:860px){.bs-rubs{grid-template-columns:1fr 1fr;column-gap:64px}.bs-rub:last-child{grid-column:1/-1;width:min(100%,460px);justify-self:center}}
+
+.bs-cmd{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px);text-align:center}
+.bs-cmd .s-resa{max-width:1060px;margin:36px auto 0;text-align:left}
+.bs-cmd .s-resa-q{font:400 .8rem/1 "Gilda Display",serif;letter-spacing:.26em;text-transform:uppercase;color:var(--brique)}
+.bs-cmd .s-cmd-ligne{border-bottom:1px dotted rgba(30,28,26,.35)}
+.bs-cmd .s-cmd-ligne b{font-weight:500}
+.bs-cmd .s-cmd-ligne small{display:block;font-style:italic;color:var(--gris)}
+.bs-cmd .s-pas-b{background:transparent;border:1px solid var(--encre);border-radius:50%}
+.bs-cmd .s-puce,.bs-cmd .s-heure{background:var(--creme-f);border-radius:0}
+.bs-cmd .s-puce.on,.bs-cmd .s-heure.on{background:var(--nuit);color:var(--creme)}
+.bs-cmd .s-resa-pied{border-top:1px solid var(--encre)}
+.bs-cmd .s-btn{background:var(--nuit);color:var(--creme);border-radius:999px;font:400 .8rem/1 "Gilda Display",serif;letter-spacing:.2em;text-transform:uppercase}
+.bs-cmd .s-btn--2{background:transparent;color:var(--nuit);box-shadow:inset 0 0 0 1px var(--nuit)}
+.bs-cmd .s-champ input{border:1px solid rgba(30,28,26,.3);border-radius:0;background:#fff}
+.bs-cmd .s-fin-titre{font:400 1.8rem/1.2 "Gilda Display",serif;letter-spacing:.12em;text-transform:uppercase}
+
+.bs-venir{display:grid;justify-items:center;gap:14px;padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px);background:var(--nuit);color:var(--creme);text-align:center}
+.bs-venir .bs-k{color:#B9AE98}
+.bs-adr{display:grid;font-size:clamp(2rem,5cqi,3.2rem);line-height:1.1}
+.bs-adr span{font-size:.45em;letter-spacing:.3em;text-transform:uppercase;margin-top:10px;color:#B9AE98}
+.bs-hor{width:min(100%,460px);margin-top:16px;text-align:left}
+.bs-hor div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(241,234,221,.16)}
+.bs-hor dd{text-align:right;font-variant-numeric:tabular-nums}
+.bs-hn{font-size:.84rem;font-style:italic;color:#B9AE98}
+.bs-pied{display:grid;justify-items:center;gap:10px;padding:40px 18px 34px;background:var(--nuit-c);color:#B9AE98;text-align:center;font-size:.9rem}
+.bs-pied .bs-logo{color:var(--creme)}
+.bs .legal h1{font-family:"Gilda Display",serif;font-weight:400;font-size:2.4rem}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Le Bosphore</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Le Bosphore</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé qu&#39;une page Facebook, sans carte ni horaires : la carte, les prix et les horaires sont des exemples. La photo est une photo d&#39;illustration : on la remplace par celles de votre restaurant.</p><ul><li>Ce site a été dessiné pour Le Bosphore, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Le%20Bosphore.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Le Bosphore</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Le Bosphore</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé qu&#39;une page Facebook, sans carte ni horaires : la carte, les prix et les horaires sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de votre restaurant.</p><ul><li>Ce site a été dessiné pour Le Bosphore, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Le%20Bosphore.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site bs" data-metier="snack"><main data-page="accueil">
 <header class="bs-tete" data-sec="tete">
-  <a class="bs-marque" href="#page-accueil">Le Bosphore</a>
-  <a class="bs-tete-t" href="tel:+33325810343">03 25 81 03 43</a>
+  <nav class="bs-nav"><a href="#carte">La carte</a><a href="#commander">À emporter</a><a href="#venir">Venir</a></nav>
+  <a class="bs-logo" href="#page-accueil">Le Bosphore</a>
+  <a class="bs-cta" href="#commander">Commander</a>
 </header>
 
-<section class="bs-table" data-sec="table">
-  <div class="bs-nappe"><img class="" src="../../atelier/photos/turc/36287931.webp" srcset="../../atelier/photos/turc/36287931-m.webp 760w, ../../atelier/photos/turc/36287931.webp 1600w" sizes="100vw" alt="Une table garnie de plats turcs (photo d&#39;illustration)" data-illu style="background-color:#986d4d" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></div>
-  <div class="bs-carte-couv">
-    <div class="bs-couv-in">
-      <p class="bs-couv-k">Restaurant turc</p>
-      <h1>Le Bosphore</h1>
-      <p class="bs-couv-a">19 rue Général Saussier · Troyes</p>
-      <p class="bs-couv-d">Grillades, kebabs et assiettes. À table, ou à emporter en commandant avant de venir.</p>
-      <div class="bs-act"><a class="s-btn bs-btn" href="#carte">Voir la carte</a><a class="bs-lien" href="#commander">Commander à emporter</a></div>
+<section class="bs-une" data-sec="une">
+  <p class="bs-k">Restaurant turc · Troyes</p>
+  <h1>« Une table turque, rue Général Saussier. »</h1>
+  <p class="bs-liens"><a href="#carte">Voir la carte</a><a href="#commander">Commander à emporter</a></p>
+  <figure class="bs-cp"><img class="" src="../../atelier/photos/turc/30764265.webp" srcset="../../atelier/photos/turc/30764265-m.webp 760w, ../../atelier/photos/turc/30764265.webp 1600w" sizes="(min-width: 900px) 80vw, 100vw" alt="Istanbul et le Bosphore à la tombée du jour, en noir et blanc (photo d&#39;illustration)" data-illu style="background-color:#94908d" fetchpriority="high" decoding="async"><figcaption>Ci-dessus : Istanbul, le Bosphore. <em>Photo d'illustration.</em></figcaption></figure>
+</section>
+
+<section class="bs-recit" data-sec="recit">
+  <p class="bs-chapo">Le Bosphore est un restaurant turc<span>rue Général Saussier : des grillades, des kebabs et des assiettes, à table ou à emporter.</span></p>
+  <div class="bs-recit-g">
+    <figure class="bs-cadre"><img class="" src="../../atelier/photos/turc/15803316.webp" srcset="../../atelier/photos/turc/15803316-m.webp 760w, ../../atelier/photos/turc/15803316.webp 1143w" sizes="(min-width: 900px) 30vw, 100vw" alt="Une table dressée dans un restaurant turc (photo d&#39;illustration)" data-illu style="background-color:#80654c" loading="lazy" decoding="async"><figcaption>Ci-dessus : une table dressée. <em>Photo d'illustration.</em></figcaption></figure>
+    <div class="bs-recit-t">
+      <p>On s'installe, on commande, et les assiettes arrivent avec le pain. Pour un déjeuner rapide comme pour un repas en famille, la carte est courte et généreuse.</p>
+      <p>Pressé ? Commandez sur ce site, choisissez l'heure : c'est prêt quand vous passez, vous payez sur place.</p>
       <p class="bs-st" data-statut><i></i><span></span></p>
+      <p class="bs-note">4,4 sur Google · 439 avis</p>
     </div>
-  </div>
-  <div class="bs-eau" aria-hidden="true">
-    <svg viewBox="0 0 1200 90" preserveAspectRatio="none"><path class="bs-v1" d="M0 40C100 20 200 60 300 40S500 20 600 40S800 60 900 40S1100 20 1200 40V90H0Z"/><path class="bs-v2" d="M0 58C120 44 240 72 360 58S600 44 720 58S960 72 1080 58S1160 50 1200 56V90H0Z"/></svg>
-    <svg class="bs-ferry" viewBox="0 0 120 50" aria-hidden="true"><path d="M6 32H112L102 46H18Z" fill="#F7F2E7"/><path d="M6 32H112L109 36H9Z" fill="#C8372D"/><rect x="26" y="20" width="62" height="12" rx="2" fill="#F7F2E7"/><g fill="#1B3F8B"><rect x="31" y="23" width="6" height="5"/><rect x="41" y="23" width="6" height="5"/><rect x="51" y="23" width="6" height="5"/><rect x="61" y="23" width="6" height="5"/><rect x="71" y="23" width="6" height="5"/></g><rect x="52" y="8" width="9" height="12" fill="#14213D"/><rect x="52" y="8" width="9" height="3" fill="#F7F2E7"/></svg>
   </div>
 </section>
 
-<section class="bs-int" id="carte" data-sec="carte">
-  <div class="bs-livre">
-    <div class="bs-page"><div class="bs-rub"><h3>Grillades et assiettes</h3><ul><li><p><span>Assiette kebab</span><small>Viande, frites ou riz, salade</small></p><i aria-hidden="true"></i><b>13 €</b></li><li><p><span>Assiette brochettes</span></p><i aria-hidden="true"></i><b>15 €</b></li><li><p><span>Assiette mixte</span><small>Kebab et brochettes</small></p><i aria-hidden="true"></i><b>16 €</b></li></ul></div></div>
-    <div class="bs-page"><div class="bs-rub"><h3>Sandwichs et menus</h3><ul><li><p><span>Sandwich kebab</span></p><i aria-hidden="true"></i><b>7 €</b></li><li><p><span>Menu sandwich, frites et boisson</span></p><i aria-hidden="true"></i><b>11 €</b></li></ul></div><div class="bs-rub"><h3>Desserts</h3><ul><li><p><span>Dessert du jour</span></p><i aria-hidden="true"></i><b>4 €</b></li></ul></div><p class="bs-ex">Carte et prix d'exemple : on met les vôtres.</p></div>
-  </div>
+<section class="bs-tuiles" data-sec="tuiles">
+  <p class="bs-points" aria-hidden="true">• • • • • • • • • • •</p>
+  <h2>Venez à table, ou emportez</h2>
+  <div class="bs-tuiles-g"><a class="bs-tuile" href="#carte"><figure><img class="" src="../../atelier/photos/turc/30726875.webp" srcset="../../atelier/photos/turc/30726875-m.webp 760w, ../../atelier/photos/turc/30726875.webp 1067w" sizes="(min-width: 900px) 30vw, 100vw" alt="La carte (photo d&#39;illustration)" data-illu style="background-color:#7e6757" loading="lazy" decoding="async"></figure><span><b>La carte</b><em>Grillades, kebabs, assiettes</em></span></a><a class="bs-tuile" href="#commander"><figure><img class="" src="../../atelier/photos/turc/37010328.webp" srcset="../../atelier/photos/turc/37010328-m.webp 760w, ../../atelier/photos/turc/37010328.webp 1067w" sizes="(min-width: 900px) 30vw, 100vw" alt="À emporter (photo d&#39;illustration)" data-illu style="background-color:#897f60" loading="lazy" decoding="async"></figure><span><b>À emporter</b><em>Commandé avant de venir</em></span></a><a class="bs-tuile" href="#venir"><figure><img class="" src="../../atelier/photos/turc/36579883.webp" srcset="../../atelier/photos/turc/36579883-m.webp 760w, ../../atelier/photos/turc/36579883.webp 1069w" sizes="(min-width: 900px) 30vw, 100vw" alt="Venir (photo d&#39;illustration)" data-illu style="background-color:#644728" loading="lazy" decoding="async"></figure><span><b>Venir</b><em>Rue Général Saussier</em></span></a></div>
+  <p class="bs-illu">Photos d'illustration.</p>
+</section>
+
+<section class="bs-carte" id="carte" data-sec="carte">
+  <h2>La carte</h2>
+  <p class="bs-ex">Carte et prix donnés en exemple : on met les vôtres.</p>
+  <div class="bs-rubs"><div class="bs-rub"><h3>Grillades et assiettes</h3><ul><li><div><p>Assiette kebab</p><small>Viande, frites ou riz, salade</small></div><b>13 €</b></li><li><div><p>Assiette brochettes</p><small>Brochettes grillées, riz, salade</small></div><b>15 €</b></li><li><div><p>Assiette mixte</p><small>Kebab et brochettes</small></div><b>16 €</b></li></ul></div><div class="bs-rub"><h3>Sandwichs et menus</h3><ul><li><div><p>Sandwich kebab</p></div><b>7 €</b></li><li><div><p>Menu sandwich</p><small>Avec frites et boisson</small></div><b>11 €</b></li></ul></div><div class="bs-rub"><h3>Pour finir</h3><ul><li><div><p>Dessert du jour</p><small>Demandez à table</small></div><b>4 €</b></li></ul></div></div>
 </section>
 
 <section class="bs-cmd" id="commander" data-sec="commande">
-  <div class="bs-in">
-    <h2>Commander à emporter</h2>
-    <p class="bs-sous">Choisissez vos plats et l'heure de passage. C'est prêt quand vous arrivez, vous payez sur place.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Assiette kebab" data-prix="13" data-unite=""><p><b>Assiette kebab</b><small>13 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette brochettes" data-prix="15" data-unite=""><p><b>Assiette brochettes</b><small>15 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette mixte" data-prix="16" data-unite=""><p><b>Assiette mixte</b><small>16 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Sandwich kebab" data-prix="7" data-unite=""><p><b>Sandwich kebab</b><small>7 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu sandwich, frites et boisson" data-prix="11" data-unite=""><p><b>Menu sandwich, frites et boisson</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Dessert du jour" data-prix="4" data-unite=""><p><b>Dessert du jour</b><small>4 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
+  <h2>À emporter</h2>
+  <p class="bs-ex">Choisissez vos plats et l'heure de passage. Vous payez sur place.</p>
+  <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Assiette kebab" data-prix="13" data-unite=""><p><b>Assiette kebab</b><small>13 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette brochettes" data-prix="15" data-unite=""><p><b>Assiette brochettes</b><small>15 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette mixte" data-prix="16" data-unite=""><p><b>Assiette mixte</b><small>16 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Sandwich kebab" data-prix="7" data-unite=""><p><b>Sandwich kebab</b><small>7 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu sandwich" data-prix="11" data-unite=""><p><b>Menu sandwich</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Dessert du jour" data-prix="4" data-unite=""><p><b>Dessert du jour</b><small>4 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="bs-venir" data-sec="venir">
-  <div class="bs-in bs-venir-g">
-    <div>
-      <h2>Rue Général Saussier</h2>
-      <p class="bs-adr">19 rue Général Saussier, 10000 Troyes<br><a href="https://www.google.com/maps/search/?api=1&query=Le%20Bosphore%2019%20rue%20G%C3%A9n%C3%A9ral%20Saussier%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a> · <a href="tel:+33325810343">03 25 81 03 43</a></p>
-      <p class="bs-avis">4,4 sur Google, 439 avis.</p>
-    </div>
-    <div>
-      <dl class="bs-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
-      <p class="bs-hn">Horaires d'exemple, à confirmer.</p>
-    </div>
-  </div>
+<section class="bs-venir" id="venir" data-sec="venir">
+  <p class="bs-k">Venir</p>
+  <p class="bs-adr">19 rue Général Saussier<span>10000 Troyes</span></p>
+  <p class="bs-liens"><a href="https://www.google.com/maps/search/?api=1&query=Le%20Bosphore%2019%20rue%20G%C3%A9n%C3%A9ral%20Saussier%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a><a href="tel:+33325810343">03 25 81 03 43</a></p>
+  <dl class="bs-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
+  <p class="bs-hn">Horaires donnés en exemple, à confirmer.</p>
 </section>
-<footer class="bs-pied" data-sec="pied"><span>Le Bosphore</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Le Bosphore, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 19 rue Général Saussier, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 81 03 43</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Le Bosphore. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Le Bosphore au 03 25 81 03 43. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
+<footer class="bs-pied" data-sec="pied"><p class="bs-logo">Le Bosphore</p><p><a href="#page-mentions">Mentions légales</a> · <a href="#page-confidentialite">Confidentialité</a></p></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Le Bosphore, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 19 rue Général Saussier, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 81 03 43</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Le Bosphore. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Le Bosphore au 03 25 81 03 43. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
    Horaires en direct, prise de rendez-vous, commande à retirer, compte à rebours,
    galerie, formulaire de contact, menu mobile, pages. Aucun cookie, aucun traceur. */
@@ -606,6 +607,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#0E1730}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 81 03 43","email":"","nom":"Le Bosphore"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#1B3F8B;color:#fff">L</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Le Bosphore. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 81 03 43","email":"","nom":"Le Bosphore"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#141A26;color:#fff">L</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Le Bosphore. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>

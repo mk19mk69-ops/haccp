@@ -6,14 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Le Vestiaire du Barbier</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Le Vestiaire du Barbier. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#C4915F">
+<meta name="theme-color" content="#141414">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Alfa Slab";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/alfa-slab-one-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Familjen";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/familjen-grotesk-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Familjen";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/familjen-grotesk-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Familjen";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/familjen-grotesk-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Familjen";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/familjen-grotesk-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Tenor Sans";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/tenor-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/hanken-grotesk-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/hanken-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/hanken-grotesk-latin-600-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -103,148 +102,125 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#141312}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#FAF8F5}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.ve{--noir:#141312;--bois:#C4915F;--bois-f:#9C6B42;--lion:#E07B2A;--ivoire:#F3EDE3;--gris:#B8B0A3;
-  background:var(--noir);color:var(--ivoire);font:400 17px/1.5 Familjen,system-ui,sans-serif}
-.ve h1,.ve h2,.ve h3,.ve-num,.ve-score b{font-family:"Alfa Slab",Rockwell,serif;font-weight:400}
-.ve-in{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4cqi,44px)}
-.ve-tete{display:flex;align-items:center;gap:16px;padding:10px clamp(14px,3cqi,40px);background:var(--noir)}
-.ve-marque{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;margin-right:auto}
-.ve-logo{width:40px;height:40px;object-fit:cover;border-radius:50%;background:#fff}
-.ve-marque span{display:none}
-.ve-tel{display:none;text-decoration:none;color:var(--gris);font-variant-numeric:tabular-nums}
-@container site (min-width:700px){.ve-marque span,.ve-tel{display:inline}}
-.ve-btn{background:var(--lion);color:#1A0F06;font-weight:700;border-radius:4px}
-.ve-btn:hover{background:#F08D3E}
-.ve-btn--s{min-height:40px;padding:0 16px;font-size:.95rem}
+.ve{--blanc:#FAF8F5;--gris-c:#EFECE7;--noir:#141414;--bois:#B07A4A;--gris:#6E6A64;--trait:rgba(20,20,20,.12);
+  background:var(--blanc);color:var(--noir);font:400 16.5px/1.62 "Hanken Grotesk",system-ui,sans-serif}
+.ve h1,.ve h2,.ve-logo span,.ve-note b,.ve-onglets button{font-family:"Tenor Sans",sans-serif;font-weight:400}
+.ve-k{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--bois)}
+.ve-tete{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px clamp(18px,4cqi,56px);border-bottom:1px solid var(--trait)}
+.ve-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.ve-logo img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.ve-logo span{font-size:.9rem;line-height:1.15;letter-spacing:.14em;text-transform:uppercase}
+.ve-nav{display:none;gap:30px;font-weight:500}
+.ve-nav a{text-decoration:none}.ve-nav a:hover{color:var(--bois)}
+.ve-cta{padding:10px 20px;background:var(--noir);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
+@container site (min-width:900px){.ve-nav{display:flex}}
 
-.ve-haut{display:grid}
-.ve-lattes{position:relative;padding:34px clamp(18px,5cqi,56px) 30px;color:#1B130B;
-  background:repeating-linear-gradient(90deg,var(--bois) 0 34px,var(--bois-f) 34px 36px,#B9875A 36px 70px,var(--bois-f) 70px 72px)}
-.ve-plaque{width:104px;height:104px;border-radius:50%;background:#fff;padding:4px;box-shadow:0 0 0 4px #1B130B}
-.ve-lion{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.ve-lattes h1{margin-top:22px;font-size:clamp(2.9rem,11cqi,6.2rem);line-height:.92;letter-spacing:-.01em;color:#16100A}
-.ve-lattes h1 span{display:block;font-size:.52em;margin-top:.12em;color:#16100A}
-.ve-acc{margin-top:18px;max-width:30ch;font-size:1.12rem;font-weight:500;color:#2A1D11}
-.ve-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:24px}
-.ve-lien{color:#16100A;font-weight:600;text-underline-offset:4px}
-.ve-score{display:inline-grid;align-self:flex-start;justify-self:start;width:max-content;grid-template-columns:auto auto;grid-template-areas:"l l" "b s" "a a";margin-top:28px;padding:10px 16px 12px;background:#16100A;color:var(--ivoire);border-radius:4px}
-.ve-score-l{grid-area:l;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
-.ve-score b{grid-area:b;font-size:3rem;line-height:1;color:var(--lion)}
-.ve-score-s{grid-area:s;align-self:end;margin:0 0 6px 4px;color:var(--gris)}
-.ve-score-a{grid-area:a;font-size:.85rem;color:var(--gris)}
-.ve-photo{position:relative;margin:0;min-height:320px}
-.ve-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.ve-statut{position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--noir);font-size:.9rem;border-radius:4px}
-.ve-statut i{width:8px;height:8px;border-radius:50%;background:#7BC47F}.ve-statut.ferme i{background:#E0603C}
-@container site (min-width:860px){
-  .ve-haut{grid-template-columns:44fr 56fr;min-height:min(100svh - 100px,760px)}
-  .ve-lattes{display:flex;flex-direction:column;justify-content:center;padding:48px clamp(30px,4cqi,64px)}
-}
+.ve-une{display:grid}
+.ve-une-t{display:grid;gap:20px;align-content:center;padding:clamp(36px,6cqi,80px) clamp(18px,5cqi,80px)}
+.ve h1{font-size:clamp(2.4rem,5.6cqi,4.4rem);line-height:1.08;letter-spacing:.01em;max-width:14ch}
+.ve-note{display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);max-width:360px}
+.ve-note b{font-size:3.6rem;line-height:1;color:var(--bois);font-variant-numeric:tabular-nums}
+.ve-note span{font-size:.9rem;color:var(--gris);line-height:1.35}
+.ve-une-t>p:not(.ve-k){max-width:44ch;color:#3E3B37}
+.ve-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.ve-btn{background:var(--noir);color:#fff;border-radius:0;font-weight:600;padding:0 26px}
+.ve-btn:hover{background:var(--bois)}
+.ve-st{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.92rem}
+.ve-st i{width:8px;height:8px;border-radius:50%;background:#3E8E4F}.ve-st.ferme i{background:#B5462E}
+.ve-une-f{position:relative;margin:0;aspect-ratio:4/3}
+.ve-une-f img{width:100%;height:100%;object-fit:cover}
+@container site (min-width:900px){.ve-une{grid-template-columns:.85fr 1.15fr;min-height:min(80svh,700px)}.ve-une-f{aspect-ratio:auto}.ve-une-f img{position:absolute;inset:0}}
 
-.ve-casiers{padding:clamp(60px,9cqi,110px) 0}
-.ve h2{font-size:clamp(2.3rem,6cqi,3.8rem);line-height:1}
-.ve-sous{margin-top:10px;max-width:56ch;color:var(--gris)}
-.ve-rangee{margin-top:40px}
-.ve-rangee h3{font-size:1.15rem;margin-bottom:14px;color:var(--bois)}
-.ve-rangee ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.ve-casier{position:relative;display:grid;grid-template-rows:auto 1fr auto;gap:12px;min-height:190px;padding:14px 14px 12px;
-  background:linear-gradient(#1E1C1A,#1A1917);border:1px solid #2D2A26;border-radius:3px;transform-origin:left center;transition:transform .35s cubic-bezier(.22,1,.36,1)}
-.ve-casier::before{content:"";position:absolute;top:14px;right:14px;width:34px;height:20px;background:repeating-linear-gradient(#0C0B0A 0 2px,transparent 2px 5px)}
-.ve-casier::after{content:"";position:absolute;right:12px;top:50%;width:4px;height:26px;border-radius:2px;background:#5A544B}
-.ve-num{display:inline-grid;place-items:center;width:44px;height:30px;background:var(--ivoire);color:#16100A;font-size:1rem;border-radius:2px}
-.ve-nom{font-weight:600;font-size:1.02rem;line-height:1.3;padding-right:14px}
-.ve-bas{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #2D2A26;padding-top:10px;color:var(--gris);font-size:.88rem}
-.ve-bas b{font:400 1.6rem/1 "Alfa Slab",serif;color:var(--ivoire)}
-.ve-etu .ve-num{background:var(--lion)}
-.ve-etu h3{color:var(--lion)}
-@media (hover:hover) and (prefers-reduced-motion:no-preference){.ve-casier:hover{transform:perspective(900px) rotateY(-14deg)}}
+.ve-prest{padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px);background:var(--gris-c)}
+.ve-prest-h{display:grid;gap:10px;margin-bottom:30px}
+.ve h2{font-size:clamp(2rem,4.4cqi,3.2rem);line-height:1.1}
+.ve-prest-h>p:last-child{color:var(--gris)}
+.ve-onglets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.ve-onglets button{padding:10px 16px;border:1px solid var(--noir);background:transparent;color:var(--noir);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.ve-onglets button[aria-selected="true"]{background:var(--noir);color:#fff}
+.ve-pan{max-width:860px}
+.ve-pan li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid var(--trait)}
+.ve-pan p{font-weight:600;font-size:1.06rem}
+.ve-pan small{color:var(--gris)}
+.ve-pan b{font:400 1.5rem/1 "Tenor Sans",sans-serif;white-space:nowrap}
 
-.ve-resa{padding:clamp(60px,9cqi,110px) 0;background:var(--ivoire);color:#1B1712}
-.ve-resa .ve-sous{color:#6C6354}
-.ve-resa .s-resa{margin-top:30px}
-.ve-resa .s-resa-q{font:400 1rem/1 "Alfa Slab",serif}
-.ve-resa .s-service{border-bottom:1px solid #DDD3C2;padding:13px 4px}
-.ve-resa .s-service small{color:#6C6354}
-.ve-resa .s-service.on{background:#16100A;color:var(--ivoire);padding-left:12px;padding-right:12px}
-.ve-resa .s-service.on small{color:var(--bois)}
-.ve-resa .s-puce{background:#E8DFCF;border-radius:3px;color:#1B1712}
-.ve-resa .s-puce.on{background:var(--lion);color:#1A0F06}
-.ve-resa .s-heure{background:#E8DFCF;border-radius:3px}
-.ve-resa .s-heure.on{background:#16100A;color:var(--ivoire)}
-.ve-resa .s-resa-pied{border-top:2px solid #16100A}
-.ve-resa .s-btn{background:#16100A;color:var(--ivoire);border-radius:4px;font-weight:700}
-.ve-resa .s-champ input{border:2px solid #16100A;border-radius:3px;background:#fff}
-.ve-resa .s-fin-titre{font:400 1.8rem/1 "Alfa Slab",serif}
-.ve-resa .s-btn--2{background:transparent;color:#16100A;border:2px solid #16100A}
+.ve-salon{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px)}
+.ve-salon figure{margin:0;overflow:hidden}
+.ve-salon img{width:100%;height:100%;object-fit:cover}
+.ve-g1{grid-column:1/-1;aspect-ratio:4/3}.ve-g2,.ve-g3{aspect-ratio:1}
+.ve-salon-t{grid-column:1/-1;display:grid;gap:10px;margin-top:10px}
+.ve-salon-t>p:last-child{color:var(--gris)}
+@container site (min-width:900px){.ve-salon{grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:auto auto;gap:16px}.ve-g1{grid-column:1;grid-row:1/3;aspect-ratio:auto}.ve-g2{grid-column:2}.ve-g3{grid-column:3}.ve-salon-t{grid-column:2/4;grid-row:2;align-self:end;margin:0}}
 
-.ve-banc{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--noir)}
-.ve-banc figure{margin:0;overflow:hidden}.ve-banc img{width:100%;height:100%;object-fit:cover}
-.ve-b1{grid-column:1/-1;aspect-ratio:16/10}.ve-b2,.ve-b3{aspect-ratio:1}
-@container site (min-width:860px){.ve-banc{grid-template-columns:4fr 3fr 3fr;height:420px}.ve-b1,.ve-b2,.ve-b3{grid-column:auto;aspect-ratio:auto}}
+.ve-resa{padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px);background:var(--noir);color:#fff}
+.ve-resa-h{display:grid;gap:10px;margin-bottom:30px}
+.ve-resa-h>p:last-child{color:#BDB8B1}
+.ve-resa .s-resa-q{font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--bois)}
+.ve-resa .s-service{border-bottom:1px solid rgba(255,255,255,.12);padding:15px 0}
+.ve-resa .s-service small{color:#BDB8B1}
+.ve-resa .s-service.on{color:#E7B98C;box-shadow:inset 2px 0 0 var(--bois);padding-left:14px}
+.ve-resa .s-puce,.ve-resa .s-heure{background:#232323;color:#fff;border-radius:0}
+.ve-resa .s-puce.on,.ve-resa .s-heure.on{background:var(--bois);color:#fff}
+.ve-resa .s-resa-pied{border-top:1px solid rgba(255,255,255,.2)}
+.ve-resa .s-btn{background:#fff;color:var(--noir);border-radius:0;font-weight:600}
+.ve-resa .s-btn--2{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px #fff}
+.ve-resa .s-champ input{background:#232323;color:#fff;border:1px solid #3A3A3A;border-radius:0}
+.ve-resa .s-lien{color:#E7B98C}
+.ve-resa .s-fin-titre{font:400 2.2rem/1 "Tenor Sans",sans-serif}
 
-.ve-infos{padding:clamp(60px,9cqi,110px) 0}
-.ve-infos-g{display:grid;gap:44px}
-@container site (min-width:860px){.ve-infos-g{grid-template-columns:1.2fr 1fr;gap:80px}}
-.ve-hor{margin-top:20px}
-.ve-hor li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed #3A3631}
-.ve-hor b{font-weight:600;font-variant-numeric:tabular-nums}
-.ve-adr{margin-top:20px;font-size:1.3rem;line-height:1.35}
-.ve-liens{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:18px}
-.ve-liens a{color:var(--bois);text-underline-offset:4px}
-.ve-pied{display:flex;flex-wrap:wrap;gap:8px 20px;padding:24px clamp(18px,4cqi,44px) 34px;border-top:6px solid var(--bois);font-size:.85rem;color:var(--gris)}
-.ve-pied span{margin-right:auto;font-family:"Alfa Slab",serif;color:var(--ivoire)}
-.ve .legal h1{font-family:"Alfa Slab",serif;font-weight:400}
+.ve-venir{display:grid;gap:30px;padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px)}
+.ve-ville{margin-top:8px;color:var(--gris)}.ve-ville a{color:var(--noir);font-weight:600}
+.ve-hor div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--trait)}
+.ve-hor dt{font-weight:600}.ve-hor dd{text-align:right;font-variant-numeric:tabular-nums}
+@container site (min-width:900px){.ve-venir{grid-template-columns:1fr 1fr;gap:64px;align-items:end}}
+.ve-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:22px clamp(18px,5cqi,80px) 30px;border-top:1px solid var(--trait);font-size:.86rem;color:var(--gris)}
+.ve-pied span{margin-right:auto;font:400 .95rem/1 "Tenor Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--noir)}
+.ve .legal h1{font-family:"Tenor Sans",sans-serif;font-weight:400;font-size:2.4rem}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Le Vestiaire du Barbier</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Le Vestiaire du Barbier</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Les tarifs, les horaires, le logo et les photos viennent de votre page Planity (relevés le 29 octobre 2026). Je retire les photos et le logo si vous préférez. Cette maquette n&#39;apparaît pas sur Google.</p><ul><li>Ce site a été dessiné pour Le Vestiaire du Barbier, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients réservent seuls, depuis leur téléphone. Chaque rendez-vous arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Le%20Vestiaire%20du%20Barbier.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Le Vestiaire du Barbier</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Le Vestiaire du Barbier</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Tarifs, durées et horaires repris de votre page Planity. Les photos sont les vôtres (page Planity).</p><ul><li>Ce site a été dessiné pour Le Vestiaire du Barbier, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients réservent seuls, depuis leur téléphone. Chaque rendez-vous arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Le%20Vestiaire%20du%20Barbier.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site ve" data-metier="barbier"><main data-page="accueil">
 <header class="ve-tete" data-sec="tete">
-  <a class="ve-marque" href="#page-accueil"><img class="ve-logo" src="photos/6.webp" srcset="photos/6-m.webp 760w, photos/6.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async"><span>Le Vestiaire du Barbier</span></a>
-  <a class="ve-tel" href="tel:+33982622334">09 82 62 23 34</a>
-  <a class="s-btn ve-btn ve-btn--s" href="#reserver">Réserver</a>
+  <a class="ve-logo" href="#page-accueil"><img class="" src="photos/6.webp" srcset="photos/6-m.webp 760w, photos/6.webp 1600w" sizes="48px" alt="" loading="lazy" decoding="async"><span>Le Vestiaire<br>du Barbier</span></a>
+  <nav class="ve-nav"><a href="#prestations">Prestations</a><a href="#salon">Le salon</a><a href="#venir">Venir</a></nav>
+  <a class="ve-cta" href="#reserver">Réserver</a>
 </header>
-<section class="ve-haut" data-sec="haut">
-  <div class="ve-lattes">
-    <div class="ve-plaque"><img class="ve-lion" src="photos/6.webp" srcset="photos/6-m.webp 760w, photos/6.webp 1600w" sizes="100vw" alt="Le lion, logo du Vestiaire du Barbier" fetchpriority="high" decoding="async"></div>
-    <h1>Le Vestiaire<span>du Barbier</span></h1>
-    <p class="ve-acc">Coupe, barbe et soin du visage au 265 faubourg Croncels. Tarifs étudiants.</p>
-    <div class="ve-act"><a class="s-btn ve-btn" href="#reserver">Réserver un créneau</a><a class="ve-lien" href="#casiers">Voir les prix</a></div>
-    <div class="ve-score" aria-label="Note Google : 5,0 sur 5, 122 avis"><span class="ve-score-l">Google</span><b>5,0</b><span class="ve-score-s">/5</span><span class="ve-score-a">122 avis</span></div>
+
+<section class="ve-une" data-sec="une">
+  <div class="ve-une-t">
+    <p class="ve-k">Barbier · Faubourg Croncels · Troyes</p>
+    <h1>Coupes, barbes et soins du visage.</h1>
+    <div class="ve-note"><b data-compte>5,0</b><span>sur Google<br>122 avis</span></div>
+    <p>Un salon lumineux au 265 rue du Faubourg Croncels. Réservez votre créneau en ligne, même tard le soir. Tarifs étudiants toute la semaine.</p>
+    <div class="ve-act"><a class="s-btn ve-btn" href="#reserver">Réserver un créneau</a><span class="ve-st" data-statut><i></i><span></span></span></div>
   </div>
-  <figure class="ve-photo"><img class="" src="photos/1.webp" srcset="photos/1-m.webp 760w, photos/1.webp 1600w" sizes="(min-width: 860px) 55vw, 100vw" alt="L&#39;intérieur du salon : plafond lumineux en nids d&#39;abeille, fauteuils et lattes de bois" fetchpriority="high" decoding="async"><figcaption class="ve-statut" data-statut><i></i><span></span></figcaption></figure>
+  <figure class="ve-une-f"><img class="" src="photos/1.webp" srcset="photos/1-m.webp 760w, photos/1.webp 1600w" sizes="(min-width: 900px) 56vw, 100vw" alt="L&#39;intérieur du salon : plafond lumineux en nids d&#39;abeille, fauteuils et lattes de bois" fetchpriority="high" decoding="async"></figure>
 </section>
 
-<section class="ve-casiers" id="casiers" data-sec="casiers">
-  <div class="ve-in">
-    <h2>Les casiers</h2>
-    <p class="ve-sous">Toutes les prestations du salon, avec leurs vrais prix. Les tarifs étudiants sont sur la dernière rangée.</p>
-    <div class="ve-rangee"><h3>Forfaits</h3><ul><li class="ve-casier"><span class="ve-num">01</span><span class="ve-nom">Coupe, barbe et soin de barbe</span><span class="ve-bas"><span>1 h</span><b>40 €</b></span></li><li class="ve-casier"><span class="ve-num">02</span><span class="ve-nom">Coupe, barbe, soin de barbe et soin du visage</span><span class="ve-bas"><span>1 h 15</span><b>48 €</b></span></li></ul></div><div class="ve-rangee"><h3>Coupes</h3><ul><li class="ve-casier"><span class="ve-num">03</span><span class="ve-nom">Coupe, shampoing et coiffage</span><span class="ve-bas"><span>30 min</span><b>25 €</b></span></li><li class="ve-casier"><span class="ve-num">04</span><span class="ve-nom">Rasage du crâne à l&#39;ancienne, finition à la lame</span><span class="ve-bas"><span>30 min</span><b>25 €</b></span></li><li class="ve-casier"><span class="ve-num">05</span><span class="ve-nom">Enfant de 6 à 12 ans</span><span class="ve-bas"><span>30 min</span><b>19 €</b></span></li></ul></div><div class="ve-rangee"><h3>Barbe et soins</h3><ul><li class="ve-casier"><span class="ve-num">06</span><span class="ve-nom">Taille de barbe et soin de barbe</span><span class="ve-bas"><span>30 min</span><b>25 €</b></span></li><li class="ve-casier"><span class="ve-num">07</span><span class="ve-nom">Taille de barbe, soins barbe et visage</span><span class="ve-bas"><span>45 min</span><b>33 €</b></span></li><li class="ve-casier"><span class="ve-num">08</span><span class="ve-nom">Soin du visage</span><span class="ve-bas"><span>15 min</span><b>13 €</b></span></li></ul></div><div class="ve-rangee ve-etu"><h3>Tarifs étudiants</h3><ul><li class="ve-casier"><span class="ve-num">09</span><span class="ve-nom">Coupe, shampoing et coiffage</span><span class="ve-bas"><span>30 min</span><b>21 €</b></span></li><li class="ve-casier"><span class="ve-num">10</span><span class="ve-nom">Coupe, barbe et soin de barbe</span><span class="ve-bas"><span>1 h</span><b>36 €</b></span></li></ul></div>
-  </div>
+<section class="ve-prest" id="prestations" data-sec="prestations">
+  <div class="ve-prest-h"><p class="ve-k">Prestations</p><h2>La carte du salon</h2><p>Tarifs et durées relevés sur votre page de réservation.</p></div>
+  <div class="ve-onglets" role="tablist"><button type="button" role="tab" aria-selected="true" data-o="0">Forfaits</button><button type="button" role="tab" aria-selected="false" data-o="1">Coupes</button><button type="button" role="tab" aria-selected="false" data-o="2">Barbe et soins</button><button type="button" role="tab" aria-selected="false" data-o="3">Tarifs étudiants</button></div>
+  <ul class="ve-pan" data-p="0"><li><div><p>Coupe, barbe et soin de barbe</p><small>1 h</small></div><b>40 €</b></li><li><div><p>Coupe, barbe, soin de barbe et soin du visage</p><small>1 h 15</small></div><b>48 €</b></li></ul><ul class="ve-pan" data-p="1" hidden><li><div><p>Coupe, shampoing et coiffage</p><small>30 min</small></div><b>25 €</b></li><li><div><p>Rasage du crâne à l&#39;ancienne, finition à la lame</p><small>30 min</small></div><b>25 €</b></li><li><div><p>Enfant de 6 à 12 ans</p><small>30 min</small></div><b>19 €</b></li></ul><ul class="ve-pan" data-p="2" hidden><li><div><p>Taille de barbe et soin de barbe</p><small>30 min</small></div><b>25 €</b></li><li><div><p>Taille de barbe, soins barbe et visage</p><small>45 min</small></div><b>33 €</b></li><li><div><p>Soin du visage</p><small>15 min</small></div><b>13 €</b></li></ul><ul class="ve-pan" data-p="3" hidden><li><div><p>Coupe, shampoing et coiffage, étudiant</p><small>30 min</small></div><b>21 €</b></li><li><div><p>Coupe, barbe et soin de barbe, étudiant</p><small>1 h</small></div><b>36 €</b></li></ul>
+</section>
+
+<section class="ve-salon" id="salon" data-sec="salon">
+  <figure class="ve-g1"><img class="" src="photos/2.webp" srcset="photos/2-m.webp 760w, photos/2.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw" alt="Le comptoir et l&#39;étagère de produits" loading="lazy" decoding="async"></figure>
+  <figure class="ve-g2"><img class="" src="photos/3.webp" srcset="photos/3-m.webp 760w, photos/3.webp 1600w" sizes="(min-width: 900px) 30vw, 50vw" alt="Tondeuses, ciseaux et brosse sur le poste" loading="lazy" decoding="async"></figure>
+  <figure class="ve-g3"><img class="" src="photos/4.webp" srcset="photos/4-m.webp 760w, photos/4.webp 1600w" sizes="(min-width: 900px) 30vw, 50vw" alt="Le lion encadré au mur, entre les lattes de bois" loading="lazy" decoding="async"></figure>
+  <div class="ve-salon-t"><p class="ve-k">Le salon</p><h2>Bois, noir et lumière.</h2><p>Les photos sont celles du salon : le comptoir, les postes, le lion au mur.</p></div>
 </section>
 
 <section class="ve-resa" id="reserver" data-sec="resa">
-  <div class="ve-in">
-    <h2>Réserver</h2>
-    <p class="ve-sous">Choisissez, réservez. Pas de compte à créer, pas d'appel à passer.</p>
-    <div class="s-resa" data-resa data-pas="15"><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Prestation</p><div class="s-services" role="radiogroup"><button type="button" role="radio" class="s-service" data-nom="Coupe, shampoing et coiffage" data-duree="30" data-prix="25"><span>Coupe, shampoing et coiffage</span><small>30 min · 25 €</small></button><button type="button" role="radio" class="s-service" data-nom="Coupe, barbe et soin de barbe" data-duree="60" data-prix="40"><span>Coupe, barbe et soin de barbe</span><small>1 h · 40 €</small></button><button type="button" role="radio" class="s-service" data-nom="Taille de barbe et soin de barbe" data-duree="30" data-prix="25"><span>Taille de barbe et soin de barbe</span><small>30 min · 25 €</small></button><button type="button" role="radio" class="s-service" data-nom="Rasage du crâne à l&#39;ancienne" data-duree="30" data-prix="25"><span>Rasage du crâne à l&#39;ancienne</span><small>30 min · 25 €</small></button><button type="button" role="radio" class="s-service" data-nom="Soin du visage" data-duree="15" data-prix="13"><span>Soin du visage</span><small>15 min · 13 €</small></button></div></div><div class="s-resa-col"><p class="s-resa-q">Jour et heure</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-resa-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Confirmer le rendez-vous</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
+  <div class="ve-resa-h"><p class="ve-k">Rendez-vous</p><h2>Réserver un créneau</h2><p>Choisissez la prestation, le jour et l'heure. Le salon reçoit votre demande tout de suite.</p></div>
+  <div class="s-resa" data-resa data-pas="15"><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Prestation</p><div class="s-services" role="radiogroup"><button type="button" role="radio" class="s-service" data-nom="Coupe, shampoing et coiffage" data-duree="30" data-prix="25"><span>Coupe, shampoing et coiffage</span><small>30 min · 25 €</small></button><button type="button" role="radio" class="s-service" data-nom="Coupe, barbe et soin de barbe" data-duree="60" data-prix="40"><span>Coupe, barbe et soin de barbe</span><small>1 h · 40 €</small></button><button type="button" role="radio" class="s-service" data-nom="Taille de barbe et soin de barbe" data-duree="30" data-prix="25"><span>Taille de barbe et soin de barbe</span><small>30 min · 25 €</small></button><button type="button" role="radio" class="s-service" data-nom="Rasage du crâne à l&#39;ancienne" data-duree="30" data-prix="25"><span>Rasage du crâne à l&#39;ancienne</span><small>30 min · 25 €</small></button><button type="button" role="radio" class="s-service" data-nom="Soin du visage" data-duree="15" data-prix="13"><span>Soin du visage</span><small>15 min · 13 €</small></button></div></div><div class="s-resa-col"><p class="s-resa-q">Jour et heure</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-resa-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Confirmer le rendez-vous</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="ve-banc" data-sec="banc" aria-label="Le salon en photos">
-  <figure class="ve-b1"><img class="" src="photos/4.webp" srcset="photos/4-m.webp 760w, photos/4.webp 1600w" sizes="(min-width: 860px) 40vw, 100vw" alt="Le lion encadré au mur, entre les lattes de bois" loading="lazy" decoding="async"></figure>
-  <figure class="ve-b2"><img class="" src="photos/3.webp" srcset="photos/3-m.webp 760w, photos/3.webp 1600w" sizes="(min-width: 860px) 30vw, 50vw" alt="Tondeuses, ciseaux et brosse sur le poste" loading="lazy" decoding="async"></figure>
-  <figure class="ve-b3"><img class="" src="photos/2.webp" srcset="photos/2-m.webp 760w, photos/2.webp 1600w" sizes="(min-width: 860px) 30vw, 50vw" alt="Le comptoir et l&#39;étagère de produits" loading="lazy" decoding="async"></figure>
-</section>
-
-<section class="ve-infos" data-sec="infos">
-  <div class="ve-in ve-infos-g">
-    <div><h2>Horaires</h2><ul class="ve-hor"><li><span>Lundi – samedi</span><b>9 h 30 – 19 h</b></li><li><span>Dimanche</span><b>fermé</b></li></ul></div>
-    <div><h2>Le salon</h2><p class="ve-adr">265 rue du Faubourg Croncels<br>10000 Troyes</p>
-      <p class="ve-liens"><a href="https://www.google.com/maps/search/?api=1&query=Le%20Vestiaire%20du%20Barbier%20265%20rue%20du%20Faubourg%20Croncels%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a><a href="tel:+33982622334">09 82 62 23 34</a></p></div>
-  </div>
+<section class="ve-venir" id="venir" data-sec="venir">
+  <div><p class="ve-k">Venir</p><h2>265 rue du Faubourg Croncels</h2><p class="ve-ville">10000 Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Le%20Vestiaire%20du%20Barbier%20265%20rue%20du%20Faubourg%20Croncels%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a> · <a href="tel:+33982622334">09 82 62 23 34</a></p></div>
+  <dl class="ve-hor"><div><dt>Lundi – samedi</dt><dd>9 h 30 – 19 h</dd></div><div><dt>Dimanche</dt><dd>fermé</dd></div></dl>
 </section>
 <footer class="ve-pied" data-sec="pied"><span>Le Vestiaire du Barbier</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Le Vestiaire du Barbier, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 265 rue du Faubourg Croncels, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 09 82 62 23 34</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Le Vestiaire du Barbier. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Le Vestiaire du Barbier au 09 82 62 23 34. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
@@ -606,6 +582,8 @@ html{scroll-padding-top:100px}body{margin:0;background:#141312}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"09 82 62 23 34","email":"","nom":"Le Vestiaire du Barbier"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#E07B2A;color:#fff">L</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Le Vestiaire du Barbier. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:30","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"09 82 62 23 34","email":"","nom":"Le Vestiaire du Barbier"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#B07A4A;color:#fff">L</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Le Vestiaire du Barbier. Continuer ?'))ev.preventDefault();},true);
+r.querySelectorAll('.ve-onglets button').forEach(function(b){b.addEventListener('click',function(){var i=b.getAttribute('data-o');r.querySelectorAll('.ve-onglets button').forEach(function(o){o.setAttribute('aria-selected',o===b?'true':'false')});r.querySelectorAll('.ve-pan').forEach(function(p){p.hidden=p.getAttribute('data-p')!==i})})});
+var c=r.querySelector('[data-compte]');if(c&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){var t0=null;function pas(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1200);c.textContent=(Math.round(50*(1-Math.pow(1-k,3)))/10).toFixed(1).replace('.',',');if(k<1)requestAnimationFrame(pas)}requestAnimationFrame(pas)}})();</script>
 </body>
 </html>

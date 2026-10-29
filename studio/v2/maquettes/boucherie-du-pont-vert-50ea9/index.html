@@ -6,14 +6,15 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Boucherie du Pont Vert</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Boucherie du Pont Vert. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#173F2E">
+<meta name="theme-color" content="#1F3B2F">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Ultra";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/ultra-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Spectral";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/spectral-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Spectral";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/spectral-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Spectral";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/spectral-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Spectral";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/spectral-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"DM Serif Display";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/dm-serif-display-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Serif Display";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/dm-serif-display-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Karla";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/karla-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Karla";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/karla-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Karla";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/karla-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Karla";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/karla-latin-700-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -103,167 +104,159 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#0E2A1F}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#1F3B2F}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.pv{--vert:#173F2E;--vert-n:#0E2A1F;--store:#2F6E4B;--blanc:#F7F6F1;--gris:#E6E6DF;--laiton:#C29B4A;--encre:#1C211E;
-  background:var(--blanc);color:var(--encre);font:400 18px/1.55 Spectral,Georgia,serif}
-.pv h1,.pv h2,.pv-marque,.pv-num,.pv-pique b{font-family:Ultra,"Rockwell Extra Bold",serif;font-weight:400;line-height:1}
+.pv{--creme:#F4EFE4;--creme-f:#E9E2D2;--vert:#1F3B2F;--vert-f:#152A21;--laiton:#A8894B;--encre:#1C201D;--gris:#68706A;--trait:rgba(28,32,29,.15);
+  background:var(--creme);color:var(--encre);font:400 17px/1.6 Karla,system-ui,sans-serif}
+.pv h1,.pv h2,.pv h3,.pv-logo,.pv-pied-logo,.pv-tel2{font-family:"DM Serif Display",Georgia,serif;font-weight:400}
+.pv-k{font-size:.76rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--laiton)}
+.pv-tete{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:14px clamp(18px,4cqi,56px) 0;background:var(--creme)}
+.pv-tel{display:none;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums}
+.pv-logo{display:grid;text-decoration:none;font-size:1.6rem;line-height:1.05}
+.pv-logo span{font:700 .62rem/1 Karla,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--laiton);margin-bottom:5px}
+.pv-logo small{font:500 .7rem/1 Karla,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-top:6px}
+.pv-cta{justify-self:end;padding:10px 18px;background:var(--vert);color:var(--creme);text-decoration:none;font-weight:600;border-radius:999px;font-size:.92rem}
+.pv-nav{grid-column:1/-1;display:none;justify-content:center;gap:34px;padding:14px 0;margin-top:14px;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);font-size:.9rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.pv-nav a{text-decoration:none}.pv-nav a:hover{color:var(--laiton)}
+@container site (min-width:900px){.pv-tete{grid-template-columns:1fr auto 1fr}.pv-tel{display:block}.pv-logo{justify-items:center;text-align:center;font-size:2.1rem}.pv-nav{display:flex}}
 
-.pv-tete{display:flex;justify-content:space-between;align-items:center;padding:10px clamp(16px,3cqi,40px);background:var(--vert-n);color:var(--blanc)}
-.pv-marque{font-size:1.25rem;text-decoration:none;letter-spacing:.02em}
-.pv-tete-t{font-weight:600;font-variant-numeric:tabular-nums;text-decoration:none;border-bottom:1px solid var(--laiton)}
+.pv-une{display:grid;margin:18px clamp(0px,2cqi,28px) 0}
+.pv-une-t{display:grid;gap:18px;align-content:center;padding:clamp(40px,6cqi,80px) clamp(22px,4cqi,64px);background:var(--vert);color:var(--creme)}
+.pv h1{font-size:clamp(2.7rem,6.4cqi,5.2rem);line-height:1}
+.pv-une-t>p:not(.pv-k):not(.pv-st){max-width:40ch;color:#D9DED7;font-size:1.06rem}
+.pv-btn{justify-self:start;background:var(--creme);color:var(--vert);border-radius:999px;font-weight:700;padding:0 26px}
+.pv-btn:hover{background:#fff}
+.pv-st{display:inline-flex;align-items:center;gap:9px;font-size:.92rem;font-weight:600}
+.pv-st i{width:8px;height:8px;border-radius:50%;background:#9FD39A}.pv-st.ferme i{background:#D99A8C}
+.pv-une-f{position:relative;margin:0;min-height:340px;overflow:hidden}
+.pv-une-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@container site (min-width:900px){.pv-une{grid-template-columns:.85fr 1.15fr;min-height:min(74svh,640px)}.pv-une-f{min-height:auto}}
+@media (prefers-reduced-motion:no-preference){.pv-une-f img{animation:pv-glisse 1.6s cubic-bezier(.2,.7,.2,1) both}@keyframes pv-glisse{from{transform:translateX(4%) scale(1.04);opacity:.4}}}
+.pv-bande{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin:0 clamp(0px,2cqi,28px);padding:16px 18px;background:var(--vert-f);color:#D9DED7;font-size:.84rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.pv-bande li{display:flex;align-items:center;gap:10px}
+.pv-bande li+li::before{content:"";width:5px;height:5px;background:var(--laiton);transform:rotate(45deg)}
 
-.pv-facade{background:var(--vert);padding:0 clamp(10px,3cqi,48px)}
-.pv-enseigne{position:relative;margin:0 auto;max-width:1180px;padding:22px 18px 20px;text-align:center;color:var(--blanc);border:3px double var(--laiton);border-top:0;border-bottom:0;background:linear-gradient(#1B4836,var(--vert))}
-.pv-enseigne::before,.pv-enseigne::after{content:"";position:absolute;left:0;right:0;height:6px;border-top:2px solid var(--laiton);border-bottom:2px solid var(--laiton)}
-.pv-enseigne::before{top:8px}.pv-enseigne::after{bottom:8px}
-.pv h1{display:grid;justify-items:center;font-size:clamp(2.7rem,13.5cqi,9.6rem);letter-spacing:.01em;text-transform:uppercase;text-shadow:0 3px 0 var(--vert-n);padding:14px 0 10px}
-.pv h1 span{font:italic 500 .2em/1 Spectral,serif;letter-spacing:.02em;text-transform:none;text-shadow:none;color:#E9D6A8;margin-bottom:.2em}
-.pv-store{position:relative;z-index:2;max-width:1180px;margin:0 auto;height:66px;background:repeating-linear-gradient(90deg,var(--store) 0 44px,var(--blanc) 44px 88px);
-  -webkit-mask:linear-gradient(#000 0 0) top/100% 44px no-repeat,radial-gradient(circle 22px at 50% 0,#000 97%,transparent 100%) 0 44px/44px 22px repeat-x;
-  mask:linear-gradient(#000 0 0) top/100% 44px no-repeat,radial-gradient(circle 22px at 50% 0,#000 97%,transparent 100%) 0 44px/44px 22px repeat-x;
-  filter:drop-shadow(0 8px 6px rgba(0,0,0,.35));transform-origin:top}
-.pv-rdc{display:grid;grid-template-columns:1fr;gap:0;max-width:1180px;margin:-30px auto 0;border-left:14px solid var(--vert-n);border-right:14px solid var(--vert-n)}
-.pv-vitre{position:relative;margin:0;aspect-ratio:4/3;background:#2A2A26;border:10px solid #224F3C;box-shadow:inset 0 0 0 2px var(--laiton)}
-.pv-vitre img{width:100%;height:100%;object-fit:cover}
-.pv-vitre::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.16) 0 18%,transparent 18% 30%,rgba(255,255,255,.08) 30% 34%,transparent 34%);pointer-events:none}
-.pv-peint{position:absolute;left:7%;bottom:12%;font:italic 600 clamp(1.4rem,6cqi,2.6rem)/1.05 Spectral,serif;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.45),0 0 18px rgba(0,0,0,.35);transform:rotate(-3deg)}
-.pv-porte{display:none}
-.pv-soubas{max-width:1180px;margin:0 auto;height:76px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2248%22%20viewBox%3D%220%200%2072%2048%22%3E%3Crect%20width%3D%2272%22%20height%3D%2248%22%20fill%3D%22%23C9CCC4%22%2F%3E%3Cg%20fill%3D%22%23F7F6F1%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2270%22%20height%3D%2222%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%22-35%22%20y%3D%2225%22%20width%3D%2270%22%20height%3D%2222%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%2237%22%20y%3D%2225%22%20width%3D%2270%22%20height%3D%2222%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%2264%22%20height%3D%223%22%20rx%3D%221.5%22%2F%3E%3Crect%20x%3D%22-32%22%20y%3D%2227%22%20width%3D%2264%22%20height%3D%223%22%20rx%3D%221.5%22%2F%3E%3Crect%20x%3D%2240%22%20y%3D%2227%22%20width%3D%2264%22%20height%3D%223%22%20rx%3D%221.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0/72px 48px;border-left:14px solid var(--vert-n);border-right:14px solid var(--vert-n);border-top:6px solid var(--vert-n)}
-@container site (min-width:860px){
-  .pv-rdc{grid-template-columns:1fr 230px}
-  .pv-vitre{aspect-ratio:auto;min-height:420px}
-  .pv-porte{position:relative;display:grid;grid-template-rows:auto 1fr;justify-items:center;gap:14px;padding:16px 26px 26px;background:#1E4A38;border:10px solid #224F3C;border-left:0;box-shadow:inset 0 0 0 2px var(--laiton)}
-  .pv-num{font-size:2rem;color:var(--laiton)}
-  .pv-carreau-porte{display:grid;align-content:start;justify-items:center;width:100%;height:100%;padding-top:34px;background:linear-gradient(160deg,#3F5C50,#26392F);border:3px solid var(--laiton)}
-  .pv-ecriteau{position:relative;display:grid;justify-items:center;gap:4px;padding:12px 14px;background:var(--blanc);color:var(--encre);font-weight:600;font-size:.95rem;line-height:1.25;text-align:center;box-shadow:0 6px 10px rgba(0,0,0,.35);transform:rotate(-2deg)}
-  .pv-ecriteau::before{content:"";position:absolute;top:-30px;left:50%;width:46px;height:30px;margin-left:-23px;border:2px solid #B5B3A8;border-bottom:0;clip-path:polygon(50% 0,100% 100%,0 100%)}
-  .pv-ecriteau i{display:none}
-  .pv-ecriteau span{font:400 1.35rem/1.1 Ultra,serif;text-transform:none;color:var(--vert)}
-  .pv-ecriteau.ferme span{color:#8E2B22}
-}
-@media (prefers-reduced-motion:no-preference){
-  .pv-store{animation:pv-store .9s .3s cubic-bezier(.25,.8,.25,1) both}
-  @keyframes pv-store{from{transform:scaleY(.05)}}
-}
+.pv-cats{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px)}
+.pv h2{font-size:clamp(2.2rem,5cqi,3.6rem);line-height:1.05}
+.pv-cats h2{text-align:center;margin-bottom:36px}
+.pv-cats-g{display:grid;gap:26px}
+.pv-cat{display:grid;gap:6px;text-decoration:none}
+.pv-cat figure{position:relative;margin:0 0 8px;aspect-ratio:4/3;overflow:hidden;background:var(--creme-f)}
+.pv-cat img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.pv-cat:hover img{transform:scale(1.04)}
+.pv-cat h3{font-size:1.7rem}
+.pv-cat p{color:var(--gris)}
+@container site (min-width:820px){.pv-cats-g{grid-template-columns:repeat(3,1fr)}}
 
-.pv-trottoir{display:grid;gap:22px;padding:clamp(40px,7cqi,84px) clamp(16px,3cqi,48px) clamp(56px,8cqi,96px);max-width:1180px;margin:0 auto}
-.pv-phrase{font:500 clamp(1.9rem,5.6cqi,3.3rem)/1.12 Spectral,serif;letter-spacing:-.015em;max-width:22ch;color:var(--vert-n)}
-.pv-col{display:grid;gap:16px;align-content:start;max-width:46ch}
-.pv-btn{justify-self:start;background:var(--vert);color:var(--blanc);font:600 1.05rem/1 Spectral,serif;border-radius:0;box-shadow:0 0 0 2px var(--vert),0 0 0 4px var(--laiton)}
-.pv-btn:hover{background:var(--vert-n)}
-.pv-note{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:.95rem;color:#55605A}
-.pv-st{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--encre)}.pv-st i{width:8px;height:8px;border-radius:50%;background:var(--store)}.pv-st.ferme i{background:#8E2B22}
-@container site (min-width:860px){.pv-st{display:none}.pv-trottoir{grid-template-columns:1.25fr 1fr;gap:56px;align-items:start}.pv-col{padding-top:10px}}
+.pv-vit{display:grid;background:var(--creme-f)}
+.pv-vit figure{position:relative;margin:0;min-height:380px}
+.pv-vit figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 88%}
+.pv-vit-t{display:grid;gap:14px;align-content:center;padding:clamp(48px,8cqi,110px) clamp(22px,5cqi,80px)}
+.pv-vit ul{margin-top:10px}
+.pv-vit li{display:flex;align-items:baseline;gap:10px;padding:12px 0;border-bottom:1px solid var(--trait);font-size:1.06rem}
+.pv-vit li i{flex:1;border-bottom:1px dotted rgba(28,32,29,.3);transform:translateY(-5px)}
+.pv-vit li b{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pv-ex{font-size:.86rem;color:var(--gris)}
+@container site (min-width:900px){.pv-vit{grid-template-columns:1fr 1fr}.pv-vit figure{min-height:100%}}
 
-.pv-vit{padding:clamp(56px,8cqi,100px) clamp(16px,3cqi,48px);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2248%22%20viewBox%3D%220%200%2072%2048%22%3E%3Crect%20width%3D%2272%22%20height%3D%2248%22%20fill%3D%22%23C9CCC4%22%2F%3E%3Cg%20fill%3D%22%23F7F6F1%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2270%22%20height%3D%2222%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%22-35%22%20y%3D%2225%22%20width%3D%2270%22%20height%3D%2222%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%2237%22%20y%3D%2225%22%20width%3D%2270%22%20height%3D%2222%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%2264%22%20height%3D%223%22%20rx%3D%221.5%22%2F%3E%3Crect%20x%3D%22-32%22%20y%3D%2227%22%20width%3D%2264%22%20height%3D%223%22%20rx%3D%221.5%22%2F%3E%3Crect%20x%3D%2240%22%20y%3D%2227%22%20width%3D%2264%22%20height%3D%223%22%20rx%3D%221.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0/72px 48px;border-top:8px solid var(--vert)}
-.pv-vit h2,.pv-vit-s{max-width:1180px;margin-left:auto;margin-right:auto}
-.pv-vit h2{font-size:clamp(2.2rem,6.4cqi,3.8rem);color:var(--vert);background:var(--blanc);width:max-content;max-width:100%;padding:8px 14px 6px;margin-left:max(0px,calc((100% - 1180px)/2))}
-.pv-vit-s{margin-top:10px;background:var(--blanc);width:max-content;max-width:100%;padding:2px 14px;margin-left:max(0px,calc((100% - 1180px)/2))}
-.pv-piques{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 14px;max-width:1180px;margin:36px auto 0}
-.pv-pique{position:relative;display:grid;gap:6px;padding:12px 12px 12px;background:#1A1A18;color:#F4F2EA;border-radius:6px;box-shadow:0 3px 0 #000,0 10px 18px -8px rgba(0,0,0,.5);text-align:center}
-.pv-pique::after{content:"";position:absolute;left:50%;bottom:-30px;width:5px;height:30px;margin-left:-2px;background:linear-gradient(90deg,#DADAD2,#9A9A92)}
-.pv-pique span{font:600 .9rem/1.2 Spectral,serif;letter-spacing:.06em;text-transform:uppercase}
-.pv-pique b{font-size:clamp(1.9rem,6cqi,2.6rem);color:#fff;font-variant-numeric:tabular-nums}
-.pv-pique small{display:block;font:italic 400 .82rem/1.2 Spectral,serif;color:#BEBCB2;margin-top:4px}
-.pv-p1{transform:rotate(1.5deg)}.pv-p2{transform:rotate(-1.2deg)}.pv-p3{transform:rotate(.6deg)}
-@container site (min-width:700px){.pv-piques{grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 22px}}
-@container site (min-width:1000px){.pv-piques{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.pv-cmd{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px)}
+.pv-cmd-h{display:grid;justify-items:center;gap:12px;text-align:center;margin-bottom:36px}
+.pv-cmd-h>p:last-child{max-width:52ch;color:var(--gris)}
+.pv-cmd .s-resa{max-width:1080px;margin:0 auto;padding:clamp(18px,3cqi,36px);background:#FBF8F1;border:1px solid var(--trait)}
+.pv-cmd .s-resa-q{font-size:.76rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--laiton)}
+.pv-cmd .s-cmd-ligne{border-bottom:1px solid var(--trait)}
+.pv-cmd .s-cmd-ligne b{font:400 1.2rem/1.1 "DM Serif Display",serif}
+.pv-cmd .s-cmd-ligne small{display:block;color:var(--gris);font-variant-numeric:tabular-nums}
+.pv-cmd .s-pas-b{background:var(--creme-f);color:var(--vert);border-radius:50%}
+.pv-cmd .s-puce,.pv-cmd .s-heure{background:var(--creme-f);border-radius:999px}
+.pv-cmd .s-puce{border-radius:14px}
+.pv-cmd .s-puce.on,.pv-cmd .s-heure.on{background:var(--vert);color:var(--creme)}
+.pv-cmd .s-resa-pied{border-top:1px solid var(--vert)}
+.pv-cmd .s-btn{background:var(--vert);color:var(--creme);border-radius:999px;font-weight:700}
+.pv-cmd .s-btn--2{background:transparent;color:var(--vert);box-shadow:inset 0 0 0 1.5px var(--vert)}
+.pv-cmd .s-champ input{border:1px solid var(--trait);border-radius:10px;background:#fff}
+.pv-cmd .s-fin-titre{font:400 2.2rem/1 "DM Serif Display",serif;color:var(--vert)}
 
-.pv-cmd{padding:clamp(56px,8cqi,100px) 0;background:var(--blanc)}
-.pv-in{max-width:1180px;margin:0 auto;padding:0 clamp(16px,3cqi,48px)}
-.pv-cmd h2{font-size:clamp(2.2rem,6.4cqi,3.8rem);color:var(--vert)}
-.pv-sous{margin-top:10px;max-width:50ch}
-.pv-cmd .s-resa{margin-top:30px}
-.pv-cmd .s-resa-q{font:italic 500 1.1rem/1 Spectral,serif;color:#55605A}
-.pv-cmd .s-cmd-ligne{border-bottom:1px solid #D9D9D0}
-.pv-cmd .s-cmd-ligne small{display:block;color:#55605A}
-.pv-cmd .s-pas-b{background:var(--gris);color:var(--vert);border-radius:0}
-.pv-cmd .s-puce,.pv-cmd .s-heure{background:var(--gris);border-radius:0}
-.pv-cmd .s-puce.on,.pv-cmd .s-heure.on{background:var(--vert);color:var(--blanc)}
-.pv-cmd .s-resa-pied{border-top:3px double var(--vert)}
-.pv-cmd .s-btn{background:var(--vert);color:var(--blanc);font-weight:600;border-radius:0}
-.pv-cmd .s-btn--2{background:transparent;color:var(--vert);box-shadow:inset 0 0 0 2px var(--vert)}
-.pv-cmd .s-champ input{border:1px solid #A9AEA6;border-radius:0;background:#fff}
-.pv-cmd .s-fin-titre{font:400 2rem/1 Ultra,serif;color:var(--vert)}
+.pv-bout{display:grid;gap:34px;padding:0 clamp(18px,4cqi,56px) clamp(64px,9cqi,120px)}
+.pv-bout figure{position:relative;margin:0;aspect-ratio:3/2;overflow:hidden}
+.pv-bout figure img{width:100%;height:100%;object-fit:cover}
+.pv-ville{margin-top:8px;color:var(--gris)}
+.pv-hor{margin-top:24px;max-width:460px}
+.pv-hor div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--trait)}
+.pv-hor dt{font-weight:600}.pv-hor dd{text-align:right;font-variant-numeric:tabular-nums}
+.pv-hn{margin-top:8px;font-size:.84rem;color:var(--gris)}
+.pv-tel2{margin-top:20px;font-size:2rem}
+.pv-tel2 a{text-decoration:none;color:var(--vert)}
+@container site (min-width:900px){.pv-bout{grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}}
 
-.pv-venir{display:grid;gap:0;background:var(--vert);color:var(--blanc)}
-.pv-plaque{padding:clamp(48px,8cqi,90px) clamp(16px,3cqi,48px) 28px}
-.pv-plaque h2{font-size:clamp(2.4rem,8cqi,4.6rem);color:var(--blanc)}
-.pv-plaque p{margin-top:12px;font-size:1.15rem;color:#D8E3DC}
-.pv-heures{padding:0 clamp(16px,3cqi,48px) clamp(48px,8cqi,90px)}
-.pv-heures dl{max-width:480px;border-top:2px solid var(--laiton)}
-.pv-heures div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.18)}
-.pv-heures dt{font-weight:600}.pv-heures dd{text-align:right;font-variant-numeric:tabular-nums}
-.pv-hn{margin-top:10px;font-size:.88rem;color:#B9CBBF}
-.pv-tel{margin-top:22px;font:400 1.8rem/1 Ultra,serif}
-.pv-tel a{text-decoration:none;color:var(--laiton)}
-@container site (min-width:860px){.pv-venir{grid-template-columns:1fr 1fr;align-items:center}.pv-heures{padding-top:clamp(48px,8cqi,90px)}}
-.pv-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:20px clamp(16px,3cqi,48px) 28px;background:var(--vert-n);color:#B9CBBF;font-size:.9rem}
-.pv-pied span{margin-right:auto;font:400 1.1rem/1 Ultra,serif;color:var(--blanc)}
-.pv .legal h1{display:block;font-size:2.2rem;text-transform:none;text-shadow:none;color:var(--vert)}
+.pv-pied{display:grid;gap:26px;padding:56px clamp(18px,4cqi,56px) 40px;background:var(--vert);color:#D9DED7;font-size:.92rem}
+.pv-pied-logo{display:grid;font-size:2.4rem;line-height:1;color:var(--creme)}
+.pv-pied-logo span{font:700 .62rem/1 Karla,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--laiton);margin-bottom:8px}
+.pv-pied>div{display:grid;gap:14px;padding-top:20px;border-top:1px solid rgba(244,239,228,.18)}
+@container site (min-width:820px){.pv-pied>div{grid-template-columns:repeat(3,1fr)}}
+.pv .legal h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:2.6rem}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Boucherie du Pont Vert</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Boucherie du Pont Vert</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni prix, ni horaires en ligne : ceux de la maquette sont des exemples. La photo de la vitrine est une photo d&#39;illustration : on la remplace par une photo de votre boutique.</p><ul><li>Ce site a été dessiné pour Boucherie du Pont Vert, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Boucherie%20du%20Pont%20Vert.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Boucherie du Pont Vert</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Boucherie du Pont Vert</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni prix, ni horaires en ligne : ceux de la maquette sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de votre boutique.</p><ul><li>Ce site a été dessiné pour Boucherie du Pont Vert, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Boucherie%20du%20Pont%20Vert.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site pv" data-metier="boucherie"><main data-page="accueil">
 <header class="pv-tete" data-sec="tete">
-  <a class="pv-marque" href="#page-accueil">Pont Vert</a>
-  <a class="pv-tete-t" href="tel:+33325400983">03 25 40 09 83</a>
+  <a class="pv-tel" href="tel:+33325400983">03 25 40 09 83</a>
+  <a class="pv-logo" href="#page-accueil"><span>Boucherie</span>du Pont Vert<small>Rue de Preize · Troyes</small></a>
+  <a class="pv-cta" href="#commander">Commander</a>
+  <nav class="pv-nav"><a href="#viandes">Nos viandes</a><a href="#vitrine">La vitrine</a><a href="#commander">Commander</a><a href="#boutique">La boutique</a></nav>
 </header>
 
-<section class="pv-facade" data-sec="devanture">
-  <div class="pv-enseigne"><h1><span>Boucherie du</span> Pont Vert</h1></div>
-  <div class="pv-store" aria-hidden="true"></div>
-  <div class="pv-rdc">
-    <figure class="pv-vitre">
-      <img class="" src="../../atelier/photos/boucherie/7741801.webp" srcset="../../atelier/photos/boucherie/7741801-m.webp 760w, ../../atelier/photos/boucherie/7741801.webp 1600w" sizes="(min-width: 900px) 760px, 100vw" alt="Jarrets de bœuf dans un plateau de vitrine (photo d&#39;illustration)" data-illu style="background-color:#593e2e" fetchpriority="high" decoding="async">
-      <p class="pv-peint" aria-hidden="true">Découpe<br>à la demande</p>
-      <span class="illu">Photo d'illustration</span>
-    </figure>
-    <div class="pv-porte">
-      <span class="pv-num">120</span>
-      <div class="pv-carreau-porte"><p class="pv-ecriteau" data-statut><i></i><span></span></p></div>
-    </div>
-  </div>
-  <div class="pv-soubas" aria-hidden="true"></div>
-</section>
-
-<section class="pv-trottoir" data-sec="trottoir">
-  <p class="pv-phrase">On vous conseille la bonne pièce, et on la coupe comme vous la voulez.</p>
-  <div class="pv-col">
-    <p>Pour ne pas attendre au comptoir, commandez avant de passer : votre commande est prête, emballée, à votre nom.</p>
+<section class="pv-une" data-sec="une">
+  <div class="pv-une-t">
+    <p class="pv-k">Boucherie de quartier</p>
+    <h1>Le boucher de la rue&nbsp;de&nbsp;Preize.</h1>
+    <p>On vous conseille la bonne pièce et on la coupe comme vous la voulez. Pour ne pas attendre au comptoir, commandez avant de passer.</p>
     <a class="s-btn pv-btn" href="#commander">Commander pour le retrait</a>
-    <p class="pv-note"><span class="pv-st" data-statut><i></i><span></span></span>4,6 sur Google, 298 avis</p>
+    <p class="pv-st" data-statut><i></i><span></span></p>
   </div>
+  <figure class="pv-une-f"><img class="" src="../../atelier/photos/boucherie/8477298.webp" srcset="../../atelier/photos/boucherie/8477298-m.webp 760w, ../../atelier/photos/boucherie/8477298.webp 1600w" sizes="(min-width: 900px) 58vw, 100vw" alt="Un boucher en tablier rayé tranche une pièce de bœuf (photo d&#39;illustration)" data-illu style="background-color:#443e39" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+</section>
+<ul class="pv-bande" data-sec="bande">
+  <li>Découpe à la demande</li><li>Commande prête à l'heure</li><li>Réglée en boutique</li><li>4,6 sur Google · 298 avis</li>
+</ul>
+
+<section class="pv-cats" id="viandes" data-sec="viandes">
+  <h2>Nos viandes</h2>
+  <div class="pv-cats-g"><a class="pv-cat" href="#commander"><figure><img class="" src="../../atelier/photos/boucherie/5643415.webp" srcset="../../atelier/photos/boucherie/5643415-m.webp 760w, ../../atelier/photos/boucherie/5643415.webp 1600w" sizes="(min-width: 900px) 30vw, 100vw" alt="Le bœuf (photo d&#39;illustration)" data-illu style="background-color:#584b4b" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>Le bœuf</h3><p>Côte, entrecôte, rôti, bourguignon.</p></a><a class="pv-cat" href="#commander"><figure><img class="" src="../../atelier/photos/boucherie/10842249.webp" srcset="../../atelier/photos/boucherie/10842249-m.webp 760w, ../../atelier/photos/boucherie/10842249.webp 1600w" sizes="(min-width: 900px) 30vw, 100vw" alt="La volaille (photo d&#39;illustration)" data-illu style="background-color:#aea59a" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>La volaille</h3><p>Poulet entier, cuisses, escalopes.</p></a><a class="pv-cat" href="#commander"><figure><img class="" src="../../atelier/photos/boucherie/8477222.webp" srcset="../../atelier/photos/boucherie/8477222-m.webp 760w, ../../atelier/photos/boucherie/8477222.webp 1067w" sizes="(min-width: 900px) 30vw, 100vw" alt="Les préparations (photo d&#39;illustration)" data-illu style="background-color:#887877" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure><h3>Les préparations</h3><p>Steaks hachés, brochettes, rôtis ficelés.</p></a></div>
 </section>
 
-<section class="pv-vit" id="prix" data-sec="vitrine">
-  <h2>Dans la vitrine</h2>
-  <p class="pv-vit-s">Prix au kilo. Ce sont des exemples : on met les vôtres.</p>
-  <ul class="pv-piques"><li class="pv-pique pv-p0"><span>Côte de bœuf</span><b>29,90<small>€ le kg</small></b></li><li class="pv-pique pv-p1"><span>Entrecôte</span><b>32,90<small>€ le kg</small></b></li><li class="pv-pique pv-p2"><span>Faux-filet</span><b>27,90<small>€ le kg</small></b></li><li class="pv-pique pv-p3"><span>Bavette</span><b>24,90<small>€ le kg</small></b></li><li class="pv-pique pv-p0"><span>Rôti de bœuf</span><b>26,90<small>€ le kg</small></b></li><li class="pv-pique pv-p1"><span>Viande hachée</span><b>15,90<small>€ le kg</small></b></li><li class="pv-pique pv-p2"><span>Gigot d&#39;agneau</span><b>22,90<small>€ le kg</small></b></li><li class="pv-pique pv-p3"><span>Côtelettes d&#39;agneau</span><b>24,90<small>€ le kg</small></b></li><li class="pv-pique pv-p0"><span>Poulet entier</span><b>6,90<small>€ le kg</small></b></li></ul>
+<section class="pv-vit" id="vitrine" data-sec="vitrine">
+  <figure><img class="" src="../../atelier/photos/boucherie/40429442.webp" srcset="../../atelier/photos/boucherie/40429442-m.webp 760w, ../../atelier/photos/boucherie/40429442.webp 1280w" sizes="(min-width: 900px) 45vw, 100vw" alt="Vitrine de boucherie, pièces de bœuf et d&#39;agneau (photo d&#39;illustration)" data-illu style="background-color:#904d42" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+  <div class="pv-vit-t">
+    <p class="pv-k">La vitrine</p>
+    <h2>Les prix au kilo</h2>
+    <ul><li><span>Côte de bœuf</span><i aria-hidden="true"></i><b>29,90 €</b></li><li><span>Entrecôte</span><i aria-hidden="true"></i><b>32,90 €</b></li><li><span>Rôti de bœuf</span><i aria-hidden="true"></i><b>26,90 €</b></li><li><span>Bourguignon</span><i aria-hidden="true"></i><b>16,90 €</b></li><li><span>Gigot d&#39;agneau</span><i aria-hidden="true"></i><b>22,90 €</b></li><li><span>Poulet entier</span><i aria-hidden="true"></i><b>6,90 €</b></li><li><span>Steak haché</span><i aria-hidden="true"></i><b>15,90 €</b></li></ul>
+    <p class="pv-ex">Prix donnés en exemple : on affiche les vôtres.</p>
+  </div>
 </section>
 
 <section class="pv-cmd" id="commander" data-sec="commande">
-  <div class="pv-in">
-    <h2>Commander pour le retrait</h2>
-    <p class="pv-sous">Choisissez vos pièces et l'heure de passage. On prépare, vous payez à la boutique.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Côte de bœuf" data-prix="29,90" data-unite="le kg"><p><b>Côte de bœuf</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Entrecôte" data-prix="32,90" data-unite="le kg"><p><b>Entrecôte</b><small>32,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Bavette" data-prix="24,90" data-unite="le kg"><p><b>Bavette</b><small>24,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Viande hachée" data-prix="15,90" data-unite="le kg"><p><b>Viande hachée</b><small>15,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Gigot d&#39;agneau" data-prix="22,90" data-unite="le kg"><p><b>Gigot d&#39;agneau</b><small>22,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Poulet entier" data-prix="6,90" data-unite="le kg"><p><b>Poulet entier</b><small>6,90 € le kg</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
+  <div class="pv-cmd-h"><p class="pv-k">Retrait en boutique</p><h2>Commander avant de passer</h2><p>Choisissez vos pièces et l'heure : on prépare, on emballe à votre nom. Vous réglez au comptoir.</p></div>
+  <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Côte de bœuf" data-prix="29,90" data-unite="le kg"><p><b>Côte de bœuf</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Entrecôte" data-prix="32,90" data-unite="le kg"><p><b>Entrecôte</b><small>32,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Rôti de bœuf" data-prix="26,90" data-unite="le kg"><p><b>Rôti de bœuf</b><small>26,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Bourguignon" data-prix="16,90" data-unite="le kg"><p><b>Bourguignon</b><small>16,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Gigot d&#39;agneau" data-prix="22,90" data-unite="le kg"><p><b>Gigot d&#39;agneau</b><small>22,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Poulet entier" data-prix="6,90" data-unite="le kg"><p><b>Poulet entier</b><small>6,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Steak haché" data-prix="15,90" data-unite="le kg"><p><b>Steak haché</b><small>15,90 € le kg</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
+</section>
+
+<section class="pv-bout" id="boutique" data-sec="boutique">
+  <figure><img class="" src="../../atelier/photos/boucherie/29834275.webp" srcset="../../atelier/photos/boucherie/29834275-m.webp 760w, ../../atelier/photos/boucherie/29834275.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="Comptoir et vitrines d&#39;une boucherie (photo d&#39;illustration)" data-illu style="background-color:#726a5e" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+  <div>
+    <p class="pv-k">La boutique</p>
+    <h2>120 rue de Preize</h2>
+    <p class="pv-ville">10000 Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Boucherie%20du%20Pont%20Vert%20120%20rue%20de%20Preize%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a></p>
+    <dl class="pv-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – vendredi</dt><dd>8 h – 12 h 30, 14 h 30 – 19 h 30</dd></div><div><dt>Samedi</dt><dd>8 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>8 h 30 – 12 h 30</dd></div></dl>
+    <p class="pv-hn">Horaires donnés en exemple, à confirmer.</p>
+    <p class="pv-tel2"><a href="tel:+33325400983">03 25 40 09 83</a></p>
   </div>
 </section>
 
-<section class="pv-venir" data-sec="venir">
-  <div class="pv-plaque">
-    <h2>120 rue de Preize</h2>
-    <p>10000 Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Boucherie%20du%20Pont%20Vert%20120%20rue%20de%20Preize%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a></p>
-  </div>
-  <div class="pv-heures">
-    <dl><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – vendredi</dt><dd>8 h – 12 h 30, 14 h 30 – 19 h 30</dd></div><div><dt>Samedi</dt><dd>8 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>8 h 30 – 12 h 30</dd></div></dl>
-    <p class="pv-hn">Horaires d'exemple, à confirmer avec la boutique.</p>
-    <p class="pv-tel"><a href="tel:+33325400983">03 25 40 09 83</a></p>
-  </div>
-</section>
-<footer class="pv-pied" data-sec="pied"><span>Boucherie du Pont Vert</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Boucherie du Pont Vert, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 120 rue de Preize, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 40 09 83</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Boucherie du Pont Vert. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Boucherie du Pont Vert au 03 25 40 09 83. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
+<footer class="pv-pied" data-sec="pied">
+  <p class="pv-pied-logo"><span>Boucherie</span>du Pont Vert</p>
+  <div><p>120 rue de Preize<br>10000 Troyes</p><p><a href="tel:+33325400983">03 25 40 09 83</a></p><p><a href="#page-mentions">Mentions légales</a> · <a href="#page-confidentialite">Confidentialité</a></p></div>
+</footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Boucherie du Pont Vert, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 120 rue de Preize, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 40 09 83</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Boucherie du Pont Vert. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Boucherie du Pont Vert au 03 25 40 09 83. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
    Horaires en direct, prise de rendez-vous, commande à retirer, compte à rebours,
    galerie, formulaire de contact, menu mobile, pages. Aucun cookie, aucun traceur. */
@@ -623,6 +616,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#0E2A1F}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:30","f":"12:30","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 40 09 83","email":"","nom":"Boucherie du Pont Vert"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#173F2E;color:#fff">B</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Boucherie du Pont Vert. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:30","f":"12:30","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 40 09 83","email":"","nom":"Boucherie du Pont Vert"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#1F3B2F;color:#fff">B</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Boucherie du Pont Vert. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>

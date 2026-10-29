@@ -6,17 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Handsome Barber</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Handsome Barber. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#121212">
+<meta name="theme-color" content="#0F0F0F">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/bodoni-moda-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/bodoni-moda-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/bodoni-moda-latin-400-italic.woff2) format("woff2")}
-@font-face{font-family:"Darker";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/darker-grotesque-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Darker";font-style:normal;font-weight:900;font-display:swap;src:url(../polices/darker-grotesque-latin-900-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/onest-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/onest-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Onest";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/onest-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Italiana";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/italiana-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/inter-tight-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/inter-tight-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/inter-tight-latin-600-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -106,137 +102,126 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#F2EFE8}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#FFFFFF}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.hb{--papier:#F2EFE8;--encre:#121212;--jaune:#FFD21F;--rose:#E8456B;--gris:#6B6760;
-  background:var(--papier);color:var(--encre);font:400 17px/1.55 Onest,system-ui,sans-serif}
-.hb h1,.hb h2,.hb-chapo,.hb-ours-t,.hb-sommaire b{font-family:"Bodoni Moda",Didot,serif}
-.hb-tete{display:flex;justify-content:space-between;align-items:center;padding:12px clamp(16px,3cqi,40px);border-bottom:1px solid var(--encre)}
-.hb-mini{font:700 1.3rem/1 "Bodoni Moda",serif;text-decoration:none;letter-spacing:-.01em}
-.hb-tete-r{font-weight:600;text-decoration:none;border-bottom:2px solid var(--jaune)}
+.hb{--blanc:#FFFFFF;--noir:#0F0F0F;--pierre:#8A8782;--trait:rgba(15,15,15,.14);
+  background:var(--blanc);color:var(--noir);font:400 15.5px/1.65 "Inter Tight",system-ui,sans-serif}
+.hb h1,.hb h2,.hb-logo{font-family:Italiana,Didot,serif;font-weight:400}
+.hb-tete{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,4cqi,56px)}
+.hb-logo{font-size:1.5rem;letter-spacing:.3em;text-transform:uppercase;text-decoration:none}
+.hb-nav{display:flex;gap:22px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
+.hb-nav a{text-decoration:none}.hb-nav a:hover{text-decoration:underline;text-underline-offset:6px}
+.hb-nav a:not([href="#rendez-vous"]){display:none}
+@container site (min-width:900px){.hb-nav a:not([href="#rendez-vous"]){display:inline}}
 
-.hb-une{display:grid;gap:30px;padding:24px clamp(14px,3cqi,40px) 50px}
-.hb-couv{position:relative;aspect-ratio:3/4;max-width:640px;width:100%;margin:0 auto;overflow:hidden;background:#222;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
-.hb-photo{position:absolute;inset:0;margin:0}
-.hb-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(1) contrast(1.12) brightness(.95)}
-.hb-titre{position:absolute;left:0;right:0;top:3%;text-align:center;color:#fff;font-weight:700;font-size:clamp(3.6rem,17cqi,7.6rem);line-height:.82;letter-spacing:-.045em;mix-blend-mode:normal;text-shadow:0 2px 20px rgba(0,0,0,.25)}
-.hb-titre span{display:block;font-size:.34em;font-style:italic;font-weight:400;letter-spacing:.01em;margin-top:.15em}
-.hb-num{position:absolute;left:4%;top:calc(3% + clamp(4.6rem,22cqi,9.6rem));font:900 .8rem/1 Darker,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--encre);padding:5px 8px}
-.hb-lignes{position:absolute;left:4%;bottom:5%;display:grid;gap:10px;max-width:58%}
-.hb-lignes li{font:700 1.02rem/1.05 Darker,sans-serif;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
-.hb-lignes b{display:block;font-weight:900;font-size:1.9em;line-height:.9;text-transform:uppercase;letter-spacing:-.01em}
-.hb-l1 b{color:var(--jaune)}.hb-l2 b{color:#fff}.hb-l3 b{display:inline-block;background:var(--rose);color:#fff;padding:2px 6px;text-shadow:none;margin-bottom:3px}
-.hb-code{position:absolute;right:4%;bottom:4%;padding:6px 6px 3px;background:#fff;display:grid;justify-items:center}
-.hb-code i{display:block;width:74px;height:34px;background:repeating-linear-gradient(90deg,#111 0 2px,#fff 2px 3px,#111 3px 4px,#fff 4px 6px,#111 6px 9px,#fff 9px 10px)}
-.hb-code span{font:500 8px/1.2 Onest,sans-serif;letter-spacing:.06em;color:#111}
-.hb-edito{max-width:520px}
-.hb-edito-t{font:900 .85rem/1 Darker,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
-.hb-chapo{margin-top:12px;font-size:clamp(1.5rem,4cqi,2.2rem);line-height:1.18;font-style:italic}
-.hb-statut{display:flex;align-items:center;gap:10px;margin-top:18px;color:var(--gris)}
-.hb-statut i{width:10px;height:10px;border-radius:50%;background:var(--encre)}.hb-statut.ferme i{background:#B8B2A6}
-.hb-btn{margin-top:22px;background:var(--encre);color:var(--papier);border-radius:0;font-weight:600}
-.hb-btn:hover{background:var(--rose)}
-@container site (min-width:900px){.hb-une{grid-template-columns:minmax(0,640px) minmax(0,1fr);align-items:end;gap:56px;padding-top:36px}.hb-couv{margin:0}}
-@media (prefers-reduced-motion:no-preference){.hb-code i{animation:hb-scan 1.2s .8s steps(6) both}@keyframes hb-scan{from{background-position:-40px 0}}}
+.hb-une{padding:clamp(18px,3cqi,40px) clamp(18px,4cqi,56px) clamp(56px,8cqi,100px)}
+.hb h1{display:grid;font-size:clamp(3.4rem,18.2cqi,15.5rem);line-height:.86;letter-spacing:.02em;text-transform:uppercase;border-bottom:1px solid var(--noir);padding-bottom:16px}
+.hb h1 span{font:500 .78rem/1.4 "Inter Tight",sans-serif;letter-spacing:.24em;margin-top:14px;color:var(--pierre)}
+.hb-grille{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.hb-grille figure{margin:0}
+.hb-grille img{width:100%;object-fit:cover;filter:grayscale(1) contrast(1.06)}
+.hb-f1{grid-column:1/-1}.hb-f1 img{aspect-ratio:16/10}
+.hb-f2 img,.hb-f3 img{aspect-ratio:3/4}
+.hb-f3{margin-top:48px!important}
+.hb-grille figcaption{margin-top:8px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pierre)}
+.hb-texte{grid-column:1/-1;display:grid;gap:18px;align-content:start;max-width:36ch}
+.hb-texte>p:first-child{font-size:1.12rem}
+.hb-btn{justify-self:start;background:var(--noir);color:#fff;border-radius:0;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:0 26px}
+.hb-btn:hover{background:#333}
+.hb-info{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.86rem;color:var(--pierre)}
+.hb-st{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--noir)}
+.hb-st i{width:6px;height:6px;border-radius:50%;background:var(--noir)}.hb-st.ferme i{background:#BDBAB4}
+.hb-illu{margin-top:18px;font-size:.78rem;color:var(--pierre)}
+@container site (min-width:900px){
+  .hb-grille{grid-template-columns:1.6fr .7fr .7fr;grid-template-rows:auto auto;gap:24px;align-items:start}
+  .hb-f1{grid-column:1;grid-row:1/3}
+  .hb-texte{grid-column:2/4;grid-row:1}
+  .hb-f2{grid-column:2;grid-row:2}.hb-f3{grid-column:3;grid-row:2}
+}
+@media (prefers-reduced-motion:no-preference){.hb h1{animation:hb-souffle 1.6s cubic-bezier(.2,.7,.2,1) both}@keyframes hb-souffle{from{letter-spacing:-.04em;opacity:0}}}
 
-.hb-sommaire{max-width:900px;margin:0 auto;padding:clamp(56px,9cqi,110px) clamp(16px,3cqi,40px);border-top:1px solid var(--encre)}
-.hb h2{font-size:clamp(2.6rem,8cqi,5rem);font-weight:400;font-style:italic;line-height:1;letter-spacing:-.02em}
-.hb-sommaire ol{margin-top:26px;counter-reset:s}
-.hb-sommaire li{display:grid;grid-template-columns:5.2ch 1fr auto;align-items:baseline;gap:16px;padding:14px 0;border-top:1px solid #CFC9BC}
-.hb-sommaire b{font-size:1.9rem;font-weight:400;font-variant-numeric:lining-nums}
-.hb-sommaire span{font-size:1.15rem;font-weight:500}
-.hb-sommaire em{font-style:normal;color:var(--gris);font-size:.9rem}
-.hb-ex{margin-top:14px;font-size:.85rem;color:var(--gris)}
+.hb-index{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px);border-top:1px solid var(--trait)}
+.hb h2{font-size:clamp(2.6rem,7cqi,5.4rem);line-height:1;text-transform:uppercase;letter-spacing:.06em;margin-bottom:28px}
+.hb-index ol{border-top:1px solid var(--noir)}
+.hb-index li{display:grid;grid-template-columns:40px 1fr auto;align-items:baseline;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--trait)}
+.hb-index span{font-size:.74rem;letter-spacing:.14em;color:var(--pierre)}
+.hb-index p{font-weight:500;font-size:1.08rem}
+.hb-index small{grid-column:2;grid-row:2;color:var(--pierre)}
+.hb-index b{grid-column:3;grid-row:1/3;font-weight:400;font-size:1.35rem;letter-spacing:.02em;font-variant-numeric:tabular-nums;align-self:center}
+.hb-ex{margin-top:12px;font-size:.84rem;color:var(--pierre)}
+@container site (min-width:900px){.hb-index li{grid-template-columns:60px 1fr 160px auto}.hb-index small{grid-column:3;grid-row:1}.hb-index b{grid-column:4;grid-row:1}}
 
-.hb-planche{display:grid;gap:18px;padding:0 clamp(16px,3cqi,40px) clamp(56px,9cqi,100px)}
-.hb-planche figure{margin:0}
-.hb-planche img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1) contrast(1.1)}
-.hb-planche figure:last-child img{aspect-ratio:3/2}
-.hb-planche figcaption{margin-top:8px;font:italic 400 1rem/1.3 "Bodoni Moda",serif}
-.hb-planche figcaption em{font:400 .78rem/1 Onest,sans-serif;color:var(--gris);font-style:normal}
-@container site (min-width:900px){.hb-planche{grid-template-columns:2fr 3fr;align-items:end}}
+.hb-resa{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px);background:var(--noir);color:#fff}
+.hb-resa .hb-ex{color:#A8A5A0;margin:0 0 28px}
+.hb-resa .s-resa-q{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#A8A5A0}
+.hb-resa .s-service{border-bottom:1px solid rgba(255,255,255,.12);padding:15px 0}
+.hb-resa .s-service small{color:#A8A5A0}
+.hb-resa .s-service.on{box-shadow:inset 2px 0 0 #fff;padding-left:14px;font-weight:600}
+.hb-resa .s-puce,.hb-resa .s-heure{background:#1E1E1E;color:#fff;border-radius:0}
+.hb-resa .s-puce.on,.hb-resa .s-heure.on{background:#fff;color:var(--noir)}
+.hb-resa .s-resa-pied{border-top:1px solid rgba(255,255,255,.3)}
+.hb-resa .s-btn{background:#fff;color:var(--noir);border-radius:0;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.hb-resa .s-btn--2{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px #fff}
+.hb-resa .s-champ input{background:#1E1E1E;color:#fff;border:1px solid #3A3A3A;border-radius:0}
+.hb-resa .s-lien{color:#fff}
+.hb-resa .s-fin-titre{font:400 2.6rem/1 Italiana,serif;text-transform:uppercase}
 
-.hb-resa{background:var(--encre);color:var(--papier);padding:clamp(56px,9cqi,110px) 0}
-.hb-in{max-width:1080px;margin:0 auto;padding:0 clamp(16px,3cqi,40px)}
-.hb-sous{margin-top:10px;color:#BDB7AB;max-width:56ch}
-.hb-resa .s-resa{margin-top:28px}
-.hb-resa .s-resa-q{font:900 .82rem/1 Darker,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--jaune)}
-.hb-resa .s-service{border-bottom:1px solid #333;padding:13px 0}
-.hb-resa .s-service small{color:#BDB7AB}
-.hb-resa .s-service.on span{background:var(--jaune);color:var(--encre);padding:0 4px}
-.hb-resa .s-puce{background:#222;color:var(--papier);border-radius:0}
-.hb-resa .s-puce.on{background:var(--papier);color:var(--encre)}
-.hb-resa .s-heure{background:#222;color:var(--papier);border-radius:0}
-.hb-resa .s-heure.on{background:var(--rose)}
-.hb-resa .s-resa-pied{border-top:1px solid #444}
-.hb-resa .s-btn{background:var(--jaune);color:var(--encre);border-radius:0;font-weight:600}
-.hb-resa .s-champ input{border:0;background:var(--papier);color:var(--encre);border-radius:0}
-.hb-resa .s-fin-titre{font:italic 400 2rem/1 "Bodoni Moda",serif}
-.hb-resa .s-btn--2{background:transparent;border:1px solid var(--papier);color:var(--papier)}
-.hb-resa .s-lien{color:var(--papier)}
-
-.hb-ours{padding:44px clamp(16px,3cqi,40px) 40px;border-top:6px double var(--encre);font-size:.9rem}
-.hb-ours-t{font-size:2rem;font-weight:700;letter-spacing:-.03em}
-.hb-ours dl{display:grid;gap:10px;margin-top:16px;max-width:900px}
-.hb-ours dl div{display:grid;grid-template-columns:9em 1fr;gap:12px}
-.hb-ours dt{font:900 .78rem/1.6 Darker,sans-serif;letter-spacing:.14em;text-transform:uppercase}
-.hb-legal{margin-top:22px;color:var(--gris)}
-.hb .legal h1{font-family:"Bodoni Moda",serif}
+.hb-adresse{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px)}
+.hb-adr-g{display:grid;gap:22px;padding-top:20px;border-top:1px solid var(--noir);font-size:1.05rem}
+.hb-adr-g a{text-underline-offset:4px}
+.hb-hor div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--trait)}
+.hb-hor dd{text-align:right;font-variant-numeric:tabular-nums}
+@container site (min-width:900px){.hb-adr-g{grid-template-columns:1fr 1fr 1.2fr;gap:48px}}
+.hb-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:22px clamp(18px,4cqi,56px) 30px;border-top:1px solid var(--trait);font-size:.8rem;letter-spacing:.06em;color:var(--pierre)}
+.hb-pied span{margin-right:auto;font:400 1.1rem/1 Italiana,serif;letter-spacing:.24em;text-transform:uppercase;color:var(--noir)}
+.hb .legal h1{display:block;border:0;font-size:2.8rem;text-transform:none;letter-spacing:0}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Handsome Barber</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Handsome Barber</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai pas trouvé de site : les prix, les horaires et les textes sont des exemples, à remplacer par les vôtres. Les photos sont des photos d&#39;illustration.</p><ul><li>Ce site a été dessiné pour Handsome Barber, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients réservent seuls, depuis leur téléphone. Chaque rendez-vous arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Handsome%20Barber.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Handsome Barber</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Handsome Barber</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site ni tarifs en ligne : les prix et les horaires sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de votre salon.</p><ul><li>Ce site a été dessiné pour Handsome Barber, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients réservent seuls, depuis leur téléphone. Chaque rendez-vous arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Handsome%20Barber.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site hb" data-metier="barbier"><main data-page="accueil">
-<header class="hb-tete" data-sec="tete"><a href="#page-accueil" class="hb-mini">Handsome</a><a href="#reserver" class="hb-tete-r">Réserver</a></header>
+<header class="hb-tete" data-sec="tete">
+  <a class="hb-logo" href="#page-accueil">Handsome</a>
+  <nav class="hb-nav"><a href="#index">Index</a><a href="#rendez-vous">Rendez-vous</a><a href="#adresse">Adresse</a></nav>
+</header>
+
 <section class="hb-une" data-sec="une">
-  <div class="hb-couv">
-    <figure class="hb-photo"><img class="" src="../../atelier/photos/barbier/3998414.webp" srcset="../../atelier/photos/barbier/3998414-m.webp 760w, ../../atelier/photos/barbier/3998414.webp 1600w" sizes="(min-width: 900px) 640px, 100vw" alt="Un barbier égalise une longue barbe (photo d&#39;illustration)" data-illu style="background-color:#92817d" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
-    <h1 class="hb-titre">Handsome<span>Barber</span></h1>
-    <p class="hb-num">N° 1 · Troyes · 44 rue Turenne</p>
-    <ul class="hb-lignes">
-      <li class="hb-l1"><b>Le dégradé</b>net, à la tondeuse et aux ciseaux</li>
-      <li class="hb-l2"><b>Barbe</b>taillée, contours au rasoir</li>
-      <li class="hb-l3"><b>Réservez</b>en 30 secondes</li>
-    </ul>
-    <div class="hb-code" aria-hidden="true"><i></i><span>3 701044 202610</span></div>
+  <h1>Handsome<span>Barber · 44 rue Turenne · Troyes</span></h1>
+  <div class="hb-grille">
+    <figure class="hb-f1"><img class="" src="../../atelier/photos/barbier/18090356.webp" srcset="../../atelier/photos/barbier/18090356-m.webp 760w, ../../atelier/photos/barbier/18090356.webp 1600w" sizes="(min-width: 900px) 55vw, 100vw" alt="Rangée de fauteuils de barbier, en noir et blanc (photo d&#39;illustration)" data-illu style="background-color:#5b5b5b" fetchpriority="high" decoding="async"><figcaption>01 · Le salon</figcaption></figure>
+    <div class="hb-texte">
+      <p>Un salon neuf rue Turenne. Des coupes nettes, une barbe qu'on prend le temps de dessiner, et un rendez-vous qui se prend en trente secondes.</p>
+      <a class="s-btn hb-btn" href="#rendez-vous">Prendre rendez-vous</a>
+      <p class="hb-info"><span class="hb-st" data-statut><i></i><span></span></span><span>4,6 sur Google · 36 avis</span></p>
+    </div>
+    <figure class="hb-f2"><img class="" src="../../atelier/photos/barbier/9992819.webp" srcset="../../atelier/photos/barbier/9992819-m.webp 760w, ../../atelier/photos/barbier/9992819.webp 1067w" sizes="(min-width: 900px) 25vw, 50vw" alt="Un barbier coiffe un homme barbu (photo d&#39;illustration)" data-illu style="background-color:#73655c" fetchpriority="high" decoding="async"><figcaption>02 · La coupe</figcaption></figure>
+    <figure class="hb-f3"><img class="" src="../../atelier/photos/barbier/13450728.webp" srcset="../../atelier/photos/barbier/13450728-m.webp 760w, ../../atelier/photos/barbier/13450728.webp 1067w" sizes="(min-width: 900px) 25vw, 50vw" alt="Rasage au rasoir droit, en noir et blanc (photo d&#39;illustration)" data-illu style="background-color:#515151" loading="lazy" decoding="async"><figcaption>03 · Le rasoir</figcaption></figure>
   </div>
-  <div class="hb-edito">
-    <p class="hb-edito-t">Édito</p>
-    <p class="hb-chapo">Un salon neuf rue Turenne, des coupes nettes et une barbe qu'on prend le temps de dessiner. Choisissez votre créneau, on s'occupe du reste.</p>
-    <p class="hb-statut" data-statut><i></i><span></span></p>
-    <a class="s-btn hb-btn" href="#reserver">Prendre rendez-vous</a>
-  </div>
+  <p class="hb-illu">Photos d'illustration, à remplacer par celles du salon.</p>
 </section>
 
-<section class="hb-sommaire" id="prix" data-sec="sommaire">
-  <h2>Au sommaire</h2>
-  <ol><li><b>18 €</b><span>Coupe homme</span><em>30 min</em></li><li><b>20 €</b><span>Dégradé</span><em>30 min</em></li><li><b>26 €</b><span>Coupe et barbe</span><em>45 min</em></li><li><b>10 €</b><span>Taille de barbe</span><em>15 min</em></li><li><b>14 €</b><span>Coupe enfant, moins de 12 ans</span><em>20 min</em></li><li><b>20 €</b><span>Rasage à l&#39;ancienne</span><em>30 min</em></li></ol>
+<section class="hb-index" id="index" data-sec="index">
+  <h2>Index</h2>
+  <ol><li><span>01</span><p>Coupe homme</p><small>30 min</small><b>18 €</b></li><li><span>02</span><p>Dégradé</p><small>30 min</small><b>20 €</b></li><li><span>03</span><p>Coupe et barbe</p><small>45 min</small><b>26 €</b></li><li><span>04</span><p>Taille de barbe</p><small>15 min</small><b>10 €</b></li><li><span>05</span><p>Coupe enfant, moins de 12 ans</p><small>20 min</small><b>14 €</b></li><li><span>06</span><p>Rasage à l&#39;ancienne</p><small>30 min</small><b>20 €</b></li></ol>
   <p class="hb-ex">Prix d'exemple, à remplacer par ceux du salon.</p>
 </section>
 
-<section class="hb-planche" data-sec="planche">
-  <figure><img class="" src="../../atelier/photos/barbier/4625626.webp" srcset="../../atelier/photos/barbier/4625626-m.webp 760w, ../../atelier/photos/barbier/4625626.webp 1067w" sizes="(min-width: 900px) 40vw, 100vw" alt="Nuque dégradée à la tondeuse (photo d&#39;illustration)" data-illu style="background-color:#5d4b37" loading="lazy" decoding="async"><figcaption>Le dégradé. <em>Photo d'illustration.</em></figcaption></figure>
-  <figure><img class="" src="../../atelier/photos/barbier/12464838.webp" srcset="../../atelier/photos/barbier/12464838-m.webp 760w, ../../atelier/photos/barbier/12464838.webp 1600w" sizes="(min-width: 900px) 55vw, 100vw" alt="Finition au rasoir sur un dégradé (photo d&#39;illustration)" data-illu style="background-color:#796354" loading="lazy" decoding="async"><figcaption>La finition au rasoir. <em>Photo d'illustration.</em></figcaption></figure>
+<section class="hb-resa" id="rendez-vous" data-sec="resa">
+  <h2>Rendez-vous</h2>
+  <p class="hb-ex">Choisissez la prestation, puis le jour et l'heure. Le salon reçoit votre demande tout de suite.</p>
+  <div class="s-resa" data-resa data-pas="15"><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Prestation</p><div class="s-services" role="radiogroup"><button type="button" role="radio" class="s-service" data-nom="Coupe homme" data-duree="30" data-prix="18"><span>Coupe homme</span><small>30 min · 18 €</small></button><button type="button" role="radio" class="s-service" data-nom="Dégradé" data-duree="30" data-prix="20"><span>Dégradé</span><small>30 min · 20 €</small></button><button type="button" role="radio" class="s-service" data-nom="Coupe et barbe" data-duree="45" data-prix="26"><span>Coupe et barbe</span><small>45 min · 26 €</small></button><button type="button" role="radio" class="s-service" data-nom="Taille de barbe" data-duree="15" data-prix="10"><span>Taille de barbe</span><small>15 min · 10 €</small></button></div></div><div class="s-resa-col"><p class="s-resa-q">Jour et heure</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-resa-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Confirmer le rendez-vous</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="hb-resa" id="reserver" data-sec="resa">
-  <div class="hb-in">
-    <h2>Rendez-vous</h2>
-    <p class="hb-sous">Choisissez la prestation, puis le jour et l'heure. Le salon reçoit votre demande tout de suite.</p>
-    <div class="s-resa" data-resa data-pas="15"><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Prestation</p><div class="s-services" role="radiogroup"><button type="button" role="radio" class="s-service" data-nom="Coupe homme" data-duree="30" data-prix="18"><span>Coupe homme</span><small>30 min · 18 €</small></button><button type="button" role="radio" class="s-service" data-nom="Dégradé" data-duree="30" data-prix="20"><span>Dégradé</span><small>30 min · 20 €</small></button><button type="button" role="radio" class="s-service" data-nom="Coupe et barbe" data-duree="45" data-prix="26"><span>Coupe et barbe</span><small>45 min · 26 €</small></button><button type="button" role="radio" class="s-service" data-nom="Taille de barbe" data-duree="15" data-prix="10"><span>Taille de barbe</span><small>15 min · 10 €</small></button></div></div><div class="s-resa-col"><p class="s-resa-q">Jour et heure</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-resa-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Confirmer le rendez-vous</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
+<section class="hb-adresse" id="adresse" data-sec="adresse">
+  <h2>Adresse</h2>
+  <div class="hb-adr-g">
+    <p>44 rue Turenne<br>10000 Troyes<br><a href="https://www.google.com/maps/search/?api=1&query=Handsome%20Barber%2044%20rue%20Turenne%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a></p>
+    <p><a href="tel:+33609728639">06 09 72 86 39</a></p>
+    <dl class="hb-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – samedi</dt><dd>9 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>fermé</dd></div></dl>
   </div>
+  <p class="hb-ex">Horaires donnés en exemple, à confirmer.</p>
 </section>
-
-<footer class="hb-ours" data-sec="pied">
-  <p class="hb-ours-t">Handsome Barber</p>
-  <dl>
-    <div><dt>Adresse</dt><dd>44 rue Turenne, 10000 Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Handsome%20Barber%2044%20rue%20Turenne%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a></dd></div>
-    <div><dt>Téléphone</dt><dd><a href="tel:+33609728639">06 09 72 86 39</a></dd></div>
-    <div><dt>Horaires</dt><dd>Lundi : fermé · Mardi – samedi : 9 h – 19 h · Dimanche : fermé</dd></div>
-    <div><dt>Note Google</dt><dd>4,6 sur 5, 36 avis</dd></div>
-  </dl>
-  <p class="hb-legal"><a href="#page-mentions">Mentions légales</a> · <a href="#page-confidentialite">Confidentialité</a></p>
-</footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Handsome Barber, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 44 rue Turenne, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 06 09 72 86 39</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Handsome Barber. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Handsome Barber au 06 09 72 86 39. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
+<footer class="hb-pied" data-sec="pied"><span>Handsome Barber</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Handsome Barber, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 44 rue Turenne, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 06 09 72 86 39</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Handsome Barber. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Handsome Barber au 06 09 72 86 39. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
    Horaires en direct, prise de rendez-vous, commande à retirer, compte à rebours,
    galerie, formulaire de contact, menu mobile, pages. Aucun cookie, aucun traceur. */
@@ -596,6 +581,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#F2EFE8}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"06 09 72 86 39","email":"","nom":"Handsome Barber"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#E8456B;color:#fff">H</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Handsome Barber. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"06 09 72 86 39","email":"","nom":"Handsome Barber"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#0F0F0F;color:#fff">H</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Handsome Barber. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>

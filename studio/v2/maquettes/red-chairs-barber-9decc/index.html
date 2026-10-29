@@ -6,14 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Red Chair&#39;s Barber</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Red Chair&#39;s Barber. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#C8102E">
+<meta name="theme-color" content="#8E1B24">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"League Gothic";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/league-gothic-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/epilogue-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/epilogue-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/epilogue-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:800;font-display:swap;src:url(../polices/epilogue-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Bellefair";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/bellefair-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/familjen-grotesk-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/familjen-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/familjen-grotesk-latin-600-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -103,118 +102,117 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#C8102E}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#141212}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.rc{--rouge:#C8102E;--rouge-f:#8E0B20;--noir:#141011;--papier:#F1ECE4;
-  background:var(--papier);color:var(--noir);font:400 17px/1.5 Epilogue,system-ui,sans-serif}
-.rc h1,.rc h2,.rc-prog li,.rc-marque{font-family:"League Gothic","Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase}
-.rc-tete{display:flex;justify-content:space-between;align-items:center;padding:12px clamp(16px,3cqi,36px);background:var(--rouge);color:var(--papier)}
-.rc-marque{font-size:1.9rem;line-height:1;letter-spacing:.01em;text-decoration:none}
-.rc-tete-l{font-weight:700;text-decoration:none;border-bottom:2px solid}
+.rc{--creme:#F3EDE4;--creme-f:#E8E0D3;--noir:#141212;--rouge:#8E1B24;--rouge-c:#B0252F;--gris:#716A63;--trait:rgba(20,18,18,.14);
+  background:var(--creme);color:var(--noir);font:400 16.5px/1.62 "Familjen Grotesk",system-ui,sans-serif}
+.rc h1,.rc h2,.rc-logo,.rc-carte b,.rc-nb figcaption{font-family:Bellefair,Didot,serif;font-weight:400}
+.rc-k{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gris)}
+.rc-tete{display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,4cqi,56px);border-bottom:1px solid var(--trait)}
+.rc-logo{font-size:1.6rem;text-decoration:none;color:var(--rouge)}
+.rc-cta{padding:10px 20px;background:var(--rouge);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
+.rc-cta:hover{background:var(--rouge-c)}
 
-.rc-affiche{position:relative;display:grid;grid-template-columns:1fr;background:var(--rouge);color:var(--papier);padding:0 clamp(16px,3cqi,36px) 36px;overflow:hidden}
-.rc-affiche h1{display:grid;font-size:clamp(5rem,38cqi,30rem);line-height:.8;letter-spacing:-.01em;margin-top:6px}
-.rc-affiche h1 span:last-child{margin-top:-.02em}
-.rc-photo{position:relative;margin:18px 0 0;aspect-ratio:4/5;background:var(--rouge-f);overflow:hidden}
-.rc-photo img,.rc-gros img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);mix-blend-mode:multiply}
-.rc-bas{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:18px;padding-top:12px;border-top:3px solid var(--papier);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
-.rc-acc{margin-top:14px;max-width:32ch;font-size:1.15rem;font-weight:500}
-.rc-btn{justify-self:start;margin-top:22px;background:var(--noir);color:var(--papier);font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:0}
-.rc-btn:hover{background:var(--papier);color:var(--rouge)}
-@container site (min-width:860px){
-  .rc-affiche{grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto auto auto 1fr;column-gap:36px;min-height:min(100svh - 92px,820px);padding-bottom:40px}
-  .rc-affiche h1{grid-column:1;grid-row:1/3;font-size:clamp(12rem,27cqi,24rem)}
-  .rc-photo{grid-column:2;grid-row:1/6;margin:18px 0 0;aspect-ratio:auto}
-  .rc-bas{grid-column:1;grid-row:3}.rc-acc{grid-column:1;grid-row:4;align-self:start}
-  .rc-btn{grid-column:1;grid-row:5;align-self:start}
-}
-@media (prefers-reduced-motion:no-preference){
-  .rc-photo img{animation:rc-vire 1.4s .3s ease-out both}
-  @keyframes rc-vire{from{mix-blend-mode:normal;filter:grayscale(1) contrast(1.1)}}
-}
+.rc-une{display:grid}
+.rc-une-f{position:relative;margin:0;aspect-ratio:4/5;max-height:640px;overflow:hidden}
+.rc-une-f img{width:100%;height:100%;object-fit:cover}
+.rc-une-t{display:grid;gap:20px;align-content:center;padding:clamp(40px,6cqi,90px) clamp(18px,5cqi,80px)}
+.rc h1{font-size:clamp(4.2rem,11cqi,9.6rem);line-height:.88;color:var(--rouge);letter-spacing:-.01em}
+.rc h1 em{display:block;font-style:normal;color:var(--noir)}
+.rc-dit{max-width:30ch;font-size:1.2rem}
+.rc-btn{justify-self:start;background:var(--rouge);color:#fff;border-radius:0;font-weight:600;padding:0 28px}
+.rc-btn:hover{background:var(--rouge-c)}
+.rc-note{font-size:.9rem;color:var(--gris)}
+@container site (min-width:900px){.rc-une{grid-template-columns:1fr 1fr;min-height:min(84svh,760px)}.rc-une-f{aspect-ratio:auto;max-height:none}.rc-une-f img{position:absolute;inset:0}}
+@media (prefers-reduced-motion:no-preference){.rc-une-f img{animation:rc-rouge 2.6s .3s ease-in-out both}@keyframes rc-rouge{from{filter:grayscale(1) contrast(1.1)}}}
 
-.rc-prog{padding:clamp(56px,9cqi,110px) clamp(16px,3cqi,36px);text-align:center}
-.rc-prog-t{font-weight:800;text-transform:uppercase;letter-spacing:.2em;font-size:.85rem}
-.rc-prog ul{margin-top:18px}
-.rc-prog li{display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:0 .3em;line-height:.95;padding:6px 0;border-bottom:2px solid var(--noir)}
-.rc-prog li span{font-size:clamp(2.6rem,9cqi,6.6rem)}
-.rc-prog li b{margin-left:.15em;font-weight:400;font-size:clamp(2.6rem,9cqi,6.6rem);color:var(--rouge)}
-.rc-l1 span{color:var(--rouge)}.rc-l1 b{color:var(--noir)}
-.rc-l2 span{font-size:clamp(2rem,6.4cqi,4.6rem)!important}.rc-l2 b{font-size:clamp(2rem,6.4cqi,4.6rem)!important}
-.rc-ex{margin-top:16px;font-size:.88rem;color:#5D5450}
+.rc-nb{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:clamp(56px,8cqi,110px) clamp(18px,4cqi,56px);background:var(--noir);color:var(--creme)}
+.rc-nb figure{margin:0}
+.rc-nb img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(1) contrast(1.08)}
+.rc-nb figure:nth-child(2){grid-column:1/-1;order:-1}
+.rc-nb figure:nth-child(2) img{aspect-ratio:3/2}
+.rc-nb figcaption{margin-top:10px;font-size:1.5rem}
+.rc-illu{grid-column:1/-1;font-size:.82rem;color:#A39B93}
+@container site (min-width:900px){.rc-nb{grid-template-columns:.8fr 1.3fr .8fr;gap:24px;align-items:end}.rc-nb figure:nth-child(2){grid-column:auto;order:0}}
 
-.rc-resa{background:var(--noir);color:var(--papier);padding:clamp(56px,9cqi,110px) 0}
-.rc-in{max-width:1080px;margin:0 auto;padding:0 clamp(16px,3cqi,36px)}
-.rc h2{font-size:clamp(3.2rem,10cqi,6.4rem);line-height:.9}
-.rc-sous{margin-top:8px;color:#B9AEAA}
-.rc-resa .s-resa{margin-top:28px}
-.rc-resa .s-resa-q{font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;color:#B9AEAA}
-.rc-resa .s-service{border-bottom:1px solid #3A3233;padding:14px 0}
-.rc-resa .s-service small{color:#B9AEAA}
-.rc-resa .s-service.on{color:#fff;box-shadow:inset 0 -3px 0 var(--rouge)}
-.rc-resa .s-puce{background:#2A2223;color:var(--papier);border-radius:0}
-.rc-resa .s-puce.on{background:var(--rouge);color:#fff}
-.rc-resa .s-heure{background:#2A2223;color:var(--papier);border-radius:0}
-.rc-resa .s-heure.on{background:var(--rouge)}
-.rc-resa .s-resa-pied{border-top:2px solid var(--rouge)}
-.rc-resa .s-btn{background:var(--rouge);color:#fff;font-weight:800;text-transform:uppercase;border-radius:0}
-.rc-resa .s-champ input{border:0;background:var(--papier);color:var(--noir);border-radius:0}
-.rc-resa .s-fin-titre{font:400 3rem/1 "League Gothic",sans-serif;text-transform:uppercase}
-.rc-resa .s-btn--2{background:transparent;border:2px solid var(--papier);color:var(--papier)}
-.rc-resa .s-lien{color:var(--papier)}
+.rc-carte{display:grid;gap:30px;padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px)}
+.rc-carte-h{display:grid;gap:10px;align-content:start}
+.rc h2{font-size:clamp(2.6rem,6cqi,4.6rem);line-height:1}
+.rc-carte-h>p:last-child{color:var(--gris)}
+.rc-carte li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:18px;padding:18px 0;border-bottom:1px solid var(--trait)}
+.rc-n{font-size:.8rem;font-weight:600;color:var(--rouge);letter-spacing:.1em}
+.rc-carte p{font-weight:600;font-size:1.08rem}
+.rc-carte small{color:var(--gris)}
+.rc-carte b{font-size:1.8rem;white-space:nowrap}
+@container site (min-width:900px){.rc-carte{grid-template-columns:.7fr 1.3fr;gap:72px}}
 
-.rc-place{display:grid;background:var(--rouge);color:var(--papier)}
-.rc-gros{position:relative;margin:0;aspect-ratio:1;background:var(--rouge-f)}
-.rc-place-t{padding:clamp(40px,7cqi,90px) clamp(16px,3cqi,36px)}
-.rc-adr{margin-top:14px;font-weight:700;font-size:1.2rem}
-.rc-hor{margin-top:18px;font-size:1.35rem;line-height:1.35}
-.rc-statut{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:6px 12px;background:var(--noir);font-weight:700}
-.rc-statut i{width:10px;height:10px;background:#fff}.rc-statut.ferme i{background:#777}
-.rc-itin{display:inline-block;margin-top:22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--papier)}
-@container site (min-width:860px){.rc-place{grid-template-columns:1fr 1fr;align-items:center}.rc-gros{aspect-ratio:auto;height:100%;min-height:520px}}
-.rc-pied{display:flex;flex-wrap:wrap;gap:8px 20px;padding:20px clamp(16px,3cqi,36px) 28px;background:var(--noir);color:#B9AEAA;font-size:.85rem}
-.rc-pied span{margin-right:auto;font:400 1.4rem/1 "League Gothic",sans-serif;text-transform:uppercase;color:var(--papier)}
-.rc .legal h1{font-family:"League Gothic",sans-serif;font-weight:400;text-transform:uppercase;font-size:3rem}
+.rc-resa{padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px);background:var(--creme-f)}
+.rc-resa-h{display:grid;gap:10px;margin-bottom:30px}
+.rc-resa-h>p:last-child{color:var(--gris)}
+.rc-resa .s-resa-q{font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gris)}
+.rc-resa .s-service{border-bottom:1px solid var(--trait);padding:15px 0}
+.rc-resa .s-service small{color:var(--gris)}
+.rc-resa .s-service.on{color:var(--rouge);box-shadow:inset 2px 0 0 var(--rouge);padding-left:14px;font-weight:600}
+.rc-resa .s-puce,.rc-resa .s-heure{background:var(--creme);border-radius:0}
+.rc-resa .s-puce.on,.rc-resa .s-heure.on{background:var(--rouge);color:#fff}
+.rc-resa .s-resa-pied{border-top:1px solid var(--noir)}
+.rc-resa .s-btn{background:var(--rouge);color:#fff;border-radius:0;font-weight:600}
+.rc-resa .s-btn--2{background:transparent;color:var(--rouge);box-shadow:inset 0 0 0 1px var(--rouge)}
+.rc-resa .s-champ input{border:1px solid var(--trait);border-radius:0;background:#fff}
+.rc-resa .s-fin-titre{font:400 2.4rem/1 Bellefair,serif;color:var(--rouge)}
+
+.rc-venir{display:grid;gap:30px;padding:clamp(64px,9cqi,120px) clamp(18px,5cqi,80px)}
+.rc-ville{margin-top:8px;color:var(--gris)}.rc-ville a{color:var(--noir);font-weight:600}
+.rc-st{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:600}
+.rc-st i{width:8px;height:8px;border-radius:50%;background:#2F8F4E}.rc-st.ferme i{background:var(--rouge)}
+.rc-hor div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--trait)}
+.rc-hor dt{font-weight:600}.rc-hor dd{text-align:right;font-variant-numeric:tabular-nums}
+.rc-hn{margin-top:8px;font-size:.84rem;color:var(--gris)}
+@container site (min-width:900px){.rc-venir{grid-template-columns:1fr 1fr;gap:64px;align-items:end}}
+.rc-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:22px clamp(18px,5cqi,80px) 30px;background:var(--noir);color:#A39B93;font-size:.86rem}
+.rc-pied span{margin-right:auto;font:400 1.3rem/1 Bellefair,serif;color:#fff}
+.rc .legal h1{font-family:Bellefair,serif;font-weight:400;font-size:2.6rem}
 </style>
 </head>
 <body>
 <aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Red Chair&#39;s Barber</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Red Chair&#39;s Barber</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni page de réservation, ni numéro en ligne : les prix et les horaires sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de votre salon.</p><ul><li>Ce site a été dessiné pour Red Chair&#39;s Barber, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients réservent seuls, depuis leur téléphone. Chaque rendez-vous arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Red%20Chair's%20Barber.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site rc" data-metier="barbier"><main data-page="accueil">
 <header class="rc-tete" data-sec="tete">
-  <a class="rc-marque" href="#page-accueil">Red Chair's</a>
-  <a class="rc-tete-l" href="#reserver">Réserver</a>
+  <a class="rc-logo" href="#page-accueil">Red Chair's</a>
+  <a class="rc-cta" href="#reserver">Réserver</a>
 </header>
-<section class="rc-affiche" data-sec="affiche">
-  <h1><span>Red</span><span>Chair's</span></h1>
-  <figure class="rc-photo"><img class="" src="../../atelier/photos/barbier/37764947.webp" srcset="../../atelier/photos/barbier/37764947-m.webp 760w, ../../atelier/photos/barbier/37764947.webp 1600w" sizes="(min-width: 860px) 45vw, 100vw" alt="Fauteuils de barbier anciens (photo d&#39;illustration)" data-illu style="background-color:#5c504b" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
-  <p class="rc-bas"><span>Barbier</span><span>52 place Jean Jaurès</span><span>Troyes</span></p>
-  <p class="rc-acc">Prenez place dans le fauteuil rouge. Réservez votre coupe en ligne, même à minuit.</p>
-  <a class="s-btn rc-btn" href="#reserver">Réserver un fauteuil</a>
+
+<section class="rc-une" data-sec="une">
+  <figure class="rc-une-f"><img class="" src="../../atelier/photos/barbier/12304516.webp" srcset="../../atelier/photos/barbier/12304516-m.webp 760w, ../../atelier/photos/barbier/12304516.webp 1067w" sizes="(min-width: 900px) 50vw, 100vw" alt="Fauteuil de barbier ancien en cuir rouge (photo d&#39;illustration)" data-illu style="background-color:#432629" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+  <div class="rc-une-t">
+    <p class="rc-k">Barbier · 52 place Jean Jaurès · Troyes</p>
+    <h1>Red <em>Chair's</em></h1>
+    <p class="rc-dit">Prenez place dans le fauteuil rouge. Coupe et barbe, en plein centre de Troyes.</p>
+    <a class="s-btn rc-btn" href="#reserver">Réserver un fauteuil</a>
+    <p class="rc-note">4,6 sur Google · 130 avis</p>
+  </div>
 </section>
 
-<section class="rc-prog" id="prix" data-sec="prix">
-  <p class="rc-prog-t">Au programme</p>
-  <ul><li class="rc-l0"><span>Coupe homme</span><b>18 €</b></li><li class="rc-l1"><span>Dégradé</span><b>20 €</b></li><li class="rc-l2"><span>Coupe et barbe</span><b>26 €</b></li><li class="rc-l0"><span>Taille de barbe</span><b>10 €</b></li><li class="rc-l1"><span>Coupe enfant, moins de 12 ans</span><b>14 €</b></li><li class="rc-l2"><span>Rasage à l&#39;ancienne</span><b>20 €</b></li></ul>
-  <p class="rc-ex">Prix d'exemple : on les remplace par les vôtres.</p>
+<section class="rc-nb" data-sec="noir-blanc">
+  <figure><img class="" src="../../atelier/photos/barbier/11262382.webp" srcset="../../atelier/photos/barbier/11262382-m.webp 760w, ../../atelier/photos/barbier/11262382.webp 1067w" sizes="(min-width: 900px) 30vw, 50vw" alt="Peigne et rasoir sur une coiffure, en noir et blanc (photo d&#39;illustration)" data-illu style="background-color:#434343" loading="lazy" decoding="async"><figcaption>La raie</figcaption></figure>
+  <figure><img class="" src="../../atelier/photos/barbier/10775081.webp" srcset="../../atelier/photos/barbier/10775081-m.webp 760w, ../../atelier/photos/barbier/10775081.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw" alt="Rasoir droit le long de la barbe, en noir et blanc (photo d&#39;illustration)" data-illu style="background-color:#616161" loading="lazy" decoding="async"><figcaption>Le rasoir</figcaption></figure>
+  <figure><img class="" src="../../atelier/photos/barbier/32847602.webp" srcset="../../atelier/photos/barbier/32847602-m.webp 760w, ../../atelier/photos/barbier/32847602.webp 1065w" sizes="(min-width: 900px) 30vw, 50vw" alt="Salon de barbier classique, en noir et blanc (photo d&#39;illustration)" data-illu style="background-color:#6a6a6a" loading="lazy" decoding="async"><figcaption>Le salon</figcaption></figure>
+  <p class="rc-illu">Photos d'illustration, à remplacer par celles du salon.</p>
+</section>
+
+<section class="rc-carte" id="prestations" data-sec="prestations">
+  <div class="rc-carte-h"><p class="rc-k">Prestations</p><h2>La carte</h2><p>Prix d'exemple : on les remplace par les vôtres.</p></div>
+  <ol><li><span class="rc-n">01</span><div><p>Coupe homme</p><small>30 min</small></div><b>18 €</b></li><li><span class="rc-n">02</span><div><p>Dégradé</p><small>30 min</small></div><b>20 €</b></li><li><span class="rc-n">03</span><div><p>Coupe et barbe</p><small>45 min</small></div><b>26 €</b></li><li><span class="rc-n">04</span><div><p>Taille de barbe</p><small>15 min</small></div><b>10 €</b></li><li><span class="rc-n">05</span><div><p>Coupe enfant, moins de 12 ans</p><small>20 min</small></div><b>14 €</b></li><li><span class="rc-n">06</span><div><p>Rasage à l&#39;ancienne</p><small>30 min</small></div><b>20 €</b></li></ol>
 </section>
 
 <section class="rc-resa" id="reserver" data-sec="resa">
-  <div class="rc-in">
-    <h2>Réserver un fauteuil</h2>
-    <p class="rc-sous">Prestation, jour, heure. C'est tout.</p>
-    <div class="s-resa" data-resa data-pas="15"><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Prestation</p><div class="s-services" role="radiogroup"><button type="button" role="radio" class="s-service" data-nom="Coupe homme" data-duree="30" data-prix="18"><span>Coupe homme</span><small>30 min · 18 €</small></button><button type="button" role="radio" class="s-service" data-nom="Dégradé" data-duree="30" data-prix="20"><span>Dégradé</span><small>30 min · 20 €</small></button><button type="button" role="radio" class="s-service" data-nom="Coupe et barbe" data-duree="45" data-prix="26"><span>Coupe et barbe</span><small>45 min · 26 €</small></button><button type="button" role="radio" class="s-service" data-nom="Taille de barbe" data-duree="15" data-prix="10"><span>Taille de barbe</span><small>15 min · 10 €</small></button></div></div><div class="s-resa-col"><p class="s-resa-q">Jour et heure</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-resa-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Confirmer le rendez-vous</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
+  <div class="rc-resa-h"><p class="rc-k">Rendez-vous</p><h2>Réserver un fauteuil</h2><p>Prestation, jour, heure. C'est tout.</p></div>
+  <div class="s-resa" data-resa data-pas="15"><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Prestation</p><div class="s-services" role="radiogroup"><button type="button" role="radio" class="s-service" data-nom="Coupe homme" data-duree="30" data-prix="18"><span>Coupe homme</span><small>30 min · 18 €</small></button><button type="button" role="radio" class="s-service" data-nom="Dégradé" data-duree="30" data-prix="20"><span>Dégradé</span><small>30 min · 20 €</small></button><button type="button" role="radio" class="s-service" data-nom="Coupe et barbe" data-duree="45" data-prix="26"><span>Coupe et barbe</span><small>45 min · 26 €</small></button><button type="button" role="radio" class="s-service" data-nom="Taille de barbe" data-duree="15" data-prix="10"><span>Taille de barbe</span><small>15 min · 10 €</small></button></div></div><div class="s-resa-col"><p class="s-resa-q">Jour et heure</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-resa-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Confirmer le rendez-vous</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="rc-place" data-sec="place">
-  <figure class="rc-gros"><img class="" src="../../atelier/photos/barbier/33448216.webp" srcset="../../atelier/photos/barbier/33448216-m.webp 760w, ../../atelier/photos/barbier/33448216.webp 1600w" sizes="(min-width: 860px) 50vw, 100vw" alt="Tondeuse sur une nuque (photo d&#39;illustration)" data-illu style="background-color:#554d4a" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
-  <div class="rc-place-t">
-    <h2>Place Jean Jaurès</h2>
-    <p class="rc-adr">52 place Jean Jaurès, 10000 Troyes</p>
-    <p class="rc-hor">Mardi – samedi, 9 h – 19 h.</p>
-    <p class="rc-statut" data-statut><i></i><span></span></p>
-    <p><a class="rc-itin" href="https://www.google.com/maps/search/?api=1&query=Red%20Chair's%20Barber%2052%20place%20Jean%20Jaur%C3%A8s%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire jusqu'au salon</a></p>
-  </div>
+<section class="rc-venir" data-sec="venir">
+  <div><p class="rc-k">Venir</p><h2>Place Jean Jaurès</h2><p class="rc-ville">52 place Jean Jaurès, 10000 Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Red%20Chair's%20Barber%2052%20place%20Jean%20Jaur%C3%A8s%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a></p><p class="rc-st" data-statut><i></i><span></span></p></div>
+  <div><dl class="rc-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – samedi</dt><dd>9 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>fermé</dd></div></dl><p class="rc-hn">Horaires donnés en exemple, à confirmer.</p></div>
 </section>
 <footer class="rc-pied" data-sec="pied"><span>Red Chair's Barber</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Red Chair&#39;s Barber, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 52 place Jean Jaurès, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : <mark class="s-manque">[téléphone]</mark></p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Red Chair&#39;s Barber. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Red Chair&#39;s Barber. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
@@ -576,6 +574,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#C8102E}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"","email":"","nom":"Red Chair's Barber"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#C8102E;color:#fff">R</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Red Chair&#39;s Barber. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"","email":"","nom":"Red Chair's Barber"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#8E1B24;color:#fff">R</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Red Chair&#39;s Barber. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>

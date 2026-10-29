@@ -5,6 +5,23 @@ Les sites affichent « Photo d'illustration » à côté de ces images, et les m
 Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 
 [barbier]
+10775082  Contour de la nuque au rasoir, en noir et blanc  https://www.pexels.com/photo/10775082/
+13450728  Rasage au rasoir droit, en noir et blanc  https://www.pexels.com/photo/13450728/
+3998407  Un barbier prépare son client  https://www.pexels.com/photo/3998407/
+9992819  Un barbier coiffe un homme barbu  https://www.pexels.com/photo/9992819/
+9491366  Fauteuil de barbier ancien, mur de briques, en noir et blanc  https://www.pexels.com/photo/9491366/
+18090356  Rangée de fauteuils de barbier, en noir et blanc  https://www.pexels.com/photo/18090356/
+17784004  Coupe aux ciseaux dans un salon aux boiseries  https://www.pexels.com/photo/17784004/
+8867165  Blaireau qui fait mousser le savon à raser  https://www.pexels.com/photo/8867165/
+6007400  Taille de barbe avec serviette chaude  https://www.pexels.com/photo/6007400/
+9387375  Un barbier rase un client dans la pénombre  https://www.pexels.com/photo/9387375/
+8867166  Salon de barbier chaleureux, fauteuil et boiseries  https://www.pexels.com/photo/8867166/
+30547746  Fauteuil de barbier ancien dans un salon moderne  https://www.pexels.com/photo/30547746/
+32847602  Salon de barbier classique, en noir et blanc  https://www.pexels.com/photo/32847602/
+10775081  Rasoir droit le long de la barbe, en noir et blanc  https://www.pexels.com/photo/10775081/
+11262382  Peigne et rasoir sur une coiffure, en noir et blanc  https://www.pexels.com/photo/11262382/
+12685937  Fauteuil de barbier rouge dans un salon rétro  https://www.pexels.com/photo/12685937/
+12304516  Fauteuil de barbier ancien en cuir rouge  https://www.pexels.com/photo/12304516/
 12464838  Finition au rasoir sur un dégradé  https://www.pexels.com/photo/12464838/
 13058812  Intérieur de barbershop chaleureux, étagères et outils  https://www.pexels.com/photo/13058812/
 1319459  Rasoirs, peignes et blaireau posés sur un plan de travail  https://www.pexels.com/photo/1319459/
@@ -24,6 +41,26 @@ Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 9280243  Enseigne de barbier sur un mur de briques  https://www.pexels.com/photo/9280243/
 
 [boucherie]
+128401  Viande hachée fraîche dans un bol en verre  https://www.pexels.com/photo/128401/
+1154643  Un boucher souriant présente une planche de viande  https://www.pexels.com/photo/1154643/
+35811577  Couperet, poids anciens et viande sur un billot  https://www.pexels.com/photo/35811577/
+10432650  On assaisonne une pièce de bœuf posée sur du papier boucher  https://www.pexels.com/photo/10432650/
+28881691  Deux pièces de bœuf suspendues sur fond sombre  https://www.pexels.com/photo/28881691/
+31612175  Un boucher monte des brochettes de viande  https://www.pexels.com/photo/31612175/
+8477072  Préparation d'une pièce de bœuf sur la planche  https://www.pexels.com/photo/8477072/
+8477064  Un boucher ganté découpe une pièce de bœuf  https://www.pexels.com/photo/8477064/
+31406826  Mains gantées de noir qui tranchent une pièce de bœuf  https://www.pexels.com/photo/31406826/
+6607314  Viandes marinées sur quatre assiettes  https://www.pexels.com/photo/6607314/
+6281487  Brochettes marinées, tomate et citron sur un plateau  https://www.pexels.com/photo/6281487/
+6281506  Côtelettes d'agneau sur une planche, vue de dessus  https://www.pexels.com/photo/6281506/
+6281509  Côtelettes d'agneau, tomates, ail et grenade  https://www.pexels.com/photo/6281509/
+6281507  Côtelettes d'agneau, grenade, citron et piment sur une planche  https://www.pexels.com/photo/6281507/
+8477222  Steaks hachés crus sur un plateau  https://www.pexels.com/photo/8477222/
+10842249  Poulet entier cru, romarin et épices sur une planche  https://www.pexels.com/photo/10842249/
+8477298  Un boucher en tablier rayé tranche une pièce de bœuf  https://www.pexels.com/photo/8477298/
+5643415  Pièce de bœuf suspendue à un crochet  https://www.pexels.com/photo/5643415/
+29834275  Intérieur d'une boucherie : comptoir et vitrines réfrigérées  https://www.pexels.com/photo/29834275/
+40429442  Vitrine de boucherie : jarrets, côtes et pièces de bœuf et d'agneau  https://www.pexels.com/photo/40429442/
 15307375  Un homme présente une belle pièce de bœuf crue  https://www.pexels.com/photo/15307375/
 5313867  Faux-filet cru, ail, romarin et épices sur une planche  https://www.pexels.com/photo/5313867/
 36319690  Grain d'une pièce de bœuf, vu de très près  https://www.pexels.com/photo/36319690/
@@ -107,6 +144,10 @@ Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 5368635  Cliente devant le miroir d'un institut  https://www.pexels.com/photo/5368635/
 
 [kebab]
+5779372  On coupe un sandwich roulé en deux  https://www.pexels.com/photo/5779372/
+37219010  Un homme fait griller des brochettes, fumée  https://www.pexels.com/photo/37219010/
+16694861  Broche de kebab tranchée au couteau  https://www.pexels.com/photo/16694861/
+37329607  Un cuisinier tranche la broche derrière la vitrine  https://www.pexels.com/photo/37329607/
 28897047  Wraps de kebab coupés en deux sur une ardoise  https://www.pexels.com/photo/28897047/
 5779423  Deux mains tiennent un sandwich kebab roulé  https://www.pexels.com/photo/5779423/
 24739843  Un cuisinier tranche la broche de kebab derrière le comptoir  https://www.pexels.com/photo/24739843/
@@ -123,6 +164,12 @@ Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 7542730  Brochettes grillées et frites  https://www.pexels.com/photo/7542730/
 
 [naan]
+20446413  Naan, sauce et épices sur fond sombre  https://www.pexels.com/photo/20446413/
+6183640  Naans avec une sauce aux herbes, sur papier  https://www.pexels.com/photo/6183640/
+16851842  Naan à l'ail et aux herbes, vu de près  https://www.pexels.com/photo/16851842/
+3624709  Pains plats dorés devant le four allumé  https://www.pexels.com/photo/3624709/
+29253337  Une main tient un cheese naan au-dessus d'un plateau  https://www.pexels.com/photo/29253337/
+35066813  Naan au fromage et à l'ail sur une assiette, fond bleu  https://www.pexels.com/photo/35066813/
 10337726  Cheese naan coupé sur une assiette  https://www.pexels.com/photo/10337726/
 1117862  Panier de naans  https://www.pexels.com/photo/1117862/
 30203311  Parts de naan au fromage et aux herbes  https://www.pexels.com/photo/30203311/
@@ -139,6 +186,18 @@ Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 3633990  Salle de bistrot rustique  https://www.pexels.com/photo/3633990/
 
 [turc]
+8184135  Kebabs, salades et pain servis ensemble  https://www.pexels.com/photo/8184135/
+36890236  Trois brochettes au-dessus des braises  https://www.pexels.com/photo/36890236/
+24427084  Lahmacun servi sur une table ornée  https://www.pexels.com/photo/24427084/
+19328610  Cheminées de fée et montgolfière en Cappadoce  https://www.pexels.com/photo/19328610/
+5700576  Montgolfières au-dessus de la vallée de Cappadoce  https://www.pexels.com/photo/5700576/
+37010328  Assiette de mezzés et verre d'ayran  https://www.pexels.com/photo/37010328/
+36579883  Une grande table de plats turcs et de pains  https://www.pexels.com/photo/36579883/
+30726875  Mezzés servis dans des assiettes en cuivre  https://www.pexels.com/photo/30726875/
+15803316  Une table dressée dans un restaurant turc ancien  https://www.pexels.com/photo/15803316/
+30764265  Istanbul et le Bosphore à la tombée du jour, en noir et blanc  https://www.pexels.com/photo/30764265/
+12634876  Cuisiniers au grill, fumée et brochettes  https://www.pexels.com/photo/12634876/
+5639365  Pide à la viande hachée sur une planche  https://www.pexels.com/photo/5639365/
 40135757  Assiette de kebab, tomates grillées et yaourt  https://www.pexels.com/photo/40135757/
 15873840  Assiette d'adana avec pain plat et ayran  https://www.pexels.com/photo/15873840/
 36890237  Brochettes qui grillent au-dessus des braises  https://www.pexels.com/photo/36890237/

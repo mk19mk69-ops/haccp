@@ -6,16 +6,14 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Boucherie de Creney</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Boucherie de Creney. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#B42A22">
+<meta name="theme-color" content="#7A2E28">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Gloock";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/gloock-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Courier Prime";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/courier-prime-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Courier Prime";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/courier-prime-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/schibsted-grotesk-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/schibsted-grotesk-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/schibsted-grotesk-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/schibsted-grotesk-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"EB Garamond";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/eb-garamond-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"EB Garamond";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/eb-garamond-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"EB Garamond";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/eb-garamond-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"EB Garamond";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/eb-garamond-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"EB Garamond";font-style:italic;font-weight:500;font-display:swap;src:url(../polices/eb-garamond-latin-500-italic.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -105,161 +103,139 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#2A211A}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#EDE5D6}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.cr{--kraft:#C29A6B;--kraft-f:#A87F52;--papier:#FBF8F1;--rouge:#B42A22;--encre:#2A211A;--gris:#6B6157;
-  background:var(--papier);color:var(--encre);font:400 17px/1.55 "Schibsted Grotesk",system-ui,sans-serif}
-.cr h1,.cr h2,.cr h3,.cr-marque{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1}
-.cr-tete{display:flex;justify-content:space-between;align-items:center;padding:12px clamp(16px,3cqi,44px);background:var(--papier);border-bottom:3px solid var(--rouge)}
-.cr-marque{font-size:1.45rem;text-decoration:none}
-.cr-tete-t{font:700 1rem/1 "Courier Prime",monospace;text-decoration:none;color:var(--rouge)}
+.cr{--papier:#F6F1E7;--papier-f:#EDE5D6;--encre:#3A2A1E;--vin:#7A2E28;--gris:#7C6D60;--trait:rgba(58,42,30,.18);
+  background:var(--papier);color:var(--encre);font:400 19px/1.6 "EB Garamond",Garamond,serif;font-variant-numeric:oldstyle-nums}
+.cr h1,.cr h2{font-weight:400;font-style:italic;line-height:1.05}
+.cr-k,.cr-logo,.cr h3{font-size:.78rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase}
+.cr-tete{display:grid;justify-items:center;gap:10px;padding:22px 18px 0}
+.cr-logo{font-size:.95rem;text-decoration:none;padding:10px 0;border-top:3px double var(--encre);border-bottom:3px double var(--encre)}
+.cr-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;font-style:italic;font-size:1.05rem}
+.cr-nav a{text-decoration:none}.cr-nav a:hover{color:var(--vin)}
+.cr-une{display:grid;justify-items:center;gap:16px;padding:clamp(48px,7cqi,90px) clamp(18px,4cqi,56px) 30px;text-align:center}
+.cr-k{color:var(--gris)}
+.cr h1{font-size:clamp(3rem,9cqi,7rem)}
+.cr-sous{max-width:40ch;font-size:1.2rem}
+.cr-act{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 24px;margin-top:6px}
+.cr-btn{background:transparent;color:var(--vin);border:1px solid var(--vin);border-radius:0;font:500 1.05rem/1 "EB Garamond",serif;letter-spacing:.06em;padding:0 26px}
+.cr-btn:hover{background:var(--vin);color:var(--papier)}
+.cr-st{display:inline-flex;align-items:center;gap:8px;font-style:italic}
+.cr-st i{width:7px;height:7px;border-radius:50%;background:#56703A}.cr-st.ferme i{background:var(--vin)}
+.cr-tri{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:1180px;margin-top:40px;align-items:end}
+.cr-tri figure{margin:0;padding:8px;background:#fff;box-shadow:0 1px 0 var(--trait),0 18px 30px -24px rgba(58,42,30,.6)}
+.cr-tri figure:nth-child(2){grid-column:1/-1;order:-1}
+.cr-tri img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.cr-tri figure:nth-child(2) img{aspect-ratio:3/2}
+.cr-tri figcaption{padding:8px 4px 2px;font-style:italic;font-size:.95rem;color:var(--gris)}
+.cr-illu{font-size:.84rem;font-style:italic;color:var(--gris)}
+@container site (min-width:900px){.cr-tri{grid-template-columns:1fr 1.6fr 1fr;gap:28px}.cr-tri figure:nth-child(2){grid-column:auto;order:0}.cr-tri figure:nth-child(2) img{aspect-ratio:4/3}}
+@media (prefers-reduced-motion:no-preference){.cr-tri figure{animation:cr-pose .9s cubic-bezier(.2,.7,.2,1) both}.cr-tri figure:nth-child(2){animation-delay:.15s}.cr-tri figure:nth-child(3){animation-delay:.3s}@keyframes cr-pose{from{opacity:0;transform:translateY(24px)}}}
 
-.cr-paquet{position:relative;display:grid;gap:40px;padding:clamp(40px,7cqi,90px) clamp(16px,3cqi,44px) clamp(56px,8cqi,100px);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22300%22%3E%3Cfilter%20id%3D%22f%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.9%20.035%22%20numOctaves%3D%222%22%20seed%3D%224%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%20.32%200%200%200%200%20.2%200%200%200%200%20.1%200%200%200%20.5%20-.12%22%2F%3E%3C%2Ffilter%3E%3Cfilter%20id%3D%22g%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%20.95%200%200%200%200%20.85%200%200%200%20.12%200%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22300%22%20height%3D%22300%22%20filter%3D%22url(%23f)%22%2F%3E%3Crect%20width%3D%22300%22%20height%3D%22300%22%20filter%3D%22url(%23g)%22%2F%3E%3C%2Fsvg%3E"),var(--kraft);overflow:hidden}
-.cr h1{display:grid;font-size:clamp(3rem,10.5cqi,6.6rem);letter-spacing:-.02em;max-width:9.5ch}
-.cr h1 span{font:700 .95rem/1 "Courier Prime",monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;color:#4A3524}
-.cr-dit{margin-top:22px;max-width:36ch;font-size:1.2rem;font-weight:500}
-.cr-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:26px}
-.cr-btn{background:var(--encre);color:var(--papier);font-weight:600;border-radius:2px}
-.cr-btn:hover{background:var(--rouge)}
-.cr-tel{font:700 1.1rem/1 "Courier Prime",monospace}
-.cr-avis{margin-top:14px;font:700 .95rem/1 "Courier Prime",monospace;color:#4A3524}
-.cr-colis{position:relative;display:grid;place-items:center;min-height:400px;margin:0 calc(-1 * clamp(16px,3cqi,44px));overflow:clip}
-.cr-ficelle{position:absolute;display:block;background:repeating-linear-gradient(90deg,var(--rouge) 0 7px,#F2ECE2 7px 12px);box-shadow:0 2px 2px rgba(0,0,0,.25)}
-.cr-f1{left:-20%;right:-20%;top:46%;height:5px;transform:rotate(-4deg)}
-.cr-f2{top:-20%;bottom:-20%;left:54%;width:5px;background:repeating-linear-gradient(0deg,var(--rouge) 0 7px,#F2ECE2 7px 12px);transform:rotate(-4deg)}
-.cr-etiq{position:relative;z-index:2;width:min(100% - 48px,360px);transform:rotate(-3deg);filter:drop-shadow(0 14px 18px rgba(60,35,10,.35))}
-.cr-etiq-in{padding:20px 22px 18px;background:#FFFEFA;font:400 15px/1.35 "Courier Prime",monospace;color:#221B15;border-radius:6px}
-.cr-e-t{font-weight:700;font-size:1.15rem;letter-spacing:.06em}
-.cr-e-a{margin-top:4px}
-.cr-e-date{margin-top:8px;padding-bottom:10px;border-bottom:1.5px dashed #9E958A;font-variant-numeric:tabular-nums}
-.cr-etiq dl div{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:6px 0}
-.cr-etiq dt{text-transform:uppercase;font-size:.85rem;letter-spacing:.04em;padding-top:1px}
-.cr-etiq dd{font-weight:700}
-.cr-st{display:flex;align-items:baseline;gap:6px}.cr-st i{display:none}
-.cr-e-tot{border-top:1.5px dashed #9E958A;margin-top:6px;padding-top:10px!important}
-.cr-e-tot dd{font-size:1.15rem}
-.cr-code{height:46px;margin-top:12px;background:repeating-linear-gradient(90deg,#221B15 0 2px,transparent 2px 4px,#221B15 4px 5px,transparent 5px 8px,#221B15 8px 11px,transparent 11px 12px,#221B15 12px 13px,transparent 13px 17px)}
-.cr-tampon{position:absolute;z-index:3;left:0;bottom:4%;display:none;place-items:center;align-content:center;width:132px;height:132px;border:3px solid var(--rouge);border-radius:50%;color:var(--rouge);text-align:center;transform:rotate(12deg);font:700 .78rem/1.2 "Courier Prime",monospace;text-transform:uppercase;letter-spacing:.04em;opacity:.88;mix-blend-mode:multiply;box-shadow:inset 0 0 0 5px rgba(180,42,34,.0),inset 0 0 0 7px var(--kraft),inset 0 0 0 8.5px var(--rouge)}
-.cr-tampon b{font:400 2.4rem/1 Gloock,serif}
-@container site (min-width:900px){
-  .cr-paquet{grid-template-columns:1.1fr .9fr;align-items:center;min-height:min(78svh,700px)}
-  .cr-colis{min-height:520px;margin:0;overflow:visible;justify-items:end}
-  .cr-etiq{width:400px;margin-right:2%}
-  .cr-tampon{display:grid}
-  .cr-avis{display:none}
-}
-@media (prefers-reduced-motion:no-preference){
-  .cr-etiq-in{animation:cr-imprime 1.3s .35s steps(14,end) both}
-  @keyframes cr-imprime{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
-}
+.cr-avis{margin:30px auto 0;max-width:720px;padding:22px 18px;text-align:center;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);font-style:italic;font-size:1.2rem}
+.cr-avis span{font-style:normal;font-size:2rem;color:var(--vin);margin-right:6px;font-variant-numeric:lining-nums}
 
-.cr-in{max-width:1140px;margin:0 auto;padding:0 clamp(16px,3cqi,44px)}
-.cr-comptoir{padding:clamp(56px,8cqi,100px) 0;background:var(--papier)}
-.cr h2{font-size:clamp(2.5rem,7.5cqi,4.4rem);letter-spacing:-.015em}
-.cr-ex{margin-top:10px;color:var(--gris)}
-.cr-gs{display:grid;gap:30px;margin-top:34px}
-.cr-g h3{font-size:1.7rem;padding-bottom:8px;border-bottom:2px solid var(--rouge)}
-.cr-g li{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #E4DCCD}
-.cr-g b{font:700 1rem/1.4 "Courier Prime",monospace;white-space:nowrap}
-@container site (min-width:760px){.cr-gs{grid-template-columns:1fr 1fr;gap:34px 64px}}
+.cr-comptoir{display:grid;justify-items:center;gap:30px;padding:clamp(64px,9cqi,110px) clamp(18px,4cqi,56px)}
+.cr h2{font-size:clamp(2.4rem,5.6cqi,3.8rem);text-align:center}
+.cr-cols{display:grid;gap:22px;max-width:940px}
+.cr-lettrine::first-letter{float:left;font-size:4.4em;line-height:.82;padding:6px 10px 0 0;color:var(--vin);font-style:italic}
+@container site (min-width:820px){.cr-cols{grid-template-columns:1fr 1fr;gap:48px;text-align:justify;hyphens:auto}}
 
-.cr-cmd{padding:clamp(48px,7cqi,90px) clamp(10px,3cqi,44px);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22300%22%3E%3Cfilter%20id%3D%22f%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.9%20.035%22%20numOctaves%3D%222%22%20seed%3D%224%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%20.32%200%200%200%200%20.2%200%200%200%200%20.1%200%200%200%20.5%20-.12%22%2F%3E%3C%2Ffilter%3E%3Cfilter%20id%3D%22g%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%20.95%200%200%200%200%20.85%200%200%200%20.12%200%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22300%22%20height%3D%22300%22%20filter%3D%22url(%23f)%22%2F%3E%3Crect%20width%3D%22300%22%20height%3D%22300%22%20filter%3D%22url(%23g)%22%2F%3E%3C%2Fsvg%3E"),var(--kraft)}
-.cr-feuille{max-width:1100px;margin:0 auto;padding:clamp(26px,4cqi,48px);background:var(--papier);box-shadow:0 18px 30px -18px rgba(60,35,10,.55);transform:rotate(-.4deg)}
-.cr-sous{margin-top:10px;max-width:52ch}
-.cr-cmd .s-resa{margin-top:28px}
-.cr-cmd .s-resa-q{font:700 .85rem/1 "Courier Prime",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--rouge)}
-.cr-cmd .s-cmd-ligne{border-bottom:1px solid #E4DCCD}
-.cr-cmd .s-cmd-ligne small{display:block;font-family:"Courier Prime",monospace;color:var(--gris)}
-.cr-cmd .s-pas-b{background:#EFE7D8;color:var(--encre);border-radius:50%}
-.cr-cmd .s-pas-v{font-family:"Courier Prime",monospace;font-weight:700}
-.cr-cmd .s-puce,.cr-cmd .s-heure{background:#F1EADC;border-radius:2px}
-.cr-cmd .s-puce.on,.cr-cmd .s-heure.on{background:var(--rouge);color:#fff}
-.cr-cmd .s-resa-pied{border-top:1.5px dashed #9E958A}
-.cr-cmd .s-btn{background:var(--encre);color:var(--papier);font-weight:600;border-radius:2px}
-.cr-cmd .s-btn--2{background:transparent;color:var(--encre);box-shadow:inset 0 0 0 1.5px var(--encre)}
-.cr-cmd .s-champ input{border:1.5px solid #C9BEAC;border-radius:2px;background:#fff}
-.cr-cmd .s-fin-titre{font:400 2.2rem/1 Gloock,serif}
-.cr-cmd .s-coche{color:var(--rouge)}
+.cr-prix{display:grid;justify-items:center;padding:clamp(64px,9cqi,110px) clamp(18px,4cqi,56px);background:var(--papier-f)}
+.cr-ex{margin-top:8px;text-align:center;font-style:italic;color:var(--gris)}
+.cr-prix-g{display:grid;gap:34px;width:100%;max-width:920px;margin-top:40px}
+.cr h3{text-align:center;color:var(--vin);margin-bottom:10px}
+.cr-prix li{display:flex;align-items:baseline;gap:10px;padding:7px 0}
+.cr-prix li i{flex:1;border-bottom:1px dotted rgba(58,42,30,.4);transform:translateY(-6px)}
+.cr-prix li b{font-weight:500;white-space:nowrap}
+@container site (min-width:820px){.cr-prix-g{grid-template-columns:1fr 1fr;gap:40px 72px}}
 
-.cr-village{display:grid;background:var(--papier)}
-.cr-photo{position:relative;margin:0;min-height:300px}
-.cr-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cr-v-t{padding:clamp(48px,8cqi,96px) clamp(16px,3cqi,44px)}
-.cr-adr{margin-top:14px;font-size:1.1rem}
-.cr-hor{margin-top:24px;max-width:460px;font-family:"Courier Prime",monospace}
-.cr-hor div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed #C9BEAC}
-.cr-hor dt{font-weight:700}.cr-hor dd{text-align:right}
-.cr-hn{margin-top:8px;font-size:.85rem;color:var(--gris)}
-.cr-tel2{margin-top:22px;font:400 2rem/1 Gloock,serif}
-.cr-tel2 a{text-decoration:none;color:var(--rouge)}
-@container site (min-width:900px){.cr-village{grid-template-columns:.9fr 1.1fr}.cr-photo{min-height:100%}}
-.cr-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:20px clamp(16px,3cqi,44px) 28px;background:var(--encre);color:#CDBFAE;font-size:.9rem}
-.cr-pied span{margin-right:auto;font:400 1.25rem/1 Gloock,serif;color:var(--papier)}
-.cr .legal h1{display:block;font-size:2.6rem}
+.cr-large{margin:0;padding:clamp(40px,6cqi,80px) clamp(18px,4cqi,56px)}
+.cr-large img{width:100%;max-height:460px;object-fit:cover}
+.cr-large figcaption{margin-top:10px;text-align:center;font-style:italic;color:var(--gris)}
+.cr-large figcaption em{font-style:normal;font-size:.85rem}
+
+.cr-cmd{padding:clamp(48px,7cqi,90px) clamp(18px,4cqi,56px) clamp(64px,9cqi,110px)}
+.cr-cmd .s-resa{max-width:1000px;margin:36px auto 0;padding:clamp(18px,3cqi,36px);background:#FFFDF8;box-shadow:0 18px 30px -26px rgba(58,42,30,.7)}
+.cr-cmd .s-resa-q{font-size:.76rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--vin)}
+.cr-cmd .s-cmd-ligne{border-bottom:1px solid var(--trait)}
+.cr-cmd .s-cmd-ligne b{font-weight:500;font-size:1.1rem}
+.cr-cmd .s-cmd-ligne small{display:block;font-style:italic;color:var(--gris)}
+.cr-cmd .s-pas-b{background:transparent;border:1px solid var(--trait);border-radius:50%;color:var(--encre)}
+.cr-cmd .s-puce,.cr-cmd .s-heure{background:var(--papier);border-radius:0;font-family:"EB Garamond",serif}
+.cr-cmd .s-puce.on,.cr-cmd .s-heure.on{background:var(--vin);color:var(--papier)}
+.cr-cmd .s-resa-pied{border-top:3px double var(--encre)}
+.cr-cmd .s-btn{background:var(--vin);color:var(--papier);border-radius:0;font:500 1.05rem/1 "EB Garamond",serif;letter-spacing:.06em}
+.cr-cmd .s-btn--2{background:transparent;color:var(--vin);box-shadow:inset 0 0 0 1px var(--vin)}
+.cr-cmd .s-champ input{border:1px solid var(--trait);border-radius:0;background:#fff;font-family:"EB Garamond",serif}
+.cr-cmd .s-fin-titre{font:italic 400 2.4rem/1 "EB Garamond",serif}
+.cr-cmd .s-coche{color:var(--vin)}
+
+.cr-venir{display:grid;justify-items:center;gap:14px;padding:clamp(64px,9cqi,110px) clamp(18px,4cqi,56px);background:var(--papier-f);text-align:center}
+.cr-adr{font-size:1.5rem}
+.cr-liens a{color:var(--vin)}
+.cr-hor{width:min(100%,460px);margin-top:18px}
+.cr-hor div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--trait)}
+.cr-hor dd{text-align:right}
+.cr-pied{display:grid;justify-items:center;gap:14px;padding:44px 18px 40px;font-style:italic;font-size:.95rem;color:var(--gris)}
+.cr-pied .cr-logo{font-style:normal;color:var(--encre)}
+.cr .legal h1{font-style:italic;font-weight:400;font-size:2.6rem}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Boucherie de Creney</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Boucherie de Creney</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni prix, ni horaires en ligne (le site boucherie-creney.fr appartient à un prestataire, pas à vous) : ceux de la maquette sont des exemples. La photo est une photo d&#39;illustration : on la remplace par une photo de votre boutique.</p><ul><li>Ce site a été dessiné pour Boucherie de Creney, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Boucherie%20de%20Creney.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Boucherie de Creney</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Boucherie de Creney</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni prix, ni horaires en ligne (le site boucherie-creney.fr appartient à un prestataire, pas à vous) : ceux de la maquette sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de votre boutique.</p><ul><li>Ce site a été dessiné pour Boucherie de Creney, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Boucherie%20de%20Creney.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site cr" data-metier="boucherie"><main data-page="accueil">
 <header class="cr-tete" data-sec="tete">
-  <a class="cr-marque" href="#page-accueil">Boucherie de Creney</a>
-  <a class="cr-tete-t" href="tel:+33325803235">03 25 80 32 35</a>
+  <a class="cr-logo" href="#page-accueil">Boucherie de Creney</a>
+  <nav class="cr-nav"><a href="#comptoir">Au comptoir</a><a href="#prix">Les prix</a><a href="#commander">Commander</a><a href="#venir">Venir</a></nav>
 </header>
 
-<section class="cr-paquet" data-sec="paquet">
-  <div class="cr-txt">
-    <h1><span>Boucherie de Creney</span>La boucherie du village.</h1>
-    <p class="cr-dit">On vous conseille, on coupe à la demande, et votre commande vous attend quand vous passez.</p>
-    <div class="cr-act"><a class="s-btn cr-btn" href="#commander">Commander pour le retrait</a><a class="cr-tel" href="tel:+33325803235">03 25 80 32 35</a></div>
-    <p class="cr-avis">4,6 sur Google, 562 avis</p>
+<section class="cr-une" data-sec="une">
+  <p class="cr-k">Creney-près-Troyes · 1 rue de la Fontaine</p>
+  <h1>La boucherie du village.</h1>
+  <p class="cr-sous">Des conseils, la découpe à la demande, et votre commande prête quand vous passez.</p>
+  <div class="cr-act"><a class="s-btn cr-btn" href="#commander">Commander pour le retrait</a><span class="cr-st" data-statut><i></i><span></span></span></div>
+  <div class="cr-tri">
+    <figure><img class="" src="../../atelier/photos/boucherie/10432650.webp" srcset="../../atelier/photos/boucherie/10432650-m.webp 760w, ../../atelier/photos/boucherie/10432650.webp 1067w" sizes="(min-width: 900px) 24vw, 50vw" alt="On assaisonne une pièce de bœuf sur du papier boucher (photo d&#39;illustration)" data-illu style="background-color:#978d7e" fetchpriority="high" decoding="async"><figcaption>Le papier boucher.</figcaption></figure>
+    <figure><img class="" src="../../atelier/photos/boucherie/35811577.webp" srcset="../../atelier/photos/boucherie/35811577-m.webp 760w, ../../atelier/photos/boucherie/35811577.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw" alt="Couperet, poids anciens et viande sur un billot (photo d&#39;illustration)" data-illu style="background-color:#77513d" fetchpriority="high" decoding="async"><figcaption>Le billot.</figcaption></figure>
+    <figure><img class="" src="../../atelier/photos/boucherie/1154643.webp" srcset="../../atelier/photos/boucherie/1154643-m.webp 760w, ../../atelier/photos/boucherie/1154643.webp 1060w" sizes="(min-width: 900px) 24vw, 50vw" alt="Un boucher souriant présente une planche de viande (photo d&#39;illustration)" data-illu style="background-color:#606b76" fetchpriority="high" decoding="async"><figcaption>Le sourire.</figcaption></figure>
   </div>
-  <div class="cr-colis" aria-hidden="false">
-    <i class="cr-ficelle cr-f1" aria-hidden="true"></i><i class="cr-ficelle cr-f2" aria-hidden="true"></i>
-    <div class="cr-etiq">
-      <div class="cr-etiq-in">
-        <p class="cr-e-t">BOUCHERIE DE CRENEY</p>
-        <p class="cr-e-a">1 rue de la Fontaine<br>10150 Creney-près-Troyes</p>
-        <p class="cr-e-date" data-date>--/--/----</p>
-        <dl>
-          <div><dt>Article</dt><dd>Votre commande</dd></div>
-          <div><dt>Prête à</dt><dd>L'heure choisie</dd></div>
-          <div><dt>Aujourd'hui</dt><dd class="cr-st" data-statut><i></i><span></span></dd></div>
-          <div class="cr-e-tot"><dt>À payer</dt><dd>En boutique</dd></div>
-        </dl>
-        <p class="cr-code" aria-hidden="true"></p>
-      </div>
-    </div>
-    <p class="cr-tampon"><b>4,6</b><span>sur Google</span><span>562 avis</span></p>
+  <p class="cr-illu">Photographies d'illustration, à remplacer par celles de la boutique.</p>
+</section>
+
+<p class="cr-avis" data-sec="avis"><span>4,6</span> sur Google, d'après 562 avis</p>
+
+<section class="cr-comptoir" id="comptoir" data-sec="comptoir">
+  <h2>Au comptoir</h2>
+  <div class="cr-cols">
+    <p class="cr-lettrine">Dites-nous ce que vous préparez et pour combien de personnes : on vous conseille la pièce, la quantité et la cuisson. On découpe, on ficelle, on hache à la demande.</p>
+    <p>Pour ne pas attendre le samedi matin, commandez ici : choisissez vos pièces et l'heure de passage, la commande est prête, emballée à votre nom. Vous réglez à la boutique.</p>
   </div>
 </section>
 
-<section class="cr-comptoir" id="prix" data-sec="comptoir">
-  <div class="cr-in">
-    <h2>Au comptoir</h2>
-    <p class="cr-ex">Quelques prix au kilo, donnés en exemple : on met les vôtres.</p>
-    <div class="cr-gs"><div class="cr-g"><h3>Bœuf</h3><ul><li><span>Côte de bœuf</span><b>29,90 €</b></li><li><span>Faux-filet</span><b>27,90 €</b></li><li><span>Bœuf bourguignon</span><b>16,90 €</b></li><li><span>Steak haché</span><b>15,90 €</b></li></ul></div><div class="cr-g"><h3>Veau</h3><ul><li><span>Escalope de veau</span><b>29,90 €</b></li><li><span>Blanquette</span><b>17,90 €</b></li></ul></div><div class="cr-g"><h3>Agneau</h3><ul><li><span>Gigot</span><b>22,90 €</b></li><li><span>Côtelettes</span><b>24,90 €</b></li></ul></div><div class="cr-g"><h3>Volaille</h3><ul><li><span>Poulet entier</span><b>6,90 €</b></li><li><span>Filet de poulet</span><b>13,90 €</b></li></ul></div></div>
-  </div>
+<section class="cr-prix" id="prix" data-sec="prix">
+  <h2>Les prix</h2>
+  <p class="cr-ex">Au kilo, donnés en exemple : on met les vôtres.</p>
+  <div class="cr-prix-g"><div><h3>Bœuf</h3><ul><li><span>Côte de bœuf</span><i aria-hidden="true"></i><b>29,90 €</b></li><li><span>Faux-filet</span><i aria-hidden="true"></i><b>27,90 €</b></li><li><span>Bœuf bourguignon</span><i aria-hidden="true"></i><b>16,90 €</b></li><li><span>Steak haché</span><i aria-hidden="true"></i><b>15,90 €</b></li></ul></div><div><h3>Veau</h3><ul><li><span>Escalope de veau</span><i aria-hidden="true"></i><b>29,90 €</b></li><li><span>Blanquette</span><i aria-hidden="true"></i><b>17,90 €</b></li></ul></div><div><h3>Agneau</h3><ul><li><span>Gigot</span><i aria-hidden="true"></i><b>22,90 €</b></li><li><span>Côtelettes</span><i aria-hidden="true"></i><b>24,90 €</b></li></ul></div><div><h3>Volaille</h3><ul><li><span>Poulet entier</span><i aria-hidden="true"></i><b>6,90 €</b></li><li><span>Filet de poulet</span><i aria-hidden="true"></i><b>13,90 €</b></li></ul></div></div>
 </section>
+
+<figure class="cr-large" data-sec="photo"><img class="" src="../../atelier/photos/boucherie/618775.webp" srcset="../../atelier/photos/boucherie/618775-m.webp 760w, ../../atelier/photos/boucherie/618775.webp 1600w" sizes="100vw" alt="Pièce de bœuf poivrée sur une planche (photo d&#39;illustration)" data-illu style="background-color:#dab092" loading="lazy" decoding="async"><figcaption>Un rumsteck, poivré, prêt pour la poêle. <em>Photographie d'illustration.</em></figcaption></figure>
 
 <section class="cr-cmd" id="commander" data-sec="commande">
-  <div class="cr-feuille">
-    <h2>Commander pour le retrait</h2>
-    <p class="cr-sous">Choisissez vos pièces et l'heure de passage. On prépare, on emballe, on met votre nom dessus.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Côte de bœuf" data-prix="29,90" data-unite="le kg"><p><b>Côte de bœuf</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Faux-filet" data-prix="27,90" data-unite="le kg"><p><b>Faux-filet</b><small>27,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Bœuf bourguignon" data-prix="16,90" data-unite="le kg"><p><b>Bœuf bourguignon</b><small>16,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Escalope de veau" data-prix="29,90" data-unite="le kg"><p><b>Escalope de veau</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Gigot d&#39;agneau" data-prix="22,90" data-unite="le kg"><p><b>Gigot d&#39;agneau</b><small>22,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Poulet entier" data-prix="6,90" data-unite="le kg"><p><b>Poulet entier</b><small>6,90 € le kg</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
+  <h2>Commander pour le retrait</h2>
+  <p class="cr-ex">Choisissez vos pièces et l'heure : on prépare, on emballe, on met votre nom dessus.</p>
+  <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Côte de bœuf" data-prix="29,90" data-unite="le kg"><p><b>Côte de bœuf</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Faux-filet" data-prix="27,90" data-unite="le kg"><p><b>Faux-filet</b><small>27,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Bœuf bourguignon" data-prix="16,90" data-unite="le kg"><p><b>Bœuf bourguignon</b><small>16,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Escalope de veau" data-prix="29,90" data-unite="le kg"><p><b>Escalope de veau</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Gigot d&#39;agneau" data-prix="22,90" data-unite="le kg"><p><b>Gigot d&#39;agneau</b><small>22,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Poulet entier" data-prix="6,90" data-unite="le kg"><p><b>Poulet entier</b><small>6,90 € le kg</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="cr-village" data-sec="village">
-  <figure class="cr-photo"><img class="" src="../../atelier/photos/boucherie/618775.webp" srcset="../../atelier/photos/boucherie/618775-m.webp 760w, ../../atelier/photos/boucherie/618775.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="Pièce de bœuf poivrée sur une planche en bois (photo d&#39;illustration)" data-illu style="background-color:#dab092" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
-  <div class="cr-v-t">
-    <h2>Creney-près-Troyes</h2>
-    <p class="cr-adr">1 rue de la Fontaine, 10150 Creney-près-Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Boucherie%20de%20Creney%201%20rue%20de%20la%20Fontaine%2010150%20Creney-pr%C3%A8s-Troyes" target="_blank" rel="noopener">itinéraire</a></p>
-    <dl class="cr-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – vendredi</dt><dd>8 h – 12 h 30, 14 h 30 – 19 h 30</dd></div><div><dt>Samedi</dt><dd>8 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>8 h 30 – 12 h 30</dd></div></dl>
-    <p class="cr-hn">Horaires d'exemple, à confirmer.</p>
-    <p class="cr-tel2"><a href="tel:+33325803235">03 25 80 32 35</a></p>
-  </div>
+<section class="cr-venir" id="venir" data-sec="venir">
+  <h2>Venir à la boutique</h2>
+  <p class="cr-adr">1 rue de la Fontaine<br>10150 Creney-près-Troyes</p>
+  <p class="cr-liens"><a href="https://www.google.com/maps/search/?api=1&query=Boucherie%20de%20Creney%201%20rue%20de%20la%20Fontaine%2010150%20Creney-pr%C3%A8s-Troyes" target="_blank" rel="noopener">Itinéraire</a> · <a href="tel:+33325803235">03 25 80 32 35</a></p>
+  <dl class="cr-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – vendredi</dt><dd>8 h – 12 h 30, 14 h 30 – 19 h 30</dd></div><div><dt>Samedi</dt><dd>8 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>8 h 30 – 12 h 30</dd></div></dl>
+  <p class="cr-ex">Horaires donnés en exemple, à confirmer.</p>
 </section>
-<footer class="cr-pied" data-sec="pied"><span>Boucherie de Creney</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Boucherie de Creney, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 1 rue de la Fontaine, 10150 Creney-près-Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 80 32 35</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Boucherie de Creney. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Boucherie de Creney au 03 25 80 32 35. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
+
+<footer class="cr-pied" data-sec="pied"><p class="cr-logo">Boucherie de Creney</p><p><a href="#page-mentions">Mentions légales</a> · <a href="#page-confidentialite">Confidentialité</a></p></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Boucherie de Creney, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 1 rue de la Fontaine, 10150 Creney-près-Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 80 32 35</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Boucherie de Creney. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Boucherie de Creney au 03 25 80 32 35. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
    Horaires en direct, prise de rendez-vous, commande à retirer, compte à rebours,
    galerie, formulaire de contact, menu mobile, pages. Aucun cookie, aucun traceur. */
@@ -619,6 +595,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#2A211A}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:30","f":"12:30","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 80 32 35","email":"","nom":"Boucherie de Creney"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#B42A22;color:#fff">B</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Boucherie de Creney. Continuer ?'))ev.preventDefault();},true);var dd=r.querySelector('[data-date]');if(dd){var d=new Date();dd.textContent=('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear()}})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:30","f":"12:30","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 80 32 35","email":"","nom":"Boucherie de Creney"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#7A2E28;color:#fff">B</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Boucherie de Creney. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>

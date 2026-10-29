@@ -6,16 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Le Cappadoce</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Le Cappadoce. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#B85A33">
+<meta name="theme-color" content="#A8472A">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Marhey";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/marhey-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Marhey";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/marhey-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Marhey";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/marhey-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/epilogue-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/epilogue-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/epilogue-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Epilogue";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/epilogue-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Gloock";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/gloock-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Onest";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/onest-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Onest";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/onest-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Onest";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/onest-latin-600-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -105,144 +102,146 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#3A2218}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#2E211A}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.cp{--peche:#F7D3B5;--ciel:#FBE7D3;--ocre:#E2AE78;--terre:#B85A33;--terre-f:#8E3F22;--brun:#3A2218;--sable:#FBF3E8;
-  background:var(--sable);color:var(--brun);font:400 17px/1.55 Epilogue,system-ui,sans-serif}
-.cp h1,.cp h2,.cp h3,.cp-marque{font-family:Marhey,"Trebuchet MS",sans-serif;font-weight:600;line-height:1.05}
-.cp-tete{display:flex;justify-content:space-between;align-items:center;padding:12px clamp(16px,3cqi,40px);background:var(--ciel)}
-.cp-marque{font-size:1.4rem;text-decoration:none;color:var(--terre-f)}
-.cp-tete-t{font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums}
+.cp{--sable:#F1E8D9;--sable-f:#E6D9C3;--terre:#A8472A;--terre-f:#87361E;--brun:#2E211A;--gris:#7A685B;--trait:rgba(46,33,26,.15);
+  background:var(--sable);color:var(--brun);font:400 16.5px/1.62 Onest,system-ui,sans-serif}
+.cp h1,.cp h2,.cp h3,.cp-logo,.cp-chiffres b,.cp-plats figcaption{font-family:Gloock,Georgia,serif;font-weight:400}
+.cp-k{font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--terre)}
+.cp-tete{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(18px,4cqi,56px);background:var(--sable)}
+.cp-logo{font-size:1.5rem;text-decoration:none}
+.cp-nav{display:none;gap:30px;font-weight:500}
+.cp-nav a{text-decoration:none}.cp-nav a:hover{color:var(--terre)}
+.cp-cta{padding:10px 18px;background:var(--terre);color:#fff;text-decoration:none;font-weight:600;border-radius:3px}
+@container site (min-width:900px){.cp-nav{display:flex}}
 
-.cp-aube{position:relative;background:linear-gradient(180deg,#FBE7D3 0%,#F9D7BC 45%,#F4BE98 100%);overflow:hidden}
-.cp-ciel{position:relative;padding:clamp(30px,6cqi,70px) clamp(16px,3cqi,40px) 0;min-height:420px}
-.cp-txt{position:relative;z-index:2;max-width:560px}
-.cp-k{font-weight:600;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--terre-f)}
-.cp h1{margin-top:8px;font-size:clamp(3.2rem,12cqi,7.2rem);font-weight:700;color:var(--terre-f);letter-spacing:-.01em}
-.cp-dit{margin-top:14px;font-size:1.15rem;max-width:36ch}
-.cp-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:20px}
-.cp-btn{background:var(--terre);color:var(--sable);font-weight:700;border-radius:999px;padding:0 24px}
+.cp-une{position:relative;display:grid;align-items:end;min-height:min(84svh,760px);overflow:hidden;color:#fff}
+.cp-une-img{position:absolute;inset:0}
+.cp-une-img img{width:100%;height:100%;object-fit:cover}
+.cp-une-img::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(46,33,26,0) 30%,rgba(46,33,26,.78))}
+.cp-une-img .illu{z-index:1;top:10px;bottom:auto}
+.cp-une-t{position:relative;display:grid;gap:14px;padding:48px clamp(18px,5cqi,80px) clamp(36px,5cqi,64px)}
+.cp-une-t .cp-k{color:#F3D9B8}
+.cp h1{font-size:clamp(3.6rem,13cqi,10rem);line-height:.9;letter-spacing:-.01em}
+.cp-une-t>p:not(.cp-k){max-width:46ch;font-size:1.1rem;color:#F6EBDD}
+.cp-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:6px}
+.cp-btn{background:var(--terre);color:#fff;border-radius:3px;font-weight:600;padding:0 26px}
 .cp-btn:hover{background:var(--terre-f)}
-.cp-lien{font-weight:600}
-.cp-info{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px;font-size:.95rem}
-.cp-st{display:inline-flex;align-items:center;gap:8px;font-weight:600}
-.cp-st i{width:9px;height:9px;border-radius:50%;background:#2E8B57}.cp-st.ferme i{background:var(--terre)}
-.cp-ballon{position:absolute;z-index:1}
-.cp-b1{width:74px;right:6%;top:24px}
-.cp-b2{width:48px;right:30%;top:8px;opacity:.9}
-.cp-b3{width:36px;right:20%;top:150px;opacity:.85}
-.cp-paysage{display:block;width:100%;height:clamp(170px,26cqi,300px);margin-top:-30px}
-@container site (min-width:900px){
-  .cp-ciel{min-height:min(60svh,520px);padding-top:70px;padding-bottom:40px}
-  .cp-b1{width:120px;right:12%;top:60px}
-  .cp-b2{width:72px;right:34%;top:30px}
-  .cp-b3{width:54px;right:4%;top:230px}
-  .cp-paysage{margin-top:-60px}
-}
-@container site (max-width:520px){.cp-ciel{padding-bottom:96px}.cp-b3{display:none}.cp-b1{top:auto;bottom:4px;right:10%;width:56px}.cp-b2{top:auto;bottom:34px;right:auto;left:18%;width:34px}}
-@media (prefers-reduced-motion:no-preference){
-  .cp-ballon{animation:cp-monte 4.5s .2s cubic-bezier(.2,.7,.3,1) both}
-  .cp-b2{animation-delay:.6s;animation-duration:5.2s}.cp-b3{animation-delay:1s}
-  @keyframes cp-monte{from{transform:translateY(160px) rotate(-3deg)}70%{transform:translateY(-6px) rotate(1deg)}to{transform:none}}
-}
+.cp-lien{color:#fff;font-weight:600;text-underline-offset:4px}
+@media (prefers-reduced-motion:no-preference){.cp-une-img img{animation:cp-aube 3.2s ease-out both}@keyframes cp-aube{from{filter:brightness(.55) saturate(.7);transform:scale(1.06)}}}
 
-.cp-in{max-width:1100px;margin:0 auto;padding:0 clamp(16px,3cqi,40px)}
-.cp-carte{padding:clamp(56px,8cqi,100px) 0;background:var(--sable)}
-.cp h2{font-size:clamp(2.4rem,7.5cqi,4.2rem);color:var(--terre-f)}
-.cp-ex{margin-top:8px;color:#7A5E50}
-.cp-carte-g{display:grid;gap:34px}
-.cp-cats{display:grid;gap:30px;margin-top:30px}
-.cp-cat h3{font-size:1.6rem;color:var(--terre)}
-.cp-cat li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid #EBDCC8}
-.cp-cat span{font-weight:600;font-size:1.08rem}
-.cp-cat small{display:block;color:#7A5E50}
-.cp-cat b{font:700 1.3rem/1 Marhey,sans-serif;color:var(--terre-f);white-space:nowrap}
-.cp-photo{position:relative;margin:0;aspect-ratio:3/4;border-radius:200px 200px 18px 18px;overflow:hidden;border:8px solid var(--ocre)}
-.cp-photo img{width:100%;height:100%;object-fit:cover}
-@container site (min-width:900px){.cp-carte-g{grid-template-columns:1.3fr .7fr;gap:72px;align-items:center}}
+.cp-chiffres{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:30px clamp(18px,5cqi,80px);background:var(--brun);color:var(--sable)}
+.cp-chiffres p{display:grid;gap:2px}
+.cp-chiffres b{font-size:clamp(2.4rem,6cqi,3.6rem);line-height:1;color:#F3C9A3}
+.cp-chiffres span{font-size:.9rem;color:#D9C9B6}
+.cp-st{grid-column:1/-1;display:inline-flex!important;align-items:center;gap:9px;font-weight:600}
+.cp-st i{width:8px;height:8px;border-radius:50%;background:#7DBB6B}.cp-st.ferme i{background:#D9735B}
+.cp-st span{color:var(--sable)!important;font-size:1rem!important}
+@container site (min-width:820px){.cp-chiffres{grid-template-columns:auto auto 1fr;gap:56px;align-items:center}.cp-st{grid-column:auto;justify-self:end}}
 
-.cp-cmd{padding:clamp(56px,8cqi,100px) 0;background:var(--terre-f);color:var(--sable)}
-.cp-cmd h2{color:var(--sable)}
-.cp-sous{margin-top:8px;max-width:52ch;color:#F2D9C7}
-.cp-cmd .s-resa{margin-top:28px}
-.cp-cmd .s-resa-q{font:600 1.3rem/1 Marhey,sans-serif;color:#FFD9A8}
-.cp-cmd .s-cmd-ligne{border-bottom:1px solid rgba(251,243,232,.18)}
-.cp-cmd .s-cmd-ligne small{display:block;color:#F2D9C7;font-variant-numeric:tabular-nums}
-.cp-cmd .s-pas-b{background:rgba(251,243,232,.12);color:var(--sable);border-radius:50%}
-.cp-cmd .s-puce,.cp-cmd .s-heure{background:rgba(251,243,232,.1);color:var(--sable);border-radius:12px}
-.cp-cmd .s-puce.on,.cp-cmd .s-heure.on{background:var(--peche);color:var(--brun)}
-.cp-cmd .s-resa-pied{border-top:1px solid rgba(251,243,232,.4)}
-.cp-cmd .s-btn{background:var(--peche);color:var(--brun);font-weight:700;border-radius:999px}
-.cp-cmd .s-btn--2{background:transparent;color:var(--sable);box-shadow:inset 0 0 0 1.5px var(--sable)}
-.cp-cmd .s-champ input{border:0;border-radius:12px;background:var(--sable);color:var(--brun)}
-.cp-cmd .s-lien{color:#FFD9A8}
-.cp-cmd .s-fin-titre{font:600 2.2rem/1 Marhey,sans-serif}
+.cp-table{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px)}
+.cp-table-h{display:grid;gap:10px;margin-bottom:34px}
+.cp h2{font-size:clamp(2.3rem,5.4cqi,4rem);line-height:1.02}
+.cp-plats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.cp-plats figure{margin:0}
+.cp-plats img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:3px}
+.cp-plats figure:nth-child(odd) img{aspect-ratio:4/5}
+.cp-plats figcaption{margin-top:10px;font-size:1.3rem}
+.cp-illu{margin-top:16px;font-size:.84rem;color:var(--gris)}
+@container site (min-width:900px){.cp-plats{grid-template-columns:repeat(4,1fr);gap:22px;align-items:end}}
 
-.cp-venir{padding:clamp(56px,8cqi,100px) 0;background:var(--ciel)}
-.cp-venir-g{display:grid;gap:30px}
-.cp-adr{margin-top:12px;font-size:1.12rem}
-.cp-adr a{font-weight:600}
-.cp-hor{max-width:460px}
-.cp-hor div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #EBCDB2}
+.cp-carte{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px);background:var(--sable-f)}
+.cp-carte-h{display:grid;gap:10px;margin-bottom:36px}
+.cp-carte-h>p:last-child{color:var(--gris)}
+.cp-cats{display:grid;gap:34px}
+.cp-cat h3{font-size:1.5rem;color:var(--terre);padding-bottom:8px;border-bottom:1px solid var(--trait)}
+.cp-cat li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--trait)}
+.cp-cat p{font-weight:600}
+.cp-cat small{color:var(--gris)}
+.cp-cat b{font:400 1.35rem/1 Gloock,serif;white-space:nowrap}
+@container site (min-width:900px){.cp-carte{display:grid;grid-template-columns:.7fr 1.3fr;gap:64px}.cp-cats{grid-template-columns:1fr 1fr;gap:34px 48px}}
+
+.cp-cmd{padding:clamp(64px,9cqi,120px) clamp(18px,4cqi,56px)}
+.cp-cmd-h{display:grid;gap:10px;margin-bottom:30px}
+.cp-cmd-h>p:last-child{color:var(--gris);max-width:52ch}
+.cp-cmd .s-resa{max-width:1100px;padding:clamp(18px,3cqi,34px);background:#FBF6EE;border-radius:4px}
+.cp-cmd .s-resa-q{font-size:.76rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--terre)}
+.cp-cmd .s-cmd-ligne{border-bottom:1px solid var(--trait)}
+.cp-cmd .s-cmd-ligne small{display:block;color:var(--gris);font-variant-numeric:tabular-nums}
+.cp-cmd .s-pas-b{background:var(--sable-f);color:var(--terre);border-radius:50%}
+.cp-cmd .s-puce,.cp-cmd .s-heure{background:var(--sable);border-radius:3px}
+.cp-cmd .s-puce.on,.cp-cmd .s-heure.on{background:var(--terre);color:#fff}
+.cp-cmd .s-resa-pied{border-top:1px solid var(--brun)}
+.cp-cmd .s-btn{background:var(--terre);color:#fff;border-radius:3px;font-weight:600}
+.cp-cmd .s-btn--2{background:transparent;color:var(--terre);box-shadow:inset 0 0 0 1.5px var(--terre)}
+.cp-cmd .s-champ input{border:1px solid var(--trait);border-radius:3px;background:#fff}
+.cp-cmd .s-fin-titre{font:400 2.2rem/1 Gloock,serif}
+
+.cp-venir{display:grid;background:var(--brun);color:var(--sable)}
+.cp-venir figure{position:relative;margin:0;min-height:300px}
+.cp-venir figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cp-venir>div{padding:clamp(48px,8cqi,100px) clamp(18px,5cqi,80px)}
+.cp-venir .cp-k{color:#F3C9A3}
+.cp-ville{margin-top:8px;color:#D9C9B6}.cp-ville a{color:var(--sable);font-weight:600}
+.cp-hor{margin-top:24px;max-width:460px}
+.cp-hor div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(241,232,217,.16)}
 .cp-hor dt{font-weight:600}.cp-hor dd{text-align:right;font-variant-numeric:tabular-nums}
-.cp-hn{margin-top:8px;font-size:.85rem;color:#7A5E50}
-@container site (min-width:860px){.cp-venir-g{grid-template-columns:1fr 1fr;align-items:end}}
-.cp-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:18px clamp(16px,3cqi,40px) 26px;background:var(--brun);color:#D9C3B3;font-size:.9rem}
-.cp-pied span{margin-right:auto;font:600 1.2rem/1 Marhey,sans-serif;color:var(--peche)}
-.cp .legal h1{font-size:2.6rem;color:var(--terre-f)}
+.cp-hn{margin-top:8px;font-size:.84rem;color:#B9A794}
+@container site (min-width:900px){.cp-venir{grid-template-columns:1fr 1fr}}
+.cp-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:20px clamp(18px,4cqi,56px) 28px;background:#241912;color:#B9A794;font-size:.86rem}
+.cp-pied span{margin-right:auto;font:400 1.25rem/1 Gloock,serif;color:var(--sable)}
+.cp .legal h1{font-family:Gloock,serif;font-weight:400;font-size:2.6rem}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Le Cappadoce</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Le Cappadoce</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site ni carte en ligne : la carte, les prix et les horaires sont des exemples. Le paysage est dessiné ; la photo de la carte est une photo d&#39;illustration, à remplacer par celles de vos plats.</p><ul><li>Ce site a été dessiné pour Le Cappadoce, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Le%20Cappadoce.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Le Cappadoce</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Le Cappadoce</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site ni carte en ligne : la carte, les prix et les horaires sont des exemples. Les photos (paysage de Cappadoce et plats) sont des photos d&#39;illustration, à remplacer par celles de votre restaurant.</p><ul><li>Ce site a été dessiné pour Le Cappadoce, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Le%20Cappadoce.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site cp" data-metier="snack"><main data-page="accueil">
 <header class="cp-tete" data-sec="tete">
-  <a class="cp-marque" href="#page-accueil">Le Cappadoce</a>
-  <a class="cp-tete-t" href="tel:+33325826173">03 25 82 61 73</a>
+  <a class="cp-logo" href="#page-accueil">Le Cappadoce</a>
+  <nav class="cp-nav"><a href="#table">La table</a><a href="#carte">La carte</a><a href="#venir">Venir</a></nav>
+  <a class="cp-cta" href="#commander">Commander</a>
 </header>
 
-<section class="cp-aube" data-sec="paysage">
-  <div class="cp-ciel">
-    <svg class="cp-ballon cp-b1" viewBox="0 0 80 120" aria-hidden="true"><path d="M40 4C18 4 4 22 4 42C4 62 22 74 30 86H50C58 74 76 62 76 42C76 22 62 4 40 4Z" fill="#C8402B"/><path d="M40 4C30 4 24 22 24 42C24 62 32 74 34 86H46C48 74 56 62 56 42C56 22 50 4 40 4Z" fill="#F2B33D"/><path d="M40 4C37 4 35 22 35 42C35 62 38 74 39 86H41C42 74 45 62 45 42C45 22 43 4 40 4Z" fill="#C8402B"/><path d="M31 88L34 100M49 88L46 100" stroke="#5A3020" stroke-width="1.5"/><rect x="33" y="100" width="14" height="10" rx="2" fill="#7A4326"/></svg><svg class="cp-ballon cp-b2" viewBox="0 0 80 120" aria-hidden="true"><path d="M40 4C18 4 4 22 4 42C4 62 22 74 30 86H50C58 74 76 62 76 42C76 22 62 4 40 4Z" fill="#1F7A78"/><path d="M40 4C30 4 24 22 24 42C24 62 32 74 34 86H46C48 74 56 62 56 42C56 22 50 4 40 4Z" fill="#F4E2C4"/><path d="M40 4C37 4 35 22 35 42C35 62 38 74 39 86H41C42 74 45 62 45 42C45 22 43 4 40 4Z" fill="#1F7A78"/><path d="M31 88L34 100M49 88L46 100" stroke="#5A3020" stroke-width="1.5"/><rect x="33" y="100" width="14" height="10" rx="2" fill="#7A4326"/></svg><svg class="cp-ballon cp-b3" viewBox="0 0 80 120" aria-hidden="true"><path d="M40 4C18 4 4 22 4 42C4 62 22 74 30 86H50C58 74 76 62 76 42C76 22 62 4 40 4Z" fill="#F2B33D"/><path d="M40 4C30 4 24 22 24 42C24 62 32 74 34 86H46C48 74 56 62 56 42C56 22 50 4 40 4Z" fill="#C8402B"/><path d="M40 4C37 4 35 22 35 42C35 62 38 74 39 86H41C42 74 45 62 45 42C45 22 43 4 40 4Z" fill="#F2B33D"/><path d="M31 88L34 100M49 88L46 100" stroke="#5A3020" stroke-width="1.5"/><rect x="33" y="100" width="14" height="10" rx="2" fill="#7A4326"/></svg>
-    <div class="cp-txt">
-      <p class="cp-k">Restaurant turc · 16 rue Émile Zola</p>
-      <h1>Le Cappadoce</h1>
-      <p class="cp-dit">Grillades, kebabs et assiettes, au cœur de Troyes. À table, ou à emporter en commandant avant de venir.</p>
-      <div class="cp-act"><a class="s-btn cp-btn" href="#commander">Commander à emporter</a><a class="cp-lien" href="#carte">Voir la carte</a></div>
-      <p class="cp-info"><span class="cp-st" data-statut><i></i><span></span></span><span>4,4 sur Google · 923 avis</span></p>
-    </div>
+<section class="cp-une" data-sec="une">
+  <div class="cp-une-img"><img class="" src="../../atelier/photos/turc/5700576.webp" srcset="../../atelier/photos/turc/5700576-m.webp 760w, ../../atelier/photos/turc/5700576.webp 1600w" sizes="100vw" alt="Montgolfières au-dessus de la vallée de Cappadoce au lever du jour (photo d&#39;illustration)" data-illu style="background-color:#a68670" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration : la Cappadoce, en Turquie</span></div>
+  <div class="cp-une-t">
+    <p class="cp-k">Restaurant turc · 16 rue Émile Zola · Troyes</p>
+    <h1>Le Cappadoce</h1>
+    <p>Grillades, kebabs et assiettes. À table, ou à emporter en commandant avant de venir.</p>
+    <div class="cp-act"><a class="s-btn cp-btn" href="#commander">Commander à emporter</a><a class="cp-lien" href="#carte">Voir la carte</a></div>
   </div>
-  <svg class="cp-paysage" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path fill="#EBC195" d="M0 180C120 150 220 170 330 150S560 120 700 150S960 130 1080 150S1170 160 1200 155V300H0Z"/><path fill="#D9A06A" d="M52 230C59.599999999999994 169.5 76.7 131 78.6 120L101.4 120C103.3 131 120.4 169.5 128 230Z"/><ellipse cx="90" cy="120" rx="19.76" ry="9.88" fill="#8E5233"/><path fill="#D9A06A" d="M256 220C264.8 143 284.6 94 286.8 80L313.2 80C315.4 94 335.2 143 344 220Z"/><ellipse cx="300" cy="80" rx="22.880000000000003" ry="11.440000000000001" fill="#8E5233"/><path fill="#D9A06A" d="M486 228C492.8 173 508.1 138 509.8 128L530.2 128C531.9 138 547.2 173 554 228Z"/><ellipse cx="520" cy="128" rx="17.68" ry="8.84" fill="#8E5233"/><path fill="#D9A06A" d="M714 222C723.2 139.5 743.9 87 746.2 72L773.8 72C776.1 87 796.8 139.5 806 222Z"/><ellipse cx="760" cy="72" rx="23.92" ry="11.96" fill="#8E5233"/><path fill="#D9A06A" d="M940 226C948 160 966 118 968 106L992 106C994 118 1012 160 1020 226Z"/><ellipse cx="980" cy="106" rx="20.8" ry="10.4" fill="#8E5233"/><path fill="#D9A06A" d="M1116 228C1122.8 175.2 1138.1 141.6 1139.8 132L1160.2 132C1161.9 141.6 1177.2 175.2 1184 228Z"/><ellipse cx="1150" cy="132" rx="17.68" ry="8.84" fill="#8E5233"/><path fill="#C9864F" d="M0 230C150 210 260 236 420 222S700 206 860 224S1080 214 1200 222V300H0Z"/><path fill="#B85A33" d="M138 280C148.4 192 171.8 136 174.4 120L205.6 120C208.2 136 231.6 192 242 280Z"/><ellipse cx="190" cy="120" rx="27.04" ry="13.52" fill="#6E3220"/><path fill="#B85A33" d="M388 286C396.4 220 415.3 178 417.4 166L442.6 166C444.7 178 463.6 220 472 286Z"/><ellipse cx="430" cy="166" rx="21.84" ry="10.92" fill="#6E3220"/><path fill="#B85A33" d="M582 282C593.6 177.5 619.7 111 622.6 92L657.4 92C660.3 111 686.4 177.5 698 282Z"/><ellipse cx="640" cy="92" rx="30.16" ry="15.08" fill="#6E3220"/><path fill="#B85A33" d="M856 288C864.8 216.5 884.6 171 886.8 158L913.2 158C915.4 171 935.2 216.5 944 288Z"/><ellipse cx="900" cy="158" rx="22.880000000000003" ry="11.440000000000001" fill="#6E3220"/><path fill="#B85A33" d="M1026 284C1036.8 190.5 1061.1 131 1063.8 114L1096.2 114C1098.9 131 1123.2 190.5 1134 284Z"/><ellipse cx="1080" cy="114" rx="28.080000000000002" ry="14.040000000000001" fill="#6E3220"/><path fill="#8E3F22" d="M0 272C200 262 380 282 600 270S960 262 1200 272V300H0Z"/></svg>
+</section>
+
+<section class="cp-chiffres" data-sec="chiffres">
+  <p><b>923</b><span>avis sur Google</span></p>
+  <p><b>4,4</b><span>de moyenne</span></p>
+  <p class="cp-st" data-statut><i></i><span></span></p>
+</section>
+
+<section class="cp-table" id="table" data-sec="table">
+  <div class="cp-table-h"><p class="cp-k">La table</p><h2>Ce qui sort de la cuisine</h2></div>
+  <div class="cp-plats"><figure><img class="" src="../../atelier/photos/turc/24427084.webp" srcset="../../atelier/photos/turc/24427084-m.webp 760w, ../../atelier/photos/turc/24427084.webp 1600w" sizes="(min-width: 900px) 25vw, 50vw" alt="Le lahmacun (photo d&#39;illustration)" data-illu style="background-color:#91623d" loading="lazy" decoding="async"><figcaption>Le lahmacun</figcaption></figure><figure><img class="" src="../../atelier/photos/turc/36890236.webp" srcset="../../atelier/photos/turc/36890236-m.webp 760w, ../../atelier/photos/turc/36890236.webp 900w" sizes="(min-width: 900px) 25vw, 50vw" alt="Les brochettes (photo d&#39;illustration)" data-illu style="background-color:#563925" loading="lazy" decoding="async"><figcaption>Les brochettes</figcaption></figure><figure><img class="" src="../../atelier/photos/turc/15390223.webp" srcset="../../atelier/photos/turc/15390223-m.webp 760w, ../../atelier/photos/turc/15390223.webp 1600w" sizes="(min-width: 900px) 25vw, 50vw" alt="L&#39;assiette (photo d&#39;illustration)" data-illu style="background-color:#725b4d" loading="lazy" decoding="async"><figcaption>L&#39;assiette</figcaption></figure><figure><img class="" src="../../atelier/photos/turc/8184135.webp" srcset="../../atelier/photos/turc/8184135-m.webp 760w, ../../atelier/photos/turc/8184135.webp 1200w" sizes="(min-width: 900px) 25vw, 50vw" alt="Pour tous (photo d&#39;illustration)" data-illu style="background-color:#79583d" loading="lazy" decoding="async"><figcaption>Pour tous</figcaption></figure></div>
+  <p class="cp-illu">Photos d'illustration, à remplacer par celles de vos plats.</p>
 </section>
 
 <section class="cp-carte" id="carte" data-sec="carte">
-  <div class="cp-in cp-carte-g">
-    <div>
-      <h2>La carte</h2>
-      <p class="cp-ex">Carte et prix d'exemple : on met les vôtres.</p>
-      <div class="cp-cats"><div class="cp-cat"><h3>Assiettes</h3><ul><li><p><span>Assiette kebab</span><small>Viande, frites ou riz, salade</small></p><b>13 €</b></li><li><p><span>Assiette brochettes</span></p><b>15 €</b></li><li><p><span>Assiette mixte</span></p><b>16 €</b></li></ul></div><div class="cp-cat"><h3>Sandwichs et menus</h3><ul><li><p><span>Sandwich kebab</span></p><b>7 €</b></li><li><p><span>Menu sandwich, frites et boisson</span></p><b>11 €</b></li></ul></div><div class="cp-cat"><h3>Desserts</h3><ul><li><p><span>Dessert du jour</span></p><b>4 €</b></li></ul></div></div>
-    </div>
-    <figure class="cp-photo"><img class="" src="../../atelier/photos/turc/8364505.webp" srcset="../../atelier/photos/turc/8364505-m.webp 760w, ../../atelier/photos/turc/8364505.webp 1600w" sizes="(min-width: 900px) 420px, 100vw" alt="La broche de kebab devant les braises (photo d&#39;illustration)" data-illu style="background-color:#855943" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
-  </div>
+  <div class="cp-carte-h"><p class="cp-k">La carte</p><h2>À la carte</h2><p>Carte et prix donnés en exemple : on met les vôtres.</p></div>
+  <div class="cp-cats"><div class="cp-cat"><h3>Assiettes</h3><ul><li><div><p>Assiette kebab</p><small>Viande, frites ou riz, salade</small></div><b>13 €</b></li><li><div><p>Assiette brochettes</p><small>Brochettes, riz, salade</small></div><b>15 €</b></li><li><div><p>Assiette mixte</p><small>Kebab et brochettes</small></div><b>16 €</b></li></ul></div><div class="cp-cat"><h3>Du four</h3><ul><li><div><p>Lahmacun</p><small>Pâte fine, viande hachée, herbes</small></div><b>6 €</b></li></ul></div><div class="cp-cat"><h3>Sandwichs et menus</h3><ul><li><div><p>Sandwich kebab</p></div><b>7 €</b></li><li><div><p>Menu sandwich</p><small>Avec frites et boisson</small></div><b>11 €</b></li></ul></div><div class="cp-cat"><h3>Pour finir</h3><ul><li><div><p>Dessert du jour</p></div><b>4 €</b></li></ul></div></div>
 </section>
 
 <section class="cp-cmd" id="commander" data-sec="commande">
-  <div class="cp-in">
-    <h2>Commander à emporter</h2>
-    <p class="cp-sous">Choisissez vos plats et l'heure de passage : c'est prêt quand vous arrivez. Vous payez sur place.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Assiette kebab" data-prix="13" data-unite=""><p><b>Assiette kebab</b><small>13 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette brochettes" data-prix="15" data-unite=""><p><b>Assiette brochettes</b><small>15 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette mixte" data-prix="16" data-unite=""><p><b>Assiette mixte</b><small>16 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Sandwich kebab" data-prix="7" data-unite=""><p><b>Sandwich kebab</b><small>7 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu sandwich, frites et boisson" data-prix="11" data-unite=""><p><b>Menu sandwich, frites et boisson</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Dessert du jour" data-prix="4" data-unite=""><p><b>Dessert du jour</b><small>4 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
+  <div class="cp-cmd-h"><p class="cp-k">À emporter</p><h2>Commander avant de venir</h2><p>Choisissez vos plats et l'heure de passage : c'est prêt quand vous arrivez. Vous payez sur place.</p></div>
+  <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Assiette kebab" data-prix="13" data-unite=""><p><b>Assiette kebab</b><small>13 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette brochettes" data-prix="15" data-unite=""><p><b>Assiette brochettes</b><small>15 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette mixte" data-prix="16" data-unite=""><p><b>Assiette mixte</b><small>16 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Lahmacun" data-prix="6" data-unite=""><p><b>Lahmacun</b><small>6 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Sandwich kebab" data-prix="7" data-unite=""><p><b>Sandwich kebab</b><small>7 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu sandwich" data-prix="11" data-unite=""><p><b>Menu sandwich</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Dessert du jour" data-prix="4" data-unite=""><p><b>Dessert du jour</b><small>4 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
 </section>
 
-<section class="cp-venir" data-sec="venir">
-  <div class="cp-in cp-venir-g">
-    <div>
-      <h2>Rue Émile Zola</h2>
-      <p class="cp-adr">16 rue Émile Zola, 10000 Troyes<br><a href="https://www.google.com/maps/search/?api=1&query=Le%20Cappadoce%2016%20rue%20%C3%89mile%20Zola%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a> · <a href="tel:+33325826173">03 25 82 61 73</a></p>
-    </div>
-    <div>
-      <dl class="cp-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
-      <p class="cp-hn">Horaires d'exemple, à confirmer.</p>
-    </div>
+<section class="cp-venir" id="venir" data-sec="venir">
+  <figure><img class="" src="../../atelier/photos/turc/19328610.webp" srcset="../../atelier/photos/turc/19328610-m.webp 760w, ../../atelier/photos/turc/19328610.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="Cheminées de fée et montgolfière en Cappadoce (photo d&#39;illustration)" data-illu style="background-color:#b2a9a5" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+  <div>
+    <p class="cp-k">Venir</p>
+    <h2>16 rue Émile Zola</h2>
+    <p class="cp-ville">10000 Troyes · <a href="https://www.google.com/maps/search/?api=1&query=Le%20Cappadoce%2016%20rue%20%C3%89mile%20Zola%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a> · <a href="tel:+33325826173">03 25 82 61 73</a></p>
+    <dl class="cp-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
+    <p class="cp-hn">Horaires donnés en exemple, à confirmer.</p>
   </div>
 </section>
 <footer class="cp-pied" data-sec="pied"><span>Le Cappadoce</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Le Cappadoce, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 16 rue Émile Zola, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 82 61 73</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Le Cappadoce. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Le Cappadoce au 03 25 82 61 73. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
@@ -605,6 +604,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#3A2218}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 82 61 73","email":"","nom":"Le Cappadoce"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#B85A33;color:#fff">L</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Le Cappadoce. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 82 61 73","email":"","nom":"Le Cappadoce"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#A8472A;color:#fff">L</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Le Cappadoce. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>
