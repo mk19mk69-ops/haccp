@@ -1139,6 +1139,66 @@ body { letter-spacing: 0; }
 .story:not(.story--anime) .story-pas h3 { font-size: clamp(19px, 2vw, 24px); }
 .story:not(.story--anime) .story-pas-liste { gap: 28px; }
 
+/* ===================== Ordinateur, calculateur, mesure ===================== */
+.pc-une { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); align-items: center; background: #fff; border-radius: 22px; padding: clamp(22px, 4vw, 48px); border: 1px solid var(--ligne); }
+.pc-une-visuel { color: var(--texte); }
+.pc-plan { display: block; width: 100%; height: auto; }
+.pc-une-texte { display: grid; gap: 8px; justify-items: start; }
+.pc-une-texte h3 { font-size: clamp(26px, 3vw, 34px); font-weight: 600; letter-spacing: -0.02em; }
+.pc-une-prix { font-family: var(--titres); font-size: clamp(34px, 4vw, 44px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin-top: 6px; }
+.pc-une-prix small { font-family: var(--police); font-size: 15px; font-weight: 400; color: var(--texte-2); margin-left: 8px; letter-spacing: 0; }
+.pc-une .pc-specs { margin: 8px 0 10px; }
+.pc-une-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.pc-une + .inclus { margin-top: 24px; }
+
+.calcul { margin-top: clamp(48px, 7vw, 80px); background: var(--noir); color: #EEF2F7; border-radius: 22px; padding: clamp(22px, 4vw, 44px); }
+.calcul-tete h3 { font-family: var(--titres); font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.02em; }
+.calcul-tete p { color: #A7B0BB; margin-top: 6px; }
+.calcul-corps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 56px); margin-top: 28px; align-items: start; }
+.calcul-reglages { display: grid; gap: 22px; }
+.calcul-choix { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 12px; background: #1B2633; }
+.calcul-choix button { border: 0; border-radius: 9px; background: none; color: #A7B0BB; font: inherit; font-size: 14px; font-weight: 600; padding: 10px 8px; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.calcul-choix button[aria-checked="true"] { background: #EEF2F7; color: var(--noir); }
+.curseur { display: grid; gap: 10px; font-size: 15px; color: #C9D1DA; }
+.curseur[hidden] { display: none; }
+.curseur > span { display: flex; justify-content: space-between; gap: 12px; }
+.curseur output { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.curseur input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: none; margin: 0; cursor: pointer; }
+.curseur input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: #2C3A4A; }
+.curseur input[type=range]::-moz-range-track { height: 4px; border-radius: 2px; background: #2C3A4A; }
+.curseur input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -10px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.35); transition: transform .12s ease-out; }
+.curseur input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border: 0; border-radius: 50%; background: #fff; }
+.curseur input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
+.calcul-resultat { background: #121F2D; border-radius: 16px; padding: 22px; }
+.calcul-label { color: #A7B0BB; font-size: 15px; }
+.calcul-nb { font-family: var(--titres); font-size: clamp(48px, 7vw, 72px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; color: #fff; font-variant-numeric: tabular-nums; margin: 4px 0 18px; }
+.calcul-barres { display: grid; gap: 10px; }
+.calcul-barres div { display: grid; grid-template-columns: 82px 1fr auto; gap: 12px; align-items: center; font-size: 14px; color: #C9D1DA; }
+.calcul-barres i { height: 10px; border-radius: 5px; background: #1F2C3B; overflow: hidden; }
+.calcul-barres b { display: block; height: 100%; border-radius: 5px; transform-origin: 0 50%; transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+#b-plat { background: #8A97A6; }
+#b-moi { background: #3D8BEA; }
+.calcul-barres em { font-style: normal; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; min-width: 6ch; text-align: right; }
+.calcul-note { margin-top: 16px; font-size: 12.5px; line-height: 1.5; color: #8E99A6; }
+.calcul-note a { color: #A9CBF2; }
+
+.mesure { padding-block: clamp(56px, 8vw, 96px); background: var(--blanc); border-top: 1px solid var(--ligne); }
+.mesure-lead { color: var(--texte-2); margin-top: 10px; max-width: 40em; }
+.mesure-grille { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 28px 0 0; border-top: 2px solid var(--texte); }
+.mesure-grille div { padding: 16px 16px 4px 0; }
+.mesure-grille div + div { padding-left: 16px; border-left: 1px solid var(--ligne); }
+.mesure-grille dt { font-size: 14px; color: var(--texte-2); }
+.mesure-grille dd { margin: 4px 0 0; font-family: var(--titres); font-size: clamp(26px, 3.4vw, 38px); font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.apercu-ordi, .apercu-tel { will-change: transform; transform-origin: 50% 50%; }
+
+@media (max-width: 833px) {
+  .pc-une { grid-template-columns: 1fr; }
+  .calcul-corps { grid-template-columns: 1fr; }
+  .mesure-grille { grid-template-columns: 1fr 1fr; }
+  .mesure-grille div:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .calcul-barres b { transition: none; } }
+
 @media (prefers-reduced-transparency: reduce) {
   .barre-action, .lnav, .points, .lecture, .notif, .ap-bas { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
@@ -1216,9 +1276,9 @@ body { letter-spacing: 0; }
       <p class="t-lead heros-lead">Je crée des sites, la réservation en ligne et des petits logiciels pour les commerçants de Troyes et des environs. Vous payez une fois : pas d'abonnement, pas de commission.</p>
       <div class="ctas" id="ctas-heros"><a class="btn" href="#contact">Demander un devis</a><a class="btn btn--contour" href="#demos">Voir les démos</a></div>
       <a class="prix-rapides" href="#tarifs" aria-label="Voir les tarifs">
-        <span><small>Vitrine</small><b>280 €</b></span>
-        <span><small>Réservation</small><b>420 €</b></span>
-        <span><small>Sur mesure</small><b>dès 550 €</b></span>
+        <span><small>Vitrine</small><b>350 €</b></span>
+        <span><small>Réservation</small><b>490 €</b></span>
+        <span><small>Sur mesure</small><b>dès 690 €</b></span>
       </a>
       <p class="heros-note">Maquette gratuite et sans engagement sous 72 h.</p>
     </div>
@@ -1658,17 +1718,36 @@ body { letter-spacing: 0; }
     <div class="cadre">
       <div class="pc-tete apparait">
         <h2 class="t-section">Ordinateurs prêts à l'emploi</h2>
-        <p class="t-lead">Mon modèle en stock, deux recommandations, et tous les autres modèles sur demande, de toutes les marques. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
+        <p class="t-lead">Un portable en stock à Troyes, et tous les autres modèles sur demande. Je le préconfigure, je le livre et je l'installe dans votre commerce. Vous l'allumez, tout marche.</p>
       </div>
-      <div class="pc-grille" id="pc-grille">
-        <article class="pc-col pc-col--stock">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="26" y="8" width="148" height="94" rx="6" fill="#2B2E33"/><rect x="31" y="13" width="138" height="84" rx="2" fill="url(#pc-ecran-5)"/><path d="M8 104h184l-5 9a6 6 0 0 1-5 3H18a6 6 0 0 1-5-3Z" fill="#3A3D43"/><rect x="86" y="104" width="28" height="3" rx="1.5" fill="#55585E"/><defs><linearGradient id="pc-ecran-5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38B6F0"/><stop offset=".55" stop-color="#1A6CC4"/><stop offset="1" stop-color="#0B2F6B"/></linearGradient></defs></svg>
-          </div>
+      <article class="pc-une">
+        <div class="pc-une-visuel">
+            <svg class="pc-plan" viewBox="0 0 440 290" role="img" aria-label="Dessin technique du Dell Latitude 5591, écran de 15,6 pouces">
+              <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                <rect x="70" y="14" width="300" height="192" rx="9"/>
+                <rect x="82" y="26" width="276" height="160" rx="2"/>
+                <circle cx="220" cy="20" r="2"/>
+                <path d="M70 206h300"/>
+                <path d="M30 212h380l12 20a6 6 0 0 1-5 9H23a6 6 0 0 1-5-9Z"/>
+                <path d="M192 241v-5h56v5"/>
+                <path d="M82 172h276" stroke-width="1"/>
+                <rect x="88" y="176" width="7" height="7" rx="1" stroke-width="1"/>
+              </g>
+              <g stroke="var(--bleu)" stroke-width="1.2" fill="none">
+                <path d="M84 184 356 28" stroke-dasharray="4 4"/>
+                <path d="M30 262h380M30 256v12M410 256v12"/>
+              </g>
+              <g fill="var(--bleu)" font-family="Poppins, system-ui, sans-serif" font-size="13" font-weight="600">
+                <text x="232" y="96" transform="rotate(-29.8 232 96)" text-anchor="middle">15,6″</text>
+                <text x="220" y="284" text-anchor="middle">Portable 15,6 pouces · Windows 11 Pro</text>
+              </g>
+            </svg>
+        </div>
+        <div class="pc-une-texte">
           <span class="pc-badge pc-badge--stock">En stock à Troyes · reconditionné</span>
           <h3>Dell Latitude 5591</h3>
-          <p class="pc-tag">Très puissant pour le prix. Révisé, prêt à l'emploi, disponible tout de suite.</p>
-          <p class="pc-prix">545 €<small>Occasion révisée · un seul exemplaire</small></p>
+          <p class="pc-tag">Très puissant pour le prix. Révisé, prêt à l'emploi, disponible tout de suite. Un seul exemplaire.</p>
+          <p class="pc-une-prix">545 €<small>occasion révisée</small></p>
           <ul class="pc-specs">
             <li><span>Processeur</span><b>Intel Core i7</b></li>
             <li><span>Mémoire</span><b>32 Go</b></li>
@@ -1676,45 +1755,9 @@ body { letter-spacing: 0; }
             <li><span>Écran</span><b>15,6 pouces</b></li>
             <li><span>Système</span><b>Windows 11 Pro</b></li>
           </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="Dell Latitude 5591 (i7, 32 Go, 1 To) à 545 €">Je le veux</a>
-        </article>
-        <article class="pc-col">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="30" y="8" width="140" height="92" rx="7" fill="#C9CCD2"/><rect x="34" y="12" width="132" height="84" rx="3" fill="url(#pc-ecran-mac)"/><rect x="92" y="12" width="16" height="3" rx="1.5" fill="#1D1D1F"/><path d="M8 102h184l-3 6a8 8 0 0 1-7 4H18a8 8 0 0 1-7-4Z" fill="#D8DADF"/><rect x="84" y="102" width="32" height="3" rx="1.5" fill="#B3B6BC"/><defs><linearGradient id="pc-ecran-mac" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6FB3E8"/><stop offset=".55" stop-color="#0D5EAF"/><stop offset="1" stop-color="#0A2D5C"/></linearGradient></defs></svg>
-          </div>
-          <span class="pc-badge">Pour ceux qui préfèrent Apple</span>
-          <h3>Apple MacBook Air 13 pouces (M5)</h3>
-          <p class="pc-tag">Léger, silencieux et très autonome. Il tient la journée sans chargeur.</p>
-          <p class="pc-prix">environ 1 399 €<small>Neuf · 16 Go · 512 Go</small></p>
-          <ul class="pc-specs">
-            <li><span>Puce</span><b>Apple M5</b></li>
-            <li><span>Mémoire</span><b>16 Go</b></li>
-            <li><span>Stockage</span><b>SSD 512 Go</b></li>
-            <li><span>Écran</span><b>13,6 pouces</b></li>
-            <li><span>Système</span><b>macOS</b></li>
-          </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="Apple MacBook Air 13 pouces (M5)">Choisir ce modèle</a>
-        </article>
-        <article class="pc-col">
-          <div class="pc-visuel" aria-hidden="true">
-            <svg viewBox="0 0 200 120"><rect x="64" y="6" width="112" height="72" rx="5" fill="#2A2A2D"/><rect x="68" y="10" width="104" height="64" rx="2" fill="url(#pc-ecran-3)"/><rect x="114" y="78" width="12" height="18" fill="#3A3A3D"/><rect x="96" y="96" width="48" height="5" rx="2.5" fill="#3A3A3D"/><rect x="18" y="74" width="40" height="34" rx="4" fill="#1D1D1F"/><rect x="22" y="80" width="16" height="2" rx="1" fill="#4A4A4F"/><circle cx="51" cy="81" r="1.6" fill="#30D158"/><rect x="22" y="100" width="32" height="2" rx="1" fill="#2E2E31"/><defs><linearGradient id="pc-ecran-3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2E8DA"/><stop offset="1" stop-color="#E2CDB0"/></linearGradient></defs></svg>
-          </div>
-          <span class="pc-badge">PC fixe · idéal en caisse</span>
-          <h3>Lenovo ThinkCentre neo 50q Gen 4</h3>
-          <p class="pc-tag">Le mini PC de comptoir, caché derrière l'écran.</p>
-          <p class="pc-prix">environ 930 €<small>Réf. 12LN001YFR · écran en option</small></p>
-          <ul class="pc-specs">
-            <li><span>Processeur</span><b>Intel Core i5-13420H</b></li>
-            <li><span>Mémoire</span><b>16 Go</b></li>
-            <li><span>Stockage</span><b>SSD 512 Go</b></li>
-            <li><span>Format</span><b>Mini PC (Tiny)</b></li>
-            <li><span>Système</span><b>Windows 11 Pro</b></li>
-          </ul>
-          <a class="btn btn--petit" href="#contact" data-pc="Lenovo ThinkCentre neo 50q Gen 4">Choisir ce modèle</a>
-        </article>
-      </div>
-      <div class="paddles pc-paddles" data-cible="pc-grille"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
-      <p class="astuce-mobile">Faites glisser pour voir les 3 modèles</p>
+          <div class="pc-une-ctas"><a class="btn" href="#contact" data-pc="Dell Latitude 5591 (i7, 32 Go, 1 To) à 545 €">Je le veux</a><a class="btn-lien" href="#contact" data-pc="un ordinateur (à conseiller)">Un autre modèle ?</a></div>
+        </div>
+      </article>
 
       <div class="inclus apparait">
         <div>
@@ -1749,7 +1792,7 @@ body { letter-spacing: 0; }
           <span class="col-badge"></span>
           <h3>Vitrine</h3>
           <p class="col-tag">Être trouvé et bien présenté.</p>
-          <p class="col-prix">280 €<small>payé une fois</small></p>
+          <p class="col-prix">350 €<small>payé une fois</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Vitrine">Choisir</a><a class="btn-lien" href="#demos">Voir les démos</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Site une page, mobile et ordinateur</li>
@@ -1765,7 +1808,7 @@ body { letter-spacing: 0; }
           <span class="col-badge">Le plus demandé</span>
           <h3>Réservation</h3>
           <p class="col-tag">Vos clients réservent ou commandent seuls.</p>
-          <p class="col-prix">420 €<small>payé une fois</small></p>
+          <p class="col-prix">490 €<small>payé une fois</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Réservation">Choisir</a><a class="btn-lien" href="#parcours">En savoir plus</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Tout le pack Vitrine</li>
@@ -1781,7 +1824,7 @@ body { letter-spacing: 0; }
           <span class="col-badge"></span>
           <h3>Sur mesure</h3>
           <p class="col-tag">L'outil exact de votre métier.</p>
-          <p class="col-prix">dès 550 €<small>sur devis</small></p>
+          <p class="col-prix">dès 690 €<small>sur devis</small></p>
           <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Sur mesure">Parler de mon projet</a><a class="btn-lien" href="#demos" data-ouvre="t-log">Voir un exemple</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="20" height="20" rx="3"/><path d="M10 11h10M10 15h10M10 19h6"/></svg>HACCP, stocks, commandes, planning</li>
@@ -1795,6 +1838,34 @@ body { letter-spacing: 0; }
       <div class="paddles paddles--mobile" data-cible="compare"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
       <p class="astuce-mobile">Faites glisser pour comparer les 3 formules</p>
 
+
+      <div class="calcul" id="calcul">
+        <div class="calcul-tete">
+          <h3>Combien vous économisez</h3>
+          <p>Comparez avec ce que vous payez aujourd'hui à une plateforme. Bougez les curseurs.</p>
+        </div>
+        <div class="calcul-corps">
+          <div class="calcul-reglages">
+            <div class="calcul-choix" role="radiogroup" aria-label="Votre situation">
+              <button type="button" role="radio" aria-checked="true" data-cas="salon">Salon : réservation</button>
+              <button type="button" role="radio" aria-checked="false" data-cas="resto">Snack ou resto : commande</button>
+            </div>
+            <label class="curseur" data-pour="salon"><span>Abonnement de la plateforme <output id="o-abo">74 € / mois</output></span><input type="range" id="c-abo" min="20" max="150" step="1" value="74"></label>
+            <label class="curseur" data-pour="resto" hidden><span>Commandes passées par la plateforme <output id="o-ca">3 000 € / mois</output></span><input type="range" id="c-ca" min="500" max="20000" step="500" value="3000"></label>
+            <label class="curseur" data-pour="resto" hidden><span>Commission prise <output id="o-com">25 %</output></span><input type="range" id="c-com" min="10" max="35" step="1" value="25"></label>
+            <label class="curseur"><span>Sur combien de temps <output id="o-ans">3 ans</output></span><input type="range" id="c-ans" min="1" max="5" step="1" value="3"></label>
+          </div>
+          <div class="calcul-resultat" aria-live="polite">
+            <p class="calcul-label">Vous gardez dans votre poche</p>
+            <p class="calcul-nb"><span id="r-eco">2 004</span> €</p>
+            <div class="calcul-barres">
+              <div><span>Plateforme</span><i><b id="b-plat"></b></i><em id="r-plat">2 664 €</em></div>
+              <div><span>Votre site</span><i><b id="b-moi"></b></i><em id="r-moi">660 €</em></div>
+            </div>
+            <p class="calcul-note">Votre site : 490 € une fois, puis l'hébergement (50 € la 1re année, environ 5 € par mois ensuite). Planity est à 74–114 € HT par mois et Uber Eats prend 25 à 28 % en formule standard, selon <a href="https://www.lacaisseideale.fr/articles/planity-avis/" target="_blank" rel="noopener">La Caisse Idéale</a> et <a href="https://www.fooderise.com/en/blog/commission-uber-eats-restaurant-france-pourcentage-2026" target="_blank" rel="noopener">Fooderise</a>. Hors frais de paiement par carte. Un ordre de grandeur, pas un devis.</p>
+          </div>
+        </div>
+      </div>
       <h3 class="options-titre apparait" id="options">Options</h3>
       <div class="options-grille">
         <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="17" cy="17" r="12"/><path d="M5 17h24M17 5c3.5 3.4 5 7.4 5 12s-1.5 8.6-5 12c-3.5-3.4-5-7.4-5-12s1.5-8.6 5-12Z"/></svg><b>Domaine et hébergement</b><p>Première année. Ensuite environ 5 € par mois, à votre nom.</p><strong>50 €</strong></div>
@@ -1818,6 +1889,20 @@ body { letter-spacing: 0; }
       <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0D5EAF" stroke-width="2"><circle cx="14" cy="20" r="7"/><path d="M21 20h14M30 20v5M35 20v4"/></svg><p><b>Chez vous.</b> Nom de domaine à votre nom, tous les fichiers fournis.</p></div>
     </div>
     <div class="bande"><div class="paddles" data-cible="pq-piste"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+  </section>
+
+
+  <section class="mesure bande" aria-labelledby="mesure-titre">
+    <div class="cadre">
+      <h2 class="t-section" id="mesure-titre">Ce site, mesuré sur votre appareil</h2>
+      <p class="mesure-lead">Les chiffres ci-dessous ne sont pas écrits à l'avance : votre navigateur vient de les calculer. C'est le même soin que je mets dans les sites de mes clients.</p>
+      <dl class="mesure-grille">
+        <div><dt>Affichée en</dt><dd id="m-temps">…</dd></div>
+        <div><dt>Poids de la page</dt><dd id="m-poids">…</dd></div>
+        <div><dt>Cookies déposés</dt><dd id="m-cookies">…</dd></div>
+        <div><dt>Services extérieurs appelés</dt><dd id="m-ext">…</dd></div>
+      </dl>
+    </div>
   </section>
 
   <section class="faq fond-blanc bande" id="faq">
@@ -2417,6 +2502,100 @@ body { letter-spacing: 0; }
     if (document.fonts) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
     return function () {};
   });
+})();
+</script>
+
+<script>
+/* Calculateur d'économies et mesure en direct. Aucune donnée ne quitte le navigateur. */
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var eur = function (v) { return Math.round(v).toLocaleString("fr-FR").replace(/ /g, " "); };
+
+  /* ---- Calculateur ---- */
+  var cas = "salon", affiche = 2004, cible = 2004, anim = null;
+  function coutSite(ans) { return 490 + 50 + Math.max(0, ans - 1) * 60; }
+  function compter() {
+    if (calme) { affiche = cible; $("r-eco").textContent = eur(affiche); return; }
+    cancelAnimationFrame(anim);
+    (function pas() {
+      affiche += (cible - affiche) * 0.18;
+      if (Math.abs(cible - affiche) < 1) affiche = cible;
+      $("r-eco").textContent = eur(affiche);
+      if (affiche !== cible) anim = requestAnimationFrame(pas);
+    })();
+  }
+  function calculer() {
+    var ans = +$("c-ans").value, plat;
+    $("o-ans").textContent = ans + (ans > 1 ? " ans" : " an");
+    if (cas === "salon") {
+      var abo = +$("c-abo").value; $("o-abo").textContent = abo + " € / mois";
+      plat = abo * 12 * ans;
+    } else {
+      var ca = +$("c-ca").value, com = +$("c-com").value;
+      $("o-ca").textContent = eur(ca) + " € / mois"; $("o-com").textContent = com + " %";
+      plat = ca * com / 100 * 12 * ans;
+    }
+    var moi = coutSite(ans), max = Math.max(plat, moi, 1);
+    $("r-plat").textContent = eur(plat) + " €"; $("r-moi").textContent = eur(moi) + " €";
+    $("b-plat").style.transform = "scaleX(" + (plat / max) + ")";
+    $("b-moi").style.transform = "scaleX(" + (moi / max) + ")";
+    cible = Math.max(0, Math.round(plat - moi)); compter();
+  }
+  if ($("calcul")) {
+    document.querySelectorAll(".calcul-choix button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        cas = b.getAttribute("data-cas");
+        document.querySelectorAll(".calcul-choix button").forEach(function (x) { x.setAttribute("aria-checked", x === b ? "true" : "false"); });
+        document.querySelectorAll(".curseur[data-pour]").forEach(function (l) { l.hidden = l.getAttribute("data-pour") !== cas; });
+        calculer();
+      });
+    });
+    ["c-abo", "c-ca", "c-com", "c-ans"].forEach(function (id) { $(id).addEventListener("input", calculer); });
+    calculer();
+  }
+
+  /* ---- Mesure en direct ---- */
+  function mesurer() {
+    var nav = performance.getEntriesByType("navigation")[0];
+    var t = nav ? (nav.loadEventEnd || nav.domContentLoadedEventEnd) - nav.startTime : 0;
+    if (t > 0) $("m-temps").textContent = (t / 1000).toFixed(1).replace(".", ",") + " s";
+    var octets = 0, ext = {};
+    performance.getEntriesByType("resource").concat(nav ? [nav] : []).forEach(function (r) {
+      octets += r.encodedBodySize || r.transferSize || 0;
+      try { var o = new URL(r.name).origin; if (o !== location.origin) ext[o] = 1; } catch (e) {}
+    });
+    $("m-poids").textContent = octets ? (octets > 1e6 ? (octets / 1e6).toFixed(1).replace(".", ",") + " Mo" : Math.round(octets / 1024) + " Ko") : "–";
+    var nbCookies = document.cookie ? document.cookie.split(";").length : 0;
+    $("m-cookies").textContent = nbCookies === 0 ? "Aucun" : nbCookies;
+    var nbExt = Object.keys(ext).length;
+    $("m-ext").textContent = nbExt === 0 ? "Aucun" : nbExt;
+  }
+  if ($("m-temps")) {
+    if (document.readyState === "complete") setTimeout(mesurer, 0);
+    else addEventListener("load", function () { setTimeout(mesurer, 0); });
+  }
+
+  /* ---- Captures du héros : légère inclinaison qui suit la souris (ressort amorti) ---- */
+  var cadre = document.querySelector(".apercu-cadre");
+  if (cadre && !calme && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var ordi = cadre.querySelector(".apercu-ordi"), tel = cadre.querySelector(".apercu-tel");
+    var rx = 0, ry = 0, vx = 0, vy = 0, tx = 0, ty = 0, actif = false;
+    cadre.addEventListener("pointermove", function (e) {
+      var r = cadre.getBoundingClientRect();
+      ty = ((e.clientX - r.left) / r.width - .5) * 6; tx = -((e.clientY - r.top) / r.height - .5) * 4;
+      if (!actif) { actif = true; requestAnimationFrame(boucle); }
+    });
+    cadre.addEventListener("pointerleave", function () { tx = 0; ty = 0; if (!actif) { actif = true; requestAnimationFrame(boucle); } });
+    function boucle() {
+      var k = 0.08, d = 0.78;
+      vx = (vx + (tx - rx) * k) * d; vy = (vy + (ty - ry) * k) * d; rx += vx; ry += vy;
+      ordi.style.transform = "perspective(1400px) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      tel.style.transform = "perspective(900px) rotateX(" + (rx * 1.4).toFixed(2) + "deg) rotateY(" + (ry * 1.4).toFixed(2) + "deg) translateZ(30px)";
+      if (Math.abs(tx - rx) + Math.abs(ty - ry) + Math.abs(vx) + Math.abs(vy) > 0.01) requestAnimationFrame(boucle); else actif = false;
+    }
+  }
 })();
 </script>
 </body>
