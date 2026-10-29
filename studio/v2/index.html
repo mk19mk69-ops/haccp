@@ -1199,95 +1199,6 @@ body { letter-spacing: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .calcul-barres b { transition: none; } }
 
-/* ===================== Mise au propre générale ===================== */
-:root { --large: 1120px; --blanc: #FBFAF7; }
-.fond-gris, .fond-blanc, .story, .pc, .pq, .contact, .tarifs, .demos, .faq, .tuiles-section, .mesure { background: var(--blanc); }
-.story, .demos, .tuiles-section, .pc, .tarifs, .pq, .mesure, .faq, .contact { padding-block: clamp(64px, 9vw, 112px); border-top: 1px solid var(--ligne); }
-.tuiles-section { padding-bottom: clamp(64px, 9vw, 112px); }
-.t-lead { color: var(--texte-2); }
-.demos-tete, .tarifs-tete, .pc-tete, .story-tete, .tuiles-tete, .hl-tete { margin-bottom: clamp(28px, 4vw, 44px); gap: 12px; }
-.demos-tete p.t-lead, .pc-tete .t-lead { max-width: 36em; font-size: clamp(17px, 1.6vw, 19px); }
-.tuiles-tete, .tuiles { max-width: calc(var(--large) + 32px); margin-left: auto; margin-right: auto; padding-left: 16px; padding-right: 16px; }
-.scene-demo { border-radius: 20px; }
-.btn { transition: background-color .2s ease, color .2s ease, transform .1s ease-out; }
-.btn:active { transform: scale(.97); }
-
-/* Héros : texte à gauche, devanture à droite */
-.heros { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: center; max-width: calc(var(--large) + 32px); margin: 0 auto; padding: clamp(40px, 6vw, 80px) 16px clamp(56px, 7vw, 96px); }
-.heros .heros-texte { padding: 0; max-width: none; margin: 0; }
-.heros .t-heros { font-size: clamp(40px, 4.6vw, 60px); }
-.heros .heros-lead { font-size: clamp(17px, 1.5vw, 19px); line-height: 1.5; color: var(--texte); }
-.devanture-zone { margin: 0; }
-.devanture { position: relative; aspect-ratio: 760 / 680; }
-.devanture-dessin { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.devanture img { position: absolute; display: block; height: auto; filter: brightness(.18) saturate(.6); transition: filter 1.1s ease; }
-.devanture.allume img { filter: none; }
-.devanture-vitrine { left: 3.95%; top: 56.47%; width: 59.21%; }
-.devanture-porte { left: 71.97%; top: 58.82%; width: 15.26%; border-radius: 3px; }
-.devanture-zone figcaption { margin-top: 12px; font-size: 14px; color: var(--texte-2); line-height: 1.45; }
-
-/* Réalisations : trois projets traités de la même façon */
-.tuiles { gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.tuile, .tuile.sombre, .tuile--rouge { background: #F1EFE9; color: var(--texte); border-radius: 16px; align-items: flex-start; text-align: left; padding: 32px 28px 0; height: 480px; }
-.tuile .ctas { justify-content: flex-start; flex-wrap: wrap; }
-.tuile .btn, .tuile--rouge .btn { background: var(--bleu); color: #fff; }
-.tuile.sombre .btn--contour { background: transparent; color: var(--bleu); box-shadow: inset 0 0 0 1.5px var(--bleu); }
-.tuile-titre { font-size: 26px; }
-.tuile-sous { font-size: 16px; color: var(--texte-2); }
-.tuile-visuel { top: 240px; }
-
-/* Tarifs : trois fiches alignées */
-.compare { display: grid; grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; overflow: visible; padding: 0; text-align: left; }
-.col { background: #fff; border: 1px solid var(--ligne); border-radius: 16px; padding: 28px 24px 12px; justify-items: stretch; box-shadow: none; }
-.col:nth-child(2) { border: 2px solid var(--bleu); box-shadow: none; }
-.col-visuel { display: none; }
-.col-badge { height: auto; order: -1; color: var(--bleu); }
-.col-badge:empty { display: none; }
-.col h3 { margin-top: 0; font-size: 24px; }
-.col-tag { min-height: 0; max-width: none; font-size: 16px; color: var(--texte-2); }
-.col-prix { font-size: 32px; letter-spacing: -0.02em; margin-top: 12px; }
-.col-prix small { display: inline; margin-left: 6px; letter-spacing: 0; font-family: var(--police); }
-.col-ctas { display: flex; align-items: center; gap: 18px; margin-top: 14px; justify-items: start; }
-.col ul { margin-top: 18px; border-top: 1px solid var(--ligne); }
-.col li { min-height: 0; padding: 11px 0; display: grid; grid-template-columns: 24px 1fr; justify-items: start; align-items: center; gap: 12px; font-size: 15px; text-align: left; }
-.col li + li { border-top: 1px solid var(--ligne); }
-.col li svg { width: 20px; height: 20px; }
-.paddles--mobile[data-cible="compare"], .paddles--mobile[data-cible="compare"] + .astuce-mobile { display: none; }
-
-/* Options : une liste nette, prix à droite */
-.options-titre { margin-top: clamp(48px, 7vw, 72px); font-size: 24px; }
-.options-grille { grid-template-columns: 1fr; gap: 0; margin-top: 16px; border-top: 1px solid var(--texte); }
-.option { grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; row-gap: 2px; background: none; border-radius: 0; border-bottom: 1px solid var(--ligne); padding: 16px 0; }
-.option b { grid-column: 1; font-size: 17px; }
-.option p { grid-column: 1; font-size: 15px; }
-.option strong { grid-column: 2; grid-row: 1 / span 2; align-self: center; margin: 0; font-family: var(--titres); font-size: 18px; font-weight: 600; white-space: nowrap; }
-
-/* Pourquoi moi : un vrai paragraphe, puis quatre faits */
-.pq-piste { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; max-width: calc(var(--large) + 32px); }
-.pq-carte { background: none; border: 0; border-top: 2px solid var(--texte); border-radius: 0; padding: 16px 0 0; }
-.pq-carte p { font-size: 17px; line-height: 1.45; }
-.pq-carte--moi { grid-column: 1 / -1; border-top: 0; padding: 0 0 12px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: center; }
-.pq-carte--moi p { font-family: var(--titres); font-size: clamp(20px, 2.4vw, 28px); font-weight: 500; line-height: 1.3; color: var(--texte-2); max-width: 32em; }
-.pq-carte--moi p b { color: var(--texte); font-weight: 600; }
-.pq-piste .pq-carte:nth-child(n+6) { display: none; }
-
-@media (max-width: 833px) {
-  .heros { grid-template-columns: 1fr; padding-top: 32px; gap: 32px; }
-  .tuiles { grid-template-columns: 1fr; }
-  .tuile, .tuile.sombre, .tuile--rouge { height: 440px; }
-  .compare { grid-template-columns: 1fr; }
-  .pq-piste { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 600px) {
-  .pq-piste { grid-template-columns: 1fr; }
-  .pq-carte--moi { grid-template-columns: 1fr; }
-}
-@media (prefers-reduced-motion: reduce) { .devanture img { transition: none; } }
-.lnav .cadre { max-width: var(--large); }
-.heros .t-heros { font-size: clamp(36px, 3.9vw, 54px); }
-.heros .t-heros .ligne { white-space: nowrap; }
-@media (max-width: 833px) { .heros .t-heros { font-size: clamp(34px, 9.6vw, 48px); } }
-
 @media (prefers-reduced-transparency: reduce) {
   .barre-action, .lnav, .points, .lecture, .notif, .ap-bas { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
@@ -1372,14 +1283,13 @@ body { letter-spacing: 0; }
       <p class="heros-note">Maquette gratuite et sans engagement sous 72 h.</p>
     </div>
 
-    <figure class="devanture-zone">
-      <div class="devanture" id="devanture">
-        <svg class="devanture-dessin" viewBox="0 0 760 680" aria-hidden="true"><path d="M-10 128 L380 6 L770 128 Z" fill="#2B3440"/><path d="M120 128 L380 26 L640 128" fill="none" stroke="#3B4552" stroke-width="2"/><rect x="0" y="128" width="760" height="174" fill="#F4F0E6"/><rect x="115" y="160" width="63" height="104" fill="#DCE7F6" stroke="#121A24" stroke-width="2"/><path d="M146.5 160v104M115 212h63" stroke="#121A24" stroke-width="2"/><rect x="590" y="160" width="63" height="104" fill="#DCE7F6" stroke="#121A24" stroke-width="2"/><path d="M621.5 160v104M590 212h63" stroke="#121A24" stroke-width="2"/><path d="M8 138L95 292M95 138L8 292" stroke="#1556A8" stroke-width="8"/><path d="M198 138L285 292M285 138L198 292" stroke="#1556A8" stroke-width="8"/><path d="M483 138L570 292M570 138L483 292" stroke="#1556A8" stroke-width="8"/><path d="M673 138L752 292M752 138L673 292" stroke="#1556A8" stroke-width="8"/><path d="M293 292L380 138" stroke="#1556A8" stroke-width="8"/><path d="M388 138L475 292" stroke="#1556A8" stroke-width="8"/><rect x="0" y="128" width="8" height="174" fill="#1556A8"/><rect x="95" y="128" width="8" height="174" fill="#1556A8"/><rect x="190" y="128" width="8" height="174" fill="#1556A8"/><rect x="285" y="128" width="8" height="174" fill="#1556A8"/><rect x="380" y="128" width="8" height="174" fill="#1556A8"/><rect x="475" y="128" width="8" height="174" fill="#1556A8"/><rect x="570" y="128" width="8" height="174" fill="#1556A8"/><rect x="665" y="128" width="8" height="174" fill="#1556A8"/><rect x="752" y="128" width="8" height="174" fill="#1556A8"/><rect x="0" y="124" width="760" height="10" fill="#1556A8"/><rect x="0" y="292" width="760" height="10" fill="#1556A8"/><rect x="0" y="302" width="760" height="370" fill="#FBFAF7" stroke="#121A24" stroke-width="2"/><rect x="12" y="312" width="736" height="40" rx="3" fill="#121A24"/><text x="380" y="339" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, system-ui, sans-serif" font-size="21" font-weight="600">Votre commerce</text><rect x="22" y="358" width="24" height="16" fill="#1556A8"/><rect x="46" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="70" y="358" width="24" height="16" fill="#1556A8"/><rect x="94" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="118" y="358" width="24" height="16" fill="#1556A8"/><rect x="142" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="166" y="358" width="24" height="16" fill="#1556A8"/><rect x="190" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="214" y="358" width="24" height="16" fill="#1556A8"/><rect x="238" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="262" y="358" width="24" height="16" fill="#1556A8"/><rect x="286" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="310" y="358" width="24" height="16" fill="#1556A8"/><rect x="334" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="358" y="358" width="24" height="16" fill="#1556A8"/><rect x="382" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="406" y="358" width="24" height="16" fill="#1556A8"/><rect x="430" y="358" width="24" height="16" fill="#FFFFFF"/><rect x="454" y="358" width="24" height="16" fill="#1556A8"/><rect x="478" y="358" width="8" height="16" fill="#FFFFFF"/><path d="M22 374a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0a12 7 0 0 0 24 0" fill="#FFFFFF" stroke="#1556A8" stroke-width="1.5"/><rect x="22" y="358" width="464" height="16" fill="none" stroke="#121A24" stroke-width="1.5"/><rect x="24" y="378" width="462" height="293" fill="#121A24"/><rect x="530" y="378" width="150" height="293" fill="#1556A8"/><rect x="545" y="398" width="120" height="254" fill="#121A24"/><circle cx="672" cy="532" r="4" fill="#E2B85A"/><rect x="520" y="668" width="170" height="10" fill="#2B3440"/><path d="M0 679H760" stroke="#121A24" stroke-width="2"/></svg>
-        <img class="devanture-vitrine" src="assets/miran-ordinateur.webp" alt="Le site réalisé pour un barbier de Troyes, affiché sur ordinateur" width="1600" height="1000">
-        <img class="devanture-porte" src="assets/miran-telephone.webp" alt="Le même site affiché sur téléphone" width="560" height="1211">
-      </div>
-      <figcaption>En vitrine : la maquette réalisée pour Barber Miran, rue de Preize à Troyes. Sur la porte : la même, sur téléphone. <a href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Ouvrir le site</a></figcaption>
-    </figure>
+    <div class="apercu bande">
+      <figure class="apercu-cadre">
+        <img class="apercu-ordi" src="assets/miran-ordinateur.webp" alt="Page d'accueil du site réalisé pour un barbier de Troyes, sur ordinateur" width="1600" height="1000">
+        <img class="apercu-tel" src="assets/miran-telephone.webp" alt="Le même site affiché sur un téléphone" width="560" height="1211">
+        <figcaption>Maquette réalisée pour Barber Miran, barbier rue de Preize à Troyes. <a href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Ouvrir le site</a></figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="story" id="parcours">
@@ -2667,9 +2577,25 @@ body { letter-spacing: 0; }
     else addEventListener("load", function () { setTimeout(mesurer, 0); });
   }
 
-  /* ---- La devanture s'allume quand le titre est en place ---- */
-  var dev = $("devanture");
-  if (dev) setTimeout(function () { dev.classList.add("allume"); }, calme ? 0 : 1500);
+  /* ---- Captures du héros : légère inclinaison qui suit la souris (ressort amorti) ---- */
+  var cadre = document.querySelector(".apercu-cadre");
+  if (cadre && !calme && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var ordi = cadre.querySelector(".apercu-ordi"), tel = cadre.querySelector(".apercu-tel");
+    var rx = 0, ry = 0, vx = 0, vy = 0, tx = 0, ty = 0, actif = false;
+    cadre.addEventListener("pointermove", function (e) {
+      var r = cadre.getBoundingClientRect();
+      ty = ((e.clientX - r.left) / r.width - .5) * 6; tx = -((e.clientY - r.top) / r.height - .5) * 4;
+      if (!actif) { actif = true; requestAnimationFrame(boucle); }
+    });
+    cadre.addEventListener("pointerleave", function () { tx = 0; ty = 0; if (!actif) { actif = true; requestAnimationFrame(boucle); } });
+    function boucle() {
+      var k = 0.08, d = 0.78;
+      vx = (vx + (tx - rx) * k) * d; vy = (vy + (ty - ry) * k) * d; rx += vx; ry += vy;
+      ordi.style.transform = "perspective(1400px) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      tel.style.transform = "perspective(900px) rotateX(" + (rx * 1.4).toFixed(2) + "deg) rotateY(" + (ry * 1.4).toFixed(2) + "deg) translateZ(30px)";
+      if (Math.abs(tx - rx) + Math.abs(ty - ry) + Math.abs(vx) + Math.abs(vy) > 0.01) requestAnimationFrame(boucle); else actif = false;
+    }
+  }
 })();
 </script>
 </body>
