@@ -6,14 +6,14 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Boucherie des Hauts-Clos</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Boucherie des Hauts-Clos. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#2B3330">
+<meta name="theme-color" content="#26221D">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Caveat Brush";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/caveat-brush-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Zilla Slab";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/zilla-slab-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Zilla Slab";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/zilla-slab-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Zilla Slab";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/zilla-slab-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Zilla Slab";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/zilla-slab-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/instrument-serif-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/instrument-serif-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/jost-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/jost-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/jost-latin-600-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -103,169 +103,243 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#212825}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#26221D}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.hc{--ardoise:#2B3330;--ardoise-f:#212825;--craie:#F2EFE6;--craie-f:#C9CCC3;--jaune:#F2D16B;--bois:#8A5B34;--papier:#F1EADB;--encre:#22201C;
-  background:var(--papier);color:var(--encre);font:400 18px/1.55 "Zilla Slab",Rockwell,serif}
-.hc h1,.hc h2,.hc h3,.hc-marque,.hc-f-nom{font-family:"Caveat Brush","Comic Sans MS",cursive;font-weight:400;line-height:.95}
-.hc-tete{display:flex;justify-content:space-between;align-items:center;padding:10px clamp(16px,3cqi,40px);background:var(--bois);color:var(--craie);
-  background-image:repeating-linear-gradient(92deg,rgba(0,0,0,.08) 0 3px,transparent 3px 11px,rgba(255,255,255,.05) 11px 13px,transparent 13px 23px)}
-.hc-marque{font-size:1.7rem;text-decoration:none}
-.hc-tete-t{font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums}
-
-.hc-tableau{padding:clamp(10px,2cqi,28px);background:var(--bois);background-image:repeating-linear-gradient(92deg,rgba(0,0,0,.1) 0 3px,transparent 3px 11px,rgba(255,255,255,.06) 11px 13px,transparent 13px 27px)}
-.hc-ardoise{position:relative;display:grid;gap:26px;padding:clamp(26px,5cqi,60px) clamp(18px,4cqi,56px);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22220%22%20height%3D%22220%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%20.11%200%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23n)%22%2F%3E%3C%2Fsvg%3E"),radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.07),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(255,255,255,.05),transparent 55%),var(--ardoise);color:var(--craie);box-shadow:inset 0 0 0 3px rgba(0,0,0,.35),inset 0 0 40px rgba(0,0,0,.4)}
-.hc-lieu{font-weight:600;letter-spacing:.04em;color:var(--craie-f)}
-.hc h1{font-size:clamp(3.1rem,12cqi,6.2rem);margin-top:6px;max-width:9ch;text-shadow:0 0 1px rgba(255,255,255,.55),0 0 10px rgba(255,255,255,.08);filter:url(#hc-craie)}
-.hc-souligne{display:block;width:min(100%,340px);height:14px;margin-top:8px;fill:none;stroke:var(--jaune);stroke-width:3;stroke-linecap:round;overflow:visible}
-.hc-jour{margin-top:18px;font-size:1.1rem}
-.hc-st{display:inline-flex;align-items:center;gap:8px;font-weight:700}
-.hc-st i{width:10px;height:10px;border:2px solid var(--jaune);border-radius:50%;background:var(--jaune)}
-.hc-st.ferme i{background:transparent}
-.hc-dit{margin-top:14px;font-size:1.2rem;max-width:34ch}
-.hc-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:22px}
-.hc-btn{background:var(--craie);color:var(--ardoise-f);font-weight:700;border-radius:2px;box-shadow:3px 3px 0 var(--jaune)}
-.hc-btn:hover{background:#fff}
-.hc-tel{font-weight:600;font-size:1.1rem;font-variant-numeric:tabular-nums}
-
-.hc-d{min-width:0}
-.hc-svg{display:block;width:100%;height:auto;overflow:visible}
-.hc-z{fill:rgba(255,255,255,.001);stroke:rgba(242,239,230,.55);stroke-width:1.6;stroke-dasharray:.012 .01;cursor:pointer;transition:fill .15s}
-.hc-z:hover{fill:rgba(242,209,107,.16)}
-.hc-z.on{fill:rgba(242,209,107,.42)}
-.hc-z:focus-visible{outline:none;fill:rgba(242,209,107,.3)}
-.hc-trait path,.hc-trait circle{fill:none;stroke:var(--craie);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
-.hc-noms text{font-family:"Caveat Brush",cursive;font-size:15px;fill:var(--craie);pointer-events:none}
-.hc-fiche{display:grid;gap:4px;margin-top:10px;padding:14px 16px;border:2px dashed rgba(242,239,230,.45)}
-.hc-f-nom{font-size:2.1rem;color:var(--jaune)}
-.hc-f-txt{font-size:1.08rem}
-.hc-f-prix{font-weight:600;color:var(--craie-f);font-variant-numeric:tabular-nums}
-.hc-puces{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.hc-puces button{padding:6px 10px;border:1.5px solid rgba(242,239,230,.5);background:transparent;color:var(--craie);font:500 .92rem/1.2 "Zilla Slab",serif;cursor:pointer;border-radius:2px}
-.hc-puces button[aria-pressed="true"]{background:var(--jaune);border-color:var(--jaune);color:var(--ardoise-f)}
-@container site (max-width:600px){.hc-noms{display:none}}
+.hc{--pierre:#DCD6CA;--pierre-c:#E9E5DC;--blanc:#F6F3EE;--encre:#1E1B17;--brun:#26221D;--sang:#7B2C21;--gris:#6B645B;--trait:rgba(30,27,23,.16);
+  background:var(--pierre);color:var(--encre);font:400 17px/1.6 Jost,"Helvetica Neue",sans-serif}
+.hc h1,.hc h2,.hc h3,.hc blockquote,.hc-logo,.hc-adr,.hc-f-nom,.hc-pied-logo{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+.hc em{font-style:italic}
+.hc-k{font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gris)}
+.hc-tete{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:14px clamp(18px,4.5cqi,64px);border-bottom:1px solid var(--trait)}
+.hc-lieu{display:none;font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gris)}
+.hc-logo{display:grid;text-decoration:none;font-size:1.65rem;line-height:1}
+.hc-logo span{font-family:Jost,sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.42em;text-transform:uppercase;margin-bottom:4px}
+.hc-nav{display:flex;align-items:center;gap:26px;font-size:.92rem}
+.hc-nav a{text-decoration:none}
+.hc-nav a:not(.hc-nav-c){display:none}
+.hc-nav-c{padding:9px 16px;border:1px solid var(--encre);letter-spacing:.06em}
+.hc-nav-c:hover{background:var(--encre);color:var(--pierre)}
 @container site (min-width:900px){
-  .hc-tableau .hc-ardoise{grid-template-columns:.8fr 1.2fr;align-items:center;gap:40px;min-height:min(80svh,700px)}
-  .hc-puces{display:none}
+  .hc-tete{grid-template-columns:1fr auto 1fr}
+  .hc-lieu{display:block}.hc-logo{justify-items:center;text-align:center}.hc-nav{justify-content:flex-end}
+  .hc-nav a:not(.hc-nav-c){display:inline;background:linear-gradient(currentColor 0 0) 0 100%/0 1px no-repeat;transition:background-size .3s}
+  .hc-nav a:not(.hc-nav-c):hover{background-size:100% 1px}
+}
+
+.hc-une{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;padding:clamp(36px,5cqi,72px) clamp(18px,4.5cqi,64px) clamp(56px,8cqi,120px)}
+.hc h1{font-size:clamp(3.1rem,8.6cqi,8.2rem);line-height:.92}
+.hc-une-t{display:grid;gap:14px;max-width:440px}
+.hc-une-t>p:first-child{font-size:1.06rem}
+.hc-statut{display:inline-flex;align-items:center;gap:10px;font-size:.92rem;font-weight:500}
+.hc-statut i{width:7px;height:7px;border-radius:50%;background:#3F6B3A}.hc-statut.ferme i{background:var(--sang)}
+.hc-note{font-size:.88rem;color:var(--gris);padding-top:12px;border-top:1px solid var(--trait)}
+.hc-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:4px}
+.hc-btn{background:var(--encre);color:var(--blanc);border-radius:0;font-weight:500;letter-spacing:.06em;padding:0 26px;min-height:52px}
+.hc-btn:hover{background:var(--sang)}
+.hc-tel{font-variant-numeric:tabular-nums;text-underline-offset:4px}
+.hc-une figure{position:relative;margin:0}
+.hc-une figure img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04)}
+.hc-une figcaption{margin-top:8px;font-size:.8rem;color:var(--gris)}
+.hc-une figcaption em{font-style:normal;opacity:.8}
+.hc-f1{aspect-ratio:3/2}
+.hc-f2{width:62%;justify-self:end;aspect-ratio:2/3;margin-top:-90px!important;outline:10px solid var(--pierre)}
+@container site (min-width:900px){
+  .hc-une{grid-template-columns:repeat(12,1fr);column-gap:24px;row-gap:0}
+  .hc h1{grid-column:1/10;grid-row:1}
+  .hc-une-t{grid-column:9/13;grid-row:1/3;align-self:end;margin-bottom:40px}
+  .hc-f1{grid-column:1/9;grid-row:2/4;margin-top:40px!important}
+  .hc-f2{grid-column:9/13;grid-row:3;width:auto;justify-self:stretch;margin-top:0!important;outline:0}
 }
 @media (prefers-reduced-motion:no-preference){
-  .hc-trait path,.hc-trait circle,.hc-souligne path{stroke-dasharray:1;animation:hc-trace 2.2s .2s ease-out both}
-  .hc-souligne path{animation-duration:.9s;animation-delay:1.4s}
-  @keyframes hc-trace{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+  .hc-f1 img,.hc-f2 img{animation:hc-decouvre 1.25s cubic-bezier(.7,0,.2,1) both}
+  .hc-f2 img{animation-delay:.25s}
+  @keyframes hc-decouvre{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
 }
 
-.hc-comptoir{display:grid;background:var(--papier)}
-.hc-liste{padding:clamp(56px,8cqi,100px) clamp(16px,3cqi,48px)}
-.hc-comptoir h2,.hc-cmd h2{font-size:clamp(2.6rem,8cqi,4.4rem);color:var(--ardoise)}
-.hc-ex{margin-top:10px;max-width:48ch;color:#5E574C}
-.hc-groupes{display:grid;gap:26px;margin-top:30px;max-width:560px}
-.hc-groupes h3{font-size:1.9rem;color:#8E3B2E}
-.hc-groupes li{display:flex;align-items:baseline;gap:8px;padding:5px 0}
-.hc-groupes li i{flex:1;border-bottom:2px dotted #BDB09A;transform:translateY(-4px)}
-.hc-groupes b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.hc-photo{position:relative;margin:0;min-height:320px}
-.hc-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-@container site (min-width:900px){.hc-comptoir{grid-template-columns:1.2fr .8fr}.hc-photo{min-height:100%}}
+.hc-maison{display:grid;justify-items:center;text-align:center;gap:26px;padding:clamp(72px,11cqi,150px) clamp(18px,4.5cqi,64px);background:var(--brun);color:var(--blanc)}
+.hc-maison .hc-k{color:#A79F93}
+.hc blockquote{max-width:20ch;font-size:clamp(2rem,5.4cqi,4.1rem);line-height:1.08;font-style:italic}
+.hc-trois{display:grid;gap:26px;max-width:1100px;margin-top:30px;text-align:left}
+.hc-trois li{display:grid;gap:6px;padding-top:18px;border-top:1px solid rgba(246,243,238,.2);color:#CFC8BC;font-size:.96rem}
+.hc-trois span{font-size:.74rem;letter-spacing:.2em;color:#A79F93}
+.hc-trois b{font:400 1.7rem/1.1 "Instrument Serif",serif;color:var(--blanc)}
+@container site (min-width:820px){.hc-trois{grid-template-columns:repeat(3,1fr);gap:48px}}
 
-.hc-cmd{padding:clamp(56px,8cqi,100px) 0;background:#E7DDC8;border-top:3px solid var(--bois)}
-.hc-in{max-width:1140px;margin:0 auto;padding:0 clamp(16px,3cqi,48px)}
-.hc-sous{margin-top:10px;max-width:52ch}
-.hc-cmd .s-resa{margin-top:30px}
-.hc-cmd .s-resa-q{font:400 1.5rem/1 "Caveat Brush",cursive;color:#8E3B2E}
-.hc-cmd .s-cmd-ligne{border-bottom:1px dashed #B9AA8D}
-.hc-cmd .s-cmd-ligne small{display:block;color:#5E574C}
-.hc-cmd .s-pas-b{background:var(--ardoise);color:var(--craie);border-radius:2px}
-.hc-cmd .s-puce,.hc-cmd .s-heure{background:var(--papier);border-radius:2px;box-shadow:inset 0 0 0 1px #CDBF9F}
-.hc-cmd .s-puce.on,.hc-cmd .s-heure.on{background:var(--ardoise);color:var(--craie);box-shadow:none}
-.hc-cmd .s-resa-pied{border-top:2px solid var(--ardoise)}
-.hc-cmd .s-btn{background:var(--ardoise);color:var(--craie);font-weight:700;border-radius:2px}
-.hc-cmd .s-btn--2{background:transparent;color:var(--ardoise);box-shadow:inset 0 0 0 2px var(--ardoise)}
-.hc-cmd .s-champ input{border:1px solid #A89A7C;border-radius:2px;background:#FFFCF4}
-.hc-cmd .s-fin-titre{font:400 2.4rem/1 "Caveat Brush",cursive;color:var(--ardoise)}
+.hc-sel{padding:clamp(72px,10cqi,140px) clamp(18px,4.5cqi,64px);background:var(--pierre-c)}
+.hc-sel-h{display:grid;gap:10px;margin-bottom:40px}
+.hc h2{font-size:clamp(2.7rem,7.6cqi,5.6rem);line-height:.95}
+.hc-sel-h p{color:var(--gris);max-width:36ch}
+.hc-cartes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 16px}
+.hc-carte figure{position:relative;margin:0 0 14px;aspect-ratio:4/5;overflow:hidden;background:#cfc8bb}
+.hc-carte img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1);filter:saturate(.9)}
+.hc-carte:hover img{transform:scale(1.04)}
+.hc-carte h3{font-size:clamp(1.5rem,3.2cqi,2rem);line-height:1}
+.hc-carte-p{margin-top:6px;font-weight:500;font-variant-numeric:tabular-nums}
+.hc-carte-p span{font-weight:400;color:var(--gris)}
+.hc-carte-t{margin-top:4px;font-size:.92rem;color:var(--gris);max-width:30ch}
+.hc-ajout{margin-top:12px;padding:0 0 3px;border:0;border-bottom:1px solid var(--encre);background:none;font:500 .86rem/1.4 Jost,sans-serif;letter-spacing:.04em;cursor:pointer}
+.hc-ajout:hover{color:var(--sang);border-color:var(--sang)}
+@container site (min-width:900px){.hc-sel-h{grid-template-columns:1fr auto;align-items:end}.hc-cartes{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}.hc-carte:nth-child(even){margin-top:64px}}
 
-.hc-venir{padding:clamp(10px,2cqi,28px);background:var(--bois);background-image:repeating-linear-gradient(92deg,rgba(0,0,0,.1) 0 3px,transparent 3px 11px,rgba(255,255,255,.06) 11px 13px,transparent 13px 27px)}
-.hc-venir h2{font-size:clamp(2.6rem,8cqi,4.2rem);filter:url(#hc-craie)}
-.hc-adr{margin-top:14px;font-size:1.15rem}
-.hc-avis{margin-top:14px;color:var(--jaune);font-weight:600}
-.hc-hor{max-width:440px}
-.hc-hor div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1.5px dashed rgba(242,239,230,.3)}
-.hc-hor dt{font-weight:600}.hc-hor dd{text-align:right;font-variant-numeric:tabular-nums}
-.hc-hn{margin-top:8px;font-size:.88rem;color:var(--craie-f)}
-@container site (min-width:860px){.hc-ardoise--b{grid-template-columns:1fr 1fr;align-items:center}}
-.hc-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:18px clamp(16px,3cqi,40px) 26px;background:var(--ardoise-f);color:var(--craie-f);font-size:.9rem}
-.hc-pied span{margin-right:auto;font:400 1.4rem/1 "Caveat Brush",cursive;color:var(--craie)}
-.hc .legal h1{font-size:3rem;filter:none;color:var(--ardoise)}
+.hc-morc{display:grid;gap:30px;padding:clamp(72px,10cqi,140px) clamp(18px,4.5cqi,64px);background:var(--pierre)}
+.hc-morc-t{display:grid;gap:14px;align-content:start}
+.hc-morc-t>p:not(.hc-k){color:var(--gris)}
+.hc-fiche{margin-top:10px;padding:22px 0 0;border-top:1px solid var(--encre)}
+.hc-f-nom{font-size:2.6rem;line-height:1;margin-bottom:6px}
+.hc-f-prix{margin-top:6px;font-weight:500;font-variant-numeric:tabular-nums}
+.hc-svg{display:block;width:100%;height:auto}
+.hc-z{fill:transparent;stroke:rgba(30,27,23,.34);stroke-width:1;cursor:pointer;transition:fill .2s}
+.hc-z:hover{fill:rgba(123,44,33,.1)}.hc-z.on{fill:rgba(123,44,33,.26)}
+.hc-z:focus-visible{outline:none;fill:rgba(123,44,33,.18)}
+.hc-trait path,.hc-trait circle{fill:none;stroke:var(--encre);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hc-noms text{font-family:Jost,sans-serif;font-size:11px;fill:var(--encre);pointer-events:none}
+.hc-puces{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.hc-puces button{padding:7px 11px;border:1px solid var(--trait);background:transparent;font:400 .86rem/1 Jost,sans-serif;cursor:pointer}
+.hc-puces button[aria-pressed="true"]{background:var(--encre);color:var(--blanc);border-color:var(--encre)}
+@container site (max-width:620px){.hc-noms{display:none}}
+@container site (min-width:900px){.hc-morc{grid-template-columns:.75fr 1.25fr;gap:64px;align-items:center}.hc-puces{display:none}}
+
+.hc-cmd{display:grid;gap:36px;padding:clamp(72px,10cqi,140px) clamp(18px,4.5cqi,64px);background:var(--blanc)}
+.hc-cmd-t{display:grid;gap:14px;align-content:start}
+.hc-cmd-t>p:not(.hc-k){max-width:40ch;color:var(--gris)}
+.hc-cmd-t figure{position:relative;display:none;margin:22px 0 0;aspect-ratio:3/4;max-width:360px}
+.hc-cmd-t figure img{width:100%;height:100%;object-fit:cover}
+.hc-cmd .s-resa-q{font-size:.74rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gris)}
+.hc-cmd .s-cmd-ligne{border-bottom:1px solid var(--trait)}
+.hc-cmd .s-cmd-ligne b{font:400 1.25rem/1.1 "Instrument Serif",serif}
+.hc-cmd .s-cmd-ligne small{display:block;color:var(--gris);font-variant-numeric:tabular-nums}
+.hc-cmd .s-cmd-ligne.flash{animation:hc-flash 1.4s ease}
+@keyframes hc-flash{0%,40%{background:rgba(123,44,33,.1)}100%{background:transparent}}
+.hc-cmd .s-pas-b{background:transparent;border:1px solid var(--trait);border-radius:50%}
+.hc-cmd .s-puce,.hc-cmd .s-heure{background:var(--pierre-c);border-radius:0}
+.hc-cmd .s-puce.on,.hc-cmd .s-heure.on{background:var(--encre);color:var(--blanc)}
+.hc-cmd .s-resa-pied{border-top:1px solid var(--encre)}
+.hc-cmd .s-btn{background:var(--encre);color:var(--blanc);border-radius:0;letter-spacing:.06em}
+.hc-cmd .s-btn--2{background:transparent;color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
+.hc-cmd .s-champ input{border:1px solid var(--trait);border-radius:0;background:#fff}
+.hc-cmd .s-fin-titre{font:400 2.4rem/1 "Instrument Serif",serif}
+@container site (min-width:900px){.hc-cmd{grid-template-columns:.8fr 1.2fr;gap:72px}.hc-cmd-t figure{display:block}}
+
+.hc-venir{display:grid;gap:36px;padding:clamp(72px,10cqi,140px) clamp(18px,4.5cqi,64px);background:var(--pierre);border-top:1px solid var(--trait)}
+.hc-adr{margin-top:14px;font-size:clamp(2rem,5cqi,3.6rem);line-height:1.05}
+.hc-adr em{color:var(--gris)}
+.hc-liens{display:flex;gap:24px;margin-top:18px;font-weight:500}
+.hc-liens a{text-underline-offset:4px}
+.hc-hor div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--trait)}
+.hc-hor dt{font-weight:500}.hc-hor dd{text-align:right;font-variant-numeric:tabular-nums}
+.hc-hn{margin-top:10px;font-size:.84rem;color:var(--gris)}
+@container site (min-width:900px){.hc-venir{grid-template-columns:1.2fr .8fr;gap:72px;align-items:end}}
+
+.hc-pied{display:grid;gap:30px;padding:clamp(56px,8cqi,100px) clamp(18px,4.5cqi,64px) 36px;background:var(--brun);color:#CFC8BC;font-size:.92rem}
+.hc-pied-logo{display:grid;font-size:clamp(2.6rem,9cqi,6.4rem);line-height:.9;color:var(--blanc);font-style:italic}
+.hc-pied-logo span{font:500 .74rem/1 Jost,sans-serif;font-style:normal;letter-spacing:.42em;text-transform:uppercase;margin-bottom:10px;color:#A79F93}
+.hc-pied-l{display:grid;gap:18px;padding-top:22px;border-top:1px solid rgba(246,243,238,.16)}
+.hc-pied a{text-underline-offset:3px}
+@container site (min-width:820px){.hc-pied-l{grid-template-columns:repeat(3,1fr)}}
+.hc .legal h1{font-family:"Instrument Serif",serif;font-size:3rem}
 </style>
 </head>
 <body>
-<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Boucherie des Hauts-Clos</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Boucherie des Hauts-Clos</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni prix, ni horaires en ligne : ceux de la maquette sont des exemples. Les conseils de cuisson sont généraux, à ajuster avec vous. La photo est une photo d&#39;illustration : on la remplace par une photo de votre boutique.</p><ul><li>Ce site a été dessiné pour Boucherie des Hauts-Clos, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Boucherie%20des%20Hauts-Clos.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
+<aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Boucherie des Hauts-Clos</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Boucherie des Hauts-Clos</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site, ni prix, ni horaires en ligne : ceux de la maquette sont des exemples. Les conseils de cuisson sont généraux. Les photos sont des photos d&#39;illustration : on les remplace par celles de votre boutique.</p><ul><li>Ce site a été dessiné pour Boucherie des Hauts-Clos, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Boucherie%20des%20Hauts-Clos.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site hc" data-metier="boucherie"><main data-page="accueil">
 <header class="hc-tete" data-sec="tete">
-  <a class="hc-marque" href="#page-accueil">Les Hauts-Clos</a>
-  <a class="hc-tete-t" href="tel:+33325456480">03 25 45 64 80</a>
+  <p class="hc-lieu">Saint-André-les-Vergers</p>
+  <a class="hc-logo" href="#page-accueil"><span>Boucherie</span>des Hauts-Clos</a>
+  <nav class="hc-nav"><a href="#selection">La sélection</a><a href="#morceaux">Les morceaux</a><a class="hc-nav-c" href="#commander">Commander</a></nav>
 </header>
 
-<section class="hc-tableau" data-sec="tableau">
-  <div class="hc-ardoise">
-    <div class="hc-g">
-      <p class="hc-lieu">Saint-André-les-Vergers</p>
-      <h1>Boucherie des Hauts-Clos</h1>
-      <svg class="hc-souligne" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9C60 4 120 11 180 6S260 5 297 8" pathLength="1"/></svg>
-      <p class="hc-jour">Aujourd'hui : <span class="hc-st" data-statut><i></i><span></span></span></p>
-      <p class="hc-dit">Dites-nous ce que vous cuisinez, on vous dit quel morceau prendre. Touchez le bœuf pour commencer.</p>
-      <div class="hc-act"><a class="s-btn hc-btn" href="#commander">Commander pour le retrait</a><a class="hc-tel" href="tel:+33325456480">03 25 45 64 80</a></div>
-    </div>
-    <div class="hc-d">
-      <svg class="hc-svg" viewBox="20 20 600 335" role="group" aria-label="Le bœuf et ses morceaux">
-    <defs><clipPath id="hc-clip"><path d="M70 95C85 70 120 68 140 80L175 78C230 66 300 70 360 72C430 72 500 70 545 82C565 88 572 100 570 118C568 160 560 200 530 228L528 330L500 330L498 250C470 262 420 266 380 264C330 266 280 266 240 260L236 330L206 330L200 252C180 240 168 222 160 200C150 182 138 170 125 165L100 178C80 186 58 182 50 168C40 150 45 120 70 95Z"/></clipPath><filter id="hc-craie" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="2.2"/></filter></defs>
-    <g clip-path="url(#hc-clip)"><polygon class="hc-z" data-cut="0" points="100,30 205,30 205,150 165,170 100,178" pathLength="1" tabindex="0" role="button" aria-label="Collier"/><polygon class="hc-z" data-cut="1" points="100,178 165,170 205,150 214,200 222,270 140,270" pathLength="1" tabindex="0" role="button" aria-label="Poitrine"/><polygon class="hc-z" data-cut="2" points="205,30 268,30 268,148 205,150" pathLength="1" tabindex="0" role="button" aria-label="Basse-côte"/><polygon class="hc-z" data-cut="3" points="205,150 268,148 268,270 222,270 214,200" pathLength="1" tabindex="0" role="button" aria-label="Paleron"/><polygon class="hc-z" data-cut="4" points="268,30 350,30 350,150 268,148" pathLength="1" tabindex="0" role="button" aria-label="Côtes"/><polygon class="hc-z" data-cut="5" points="268,148 350,150 350,280 268,280" pathLength="1" tabindex="0" role="button" aria-label="Plat de côtes"/><polygon class="hc-z" data-cut="6" points="350,30 432,30 432,132 350,132" pathLength="1" tabindex="0" role="button" aria-label="Faux-filet"/><polygon class="hc-z" data-cut="7" points="350,132 432,132 432,170 350,170" pathLength="1" tabindex="0" role="button" aria-label="Filet"/><polygon class="hc-z" data-cut="8" points="350,170 432,170 432,280 350,280" pathLength="1" tabindex="0" role="button" aria-label="Bavette"/><polygon class="hc-z" data-cut="9" points="432,30 505,30 505,150 432,150" pathLength="1" tabindex="0" role="button" aria-label="Rumsteck"/><polygon class="hc-z" data-cut="10" points="432,150 505,150 505,250 432,280" pathLength="1" tabindex="0" role="button" aria-label="Tende"/><polygon class="hc-z" data-cut="11" points="505,30 610,30 610,250 505,250" pathLength="1" tabindex="0" role="button" aria-label="Gîte"/><polygon class="hc-z" data-cut="12" points="185,262 255,262 255,345 185,345" pathLength="1" tabindex="0" role="button" aria-label="Jarret"/><polygon class="hc-z" data-cut="13" points="488,250 548,246 548,345 488,345" pathLength="1" tabindex="0" role="button" aria-label="Jarret"/></g>
-    <g class="hc-trait" filter="url(#hc-craie)">
-      <path d="M70 95C85 70 120 68 140 80L175 78C230 66 300 70 360 72C430 72 500 70 545 82C565 88 572 100 570 118C568 160 560 200 530 228L528 330L500 330L498 250C470 262 420 266 380 264C330 266 280 266 240 260L236 330L206 330L200 252C180 240 168 222 160 200C150 182 138 170 125 165L100 178C80 186 58 182 50 168C40 150 45 120 70 95Z" pathLength="1"/>
-      <path d="M135 82C150 68 170 72 174 84C160 92 146 92 135 86" pathLength="1"/>
-      <path d="M568 104C590 140 588 190 584 232M584 232C576 240 576 252 586 258M584 232C594 240 596 250 590 258" pathLength="1"/>
-      <circle cx="86" cy="118" r="3.5" pathLength="1"/>
-      <path d="M114 77C104 64 108 50 124 44C116 54 117 64 124 74" pathLength="1"/>
-      <path d="M206 322H236M500 322H528" pathLength="1"/>
-    </g>
-    <g class="hc-noms" aria-hidden="true"><text x="168" y="122" text-anchor="middle">Collier</text><text x="204" y="221" text-anchor="middle" transform="rotate(-62 204 221)" font-size="13" dy="4">Poitrine</text><text x="236" y="112" text-anchor="middle">Basse-côte</text><text x="242" y="204" text-anchor="middle">Paleron</text><text x="309" y="108" text-anchor="middle">Côtes</text><text x="309" y="206" text-anchor="middle">Plat de côtes</text><text x="391" y="104" text-anchor="middle">Faux-filet</text><text x="391" y="156" text-anchor="middle">Filet</text><text x="391" y="222" text-anchor="middle">Bavette</text><text x="468" y="108" text-anchor="middle">Rumsteck</text><text x="468" y="206" text-anchor="middle">Tende</text><text x="545" y="150" text-anchor="middle">Gîte</text><text x="221" y="290" text-anchor="middle" transform="rotate(-90 221 290)" dy="5">Jarret</text><text x="514" y="290" text-anchor="middle" transform="rotate(-90 514 290)" dy="5">Jarret</text></g>
-  </svg>
-      <div class="hc-fiche" aria-live="polite"><p class="hc-f-nom" data-f-nom>Côtes</p><p class="hc-f-txt" data-f-txt>La côte de bœuf et l'entrecôte : à griller, saignantes.</p><p class="hc-f-prix" data-f-prix>Exemple : 29,90 € le kg</p></div>
-      <div class="hc-puces" aria-label="Choisir un morceau"><button type="button" data-p="0">Collier</button><button type="button" data-p="1">Poitrine</button><button type="button" data-p="2">Basse-côte</button><button type="button" data-p="3">Paleron</button><button type="button" data-p="4">Côtes</button><button type="button" data-p="5">Plat de côtes</button><button type="button" data-p="6">Faux-filet</button><button type="button" data-p="7">Filet</button><button type="button" data-p="8">Bavette</button><button type="button" data-p="9">Rumsteck</button><button type="button" data-p="10">Tende</button><button type="button" data-p="11">Gîte</button><button type="button" data-p="12">Jarret</button></div>
-    </div>
+<section class="hc-une" data-sec="une">
+  <h1>On vous coupe<br><em>le bon morceau.</em></h1>
+  <div class="hc-une-t">
+    <p>Rue de la Croix Blanche, à Saint-André-les-Vergers. Le conseil au comptoir, la découpe à la demande, et votre commande prête à l'heure où vous passez.</p>
+    <p class="hc-statut" data-statut><i></i><span></span></p>
+    <p class="hc-note">4,7 sur Google · 431 avis</p>
+    <div class="hc-act"><a class="s-btn hc-btn" href="#commander">Commander pour le retrait</a><a class="hc-tel" href="tel:+33325456480">03 25 45 64 80</a></div>
   </div>
+  <figure class="hc-f1"><img class="" src="../../atelier/photos/boucherie/8477074.webp" srcset="../../atelier/photos/boucherie/8477074-m.webp 760w, ../../atelier/photos/boucherie/8477074.webp 1600w" sizes="(min-width: 900px) 62vw, 100vw" alt="Entrecôtes persillées sur un plateau (photo d&#39;illustration)" data-illu style="background-color:#5a3e3a" fetchpriority="high" decoding="async"><figcaption>Des entrecôtes, avant la cuisson. <em>Photo d'illustration.</em></figcaption></figure>
+  <figure class="hc-f2"><img class="" src="../../atelier/photos/boucherie/34003521.webp" srcset="../../atelier/photos/boucherie/34003521-m.webp 760w, ../../atelier/photos/boucherie/34003521.webp 1199w" sizes="(min-width: 900px) 30vw, 60vw" alt="Deux mains présentent une entrecôte (photo d&#39;illustration)" data-illu style="background-color:#522a1e" fetchpriority="high" decoding="async"><figcaption>Le persillé, à la main. <em>Photo d'illustration.</em></figcaption></figure>
 </section>
 
-<section class="hc-comptoir" id="prix" data-sec="comptoir">
-  <div class="hc-liste">
-    <h2>Agneau, veau, volaille</h2>
-    <p class="hc-ex">Les prix du bœuf sont sur l'ardoise. Tous les prix sont des exemples, au kilo : on met les vôtres.</p>
-    <div class="hc-groupes"><div><h3>Agneau</h3><ul><li><span>Gigot</span><i aria-hidden="true"></i><b>22,90 €</b></li><li><span>Côtelettes</span><i aria-hidden="true"></i><b>24,90 €</b></li><li><span>Épaule</span><i aria-hidden="true"></i><b>19,90 €</b></li></ul></div><div><h3>Veau</h3><ul><li><span>Escalope</span><i aria-hidden="true"></i><b>29,90 €</b></li><li><span>Blanquette</span><i aria-hidden="true"></i><b>17,90 €</b></li></ul></div><div><h3>Volaille</h3><ul><li><span>Poulet entier</span><i aria-hidden="true"></i><b>6,90 €</b></li><li><span>Cuisses de poulet</span><i aria-hidden="true"></i><b>7,90 €</b></li></ul></div><div><h3>Bœuf haché</h3><ul><li><span>Steak haché</span><i aria-hidden="true"></i><b>15,90 €</b></li></ul></div></div>
+<section class="hc-maison" data-sec="maison">
+  <p class="hc-k">La maison</p>
+  <blockquote>« Dites-nous ce que vous cuisinez. On vous dit quel morceau prendre, et on le coupe comme vous voulez. »</blockquote>
+  <ol class="hc-trois">
+    <li><span>01</span><b>Le conseil</b>Pour combien de personnes, quelle cuisson, quel budget : on en parle au comptoir.</li>
+    <li><span>02</span><b>La découpe</b>Tranches, rôti ficelé, haché, brochettes : à la demande, devant vous.</li>
+    <li><span>03</span><b>La commande</b>Choisissez l'heure ici, c'est prêt et emballé quand vous arrivez.</li>
+  </ol>
+</section>
+
+<section class="hc-sel" id="selection" data-sec="selection">
+  <div class="hc-sel-h"><h2>La sélection</h2><p>Prix au kilo, donnés en exemple : on affiche les vôtres.</p></div>
+  <div class="hc-cartes"><article class="hc-carte">
+      <figure><img class="" src="../../atelier/photos/boucherie/33157191.webp" srcset="../../atelier/photos/boucherie/33157191-m.webp 760w, ../../atelier/photos/boucherie/33157191.webp 1600w" sizes="(min-width: 900px) 25vw, 50vw" alt="Côte de bœuf (photo d&#39;illustration)" data-illu style="background-color:#533f41" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+      <h3>Côte de bœuf</h3>
+      <p class="hc-carte-p">29,90 € <span>le kg</span></p>
+      <p class="hc-carte-t">À griller, à partager. Saignante.</p>
+      <button type="button" class="hc-ajout" data-ajout="Côte de bœuf">Ajouter à ma commande</button>
+    </article><article class="hc-carte">
+      <figure><img class="" src="../../atelier/photos/boucherie/5313867.webp" srcset="../../atelier/photos/boucherie/5313867-m.webp 760w, ../../atelier/photos/boucherie/5313867.webp 1600w" sizes="(min-width: 900px) 25vw, 50vw" alt="Faux-filet (photo d&#39;illustration)" data-illu style="background-color:#9c7a6e" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+      <h3>Faux-filet</h3>
+      <p class="hc-carte-p">27,90 € <span>le kg</span></p>
+      <p class="hc-carte-t">En rôti ou en steak, tendre et goûteux.</p>
+      <button type="button" class="hc-ajout" data-ajout="Faux-filet">Ajouter à ma commande</button>
+    </article><article class="hc-carte">
+      <figure><img class="" src="../../atelier/photos/boucherie/10201880.webp" srcset="../../atelier/photos/boucherie/10201880-m.webp 760w, ../../atelier/photos/boucherie/10201880.webp 1600w" sizes="(min-width: 900px) 25vw, 50vw" alt="Filet (photo d&#39;illustration)" data-illu style="background-color:#5e342a" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+      <h3>Filet</h3>
+      <p class="hc-carte-p">42,90 € <span>le kg</span></p>
+      <p class="hc-carte-t">Tournedos, chateaubriand. Le plus tendre.</p>
+      <button type="button" class="hc-ajout" data-ajout="Filet">Ajouter à ma commande</button>
+    </article><article class="hc-carte">
+      <figure><img class="" src="../../atelier/photos/boucherie/7284305.webp" srcset="../../atelier/photos/boucherie/7284305-m.webp 760w, ../../atelier/photos/boucherie/7284305.webp 1600w" sizes="(min-width: 900px) 25vw, 50vw" alt="Viande hachée (photo d&#39;illustration)" data-illu style="background-color:#a54c3a" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+      <h3>Viande hachée</h3>
+      <p class="hc-carte-p">15,90 € <span>le kg</span></p>
+      <p class="hc-carte-t">Hachée devant vous, à la demande.</p>
+      <button type="button" class="hc-ajout" data-ajout="Viande hachée">Ajouter à ma commande</button>
+    </article></div>
+</section>
+
+<section class="hc-morc" id="morceaux" data-sec="morceaux">
+  <div class="hc-morc-t">
+    <p class="hc-k">Le guide</p>
+    <h2>Quel morceau,<br><em>pour quel plat ?</em></h2>
+    <p>Touchez une partie du bœuf.</p>
+    <div class="hc-fiche" aria-live="polite"><p class="hc-f-nom" data-f-nom>Côtes</p><p data-f-txt>La côte de bœuf et l'entrecôte : à griller, saignantes.</p><p class="hc-f-prix" data-f-prix>Exemple : 29,90 € le kg</p></div>
   </div>
-  <figure class="hc-photo"><img class="" src="../../atelier/photos/boucherie/15508161.webp" srcset="../../atelier/photos/boucherie/15508161-m.webp 760w, ../../atelier/photos/boucherie/15508161.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw" alt="Côte de bœuf crue sur une planche, avec un couteau (photo d&#39;illustration)" data-illu style="background-color:#7f5443" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+  <div class="hc-morc-d"><svg class="hc-svg" viewBox="30 30 590 320" role="group" aria-label="Le bœuf et ses morceaux">
+      <defs><clipPath id="hc-clip"><path d="M70 95C85 70 120 68 140 80L175 78C230 66 300 70 360 72C430 72 500 70 545 82C565 88 572 100 570 118C568 160 560 200 530 228L528 330L500 330L498 250C470 262 420 266 380 264C330 266 280 266 240 260L236 330L206 330L200 252C180 240 168 222 160 200C150 182 138 170 125 165L100 178C80 186 58 182 50 168C40 150 45 120 70 95Z"/></clipPath></defs>
+      <g clip-path="url(#hc-clip)"><polygon class="hc-z" data-cut="0" points="100,30 205,30 205,150 165,170 100,178" tabindex="0" role="button" aria-label="Collier"/><polygon class="hc-z" data-cut="1" points="100,178 165,170 205,150 214,200 222,270 140,270" tabindex="0" role="button" aria-label="Poitrine"/><polygon class="hc-z" data-cut="2" points="205,30 268,30 268,148 205,150" tabindex="0" role="button" aria-label="Basse-côte"/><polygon class="hc-z" data-cut="3" points="205,150 268,148 268,270 222,270 214,200" tabindex="0" role="button" aria-label="Paleron"/><polygon class="hc-z" data-cut="4" points="268,30 350,30 350,150 268,148" tabindex="0" role="button" aria-label="Côtes"/><polygon class="hc-z" data-cut="5" points="268,148 350,150 350,280 268,280" tabindex="0" role="button" aria-label="Plat de côtes"/><polygon class="hc-z" data-cut="6" points="350,30 432,30 432,132 350,132" tabindex="0" role="button" aria-label="Faux-filet"/><polygon class="hc-z" data-cut="7" points="350,132 432,132 432,170 350,170" tabindex="0" role="button" aria-label="Filet"/><polygon class="hc-z" data-cut="8" points="350,170 432,170 432,280 350,280" tabindex="0" role="button" aria-label="Bavette"/><polygon class="hc-z" data-cut="9" points="432,30 505,30 505,150 432,150" tabindex="0" role="button" aria-label="Rumsteck"/><polygon class="hc-z" data-cut="10" points="432,150 505,150 505,250 432,280" tabindex="0" role="button" aria-label="Tende"/><polygon class="hc-z" data-cut="11" points="505,30 610,30 610,250 505,250" tabindex="0" role="button" aria-label="Gîte"/><polygon class="hc-z" data-cut="12" points="185,262 255,262 255,345 185,345" tabindex="0" role="button" aria-label="Jarret"/><polygon class="hc-z" data-cut="13" points="488,250 548,246 548,345 488,345" tabindex="0" role="button" aria-label="Jarret"/></g>
+      <g class="hc-trait"><path d="M70 95C85 70 120 68 140 80L175 78C230 66 300 70 360 72C430 72 500 70 545 82C565 88 572 100 570 118C568 160 560 200 530 228L528 330L500 330L498 250C470 262 420 266 380 264C330 266 280 266 240 260L236 330L206 330L200 252C180 240 168 222 160 200C150 182 138 170 125 165L100 178C80 186 58 182 50 168C40 150 45 120 70 95Z"/><path d="M135 82C150 68 170 72 174 84C160 92 146 92 135 86"/><path d="M114 77C104 64 108 50 124 44C116 54 117 64 124 74"/><path d="M568 104C590 140 588 190 584 232M584 232C576 240 576 252 586 258M584 232C594 240 596 250 590 258"/><circle cx="86" cy="118" r="3"/></g>
+      <g class="hc-noms" aria-hidden="true"><text x="168" y="122" text-anchor="middle">Collier</text><text x="204" y="221" text-anchor="middle" transform="rotate(-62 204 221)" dy="4">Poitrine</text><text x="236" y="112" text-anchor="middle">Basse-côte</text><text x="242" y="204" text-anchor="middle">Paleron</text><text x="309" y="108" text-anchor="middle">Côtes</text><text x="309" y="206" text-anchor="middle">Plat de côtes</text><text x="391" y="104" text-anchor="middle">Faux-filet</text><text x="391" y="156" text-anchor="middle">Filet</text><text x="391" y="222" text-anchor="middle">Bavette</text><text x="468" y="108" text-anchor="middle">Rumsteck</text><text x="468" y="206" text-anchor="middle">Tende</text><text x="545" y="150" text-anchor="middle">Gîte</text><text x="221" y="290" text-anchor="middle" transform="rotate(-90 221 290)" dy="4">Jarret</text><text x="514" y="290" text-anchor="middle" transform="rotate(-90 514 290)" dy="4">Jarret</text></g>
+    </svg><div class="hc-puces"><button type="button" data-p="0">Collier</button><button type="button" data-p="1">Poitrine</button><button type="button" data-p="2">Basse-côte</button><button type="button" data-p="3">Paleron</button><button type="button" data-p="4">Côtes</button><button type="button" data-p="5">Plat de côtes</button><button type="button" data-p="6">Faux-filet</button><button type="button" data-p="7">Filet</button><button type="button" data-p="8">Bavette</button><button type="button" data-p="9">Rumsteck</button><button type="button" data-p="10">Tende</button><button type="button" data-p="11">Gîte</button><button type="button" data-p="12">Jarret</button></div></div>
 </section>
 
 <section class="hc-cmd" id="commander" data-sec="commande">
-  <div class="hc-in">
-    <h2>Commander pour le retrait</h2>
-    <p class="hc-sous">Choisissez vos morceaux et l'heure de passage. C'est prêt quand vous arrivez, vous payez en boutique.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Côte de bœuf" data-prix="29,90" data-unite="le kg"><p><b>Côte de bœuf</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Faux-filet" data-prix="27,90" data-unite="le kg"><p><b>Faux-filet</b><small>27,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Bavette" data-prix="24,90" data-unite="le kg"><p><b>Bavette</b><small>24,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Paleron (bourguignon)" data-prix="16,90" data-unite="le kg"><p><b>Paleron (bourguignon)</b><small>16,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Gigot d&#39;agneau" data-prix="22,90" data-unite="le kg"><p><b>Gigot d&#39;agneau</b><small>22,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Poulet entier" data-prix="6,90" data-unite="le kg"><p><b>Poulet entier</b><small>6,90 € le kg</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
+  <div class="hc-cmd-t">
+    <p class="hc-k">Retrait en boutique</p>
+    <h2>Commander<br><em>pour le retrait</em></h2>
+    <p>Choisissez vos morceaux et l'heure de passage. On prépare, on emballe à votre nom. Vous réglez en boutique.</p>
+    <figure><img class="" src="../../atelier/photos/boucherie/15307375.webp" srcset="../../atelier/photos/boucherie/15307375-m.webp 760w, ../../atelier/photos/boucherie/15307375.webp 1200w" sizes="(min-width: 900px) 28vw, 80vw" alt="Un homme présente une pièce de bœuf (photo d&#39;illustration)" data-illu style="background-color:#301a14" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
   </div>
+  <div class="hc-cmd-w"><div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Côte de bœuf" data-prix="29,90" data-unite="le kg"><p><b>Côte de bœuf</b><small>29,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Entrecôte" data-prix="32,90" data-unite="le kg"><p><b>Entrecôte</b><small>32,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Faux-filet" data-prix="27,90" data-unite="le kg"><p><b>Faux-filet</b><small>27,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Filet" data-prix="42,90" data-unite="le kg"><p><b>Filet</b><small>42,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Bavette" data-prix="24,90" data-unite="le kg"><p><b>Bavette</b><small>24,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Paleron (bourguignon)" data-prix="16,90" data-unite="le kg"><p><b>Paleron (bourguignon)</b><small>16,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Viande hachée" data-prix="15,90" data-unite="le kg"><p><b>Viande hachée</b><small>15,90 € le kg</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Poulet entier" data-prix="6,90" data-unite="le kg"><p><b>Poulet entier</b><small>6,90 € le kg</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div></div>
 </section>
 
 <section class="hc-venir" data-sec="venir">
-  <div class="hc-ardoise hc-ardoise--b">
-    <div>
-      <h2>Rue de la Croix Blanche</h2>
-      <p class="hc-adr">45 rue de la Croix Blanche<br>10120 Saint-André-les-Vergers<br><a href="https://www.google.com/maps/search/?api=1&query=Boucherie%20des%20Hauts-Clos%2045%20rue%20de%20la%20Croix%20Blanche%2010120%20Saint-Andr%C3%A9-les-Vergers" target="_blank" rel="noopener">Itinéraire</a></p>
-      <p class="hc-avis">4,7 sur Google, 431 avis.</p>
-    </div>
-    <div>
-      <dl class="hc-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – vendredi</dt><dd>8 h – 12 h 30, 14 h 30 – 19 h 30</dd></div><div><dt>Samedi</dt><dd>8 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>8 h 30 – 12 h 30</dd></div></dl>
-      <p class="hc-hn">Horaires d'exemple, à confirmer.</p>
-    </div>
+  <div>
+    <p class="hc-k">Nous trouver</p>
+    <p class="hc-adr">45 rue de la Croix Blanche<br><em>10120 Saint-André-les-Vergers</em></p>
+    <p class="hc-liens"><a href="https://www.google.com/maps/search/?api=1&query=Boucherie%20des%20Hauts-Clos%2045%20rue%20de%20la%20Croix%20Blanche%2010120%20Saint-Andr%C3%A9-les-Vergers" target="_blank" rel="noopener">Itinéraire</a><a href="tel:+33325456480">03 25 45 64 80</a></p>
+  </div>
+  <div>
+    <dl class="hc-hor"><div><dt>Lundi</dt><dd>fermé</dd></div><div><dt>Mardi – vendredi</dt><dd>8 h – 12 h 30, 14 h 30 – 19 h 30</dd></div><div><dt>Samedi</dt><dd>8 h – 19 h</dd></div><div><dt>Dimanche</dt><dd>8 h 30 – 12 h 30</dd></div></dl>
+    <p class="hc-hn">Horaires donnés en exemple, à confirmer.</p>
   </div>
 </section>
-<footer class="hc-pied" data-sec="pied"><span>Boucherie des Hauts-Clos</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Boucherie des Hauts-Clos, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 45 rue de la Croix Blanche, 10120 Saint-André-les-Vergers<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 45 64 80</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Boucherie des Hauts-Clos. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Boucherie des Hauts-Clos au 03 25 45 64 80. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
+
+<footer class="hc-pied" data-sec="pied">
+  <p class="hc-pied-logo"><span>Boucherie</span>des Hauts-Clos</p>
+  <div class="hc-pied-l"><p>45 rue de la Croix Blanche<br>10120 Saint-André-les-Vergers</p><p><a href="tel:+33325456480">03 25 45 64 80</a></p><p><a href="#page-mentions">Mentions légales</a><br><a href="#page-confidentialite">Confidentialité</a></p></div>
+</footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Boucherie des Hauts-Clos, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 45 rue de la Croix Blanche, 10120 Saint-André-les-Vergers<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 45 64 80</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Boucherie des Hauts-Clos. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Boucherie des Hauts-Clos au 03 25 45 64 80. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
    Horaires en direct, prise de rendez-vous, commande à retirer, compte à rebours,
    galerie, formulaire de contact, menu mobile, pages. Aucun cookie, aucun traceur. */
@@ -625,12 +699,13 @@ html{scroll-padding-top:100px}body{margin:0;background:#212825}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:30","f":"12:30","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 45 64 80","email":"","nom":"Boucherie des Hauts-Clos"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#2B3330;color:#fff">B</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Boucherie des Hauts-Clos. Continuer ?'))ev.preventDefault();},true);
-var hz=r.querySelectorAll('.hc-z');if(hz.length){var HM=[["Collier","Bourguignon, pot-au-feu. Une cuisson longue, à petit feu.","14,90"],["Poitrine","Pot-au-feu, potée, bouillon.","12,90"],["Basse-côte","Grillée en tranches fines ou braisée.","19,90"],["Paleron","Daube, bourguignon, pot-au-feu. Fondant après trois heures.","16,90"],["Côtes","La côte de bœuf et l'entrecôte : à griller, saignantes.","29,90"],["Plat de côtes","Pot-au-feu, braisé au four.","11,90"],["Faux-filet","En rôti ou en steak : tendre et goûteux.","27,90"],["Filet","Tournedos, chateaubriand. Le morceau le plus tendre.","42,90"],["Bavette","Le steak à griller vite, à servir saignant.","24,90"],["Rumsteck","Steak, rôti, brochettes, fondue.","26,90"],["Tende","Steak, rôti, carpaccio.","23,90"],["Gîte","Rôti, steak, et un très bon haché.","21,90"],["Jarret","Pot-au-feu, osso buco. Avec l'os, pour le bouillon.","14,90"],["Jarret","Pot-au-feu, osso buco. Avec l'os, pour le bouillon.","14,90"]];
-function choisir(i){hz.forEach(function(z){z.classList.toggle('on',+z.getAttribute('data-cut')===i||(HM[+z.getAttribute('data-cut')][0]===HM[i][0]&&HM[i][0]==='Jarret'))});
-r.querySelectorAll('.hc-puces button').forEach(function(b){var j=+b.getAttribute('data-p');b.setAttribute('aria-pressed',(j===i||(HM[j][0]===HM[i][0]))?'true':'false')});
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":false,"a":"09:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:30","p":true,"pa":"12:30","pf":"14:30"},{"o":true,"a":"08:00","f":"19:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"08:30","f":"12:30","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 45 64 80","email":"","nom":"Boucherie des Hauts-Clos"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#26221D;color:#fff">B</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Boucherie des Hauts-Clos. Continuer ?'))ev.preventDefault();},true);
+var hz=r.querySelectorAll('.hc-z');if(hz.length){var HM=[["Collier","Bourguignon, pot-au-feu. Une cuisson longue, à petit feu.","14,90"],["Poitrine","Pot-au-feu, potée, bouillon.","12,90"],["Basse-côte","Grillée en tranches fines ou braisée.","19,90"],["Paleron","Daube, bourguignon. Fondant après trois heures.","16,90"],["Côtes","La côte de bœuf et l'entrecôte : à griller, saignantes.","29,90"],["Plat de côtes","Pot-au-feu, braisé au four.","11,90"],["Faux-filet","En rôti ou en steak : tendre et goûteux.","27,90"],["Filet","Tournedos, chateaubriand. Le morceau le plus tendre.","42,90"],["Bavette","Le steak à griller vite, à servir saignant.","24,90"],["Rumsteck","Steak, rôti, brochettes, fondue.","26,90"],["Tende","Steak, rôti, carpaccio.","23,90"],["Gîte","Rôti, steak, et un très bon haché.","21,90"],["Jarret","Pot-au-feu, osso buco. Avec l'os, pour le bouillon.","14,90"],["Jarret","Pot-au-feu, osso buco. Avec l'os, pour le bouillon.","14,90"]];
+function choisir(i){hz.forEach(function(z){var j=+z.getAttribute('data-cut');z.classList.toggle('on',j===i||(HM[j][0]===HM[i][0]))});
+r.querySelectorAll('.hc-puces button').forEach(function(b){var j=+b.getAttribute('data-p');b.setAttribute('aria-pressed',HM[j][0]===HM[i][0]?'true':'false')});
 r.querySelector('[data-f-nom]').textContent=HM[i][0];r.querySelector('[data-f-txt]').textContent=HM[i][1];r.querySelector('[data-f-prix]').textContent='Exemple : '+HM[i][2]+'\u00a0€ le kg'}
 hz.forEach(function(z){var i=+z.getAttribute('data-cut');z.addEventListener('click',function(){choisir(i)});z.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();choisir(i)}})});
-r.querySelectorAll('.hc-puces button').forEach(function(b){b.addEventListener('click',function(){choisir(+b.getAttribute('data-p'))})});choisir(4)}})();</script>
+r.querySelectorAll('.hc-puces button').forEach(function(b){b.addEventListener('click',function(){choisir(+b.getAttribute('data-p'))})});choisir(4)}
+r.querySelectorAll('[data-ajout]').forEach(function(b){b.addEventListener('click',function(){var n=b.getAttribute('data-ajout'),l=r.querySelector('.s-cmd-ligne[data-nom="'+n+'"]');if(!l)return;var p=l.querySelector('.s-pas-plus');if(p)p.click();l=r.querySelector('.s-cmd-ligne[data-nom="'+n+'"]');document.getElementById('commander').scrollIntoView({behavior:'smooth'});l.classList.remove('flash');void l.offsetWidth;l.classList.add('flash')})});})();</script>
 </body>
 </html>

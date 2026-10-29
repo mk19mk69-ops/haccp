@@ -6,16 +6,16 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Maquette : Prizren-Antalya</title>
 <meta name="description" content="Maquette de site préparée par Mokrani Studio pour Prizren-Antalya. Ce n'est pas le site officiel du commerce.">
-<meta name="theme-color" content="#1D1F22">
+<meta name="theme-color" content="#FAF8F4">
 <link rel="icon" href="data:,">
 <style>
-@font-face{font-family:"Passion One";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/passion-one-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Passion One";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/passion-one-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/archivo-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/archivo-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/archivo-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/archivo-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:800;font-display:swap;src:url(../polices/archivo-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/bodoni-moda-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/bodoni-moda-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url(../polices/bodoni-moda-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(../polices/manrope-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:500;font-display:swap;src:url(../polices/manrope-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(../polices/manrope-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:700;font-display:swap;src:url(../polices/manrope-latin-700-normal.woff2) format("woff2")}
 
 .site{container:site/inline-size}
 .site *,.site *::before,.site *::after{box-sizing:border-box}
@@ -105,137 +105,155 @@
 .mq-c{display:none}
 @media (max-width:560px){.mq-l{display:none}.mq-c{display:inline}}
 
-html{scroll-padding-top:100px}body{margin:0;background:#141517}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:100px}body{margin:0;background:#FAF8F4}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-.pz{--orange:#F26A1B;--orange-f:#C94E0C;--mur:#1D1F22;--mur-c:#2A2D31;--lumiere:#FFFDF6;--encre:#191A1C;--inox:#C9CDD1;
-  background:var(--mur);color:var(--lumiere);font:400 17px/1.5 Archivo,system-ui,sans-serif}
-.pz h1,.pz h2,.pz h3,.pz-marque,.pz-n,.pz-case b{font-family:"Passion One",Impact,sans-serif;font-weight:700;line-height:.95}
-.pz-tete{display:flex;justify-content:space-between;align-items:center;padding:10px clamp(16px,3cqi,40px);background:var(--mur)}
-.pz-marque{font-size:1.5rem;text-decoration:none;color:var(--orange)}
-.pz-tete-t{font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums}
-
-.pz-mur{padding:clamp(14px,3cqi,40px) clamp(10px,3cqi,40px) 0;background:linear-gradient(var(--mur) 0 70%,var(--mur-c) 70%)}
-.pz-caisson{max-width:1200px;margin:0 auto;background:var(--lumiere);color:var(--encre);border:8px solid #3A3D42;border-radius:6px;
-  box-shadow:0 0 0 2px #111,0 0 50px 4px rgba(255,214,170,.28),0 0 140px 10px rgba(255,180,120,.12)}
-.pz-bandeau{display:grid;gap:4px;padding:14px clamp(14px,2.4cqi,28px) 12px;background:linear-gradient(var(--orange),var(--orange-f));color:#fff;text-align:center}
-.pz h1{font-size:clamp(2.6rem,10cqi,6rem);letter-spacing:.01em;text-shadow:0 3px 0 rgba(0,0,0,.18)}
-.pz-bandeau p{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:clamp(.75rem,2cqi,.95rem)}
-.pz-cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#E4DED2;padding:2px}
-.pz-case{position:relative;display:grid;grid-template-rows:auto 1fr auto;background:var(--lumiere)}
-.pz-case figure{margin:0;aspect-ratio:4/3;overflow:hidden}
-.pz-case img{width:100%;height:100%;object-fit:cover;filter:saturate(1.18) contrast(1.05)}
-.pz-case::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.28) 0 22%,transparent 22%);pointer-events:none}
-.pz-n{position:absolute;z-index:2;top:8px;left:8px;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-size:1.8rem;box-shadow:0 2px 0 var(--orange-f)}
-.pz-t{padding:10px 12px 0}
-.pz-t h3{font-size:clamp(1.25rem,3.4cqi,1.7rem);font-weight:400}
-.pz-t p{font-size:.85rem;color:#55575C;margin-top:2px}
-.pz-case b{justify-self:end;padding:4px 12px 8px;font-size:clamp(2rem,6cqi,2.8rem);color:var(--orange-f)}
-.pz-case--txt{grid-template-rows:1fr auto;align-content:center;background:repeating-linear-gradient(-45deg,#FFF7EA 0 12px,#FFF1DC 12px 24px)}
-.pz-case--txt .pz-t{padding:64px 12px 0;align-self:center}
-.pz-ex{padding:8px 12px;font-size:.78rem;color:#6A6C70;text-align:right}
-@container site (min-width:860px){.pz-cases{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (prefers-reduced-motion:no-preference){
-  .pz-caisson{animation:pz-allume 1.1s .2s linear both}
-  @keyframes pz-allume{0%{filter:brightness(.25)}8%{filter:brightness(1)}12%{filter:brightness(.4)}20%{filter:brightness(1)}24%{filter:brightness(.6)}30%,100%{filter:brightness(1)}}
+.pz{--papier:#FAF8F4;--encre:#171513;--gris:#7D776F;--trait:rgba(23,21,19,.14);--braise:#B4441A;
+  background:var(--papier);color:var(--encre);font:400 16.5px/1.65 Manrope,system-ui,sans-serif}
+.pz h1,.pz h2,.pz h3,.pz-nom,.pz-plat,.pz-adr,.pz-tel{font-family:"Bodoni Moda",Didot,serif;font-weight:400}
+.pz-page{display:block}
+.pz-cote{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px clamp(18px,4cqi,40px);border-bottom:1px solid var(--trait);background:var(--papier)}
+.pz-nom{font-size:1.4rem;font-style:italic;text-decoration:none;line-height:1.1}
+.pz-nav{display:flex;gap:18px;font-size:.9rem}
+.pz-nav a{text-decoration:none}
+.pz-nav a:not([href="#commander"]){display:none}
+.pz-nav a[href="#commander"]{padding-bottom:2px;border-bottom:1px solid}
+.pz-cote-b{display:none}
+.pz-main{padding:0 clamp(18px,4cqi,40px)}
+@container site (min-width:1000px){
+  .pz-page{display:grid;grid-template-columns:250px 1fr}
+  .pz-cote{position:sticky;top:40px;align-self:start;height:calc(100svh - 40px);flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:28px;padding:44px 34px;border-bottom:0;border-right:1px solid var(--trait)}
+  .pz-nom{font-size:1.75rem}
+  .pz-nav{flex-direction:column;gap:6px;font-size:.98rem}
+  .pz-nav a{display:block!important;border:0!important;padding:0!important}
+  .pz-nav a:hover{font-style:italic}
+  .pz-cote-b{display:grid;gap:10px;margin-top:auto;font-size:.88rem;color:var(--gris)}
+  .pz-cote-b a{color:var(--encre)}
+  .pz-cote-cta{display:block;margin-top:8px;padding:12px 14px;background:var(--encre);color:var(--papier)!important;text-align:center;text-decoration:none;font-weight:600;letter-spacing:.03em}
+  .pz-cote-cta:hover{background:var(--braise)}
+  .pz-main{padding:0 clamp(40px,6cqi,96px)}
 }
-.pz-comptoir{max-width:1200px;margin:0 auto;padding:26px clamp(8px,1cqi,12px) clamp(40px,6cqi,64px);display:grid;gap:16px}
-.pz-dit{font-size:clamp(1.15rem,2.6cqi,1.5rem);font-weight:600;max-width:40ch}
-.pz-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
-.pz-btn{background:var(--orange);color:#fff;font:700 1.35rem/1 "Passion One",sans-serif;letter-spacing:.02em;border-radius:6px;box-shadow:0 4px 0 var(--orange-f)}
-.pz-btn:hover{background:#FF7B2C}
-.pz-st{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#D7D9DC}
-.pz-st i{width:10px;height:10px;border-radius:50%;background:#59D37A;box-shadow:0 0 8px #59D37A}.pz-st.ferme i{background:#777;box-shadow:none}
-@container site (min-width:860px){.pz-comptoir{grid-template-columns:1fr auto;align-items:center}}
+.pz-st{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--encre)}
+.pz-st i{width:7px;height:7px;border-radius:50%;background:var(--braise)}.pz-st.ferme i{background:#B7B0A6}
 
-.pz-cmd{padding:clamp(48px,7cqi,90px) clamp(10px,3cqi,40px);background:var(--mur-c)}
-.pz-inox{max-width:1140px;margin:0 auto;padding:clamp(24px,4cqi,48px);color:var(--encre);border-radius:4px;
-  background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,transparent 1px 3px),linear-gradient(180deg,#E3E6E9,#C3C8CD 55%,#D7DADD);box-shadow:inset 0 1px 0 #fff,0 20px 40px -24px #000}
-.pz h2{font-size:clamp(2.4rem,8cqi,4.6rem)}
-.pz-sous{margin-top:8px;max-width:52ch;font-weight:500}
-.pz-cmd .s-resa{margin-top:26px}
-.pz-cmd .s-resa-q{font:700 1.4rem/1 "Passion One",sans-serif;color:var(--orange-f)}
-.pz-cmd .s-cmd-ligne{border-bottom:1px solid rgba(0,0,0,.14)}
-.pz-cmd .s-cmd-ligne small{display:block;color:#45484D;font-variant-numeric:tabular-nums}
-.pz-cmd .s-pas-b{background:var(--encre);color:#fff;border-radius:6px}
-.pz-cmd .s-puce,.pz-cmd .s-heure{background:rgba(255,255,255,.65);border-radius:6px}
-.pz-cmd .s-puce.on,.pz-cmd .s-heure.on{background:var(--orange);color:#fff}
-.pz-cmd .s-resa-pied{border-top:2px solid var(--encre)}
-.pz-cmd .s-btn{background:var(--orange);color:#fff;font:700 1.2rem/1 "Passion One",sans-serif;border-radius:6px}
-.pz-cmd .s-btn:disabled{background:#8E9297}
-.pz-cmd .s-btn--2{background:transparent;color:var(--encre);box-shadow:inset 0 0 0 2px var(--encre)}
-.pz-cmd .s-champ input{border:2px solid #8E9297;border-radius:6px;background:#fff}
-.pz-cmd .s-fin-titre{font:700 2.4rem/1 "Passion One",sans-serif}
+.pz-une{display:grid;justify-items:center;text-align:center;gap:28px;padding:clamp(44px,7cqi,96px) 0 clamp(56px,8cqi,110px)}
+.pz h1{display:grid;gap:12px;font-size:clamp(2.6rem,6.6cqi,5.4rem);line-height:1.02;letter-spacing:-.01em}
+.pz h1 span{font:500 .78rem/1 Manrope,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--gris)}
+.pz-p1{position:relative;width:100%;max-width:980px;margin:12px 0 0;aspect-ratio:16/10;overflow:hidden}
+.pz-p1 img,.pz-duo img,.pz-p3 img{width:100%;height:100%;object-fit:cover}
+.pz-chapo{max-width:52ch;font-size:1.06rem;color:#45413C}
+.pz-btn{background:var(--encre);color:var(--papier);border-radius:0;font-weight:600;letter-spacing:.04em;padding:0 28px}
+.pz-btn:hover{background:var(--braise)}
+@media (prefers-reduced-motion:no-preference){
+  .pz-p1 img,.pz-duo img{animation:pz-vient 1.6s .15s ease-out both}
+  .pz-duo figure+figure img{animation-delay:.35s}
+  @keyframes pz-vient{from{opacity:0;transform:scale(1.03)}}
+}
 
-.pz-grill{position:relative;margin:0;height:clamp(240px,38cqi,460px)}
-.pz-grill img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.pz-grill figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px clamp(16px,3cqi,40px) 18px;background:linear-gradient(transparent,rgba(0,0,0,.75));font:700 clamp(1.5rem,4.5cqi,2.6rem)/1 "Passion One",sans-serif}
+.pz-duo{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(12px,3cqi,40px);align-items:end;padding-bottom:clamp(64px,9cqi,130px)}
+.pz-duo figure{position:relative;margin:0}
+.pz-duo figure:first-child{aspect-ratio:2/3}
+.pz-duo figure:last-child{aspect-ratio:4/5;margin-bottom:clamp(30px,6cqi,90px)}
+.pz-duo figcaption{margin-top:8px;font-size:.8rem;color:var(--gris);text-align:left}
+.pz-duo figcaption em{font-style:normal;opacity:.75}
 
-.pz-in{max-width:1140px;margin:0 auto;padding:0 clamp(16px,3cqi,40px)}
-.pz-venir{padding:clamp(56px,8cqi,100px) 0;background:var(--mur)}
-.pz-venir-g{display:grid;gap:30px}
-.pz-venir h2{color:var(--orange)}
-.pz-adr{margin-top:12px;font-size:1.15rem}
-.pz-adr a{font-weight:600}
-.pz-tel{margin-top:16px;font:700 2rem/1 "Passion One",sans-serif}
-.pz-tel a{text-decoration:none}
-.pz-hor{max-width:460px}
-.pz-hor div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #3A3D42}
+.pz-carte{padding:clamp(56px,8cqi,110px) 0;border-top:1px solid var(--trait)}
+.pz h2{font-size:clamp(2.4rem,6cqi,4.4rem);line-height:1;text-align:center}
+.pz-ex{margin-top:10px;text-align:center;font-size:.86rem;color:var(--gris)}
+.pz-rubs{display:grid;gap:42px;max-width:980px;margin:48px auto 0}
+.pz-rub h3{font-size:1rem;font-family:Manrope,sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;text-align:center;color:var(--gris);margin-bottom:16px}
+.pz-rub li{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--trait)}
+.pz-plat{font-size:1.4rem;line-height:1.2}
+.pz-desc{font-size:.88rem;color:var(--gris)}
+.pz-rub b{font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+@container site (min-width:1000px){.pz-rubs{grid-template-columns:1fr 1fr;column-gap:64px}.pz-rub:last-child{grid-column:1/-1;max-width:460px;justify-self:center;width:100%}}
+
+.pz-cmd{padding:clamp(56px,8cqi,110px) 0;border-top:1px solid var(--trait)}
+.pz-sous{max-width:52ch;margin:12px auto 0;text-align:center;color:#45413C}
+.pz-cmd .s-resa{max-width:980px;margin:40px auto 0}
+.pz-cmd .s-resa-q{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gris)}
+.pz-cmd .s-cmd-ligne{border-bottom:1px solid var(--trait)}
+.pz-cmd .s-cmd-ligne b{font:400 1.2rem/1.2 "Bodoni Moda",serif}
+.pz-cmd .s-cmd-ligne small{display:block;color:var(--gris);font-variant-numeric:tabular-nums}
+.pz-cmd .s-pas-b{background:transparent;border:1px solid var(--trait);border-radius:50%}
+.pz-cmd .s-puce,.pz-cmd .s-heure{background:#F0ECE5;border-radius:0}
+.pz-cmd .s-puce.on,.pz-cmd .s-heure.on{background:var(--encre);color:var(--papier)}
+.pz-cmd .s-resa-pied{border-top:1px solid var(--encre)}
+.pz-cmd .s-btn{background:var(--encre);color:var(--papier);border-radius:0;font-weight:600}
+.pz-cmd .s-btn--2{background:transparent;color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
+.pz-cmd .s-champ input{border:1px solid var(--trait);border-radius:0;background:#fff}
+.pz-cmd .s-fin-titre{font:400 2.2rem/1 "Bodoni Moda",serif}
+
+.pz-infos{display:grid;gap:34px;padding:clamp(56px,8cqi,110px) 0;border-top:1px solid var(--trait)}
+.pz-infos h2{text-align:left}
+.pz-p3{position:relative;margin:0;aspect-ratio:4/5;max-height:560px}
+.pz-adr{margin-top:12px;font-size:1.3rem;font-style:italic}
+.pz-adr a{font-style:normal;font-family:Manrope,sans-serif;font-size:.95rem}
+.pz-hor{margin-top:26px;max-width:460px}
+.pz-hor div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--trait)}
 .pz-hor dt{font-weight:600}.pz-hor dd{text-align:right;font-variant-numeric:tabular-nums}
-.pz-hn{margin-top:8px;font-size:.85rem;color:#9A9DA2}
-@container site (min-width:860px){.pz-venir-g{grid-template-columns:1fr 1fr;align-items:end}}
-.pz-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:18px clamp(16px,3cqi,40px) 26px;background:#141517;color:#9A9DA2;font-size:.9rem}
-.pz-pied span{margin-right:auto;font:700 1.3rem/1 "Passion One",sans-serif;color:var(--orange)}
-.pz .legal{color:var(--lumiere)}.pz .legal h1{font-size:2.6rem}
+.pz-hn{margin-top:8px;font-size:.84rem;color:var(--gris)}
+.pz-tel{margin-top:24px;font-size:2rem}
+.pz-tel a{text-decoration:none}
+@container site (min-width:1000px){.pz-infos{grid-template-columns:.8fr 1.2fr;gap:64px;align-items:end}}
+.pz-pied{display:flex;flex-wrap:wrap;gap:8px 22px;padding:26px 0 34px;border-top:1px solid var(--trait);font-size:.86rem;color:var(--gris)}
+.pz-pied span{margin-right:auto;font:italic 400 1.2rem/1 "Bodoni Moda",serif;color:var(--encre)}
+.pz .legal h1{display:block;font-size:2.6rem}
 </style>
 </head>
 <body>
 <aside class="mq" aria-label="À propos de cette maquette"><div class="mq-barre"><span class="mq-badge">Maquette</span><p class="mq-t"><span class="mq-l">Préparée pour <b>Prizren-Antalya</b> par Mokrani Studio. Ce n'est pas votre site officiel.</span><span class="mq-c">Pour <b>Prizren-Antalya</b>, pas le site officiel.</span></p><button type="button" class="mq-plus" aria-expanded="false" aria-controls="mq-detail">Pourquoi ?</button></div><div class="mq-detail" id="mq-detail" hidden><p>Je n&#39;ai trouvé ni site ni carte à jour en ligne : la carte, les prix et les horaires sont des exemples. Les photos sont des photos d&#39;illustration : on les remplace par celles de vos plats.</p><ul><li>Ce site a été dessiné pour Prizren-Antalya, pas tiré d'un modèle : on l'ajuste ensemble.</li><li>Vos clients commandent à l'avance seuls, depuis leur téléphone. Chaque commande arrive sur votre téléphone. Essayez : ici c'est une démonstration, rien n'est envoyé.</li><li>490 € payés une fois, puis l'hébergement (50 € la première année, environ 5 € par mois ensuite). Pas d'abonnement, pas de commission.</li></ul><div class="mq-act"><a class="mq-p" href="tel:+33782023657">Appeler Ali</a><a href="sms:+33782023657?&body=Bonjour%20Ali%2C%20j'ai%20vu%20la%20maquette%20pour%20Prizren-Antalya.%20">Lui écrire</a></div><p class="mq-sig">Ali Mokrani, Mokrani Studio, Troyes. 07 82 02 36 57</p></div></aside>
 <div class="site pz" data-metier="snack"><main data-page="accueil">
-<header class="pz-tete" data-sec="tete">
-  <a class="pz-marque" href="#page-accueil">Prizren-Antalya</a>
-  <a class="pz-tete-t" href="tel:+33325414316">03 25 41 43 16</a>
-</header>
-
-<section class="pz-mur" data-sec="caisson">
-  <div class="pz-caisson">
-    <div class="pz-bandeau"><h1>Prizren-Antalya</h1><p>Grillades et kebabs · 38 rue Urbain IV</p></div>
-    <ul class="pz-cases"><li class="pz-case"><span class="pz-n">1</span><figure><img class="" src="../../atelier/photos/kebab/38337105.webp" srcset="../../atelier/photos/kebab/38337105-m.webp 760w, ../../atelier/photos/kebab/38337105.webp 1600w" sizes="(min-width: 900px) 360px, 50vw" alt="Sandwich kebab (photo d&#39;illustration)" data-illu style="background-color:#998472" fetchpriority="high" decoding="async"></figure><div class="pz-t"><h3>Sandwich kebab</h3><p>Pain, salade, tomate, oignon</p></div><b>7 €</b></li><li class="pz-case"><span class="pz-n">2</span><figure><img class="" src="../../atelier/photos/kebab/15202777.webp" srcset="../../atelier/photos/kebab/15202777-m.webp 760w, ../../atelier/photos/kebab/15202777.webp 1600w" sizes="(min-width: 900px) 360px, 50vw" alt="Menu sandwich, frites et boisson (photo d&#39;illustration)" data-illu style="background-color:#917340" fetchpriority="high" decoding="async"></figure><div class="pz-t"><h3>Menu sandwich, frites et boisson</h3></div><b>11 €</b></li><li class="pz-case"><span class="pz-n">3</span><figure><img class="" src="../../atelier/photos/turc/31661077.webp" srcset="../../atelier/photos/turc/31661077-m.webp 760w, ../../atelier/photos/turc/31661077.webp 1200w" sizes="(min-width: 900px) 360px, 50vw" alt="Assiette kebab (photo d&#39;illustration)" data-illu style="background-color:#96774e" loading="lazy" decoding="async"></figure><div class="pz-t"><h3>Assiette kebab</h3><p>Viande, frites ou riz, salade</p></div><b>13 €</b></li><li class="pz-case"><span class="pz-n">4</span><figure><img class="" src="../../atelier/photos/turc/7439809.webp" srcset="../../atelier/photos/turc/7439809-m.webp 760w, ../../atelier/photos/turc/7439809.webp 1600w" sizes="(min-width: 900px) 360px, 50vw" alt="Assiette brochettes (photo d&#39;illustration)" data-illu style="background-color:#8e8273" loading="lazy" decoding="async"></figure><div class="pz-t"><h3>Assiette brochettes</h3></div><b>15 €</b></li><li class="pz-case"><span class="pz-n">5</span><figure><img class="" src="../../atelier/photos/turc/15390671.webp" srcset="../../atelier/photos/turc/15390671-m.webp 760w, ../../atelier/photos/turc/15390671.webp 1600w" sizes="(min-width: 900px) 360px, 50vw" alt="Assiette mixte (photo d&#39;illustration)" data-illu style="background-color:#856c57" loading="lazy" decoding="async"></figure><div class="pz-t"><h3>Assiette mixte</h3></div><b>16 €</b></li><li class="pz-case pz-case--txt"><span class="pz-n">6</span><div class="pz-t"><h3>Dessert du jour</h3></div><b>4 €</b></li></ul>
-    <p class="pz-ex">Prix d'exemple. Photos d'illustration.</p>
+<div class="pz-page">
+<aside class="pz-cote" data-sec="tete">
+  <a class="pz-nom" href="#page-accueil">Prizren-Antalya</a>
+  <nav class="pz-nav"><a href="#carte">La carte</a><a href="#commander">À emporter</a><a href="#infos">Infos</a></nav>
+  <div class="pz-cote-b">
+    <p class="pz-st" data-statut><i></i><span></span></p>
+    <p><a href="tel:+33325414316">03 25 41 43 16</a></p>
+    <p>38 rue Urbain IV<br>10000 Troyes</p>
+    <a class="pz-cote-cta" href="#commander">Commander à emporter</a>
   </div>
-  <div class="pz-comptoir">
-    <p class="pz-dit">Dites-nous le numéro, on s'occupe du reste. Sur place, à emporter, ou commandé avant de venir.</p>
-    <div class="pz-act"><a class="s-btn pz-btn" href="#commander">Commander à emporter</a><span class="pz-st" data-statut><i></i><span></span></span></div>
-  </div>
-</section>
+</aside>
 
-<section class="pz-cmd" id="commander" data-sec="commande">
-  <div class="pz-inox">
-    <h2>Commander à emporter</h2>
-    <p class="pz-sous">Choisissez vos numéros et l'heure : c'est prêt au comptoir quand vous arrivez. Vous payez sur place.</p>
-    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="1. Sandwich kebab" data-prix="7" data-unite=""><p><b>1. Sandwich kebab</b><small>7 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="2. Menu sandwich, frites et boisson" data-prix="11" data-unite=""><p><b>2. Menu sandwich, frites et boisson</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="3. Assiette kebab" data-prix="13" data-unite=""><p><b>3. Assiette kebab</b><small>13 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="4. Assiette brochettes" data-prix="15" data-unite=""><p><b>4. Assiette brochettes</b><small>15 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="5. Assiette mixte" data-prix="16" data-unite=""><p><b>5. Assiette mixte</b><small>16 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="6. Dessert du jour" data-prix="4" data-unite=""><p><b>6. Dessert du jour</b><small>4 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
-  </div>
-</section>
+<main class="pz-main">
+  <section class="pz-une" data-sec="une">
+    <h1><span>Rue Urbain IV, Troyes</span>Grillades &amp; kebabs</h1>
+    <figure class="pz-p1"><img class="" src="../../atelier/photos/kebab/24739843.webp" srcset="../../atelier/photos/kebab/24739843-m.webp 760w, ../../atelier/photos/kebab/24739843.webp 1600w" sizes="(min-width: 1000px) 62vw, 100vw" alt="Un cuisinier tranche la broche derrière le comptoir (photo d&#39;illustration)" data-illu style="background-color:#4d3f30" fetchpriority="high" decoding="async"><span class="illu">Photo d'illustration</span></figure>
+    <p class="pz-chapo">Le kebab tranché à la commande, les brochettes qui sortent du grill, et la carte qui va avec. Sur place, à emporter, ou commandé avant de venir pour ne pas attendre.</p>
+    <a class="s-btn pz-btn" href="#commander">Commander à emporter</a>
+  </section>
 
-<figure class="pz-grill" data-sec="pause">
-  <img class="" src="../../atelier/photos/turc/37058644.webp" srcset="../../atelier/photos/turc/37058644-m.webp 760w, ../../atelier/photos/turc/37058644.webp 1069w" sizes="100vw" alt="Brochettes sur le grill (photo d&#39;illustration)" data-illu style="background-color:#5b372b" loading="lazy" decoding="async">
-  <figcaption>Grillades et kebabs, en plein centre-ville.</figcaption>
-  <span class="illu">Photo d'illustration</span>
-</figure>
+  <section class="pz-duo" data-sec="duo">
+    <figure><img class="" src="../../atelier/photos/turc/31587880.webp" srcset="../../atelier/photos/turc/31587880-m.webp 760w, ../../atelier/photos/turc/31587880.webp 1067w" sizes="(min-width: 1000px) 28vw, 50vw" alt="Brochette au-dessus des braises (photo d&#39;illustration)" data-illu style="background-color:#813a21" loading="lazy" decoding="async"><figcaption>Au grill. <em>Photo d'illustration.</em></figcaption></figure>
+    <figure><img class="" src="../../atelier/photos/turc/15873840.webp" srcset="../../atelier/photos/turc/15873840-m.webp 760w, ../../atelier/photos/turc/15873840.webp 1296w" sizes="(min-width: 1000px) 34vw, 50vw" alt="Assiette de brochettes avec pain plat et ayran (photo d&#39;illustration)" data-illu style="background-color:#74695a" loading="lazy" decoding="async"><figcaption>L'assiette, avec son pain. <em>Photo d'illustration.</em></figcaption></figure>
+  </section>
 
-<section class="pz-venir" data-sec="venir">
-  <div class="pz-in pz-venir-g">
+  <section class="pz-carte" id="carte" data-sec="carte">
+    <h2>La carte</h2>
+    <p class="pz-ex">Carte et prix donnés en exemple : on met les vôtres.</p>
+    <div class="pz-rubs"><div class="pz-rub"><h3>Les sandwichs</h3><ul><li><div><p class="pz-plat">Sandwich kebab</p><p class="pz-desc">Pain, salade, tomate, oignon, sauce au choix</p></div><b>7 €</b></li><li><div><p class="pz-plat">Dürüm</p><p class="pz-desc">Galette roulée, viande, crudités</p></div><b>8 €</b></li><li><div><p class="pz-plat">Menu sandwich</p><p class="pz-desc">Avec frites et boisson</p></div><b>11 €</b></li></ul></div><div class="pz-rub"><h3>Les assiettes</h3><ul><li><div><p class="pz-plat">Assiette kebab</p><p class="pz-desc">Viande, frites ou riz, salade</p></div><b>13 €</b></li><li><div><p class="pz-plat">Assiette brochettes</p><p class="pz-desc">Brochettes grillées, riz, salade</p></div><b>15 €</b></li><li><div><p class="pz-plat">Assiette mixte</p><p class="pz-desc">Kebab et brochettes</p></div><b>16 €</b></li></ul></div><div class="pz-rub"><h3>Pour finir</h3><ul><li><div><p class="pz-plat">Dessert du jour</p><p class="pz-desc">Demandez au comptoir</p></div><b>4 €</b></li><li><div><p class="pz-plat">Boisson 33 cl</p></div><b>2 €</b></li></ul></div></div>
+  </section>
+
+  <section class="pz-cmd" id="commander" data-sec="commande">
+    <h2>À emporter</h2>
+    <p class="pz-sous">Choisissez vos plats et l'heure de passage. C'est prêt au comptoir quand vous arrivez, vous payez sur place.</p>
+    <div class="s-resa s-cmd" data-cmd><div class="s-resa-etape"><div class="s-resa-g"><div class="s-resa-col"><p class="s-resa-q">Votre panier</p><ul class="s-cmd-l"><li class="s-cmd-ligne" data-nom="Sandwich kebab" data-prix="7" data-unite=""><p><b>Sandwich kebab</b><small>7 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Dürüm" data-prix="8" data-unite=""><p><b>Dürüm</b><small>8 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Menu sandwich" data-prix="11" data-unite=""><p><b>Menu sandwich</b><small>11 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette kebab" data-prix="13" data-unite=""><p><b>Assiette kebab</b><small>13 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette brochettes" data-prix="15" data-unite=""><p><b>Assiette brochettes</b><small>15 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Assiette mixte" data-prix="16" data-unite=""><p><b>Assiette mixte</b><small>16 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Dessert du jour" data-prix="4" data-unite=""><p><b>Dessert du jour</b><small>4 €</small></p><div class="s-pas"></div></li><li class="s-cmd-ligne" data-nom="Boisson 33 cl" data-prix="2" data-unite=""><p><b>Boisson 33 cl</b><small>2 €</small></p><div class="s-pas"></div></li></ul></div><div class="s-resa-col"><p class="s-resa-q">Retrait</p><div class="s-resa-jours"></div><div class="s-resa-heures"></div></div></div><div class="s-resa-pied"><p class="s-resa-recap" aria-live="polite"></p><button type="button" class="s-btn" data-cmd-ok disabled>Continuer</button></div></div><form class="s-resa-form" hidden novalidate><p class="s-form-recap"></p><label class="s-champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label><label class="s-champ"><span>Votre téléphone</span><input name="tel" type="tel" inputmode="tel" autocomplete="tel" required></label><p class="s-form-err" role="alert"></p><div class="s-form-act"><button type="button" class="s-lien" data-retour>Modifier</button><button class="s-btn">Envoyer la commande</button></div></form><div class="s-resa-fin" hidden><svg class="s-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16"/></svg><p class="s-fin-titre"></p><p class="s-fin-texte"></p><button type="button" class="s-btn s-btn--2" data-encore>Recommencer</button></div></div>
+  </section>
+
+  <section class="pz-infos" id="infos" data-sec="infos">
+    <figure class="pz-p3"><img class="" src="../../atelier/photos/turc/37080236.webp" srcset="../../atelier/photos/turc/37080236-m.webp 760w, ../../atelier/photos/turc/37080236.webp 900w" sizes="(min-width: 1000px) 30vw, 100vw" alt="Brochettes grillées, vues de près (photo d&#39;illustration)" data-illu style="background-color:#72382c" loading="lazy" decoding="async"><span class="illu">Photo d'illustration</span></figure>
     <div>
-      <h2>Rue Urbain IV</h2>
-      <p class="pz-adr">38 rue Urbain IV, 10000 Troyes<br><a href="https://www.google.com/maps/search/?api=1&query=Prizren-Antalya%2038%20rue%20Urbain%20IV%2010000%20Troyes" target="_blank" rel="noopener">Itinéraire</a></p>
+      <h2>38 rue Urbain IV</h2>
+      <p class="pz-adr">10000 Troyes, en centre-ville · <a href="https://www.google.com/maps/search/?api=1&query=Prizren-Antalya%2038%20rue%20Urbain%20IV%2010000%20Troyes" target="_blank" rel="noopener">itinéraire</a></p>
+      <dl class="pz-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
+      <p class="pz-hn">Horaires donnés en exemple, à confirmer.</p>
       <p class="pz-tel"><a href="tel:+33325414316">03 25 41 43 16</a></p>
     </div>
-    <div>
-      <dl class="pz-hor"><div><dt>Lundi – samedi</dt><dd>11 h – 23 h</dd></div><div><dt>Dimanche</dt><dd>18 h – 23 h</dd></div></dl>
-      <p class="pz-hn">Horaires d'exemple, à confirmer.</p>
-    </div>
-  </div>
-</section>
-<footer class="pz-pied" data-sec="pied"><span>Prizren-Antalya</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Prizren-Antalya, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 38 rue Urbain IV, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 41 43 16</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Prizren-Antalya. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Prizren-Antalya au 03 25 41 43 16. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
+  </section>
+
+  <footer class="pz-pied" data-sec="pied"><span>Prizren-Antalya</span><a href="#page-mentions">Mentions légales</a><a href="#page-confidentialite">Confidentialité</a></footer>
+</main>
+</div></main><main data-page="mentions" hidden><div class="legal"><h1 >Mentions légales</h1><h2 >Éditeur du site</h2><p>Prizren-Antalya, <mark class="s-manque">[forme juridique]</mark><br>Responsable : <mark class="s-manque">[nom du responsable]</mark><br>Adresse : 38 rue Urbain IV, 10000 Troyes<br>SIRET : <mark class="s-manque">[numéro SIRET]</mark><br>Téléphone : 03 25 41 43 16</p><p>Directeur de la publication : <mark class="s-manque">[nom du responsable]</mark>.</p><h2 >Hébergement</h2><p><mark class="s-manque">[hébergeur, indiqué à la mise en ligne]</mark></p><h2 >Médiation de la consommation</h2><p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <mark class="s-manque">[nom et site du médiateur]</mark>.</p><h2 >Contenus</h2><p>Les textes et photos de ce site appartiennent à Prizren-Antalya. Merci de ne pas les réutiliser sans accord.</p><p><a href="#page-accueil">Retour au site</a></p></div></main><main data-page="confidentialite" hidden><div class="legal"><h1 >Confidentialité et cookies</h1><h2 >Ce que nous recevons</h2><p>Quand vous réservez, commandez ou nous écrivez, vous nous transmettez votre nom, votre téléphone et votre message. Ils servent uniquement à vous répondre et à préparer votre rendez-vous ou votre commande. Ils ne sont ni vendus, ni utilisés pour de la publicité.</p><h2 >Cookies</h2><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Aucun bandeau de consentement n'est donc nécessaire. Le bouton « Itinéraire » ouvre Google Maps seulement si vous cliquez dessus.</p><h2 >Vos droits</h2><p>Vous pouvez demander à consulter, corriger ou supprimer vos informations en contactant Prizren-Antalya au 03 25 41 43 16. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><a href="#page-accueil">Retour au site</a></p></div></main></div>
 <script>/* SiteKit : ce qui fait fonctionner les sites créés avec l'Atelier.
    Horaires en direct, prise de rendez-vous, commande à retirer, compte à rebours,
    galerie, formulaire de contact, menu mobile, pages. Aucun cookie, aucun traceur. */
@@ -595,6 +613,6 @@ html{scroll-padding-top:100px}body{margin:0;background:#141517}@media (prefers-r
   w.SiteKit = K;
 })(window);
 </script>
-<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 41 43 16","email":"","nom":"Prizren-Antalya"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#F26A1B;color:#fff">P</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Prizren-Antalya. Continuer ?'))ev.preventDefault();},true);})();</script>
+<script>(function(){var r=document.querySelector('.site'),P={"infos":{"horaires":[{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"11:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"},{"o":true,"a":"18:00","f":"23:00","p":false,"pa":"12:00","pf":"14:00"}],"tel":"03 25 41 43 16","email":"","nom":"Prizren-Antalya"}};function notif(t,x){var n=document.createElement('div');n.className='mq-notif';n.innerHTML='<i style="background:#B4441A;color:#fff">P</i><p style="margin:0"><b></b><span></span></p><time>maintenant</time><small>Voilà ce que vous recevriez sur votre téléphone.</small>';n.querySelector('b').textContent=t;n.querySelector('span').textContent=x;document.body.appendChild(n);setTimeout(function(){n.remove()},5400)}SiteKit.activer(r,P,{mode:'apercu',anim:false,toast:notif});SiteKit.routeur(r);var b=document.querySelector('.mq-plus'),d=document.getElementById('mq-detail');b.addEventListener('click',function(){var o=d.hidden;d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Fermer':'Pourquoi ?'});document.addEventListener('click',function(ev){var a=ev.target.closest('a[href^="tel:"]');if(a&&a.closest('.site')&&!confirm('Ce bouton appelle le vrai numéro de Prizren-Antalya. Continuer ?'))ev.preventDefault();},true);})();</script>
 </body>
 </html>
