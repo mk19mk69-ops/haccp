@@ -1,0 +1,5 @@
+Polices des maquettes sur mesure (Mokrani Studio).
+Toutes sont des polices libres sous licence SIL Open Font License 1.1 (OFL), récupérées via le projet Fontsource
+(https://fontsource.org). Elles peuvent être utilisées, intégrées à un site et redistribuées librement ; la licence
+interdit seulement de les vendre seules.
+Seul le sous-ensemble « latin » (lettres françaises comprises) est inclus, en woff2.
