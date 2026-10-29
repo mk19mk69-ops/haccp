@@ -1306,6 +1306,182 @@ body { letter-spacing: 0; }
 .option-sms span b { color: var(--bleu); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .jeu-poteau i, .jeu-couper.snip svg, .jeu-pop.vu { animation: none; } }
 
+/* ===================== Créateur de site en direct (v2) ===================== */
+.createur { padding-block: clamp(64px, 9vw, 112px); background: var(--blanc); border-top: 1px solid var(--ligne); }
+.createur-grille { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+.createur-grille > * { min-width: 0; }
+.createur-texte .t-lead { color: var(--texte-2); margin-top: 12px; max-width: 32em; }
+.createur-form { display: grid; gap: 22px; margin-top: 28px; box-shadow: none; border: 1px solid var(--ligne); border-radius: 18px; }
+.createur-form > * { min-width: 0; }
+.cr-champ { display: grid; gap: 8px; }
+.cr-champ label, .cr-groupe legend, .cr-legend { font-size: 14px; font-weight: 600; color: var(--texte); padding: 0; margin: 0 0 8px; }
+.cr-legend span { font-weight: 400; color: var(--texte-2); }
+.cr-champ input { width: 100%; min-width: 0; height: 54px; padding: 0 16px; border-radius: 12px; border: 1px solid #CFCDC6; background: #fff; font-size: 19px; font-family: var(--titres); font-weight: 500; }
+.cr-champ input:focus { outline: none; border-color: var(--bleu); box-shadow: 0 0 0 4px rgba(11,99,206,.15); }
+.cr-groupe { border: 0; margin: 0; padding: 0; min-width: 0; }
+.cr-puces { display: flex; flex-wrap: wrap; gap: 8px; }
+.cr-puce { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 16px; border-radius: 99px; border: 1px solid #CFCDC6; background: #fff; color: var(--texte); font: inherit; font-size: 15px; cursor: pointer; transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .1s ease-out; }
+.cr-puce:hover { border-color: var(--texte-2); }
+.cr-puce:active { transform: scale(.96); }
+.cr-puce[aria-pressed="true"] { background: var(--texte); border-color: var(--texte); color: #fff; }
+.cr-couleurs { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.cr-pastille { position: relative; width: 42px; height: 42px; min-height: 0; padding: 0; border-radius: 50%; background: var(--p); border: 3px solid #fff; box-shadow: 0 0 0 1px #CFCDC6; cursor: pointer; transition: transform .12s ease-out, box-shadow .15s ease; }
+.cr-pastille:active { transform: scale(.92); }
+.cr-pastille[aria-pressed="true"], .cr-pastille[aria-pressed="false"] { background: var(--p); border-color: #fff; }
+.cr-pastille[aria-pressed="true"], .cr-perso.actif { box-shadow: 0 0 0 2px var(--texte); }
+.cr-perso { display: inline-block; overflow: hidden; }
+.cr-perso input { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); opacity: 0; cursor: pointer; }
+.cr-info { font-size: 13px; color: var(--texte-2); margin-top: 8px; }
+.cr-info:empty { display: none; }
+.cr-logo-ligne { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.cr-cache { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.cr-logo-btn { cursor: pointer; }
+.cr-cache:focus-visible + * , .cr-logo-ligne:focus-within .cr-logo-btn { outline: 2px solid var(--bleu); outline-offset: 2px; }
+.cr-actions { display: grid; gap: 10px; justify-items: start; margin-top: 4px; }
+
+.createur-apercu { position: sticky; top: 72px; display: grid; justify-items: center; gap: 14px; }
+.cr-vues { display: inline-grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 99px; background: #ECEAE4; }
+.cr-vues button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 0; background: none; border-radius: 99px; padding: 8px 16px; font: inherit; font-size: 14px; font-weight: 500; color: var(--texte-2); cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.cr-vues button[aria-pressed="true"] { background: #fff; color: var(--texte); box-shadow: 0 1px 3px rgba(18,26,36,.12); }
+.cr-cadre { view-transition-name: cr-cadre; position: relative; width: min(320px, 78vw); aspect-ratio: 1 / 2.1667; border-radius: 17% / 7.85%; padding: 3.1%; background: linear-gradient(135deg, #5f6066 0%, #26272a 22%, #46474b 52%, #202123 82%, #55565b 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25), inset 0 0 0 4px #0F0F10, 0 40px 80px -36px rgba(18,26,36,.55); transition: width .5s cubic-bezier(.2,.8,.2,1); container: ecran / inline-size; }
+.cr-cadre[data-vue="ordi"] { width: 100%; aspect-ratio: 16 / 10.5; border-radius: 12px; padding: 0; background: #fff; box-shadow: 0 0 0 1px #D9D6CE, 0 30px 70px -36px rgba(18,26,36,.5); }
+.cr-ecran { position: relative; height: 100%; overflow: hidden; border-radius: 13.6% / 6.3%; background: #fff; font-size: 3.7cqw; color: #15181C; }
+.cr-cadre[data-vue="ordi"] .cr-ecran { border-radius: 12px; font-size: clamp(10px, 2.15cqw, 15px); }
+.cr-tel-haut { position: absolute; z-index: 9; inset: 0 0 auto; height: 3.4em; display: flex; justify-content: space-between; align-items: center; padding: .3em 2em 0 2.3em; font-size: 1em; }
+.cr-tel-haut b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.cr-tel-haut svg { width: 4.4em; height: auto; }
+.cr-ilot { position: absolute; left: 50%; top: .75em; translate: -50% 0; width: 30%; height: 2.15em; border-radius: 99px; background: #000; }
+.cr-url { display: none; }
+.cr-cadre[data-vue="ordi"] .cr-tel-haut { display: none; }
+.cr-cadre[data-vue="ordi"] .cr-url { display: flex; align-items: center; gap: .5em; position: absolute; z-index: 9; inset: 0 0 auto; height: 2.6em; padding: 0 1em; background: #F1F0EC; border-bottom: 1px solid #E2DFD7; font-size: .95em; color: #4A5462; }
+.cr-cadre[data-vue="ordi"] .cr-url span { background: #fff; border-radius: 99px; padding: .25em 1em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.ms { position: absolute; inset: 0; background: var(--fond, #fff); font-family: var(--police); letter-spacing: -0.01em; transition: background-color .3s ease; --c: #0B63CE; --sur: #fff; --c-texte: #0B63CE; --r: 1em; }
+.ms-pages { position: absolute; inset: 0; display: grid; grid-template-columns: 100% 100% 100%; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.ms-pages.immediat { transition: none; }
+.ms-pages[data-page="action"] { transform: translateX(-100%); }
+.ms-pages[data-page="ok"] { transform: translateX(-200%); }
+.ms-page { min-width: 0; overflow: hidden; padding: 3.8em 1.15em 1.2em; display: flex; flex-direction: column; gap: .8em; }
+.cr-cadre[data-vue="ordi"] .ms-page { padding: 3.8em 2.2em 1.6em; }
+.ms-nav { display: flex; align-items: center; gap: .6em; font-size: .95em; color: #15181C; }
+.ms-nom { font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ms-liens { display: none; gap: 1.6em; font-size: .9em; color: #4A5462; }
+.ms-liens i { font-style: normal; }
+.ms-burger { width: 1.3em; height: .8em; border-top: .14em solid currentColor; border-bottom: .14em solid currentColor; }
+.ms-logo { width: 2em; height: 2em; border-radius: calc(var(--r) * .7); background: var(--c); color: var(--sur); display: grid; place-items: center; font-weight: 700; overflow: hidden; flex: none; transition: background-color .3s ease; }
+.ms.avec-logo .ms-logo { background: #fff; box-shadow: 0 0 0 1px #E6E7EA; }
+.ms-logo img { width: 100%; height: 100%; object-fit: contain; }
+.ms-heros { background: var(--c); color: var(--sur); border-radius: var(--r); padding: 1.25em 1.15em 1.15em; display: grid; gap: .45em; justify-items: start; align-content: end; transition: background-color .3s ease, border-radius .3s ease; }
+.ms-ville { font-size: .78em; opacity: .85; }
+.ms-titre { font-size: 2em; font-weight: 700; line-height: 1.02; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.ms[data-style="elegant"] .ms-titre { font-weight: 400; font-style: italic; }
+.ms[data-style="elegant"] .ms-heros { border-radius: 0; }
+.ms-accroche { font-size: .86em; line-height: 1.35; opacity: .92; }
+.ms-cta { margin-top: .35em; border: 0; background: var(--sur); color: var(--c-texte); font: inherit; font-weight: 700; font-size: .86em; padding: .7em 1.15em; border-radius: calc(var(--r) * .7); cursor: pointer; transition: transform .12s ease-out; box-shadow: 0 .3em .8em rgba(0,0,0,.15); }
+.ms-cta:active { transform: scale(.95); }
+.ms-col { display: grid; gap: .7em; align-content: start; flex: 1; min-height: 0; }
+.ms-statut { display: flex; align-items: center; gap: .5em; font-size: .78em; color: #2B3036; }
+.ms-statut i { width: .6em; height: .6em; border-radius: 50%; background: #2F9E44; box-shadow: 0 0 0 .25em rgba(47,158,68,.18); }
+.ms-statut.ferme i { background: #ADB5BD; box-shadow: none; }
+.ms-sous { font-size: .76em; font-weight: 700; color: #5A616B; margin-bottom: -.35em; }
+.ms-liste { list-style: none; margin: 0; padding: 0; border-radius: var(--r); background: #fff; box-shadow: 0 0 0 1px #E6E7EA; overflow: hidden; }
+.ms-liste li { display: flex; justify-content: space-between; align-items: center; gap: .8em; padding: .7em .9em; font-size: .86em; }
+.ms-liste li small { display: block; color: #868E96; font-size: .82em; }
+.ms-liste li + li { border-top: 1px solid #EEEFF1; }
+.ms-liste b { color: var(--c-texte); font-weight: 700; white-space: nowrap; transition: color .3s ease; }
+.ms-carte { position: relative; flex: 1; min-height: 5em; border-radius: var(--r); background: #EEF0EC; overflow: hidden; box-shadow: 0 0 0 1px #E3E5E0; }
+.ms-rue { position: absolute; background: #fff; }
+.ms-rue--1 { left: -10%; right: -10%; top: 40%; height: .55em; transform: rotate(-8deg); }
+.ms-rue--2 { top: -10%; bottom: -10%; left: 58%; width: .5em; transform: rotate(12deg); }
+.ms-rue--3 { left: -10%; right: 30%; top: 74%; height: .4em; transform: rotate(4deg); }
+.ms-epingle { position: absolute; left: 56%; top: 36%; width: 1.3em; height: 1.3em; border-radius: 50% 50% 50% 0; background: var(--c); transform: translate(-50%, -100%) rotate(-45deg); box-shadow: 0 .2em .4em rgba(0,0,0,.2); animation: epingle 2.4s ease-in-out infinite; }
+.ms-epingle::after { content: ""; position: absolute; inset: .38em; border-radius: 50%; background: #fff; }
+@keyframes epingle { 0%, 100% { margin-top: 0; } 50% { margin-top: -.25em; } }
+.ms-carte span { position: absolute; left: .7em; bottom: .6em; font-size: .72em; font-weight: 600; background: #fff; padding: .3em .6em; border-radius: .5em; box-shadow: 0 .1em .3em rgba(0,0,0,.08); }
+.ms-boutons { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4em; }
+.ms-boutons span { text-align: center; font-size: .72em; font-weight: 600; padding: .7em .2em; border-radius: calc(var(--r) * .7); box-shadow: inset 0 0 0 .12em var(--c-texte); color: var(--c-texte); }
+
+.ms-entete { display: grid; gap: .3em; }
+.ms-retour { justify-self: start; border: 0; background: none; padding: 0; font: inherit; font-size: .86em; color: var(--c-texte); cursor: pointer; }
+.ms-action-titre { font-size: 1.5em; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.ms-action-corps { flex: 1; min-height: 0; display: grid; gap: .8em; align-content: start; overflow: auto; scrollbar-width: none; }
+.ms-jours { display: flex; gap: .4em; flex-wrap: wrap; }
+.ms-chip { border: 0; border-radius: 99px; padding: .5em .9em; background: #EEF0F2; font: inherit; font-size: .8em; font-weight: 600; color: #2B3036; cursor: pointer; text-transform: capitalize; transition: background-color .2s ease, color .2s ease; }
+.ms-chip.on { background: var(--c); color: var(--sur); }
+.ms-creneaux { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4em; }
+.ms-creneau { border: 0; border-radius: calc(var(--r) * .6); padding: .7em 0; background: #F1F3F5; font: inherit; font-size: .84em; font-weight: 600; cursor: pointer; transition: background-color .2s ease, color .2s ease, transform .1s ease-out; }
+.ms-creneau:active:not(:disabled) { transform: scale(.94); }
+.ms-creneau:disabled { background: transparent; box-shadow: inset 0 0 0 1px #E9ECEF; color: #ADB5BD; text-decoration: line-through; font-weight: 400; cursor: default; }
+.ms-creneau.on { background: var(--c); color: var(--sur); }
+.ms-ligne { display: flex; justify-content: space-between; align-items: center; gap: .6em; padding: .7em .8em; border-radius: calc(var(--r) * .7); background: #fff; box-shadow: 0 0 0 1px #E6E7EA; font-size: .86em; }
+.ms-ligne b { display: block; font-weight: 600; }
+.ms-ligne small { color: #868E96; }
+.ms-pas { display: flex; align-items: center; gap: .45em; }
+.ms-pas button { width: 1.9em; height: 1.9em; border-radius: 50%; border: 0; background: #EEF0F2; font: inherit; font-size: 1em; line-height: 1; cursor: pointer; transition: transform .1s ease-out; }
+.ms-pas button.plus { background: var(--c); color: var(--sur); }
+.ms-pas button:active:not(:disabled) { transform: scale(.88); }
+.ms-pas button:disabled { opacity: .35; }
+.ms-pas span { min-width: 1.2em; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ms-message { border-radius: calc(var(--r) * .7); background: #fff; box-shadow: 0 0 0 1px #E6E7EA; padding: .8em; font-size: .86em; color: #4A5462; min-height: 6em; }
+.ms-action-pied { display: flex; align-items: center; justify-content: space-between; gap: .6em; padding-top: .7em; border-top: 1px solid #E9ECEF; }
+.ms-action-pied p { font-size: .82em; color: #4A5462; }
+.ms-valider { border: 0; border-radius: calc(var(--r) * .7); background: var(--c); color: var(--sur); font: inherit; font-weight: 700; font-size: .9em; padding: .8em 1.2em; cursor: pointer; transition: opacity .2s ease, transform .1s ease-out; white-space: nowrap; }
+.ms-valider:active:not(:disabled) { transform: scale(.95); }
+.ms-valider:disabled { opacity: .35; cursor: default; }
+.ms-ok { align-items: center; justify-content: center; text-align: center; gap: .7em; }
+.ms-coche { width: 4.6em; height: 4.6em; color: var(--c-texte); }
+.ms-coche circle { stroke-dasharray: 145; stroke-dashoffset: 145; }
+.ms-coche path { stroke-dasharray: 40; stroke-dashoffset: 40; }
+.ms-pages[data-page="ok"] .ms-coche circle { animation: trace .6s ease-out .25s forwards; }
+.ms-pages[data-page="ok"] .ms-coche path { animation: trace .35s ease-out .75s forwards; }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+.ms-ok-titre { font-size: 1.5em; font-weight: 700; letter-spacing: -0.02em; }
+.ms-ok-texte { font-size: .86em; color: #4A5462; line-height: 1.4; max-width: 18em; }
+.ms-toast { position: absolute; z-index: 10; left: .6em; right: .6em; top: .5em; display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; gap: .6em; align-items: center; padding: .7em .8em; border-radius: 1.2em; background: rgba(248,249,250,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 .6em 1.6em rgba(0,0,0,.18); transform: translateY(-140%); opacity: 0; pointer-events: none; }
+.cr-cadre[data-vue="ordi"] .ms-toast { left: auto; right: 1em; top: 3.4em; width: 22em; }
+.ms-toast.vu { animation: toast 3.6s cubic-bezier(.2,.8,.2,1) 1s forwards; }
+@keyframes toast { 0% { transform: translateY(-140%); opacity: 0; } 12%, 82% { transform: none; opacity: 1; } 100% { transform: translateY(-140%); opacity: 0; } }
+.ms-toast-logo { width: 2.2em; height: 2.2em; border-radius: .55em; background: var(--c); color: var(--sur); display: grid; place-items: center; font-weight: 700; }
+.ms-toast p { font-size: .78em; line-height: 1.3; min-width: 0; }
+.ms-toast b { display: block; }
+.ms-toast span { color: #4A5462; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ms-toast time { font-size: .68em; color: #868E96; align-self: start; }
+.cr-legende { font-size: 14px; color: var(--texte-2); text-align: center; }
+
+/* Version ordinateur : la mise en page change selon la largeur de l'aperçu */
+@container ecran (min-width: 400px) {
+  .ms-accueil { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; column-gap: 1.6em; row-gap: 1.1em; }
+  .ms-nav { grid-column: 1 / -1; }
+  .ms-liens { display: flex; }
+  .ms-burger { display: none; }
+  .ms-heros { grid-row: 2 / span 2; padding: 2em 1.8em; }
+  .ms-titre { font-size: 2.9em; }
+  .ms-boutons { grid-column: 2; }
+  .ms-page.ms-action, .ms-page.ms-ok { padding-left: 22%; padding-right: 22%; }
+  .ms-creneaux { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Transitions de vue : la nouvelle couleur s'étend en vague depuis le haut */
+::view-transition-group(cr-cadre) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2,.8,.2,1); }
+::view-transition-old(cr-cadre), ::view-transition-new(cr-cadre) { animation-duration: .45s; }
+html.vt-vague::view-transition-old(cr-cadre) { animation: none; }
+html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier(.2,.8,.2,1); }
+@keyframes vague { from { clip-path: circle(0% at 22% 18%); } to { clip-path: circle(140% at 22% 18%); } }
+
+@media (max-width: 900px) {
+  .createur-grille { grid-template-columns: 1fr; gap: 0; }
+  .createur-texte { display: contents; }
+  .createur-texte .t-section, .createur-texte .t-lead { order: -2; }
+  .createur-apercu { position: static; order: -1; margin: 28px 0 8px; }
+  .cr-cadre { width: min(290px, 74vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ms, .ms-heros, .ms-logo, .ms-pages, .cr-cadre { transition: none; }
+  .ms-epingle, .ms-toast.vu { animation: none; }
+  .ms-toast.vu { transform: none; opacity: 1; }
+  .ms-coche circle, .ms-coche path { stroke-dashoffset: 0; }
+}
+
 @media (prefers-reduced-transparency: reduce) {
   .barre-action, .lnav, .points, .lecture, .notif, .ap-bas { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
@@ -1368,6 +1544,7 @@ body { letter-spacing: 0; }
 <div class="menu-plein" id="menu-plein" hidden>
   <a href="#tarifs" style="--i:0">Offres</a>
   <a href="#parcours" style="--i:1">Réservation en ligne</a>
+  <a href="#createur" style="--i:1">Votre site en direct</a>
   <a href="#demos" style="--i:2">Démos</a>
   <a href="#jeu" style="--i:2">Petit jeu</a>
   <a href="#realisations" style="--i:3">Réalisations</a>
@@ -1397,6 +1574,94 @@ body { letter-spacing: 0; }
         <img class="apercu-tel" src="assets/miran-telephone.webp" alt="Le même site affiché sur un téléphone" width="560" height="1211">
         <figcaption>Maquette réalisée pour Barber Miran, barbier rue de Preize à Troyes. <a href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Ouvrir le site</a></figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="createur bande" id="createur" aria-labelledby="createur-titre">
+    <div class="cadre createur-grille">
+      <div class="createur-texte">
+        <h2 class="t-section" id="createur-titre">Voyez votre site tout de suite</h2>
+        <p class="t-lead">Tapez le nom de votre commerce, choisissez votre métier et votre couleur, ajoutez votre logo. L'aperçu se construit sous vos yeux, et il marche : essayez de réserver ou de commander dedans.</p>
+        <form class="createur-form" id="createur-form" onsubmit="return false">
+          <div class="cr-champ">
+            <label for="cr-nom">Nom de votre commerce</label>
+            <input id="cr-nom" type="text" maxlength="26" autocomplete="organization" placeholder="Chez Sam" spellcheck="false">
+          </div>
+          <fieldset class="cr-groupe">
+            <legend>Votre métier</legend>
+            <div class="cr-puces" id="cr-metiers"></div>
+          </fieldset>
+          <fieldset class="cr-groupe">
+            <legend>Votre couleur</legend>
+            <div class="cr-couleurs" id="cr-couleurs"></div>
+            <p class="cr-info" id="cr-couleur-info" aria-live="polite"></p>
+          </fieldset>
+          <fieldset class="cr-groupe">
+            <legend>Le style</legend>
+            <div class="cr-puces" id="cr-styles"></div>
+          </fieldset>
+          <div class="cr-groupe">
+            <p class="cr-legend">Votre logo <span>(facultatif)</span></p>
+            <div class="cr-logo-ligne">
+              <label class="cr-puce cr-logo-btn" for="cr-logo"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7 10l5-5 5 5M5 19h14"/></svg><span id="cr-logo-libelle">Ajouter mon logo</span></label>
+              <input id="cr-logo" type="file" accept="image/*" class="cr-cache">
+              <button type="button" class="btn-lien cr-logo-retirer" id="cr-logo-retirer" hidden>Retirer</button>
+            </div>
+            <p class="cr-info">Il reste sur votre appareil : rien n'est envoyé. La couleur de votre site est tirée de votre logo.</p>
+          </div>
+          <div class="cr-actions">
+            <a class="btn" href="#contact" id="cr-envoyer">Recevoir cette maquette sous 72 h</a>
+            <button type="button" class="btn-lien" id="cr-partager">Copier le lien de cet aperçu</button>
+            <span class="cr-info" id="cr-partage-etat" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="createur-apercu">
+        <div class="cr-vues" role="group" aria-label="Taille de l'aperçu">
+          <button type="button" aria-pressed="true" data-vue="tel"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/></svg>Téléphone</button>
+          <button type="button" aria-pressed="false" data-vue="ordi"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 20h8"/></svg>Ordinateur</button>
+        </div>
+        <div class="cr-cadre" id="cr-cadre" data-vue="tel">
+          <div class="cr-ecran" id="cr-ecran">
+            <div class="cr-tel-haut"><span class="cr-ilot"></span><b id="cr-heure">9:41</b><svg viewBox="0 0 46 12" aria-hidden="true"><rect x="0" y="7.5" width="3" height="4.5" rx="1" fill="currentColor"/><rect x="4.6" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"/><rect x="9.2" y="3.3" width="3" height="8.7" rx="1" fill="currentColor"/><rect x="13.8" y="1" width="3" height="11" rx="1" fill="currentColor"/><rect x="22.5" y=".8" width="20" height="10.4" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="24.3" y="2.6" width="14.5" height="6.8" rx="1.8" fill="currentColor"/></svg></div>
+            <div class="cr-url"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span id="cr-url">www.chez-sam.fr</span></div>
+            <div class="ms" id="ms" data-style="moderne">
+              <div class="ms-pages" id="ms-pages" data-page="accueil">
+                <div class="ms-page ms-accueil" data-p="accueil">
+                  <div class="ms-nav"><span class="ms-logo" id="ms-logo"><img id="ms-logo-img" alt="" hidden><b id="ms-logo-lettre">C</b></span><b class="ms-nom" id="ms-nom-nav">Chez Sam</b><span class="ms-liens"><i>Accueil</i><i id="ms-lien-2">Prestations</i><i>Contact</i></span><i class="ms-burger"></i></div>
+                  <div class="ms-heros">
+                    <p class="ms-ville">Troyes</p>
+                    <p class="ms-titre" id="ms-titre">Chez Sam</p>
+                    <p class="ms-accroche" id="ms-accroche"></p>
+                    <button type="button" class="ms-cta" id="ms-cta">Réserver</button>
+                  </div>
+                  <div class="ms-col">
+                    <p class="ms-statut" id="ms-statut"><i></i><span></span></p>
+                    <p class="ms-sous" id="ms-sous"></p>
+                    <ul class="ms-liste" id="ms-liste"></ul>
+                    <div class="ms-carte"><i class="ms-rue ms-rue--1"></i><i class="ms-rue ms-rue--2"></i><i class="ms-rue ms-rue--3"></i><i class="ms-epingle"></i><span>Centre-ville de Troyes</span></div>
+                  </div>
+                  <div class="ms-boutons"><span>Appeler</span><span>Itinéraire</span><span>Avis Google</span></div>
+                </div>
+                <div class="ms-page ms-action" data-p="action" inert>
+                  <div class="ms-entete"><button type="button" class="ms-retour" id="ms-retour">‹ Retour</button><p class="ms-action-titre" id="ms-action-titre">Choisissez un créneau</p></div>
+                  <div class="ms-action-corps" id="ms-action-corps"></div>
+                  <div class="ms-action-pied"><p id="ms-total"></p><button type="button" class="ms-valider" id="ms-valider" disabled>Confirmer</button></div>
+                </div>
+                <div class="ms-page ms-ok" data-p="ok" inert>
+                  <svg class="ms-coche" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23" fill="none" stroke="currentColor" stroke-width="3"/><path d="M15 27l7 7 15-16" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <p class="ms-ok-titre" id="ms-ok-titre">C'est réservé</p>
+                  <p class="ms-ok-texte" id="ms-ok-texte"></p>
+                  <button type="button" class="ms-valider" id="ms-encore">Retour à l'accueil</button>
+                </div>
+              </div>
+              <div class="ms-toast" id="ms-toast"><span class="ms-toast-logo" id="ms-toast-logo">C</span><p><b id="ms-toast-titre">Nouveau rendez-vous</b><span id="ms-toast-texte"></span></p><time>maintenant</time></div>
+            </div>
+          </div>
+        </div>
+        <p class="cr-legende" id="cr-legende">Touchez « Réserver » dans l'aperçu : ça marche vraiment.</p>
+      </div>
     </div>
   </section>
 
@@ -1513,10 +1778,10 @@ body { letter-spacing: 0; }
       </div>
       <div class="onglets" role="tablist" aria-label="Démos" id="onglets">
         <button class="onglet" role="tab" id="t-resa" aria-controls="p-resa" aria-selected="true"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="22" height="20" rx="4"/><path d="M4 12h22M10 3.5v5M20 3.5v5M11 19l3 3 5.5-6"/></svg><span>Réservation</span></button>
-        <button class="onglet" role="tab" id="t-cmd" aria-controls="p-cmd" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 10h18l-1.5 14.5a2.5 2.5 0 0 1-2.5 2.2H10a2.5 2.5 0 0 1-2.5-2.2Z"/><path d="M11 10V8.5a4 4 0 0 1 8 0V10"/></svg><span>Commande</span></button>
-        <button class="onglet" role="tab" id="t-fid" aria-controls="p-fid" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.5" y="7" width="23" height="16" rx="3.5"/><path d="m15 10.5 1.4 2.9 3.2.5-2.3 2.2.5 3.1-2.8-1.5-2.8 1.5.5-3.1-2.3-2.2 3.2-.5Z"/></svg><span>Fidélité</span></button>
-        <button class="onglet" role="tab" id="t-log" aria-controls="p-log" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="24" height="18" rx="3"/><path d="M7.5 18l4.5-5 4 3 6-7"/><path d="M11 26.5h8"/></svg><span>Sur mesure</span></button>
-        <button class="onglet" role="tab" id="t-nfc" aria-controls="p-nfc" aria-selected="false" tabindex="-1"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 10a7 7 0 0 1 0 10"/><path d="M14.5 6.5a12 12 0 0 1 0 17"/><path d="M19 3a17 17 0 0 1 0 24"/></svg><span>Avis NFC</span></button>
+        <button class="onglet" role="tab" id="t-cmd" aria-controls="p-cmd" aria-selected="false"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 10h18l-1.5 14.5a2.5 2.5 0 0 1-2.5 2.2H10a2.5 2.5 0 0 1-2.5-2.2Z"/><path d="M11 10V8.5a4 4 0 0 1 8 0V10"/></svg><span>Commande</span></button>
+        <button class="onglet" role="tab" id="t-fid" aria-controls="p-fid" aria-selected="false"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.5" y="7" width="23" height="16" rx="3.5"/><path d="m15 10.5 1.4 2.9 3.2.5-2.3 2.2.5 3.1-2.8-1.5-2.8 1.5.5-3.1-2.3-2.2 3.2-.5Z"/></svg><span>Fidélité</span></button>
+        <button class="onglet" role="tab" id="t-log" aria-controls="p-log" aria-selected="false"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="24" height="18" rx="3"/><path d="M7.5 18l4.5-5 4 3 6-7"/><path d="M11 26.5h8"/></svg><span>Sur mesure</span></button>
+        <button class="onglet" role="tab" id="t-nfc" aria-controls="p-nfc" aria-selected="false"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 10a7 7 0 0 1 0 10"/><path d="M14.5 6.5a12 12 0 0 1 0 17"/><path d="M19 3a17 17 0 0 1 0 24"/></svg><span>Avis NFC</span></button>
       </div>
 
       <!-- 1. Réservation -->
@@ -2913,6 +3178,338 @@ body { letter-spacing: 0; }
     j.appel.decroche = true; j.enLigne = 1.3;
     afficher();
   });
+})();
+</script>
+
+<script>
+/* Créateur de site en direct : tout se passe dans le navigateur, rien n'est envoyé. */
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  if (!$("createur")) return;
+  var calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var vt = !!document.startViewTransition && !calme;
+
+  var METIERS = [
+    { id: "barbier", nom: "Barbier", accroche: "Coupe, barbe et soins, avec ou sans rendez-vous.", cta: "Réserver", lien: "Prestations", sous: "Prestations", h: [9, 19], dimanche: false, type: "rdv",
+      liste: [["Coupe homme", 18, "30 min"], ["Coupe + barbe", 26, "45 min"], ["Barbe", 8, "15 min"]], formule: "Réservation" },
+    { id: "boucherie", nom: "Boucherie", accroche: "Viande de qualité, découpe à la demande.", cta: "Commander", lien: "La vitrine", sous: "Cette semaine", h: [8, 19.5], dimanche: false, type: "commande",
+      liste: [["Côte de bœuf, 1 kg", 29.9], ["Merguez maison, 500 g", 6.45], ["Colis famille", 49]], formule: "Réservation" },
+    { id: "snack", nom: "Snack", accroche: "Sur place, à emporter ou en livraison.", cta: "Commander", lien: "La carte", sous: "À la carte", h: [11, 23], dimanche: true, type: "commande",
+      liste: [["Tacos poulet", 8.5], ["Burger maison", 9.9], ["Menu enfant", 6.5]], formule: "Réservation" },
+    { id: "boulangerie", nom: "Boulangerie", accroche: "Pain au levain et viennoiseries du jour.", cta: "Réserver ma commande", lien: "Nos pains", sous: "Ce matin", h: [6.5, 19.5], dimanche: true, type: "commande",
+      liste: [["Baguette tradition", 1.3], ["Croissant", 1.2], ["Flan pâtissier", 2.9]], formule: "Réservation" },
+    { id: "autre", nom: "Autre", accroche: "Votre activité, présentée simplement.", cta: "Nous contacter", lien: "Services", sous: "Nos services", h: [9, 18], dimanche: false, type: "contact",
+      liste: [["Votre premier service", 20], ["Votre deuxième service", 35], ["Sur devis", 0]], formule: "Vitrine" }
+  ];
+  var COULEURS = [["Bleu", "#0B63CE"], ["Bordeaux", "#8C1D2C"], ["Vert", "#2F6B4F"], ["Noir", "#1B1E22"], ["Terre", "#B4532A"], ["Or", "#9C7A2E"]];
+  var STYLES = [
+    { id: "moderne", nom: "Moderne", police: "Poppins, system-ui, sans-serif", fond: "#FFFFFF", rayon: "1em" },
+    { id: "elegant", nom: "Élégant", police: "Georgia, 'Times New Roman', serif", fond: "#FAF7F2", rayon: ".2em" },
+    { id: "simple", nom: "Simple", police: "system-ui, -apple-system, 'Segoe UI', sans-serif", fond: "#F4F5F7", rayon: ".6em" }
+  ];
+  var E = { metier: METIERS[0], couleur: COULEURS[0][1], nomCouleur: COULEURS[0][0], style: STYLES[0], vue: "tel", logo: null, touche: false };
+  var A = { page: "accueil", jour: 0, creneau: null, qte: {}, retrait: 0 };
+
+  /* ---------- Outils ---------- */
+  function eur(v) { return v.toFixed(2).replace(".", ",").replace(",00", "") + " €"; }
+  function hhmm(h) { var m = Math.round((h % 1) * 60); return Math.floor(h) + "h" + (m ? (m < 10 ? "0" : "") + m : ""); }
+  function lum(hex) { var c = [1, 3, 5].map(function (i) { var v = parseInt(hex.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
+  function slug(t) { return (t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "chez-sam"); }
+  function nom() { return $("cr-nom").value.trim() || "Chez Sam"; }
+  function avec(fn, classe) {
+    if (!vt) { fn(); return; }
+    if (classe) document.documentElement.classList.add(classe);
+    var t = document.startViewTransition(fn);
+    t.finished.finally(function () { if (classe) document.documentElement.classList.remove(classe); });
+  }
+  function toucher() { E.touche = true; }
+
+  /* ---------- Réglages ---------- */
+  function puce(groupe, libelle, actif, clic, extra) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "cr-puce" + (extra ? " " + extra : "");
+    b.setAttribute("aria-pressed", actif ? "true" : "false");
+    b.addEventListener("click", function (e) { toucher(); clic(e); });
+    if (libelle) b.textContent = libelle;
+    groupe.appendChild(b); return b;
+  }
+  function reglages() {
+    var gm = $("cr-metiers"), gc = $("cr-couleurs"), gs = $("cr-styles");
+    gm.textContent = ""; gc.textContent = ""; gs.textContent = "";
+    METIERS.forEach(function (m) { puce(gm, m.nom, m === E.metier, function () { choisirMetier(m); }); });
+    COULEURS.forEach(function (c) {
+      var b = puce(gc, "", c[1] === E.couleur, function () { choisirCouleur(c[1], c[0]); }, "cr-pastille");
+      b.style.setProperty("--p", c[1]); b.setAttribute("aria-label", c[0]); b.title = c[0];
+    });
+    var perso = document.createElement("label");
+    var estPerso = !COULEURS.some(function (c) { return c[1] === E.couleur; });
+    perso.className = "cr-pastille cr-perso" + (estPerso ? " actif" : ""); perso.title = "Autre couleur";
+    perso.style.setProperty("--p", estPerso ? E.couleur : "conic-gradient(#e03131, #f08c00, #2f9e44, #1971c2, #9c36b5, #e03131)");
+    var inp = document.createElement("input"); inp.type = "color"; inp.value = E.couleur; inp.setAttribute("aria-label", "Autre couleur");
+    inp.addEventListener("input", function () { toucher(); choisirCouleur(inp.value, "personnalisée", true); });
+    perso.appendChild(inp); gc.appendChild(perso);
+    STYLES.forEach(function (st) { puce(gs, st.nom, st === E.style, function () { choisirStyle(st); }); });
+  }
+  function choisirMetier(m) { E.metier = m; A = { page: "accueil", jour: 0, creneau: null, qte: {}, retrait: 0 }; reglages(); avec(function () { rendre(); }); }
+  function choisirCouleur(hex, n, sansTransition) {
+    E.couleur = hex; E.nomCouleur = n; $("cr-couleur-info").textContent = "";
+    if (sansTransition) { appliquerCouleur(); return; }
+    reglages(); avec(appliquerCouleur, "vt-vague");
+  }
+  function choisirStyle(st) { E.style = st; reglages(); avec(function () { rendre(); }); }
+
+  /* ---------- Rendu du mini-site ---------- */
+  function appliquerCouleur() {
+    var ms = $("ms"), clair = lum(E.couleur) > .45;
+    ms.style.setProperty("--c", E.couleur);
+    ms.style.setProperty("--sur", clair ? "#15181C" : "#FFFFFF");
+    ms.style.setProperty("--c-texte", clair ? "#15181C" : E.couleur);
+  }
+  function statut() {
+    var m = E.metier, d = new Date(), h = d.getHours() + d.getMinutes() / 60, dim = d.getDay() === 0;
+    var ouvert = (!dim || m.dimanche) && h >= m.h[0] && h < m.h[1];
+    var el = $("ms-statut");
+    el.classList.toggle("ferme", !ouvert);
+    el.querySelector("span").textContent = ouvert ? "Ouvert maintenant · ferme à " + hhmm(m.h[1]) : "Fermé pour le moment · ouvre " + (h >= m.h[1] || (dim && !m.dimanche) ? "demain" : "aujourd'hui") + " à " + hhmm(m.h[0]);
+    $("cr-heure").textContent = d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+  function rendre() {
+    var ms = $("ms"), m = E.metier, n = nom();
+    appliquerCouleur();
+    ms.style.setProperty("--police", E.style.police);
+    ms.style.setProperty("--fond", E.style.fond);
+    ms.style.setProperty("--r", E.style.rayon);
+    ms.setAttribute("data-style", E.style.id);
+    $("ms-logo-lettre").textContent = n.charAt(0).toUpperCase();
+    $("ms-toast-logo").textContent = n.charAt(0).toUpperCase();
+    $("ms-logo-img").hidden = !E.logo; $("ms-logo-lettre").hidden = !!E.logo;
+    if (E.logo) $("ms-logo-img").src = E.logo;
+    $("ms").classList.toggle("avec-logo", !!E.logo);
+    $("ms-nom-nav").textContent = n; $("ms-titre").textContent = n;
+    $("ms-titre").style.fontSize = n.length > 18 ? "1.35em" : n.length > 12 ? "1.65em" : "";
+    $("cr-url").textContent = "www." + slug(n) + ".fr";
+    $("ms-accroche").textContent = m.accroche; $("ms-cta").textContent = m.cta;
+    $("ms-sous").textContent = m.sous; $("ms-lien-2").textContent = m.lien;
+    var ul = $("ms-liste"); ul.textContent = "";
+    m.liste.forEach(function (x) {
+      var li = document.createElement("li"), a = document.createElement("span"), b = document.createElement("b");
+      a.textContent = x[0]; if (x[2]) { var sm = document.createElement("small"); sm.textContent = x[2]; a.appendChild(sm); }
+      b.textContent = x[1] ? eur(x[1]) : "gratuit"; li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+    });
+    $("cr-legende").textContent = "Touchez « " + m.cta + " » dans l'aperçu : ça marche vraiment.";
+    statut(); page(A.page, true);
+  }
+
+  /* ---------- Pages internes : réservation, commande, contact ---------- */
+  function jours() {
+    var r = [], d = new Date(); d.setHours(12);
+    while (r.length < 3) {
+      if (d.getDay() !== 0 || E.metier.dimanche) r.push(new Date(d));
+      d.setDate(d.getDate() + 1);
+    }
+    return r;
+  }
+  function nomJour(d, i) {
+    var auj = new Date(); if (d.toDateString() === auj.toDateString()) return "Aujourd'hui";
+    var dem = new Date(); dem.setDate(dem.getDate() + 1); if (d.toDateString() === dem.toDateString()) return "Demain";
+    return d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric" });
+  }
+  function el(tag, cls, txt) { var x = document.createElement(tag); if (cls) x.className = cls; if (txt != null) x.textContent = txt; return x; }
+  function action() {
+    var m = E.metier, corps = $("ms-action-corps"), val = $("ms-valider");
+    corps.textContent = "";
+    if (m.type === "rdv") {
+      $("ms-action-titre").textContent = "Choisissez un créneau";
+      var js = el("div", "ms-jours"), dates = jours();
+      dates.forEach(function (d, i) {
+        var b = el("button", "ms-chip" + (A.jour === i ? " on" : ""), nomJour(d, i)); b.type = "button";
+        b.addEventListener("click", function () { A.jour = i; A.creneau = null; action(); });
+        js.appendChild(b);
+      });
+      corps.appendChild(js);
+      var g = el("div", "ms-creneaux"), maintenant = new Date(), estAuj = dates[A.jour].toDateString() === maintenant.toDateString();
+      var heures = []; for (var h = m.h[0]; h + .5 <= m.h[1]; h += .5) heures.push(h);
+      heures.slice(0, 12).forEach(function (h, k) {
+        var pris = ((k * 7 + A.jour * 3) % 5 === 0) || (estAuj && h <= maintenant.getHours() + maintenant.getMinutes() / 60);
+        var b = el("button", "ms-creneau" + (A.creneau === h ? " on" : ""), hhmm(h)); b.type = "button"; b.disabled = pris;
+        b.addEventListener("click", function () { A.creneau = h; action(); });
+        g.appendChild(b);
+      });
+      corps.appendChild(g);
+      var p = m.liste[0];
+      $("ms-total").textContent = p[0] + " · " + eur(p[1]);
+      val.textContent = "Confirmer"; val.disabled = A.creneau == null;
+    } else if (m.type === "commande") {
+      $("ms-action-titre").textContent = "Votre commande";
+      var total = 0, nb = 0;
+      m.liste.forEach(function (x, i) {
+        var q = A.qte[i] || 0; total += q * x[1]; nb += q;
+        var l = el("div", "ms-ligne"), t = el("p", null); t.appendChild(el("b", null, x[0])); t.appendChild(el("small", null, eur(x[1])));
+        var pas = el("div", "ms-pas"), moins = el("button", null, "−"), qq = el("span", null, q), plus = el("button", "plus", "+");
+        moins.type = plus.type = "button"; moins.disabled = q === 0;
+        moins.addEventListener("click", function () { A.qte[i] = Math.max(0, q - 1); action(); });
+        plus.addEventListener("click", function () { A.qte[i] = q + 1; action(); });
+        pas.appendChild(moins); pas.appendChild(qq); pas.appendChild(plus); l.appendChild(t); l.appendChild(pas); corps.appendChild(l);
+      });
+      var rt = el("p", "ms-sous", "Retrait"); corps.appendChild(rt);
+      var rj = el("div", "ms-jours");
+      ["Dans 30 min", "À 18h", "À 19h"].forEach(function (lib, i) {
+        var b = el("button", "ms-chip" + (A.retrait === i ? " on" : ""), lib); b.type = "button";
+        b.addEventListener("click", function () { A.retrait = i; action(); }); rj.appendChild(b);
+      });
+      corps.appendChild(rj);
+      $("ms-total").textContent = nb ? nb + " article" + (nb > 1 ? "s" : "") + " · " + eur(total) : "Ajoutez un article";
+      val.textContent = nb ? "Valider · " + eur(total) : "Valider"; val.disabled = !nb;
+    } else {
+      $("ms-action-titre").textContent = "Écrivez-nous";
+      var ta = el("div", "ms-message", "Bonjour, je voudrais un devis pour…"); corps.appendChild(ta);
+      $("ms-total").textContent = "Réponse sous 24 h";
+      val.textContent = "Envoyer"; val.disabled = false;
+    }
+  }
+  function page(p, sansAnim) {
+    A.page = p;
+    var pages = $("ms-pages");
+    if (sansAnim || calme) pages.classList.add("immediat");
+    pages.setAttribute("data-page", p);
+    pages.querySelectorAll(".ms-page").forEach(function (x) { x.inert = x.getAttribute("data-p") !== p; });
+    if (sansAnim || calme) { void pages.offsetWidth; pages.classList.remove("immediat"); }
+    if (p === "action") action();
+  }
+  function toast(titre, texte) {
+    $("ms-toast-titre").textContent = titre; $("ms-toast-texte").textContent = texte;
+    var t = $("ms-toast"); t.classList.remove("vu"); void t.offsetWidth; t.classList.add("vu");
+  }
+  $("ms-cta").addEventListener("click", function () { toucher(); page("action"); });
+  $("ms-retour").addEventListener("click", function () { page("accueil"); });
+  $("ms-encore").addEventListener("click", function () { A = { page: "accueil", jour: 0, creneau: null, qte: {}, retrait: 0 }; page("accueil"); });
+  $("ms-valider").addEventListener("click", function () {
+    var m = E.metier, ok = $("ms-ok-titre"), tx = $("ms-ok-texte"), d = jours()[A.jour];
+    if (m.type === "rdv") {
+      ok.textContent = "C'est réservé";
+      tx.textContent = m.liste[0][0] + " · " + nomJour(d).toLowerCase() + " à " + hhmm(A.creneau) + ". Un mail de confirmation part tout de suite.";
+      toast("Nouveau rendez-vous", m.liste[0][0] + " · " + nomJour(d).toLowerCase() + " " + hhmm(A.creneau));
+    } else if (m.type === "commande") {
+      var tot = 0; m.liste.forEach(function (x, i) { tot += (A.qte[i] || 0) * x[1]; });
+      var ret = ["dans 30 min", "à 18h", "à 19h"][A.retrait];
+      ok.textContent = "Commande envoyée"; tx.textContent = "À retirer " + ret + ". Total : " + eur(tot) + ", à payer sur place.";
+      toast("Nouvelle commande", eur(tot) + " · retrait " + ret);
+    } else {
+      ok.textContent = "Message envoyé"; tx.textContent = "Le commerçant vous répond sous 24 h.";
+      toast("Nouveau message", "Demande de devis depuis le site");
+    }
+    page("ok");
+  });
+
+  /* ---------- Vues téléphone / ordinateur ---------- */
+  document.querySelectorAll(".cr-vues button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      toucher();
+      var v = b.getAttribute("data-vue"); if (v === E.vue) return;
+      document.querySelectorAll(".cr-vues button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      avec(function () { E.vue = v; $("cr-cadre").setAttribute("data-vue", v); });
+    });
+  });
+
+  /* ---------- Logo et couleur tirée du logo ---------- */
+  function couleurDuLogo(img) {
+    var c = document.createElement("canvas"), t = 48; c.width = c.height = t;
+    var x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img, 0, 0, t, t);
+    var px = x.getImageData(0, 0, t, t).data, cases = {}, meilleur = null, score = 0;
+    for (var i = 0; i < px.length; i += 4) {
+      var r = px[i], g = px[i + 1], b = px[i + 2], a = px[i + 3];
+      if (a < 140) continue;
+      var mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+      if (mx > 235 && mn > 225) continue;
+      var k = (r >> 4) + "," + (g >> 4) + "," + (b >> 4);
+      var o = cases[k] || (cases[k] = { n: 0, r: 0, g: 0, b: 0 });
+      o.n++; o.r += r; o.g += g; o.b += b;
+    }
+    Object.keys(cases).forEach(function (k) {
+      var o = cases[k], r = o.r / o.n, g = o.g / o.n, b = o.b / o.n, mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+      var sat = mx ? (mx - mn) / mx : 0, s = o.n * (0.35 + sat) * (mx < 40 ? .6 : 1);
+      if (s > score) { score = s; meilleur = [r, g, b]; }
+    });
+    if (!meilleur) return null;
+    return "#" + meilleur.map(function (v) { return ("0" + Math.round(v).toString(16)).slice(-2); }).join("");
+  }
+  $("cr-logo").addEventListener("change", function () {
+    var f = this.files && this.files[0]; if (!f) return;
+    toucher();
+    var url = URL.createObjectURL(f), img = new Image();
+    img.onload = function () {
+      E.logo = url; $("cr-logo-libelle").textContent = "Changer de logo"; $("cr-logo-retirer").hidden = false;
+      var c = null; try { c = couleurDuLogo(img); } catch (e) {}
+      if (c) { E.couleur = c; E.nomCouleur = "de votre logo"; reglages(); avec(function () { rendre(); }, "vt-vague"); $("cr-couleur-info").textContent = "Couleur tirée de votre logo : " + c.toUpperCase() + "."; }
+      else avec(function () { rendre(); });
+    };
+    img.src = url;
+  });
+  $("cr-logo-retirer").addEventListener("click", function () {
+    E.logo = null; $("cr-logo").value = ""; this.hidden = true; $("cr-logo-libelle").textContent = "Ajouter mon logo"; $("cr-couleur-info").textContent = ""; rendre();
+  });
+
+  /* ---------- Nom, partage, envoi ---------- */
+  $("cr-nom").addEventListener("input", function () { toucher(); rendre(); });
+  function lien() {
+    var d = { n: $("cr-nom").value.trim(), m: E.metier.id, c: E.couleur, s: E.style.id, v: E.vue };
+    return location.href.split("#")[0] + "#apercu=" + encodeURIComponent(JSON.stringify(d));
+  }
+  $("cr-partager").addEventListener("click", function () {
+    var l = lien(), etat = $("cr-partage-etat");
+    function fait() { etat.textContent = "Lien copié. Envoyez-le à qui vous voulez : il rouvre ce même aperçu."; }
+    try { navigator.clipboard.writeText(l).then(fait, function () { etat.textContent = l; }); } catch (e) { etat.textContent = l; }
+  });
+  $("cr-envoyer").addEventListener("click", function () {
+    var f = $("f-formule"), c = $("f-commerce"), msg = $("f-msg");
+    if (c) c.value = $("cr-nom").value.trim();
+    if (f) f.value = E.metier.formule;
+    if (msg) msg.value = "J'ai composé un aperçu sur votre site : " + E.metier.nom.toLowerCase() + ", couleur " + E.nomCouleur.toLowerCase() + ", style " + E.style.nom.toLowerCase() + (E.logo ? ", avec mon logo (je vous l'envoie)" : "") + ". Mon aperçu : " + lien();
+  });
+  function lireLien() {
+    var m = location.hash.match(/#apercu=(.+)$/); if (!m) return false;
+    try {
+      var d = JSON.parse(decodeURIComponent(m[1]));
+      $("cr-nom").value = (d.n || "").slice(0, 26);
+      E.metier = METIERS.filter(function (x) { return x.id === d.m; })[0] || E.metier;
+      E.style = STYLES.filter(function (x) { return x.id === d.s; })[0] || E.style;
+      if (/^#[0-9a-f]{6}$/i.test(d.c)) { E.couleur = d.c; var nc = COULEURS.filter(function (x) { return x[1].toLowerCase() === d.c.toLowerCase(); })[0]; E.nomCouleur = nc ? nc[0] : "personnalisée"; }
+      if (d.v === "ordi") { E.vue = "ordi"; $("cr-cadre").setAttribute("data-vue", "ordi"); document.querySelectorAll(".cr-vues button").forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-vue") === "ordi" ? "true" : "false"); }); }
+      E.touche = true;
+      setTimeout(function () { $("createur").scrollIntoView(); }, 300);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* ---------- Démonstration automatique à la première vue ---------- */
+  function demo() {
+    if (E.touche || calme) return;
+    var texte = "Boulangerie Lebrun", i = 0, champ = $("cr-nom");
+    var etapes = [
+      function () { var t = setInterval(function () { if (E.touche) { clearInterval(t); return; } champ.value = texte.slice(0, ++i); rendre(); if (i >= texte.length) { clearInterval(t); suite(); } }, 70); },
+      function () { choisirMetier(METIERS[3]); },
+      function () { choisirCouleur("#B4532A", "Terre"); },
+      function () { page("action"); },
+      function () { A.qte = { 0: 2, 1: 3 }; action(); },
+      function () { $("ms-valider").click(); },
+      function () { choisirStyle(STYLES[1]); },
+      function () { page("accueil"); }
+    ];
+    var k = 0;
+    function suite() { if (E.touche) return; k++; if (k < etapes.length) setTimeout(function () { if (!E.touche) { etapes[k](); if (k > 0 && k < etapes.length) suite(); } }, k === 1 ? 500 : 1300); }
+    E.touche = false; etapes[0]();
+    var garde = function () { E.touche = true; };
+    ["pointerdown", "keydown"].forEach(function (ev) { $("createur").addEventListener(ev, garde, { once: true, capture: true }); });
+  }
+
+  var deLien = lireLien();
+  reglages(); rendre();
+  setInterval(statut, 30000);
+  if (!deLien && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); setTimeout(demo, 600); } }, { threshold: .45 });
+    io.observe($("cr-cadre"));
+  }
 })();
 </script>
 </body>
