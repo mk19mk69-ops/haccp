@@ -1255,6 +1255,57 @@ body { letter-spacing: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .jeu-notifs li { animation: none; } }
 
+/* ===================== Jeu : nouvelles couleurs et détails ===================== */
+.jeu-plateau { background: #EEF3FA; color: var(--texte); border: 1px solid #D6E2F2; }
+.jeu-barre { color: var(--texte-2); margin-bottom: 8px; }
+.jeu-temps b { color: var(--texte); }
+.jeu-chrono { height: 4px; border-radius: 2px; background: #D6E2F2; overflow: hidden; margin-bottom: 16px; }
+.jeu-chrono b { display: block; height: 100%; background: var(--bleu); transform-origin: 0 50%; }
+.jeu-plateau.presse .jeu-chrono b { background: #D9480F; }
+.jeu-plateau.presse .jeu-temps b { color: #D9480F; }
+.jeu-fauteuil, .jeu-telephone { background: #fff; border: 1px solid #D6E2F2; box-shadow: 0 1px 0 rgba(18,26,36,.04); transition: border-color .2s ease, box-shadow .2s ease; }
+.jeu-label { color: var(--texte-2); }
+.jeu-client { font-size: 22px; line-height: 1.15; }
+.jeu-fauteuil-tete { position: relative; display: flex; align-items: center; gap: 12px; }
+.jeu-poteau { width: 12px; height: 46px; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 0 1.5px #121A24; background: #fff; flex: none; }
+.jeu-poteau i { display: block; height: 200%; background: repeating-linear-gradient(-45deg, #C92A2A 0 6px, #fff 6px 12px, #0B63CE 12px 18px, #fff 18px 24px); animation: poteau 2.4s linear infinite; }
+@keyframes poteau { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+.jeu-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: #E8F0FA; color: var(--bleu); font-family: var(--titres); font-weight: 600; font-size: 18px; flex: none; }
+.jeu-pop { position: absolute; right: 0; top: 4px; font-family: var(--titres); font-weight: 600; color: #2B8A3E; opacity: 0; pointer-events: none; }
+.jeu-pop.vu { animation: pop 0.9s ease-out; }
+@keyframes pop { 0% { opacity: 0; transform: translateY(6px); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px); } }
+.jeu-progres { background: #E6ECF4; }
+.jeu-progres b { background: var(--bleu); transition: transform .15s ease-out; }
+.jeu-progres--appel b { background: #E8890C; transition: none; }
+.jeu-couper { background: var(--bleu); color: #fff; }
+.jeu-couper svg { transition: transform .12s ease-out; }
+.jeu-couper.snip svg { animation: snip .18s ease-out; }
+@keyframes snip { 50% { transform: rotate(-18deg) scale(1.1); } }
+.jeu-couper:disabled { opacity: .3; }
+.jeu-score { color: var(--texte-2); }
+.jeu-score b { color: var(--texte); }
+.jeu-tel-tete { display: flex; align-items: center; gap: 10px; }
+.jeu-tel-icone { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #E8F0FA; color: var(--bleu); }
+.jeu-telephone.sonne { border-color: #E8890C; box-shadow: 0 0 0 4px rgba(232,137,12,.16); }
+.jeu-telephone.sonne .jeu-tel-icone { background: #FFF1DC; color: #C46A00; }
+.jeu-sonne { color: #E8890C; }
+.jeu-calme { color: var(--texte-3); }
+.jeu-notifs li { background: #F4F7FB; border: 1px solid #DCE6F3; grid-template-columns: 28px minmax(0, 1fr); column-gap: 10px; }
+.jeu-notifs li b, .jeu-notifs li span { grid-column: 2; }
+.jeu-notifs li b { display: flex; justify-content: space-between; gap: 8px; }
+.jeu-notifs li time { font-weight: 400; color: var(--texte-3); font-size: 12px; }
+.jeu-appli { grid-row: 1 / span 2; width: 28px; height: 28px; border-radius: 7px; background: var(--bleu); color: #fff; font-style: normal; font-family: var(--titres); font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+.jeu-fin { background: rgba(238, 243, 250, .86); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.jeu-fin-carte { background: #fff; border: 1px solid #D6E2F2; box-shadow: 0 20px 40px -24px rgba(18,26,36,.35); }
+.jeu-bilan { width: 100%; border-collapse: collapse; font-size: 14px; margin: 4px 0; }
+.jeu-bilan[hidden] { display: none; }
+.jeu-bilan th, .jeu-bilan td { padding: 8px 6px; border-bottom: 1px solid var(--ligne); text-align: right; font-variant-numeric: tabular-nums; }
+.jeu-bilan thead th { font-weight: 500; color: var(--texte-2); font-size: 12.5px; }
+.jeu-bilan tbody th { text-align: left; font-weight: 600; }
+.jeu-bilan tbody tr:last-child td { color: var(--bleu); font-weight: 600; }
+.option-sms span b { color: var(--bleu); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .jeu-poteau i, .jeu-couper.snip svg, .jeu-pop.vu { animation: none; } }
+
 @media (prefers-reduced-transparency: reduce) {
   .barre-action, .lnav, .points, .lecture, .notif, .ap-bas { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
@@ -1721,19 +1772,24 @@ body { letter-spacing: 0; }
           <span id="jeu-mode">Manche 1 · sans réservation en ligne</span>
           <span class="jeu-temps"><b id="jeu-temps">20</b> s</span>
         </div>
+        <div class="jeu-chrono" aria-hidden="true"><b id="jeu-chrono"></b></div>
         <div class="jeu-zones">
           <div class="jeu-fauteuil">
-            <p class="jeu-label">Au fauteuil</p>
-            <p class="jeu-client" id="jeu-client">Karim</p>
+            <div class="jeu-fauteuil-tete">
+              <span class="jeu-poteau" aria-hidden="true"><i></i></span>
+              <span class="jeu-avatar" id="jeu-avatar" aria-hidden="true">K</span>
+              <div><p class="jeu-label">Au fauteuil</p><p class="jeu-client" id="jeu-client">Karim</p></div>
+              <span class="jeu-pop" id="jeu-pop" aria-hidden="true">+18 €</span>
+            </div>
             <div class="jeu-progres" aria-hidden="true"><b id="jeu-coupe"></b></div>
             <button class="jeu-couper" type="button" id="jeu-couper" disabled>
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6 20 18M8.6 16.4 20 6"/></svg>
               Couper
             </button>
-            <p class="jeu-score"><b id="jeu-coupes">0</b> coupes · <b id="jeu-caisse">0</b> € en caisse</p>
+            <p class="jeu-score">Coupes : <b id="jeu-coupes">0</b> · En caisse : <b id="jeu-caisse">0</b> €</p>
           </div>
           <div class="jeu-telephone" id="jeu-tel">
-            <p class="jeu-label" id="jeu-tel-titre">Téléphone du salon</p>
+            <div class="jeu-tel-tete"><span class="jeu-tel-icone" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></span><p class="jeu-label" id="jeu-tel-titre">Téléphone du salon</p></div>
             <div class="jeu-appel" id="jeu-appel" hidden>
               <svg class="jeu-sonne" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
               <p id="jeu-appel-texte">Un client appelle…</p>
@@ -1742,12 +1798,13 @@ body { letter-spacing: 0; }
             </div>
             <ul class="jeu-notifs" id="jeu-notifs" hidden></ul>
             <p class="jeu-calme" id="jeu-calme">Calme, pour l'instant.</p>
-            <p class="jeu-score"><b id="jeu-pris">0</b> rendez-vous pris · <b id="jeu-rates">0</b> appels ratés</p>
+            <p class="jeu-score">Rendez-vous pris : <b id="jeu-pris">0</b> · Appels ratés : <b id="jeu-rates">0</b></p>
           </div>
         </div>
         <div class="jeu-fin" id="jeu-fin">
           <div class="jeu-fin-carte">
             <p class="jeu-fin-titre" id="jeu-fin-titre">Prêt ?</p>
+            <table class="jeu-bilan" id="jeu-bilan" hidden><thead><tr><th></th><th>Coupes</th><th>Rendez-vous</th><th>Clients perdus</th></tr></thead><tbody><tr><th>Sans réservation en ligne</th><td id="bt-c">–</td><td id="bt-p">–</td><td id="bt-r">–</td></tr><tr><th>Avec</th><td id="bw-c">–</td><td id="bw-p">–</td><td id="bw-r">–</td></tr></tbody></table>
             <p class="jeu-fin-texte" id="jeu-fin-texte">Appuyez sur « Couper » pour avancer la coupe. Quand le téléphone sonne, décrochez vite : pendant l'appel, vous ne coupez plus.</p>
             <div class="jeu-fin-btns"><button class="btn" type="button" id="jeu-go">Commencer</button><a class="btn btn--contour" href="#contact" data-formule="Réservation" id="jeu-cta" hidden>Je veux la réservation en ligne</a></div>
           </div>
@@ -1922,7 +1979,8 @@ body { letter-spacing: 0; }
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Tout le pack Vitrine</li>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 20V13a7 7 0 0 1 14 0v7l2 3H6Z"/><path d="M12.5 26a2.5 2.5 0 0 0 5 0"/></svg>Notification au commerçant</li>
-            <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="7" width="20" height="18" rx="3"/><path d="M5 12h20M10 4v5M20 4v5"/></svg>Réservation ou commande en ligne, mail et rappel au client</li>
+            <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="7" width="20" height="18" rx="3"/><path d="M5 12h20M10 4v5M20 4v5"/></svg>Réservation ou commande en ligne, mail de confirmation au client</li>
+            <li class="option-sms"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5 7h20v13H13l-5 4v-4H5Z"/><path d="M10 12h10M10 16h6" stroke-linecap="round"/></svg><span>Rappel par SMS au client la veille : en option, <b>dès 9 € / mois</b></span></li>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="15" cy="15" r="10"/><path d="M15 9v6l4 2"/></svg>Suivi inclus 1 mois</li>
           </ul>
         </div>
@@ -1980,6 +2038,7 @@ body { letter-spacing: 0; }
         <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="17" cy="17" r="12"/><path d="M5 17h24M17 5c3.5 3.4 5 7.4 5 12s-1.5 8.6-5 12c-3.5-3.4-5-7.4-5-12s1.5-8.6 5-12Z"/></svg><b>Domaine et hébergement</b><p>Première année. Ensuite environ 5 € par mois, à votre nom.</p><strong>50 €</strong></div>
         <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 11a8 8 0 0 1 0 12"/><path d="M16.5 7.5a13 13 0 0 1 0 19"/><path d="M21 4a18 18 0 0 1 0 26"/></svg><b>Carte NFC avis Google</b><p>Personnalisée, QR code au dos.</p><strong>dès 25 €</strong></div>
         <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="8" width="26" height="18" rx="3.5"/><circle cx="11" cy="17" r="2.2"/><circle cx="17" cy="17" r="2.2"/><circle cx="23" cy="17" r="2.2"/></svg><b>Carte de fidélité</b><p>Ajoutée à votre site ou seule.</p><strong>dès 150 €</strong></div>
+        <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 8h22v15H15l-6 5v-5H6Z"/></svg><b>Rappels par SMS</b><p>Confirmation et rappel la veille, envoyés au client par SMS. 100 SMS par mois inclus, puis 0,09 € le SMS. Le SMS est payant pour moi aussi, c'est pour ça qu'il est en option.</p><strong>dès 9 € / mois</strong></div>
         <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.5 6.5a6 6 0 0 0-7.6 7.6L5 22v5h5l7.9-7.9a6 6 0 0 0 7.6-7.6l-3.7 3.7-3.4-.6-.6-3.4Z" stroke-linejoin="round"/></svg><b>Accompagnement</b><p>Installation, fiche Google, formation, dépannage.</p><strong>30 € / h</strong></div>
       </div>
     </div>
@@ -2749,12 +2808,14 @@ body { letter-spacing: 0; }
   var PRIX = 18, DUREE = 20;
   var mode = "tel", resultats = {}, j = null;
   function hasard(t) { return t[Math.floor(Math.random() * t.length)]; }
+  function changerClient() { var n = hasard(NOMS); $("jeu-client").textContent = n; $("jeu-avatar").textContent = n.charAt(0); }
   function pl(n, un, plusieurs) { return n + " " + (n > 1 ? plusieurs : un); }
 
   function nouvellePartie() {
     j = { t: DUREE, coupe: 0, coupes: 0, pris: 0, rates: 0, enLigne: 0, appel: null, prochain: 1.2, fin: false, dernier: performance.now() };
-    $("jeu-client").textContent = hasard(NOMS);
+    changerClient();
     $("jeu-notifs").textContent = "";
+    $("jeu-bilan").hidden = true;
     plateau.setAttribute("data-mode", mode);
     $("jeu-mode").textContent = mode === "tel" ? "Manche 1 · sans réservation en ligne" : "Manche 2 · avec la réservation en ligne";
     $("jeu-tel-titre").textContent = mode === "tel" ? "Téléphone du salon" : "Réservations en ligne";
@@ -2767,6 +2828,8 @@ body { letter-spacing: 0; }
   }
   function afficher() {
     $("jeu-temps").textContent = Math.ceil(j.t);
+    $("jeu-chrono").style.transform = "scaleX(" + (j.t / DUREE) + ")";
+    plateau.classList.toggle("presse", j.t <= 5 && !j.fin);
     $("jeu-coupe").style.transform = "scaleX(" + (j.coupe / 100) + ")";
     $("jeu-coupes").textContent = j.coupes;
     $("jeu-caisse").textContent = j.coupes * PRIX;
@@ -2788,7 +2851,7 @@ body { letter-spacing: 0; }
     if (mode === "web") {
       j.pris++;
       var li = document.createElement("li");
-      li.innerHTML = "<b>Nouveau rendez-vous</b><span></span>";
+      li.innerHTML = "<i class=\"jeu-appli\">M</i><b>Nouveau rendez-vous <time>maintenant</time></b><span></span>";
       li.querySelector("span").textContent = nom + " · coupe · samedi " + hasard(HEURES) + " · 18 €";
       var ul = $("jeu-notifs"); ul.insertBefore(li, ul.firstChild);
       while (ul.children.length > 4) ul.removeChild(ul.lastChild);
@@ -2822,6 +2885,9 @@ body { letter-spacing: 0; }
     } else {
       var a = resultats.tel || { coupes: 0, pris: 0, rates: 0 };
       $("jeu-fin-titre").textContent = "Avec la réservation en ligne : " + r.pris + " rendez-vous, 0 perdu";
+      $("bt-c").textContent = a.coupes; $("bt-p").textContent = a.pris; $("bt-r").textContent = a.rates;
+      $("bw-c").textContent = r.coupes; $("bw-p").textContent = r.pris; $("bw-r").textContent = 0;
+      $("jeu-bilan").hidden = false;
       $("jeu-fin-texte").textContent = "Sans : " + pl(a.coupes, "coupe", "coupes") + " et " + pl(a.rates, "appel raté", "appels ratés") + ". Avec : " + pl(r.coupes, "coupe", "coupes") + ", et les clients ont réservé tout seuls pendant que vous travailliez.";
       $("jeu-go").textContent = "Rejouer";
       $("jeu-cta").hidden = false;
@@ -2835,7 +2901,11 @@ body { letter-spacing: 0; }
   $("jeu-couper").addEventListener("click", function () {
     if (!j || j.fin || j.enLigne > 0) return;
     j.coupe += 14;
-    if (j.coupe >= 100) { j.coupe = 0; j.coupes++; $("jeu-client").textContent = hasard(NOMS); }
+    var bt = $("jeu-couper"); bt.classList.remove("snip"); void bt.offsetWidth; bt.classList.add("snip");
+    if (j.coupe >= 100) {
+      j.coupe = 0; j.coupes++; changerClient();
+      var pop = $("jeu-pop"); pop.classList.remove("vu"); void pop.offsetWidth; pop.classList.add("vu");
+    }
     afficher();
   });
   $("jeu-decrocher").addEventListener("click", function () {
