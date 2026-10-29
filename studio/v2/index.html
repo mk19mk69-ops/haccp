@@ -1545,6 +1545,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   <a href="#tarifs" style="--i:0">Offres</a>
   <a href="#parcours" style="--i:1">Réservation en ligne</a>
   <a href="#createur" style="--i:1">Votre site en direct</a>
+  <a href="atelier/" style="--i:1">L'Atelier : créez votre site</a>
   <a href="#demos" style="--i:2">Démos</a>
   <a href="#jeu" style="--i:2">Petit jeu</a>
   <a href="#realisations" style="--i:3">Réalisations</a>
@@ -1611,6 +1612,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
           </div>
           <div class="cr-actions">
             <a class="btn" href="#contact" id="cr-envoyer">Recevoir cette maquette sous 72 h</a>
+            <a class="btn btn--contour" href="atelier/" id="cr-atelier">Construire tout mon site dans l'Atelier</a>
             <button type="button" class="btn-lien" id="cr-partager">Copier le lien de cet aperçu</button>
             <span class="cr-info" id="cr-partage-etat" aria-live="polite"></span>
           </div>
@@ -3461,6 +3463,10 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     function fait() { etat.textContent = "Lien copié. Envoyez-le à qui vous voulez : il rouvre ce même aperçu."; }
     try { navigator.clipboard.writeText(l).then(fait, function () { etat.textContent = l; }); } catch (e) { etat.textContent = l; }
   });
+  $("cr-atelier").addEventListener("click", function () {
+    var d = { n: $("cr-nom").value.trim(), m: E.metier.id, c: E.couleur, s: E.style.id };
+    this.href = "atelier/#apercu=" + encodeURIComponent(JSON.stringify(d));
+  });
   $("cr-envoyer").addEventListener("click", function () {
     var f = $("f-formule"), c = $("f-commerce"), msg = $("f-msg");
     if (c) c.value = $("cr-nom").value.trim();
@@ -3510,6 +3516,17 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); setTimeout(demo, 600); } }, { threshold: .45 });
     io.observe($("cr-cadre"));
   }
+})();
+</script>
+<script>
+/* Formulaire de contact pré-rempli depuis l'Atelier (?formule=&commerce=&msg=) */
+(function () {
+  var q = new URLSearchParams(location.search); if (!q.get("msg") && !q.get("formule")) return;
+  var f = document.getElementById("f-formule"), c = document.getElementById("f-commerce"), m = document.getElementById("f-msg");
+  if (f && q.get("formule")) [].forEach.call(f.options, function (o) { if (o.textContent === q.get("formule")) f.value = o.value || o.textContent; });
+  if (c && q.get("commerce")) c.value = q.get("commerce").slice(0, 80);
+  if (m && q.get("msg")) m.value = q.get("msg").slice(0, 4000);
+  setTimeout(function () { var s = document.getElementById("contact"); if (s) s.scrollIntoView(); var n = document.getElementById("f-nom"); if (n) n.focus({ preventScroll: true }); }, 400);
 })();
 </script>
 </body>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier, créez le site de votre commerce</title>
+<meta name="description" content="Créez le site de votre commerce vous-même : glissez des sections, écrivez directement sur la page, choisissez votre adresse web. Mokrani Studio s'occupe de la mise en ligne.">
+<meta name="theme-color" content="#FDFCF9">
+<link rel="icon" href="../icones/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icones/apple-touch-icon.png">
+<link rel="preload" href="../assets/poppins-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="atelier.css">
+</head>
+<body>
+<div class="app" id="app" data-mode="edition">
+  <header class="barre">
+    <a class="barre-marque" href="../" title="Retour au site Mokrani Studio"><img src="../assets/logo-mokrani.svg" alt="Mokrani Studio" width="112" height="24"><span>Atelier</span></a>
+    <div class="barre-projet">
+      <button type="button" class="barre-page" id="btn-page" aria-haspopup="menu" aria-expanded="false"><span id="nom-page">Accueil</span><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <span class="barre-etat" id="etat" aria-live="polite"></span>
+    </div>
+    <div class="seg barre-appareils" id="appareils" role="group" aria-label="Taille de l'écran">
+      <button type="button" data-app="tel" aria-pressed="false" title="Téléphone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/></svg><span>Téléphone</span></button>
+      <button type="button" data-app="tablette" aria-pressed="false" title="Tablette"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3" width="15" height="18" rx="2.5"/><path d="M11 18h2"/></svg><span>Tablette</span></button>
+      <button type="button" data-app="ordi" aria-pressed="true" title="Ordinateur"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8 20h8M12 16.5V20"/></svg><span>Ordinateur</span></button>
+    </div>
+    <div class="barre-droite">
+      <button type="button" class="ico" id="btn-annuler" title="Annuler (Ctrl Z)" aria-label="Annuler" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+      <button type="button" class="ico" id="btn-retablir" title="Rétablir (Ctrl Maj Z)" aria-label="Rétablir" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+      <button type="button" class="ico cache-mobile" id="btn-palette" title="Chercher une action (Ctrl K)" aria-label="Chercher une action"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></button>
+      <button type="button" class="btn-2" id="btn-apercu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>Aperçu</span></button>
+      <button type="button" class="btn" id="btn-publier"><span class="txt-long">Mettre en ligne</span><span class="txt-court">Publier</span></button>
+    </div>
+  </header>
+
+  <nav class="rail" id="rail" aria-label="Outils">
+    <button type="button" data-p="ajouter"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg><span>Ajouter</span></button>
+    <button type="button" data-p="structure"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="4" rx="1.5"/><rect x="4" y="10" width="16" height="4" rx="1.5"/><rect x="4" y="16" width="16" height="4" rx="1.5"/></svg><span>Plan</span></button>
+    <button type="button" data-p="style"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.3 0 2-.8 2-1.8 0-1.4-1.4-1.6-1.4-2.9 0-1 .8-1.6 1.8-1.6H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10.5" cy="7" r="1.2" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.2" fill="currentColor"/></svg><span>Style</span></button>
+    <button type="button" data-p="infos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v10h16V10M3 4h18l-1 6H4Z"/><path d="M10 20v-5h4v5"/></svg><span>Infos</span></button>
+    <button type="button" data-p="pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5"/><path d="M4 7v14h11"/></svg><span>Pages</span></button>
+    <button type="button" data-p="domaine"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3Z"/></svg><span>Adresse</span></button>
+    <button type="button" data-p="verifier" class="rail-verif"><svg class="anneau" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14" class="anneau-fond"/><circle cx="18" cy="18" r="14" class="anneau-plein" id="anneau"/></svg><b id="anneau-pct">0</b><span>Vérifier</span></button>
+    <button type="button" data-p="aide" class="rail-bas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6M12 17.2v.1"/></svg><span>Aide</span></button>
+  </nav>
+
+  <aside class="panneau" id="panneau" aria-labelledby="panneau-titre">
+    <div class="poignee-feuille" aria-hidden="true"></div>
+    <div class="panneau-tete"><h2 id="panneau-titre">Ajouter</h2><button type="button" class="ico" id="panneau-fermer" aria-label="Fermer le panneau"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="panneau-corps" id="panneau-corps"></div>
+  </aside>
+
+  <main class="etabli" id="etabli">
+    <div class="regle" id="regle" aria-hidden="true"><div class="regle-graduation" id="regle-grad"></div><span class="regle-px" id="regle-px"></span></div>
+    <div class="appareil" id="appareil" data-app="ordi">
+      <div class="appareil-barre"><i></i><i></i><i></i><span class="appareil-url"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b id="url">votre-commerce.fr</b></span></div>
+      <div class="ecran" id="ecran">
+        <div class="site ed" id="site"></div>
+        <div class="site-calque" id="calque"></div>
+      </div>
+    </div>
+    <p class="etabli-aide" id="etabli-aide"></p>
+  </main>
+
+  <aside class="inspecteur" id="inspecteur" aria-label="Réglages de la section"></aside>
+</div>
+
+<div class="menu-pages" id="menu-pages" role="menu" hidden></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="visite" id="visite" hidden><div class="visite-trou" id="visite-trou"></div><div class="visite-bulle" id="visite-bulle" role="dialog" aria-live="polite"><p id="visite-texte"></p><div class="visite-act"><span id="visite-pas"></span><button type="button" class="btn-lien" id="visite-passer">Passer</button><button type="button" class="btn btn--s" id="visite-suivant">Suivant</button></div></div></div>
+
+<dialog class="assistant" id="assistant" aria-labelledby="as-titre">
+  <div class="as-grille">
+    <div class="as-gauche">
+      <div class="as-haut"><img src="../assets/logo-mokrani.svg" alt="Mokrani Studio" width="104" height="22"><ol class="as-progres" id="as-progres" aria-label="Étapes"></ol></div>
+      <form class="as-corps" id="as-corps" onsubmit="return false"></form>
+      <div class="as-pied"><button type="button" class="btn-lien" id="as-retour">Retour</button><span class="as-espace"></span><button type="button" class="btn-lien" id="as-passer">Passer cette étape</button><button type="button" class="btn" id="as-suite">Continuer</button></div>
+    </div>
+    <div class="as-droite" aria-hidden="true"><div class="as-tel"><div class="as-tel-ecran"><div class="site" id="as-site"></div></div></div><p class="as-legende">Votre site se construit pendant que vous répondez.</p></div>
+  </div>
+</dialog>
+
+<dialog class="fenetre" id="publier" aria-labelledby="pub-titre"><div id="pub-corps"></div></dialog>
+<dialog class="fenetre palette" id="palette" aria-label="Chercher une action"><div class="palette-champ"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="palette-q" placeholder="Que voulez-vous faire ? Ajouter des horaires, changer la couleur…" autocomplete="off" spellcheck="false"></div><ul class="palette-l" id="palette-l" role="listbox"></ul><p class="palette-pied">Flèches pour choisir, Entrée pour valider, Échap pour fermer</p></dialog>
+<dialog class="fenetre" id="confirmer"><div id="conf-corps"></div></dialog>
+<input type="file" id="fichier" accept="image/*" hidden>
+<input type="file" id="fichier-multi" accept="image/*" multiple hidden>
+<input type="file" id="fichier-json" accept="application/json,.json" hidden>
+
+<noscript><p style="padding:24px;font:16px system-ui">L'Atelier a besoin de JavaScript pour fonctionner.</p></noscript>
+<script src="sortable.min.js"></script>
+<script src="runtime.js"></script>
+<script src="blocs.js"></script>
+<script src="atelier.js"></script>
+</body>
+</html>
