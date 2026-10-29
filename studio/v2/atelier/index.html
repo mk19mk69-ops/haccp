@@ -84,6 +84,7 @@
 <dialog class="fenetre" id="publier" aria-labelledby="pub-titre"><div id="pub-corps"></div></dialog>
 <dialog class="fenetre palette" id="palette" aria-label="Chercher une action"><div class="palette-champ"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="palette-q" placeholder="Que voulez-vous faire ? Ajouter des horaires, changer la couleur…" autocomplete="off" spellcheck="false"></div><ul class="palette-l" id="palette-l" role="listbox"></ul><p class="palette-pied">Flèches pour choisir, Entrée pour valider, Échap pour fermer</p></dialog>
 <dialog class="fenetre" id="confirmer"><div id="conf-corps"></div></dialog>
+<dialog class="fenetre phl" id="biblio" aria-label="Photos d'illustration"><div id="biblio-corps"></div></dialog>
 <input type="file" id="fichier" accept="image/*" hidden>
 <input type="file" id="fichier-multi" accept="image/*" multiple hidden>
 <input type="file" id="fichier-json" accept="application/json,.json" hidden>
@@ -91,6 +92,7 @@
 <noscript><p style="padding:24px;font:16px system-ui">L'Atelier a besoin de JavaScript pour fonctionner.</p></noscript>
 <script src="sortable.min.js"></script>
 <script src="runtime.js"></script>
+<script src="photos/photos.js"></script>
 <script src="blocs.js"></script>
 <script src="atelier.js"></script>
 </body>

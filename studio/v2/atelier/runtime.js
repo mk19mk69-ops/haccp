@@ -70,6 +70,15 @@
 
   function el(tag, cls, txt) { var x = document.createElement(tag); if (cls) x.className = cls; if (txt != null) x.textContent = txt; return x; }
   function bouton(cls, txt) { var b = el("button", cls, txt); b.type = "button"; return b; }
+  function puce(d, on) {
+    var b = bouton("s-puce" + (on ? " on" : "")), a = K.jourTexte(d);
+    b.appendChild(el("small", null, a === "Aujourd'hui" ? "Auj." : a === "Demain" ? "Dem." : d.toLocaleDateString("fr-FR", { weekday: "short" })));
+    b.appendChild(el("b", null, String(d.getDate())));
+    b.setAttribute("aria-label", K.jourLong(d)); b.setAttribute("aria-pressed", on ? "true" : "false");
+    return b;
+  }
+  function vider(z) { var x = z.scrollLeft; z.textContent = ""; return function () { z.scrollLeft = x; }; }
+  var douceur = function () { return w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"; };
 
   /* Envoi réel depuis un site exporté : on prépare un SMS (ou un mail) vers le commerce. */
   function envoyer(P, texte) {
@@ -115,13 +124,14 @@
     function service() { var b = services[S.s]; return b ? { nom: b.getAttribute("data-nom"), duree: +b.getAttribute("data-duree") || pas, prix: b.getAttribute("data-prix") } : { nom: "Rendez-vous", duree: pas, prix: "" }; }
     function dessiner() {
       services.forEach(function (b, i) { b.setAttribute("aria-checked", i === S.s ? "true" : "false"); b.classList.toggle("on", i === S.s); });
-      zJ.textContent = ""; zH.textContent = "";
+      var remettre = vider(zJ); zH.textContent = "";
       if (!jours.length) { zH.appendChild(el("p", "s-vide", "Ajoutez vos horaires pour afficher les créneaux.")); }
       jours.forEach(function (d, i) {
-        var b = bouton("s-puce" + (i === S.j ? " on" : ""), K.jourTexte(d));
+        var b = puce(d, i === S.j);
         b.addEventListener("click", function () { S.j = i; S.h = null; dessiner(); });
         zJ.appendChild(b);
       });
+      remettre();
       if (jours.length) {
         var d = jours[S.j], hs = K.creneaux(H, d, pas, service().duree), libres = 0;
         hs.forEach(function (h) {
@@ -134,7 +144,7 @@
         if (!hs.length || !libres) zH.appendChild(el("p", "s-vide", "Plus de créneau ce jour-là. Choisissez un autre jour."));
       }
       var s = service();
-      recap.textContent = S.h == null ? "Choisissez un horaire." : s.nom + ", " + K.jourLong(jours[S.j]) + " à " + K.fmt(S.h) + (K.prix(s.prix) ? " (" + K.prix(s.prix) + ")" : "");
+      recap.textContent = S.h == null ? "Choisissez un horaire." : s.nom + ", " + K.jourLong(jours[S.j]) + " à " + K.fmt(S.h) + (K.prix(s.prix) ? " · " + K.prix(s.prix) : "");
       ok.disabled = S.h == null;
     }
     services.forEach(function (b, i) { b.addEventListener("click", function () { S.s = i; S.h = null; dessiner(); }); });
@@ -156,7 +166,7 @@
   function cmd(bloc, P, o) {
     var H = P.infos.horaires, lignes = [].slice.call(bloc.querySelectorAll(".s-cmd-ligne"));
     var zJ = bloc.querySelector(".s-resa-jours"), zH = bloc.querySelector(".s-resa-heures"), tot = bloc.querySelector(".s-resa-recap"), ok = bloc.querySelector("[data-cmd-ok]");
-    var Q = {}, S = { j: 0, h: null }, jours = K.joursOuverts(H, 5);
+    var Q = {}, S = { j: 0, h: null, dern: null }, jours = K.joursOuverts(H, 5);
     function qteTexte(q, kg) { if (!kg || !q) return String(q); return q >= 1 ? String(q).replace(".", ",") + " kg" : Math.round(q * 1000) + " g"; }
     function total() { var t = 0, n = 0; lignes.forEach(function (l, i) { var q = Q[i] || 0; if (q) { n++; t += q * (K.num(l.getAttribute("data-prix")) || 0); } }); return { t: t, n: n }; }
     function dessiner() {
@@ -165,13 +175,16 @@
         z.textContent = "";
         var m = bouton("s-pas-b", "−"), v = el("span", "s-pas-v", qteTexte(q, kg)), p = bouton("s-pas-b s-pas-plus", "+");
         m.setAttribute("aria-label", "Retirer"); p.setAttribute("aria-label", "Ajouter"); m.disabled = !q;
-        m.addEventListener("click", function () { Q[i] = Math.max(0, Math.round((q - (kg ? .25 : 1)) * 100) / 100); dessiner(); });
-        p.addEventListener("click", function () { Q[i] = Math.round((q + (kg ? .25 : 1)) * 100) / 100; dessiner(); });
+        m.addEventListener("click", function () { Q[i] = Math.max(0, Math.round((q - (kg ? .25 : 1)) * 100) / 100); S.dern = i; dessiner(); });
+        p.addEventListener("click", function () { Q[i] = Math.round((q + (kg ? .25 : 1)) * 100) / 100; S.dern = i; dessiner(); });
+        if (S.dern === i) v.classList.add("hop");
         z.appendChild(m); z.appendChild(v); z.appendChild(p);
         l.classList.toggle("on", q > 0);
       });
-      zJ.textContent = ""; zH.textContent = "";
-      jours.forEach(function (d, i) { var b = bouton("s-puce" + (i === S.j ? " on" : ""), K.jourTexte(d)); b.addEventListener("click", function () { S.j = i; S.h = null; dessiner(); }); zJ.appendChild(b); });
+      S.dern = null;
+      var remettre = vider(zJ); zH.textContent = "";
+      jours.forEach(function (d, i) { var b = puce(d, i === S.j); b.addEventListener("click", function () { S.j = i; S.h = null; dessiner(); }); zJ.appendChild(b); });
+      remettre();
       if (!jours.length) zH.appendChild(el("p", "s-vide", "Ajoutez vos horaires pour proposer des retraits."));
       else {
         var hs = K.creneaux(H, jours[S.j], 30, 0);
@@ -219,6 +232,21 @@
       maj(); mins.push(setInterval(maj, 30000));
     });
     bloc.querySelectorAll("[data-horaires]").forEach(function (t) { var i = K.ji(new Date()); t.querySelectorAll("[data-j]").forEach(function (r) { r.classList.toggle("auj", +r.getAttribute("data-j") === i); }); });
+    bloc.querySelectorAll("[data-auj]").forEach(function (x) {
+      function maj() { var H = P.infos.horaires, p = K.plages(H, K.ji(new Date())); x.textContent = p.length ? p.map(function (y) { return K.fmt(y[0]) + " – " + K.fmt(y[1]); }).join(", ") : K.aDesHoraires(H) ? "Fermé aujourd'hui" : "Horaires à venir"; }
+      maj(); mins.push(setInterval(maj, 60000));
+    });
+    bloc.querySelectorAll("[data-semaine]").forEach(function (sem) { maj(); mins.push(setInterval(maj, 60000));
+      function maj() {
+        var mn = +sem.getAttribute("data-min"), mx = +sem.getAttribute("data-max"), d = new Date(), i = K.ji(d), h = d.getHours() + d.getMinutes() / 60;
+        sem.querySelectorAll("[data-j]").forEach(function (r) {
+          var a = +r.getAttribute("data-j") === i, m = r.querySelector(".s-sem-mtn"); r.classList.toggle("auj", a); if (m) m.remove();
+          if (a && h >= mn && h <= mx) { var b = el("b", "s-sem-mtn"); b.style.left = ((h - mn) / (mx - mn) * 100) + "%"; b.title = "Maintenant"; r.querySelector(".s-sem-p").appendChild(b); }
+        });
+      }
+    });
+    bloc.querySelectorAll("[data-seg]").forEach(function (seg) { K.segments(seg, bloc); });
+    bloc.querySelectorAll("[data-defile]").forEach(function (sc) { K.fleches(sc, bloc); });
     bloc.querySelectorAll("[data-resa]").forEach(function (b) { resa(b, P, o); });
     bloc.querySelectorAll("[data-cmd]").forEach(function (b) { cmd(b, P, o); });
     bloc.querySelectorAll("[data-compte]").forEach(function (b) { mins.push(compte(b)); });
@@ -243,6 +271,35 @@
     bloc._kit = function () { mins.forEach(clearInterval); bloc._kit = null; };
   };
 
+  /* Filtre par catégorie : la pastille glisse sous l'option choisie. */
+  K.segments = function (seg, bloc) {
+    var btns = [].slice.call(seg.querySelectorAll("button[data-g]")), cibles = [].slice.call(bloc.querySelectorAll("[data-g]")).filter(function (x) { return !seg.contains(x); });
+    function choisi() { return btns.filter(function (b) { return b.getAttribute("aria-selected") === "true"; })[0] || btns[0]; }
+    function placer() { var b = choisi(); if (!b || !b.offsetWidth) return; seg.style.setProperty("--x", b.offsetLeft + "px"); seg.style.setProperty("--w", b.offsetWidth + "px"); seg.classList.add("pret"); }
+    function prendre(b, focus) {
+      btns.forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); x.tabIndex = x === b ? 0 : -1; });
+      placer(); if (focus) b.focus();
+      var g = b.getAttribute("data-g");
+      cibles.forEach(function (c) { var on = !g || c.getAttribute("data-g") === g; c.classList.toggle("s-cache", !on); if (on) { c.classList.remove("s-sort"); void c.offsetWidth; c.classList.add("s-sort"); } });
+      if (b.scrollIntoView && seg.scrollWidth > seg.clientWidth) seg.scrollTo({ left: b.offsetLeft - 20, behavior: douceur() });
+    }
+    btns.forEach(function (b, i) { b.tabIndex = i ? -1 : 0; b.addEventListener("click", function () { prendre(b); }); });
+    seg.addEventListener("keydown", function (ev) { var i = btns.indexOf(choisi()); if (ev.key === "ArrowRight") { ev.preventDefault(); prendre(btns[(i + 1) % btns.length], true); } if (ev.key === "ArrowLeft") { ev.preventDefault(); prendre(btns[(i - 1 + btns.length) % btns.length], true); } });
+    placer(); setTimeout(placer, 300);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placer);
+    if (w.ResizeObserver) new ResizeObserver(placer).observe(seg);
+  };
+  /* Flèches des rangées qui défilent. */
+  K.fleches = function (sc, bloc) {
+    var f = bloc.querySelector(".s-fleches"); if (!f) return;
+    var p = f.querySelector("[data-prec]"), n = f.querySelector("[data-suiv]");
+    function etat() { p.disabled = sc.scrollLeft <= 4; n.disabled = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 4; }
+    p.addEventListener("click", function () { sc.scrollBy({ left: -sc.clientWidth * .82, behavior: douceur() }); });
+    n.addEventListener("click", function () { sc.scrollBy({ left: sc.clientWidth * .82, behavior: douceur() }); });
+    sc.addEventListener("scroll", etat, { passive: true }); etat(); setTimeout(etat, 500);
+    if (w.ResizeObserver) new ResizeObserver(etat).observe(sc);
+  };
+
   K.loupe = function (img, o) {
     var d = document.createElement("dialog"); d.className = "s-loupe";
     var i = new Image(); i.src = img.src; i.alt = img.alt || "";
@@ -263,6 +320,19 @@
       if (bt) bt.addEventListener("click", function () { var v = ent.classList.toggle("ouvert"); bt.setAttribute("aria-expanded", v ? "true" : "false"); });
       ent.addEventListener("click", function (e) { if (e.target.closest(".s-nav a")) { ent.classList.remove("ouvert"); if (bt) bt.setAttribute("aria-expanded", "false"); } });
     }
+    /* En-tête : vitre dès qu'on défile. Barre d'action du téléphone : visible après la bannière. */
+    if (!root._defil) {
+      root._defil = true;
+      var sc = /(auto|scroll)/.test(getComputedStyle(root).overflowY) ? root : w, tic = false;
+      root._majDefil = function () {
+        var y = sc === w ? (w.scrollY || w.pageYOffset || 0) : root.scrollTop, hv = sc === w ? w.innerHeight : root.clientHeight;
+        var en = root.querySelector(".s-entete"), dk = root.querySelector("[data-dock]");
+        if (en) en.classList.toggle("colle", y > 8);
+        if (dk) dk.classList.toggle("vu", y > hv * .55);
+      };
+      sc.addEventListener("scroll", function () { if (!tic) { tic = true; (w.requestAnimationFrame || setTimeout)(function () { tic = false; root._majDefil(); }); } }, { passive: true });
+    }
+    root._majDefil();
     if (o.anim && "IntersectionObserver" in w) {
       var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("vu"); io.unobserve(x.target); } }); }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
       root.querySelectorAll("[data-anim]:not(.vu)").forEach(function (x) { io.observe(x); });

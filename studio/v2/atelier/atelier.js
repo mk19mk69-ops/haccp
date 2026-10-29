@@ -132,7 +132,8 @@
   }
   var FOND_DEF = { reservation: "teinte", commande: "teinte", avis: "teinte", contact: "teinte", fidelite: "auto" };
   var MENU_DEF = { prestations: 1, produits: 1, reservation: 1, commande: 1, galerie: 1, horaires: 1, contact: 1 };
-  function ctxPour(Px, edition, pageId) { return { P: Px, edition: !!edition, media: function (id) { return MEDIAS[id] || null; }, M: BL.M[Px.infos.metier] || BL.M.autre, metier: Px.infos.metier, pageId: pageId }; }
+  function srcDe(id, t) { if (!id) return null; if (String(id).indexOf("px:") === 0) return BL.photoInfo(id) ? BL.urlPhoto(id, t) : null; return t ? null : MEDIAS[id] || null; }
+  function ctxPour(Px, edition, pageId) { return { P: Px, edition: !!edition, media: srcDe, M: BL.M[Px.infos.metier] || BL.M.autre, metier: Px.infos.metier, pageId: pageId }; }
   function nouvelleSection(t, v, Px) {
     var b = B[t], c = ctxPour(Px || P), d = b.defaut(c);
     var menu = MENU_DEF[t] ? ((t === "prestations" || t === "produits") && d.titre && d.titre.length < 16 ? d.titre : b.ancre || "") : "";
@@ -194,7 +195,7 @@
   var site = $("site"), sortPage = null;
   function opts() { return { mode: etat.mode === "edition" ? "edition" : "apercu", toast: notif, calque: $("calque"), anim: P.theme.anim && etat.mode !== "edition" }; }
   function themer(el, Px) {
-    el.setAttribute("style", BL.varsTheme(Px.theme)); el.setAttribute("data-fond", Px.theme.fond);
+    el.setAttribute("style", BL.varsTheme(Px.theme)); el.setAttribute("data-fond", Px.theme.fond); el.setAttribute("data-metier", Px.infos.metier);
   }
   function rendreSite(arrivee) {
     var c = ctxPour(P, etat.mode === "edition", etat.page), page = pageCourante();
@@ -207,7 +208,7 @@
     if (page.html) corps = page.html;
     else corps = page.sections.map(function (s) { return BL.section(s, c); }).join("") || (etat.mode === "edition" ? '<div class="ed-vide"><p><b>Cette page est vide.</b> Glissez une section ici, ou touchez « Ajouter ».</p></div>' : "");
     var top = site.scrollTop;
-    site.innerHTML = BL.entete(c) + '<main id="sections" data-page="' + page.id + '">' + corps + "</main>" + BL.pied(c);
+    site.innerHTML = BL.entete(c) + '<main id="sections" data-page="' + page.id + '">' + corps + "</main>" + BL.pied(c) + BL.dock(c);
     if (!arrivee) site.scrollTop = top;
     decorer();
     K.activer(site, P, opts());
@@ -778,7 +779,7 @@
       { ok: K.aDesHoraires(i.horaires), t: "Vos horaires", f: function () { ouvrirPanneau("infos"); } },
       { ok: !ex.length, t: ex.length ? "Vos vrais prix (" + ex.map(nomBloc).join(", ") + " : contenu d'exemple)" : "Vos vrais prix", f: function () { if (ex[0]) { allerPage(pageDe(ex[0].id).id); setTimeout(function () { choisir(ex[0].id, { force: true }); defilerVers(Q('[data-sec="' + ex[0].id + '"]', site)); }, 80); } } },
       { ok: !avisEx.length, t: avisEx.length ? "De vrais avis clients (les avis d'exemple ne seront pas publiés)" : "De vrais avis clients", f: function () { if (avisEx[0]) { allerPage(pageDe(avisEx[0].id).id); setTimeout(function () { choisir(avisEx[0].id, { force: true }); defilerVers(Q('[data-sec="' + avisEx[0].id + '"]', site)); }, 80); } } },
-      { ok: photos() >= 3, t: "Au moins 3 vraies photos (" + photos() + " pour l'instant)", f: function () { var s = null; P.pages.forEach(function (p) { p.sections.forEach(function (x) { if (!s && (x.t === "galerie" || x.t === "heros")) s = x; }); }); if (s) { allerPage(pageDe(s.id).id); setTimeout(function () { choisir(s.id, { force: true }); defilerVers(Q('[data-sec="' + s.id + '"]', site)); }, 80); } } },
+      { ok: photos() >= 3, t: "Au moins 3 vraies photos (" + photos() + " pour l'instant, les photos d'illustration ne comptent pas)", f: function () { var s = null; P.pages.forEach(function (p) { p.sections.forEach(function (x) { if (!s && (x.t === "galerie" || x.t === "heros")) s = x; }); }); if (s) { allerPage(pageDe(s.id).id); setTimeout(function () { choisir(s.id, { force: true }); defilerVers(Q('[data-sec="' + s.id + '"]', site)); }, 80); } } },
       { ok: !!P.logo, t: "Votre logo (facultatif)", opt: true, f: function () { ouvrirPanneau("infos"); } },
       { ok: !!(i.forme && i.responsable && siretOk(i.siret || "")), t: "Les infos des mentions légales (forme, responsable, SIRET)", f: function () { ouvrirPanneau("infos"); setTimeout(function () { var g = QA("#panneau-corps .groupe"); if (g.length) g[g.length - 1].scrollIntoView({ behavior: "smooth" }); }, 120); } },
       { ok: !!P.domaine, t: "L'adresse de votre site", f: function () { ouvrirPanneau("domaine"); } }
@@ -886,7 +887,7 @@
       case "inter": return interrupteur(def.label, !!v, vite);
       case "note": return h("p", { class: "p-mini p-note" }, [def.texte, def.action ? h("button", { type: "button", class: "btn-lien", text: " Ouvrir les infos", onclick: function () { ouvrirPanneau(def.action); } }) : null]);
       case "bouton": return champBouton(def, s, chemin, v || { t: "", a: "tel" });
-      case "image": return champImage(def.label, v, function (id) { vite(id); rendreInspecteur(); }, function () { return changerImage(s, chemin); });
+      case "image": return champImage(def.label, v, function (id) { vite(id); rendreInspecteur(); }, function () { return changerImage(s, chemin); }, function () { biblio(false).then(function (ids) { if (ids[0]) { ecrire(s.d, chemin, ids[0]); rendreSection(s.id); rendreInspecteur(); change(); toast("Photo d'illustration ajoutée"); } }); });
       case "images": return champImages(def, s, chemin, v || []);
       case "liste": return champListe(def, s, chemin, v || []);
     }
@@ -951,37 +952,45 @@
         .catch(function () { toast("Cette image n'a pas pu être lue. Essayez un fichier JPG ou PNG."); });
     });
   }
-  function champImage(label, id, set, pick) {
-    var src = id && MEDIAS[id];
+  function champImage(label, id, set, pick, lib) {
+    var src = srcDe(id, "m") || srcDe(id), illu = String(id || "").indexOf("px:") === 0;
     return h("div", { class: "champ" }, [h("span", { class: "champ-l", text: label }), h("div", { class: "img-champ" }, [
       h("button", { type: "button", class: "img-v", "aria-label": "Choisir une photo", html: src ? '<img src="' + src + '" alt="">' : svg(I.photo), onclick: pick }),
-      h("div", {}, [h("button", { type: "button", class: "btn-2 btn--s", text: src ? "Remplacer" : "Choisir une photo", onclick: pick }), src ? h("button", { type: "button", class: "btn-lien", text: "Retirer", onclick: function () { set(null); } }) : null])
-    ])]);
+      h("div", { class: "img-champ-act" }, [h("button", { type: "button", class: "btn-2 btn--s", text: src && !illu ? "Remplacer" : "Ma photo", onclick: pick }), lib ? h("button", { type: "button", class: "btn-lien", text: "Photos d'illustration", onclick: lib }) : null, src ? h("button", { type: "button", class: "btn-lien", text: "Retirer", onclick: function () { set(null); } }) : null])
+    ]), illu ? h("p", { class: "p-mini", text: "Photo d'illustration (libre de droits). Remplacez-la par une vraie photo de votre commerce dès que possible." }) : null]);
   }
   function champImages(def, s, chemin, arr) {
     var g = h("div", { class: "imgs" });
     arr.forEach(function (id, i) {
-      var src = id && MEDIAS[id];
-      g.appendChild(h("div", { class: "imgs-i" + (src ? "" : " vide"), "data-i": i }, [
+      var src = srcDe(id, "m") || srcDe(id);
+      g.appendChild(h("div", { class: "imgs-i" + (src ? "" : " vide") + (String(id || "").indexOf("px:") === 0 ? " illu" : ""), "data-i": i }, [
         h("button", { type: "button", class: "imgs-b", "aria-label": src ? "Remplacer la photo " + (i + 1) : "Ajouter la photo " + (i + 1), html: src ? '<img src="' + src + '" alt="">' : svg(I.plus), onclick: function () { changerImage(s, chemin + "." + i); } }),
         h("button", { type: "button", class: "imgs-x", "aria-label": "Retirer la photo " + (i + 1), html: svg(I.x), onclick: function () { arr.splice(i, 1); s.ex = false; rendreSection(s.id); rendreInspecteur(); change(); } })
       ]));
     });
     var st = Sortable.create(g, { animation: 160, forceFallback: true, fallbackOnBody: true, ghostClass: "plan-fantome", onEnd: function () { var o = QA(".imgs-i", g).map(function (x) { return arr[+x.getAttribute("data-i")]; }); arr.length = 0; o.forEach(function (x) { arr.push(x); }); rendreSection(s.id); rendreInspecteur(); change(); } });
     sortListes.push(st);
-    return h("div", { class: "champ" }, [h("span", { class: "champ-l", text: def.label + " (" + arr.filter(function (x) { return x && MEDIAS[x]; }).length + ")" }), g,
+    return h("div", { class: "champ" }, [h("span", { class: "champ-l", text: def.label + " (" + arr.filter(function (x) { return srcDe(x); }).length + ")" }), g,
       h("button", { type: "button", class: "btn-2 btn-plein", html: svg(I.plus) + "Ajouter plusieurs photos", onclick: function () {
         choisirFichier(true).then(function (fs) {
           if (!fs.length) return; $("etat").textContent = "Préparation des photos…";
           Promise.all(fs.slice(0, 24).map(function (f) { return lireImage(f, 1600).catch(function () { return null; }); })).then(function (rs) {
             var ids = rs.filter(Boolean).map(function (r) { return ajouterMedia(r.data); });
-            var vides = []; arr.forEach(function (x, i) { if (!x || !MEDIAS[x]) vides.push(i); });
+            var vides = []; arr.forEach(function (x, i) { if (!srcDe(x)) vides.push(i); });
             ids.forEach(function (id) { if (vides.length) arr[vides.shift()] = id; else arr.push(id); });
             s.ex = false; rendreSection(s.id); rendreInspecteur(); change(); toast(ids.length + " photo" + (ids.length > 1 ? "s" : "") + " ajoutée" + (ids.length > 1 ? "s" : ""));
           });
         });
       } }),
-      h("p", { class: "p-mini", text: "Glissez les vignettes pour changer l'ordre." })]);
+      h("button", { type: "button", class: "btn-lien", text: "Ajouter des photos d'illustration", onclick: function () {
+        biblio(true).then(function (ids) {
+          if (!ids.length) return;
+          var vides = []; arr.forEach(function (x, i) { if (!srcDe(x)) vides.push(i); });
+          ids.forEach(function (id) { if (vides.length) arr[vides.shift()] = id; else arr.push(id); });
+          rendreSection(s.id); rendreInspecteur(); change(); toast(ids.length + " photo" + (ids.length > 1 ? "s" : "") + " d'illustration ajoutée" + (ids.length > 1 ? "s" : ""));
+        });
+      } }),
+      h("p", { class: "p-mini", text: "Glissez les vignettes pour changer l'ordre. Les photos marquées d'un point sont des photos d'illustration." })]);
   }
   function champListe(def, s, chemin, arr) {
     var l = h("ol", { class: "liste" });
@@ -1047,6 +1056,42 @@
     transition(function () { rendreSite(); cadrer(); }); rendreInspecteur();
   }
   $("btn-apercu").addEventListener("click", apercu);
+
+  /* ===================== Photos d'illustration ===================== */
+  var CATS_LIB = [["barbier", "Barbier"], ["coiffure", "Coiffure"], ["institut", "Institut"], ["boucherie", "Boucherie"], ["kebab", "Kebab"], ["turc", "Grillades"], ["burger", "Burgers"], ["naan", "Naans"], ["boulangerie", "Boulangerie"], ["epicerie", "Épicerie"], ["fleuriste", "Fleuriste"], ["restaurant", "Restaurant"]];
+  var LIB_METIER = { barbier: "barbier", coiffure: "coiffure", institut: "institut", boucherie: "boucherie", snack: "burger", restaurant: "restaurant", boulangerie: "boulangerie", epicerie: "epicerie", fleuriste: "fleuriste" };
+  function biblio(multi) {
+    return new Promise(function (ok) {
+      var d = $("biblio"), corps = $("biblio-corps"), L = window.PHOTOS || {}, cat = LIB_METIER[P.infos.metier] || "barbier", pris = [], fini = false;
+      function finir(ids) { if (fini) return; fini = true; if (d.open) d.close(); ok(ids); }
+      corps.textContent = "";
+      var grille = h("div", { class: "phl-g" }), n = h("span", { class: "phl-n" }), btn = h("button", { type: "button", class: "btn", text: "Ajouter", onclick: function () { finir(pris.slice()); } });
+      function compter() { n.textContent = pris.length ? pris.length + " photo" + (pris.length > 1 ? "s choisies" : " choisie") : "Touchez les photos à ajouter"; btn.disabled = !pris.length; }
+      function remplir() {
+        grille.textContent = "";
+        (L[cat] || []).forEach(function (p) {
+          var id = "px:" + cat + "/" + p.id, b = h("button", { type: "button", class: "phl-i" + (pris.indexOf(id) >= 0 ? " on" : ""), "aria-pressed": pris.indexOf(id) >= 0 ? "true" : "false", title: p.alt, html: '<img src="' + BL.urlPhoto(id, "m") + '" alt="' + K.e(p.alt) + '" loading="lazy" style="background:' + p.c + '">' });
+          b.addEventListener("click", function () {
+            if (!multi) return finir([id]);
+            var k = pris.indexOf(id); if (k >= 0) pris.splice(k, 1); else pris.push(id);
+            b.classList.toggle("on", k < 0); b.setAttribute("aria-pressed", k < 0 ? "true" : "false"); compter();
+          });
+          grille.appendChild(b);
+        });
+        grille.scrollTop = 0;
+      }
+      var onglets = h("div", { class: "phl-cats" }, CATS_LIB.filter(function (c) { return L[c[0]]; }).map(function (c) {
+        return h("button", { type: "button", class: "phl-cat" + (c[0] === cat ? " on" : ""), text: c[1], onclick: function (ev) { cat = c[0]; QA(".phl-cat", onglets).forEach(function (x) { x.classList.toggle("on", x === ev.currentTarget); }); remplir(); } });
+      }));
+      corps.appendChild(h("div", { class: "fen-tete" }, [h("h2", { text: "Photos d'illustration" }), h("button", { type: "button", class: "btn-lien", text: "Fermer", onclick: function () { finir([]); } })]));
+      corps.appendChild(h("p", { class: "fen-lead", text: "Des photos libres de droits (Pexels) pour démarrer. Le site affichera « Photo d'illustration » à côté. Dès que possible, mettez de vraies photos de votre commerce : c'est ce que vos clients veulent voir." }));
+      corps.appendChild(onglets); corps.appendChild(grille);
+      if (multi) { corps.appendChild(h("div", { class: "fen-act phl-act" }, [n, btn])); compter(); }
+      remplir();
+      d.addEventListener("close", function f() { d.removeEventListener("close", f); finir([]); });
+      d.showModal();
+    });
+  }
 
   /* ===================== Fenêtres ===================== */
   function confirmer(titre, texte, ok, f) {
@@ -1138,11 +1183,15 @@
   }
   function enB64(url) { return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(function (b) { var s = "", u = new Uint8Array(b); for (var i = 0; i < u.length; i += 8192) s += String.fromCharCode.apply(null, u.subarray(i, i + 8192)); return btoa(s); }); }
   function exporterHTML() {
-    var pol = BL.POLICES[P.theme.police];
-    Promise.all([fetch("site.css").then(function (r) { return r.text(); }), fetch("runtime.js").then(function (r) { return r.text(); }), pol.fichier ? enB64(pol.fichier) : Promise.resolve("")]).then(function (r) {
+    var pol = BL.POLICES[P.theme.police], libres = {};
+    JSON.stringify(P.pages).replace(/"(px:[a-z]+\/\d+)"/g, function (x, id) { if (BL.photoInfo(id)) libres[id] = null; });
+    var chargerLibres = Promise.all(Object.keys(libres).map(function (id) { return enB64(BL.urlPhoto(id)).then(function (b) { libres[id] = "data:image/webp;base64," + b; }).catch(function () {}); }));
+    if (Object.keys(libres).length) toast("Préparation des photos…");
+    Promise.all([fetch("site.css").then(function (r) { return r.text(); }), fetch("runtime.js").then(function (r) { return r.text(); }), pol.fichier ? enB64(pol.fichier) : Promise.resolve(""), chargerLibres]).then(function (r) {
       var css = r[0].replace(/\/\*polices:debut\*\/[\s\S]*?\/\*polices:fin\*\//, ""), face = r[2] ? '@font-face{font-family:"' + pol.famille + '";font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(data:font/woff2;base64,' + r[2] + ') format("woff2")}' : "";
       var Pexp = copie(P); Pexp.pages.forEach(function (p) { p.sections = p.sections.filter(function (s) { return !(s.t === "avis" && s.ex); }); });
       var c = ctxPour(Pexp, false, "accueil"), i = P.infos;
+      c.media = function (id, t) { if (String(id || "").indexOf("px:") === 0) return t ? null : libres[id] || null; return t ? null : MEDIAS[id] || null; };
       var mains = Pexp.pages.map(function (p, k) { return '<main data-page="' + p.id + '"' + (k ? " hidden" : "") + ">" + p.sections.map(function (s) { return BL.section(s, c); }).join("") + "</main>"; }).join("") +
         BL.pagesLegales(Pexp).map(function (p) { return '<main data-page="' + p.id + '" hidden>' + p.html + "</main>"; }).join("");
       var ld = { "@context": "https://schema.org", "@type": "LocalBusiness", name: i.nom, telephone: i.tel || undefined, email: i.email || undefined, url: P.domaine ? "https://" + P.domaine : undefined,
@@ -1154,8 +1203,8 @@
       var desc = (heros && heros.d.texte) || (BL.M[i.metier] || BL.M.autre).accroche, titre = (i.nom || "Mon commerce") + (i.ville ? ", " + (BL.M[i.metier] || BL.M.autre).nom.toLowerCase() + " à " + i.ville : "");
       var Pmin = { infos: { horaires: i.horaires, tel: i.tel, email: i.email, nom: i.nom } };
       var html = '<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>' + K.e(titre) + '</title>\n<meta name="description" content="' + K.e(desc) + '">\n<meta property="og:title" content="' + K.e(titre) + '">\n<meta property="og:description" content="' + K.e(desc) + '">\n<meta name="theme-color" content="' + K.e(P.theme.c1) + '">\n' +
-        '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "<\/script>\n<style>" + face + css + "\nbody{margin:0;background:" + BL.FONDS[P.theme.fond].fond + "}html{scroll-padding-top:80px}\n</style>\n</head>\n<body>\n" +
-        '<div class="site' + (P.theme.anim ? " anim" : "") + '" style="' + BL.varsTheme(P.theme) + '" data-fond="' + P.theme.fond + '">' + BL.entete(c) + mains + BL.pied(c) + "</div>\n" +
+        '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "<\/script>\n<style>" + face + css + "\nbody{margin:0;background:" + BL.FONDS[P.theme.fond].fond + "}html{scroll-padding-top:80px}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}\n</style>\n</head>\n<body>\n" +
+        '<div class="site' + (P.theme.anim ? " anim" : "") + '" style="' + BL.varsTheme(P.theme) + '" data-fond="' + P.theme.fond + '" data-metier="' + K.e(i.metier) + '">' + BL.entete(c) + mains + BL.pied(c) + BL.dock(c) + "</div>\n" +
         "<script>" + r[1] + "<\/script>\n<script>(function(){var r=document.querySelector('.site'),P=" + JSON.stringify(Pmin).replace(/</g, "\\u003c") + ";SiteKit.activer(r,P,{mode:'export',anim:" + (!!P.theme.anim) + "});SiteKit.routeur(r);})();<\/script>\n</body>\n</html>\n";
       telecharger((slug(i.nom) || "mon-site") + ".html", html, "text/html");
       toast("Site téléchargé : ouvrez le fichier pour le voir en vrai");
