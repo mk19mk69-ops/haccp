@@ -2,3 +2,5 @@ Serveur de liens courts de l'Atelier
 Hébergé gratuitement sur Cloudflare Workers, avec un espace de stockage KV nommé PROJETS.
 En ligne : https://atelier-liens.cf-liens.workers.dev (compte Cloudflare d'Ali, stockage KV « atelier-projets »).
 Tant que SERVEUR_LIENS est vide, l'Atelier garde l'ancien lien long et, pour une demande, télécharge le fichier du projet.
+Site Mokrani Studio : publié sur Cloudflare (Worker « mokranistudio », fichiers de studio/v2), domaines mokranistudio.fr et www.mokranistudio.fr.
+E-mail : reste chez OVH (Zimbra), enregistrements MX et SPF recopiés dans la zone Cloudflare.

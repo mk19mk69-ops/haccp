@@ -2,7 +2,7 @@
    POST /p        : range un projet, renvoie { code } (7 caractères, ex. K7P2QXM)
    GET  /p/CODE   : rend le projet
    Seul le site de Mokrani Studio peut enregistrer. Un projet est gardé 1 an. */
-const ORIGINES = ["https://mk19mk69-ops.github.io"];
+const ORIGINES = ["https://mk19mk69-ops.github.io", "https://mokranistudio.fr", "https://www.mokranistudio.fr", "https://mokranistudio.pages.dev"];
 const ALPHA = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
 const MAX = 8e6;
 
