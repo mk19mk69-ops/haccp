@@ -724,6 +724,9 @@ sup a { color: inherit; }
 .vide { width: min(250px, 58vw); aspect-ratio: 1 / 2.1667; border-radius: 42px; border: 2px dashed rgba(255,255,255,.6); display: grid; justify-items: center; align-content: start; padding-top: 34%; gap: 12px; color: #fff; }
 .vide span { width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,.2); display: grid; place-items: center; font-size: 30px; font-weight: 300; }
 
+.tarif-atelier { margin: 28px auto 0; max-width: 62ch; text-align: center; color: var(--texte-2); font-size: 1rem; line-height: 1.5; }
+.tarif-atelier b { color: var(--texte); white-space: nowrap; }
+.tarif-atelier a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 /* Tarifs façon « comparer les modèles » */
 .tarifs { padding-block: clamp(90px, 11vw, 150px); }
 .tarifs-tete { text-align: center; display: grid; justify-items: center; gap: 14px; margin-bottom: clamp(40px, 6vw, 72px); }
@@ -998,7 +1001,7 @@ footer { background: var(--fond); }
   .story:not(.story--anime) .story-pas h3 { font-size: 21px; padding-top: 4px; }
   .story:not(.story--anime) .story-pas p:last-child { font-size: 16px; margin-top: 4px; }
 
-  /* Tarifs : les trois formules visibles d'un coup, sans glisser */
+/* Tarifs : les trois formules visibles d'un coup, sans glisser */
   .compare { display: grid; grid-auto-flow: row; grid-template-columns: 1fr; overflow: visible; gap: 14px; padding: 0; text-align: left; }
   .col { background: #fff; border-radius: 22px; padding: 22px 20px 8px; justify-items: stretch; box-shadow: 0 1px 2px rgba(18,26,36,.05), 0 14px 34px -24px rgba(18,26,36,.35); }
   .col:nth-child(2) { box-shadow: inset 0 0 0 2px var(--bleu), 0 14px 34px -24px rgba(18,26,36,.35); }
@@ -2271,6 +2274,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
 
       <div class="paddles paddles--mobile" data-cible="compare"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
       <p class="astuce-mobile">Faites glisser pour comparer les 3 formules</p>
+      <p class="tarif-atelier">Vous construisez votre site vous-même dans <a href="atelier/">l'Atelier</a> ? <b>Vitrine 190&nbsp;€</b> · <b>Réservation 290&nbsp;€</b>. Je vérifie tout et je le mets en ligne.</p>
 
 
       <div class="calcul" id="calcul">
@@ -2371,7 +2375,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
           <div class="champ"><input id="f-nom" autocomplete="name" placeholder=" "><label for="f-nom">Votre nom</label></div>
           <div class="champ"><input id="f-commerce" placeholder=" "><label for="f-commerce">Votre commerce</label></div>
           <div class="champ"><input id="f-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder=" "><label for="f-tel">Téléphone</label></div>
-          <div class="champ"><select id="f-formule"><option>Vitrine</option><option selected>Réservation</option><option>Sur mesure</option><option>Accompagnement informatique</option><option>Ordinateur préconfiguré</option><option>Je ne sais pas encore</option></select><label for="f-formule">Ce qui vous intéresse</label></div>
+          <div class="champ"><select id="f-formule"><option>Vitrine</option><option selected>Réservation</option><option>Sur mesure</option><option>Vitrine faite dans l'Atelier</option><option>Réservation faite dans l'Atelier</option><option>Accompagnement informatique</option><option>Ordinateur préconfiguré</option><option>Je ne sais pas encore</option></select><label for="f-formule">Ce qui vous intéresse</label></div>
           <div class="champ champ--large"><textarea id="f-msg" placeholder=" "></textarea><label for="f-msg">Votre besoin, en quelques mots</label></div>
         </div>
         <p class="erreur" id="f-erreur" role="alert"></p>

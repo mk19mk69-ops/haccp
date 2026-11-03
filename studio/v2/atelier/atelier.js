@@ -811,7 +811,7 @@
     c.appendChild(groupe("Raccourcis clavier", [h("ul", { class: "raccourcis" }, [["Ctrl Z", "Annuler"], ["Ctrl Maj Z", "Rétablir"], ["Ctrl K", "Chercher une action"], ["Suppr", "Supprimer la section choisie"], ["Ctrl D", "Dupliquer la section"], ["Alt ↑ ↓", "Monter, descendre la section"], ["Échap", "Désélectionner, fermer"]].map(function (r) { return h("li", {}, [h("kbd", { text: r[0] }), h("span", { text: r[1] })]); }))]));
     c.appendChild(groupe("Votre projet", [
       h("p", { class: "p-mini", text: "Votre projet est enregistré sur cet appareil, dans ce navigateur. Pour le garder ailleurs, téléchargez-le." }),
-      h("button", { type: "button", class: "btn-2 btn-plein", html: svg(I.telecharger) + "Télécharger le projet (.json)", onclick: exporterJSON }),
+      h("button", { type: "button", class: "btn-2 btn-plein", html: svg(I.telecharger) + "Sauvegarder le projet (fichier)", onclick: exporterJSON }),
       h("button", { type: "button", class: "btn-2 btn-plein", text: "Ouvrir un projet (.json)", onclick: importerJSON }),
       h("button", { type: "button", class: "btn-2 btn-plein", html: svg(I.lien) + "Copier le lien du projet", onclick: copierLien }),
       h("button", { type: "button", class: "btn-lien btn-danger", text: "Recommencer un nouveau site", onclick: function () { confirmer("Recommencer un nouveau site ?", "Le projet actuel sera remplacé. Téléchargez-le avant si vous voulez le garder.", "Recommencer", function () { assistant({}); }); } })
@@ -1105,7 +1105,7 @@
   /* ---------- Mettre en ligne ---------- */
   function publier() {
     var d = $("publier"), c = $("pub-corps"), s = score(), aResa = P.pages.some(function (p) { return p.sections.some(function (x) { return x.t === "reservation" || x.t === "commande"; }); });
-    var F = [["Vitrine", "350 €", "Être trouvé et bien présenté"], ["Réservation", "490 €", "Vos clients réservent ou commandent seuls"], ["Sur mesure", "dès 690 €", "L'outil exact de votre métier"]];
+    var F = [["Vitrine", "190 €", "Être trouvé et bien présenté"], ["Réservation", "290 €", "Vos clients réservent ou commandent seuls"]];
     var choixF = aResa ? "Réservation" : "Vitrine";
     c.textContent = "";
     c.appendChild(h("div", { class: "fen-tete" }, [h("h2", { id: "pub-titre", text: "Mettre votre site en ligne" }), h("button", { type: "button", class: "ico", "aria-label": "Fermer", html: svg(I.x), onclick: function () { d.close(); } })]));
@@ -1117,25 +1117,27 @@
     var formules = h("div", { class: "formules", role: "radiogroup" }, F.map(function (f) {
       return h("button", { type: "button", role: "radio", class: "formule", "aria-checked": f[0] === choixF ? "true" : "false", onclick: function (e) { choixF = f[0]; QA(".formule", formules).forEach(function (x) { x.setAttribute("aria-checked", x === e.currentTarget ? "true" : "false"); }); } }, [h("b", { text: f[0] }), h("span", { class: "formule-p", text: f[1] }), h("small", { text: f[2] })]);
     }));
-    c.appendChild(h("div", { class: "pub-bloc" }, [h("h3", { text: "Formule" }), formules, P.pages.length > 1 ? h("p", { class: "p-mini", text: "Votre site a " + P.pages.length + " pages : Ali vous dira si cela change le tarif." }) : null, h("p", { class: "p-mini", text: "Payé une fois. Hébergement : 50 € la première année, environ 5 € par mois ensuite." })]));
+    c.appendChild(h("div", { class: "pub-bloc" }, [h("h3", { text: "Formule" }), formules, P.pages.length > 1 ? h("p", { class: "p-mini", text: "Votre site a " + P.pages.length + " pages : Ali vous dira si cela change le tarif." }) : null, h("p", { class: "p-mini", text: "Prix Atelier : moins cher, car c'est vous qui avez construit le site. Payé une fois. Hébergement : 50 € la première année, environ 5 € par mois ensuite." }), h("p", { class: "p-mini", text: "Besoin d'un outil fait pour votre métier (stocks, HACCP, planning) ? Ali le fait pour vous, dès 690 €." })]));
     var envoi = h("div", { class: "pub-envoi" });
     c.appendChild(envoi);
     function dessinerEnvoi() {
       envoi.textContent = "";
       envoi.appendChild(h("button", { type: "button", class: "btn btn-plein", text: "Envoyer ma demande à Ali", onclick: function () {
-        lienProjet().then(function (l) {
-          var msg = "Bonjour Ali, j'ai créé mon site dans l'Atelier : " + (P.infos.nom || "mon commerce") + (P.domaine ? ", adresse souhaitée " + P.domaine : "") + ". Formule : " + choixF + ". Mon projet : " + l;
-          var u = "../?formule=" + encodeURIComponent(choixF) + "&commerce=" + encodeURIComponent(P.infos.nom || "") + "&msg=" + encodeURIComponent(msg) + "#contact";
-          window.open(u, "_blank", "noopener");
-          envoi.appendChild(h("p", { class: "p-ok", html: svg(I.ok) + "Le formulaire de contact s'est ouvert, déjà rempli. Ajoutez votre nom et votre numéro, puis envoyez." }));
+        var fen = window.open("", "_blank");
+        lienCourt(true).then(function (l) { return { lien: l }; }, function () { exporterJSON(); return { lien: null }; }).then(function (r) {
+          var formule = choixF + " faite dans l'Atelier";
+          var msg = "Bonjour Ali, j'ai créé mon site dans l'Atelier : " + (P.infos.nom || "mon commerce") + (P.domaine ? ", adresse souhaitée " + P.domaine : "") + ". Formule : " + formule + ". " + (r.lien ? "Mon projet : " + r.lien : "Je joins le fichier de mon projet (il vient d'être téléchargé).");
+          var u = "../?formule=" + encodeURIComponent(formule) + "&commerce=" + encodeURIComponent(P.infos.nom || "") + "&msg=" + encodeURIComponent(msg) + "#contact";
+          if (fen) fen.location.href = u; else window.open(u, "_blank");
+          envoi.appendChild(h("p", { class: "p-ok", html: svg(I.ok) + (r.lien ? "Le formulaire de contact s'est ouvert, déjà rempli. Ajoutez votre nom et votre numéro, puis envoyez." : "Le formulaire s'est ouvert et le fichier de votre projet est téléchargé : joignez-le à votre message.") }));
         });
       } }));
       envoi.appendChild(h("div", { class: "pub-autres" }, [
         h("button", { type: "button", class: "btn-2", html: svg(I.lien) + "Copier le lien du projet", onclick: copierLien }),
-        h("button", { type: "button", class: "btn-2", html: svg(I.telecharger) + "Télécharger le site (.html)", onclick: exporterHTML }),
-        h("button", { type: "button", class: "btn-2", html: svg(I.telecharger) + "Télécharger le projet (.json)", onclick: exporterJSON })
+        estAli() ? h("button", { type: "button", class: "btn-2", html: svg(I.telecharger) + "Télécharger le site (.html)", onclick: exporterHTML }) : null,
+        h("button", { type: "button", class: "btn-2", html: svg(I.telecharger) + "Sauvegarder le projet", onclick: exporterJSON })
       ]));
-      envoi.appendChild(h("p", { class: "p-mini", text: "Le lien du projet contient vos textes et réglages, pas vos photos. Pour les photos, envoyez le fichier du projet." }));
+      envoi.appendChild(h("p", { class: "p-mini", text: "Le site final est préparé et mis en ligne par Ali après votre accord. La sauvegarde du projet se rouvre uniquement dans l'Atelier." }));
     }
     dessinerEnvoi();
     d.showModal();
@@ -1158,8 +1160,37 @@
     if (v.charAt(0) === "z") return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text().then(JSON.parse);
     return Promise.resolve(JSON.parse(new TextDecoder().decode(u)));
   }
+  /* Liens courts : le projet est rangé sur le serveur de liens, le lien ne contient qu'un code (…/atelier/?projet=K7P2QXM). */
+  var SERVEUR_LIENS = "";
+  function mediasDu(Pr) { var m = {}; JSON.stringify(Pr).replace(/"(m[a-z0-9]{6,})"/g, function (x, id) { if (MEDIAS[id]) m[id] = MEDIAS[id]; }); return m; }
+  function lienCourt(avecPhotos) {
+    if (!SERVEUR_LIENS) return Promise.reject("pas de serveur");
+    var corps = JSON.stringify({ atelier: 1, projet: P, medias: avecPhotos ? mediasDu(P) : {} });
+    if (corps.length > 8e6) corps = JSON.stringify({ atelier: 1, projet: P, medias: {} });
+    return fetch(SERVEUR_LIENS + "/p", { method: "POST", headers: { "content-type": "application/json" }, body: corps })
+      .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+      .then(function (o) { return location.href.split(/[?#]/)[0] + "?projet=" + o.code; });
+  }
+  function lireLienCourt(code) {
+    return fetch(SERVEUR_LIENS + "/p/" + code).then(function (r) { if (!r.ok) throw r.status; return r.json(); }).then(function (o) {
+      Object.keys(o.medias || {}).forEach(function (id) { MEDIAS[id] = o.medias[id]; IDB.mettre(id, o.medias[id]); });
+      return o.projet;
+    });
+  }
+  /* Accès d'Ali : le téléchargement du site final n'apparaît que sur ses appareils (ouvrir une fois l'Atelier avec ?ali=son code). */
+  var CLE_ALI = "atelier-ali", EMPREINTE_ALI = "060475d22562691b6f026b192e1edce680082a0230155bf60c2af4b55a320311", ALI = false;
+  try { ALI = localStorage.getItem(CLE_ALI) === EMPREINTE_ALI; } catch (e) {}
+  function estAli() { return ALI; }
+  (function () {
+    var code = new URLSearchParams(location.search).get("ali"); if (!code || !window.crypto || !crypto.subtle) return;
+    history.replaceState(null, "", location.pathname + location.hash);
+    crypto.subtle.digest("SHA-256", new TextEncoder().encode(code)).then(function (b) {
+      var hx = Array.prototype.map.call(new Uint8Array(b), function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+      if (hx === EMPREINTE_ALI) { ALI = true; try { localStorage.setItem(CLE_ALI, hx); } catch (e) {} toast("Accès Ali activé sur cet appareil"); }
+    });
+  })();
   function copierLien() {
-    lienProjet().then(function (l) {
+    lienCourt(false).catch(function () { return lienProjet(); }).then(function (l) {
       (navigator.clipboard ? navigator.clipboard.writeText(l) : Promise.reject()).then(function () { toast("Lien copié : il rouvre ce projet sur n'importe quel appareil (sans les photos)"); }, function () { prompt("Copiez ce lien :", l); });
     });
   }
@@ -1183,6 +1214,7 @@
   }
   function enB64(url) { return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(function (b) { var s = "", u = new Uint8Array(b); for (var i = 0; i < u.length; i += 8192) s += String.fromCharCode.apply(null, u.subarray(i, i + 8192)); return btoa(s); }); }
   function exporterHTML() {
+    if (!estAli()) { toast("Le site final est préparé par Ali. Utilisez « Mettre en ligne »."); return; }
     var pol = BL.POLICES[P.theme.police], libres = {};
     JSON.stringify(P.pages).replace(/"(px:[a-z]+\/\d+)"/g, function (x, id) { if (BL.photoInfo(id)) libres[id] = null; });
     var chargerLibres = Promise.all(Object.keys(libres).map(function (id) { return enB64(BL.urlPhoto(id)).then(function (b) { libres[id] = "data:image/webp;base64," + b; }).catch(function () {}); }));
@@ -1218,7 +1250,8 @@
     [["ajouter", "Ouvrir la bibliothèque de sections"], ["structure", "Voir le plan de la page"], ["style", "Changer la couleur, l'écriture, le fond"], ["infos", "Modifier le nom, le téléphone, les horaires, l'adresse"], ["pages", "Ajouter ou renommer une page"], ["domaine", "Trouver une adresse web (nom de domaine)"], ["verifier", "Vérifier ce qu'il manque avant la mise en ligne"], ["aide", "Aide et raccourcis"]].forEach(function (p) { l.push([p[1], "Panneau", function () { ouvrirPanneau(p[0]); }]); });
     l.push(["Voir l'aperçu", "Le site comme vos clients le verront", apercu]);
     l.push(["Vue téléphone", "", function () { changerAppareil("tel"); }], ["Vue tablette", "", function () { changerAppareil("tablette"); }], ["Vue ordinateur", "", function () { changerAppareil("ordi"); }]);
-    l.push(["Mettre en ligne", "Envoyer votre site à Mokrani Studio", publier], ["Télécharger le site (.html)", "", exporterHTML], ["Copier le lien du projet", "", copierLien], ["Revoir la visite guidée", "", visite]);
+    l.push(["Mettre en ligne", "Envoyer votre site à Mokrani Studio", publier], ["Copier le lien du projet", "", copierLien], ["Revoir la visite guidée", "", visite]);
+    if (estAli()) l.push(["Télécharger le site (.html)", "Réservé à Ali", exporterHTML]);
     AMBIANCES.forEach(function (a) { l.push(["Ambiance : " + a[0], "Style", function () { Object.assign(P.theme, a[1]); rendreSite(); change(); }]); });
     P.pages.concat(BL.pagesLegales(P)).forEach(function (p) { l.push(["Aller à la page : " + p.nom, "", function () { allerPage(p.id); }]); });
     sections().forEach(function (s) { l.push(["Modifier : " + nomBloc(s), "Section de la page", function () { choisir(s.id, { force: true }); defilerVers(Q('[data-sec="' + s.id + '"]', site)); }]); });
@@ -1411,7 +1444,14 @@
     var hash = location.hash, sauve = null;
     try { sauve = JSON.parse(localStorage.getItem(CLE) || "null"); } catch (e) {}
     cadrer();
-    if (hash.indexOf("#p=") === 0) {
+    var codeProjet = new URLSearchParams(location.search).get("projet");
+    if (codeProjet && /^[2-9A-Z]{6,8}$/.test(codeProjet) && SERVEUR_LIENS) {
+      lireLienCourt(codeProjet).then(function (Pn) {
+        try { if (sauve) localStorage.setItem(CLE_AVANT, JSON.stringify(sauve)); } catch (e) {}
+        history.replaceState(null, "", location.pathname); charger(Pn);
+        toast("Projet partagé ouvert." + (sauve ? " Votre projet précédent est gardé." : ""), sauve ? "Le reprendre" : null, function () { charger(sauve); });
+      }).catch(function () { toast("Ce lien de projet est introuvable ou expiré."); if (sauve) charger(sauve); else assistant({}); });
+    } else if (hash.indexOf("#p=") === 0) {
       lireLienProjet(hash.slice(3)).then(function (Pn) {
         try { if (sauve) localStorage.setItem(CLE_AVANT, JSON.stringify(sauve)); } catch (e) {}
         history.replaceState(null, "", location.pathname); charger(Pn);
