@@ -2366,7 +2366,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
         <p class="t-lead">Décrivez votre activité en quelques mots. Je reviens vers vous sous 24 h avec une idée et un prix.</p>
         <div class="coord">
           <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke-linejoin="round"/></svg><p><small>Téléphone</small><a href="tel:+33782023657">07 82 02 36 57</a></p></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg><p><small>Mail</small><a href="mailto:aligibril2007@gmail.com">aligibril2007@gmail.com</a></p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg><p><small>Mail</small><a href="mailto:contact@mokranistudio.fr">contact@mokranistudio.fr</a></p></div>
           <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><p><small>Zones</small><span style="user-select:auto">Troyes · Paris · Yvelines</span></p></div>
         </div>
       </div>
@@ -2894,7 +2894,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     var zone = el("p", { "class": "texte" }, texte); box.appendChild(zone);
     var envois = el("div", { "class": "envois" });
     envois.appendChild(el("a", { "class": "btn", href: "sms:+33782023657?&body=" + encodeURIComponent(texte) }, "Par SMS"));
-    envois.appendChild(el("a", { "class": "btn btn--contour", href: "mailto:aligibril2007@gmail.com?subject=" + encodeURIComponent("Demande de devis" + (com ? " · " + com : "")) + "&body=" + encodeURIComponent(texte) }, "Par mail"));
+    envois.appendChild(el("a", { "class": "btn btn--contour", href: "mailto:contact@mokranistudio.fr?subject=" + encodeURIComponent("Demande de devis" + (com ? " · " + com : "")) + "&body=" + encodeURIComponent(texte) }, "Par mail"));
     box.appendChild(envois);
     box.scrollIntoView({ block: "nearest", behavior: calme ? "auto" : "smooth" });
     var b = el("button", { type: "button", "class": "btn-lien copier" }, "Copier le message");
