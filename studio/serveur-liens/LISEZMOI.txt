@@ -1,4 +1,4 @@
 Serveur de liens courts de l'Atelier
 Hébergé gratuitement sur Cloudflare Workers, avec un espace de stockage KV nommé PROJETS.
-Une fois en ligne, mettre son adresse dans atelier.js : var SERVEUR_LIENS = "https://....workers.dev";
+En ligne : https://atelier-liens.cf-liens.workers.dev (compte Cloudflare d'Ali, stockage KV « atelier-projets »).
 Tant que SERVEUR_LIENS est vide, l'Atelier garde l'ancien lien long et, pour une demande, télécharge le fichier du projet.

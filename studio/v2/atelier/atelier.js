@@ -1161,7 +1161,7 @@
     return Promise.resolve(JSON.parse(new TextDecoder().decode(u)));
   }
   /* Liens courts : le projet est rangé sur le serveur de liens, le lien ne contient qu'un code (…/atelier/?projet=K7P2QXM). */
-  var SERVEUR_LIENS = "";
+  var SERVEUR_LIENS = "https://atelier-liens.cf-liens.workers.dev";
   function mediasDu(Pr) { var m = {}; JSON.stringify(Pr).replace(/"(m[a-z0-9]{6,})"/g, function (x, id) { if (MEDIAS[id]) m[id] = MEDIAS[id]; }); return m; }
   function lienCourt(avecPhotos) {
     if (!SERVEUR_LIENS) return Promise.reject("pas de serveur");
@@ -1190,8 +1190,8 @@
     });
   })();
   function copierLien() {
-    lienCourt(false).catch(function () { return lienProjet(); }).then(function (l) {
-      (navigator.clipboard ? navigator.clipboard.writeText(l) : Promise.reject()).then(function () { toast("Lien copié : il rouvre ce projet sur n'importe quel appareil (sans les photos)"); }, function () { prompt("Copiez ce lien :", l); });
+    var court = false; lienCourt(true).then(function (l) { court = true; return l; }, function () { return lienProjet(); }).then(function (l) {
+      (navigator.clipboard ? navigator.clipboard.writeText(l) : Promise.reject()).then(function () { toast(court ? "Lien copié : il rouvre ce projet sur n'importe quel appareil, photos comprises" : "Lien copié : il rouvre ce projet sur n'importe quel appareil (sans les photos)"); }, function () { prompt("Copiez ce lien :", l); });
     });
   }
   function telecharger(nom, contenu, type) { var a = h("a", { href: URL.createObjectURL(new Blob([contenu], { type: type })), download: nom }); document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000); }
