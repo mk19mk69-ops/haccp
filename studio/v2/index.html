@@ -1595,11 +1595,11 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
 .agenda { gap: 0; margin-left: -54px; }
 /* L'aperçu du créateur : la photo du métier, les prix comme sur une ardoise */
 .ms-heros { position: relative; isolation: isolate; overflow: hidden; min-height: 9.5em; align-content: end; background: var(--c) center / cover no-repeat; }
-.ms[data-metier="barbier"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/barbier/12464838-m.webp); }
-.ms[data-metier="boucherie"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/boucherie/10201880-m.webp); }
-.ms[data-metier="snack"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/burger/1556688-m.webp); }
-.ms[data-metier="boulangerie"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/boulangerie/10481790-m.webp); }
-.ms:not([data-metier="autre"]) .ms-heros { color: #fff; }
+.ms[data-metier="barbier"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.15) 10%, rgba(0,0,0,.8)), url(atelier/photos/barbier/12464838-m.webp); }
+.ms[data-metier="boucherie"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.15) 10%, rgba(0,0,0,.8)), url(atelier/photos/boucherie/10201880-m.webp); }
+.ms[data-metier="snack"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.15) 10%, rgba(0,0,0,.8)), url(atelier/photos/burger/1556688-m.webp); }
+.ms[data-metier="boulangerie"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.15) 10%, rgba(0,0,0,.8)), url(atelier/photos/boulangerie/10481790-m.webp); }
+.ms:not([data-metier="autre"]) .ms-heros { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.45); }
 .ms:not([data-metier="autre"]) .ms-cta { background: var(--c); color: var(--sur); }
 .ms-liste { background: transparent; box-shadow: none; border-radius: 0; }
 .ms-liste li { display: grid; grid-template-columns: auto 1fr auto; padding: .6em 0; }
@@ -1635,6 +1635,36 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
 .cr-groupe .cr-logo-btn::before { content: none; }
 .cr-groupe .cr-logo-btn:hover { border-color: var(--texte); }
 .cr-groupe > .cr-info { padding-left: 24px; }
+
+/* ===================== Audit de novembre : sobriété ===================== */
+/* Pourquoi moi : un texte, pas une grille de cartes */
+.pq-texte { display: grid; gap: 28px; margin-top: clamp(28px, 4vw, 48px); }
+.pq-intro { font-size: clamp(19px, 2vw, 23px); line-height: 1.45; color: var(--texte); max-width: 26em; }
+.pq-liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ligne); }
+.pq-liste li { padding: 16px 0; border-bottom: 1px solid var(--ligne); font-size: 17px; color: var(--texte-2); }
+.pq-liste b { color: var(--texte); font-weight: 600; margin-right: 6px; }
+@media (min-width: 900px) { .pq-texte { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: start; } }
+/* Options : une ardoise de prix */
+.options-liste { list-style: none; margin: 28px 0 0; padding: 0; display: grid; column-gap: 56px; border-top: 1px solid var(--ligne); }
+.options-liste li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--ligne); }
+.options-liste b { display: block; font-weight: 600; font-size: 17px; }
+.options-liste small { display: block; margin-top: 3px; color: var(--texte-2); font-size: 14px; line-height: 1.45; }
+.options-liste strong { font-weight: 600; font-size: 17px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (min-width: 900px) { .options-liste { grid-template-columns: 1fr 1fr; } }
+/* Tarifs : une liste cochée, alignée à gauche, sans icône sur chaque ligne */
+.col li { min-height: 0; padding: 12px 0 12px 26px; display: block; justify-items: initial; text-align: left; font-size: 15px; border-bottom: 1px solid var(--ligne); position: relative; }
+.col li svg { display: none; }
+.col li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 11px; height: 6px; border-left: 2px solid var(--bleu); border-bottom: 2px solid var(--bleu); transform: rotate(-45deg); }
+.col li.non { color: var(--texte-2); }
+.col li.non::before { width: 10px; height: 0; border-left: 0; border-bottom: 2px solid var(--texte-3); transform: none; top: 22px; }
+.col ul { margin-top: 26px; }
+.col-prix { font-size: 30px; letter-spacing: -0.03em; }
+/* Réalisations : trois colonnes, pas de case vide */
+@media (min-width: 1000px) { .tuiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* Accessibilité : liens soulignés dans le texte, contraste */
+.calcul-note a, .rgpd a { text-decoration: underline; text-underline-offset: 3px; }
+.creneaux-app button:disabled, .ap-creneaux .non { color: #767680; }
+.ms-toast span, .ms-toast time { color: #4A4F57 !important; }
 </style>
 
 </head>
@@ -1671,7 +1701,6 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   <div class="cadre">
     <a class="lnav-titre" href="#vue-ensemble"><img src="assets/logo-mokrani.svg" alt="Mokrani Studio" width="174" height="26"></a>
     <nav class="lnav-liens" aria-label="Navigation principale">
-      <a href="#tarifs">Offres</a>
       <a href="#demos">Démos</a>
       <a href="#ordinateurs">Ordinateurs</a>
       <a href="#tarifs">Tarifs</a>
@@ -1682,8 +1711,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   </div>
 </header>
 <div class="menu-plein" id="menu-plein" hidden>
-  <a href="#tarifs" style="--i:0">Offres</a>
-  <a href="#parcours" style="--i:1">Réservation en ligne</a>
+  <a href="#demos" style="--i:1">Réservation en ligne</a>
   <a href="#createur" style="--i:1">Votre site en direct</a>
   <a href="atelier/" style="--i:1">L'Atelier : créez votre site</a>
   <a href="#demos" style="--i:2">Démos</a>
@@ -1810,89 +1838,6 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     </div>
   </section>
 
-  <section class="story" id="parcours">
-    <div class="bande"><div class="cadre story-tete apparait">
-      <h2 class="t-section">Comment se passe une réservation en ligne</h2>
-    </div></div>
-    <div class="story-scene bande" id="story-scene">
-      <div class="cadre story-grille">
-        <div class="tel tel--story" role="img" aria-label="Les écrans de la réservation, étape par étape">
-          <div class="tel-ecran" aria-hidden="true">
-            <div class="tel-ilot"></div>
-            <div class="vue vue-1">
-              <div class="tel-statut" data-heure="9:24"></div>
-              <div class="ap">
-                <p class="ap-mini">Salon Atlas</p>
-                <p class="ap-titre">Prestation</p>
-                <div class="ap-liste">
-                  <div class="ap-item on"><span>Coupe homme<small>30 min</small></span><b>18 €</b><i></i></div>
-                  <div class="ap-item"><span>Coupe enfant<small>20 min</small></span><b>14 €</b><i></i></div>
-                  <div class="ap-item"><span>Pack Luxury<small>50 min</small></span><b>35 €</b><i></i></div>
-                </div>
-                <p class="ap-sous-titre">En plus</p>
-                <div class="ap-liste">
-                  <div class="ap-item on"><span>Barbe</span><b>+ 8 €</b><i class="case"></i></div>
-                  <div class="ap-item"><span>Masque visage</span><b>+ 4 €</b><i class="case"></i></div>
-                  <div class="ap-item"><span>Cire</span><b>+ 5 €</b><i class="case"></i></div>
-                </div>
-              </div>
-              <div class="ap-bas"><span>Total<b>26 €</b></span><span class="ap-btn">Continuer</span></div>
-            </div>
-            <div class="vue vue-2">
-              <div class="tel-statut" data-heure="9:25"></div>
-              <div class="ap">
-                <p class="ap-mini" style="color:var(--bleu)">‹ Prestation</p>
-                <p class="ap-titre">Créneau</p>
-                <div class="ap-seg"><span class="on">Coiffeur 1</span><span>Coiffeur 2</span></div>
-                <div class="ap-jours"><span>mar.<b>20</b></span><span>mer.<b>21</b></span><span>jeu.<b>22</b></span><span>ven.<b>23</b></span><span class="on">sam.<b>24</b></span></div>
-                <p class="ap-sous-titre">Matin</p>
-                <div class="ap-creneaux"><span class="non">8h</span><span>8h30</span><span>9h</span><span class="on">9h30</span><span class="non">10h</span><span>10h30</span><span class="non">11h</span><span>11h30</span><span>12h</span></div>
-              </div>
-              <div class="ap-bas"><span>sam. 24 · 9h30<b>26 €</b></span><span class="ap-btn">Confirmer</span></div>
-            </div>
-            <div class="vue vue-3">
-              <div class="verrou verrou--soir">
-                <div class="tel-statut" data-heure=""></div>
-                <p class="verrou-date">samedi 24 octobre</p>
-                <p class="verrou-heure">9:26</p>
-                <div class="verrou-notifs">
-                  <div class="notif"><span class="notif-icone" style="background:#0D5EAF"><svg><use href="#i-cal"/></svg></span><span class="notif-corps"><b>Nouveau rendez-vous <time>maintenant</time></b><span>Karim · Coupe + barbe · aujourd'hui 9h30 · 26 €</span></span></div>
-                </div>
-                <span class="verrou-barre"></span>
-              </div>
-            </div>
-            <div class="vue vue-4">
-              <div class="tel-statut" data-heure="9:26"></div>
-              <div class="mail">
-                <span class="mail-retour">‹ Boîte de réception</span>
-                <div class="mail-tete"><span class="avatar">SA</span><span><b>Salon Atlas</b><small>À : Karim</small></span></div>
-                <p class="mail-objet">Votre rendez-vous est confirmé.</p>
-                <div class="mail-carte">
-                  <div><span>Quand</span><b>sam. 24 oct. · 9h30</b></div>
-                  <div><span>Prestation</span><b>Coupe + barbe</b></div>
-                  <div><span>Avec</span><b>Coiffeur 1</b></div>
-                  <div><span>Prix</span><b>26 €</b></div>
-                </div>
-                <span class="mail-btn mail-btn--bleu">Ajouter à Google Agenda</span>
-                <span class="mail-btn mail-btn--gris">Ajouter au calendrier</span>
-                <p class="mail-pied">Rappel la veille et une heure avant.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="story-droite">
-          <div class="story-progres" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-          <div class="story-nav"><button class="rond-nav" type="button" id="s-prec" aria-label="Étape précédente"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" id="s-suiv" aria-label="Étape suivante"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>Défilez ou faites glisser le téléphone</span></div>
-          <div class="story-pas-liste">
-            <div class="story-pas"><p class="story-num" aria-label="Étape 1">1</p><h3>Le client choisit sa prestation</h3><p>Une prestation principale, puis les options. Le prix se calcule tout seul.</p></div>
-            <div class="story-pas"><p class="story-num" aria-label="Étape 2">2</p><h3>Il prend un créneau libre</h3><p>Seuls les horaires libres s'affichent. Impossible de réserver deux fois la même place.</p></div>
-            <div class="story-pas"><p class="story-num" aria-label="Étape 3">3</p><h3>Le coiffeur est prévenu</h3><p>Une notification arrive sur son téléphone, à la seconde. Sans abonnement.</p></div>
-            <div class="story-pas"><p class="story-num" aria-label="Étape 4">4</p><h3>Le client reçoit sa confirmation</h3><p>Par mail, avec un bouton pour l'ajouter à son agenda et un rappel la veille.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="demos fond-blanc bande" id="demos">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2232,7 +2177,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
         <p class="tuile-etiq">Maquette</p>
         <h3 class="tuile-titre">Barbier</h3>
         <p class="tuile-sous">Site et réservation. Deux coiffeurs.</p>
-        <div class="ctas"><a class="btn btn--petit" href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Voir la démo</a><a class="btn btn--petit btn--contour" href="#parcours">Comment ça marche</a></div>
+        <div class="ctas"><a class="btn btn--petit" href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Voir la démo</a><a class="btn btn--petit btn--contour" href="#demos">Comment ça marche</a></div>
         <div class="tuile-visuel" aria-hidden="true">
           <div class="tel tel--tuile">
             <div class="tel-ecran" style="background:#0E0D0C">
@@ -2385,7 +2330,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
           <h3>Réservation</h3>
           <p class="col-tag">Vos clients réservent ou commandent seuls.</p>
           <p class="col-prix">490 €<small>payé une fois</small></p>
-          <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Réservation">Choisir</a><a class="btn-lien" href="#parcours">En savoir plus</a></div>
+          <div class="col-ctas"><a class="btn btn--petit" href="#contact" data-formule="Réservation">Choisir</a><a class="btn-lien" href="#demos">En savoir plus</a></div>
           <ul>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="22" height="15" rx="2.5"/><path d="M11 25h8M15 21v4"/></svg>Tout le pack Vitrine</li>
             <li><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 20V13a7 7 0 0 1 14 0v7l2 3H6Z"/><path d="M12.5 26a2.5 2.5 0 0 0 5 0"/></svg>Notification au commerçant</li>
@@ -2472,13 +2417,13 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
         </div>
       </div>
       <h3 class="options-titre apparait" id="options">Options</h3>
-      <div class="options-grille">
-        <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="17" cy="17" r="12"/><path d="M5 17h24M17 5c3.5 3.4 5 7.4 5 12s-1.5 8.6-5 12c-3.5-3.4-5-7.4-5-12s1.5-8.6 5-12Z"/></svg><b>Domaine et hébergement</b><p>Première année. Ensuite environ 5 € par mois, à votre nom.</p><strong>50 €</strong></div>
-        <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 11a8 8 0 0 1 0 12"/><path d="M16.5 7.5a13 13 0 0 1 0 19"/><path d="M21 4a18 18 0 0 1 0 26"/></svg><b>Carte NFC avis Google</b><p>Personnalisée, QR code au dos.</p><strong>dès 25 €</strong></div>
-        <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="8" width="26" height="18" rx="3.5"/><circle cx="11" cy="17" r="2.2"/><circle cx="17" cy="17" r="2.2"/><circle cx="23" cy="17" r="2.2"/></svg><b>Carte de fidélité</b><p>Ajoutée à votre site ou seule.</p><strong>dès 150 €</strong></div>
-        <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 8h22v15H15l-6 5v-5H6Z"/></svg><b>Rappels par SMS</b><p>Confirmation et rappel la veille, envoyés au client par SMS. 100 SMS par mois inclus, puis 0,09 € le SMS. Le SMS est payant pour moi aussi, c'est pour ça qu'il est en option.</p><strong>dès 9 € / mois</strong></div>
-        <div class="option"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.5 6.5a6 6 0 0 0-7.6 7.6L5 22v5h5l7.9-7.9a6 6 0 0 0 7.6-7.6l-3.7 3.7-3.4-.6-.6-3.4Z" stroke-linejoin="round"/></svg><b>Accompagnement</b><p>Installation, fiche Google, formation, dépannage.</p><strong>30 € / h</strong></div>
-      </div>
+      <ul class="options-liste">
+        <li><span><b>Domaine et hébergement</b><small>Première année. Ensuite environ 5 € par mois, à votre nom.</small></span><strong>50 €</strong></li>
+        <li><span><b>Carte NFC avis Google</b><small>Personnalisée, QR code au dos.</small></span><strong>dès 25 €</strong></li>
+        <li><span><b>Carte de fidélité</b><small>Ajoutée à votre site ou seule.</small></span><strong>dès 150 €</strong></li>
+        <li><span><b>Rappels par SMS</b><small>Confirmation et rappel la veille. 100 SMS par mois inclus, puis 0,09 € le SMS.</small></span><strong>dès 9 € / mois</strong></li>
+        <li><span><b>Accompagnement</b><small>Installation, fiche Google, formation, dépannage.</small></span><strong>30 € / h</strong></li>
+      </ul>
     </div>
   </section>
 
@@ -2486,30 +2431,19 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     <div class="bande"><div class="cadre apparait">
       <h2 class="t-section" id="pq-titre">Pourquoi travailler avec moi</h2>
     </div></div>
-    <div class="pq-piste" id="pq-piste">
-      <div class="pq-carte pq-carte--moi"><span class="initiales">AM</span><p><b>Ali Mokrani.</b> Élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants pressés.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0D5EAF" stroke-width="2"><path d="M20 35s11-9.7 11-17.5a11 11 0 0 0-22 0C9 25.3 20 35 20 35Z"/><circle cx="20" cy="17.5" r="4"/></svg><p><b>Local.</b> Je passe vous voir à Troyes, en région parisienne ou dans les Yvelines.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#F56300" stroke-width="2" stroke-linejoin="round"><path d="M22 4 8 23h11l-2 13 15-20H21Z"/></svg><p><b>Réactif.</b> Réponse sous 24 h, maquette sous 72 h.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#1D8A3F" stroke-width="2"><path d="M7 9h26v18H18l-7 6v-6H7Z" stroke-linejoin="round"/><path d="M13 16h14M13 21h9"/></svg><p><b>Sans jargon.</b> Tout est expliqué simplement. Vous gardez la main sur votre site.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#8E44E0" stroke-width="2"><path d="M6 16 9 7h22l3 9M6 16h28v17H6Z" stroke-linejoin="round"/><path d="M16 33v-9h8v9"/></svg><p><b>Du vrai terrain.</b> Des outils utilisés chaque jour dans une boucherie de demi-gros.</p></div>
-      <div class="pq-carte"><svg viewBox="0 0 40 40" fill="none" stroke="#0D5EAF" stroke-width="2"><circle cx="14" cy="20" r="7"/><path d="M21 20h14M30 20v5M35 20v4"/></svg><p><b>Chez vous.</b> Nom de domaine à votre nom, tous les fichiers fournis.</p></div>
-    </div>
-    <div class="bande"><div class="paddles" data-cible="pq-piste"><button class="rond-nav" type="button" aria-label="Précédent"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" aria-label="Suivant"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+    <div class="bande"><div class="cadre pq-texte">
+      <p class="pq-intro">Je m'appelle Ali Mokrani, élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants qui n'ont pas le temps.</p>
+      <ul class="pq-liste">
+        <li><b>Je viens vous voir.</b> À Troyes, en région parisienne ou dans les Yvelines.</li>
+        <li><b>Je réponds vite.</b> Réponse sous 24 h, maquette sous 72 h.</li>
+        <li><b>Je parle simplement.</b> Tout est expliqué, et vous gardez la main sur votre site.</li>
+        <li><b>Je connais le terrain.</b> Mes outils servent chaque jour dans une boucherie de demi-gros.</li>
+        <li><b>Tout est à votre nom.</b> Le nom de domaine et tous les fichiers vous appartiennent.</li>
+      </ul>
+    </div></div>
   </section>
 
 
-  <section class="mesure bande" aria-labelledby="mesure-titre">
-    <div class="cadre">
-      <h2 class="t-section" id="mesure-titre">Ce site, mesuré sur votre appareil</h2>
-      <p class="mesure-lead">Les chiffres ci-dessous ne sont pas écrits à l'avance : votre navigateur vient de les calculer. C'est le même soin que je mets dans les sites de mes clients.</p>
-      <dl class="mesure-grille">
-        <div><dt>Affichée en</dt><dd id="m-temps">…</dd></div>
-        <div><dt>Poids de la page</dt><dd id="m-poids">…</dd></div>
-        <div><dt>Cookies déposés</dt><dd id="m-cookies">…</dd></div>
-        <div><dt>Services extérieurs appelés</dt><dd id="m-ext">…</dd></div>
-      </dl>
-    </div>
-  </section>
 
   <section class="faq fond-blanc bande" id="faq">
     <div class="cadre">
@@ -2554,7 +2488,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   </section>
 </main>
 
-<div class="barre-action" id="barre-action">
+<div class="barre-action" id="barre-action" role="region" aria-label="Actions rapides">
   <a class="btn btn--contour" href="tel:+33782023657"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke-linejoin="round"/></svg>Appeler</a>
   <a class="btn" href="#contact">Devis gratuit</a>
 </div>
@@ -2568,7 +2502,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
       <li id="note-4">Prix indicatifs du matériel relevés en octobre 2026 chez les revendeurs français. Ils changent souvent : le prix exact est confirmé sur votre devis.</li>
     </ol>
     <div class="pied-cols">
-      <div><b>Offres</b><a href="#tarifs">Site vitrine</a><a href="#parcours">Réservation</a><a href="#tarifs">Sur mesure</a><a href="#options">Options</a></div>
+      <div><b>Offres</b><a href="#tarifs">Site vitrine</a><a href="#demos">Réservation</a><a href="#tarifs">Sur mesure</a><a href="#options">Options</a></div>
       <div><b>Découvrir</b><a href="#demos">Démos</a><a href="#realisations">Réalisations</a><a href="#ordinateurs">Ordinateurs</a><a href="#tarifs">Tarifs</a></div>
       <div><b>Studio</b><a href="#pq-titre">Pourquoi moi</a><a href="#faq">Questions fréquentes</a></div>
       <div><b>Contact</b><a href="#contact">Demander un devis</a><a href="tel:+33782023657">07 82 02 36 57</a></div>
@@ -3091,8 +3025,8 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     var accent = document.querySelector(".heros-titre .accent");
     if (accent) {
       var texteAccent = accent.textContent;
-      accent.setAttribute("aria-label", texteAccent);
       accent.textContent = "";
+      var lu = document.createElement("span"); lu.textContent = texteAccent; lu.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap"; accent.appendChild(lu);
       texteAccent.split(" ").forEach(function (mot, i, tous) {
         var m = document.createElement("span"); m.className = "mot"; m.setAttribute("aria-hidden", "true");
         Array.from(mot).forEach(function (c) { var l = document.createElement("span"); l.className = "lettre"; l.textContent = c; m.appendChild(l); });
