@@ -1498,6 +1498,64 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   .ondes i { animation: none; opacity: .5; transform: scale(.7); }
   .ondes i:nth-child(n+2) { display: none; }
 }
+
+/* ===================== Héros : l'éventail de 3 sites ===================== */
+.heros-grille { max-width: calc(1080px + 32px); margin: 0 auto; display: grid; gap: 36px; padding-bottom: clamp(56px, 8vw, 96px); }
+.heros-grille .heros-texte { max-width: none; margin: 0; padding-left: 0; padding-right: 0; }
+.eventail { margin: 0; display: grid; justify-items: center; gap: 18px; }
+.eventail figcaption { max-width: 30em; font-size: 14px; line-height: 1.5; color: var(--texte-2); text-align: center; }
+.ev-tels { position: relative; width: min(100%, 460px); aspect-ratio: 460 / 470; }
+.ev-tel { position: absolute; top: 4%; width: 43%; height: auto; border-radius: 22px; border: 6px solid #121A24; background: #121A24; box-shadow: 0 26px 50px -26px rgba(18,26,36,.55); transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.ev-g { left: 2%; transform: rotate(-7deg) translateY(6%); }
+.ev-d { right: 2%; transform: rotate(7deg) translateY(6%); }
+.ev-c { left: 28.5%; top: 0; z-index: 2; transform: none; }
+.ev-tels:hover .ev-g { transform: rotate(-10deg) translate(-6%, 4%); }
+.ev-tels:hover .ev-d { transform: rotate(10deg) translate(6%, 4%); }
+.ev-tels:hover .ev-c { transform: translateY(-2%); }
+@media (min-width: 900px) {
+  .heros-grille { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 48px; }
+  .heros-grille .eventail { padding-top: clamp(44px, 7vw, 88px); }
+  .heros-grille .t-heros { font-size: clamp(44px, 5.3vw, 68px); }
+  .heros-grille .heros-titre .ligne { white-space: nowrap; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ev-tel { animation: ev-ouvre 1.1s cubic-bezier(.2,.8,.2,1) .35s both; }
+  @keyframes ev-ouvre { from { transform: none; opacity: 0; } }
+}
+
+/* ===================== Le ticket de caisse (tarifs) ===================== */
+.recu-bloc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; align-items: center; margin: clamp(56px, 8vw, 96px) auto 0; max-width: var(--large); }
+.recu-texte h3 { font-family: var(--titres); font-size: clamp(26px, 3.2vw, 36px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+.recu-texte p { margin-top: 12px; color: var(--texte-2); font-size: 17px; line-height: 1.55; max-width: 32em; }
+.recu-choix { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.recu-choix button { font: 500 15px/1 inherit; font-family: inherit; padding: 11px 16px; border-radius: 99px; border: 1px solid var(--ligne); background: #fff; color: var(--texte); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.recu-choix button:hover { border-color: var(--bleu); }
+.recu-choix button[aria-checked="true"] { background: var(--bleu); border-color: var(--bleu); color: #fff; }
+.recu-scene { position: relative; display: grid; justify-items: center; padding: 30px 0 10px; }
+.recu { position: relative; width: min(330px, 84vw); padding: 30px 24px 22px; color: #22262C; font: 14px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  background: #FFFEFB linear-gradient(180deg, rgba(0,0,0,.025), transparent 18%, transparent 82%, rgba(0,0,0,.03));
+  transform: rotate(-1.5deg); filter: drop-shadow(0 22px 24px rgba(18,26,36,.18));
+  -webkit-mask: radial-gradient(circle 6px at 50% 0, #0000 98%, #000) 0 0 / 14px 51% repeat-x, radial-gradient(circle 6px at 50% 100%, #0000 98%, #000) 0 100% / 14px 51% repeat-x;
+  mask: radial-gradient(circle 6px at 50% 0, #0000 98%, #000) 0 0 / 14px 51% repeat-x, radial-gradient(circle 6px at 50% 100%, #0000 98%, #000) 0 100% / 14px 51% repeat-x; }
+.tk-entete { display: grid; justify-items: center; gap: 2px; text-align: center; color: #5A626C; font-size: 12.5px; padding-bottom: 14px; margin-bottom: 10px; border-bottom: 1px dashed #A9B0B9; }
+.tk-entete b { color: #22262C; font-size: 15px; letter-spacing: .16em; }
+.tk-ligne, .tk-total { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 4px 0; }
+.tk-ligne b, .tk-total b { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tk-zero b { color: var(--bleu); }
+.tk-total { margin-top: 10px; padding-top: 12px; border-top: 1px dashed #A9B0B9; font-weight: 700; font-size: 16px; }
+.tk-suite { margin-top: 12px; color: #5A626C; font-size: 12.5px; text-align: center; }
+.tk-merci { margin-top: 14px; text-align: center; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #5A626C; }
+.tk-code { display: block; height: 34px; margin: 12px 18px 0; background: repeating-linear-gradient(90deg, #22262C 0 2px, transparent 2px 4px, #22262C 4px 5px, transparent 5px 8px, #22262C 8px 11px, transparent 11px 12px); opacity: .9; }
+.recu .maj { animation: tk-maj .45s ease; }
+@keyframes tk-maj { from { background: rgba(13,94,175,.16); } }
+.tk-tampon { position: absolute; top: 0; right: max(4px, calc(50% - 215px)); display: grid; place-items: center; align-content: center; width: 108px; height: 108px; border-radius: 50%; border: 3px solid var(--bleu); color: var(--bleu); transform: rotate(-14deg); background: rgba(253,252,249,.9); box-shadow: inset 0 0 0 4px rgba(253,252,249,.9), inset 0 0 0 5px rgba(13,94,175,.5); }
+.tk-tampon b { font: 700 32px/1 var(--titres); }
+.tk-tampon small { font-size: 11px; font-weight: 600; letter-spacing: .03em; margin-top: 2px; }
+@media (min-width: 900px) { .recu-bloc { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .tk-tampon.frappe { animation: tk-frappe .5s cubic-bezier(.3,1.5,.5,1) both; }
+  @keyframes tk-frappe { from { transform: rotate(-14deg) scale(1.9); opacity: 0; } }
+}
 </style>
 
 </head>
@@ -1560,7 +1618,8 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
 
 <main>
   <section class="heros" id="vue-ensemble">
-    <div class="heros-texte bande">
+    <div class="heros-grille bande">
+    <div class="heros-texte">
       <h1 class="t-heros heros-titre"><span class="ligne">Votre commerce.</span><span class="ligne accent">Enfin en ligne.</span></h1>
       <p class="t-lead heros-lead">Je crée des sites, la réservation en ligne et des petits logiciels pour les commerçants de Troyes et des environs. Vous payez une fois : pas d'abonnement, pas de commission.</p>
       <div class="ctas" id="ctas-heros"><a class="btn" href="#contact">Demander un devis</a><a class="btn btn--contour" href="#demos">Voir les démos</a></div>
@@ -1572,12 +1631,14 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
       <p class="heros-note">Maquette gratuite et sans engagement sous 72 h.</p>
     </div>
 
-    <div class="apercu bande">
-      <figure class="apercu-cadre">
-        <img class="apercu-ordi" src="assets/miran-ordinateur.webp" alt="Page d'accueil du site réalisé pour un barbier de Troyes, sur ordinateur" width="1600" height="1000">
-        <img class="apercu-tel" src="assets/miran-telephone.webp" alt="Le même site affiché sur un téléphone" width="560" height="1211">
-        <figcaption>Maquette réalisée pour Barber Miran, barbier rue de Preize à Troyes. <a href="https://mk19mk69-ops.github.io/haccp/miran/" target="_blank" rel="noopener">Ouvrir le site</a></figcaption>
-      </figure>
+    <figure class="eventail">
+      <div class="ev-tels">
+        <img class="ev-tel ev-g" src="assets/vitrine-boucherie.webp" alt="Exemple de site pour une boucherie, sur téléphone" width="560" height="1149" loading="eager">
+        <img class="ev-tel ev-d" src="assets/vitrine-barbier.webp" alt="Exemple de site pour un barbier, sur téléphone" width="560" height="1149" loading="eager">
+        <img class="ev-tel ev-c" src="assets/vitrine-kebab.webp" alt="Exemple de site pour un kebab, sur téléphone" width="560" height="1149" loading="eager">
+      </div>
+      <figcaption>Une boucherie, un kebab, un barbier : chaque site est dessiné pour son commerce. Noms et photos d'exemple.</figcaption>
+    </figure>
     </div>
   </section>
 
@@ -2035,12 +2096,12 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     <div class="cadre">
       <div class="jeu-tete">
         <h2 class="t-section" id="jeu-titre">Petit jeu : un samedi au salon</h2>
-        <p class="t-lead">Vous êtes coiffeur. Coupez les cheveux de vos clients et décrochez avant que le téléphone s'arrête de sonner. Vous avez 20 secondes.</p>
+        <p class="t-lead">Vous êtes coiffeur. Coupez les cheveux de vos clients et décrochez avant que le téléphone s'arrête de sonner. Vous avez 10 secondes.</p>
       </div>
       <div class="jeu-plateau" id="jeu-plateau" data-mode="tel">
         <div class="jeu-barre">
           <span id="jeu-mode">Manche 1 · sans réservation en ligne</span>
-          <span class="jeu-temps"><b id="jeu-temps">20</b> s</span>
+          <span class="jeu-temps"><b id="jeu-temps">10</b> s</span>
         </div>
         <div class="jeu-chrono" aria-hidden="true"><b id="jeu-chrono"></b></div>
         <div class="jeu-zones">
@@ -2276,6 +2337,33 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
       <p class="astuce-mobile">Faites glisser pour comparer les 3 formules</p>
       <p class="tarif-atelier">Vous construisez votre site vous-même dans <a href="atelier/">l'Atelier</a> ? <b>Vitrine 190&nbsp;€</b> · <b>Réservation 290&nbsp;€</b>. Je vérifie tout et je le mets en ligne.</p>
 
+
+      <div class="recu-bloc" id="recu">
+        <div class="recu-texte">
+          <h3>Ce que vous payez, vraiment</h3>
+          <p>Choisissez une formule : le ticket se met à jour. Pas d'abonnement, pas de commission sur vos clients. Le site est à vous.</p>
+          <div class="recu-choix" role="radiogroup" aria-label="Formule">
+            <button type="button" role="radio" aria-checked="false" data-f="0">Vitrine</button>
+            <button type="button" role="radio" aria-checked="true" data-f="1">Réservation</button>
+            <button type="button" role="radio" aria-checked="false" data-f="2">Vitrine, faite dans l'Atelier</button>
+            <button type="button" role="radio" aria-checked="false" data-f="3">Réservation, faite dans l'Atelier</button>
+          </div>
+        </div>
+        <div class="recu-scene">
+          <div class="recu" aria-live="polite">
+            <p class="tk-entete"><b>MOKRANI STUDIO</b><span>Troyes · ali@mokranistudio.fr</span><span>Devis type</span></p>
+            <p class="tk-ligne"><span id="tk-site">Site avec réservation</span><b id="tk-prix">490,00 €</b></p>
+            <p class="tk-ligne"><span>Hébergement, 1re année</span><b>50,00 €</b></p>
+            <p class="tk-ligne tk-zero"><span>Abonnement mensuel</span><b>0,00 €</b></p>
+            <p class="tk-ligne tk-zero"><span>Commission sur vos clients</span><b>0,00 €</b></p>
+            <p class="tk-total"><span>TOTAL 1re ANNÉE</span><b id="tk-total">540,00 €</b></p>
+            <p class="tk-suite">Les années suivantes :<br>hébergement, environ 5 € par mois.</p>
+            <p class="tk-merci">Merci et à bientôt à Troyes</p>
+            <span class="tk-code" aria-hidden="true"></span>
+          </div>
+          <span class="tk-tampon" aria-hidden="true"><b>0 €</b><small>de commission</small></span>
+        </div>
+      </div>
 
       <div class="calcul" id="calcul">
         <div class="calcul-tete">
@@ -3076,7 +3164,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   if (!plateau) return;
   var NOMS = ["Karim", "Yanis", "Mehdi", "Adam", "Lucas", "Sofiane", "Hugo", "Bilal", "Nathan", "Ilyes", "Théo", "Rayan"];
   var HEURES = ["10h", "10h30", "11h", "11h30", "14h", "14h30", "15h", "16h", "17h30"];
-  var PRIX = 18, DUREE = 20;
+  var PRIX = 18, DUREE = 10;
   var mode = "tel", resultats = {}, j = null;
   function hasard(t) { return t[Math.floor(Math.random() * t.length)]; }
   function changerClient() { var n = hasard(NOMS); $("jeu-client").textContent = n; $("jeu-avatar").textContent = n.charAt(0); }
@@ -3531,6 +3619,27 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   if (c && q.get("commerce")) c.value = q.get("commerce").slice(0, 80);
   if (m && q.get("msg")) m.value = q.get("msg").slice(0, 4000);
   setTimeout(function () { var s = document.getElementById("contact"); if (s) s.scrollIntoView(); var n = document.getElementById("f-nom"); if (n) n.focus({ preventScroll: true }); }, 400);
+})();
+</script>
+<script>
+/* Ticket de caisse des tarifs */
+(function () {
+  var bloc = document.getElementById("recu"); if (!bloc) return;
+  var F = [["Site vitrine", 350], ["Site avec réservation", 490], ["Site vitrine (Atelier)", 190], ["Site avec réservation (Atelier)", 290]];
+  function eur(n) { return n.toFixed(2).replace(".", ",") + "\u00a0€"; }
+  var site = document.getElementById("tk-site"), prix = document.getElementById("tk-prix"), total = document.getElementById("tk-total"), tampon = bloc.querySelector(".tk-tampon");
+  function montrer(k) {
+    site.textContent = F[k][0]; prix.textContent = eur(F[k][1]); total.textContent = eur(F[k][1] + 50);
+    [prix, total].forEach(function (e) { e.parentNode.classList.remove("maj"); void e.offsetWidth; e.parentNode.classList.add("maj"); });
+  }
+  [].forEach.call(bloc.querySelectorAll(".recu-choix button"), function (b) {
+    b.addEventListener("click", function () {
+      [].forEach.call(bloc.querySelectorAll(".recu-choix button"), function (x) { x.setAttribute("aria-checked", x === b ? "true" : "false"); });
+      montrer(+b.getAttribute("data-f"));
+    });
+  });
+  montrer(1); [prix, total].forEach(function (e) { e.parentNode.classList.remove("maj"); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { tampon.classList.add("frappe"); o.disconnect(); } }, { threshold: .6 }).observe(tampon);
 })();
 </script>
 </body>
