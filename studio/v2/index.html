@@ -2983,6 +2983,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     var envois = el("div", { "class": "envois" });
     envois.appendChild(el("a", { "class": "btn", href: "sms:+33782023657?&body=" + encodeURIComponent(texte) }, "Par SMS"));
     envois.appendChild(el("a", { "class": "btn btn--contour", href: "mailto:ali@mokranistudio.fr?subject=" + encodeURIComponent("Demande de devis" + (com ? " · " + com : "")) + "&body=" + encodeURIComponent(texte) }, "Par mail"));
+    [].forEach.call(envois.querySelectorAll("a"), function (x) { x.addEventListener("click", function () { setTimeout(function () { location.href = "merci.html"; }, 1500); }); });
     box.appendChild(envois);
     box.scrollIntoView({ block: "nearest", behavior: calme ? "auto" : "smooth" });
     var b = el("button", { type: "button", "class": "btn-lien copier" }, "Copier le message");
