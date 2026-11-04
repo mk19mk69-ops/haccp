@@ -1608,6 +1608,33 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
 .ms-liste li + li { border-top: 0; }
 .ms-sous { font-weight: 600; }
 .ms-carte { display: none; }
+
+/* ===================== Le créateur : un bon de commande, pas des pilules ===================== */
+.createur-form { counter-reset: q; gap: 26px; border: 0; border-top: 3px solid var(--texte); border-radius: 0; background: var(--papier); padding: 24px 24px 28px; box-shadow: 0 22px 40px -32px rgba(18,26,36,.4); }
+.cr-champ label, .cr-groupe legend, .cr-legend { counter-increment: q; display: flex; align-items: baseline; gap: 10px; font-size: 15px; margin-bottom: 10px; }
+.cr-champ label::before, .cr-groupe legend::before, .cr-legend::before { content: counter(q); font-family: var(--titres); font-weight: 600; font-size: 13px; color: var(--bleu); min-width: 14px; }
+.cr-champ input { height: 48px; padding: 0 2px; border: 0; border-bottom: 2px solid var(--texte); border-radius: 0; background: transparent; font-size: 22px; }
+.cr-champ input:focus { border-bottom-color: var(--bleu); box-shadow: none; }
+.cr-puces { gap: 8px 22px; padding-left: 24px; }
+.cr-groupe .cr-puce { min-height: 34px; padding: 4px 0; gap: 9px; border: 0; border-radius: 0; background: none; color: var(--texte); font-size: 16px; }
+.cr-groupe .cr-puce::before { content: ""; width: 15px; height: 15px; flex: none; border: 1.5px solid #8F96A0; border-radius: 3px; transition: background-color .15s, border-color .15s; }
+.cr-groupe .cr-puce:hover::before { border-color: var(--texte); }
+.cr-groupe .cr-puce[aria-pressed="true"] { background: none; color: var(--texte); font-weight: 600; }
+.cr-groupe .cr-puce[aria-pressed="true"]::before { border-color: var(--texte); background: var(--texte) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 6.5' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.cr-groupe .cr-puce:active { transform: none; }
+.cr-couleurs { gap: 14px 12px; padding-left: 24px; align-items: start; }
+.cr-pastille, .cr-groupe .cr-pastille { width: 40px; height: 40px; border-radius: 5px; border: 0; padding: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); background: var(--p) !important; margin-bottom: 18px; overflow: visible; }
+.cr-pastille::before { content: none !important; }
+.cr-pastille::after { content: attr(data-nom); position: absolute; left: 50%; top: calc(100% + 5px); translate: -50% 0; font-size: 11.5px; color: var(--texte-2); white-space: nowrap; }
+.cr-pastille[aria-pressed="true"], .cr-perso.actif { box-shadow: inset 0 0 0 1px rgba(0,0,0,.12), 0 0 0 2px var(--papier), 0 0 0 4px var(--texte); }
+.cr-pastille[aria-pressed="true"]::after, .cr-perso.actif::after { color: var(--texte); font-weight: 600; }
+.cr-perso { overflow: visible; }
+.cr-perso input { border-radius: 5px; }
+.cr-logo-ligne { padding-left: 24px; }
+.cr-groupe .cr-logo-btn { padding: 12px 18px; border: 1.5px dashed #8F96A0; border-radius: 6px; font-size: 15px; }
+.cr-groupe .cr-logo-btn::before { content: none; }
+.cr-groupe .cr-logo-btn:hover { border-color: var(--texte); }
+.cr-groupe > .cr-info { padding-left: 24px; }
 </style>
 
 </head>
@@ -3387,16 +3414,16 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     METIERS.forEach(function (m) { puce(gm, m.nom, m === E.metier, function () { choisirMetier(m); }); });
     COULEURS.forEach(function (c) {
       var b = puce(gc, "", c[1] === E.couleur, function () { choisirCouleur(c[1], c[0]); }, "cr-pastille");
-      b.style.setProperty("--p", c[1]); b.setAttribute("aria-label", c[0]); b.title = c[0];
+      b.style.setProperty("--p", c[1]); b.setAttribute("aria-label", c[0]); b.title = c[0]; b.setAttribute("data-nom", c[0]);
     });
     var perso = document.createElement("label");
     var estPerso = !COULEURS.some(function (c) { return c[1] === E.couleur; });
-    perso.className = "cr-pastille cr-perso" + (estPerso ? " actif" : ""); perso.title = "Autre couleur";
+    perso.className = "cr-pastille cr-perso" + (estPerso ? " actif" : ""); perso.title = "Autre couleur"; perso.setAttribute("data-nom", "Autre");
     perso.style.setProperty("--p", estPerso ? E.couleur : "conic-gradient(#e03131, #f08c00, #2f9e44, #1971c2, #9c36b5, #e03131)");
     var inp = document.createElement("input"); inp.type = "color"; inp.value = E.couleur; inp.setAttribute("aria-label", "Autre couleur");
     inp.addEventListener("input", function () { toucher(); choisirCouleur(inp.value, "personnalisée", true); });
     perso.appendChild(inp); gc.appendChild(perso);
-    STYLES.forEach(function (st) { puce(gs, st.nom, st === E.style, function () { choisirStyle(st); }); });
+    STYLES.forEach(function (st) { var b = puce(gs, st.nom, st === E.style, function () { choisirStyle(st); }); b.style.fontFamily = st.police; });
   }
   function choisirMetier(m) { E.metier = m; A = { page: "accueil", jour: 0, creneau: null, qte: {}, retrait: 0 }; reglages(); avec(function () { rendre(); }); }
   function choisirCouleur(hex, n, sansTransition) {
