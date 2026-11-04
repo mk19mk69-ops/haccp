@@ -1324,7 +1324,18 @@
       titre("Créons le site de votre commerce", "Cinq questions rapides, puis vous modifiez tout ce que vous voulez directement sur la page.");
       var nom = h("input", { class: "as-grand", value: i.nom, placeholder: "Nom de votre commerce", maxlength: 40, autocomplete: "organization", "aria-label": "Nom de votre commerce", oninput: function () { i.nom = nom.value; re(); } });
       corps.appendChild(nom);
-      var PHOTO_METIER = { barbier: "barbier/12464838", coiffure: "coiffure/3356170", institut: "institut/14267564", boucherie: "boucherie/10201880", snack: "burger/1556688", restaurant: "restaurant/19393192", boulangerie: "boulangerie/10481790", epicerie: "epicerie/33975355", fleuriste: "fleuriste/17403112" };
+      var GLYPHE = {
+        barbier: '<circle cx="16" cy="4.5" r="2.6"/><circle cx="16" cy="27.5" r="2.6"/><rect x="11.5" y="6.5" width="9" height="19" rx="1.5"/><path class="a" d="M11.5 10.5l9-4v3.6l-9 4zM11.5 17.5l9-4v3.6l-9 4zM11.5 24.5l9-4v3.6l-9 1.4z"/>',
+        coiffure: '<path d="M4 10a7 7 0 0 1 7-7h10a5 5 0 0 1 0 10h-2l-1.6 2.4h-5L11 17A7 7 0 0 1 4 10z"/><rect x="12" y="15" width="5.5" height="14" rx="2.2"/><circle class="a" cx="11" cy="10" r="3"/>',
+        institut: '<rect class="a" x="12.5" y="2.5" width="7" height="9" rx="1.6"/><rect x="11.5" y="11" width="9" height="3.2" rx="1"/><rect x="7.5" y="14" width="17" height="15.5" rx="4.5"/>',
+        boucherie: '<path fill-rule="evenodd" d="M3 7.5A2.5 2.5 0 0 1 5.5 5H20a2.5 2.5 0 0 1 2.5 2.5v10A2.5 2.5 0 0 1 20 20H7a4 4 0 0 1-4-4zM8 8.5a1.8 1.8 0 1 0 0 3.6a1.8 1.8 0 1 0 0-3.6z"/><rect class="a" x="22" y="10" width="8.5" height="5" rx="2.2"/>',
+        snack: '<path d="M5 14.5C5 9 10 6 16 6s11 3 11 8.5z"/><path class="a" d="M4 16.3h24l-2.2 2.6-2.2-2-2.2 2-2.2-2-2.2 2-2.2-2-2.2 2-2.2-2-2.2 2-2.2-2-2.2 2z"/><rect x="4" y="19.5" width="24" height="4" rx="2"/><path d="M5 24.8h22v.7a3.2 3.2 0 0 1-3.2 3.2H8.2A3.2 3.2 0 0 1 5 25.5z"/>',
+        restaurant: '<path d="M4.5 22a11.5 11.5 0 0 1 23 0z"/><circle class="a" cx="16" cy="8.5" r="2.4"/><rect x="2.5" y="23.2" width="27" height="3.3" rx="1.6"/>',
+        boulangerie: '<rect x="2" y="12" width="28" height="8.5" rx="4.25" transform="rotate(-32 16 16)"/><path class="a s" d="M9.5 19.5l2.5-4.2M14.2 16.6l2.5-4.2M18.9 13.7l2.5-4.2" fill="none" stroke-width="2" stroke-linecap="round"/>',
+        epicerie: '<circle class="a" cx="12" cy="11" r="3.4"/><circle class="a" cx="19.5" cy="10" r="3.8"/><path d="M4 13.5h24l-2.6 13a2.2 2.2 0 0 1-2.2 1.8H8.8a2.2 2.2 0 0 1-2.2-1.8z"/>',
+        fleuriste: '<path class="a" d="M10 5.5l3.2 4.2 2.8-6.2 2.8 6.2 3.2-4.2v6.5a6 6 0 0 1-12 0z"/><rect x="15" y="17" width="2.2" height="12.5" rx="1.1"/><path d="M17.2 25c3-4.2 6.8-5.6 9.3-4.6-1 4.1-5.2 6.3-9.3 5.6z"/>',
+        autre: '<path class="a" d="M4.5 4.5h23l2.5 8H2z"/><path fill-rule="evenodd" d="M4.5 13.5h23v15h-23zM13 19h6v9.5h-6z"/>'
+      };
       corps.appendChild(h("p", { class: "as-q", text: "Votre métier" }));
       corps.appendChild(h("div", { class: "as-metiers" }, BL.ORDRE_METIERS.map(function (m) {
         return h("button", { type: "button", class: "as-metier" + (i.metier === m ? " actif" : ""), "aria-pressed": i.metier === m ? "true" : "false", onclick: function () {
@@ -1333,7 +1344,7 @@
           if (!A.policeTouchee) Pn.theme.police = BL.M[m].police;
           if (!A.horTouche) i.horaires = HOR[HOR_METIER[m]]();
           dessinerAs(); re();
-        } }, [PHOTO_METIER[m] ? h("img", { class: "as-photo", src: "photos/" + PHOTO_METIER[m] + "-m.webp", alt: "", loading: "lazy", width: "300", height: "225" }) : h("span", { class: "as-photo as-photo--vide" }), h("small", { text: BL.M[m].nom })]);
+        } }, [h("span", { class: "as-plaque", html: '<svg class="as-glyphe" viewBox="0 0 32 32" aria-hidden="true">' + (GLYPHE[m] || GLYPHE.autre) + "</svg>" }), h("small", { text: BL.M[m].nom })]);
       })));
     } else if (A.pas === 1) {
       titre("Où vous trouver ?", "Ces infos apparaissent sur le site : bouton Appeler, itinéraire, horaires.");
