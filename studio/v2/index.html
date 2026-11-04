@@ -1558,6 +1558,56 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
   .tk-tampon.frappe { animation: tk-frappe .5s cubic-bezier(.3,1.5,.5,1) both; }
   @keyframes tk-frappe { from { transform: rotate(-14deg) scale(1.9); opacity: 0; } }
 }
+
+/* ===================== Le comptoir : moins d'interface toute faite ===================== */
+:root { --encre: #121A24; --papier: #FBFAF6; --regle: #E6E1D6; --marge: #C8463D; }
+/* Listes de prix et de prestations : une ardoise, pas des réglages de téléphone */
+.liste-app, .app--gris .liste-app, .ap-liste { background: transparent; border-radius: 0; overflow: visible; }
+.ligne-app, .ap-item { position: relative; grid-template-columns: auto 1fr auto auto; padding: .72em .2em .72em .55em; border-radius: 0; }
+.ligne-app + .ligne-app, .ap-item + .ap-item { border-top: 1px solid var(--regle); }
+.ligne-app::after, .ap-item::after { content: ""; grid-column: 2; grid-row: 1; align-self: center; height: 0; border-bottom: 1.5px dotted #C9C3B6; margin: 0 .2em; }
+.ligne-app > span:first-child, .ap-item > span:first-child { grid-column: 1; }
+.ligne-app > b, .ap-item > b { grid-column: 3; }
+.ligne-app .coche, .ap-item i { grid-column: 4; width: 1.05em; height: 1.05em; border-radius: .2em; border: 1.5px solid #B9B4AA; background: none; }
+.ligne-app[role="radio"] .coche, .ap-item i:not(.case) { border-color: transparent; }
+.ligne-app[aria-checked="true"] .coche, .ap-item.on i { border-radius: .2em; border: 0; }
+.ligne-app[role="radio"][aria-checked="true"]::before, .ap-item.on:not(:has(i.case))::before { content: ""; position: absolute; left: 0; top: .55em; bottom: .55em; width: 3px; border-radius: 2px; background: var(--bleu); }
+.ligne-app[aria-checked="true"] > span:first-child, .ap-item.on > span:first-child { font-weight: 600; }
+.ligne-app[role="checkbox"] .coche { border-radius: .2em !important; }
+.ligne-app[role="radio"] .coche, .ligne-app[role="radio"][aria-checked="true"] .coche, .ap-item i:not(.case), .ap-item.on i:not(.case) { background: none !important; border: 0 !important; }
+.groupe-titre { text-transform: none; letter-spacing: 0; font-size: .8em; font-weight: 500; margin: .6em 0 -.3em .55em; }
+.ap-sous-titre { text-transform: none; letter-spacing: 0; }
+/* Les étapes : un vrai chiffre, pas une étiquette */
+.story-num { font-family: var(--titres); font-size: clamp(44px, 5vw, 64px); font-weight: 600; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--bleu); margin-bottom: 6px; }
+/* Pas d'étiquette au-dessus des démos : l'onglet le dit déjà */
+.sur-demo { display: none; }
+/* Le carnet du commerçant : papier ligné et marge rouge */
+.commercant { background: var(--papier); border-radius: 6px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 18px 34px -26px rgba(18,26,36,.35); padding: 18px 20px 20px 62px; position: relative; }
+.commercant::before { content: ""; position: absolute; top: 0; bottom: 0; left: 48px; border-left: 1.5px solid var(--marge); opacity: .55; }
+.commercant-tete { text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--texte-2); }
+.commercant-ligne b { font-size: 18px; }
+.ag-ligne { background: transparent; border-radius: 0; padding: 10px 0; grid-template-columns: 40px 1fr auto; gap: 14px; border-top: 1px solid var(--regle); }
+.ag-ligne time { text-align: right; color: var(--texte-2); font-weight: 500; font-size: 13px; }
+.ag-ligne em { background: none; padding: 0; color: var(--texte-3); font-weight: 500; }
+.ag-ligne.neuf { background: transparent; box-shadow: none; }
+.ag-ligne.neuf b { color: var(--bleu); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.ag-ligne.neuf em { background: none; color: var(--bleu); }
+.agenda { gap: 0; margin-left: -54px; }
+/* L'aperçu du créateur : la photo du métier, les prix comme sur une ardoise */
+.ms-heros { position: relative; isolation: isolate; overflow: hidden; min-height: 9.5em; align-content: end; background: var(--c) center / cover no-repeat; }
+.ms[data-metier="barbier"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/barbier/12464838-m.webp); }
+.ms[data-metier="boucherie"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/boucherie/10201880-m.webp); }
+.ms[data-metier="snack"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/burger/1556688-m.webp); }
+.ms[data-metier="boulangerie"] .ms-heros { background-image: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.72)), url(atelier/photos/boulangerie/10481790-m.webp); }
+.ms:not([data-metier="autre"]) .ms-heros { color: #fff; }
+.ms:not([data-metier="autre"]) .ms-cta { background: var(--c); color: var(--sur); }
+.ms-liste { background: transparent; box-shadow: none; border-radius: 0; }
+.ms-liste li { display: grid; grid-template-columns: auto 1fr auto; padding: .6em 0; }
+.ms-liste li::after { content: ""; grid-column: 2; grid-row: 1; align-self: center; border-bottom: 1.5px dotted #C9C3B6; margin: 0 .4em; }
+.ms-liste li > span { grid-column: 1; } .ms-liste li > b { grid-column: 3; }
+.ms-liste li + li { border-top: 0; }
+.ms-sous { font-weight: 600; }
+.ms-carte { display: none; }
 </style>
 
 </head>
@@ -1807,10 +1857,10 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
           <div class="story-progres" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
           <div class="story-nav"><button class="rond-nav" type="button" id="s-prec" aria-label="Étape précédente"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M20.5 11.5 14 18l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="rond-nav" type="button" id="s-suiv" aria-label="Étape suivante"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M15.5 11.5 22 18l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>Défilez ou faites glisser le téléphone</span></div>
           <div class="story-pas-liste">
-            <div class="story-pas"><p class="story-num">Étape 1</p><h3>Le client choisit sa prestation</h3><p>Une prestation principale, puis les options. Le prix se calcule tout seul.</p></div>
-            <div class="story-pas"><p class="story-num">Étape 2</p><h3>Il prend un créneau libre</h3><p>Seuls les horaires libres s'affichent. Impossible de réserver deux fois la même place.</p></div>
-            <div class="story-pas"><p class="story-num">Étape 3</p><h3>Le coiffeur est prévenu</h3><p>Une notification arrive sur son téléphone, à la seconde. Sans abonnement.</p></div>
-            <div class="story-pas"><p class="story-num">Étape 4</p><h3>Le client reçoit sa confirmation</h3><p>Par mail, avec un bouton pour l'ajouter à son agenda et un rappel la veille.</p></div>
+            <div class="story-pas"><p class="story-num" aria-label="Étape 1">1</p><h3>Le client choisit sa prestation</h3><p>Une prestation principale, puis les options. Le prix se calcule tout seul.</p></div>
+            <div class="story-pas"><p class="story-num" aria-label="Étape 2">2</p><h3>Il prend un créneau libre</h3><p>Seuls les horaires libres s'affichent. Impossible de réserver deux fois la même place.</p></div>
+            <div class="story-pas"><p class="story-num" aria-label="Étape 3">3</p><h3>Le coiffeur est prévenu</h3><p>Une notification arrive sur son téléphone, à la seconde. Sans abonnement.</p></div>
+            <div class="story-pas"><p class="story-num" aria-label="Étape 4">4</p><h3>Le client reçoit sa confirmation</h3><p>Par mail, avec un bouton pour l'ajouter à son agenda et un rappel la veille.</p></div>
           </div>
         </div>
       </div>
@@ -1897,7 +1947,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
           </div>
         </div>
         <div class="commercant" aria-live="polite">
-          <div class="commercant-tete"><span class="direct"></span>Agenda du coiffeur · en direct</div>
+          <div class="commercant-tete">Le carnet du coiffeur</div>
           <div class="commercant-ligne"><b id="a-titre">Coiffeur 1 · samedi 24</b><span id="a-nb">3 rendez-vous</span></div>
           <div class="agenda" id="a-liste"></div>
           <div class="toast-comm" id="a-toast" hidden><svg><use href="#i-ok"/></svg><span></span></div>
@@ -3378,6 +3428,7 @@ html.vt-vague::view-transition-new(cr-cadre) { animation: vague .7s cubic-bezier
     ms.style.setProperty("--fond", E.style.fond);
     ms.style.setProperty("--r", E.style.rayon);
     ms.setAttribute("data-style", E.style.id);
+    ms.setAttribute("data-metier", E.metier.id);
     $("ms-logo-lettre").textContent = n.charAt(0).toUpperCase();
     $("ms-toast-logo").textContent = n.charAt(0).toUpperCase();
     $("ms-logo-img").hidden = !E.logo; $("ms-logo-lettre").hidden = !!E.logo;
