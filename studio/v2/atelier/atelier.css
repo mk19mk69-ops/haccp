@@ -583,3 +583,16 @@ dialog::backdrop { background: rgba(11,22,34,.45); -webkit-backdrop-filter: blur
 .phl-n { color: var(--encre-2); font-size: 14px; }
 .img-champ-act { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
 .imgs-i.illu::after { content: ""; position: absolute; left: 6px; bottom: 6px; width: 8px; height: 8px; border-radius: 50%; background: #FFD43B; box-shadow: 0 0 0 2px #fff; pointer-events: none; }
+
+/* Choix du métier : de vraies photos du métier, pas des pictogrammes */
+.as-metier { gap: 0; padding: 0; justify-items: stretch; overflow: hidden; border-radius: 8px; border: 1px solid var(--ligne); background: #fff; text-align: left; }
+.as-metier:active { transform: none; }
+.as-photo { display: block; width: 100%; height: 76px !important; object-fit: cover; background: #EEECE6; }
+.as-metier { grid-template-rows: auto 1fr; align-content: start; }
+.as-photo--vide { background: repeating-linear-gradient(135deg, #F1EFE9 0 8px, #E8E5DD 8px 9px); }
+.as-metier small { padding: 7px 9px 8px; font-size: 12.5px; font-weight: 500; text-align: left; color: var(--encre, #121A24); }
+.as-metier:hover { border-color: var(--encre-3); }
+.as-metier.actif { border-color: var(--encre, #121A24); background: #fff; color: inherit; box-shadow: 0 0 0 1.5px var(--encre, #121A24); }
+.as-metier.actif small { font-weight: 700; }
+.as-metier.actif .as-photo { filter: none; }
+.as-metiers:has(.actif) .as-metier:not(.actif) .as-photo { filter: saturate(.35) brightness(1.05); }

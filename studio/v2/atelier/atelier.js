@@ -1324,6 +1324,7 @@
       titre("Créons le site de votre commerce", "Cinq questions rapides, puis vous modifiez tout ce que vous voulez directement sur la page.");
       var nom = h("input", { class: "as-grand", value: i.nom, placeholder: "Nom de votre commerce", maxlength: 40, autocomplete: "organization", "aria-label": "Nom de votre commerce", oninput: function () { i.nom = nom.value; re(); } });
       corps.appendChild(nom);
+      var PHOTO_METIER = { barbier: "barbier/12464838", coiffure: "coiffure/3356170", institut: "institut/14267564", boucherie: "boucherie/10201880", snack: "burger/1556688", restaurant: "restaurant/19393192", boulangerie: "boulangerie/10481790", epicerie: "epicerie/33975355", fleuriste: "fleuriste/17403112" };
       corps.appendChild(h("p", { class: "as-q", text: "Votre métier" }));
       corps.appendChild(h("div", { class: "as-metiers" }, BL.ORDRE_METIERS.map(function (m) {
         return h("button", { type: "button", class: "as-metier" + (i.metier === m ? " actif" : ""), "aria-pressed": i.metier === m ? "true" : "false", onclick: function () {
@@ -1332,7 +1333,7 @@
           if (!A.policeTouchee) Pn.theme.police = BL.M[m].police;
           if (!A.horTouche) i.horaires = HOR[HOR_METIER[m]]();
           dessinerAs(); re();
-        } }, [h("span", { html: BL.icone(BL.M[m].icone, "as-ic") }), h("small", { text: BL.M[m].nom })]);
+        } }, [PHOTO_METIER[m] ? h("img", { class: "as-photo", src: "photos/" + PHOTO_METIER[m] + "-m.webp", alt: "", loading: "lazy", width: "300", height: "225" }) : h("span", { class: "as-photo as-photo--vide" }), h("small", { text: BL.M[m].nom })]);
       })));
     } else if (A.pas === 1) {
       titre("Où vous trouver ?", "Ces infos apparaissent sur le site : bouton Appeler, itinéraire, horaires.");
