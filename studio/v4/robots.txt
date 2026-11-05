@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /maquettes/
+Sitemap: https://mokranistudio.fr/sitemap.xml
