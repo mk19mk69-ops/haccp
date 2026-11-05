@@ -1806,6 +1806,72 @@ footer * { border-color: rgba(240,229,219,.25) !important; }
 .inclus .btn { background: #F0E5DB; color: #474329; }
 
 .inclus h2, .inclus h3:first-child, .inclus [class*="titre"] { text-transform: uppercase; letter-spacing: .01em; font-weight: 400; }
+
+/* ===== V4.2 : plus de vert moka, détails roses, un seul système ===== */
+:root { --sable-2: #E6D8CB; }
+.vert { background: #474329 !important; color: #F0E5DB; --texte: #F0E5DB; --texte-2: #E6DBCF; --texte-3: #D6CABC; --ligne: rgba(240,229,219,.26); --lien: #F0E5DB; }
+.vert .t-section, .vert .t-lead, .vert h3 { color: #F0E5DB; }
+.vert a:not(.btn) { color: #F0E5DB; }
+.vert .btn { background: #F0E5DB; color: #474329; }
+.vert .btn:hover { background: #FC75B4; color: #474329; }
+.vert .btn--contour { background: transparent; color: #F0E5DB; box-shadow: inset 0 0 0 1.5px #F0E5DB; }
+.vert .btn--contour:hover { background: #FC75B4; color: #474329; box-shadow: none; }
+.vert a:focus-visible, .vert button:focus-visible { outline-color: #F0E5DB; }
+/* Les cartes posées sur le vert restent sable */
+.vert .scene-demo, .vert .notif-reelle, .vert .tuile, .vert form { background: #F0E5DB !important; color: #474329; --texte: #474329; --texte-2: #5C5838; --texte-3: #6B6745; --ligne: rgba(71,67,41,.25); --lien: #474329; border: 0 !important; }
+.vert .scene-demo a:not(.btn), .vert .tuile a:not(.btn), .vert form a:not(.btn) { color: #474329; }
+.vert .scene-demo .btn, .vert .tuile .btn, .vert form .btn, .vert .notif-reelle .btn { background: #474329; color: #F0E5DB; }
+.vert .scene-demo .btn:hover, .vert .tuile .btn:hover, .vert form .btn:hover { background: #FC75B4; color: #474329; }
+.vert .scene-demo h3, .vert .tuile h3, .vert .scene-demo .t-titre { color: #474329; }
+.vert .scene-demo .btn--contour, .vert .tuile .btn--contour { background: transparent; color: #474329; box-shadow: inset 0 0 0 1.5px #474329; }
+/* Onglets des démos sur le vert */
+.vert [role="tablist"] button, .vert [role="tab"] { color: #F0E5DB; }
+.vert [role="tab"][aria-selected="true"] { background: #F0E5DB !important; color: #474329 !important; border-radius: 0 !important; box-shadow: inset 0 -3px 0 #FC75B4 !important; }
+
+/* Héros sur le vert */
+.heros.vert .ed-titre, .heros.vert .ed-texte, .heros.vert .ed-etiquettes, .heros.vert .ed-prix, .heros.vert .ed-lien { color: #F0E5DB; }
+.heros.vert .ed-prix { border-top-color: rgba(240,229,219,.5); }
+.heros.vert .ed-tel img { filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); }
+.lnav, .lnav.colle { background: #474329; border-bottom-color: rgba(240,229,219,.2); }
+.lnav-titre, .lnav-liens a, .lnav-liens a:hover { color: #F0E5DB; }
+.lnav .btn--mini { background: #FC75B4; color: #474329; }
+.lnav .btn--mini:hover { background: #F0E5DB; }
+.gnav-menu span { background: #F0E5DB !important; }
+
+/* Réalisations : trois cartes sable avec un liseré rose */
+.vert .tuile { background: #F0E5DB !important; box-shadow: inset 0 4px 0 #FC75B4 !important; }
+.vert .tuile-titre { font-family: var(--titres); font-weight: 400; text-transform: uppercase; letter-spacing: .01em; color: #474329; }
+.vert .tuile-sous { color: #474329; }
+.vert .tuile-etiq { color: #474329; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+.vert .tuile-etiq::before { content: "/// "; color: #FC75B4; }
+
+/* Détails roses : le système */
+.t-section::before { content: "///"; display: block; font-family: var(--police); font-size: 14px; font-weight: 700; font-style: italic; letter-spacing: .08em; color: #FC75B4; margin-bottom: .9em; line-height: 1; }
+.t-section::after { width: 56px; height: 4px; }
+.pq-liste li, .options-liste li { position: relative; }
+.pq-liste li b:first-child::before, .pq-liste li strong:first-child::before { content: "+ "; color: #FC75B4; font-weight: 700; }
+.options-liste li { border-top: 1px solid var(--ligne); }
+.options-liste li::before { content: "+"; position: absolute; left: -1.1em; top: .9em; color: #FC75B4; font-weight: 700; }
+.col { box-shadow: inset 0 4px 0 #FC75B4 !important; }
+.col [class*="badge"], .col [class*="populaire"], .col-etiq { background: #FC75B4 !important; color: #474329 !important; padding: 3px 8px; border-radius: 0 !important; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; font-weight: 700; }
+.faq summary::after { color: #FC75B4 !important; }
+.faq details[open] summary { box-shadow: inset 4px 0 0 #FC75B4; padding-left: 14px; }
+.inclus, .calcul { box-shadow: inset 0 4px 0 #FC75B4 !important; }
+.contact .t-section + .t-lead::before { content: ""; }
+/* Signature au pied de page */
+footer { position: relative; overflow: hidden; }
+footer::after { content: "Mokrani Studio"; position: absolute; right: max(16px, 4vw); bottom: 18px; font-family: "Mr Dafoe", cursive; font-size: clamp(44px, 7vw, 96px); color: #FC75B4; transform: rotate(-6deg); pointer-events: none; opacity: .95; line-height: 1; }
+footer .cadre, footer > div { position: relative; z-index: 1; }
+
+/* Rythme : sable légèrement plus chaud pour alterner sans casser la cohérence */
+.jeu, .tarifs, .faq { background: #F0E5DB !important; }
+.createur, .pc { background: #F0E5DB !important; }
+
+footer { padding-bottom: clamp(110px, 12vw, 160px) !important; }
+footer::after { bottom: 22px; }
+.faq summary svg, .faq summary [class*="plus"], .faq summary span:last-child { color: #FC75B4 !important; stroke: #FC75B4; }
+
+@media (max-width: 899px) { .ed-titre .ed-l3 { justify-content: flex-start; } }
 </style>
 
 </head>
@@ -1865,7 +1931,7 @@ footer * { border-color: rgba(240,229,219,.25) !important; }
 </div>
 
 <main>
-  <section class="heros" id="vue-ensemble">
+  <section class="heros vert" id="vue-ensemble">
   <div class="ed">
     <h1 class="ed-titre" id="titre-heros">
       <span class="ed-l1">Votre commerce</span>
@@ -1984,7 +2050,7 @@ footer * { border-color: rgba(240,229,219,.25) !important; }
   </section>
 
 
-  <section class="demos fond-blanc bande" id="demos">
+  <section class="demos vert bande" id="demos">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
       <defs>
         <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
@@ -2313,7 +2379,7 @@ footer * { border-color: rgba(240,229,219,.25) !important; }
     </div>
   </section>
 
-  <section class="tuiles-section fond-blanc" id="realisations" aria-labelledby="real-titre">
+  <section class="tuiles-section vert" id="realisations" aria-labelledby="real-titre">
     <div class="bande"><div class="cadre tuiles-tete apparait">
       <h2 class="t-section" id="real-titre">Réalisations</h2>
     </div></div>
@@ -2572,7 +2638,7 @@ footer * { border-color: rgba(240,229,219,.25) !important; }
     </div>
   </section>
 
-  <section class="pq fond-gris" aria-labelledby="pq-titre">
+  <section class="pq vert" aria-labelledby="pq-titre">
     <div class="bande"><div class="cadre apparait">
       <h2 class="t-section" id="pq-titre">Pourquoi travailler avec moi</h2>
     </div></div>
@@ -2605,7 +2671,7 @@ footer * { border-color: rgba(240,229,219,.25) !important; }
     </div>
   </section>
 
-  <section class="contact fond-gris bande" id="contact">
+  <section class="contact vert bande" id="contact">
     <div class="cadre contact-grille">
       <div class="apparait">
         <h2 class="t-section">Parlons de votre commerce</h2>
