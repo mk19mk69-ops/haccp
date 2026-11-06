@@ -95,7 +95,6 @@ a.cache:focus { position: fixed !important; z-index: 99; top: 8px; left: 8px; wi
 .ecran-defile { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
 .ecran-defile::-webkit-scrollbar { display: none; }
 .ecran .site { min-height: 100%; }
-.ecran .site .s-entete { padding-top: 30px; }
 .voile { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; background: rgba(11,22,34,.82); color: #fff; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .3s ease, visibility .3s ease; overflow: hidden; }
 .voile.on { opacity: 1; visibility: visible; }
 .balayage { position: absolute; left: 0; right: 0; height: 4px; top: 0; background: var(--bleu-clair); }
@@ -290,3 +289,9 @@ form.devis { display: grid; gap: 14px; align-content: start; background: #fff; p
 .site:not(.ed):has(> .s-corps:not([hidden]) > .b-heros.v-cinema:first-child) > .s-entete:not(.colle):not(.ouvert) .s-btn { --sb: #fff; --sbt: #111; }
 
 .atelier .t2 { font-size: clamp(36px, 4.6vw, 64px); }
+/* Le contenu du téléphone reste toujours dans l'écran arrondi, même pendant les animations */
+.ecran { clip-path: inset(0 round 41px); isolation: isolate; }
+@media (max-width: 979px) { .heros .tel { --rot: 0deg; } }
+/* Barre d'état du téléphone : bande sombre sous l'îlot, le site commence en dessous */
+.ecran { background: #0E141B; }
+.ecran-defile { top: 36px; }
