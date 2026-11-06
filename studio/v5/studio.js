@@ -310,9 +310,9 @@
 
   /* ===================== Combinaisons (Atelier) ===================== */
   var COMBOS = [
-    ["Bleu égyptien", { fond: "nuit", c1: "#EB2F33", c2: "#639CC5" }],
-    ["Sable et moka", { fond: "sable", c1: "#474329", c2: "#FC75B4" }],
-    ["Forêt et rose", { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA" }],
+    ["Bleu égyptien", { fond: "nuit", c1: "#EB2F33", c2: "#639CC5" }, "assets/palette-egyptien.webp"],
+    ["Sable et moka", { fond: "sable", c1: "#474329", c2: "#FC75B4" }, "assets/palette-sable.webp"],
+    ["Forêt et rose", { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA" }, "assets/palette-foret.webp"],
     ["Bleu pierre", { fond: "clair", c1: "#03203D", c2: "#639CC5" }],
     ["Bordeaux et or", { fond: "creme", c1: "#7A1F2B", c2: "#D9A441" }],
     ["Terracotta", { fond: "sable", c1: "#B4532A", c2: "#2D4A35" }],
@@ -323,20 +323,29 @@
     ["Menthe et corail", { fond: "clair", c1: "#0E7C66", c2: "#FF8A73" }],
     ["Charbon et rouge", { fond: "sombre", c1: "#EB2F33", c2: "#F5F0EA" }]
   ];
-  var combos = $("combos"), apercuPc = $("apercu-pc"), vuePc = $("vue-pc");
-  COMBOS.forEach(function (cb) {
+  var combos = $("combos"), apercuPc = $("apercu-pc"), vuePc = $("vue-pc"), maquette = $("vue-maquette");
+  /* Les trois premières combinaisons montrent un vrai site dessiné sur mesure dans cette palette */
+  function montrerMaquette(cb) {
+    if (!maquette) return false;
+    if (cb && cb[2]) { maquette.src = cb[2]; maquette.hidden = false; vuePc.classList.add("avec-maquette"); return true; }
+    maquette.hidden = true; vuePc.classList.remove("avec-maquette"); return false;
+  }
+  COMBOS.forEach(function (cb, k) {
     var f = BL.FONDS[cb[1].fond] || BL.FONDS.clair;
-    var b = document.createElement("button"); b.type = "button"; b.className = "combo"; b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", cb[0]); b.title = cb[0];
+    var b = document.createElement("button"); b.type = "button"; b.className = "combo"; b.setAttribute("aria-pressed", k === 0 && maquette ? "true" : "false"); b.setAttribute("aria-label", cb[0]); b.title = cb[0];
     b.style.cssText = "--cf:" + f.fond + ";--c1:" + cb[1].c1 + ";--c2:" + cb[1].c2;
     b.addEventListener("click", function () {
       if (!etat.P) return;
-      combos.querySelectorAll(".combo").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      Object.assign(etat.P.theme, cb[1]);
-      $("combo-nom").textContent = cb[0] + " : appliquée au site de " + etat.P.infos.nom + ", ici et en haut de la page.";
+      combos.querySelectorAll(".combo").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      Object.assign(etat.P.theme, { c1: cb[1].c1, c2: cb[1].c2, fond: cb[1].fond });
       montrer(etat.P, false);
+      $("combo-nom").textContent = montrerMaquette(cb)
+        ? cb[0] + "\u00a0: à droite, un site dessiné sur mesure dans cette palette. En haut de la page, le site de " + etat.P.infos.nom + " prend les mêmes couleurs."
+        : cb[0] + "\u00a0: appliquée au site de " + etat.P.infos.nom + ", ici et en haut de la page.";
     });
     combos.appendChild(b);
   });
+  if (montrerMaquette(COMBOS[0])) $("combo-nom").textContent = "Bleu égyptien\u00a0: un site dessiné sur mesure dans cette palette. Touchez une autre combinaison pour l'essayer sur votre site.";
   function majPortable() {
     if (!etat.P) return;
     var ech = vuePc.clientWidth / 1280; apercuPc.style.setProperty("--ech", ech.toFixed(4));
