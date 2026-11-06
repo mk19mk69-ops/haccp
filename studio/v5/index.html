@@ -6,11 +6,11 @@
 <title>Mokrani Studio · Sites et logiciels pour commerçants</title>
 <meta name="description" content="Tapez le nom de votre commerce et voyez votre site se construire. Sites, réservation en ligne et logiciels pour les commerçants de Troyes, Paris et des Yvelines. Payé une fois, sans commission.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0B1622">
+<meta name="theme-color" content="#FDFCF9">
 <link rel="icon" href="icones/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="icones/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
-<link rel="preload" href="atelier/polices/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="atelier/site.css">
 <link rel="stylesheet" href="studio.css">
 </head>
@@ -18,7 +18,7 @@
 <a class="cache" href="#contenu">Aller au contenu</a>
 <header class="nav" id="nav">
   <div class="cadre">
-    <a class="logo" href="#essai">Mokrani<span>Studio</span></a>
+    <a class="logo" href="#essai"><img src="assets/logo-mokrani.svg" alt="Mokrani Studio" width="174" height="26"></a>
     <nav class="nav-liens" aria-label="Navigation principale">
       <a href="#fonctions">Fonctions</a>
       <a href="#atelier">Atelier</a>
@@ -34,7 +34,7 @@
   <div class="cadre heros-grille">
     <div>
       <h1 class="titre" id="titre-essai">Tapez le nom de votre commerce.</h1>
-      <p class="chapo">Votre site se construit sous vos yeux : votre adresse, vos horaires, des photos de votre métier. C'est gratuit et sans inscription.</p>
+      <p class="chapo">Votre site se construit sous vos yeux : votre adresse, vos horaires, des photos de votre métier. C'est gratuit et sans inscription.</p>
       <form class="recherche" id="recherche" role="search" autocomplete="off">
         <label class="cache" for="q">Nom de votre commerce</label>
         <div class="champ-r">
@@ -45,11 +45,12 @@
         <div class="suggestions" id="suggestions" role="listbox" aria-label="Commerces trouvés" hidden></div>
       </form>
       <div class="metiers" id="metiers">
-        <p>Pas encore sur la carte ? Choisissez votre métier :</p>
+        <p>Pas encore sur la carte ? Choisissez votre métier :</p>
       </div>
-      <p class="promesse"><b>Ce que vous voyez vous plaît ?</b> Je le termine avec vous, vous payez une fois et le site est à votre nom.</p>
+      <p class="promesse"><b>Ce que vous voyez vous plaît ?</b> Je le termine avec vous, vous payez une fois et le site est à votre nom.</p>
     </div>
     <div class="scene" id="scene">
+      <div class="champ" aria-hidden="true"><div class="marque-m"></div></div>
       <div class="tel" id="tel">
         <div class="ilot" aria-hidden="true"></div>
         <div class="ecran"><div class="ecran-defile" id="defile" tabindex="0" aria-label="Aperçu du site"><div class="site" id="apercu"></div></div>
@@ -77,12 +78,12 @@
 <section class="bloc fonctions" id="fonctions" aria-labelledby="titre-fonctions">
   <div class="cadre">
     <h2 class="titre t2 revele" id="titre-fonctions">Votre site travaille pendant que vous servez.</h2>
-    <p class="chapo">Touchez une fonction : le téléphone montre la vraie, et vous pouvez l'essayer.</p>
+    <p class="chapo">Touchez une fonction : le téléphone montre la vraie, et vous pouvez l'essayer.</p>
     <div class="fonctions-grille">
       <div class="choix" role="tablist" aria-label="Fonctions" id="choix"></div>
       <div class="scene">
         <div class="tel tel--clair"><div class="ilot" aria-hidden="true"></div><div class="ecran"><div class="ecran-defile" tabindex="0" aria-label="Démonstration" id="demo-defile"><div class="site" id="demo"></div></div></div></div>
-        <p class="note-tel">Démonstration : aucune demande n'est envoyée.</p>
+        <p class="note-tel">Démonstration : aucune demande n'est envoyée.</p>
       </div>
     </div>
   </div>
@@ -91,9 +92,9 @@
 <section class="bloc atelier" id="atelier" aria-labelledby="titre-atelier">
   <div class="cadre atelier-grille">
     <div>
-      <h2 class="titre t2 revele" id="titre-atelier">Ou faites-le vous-même, dans l'Atelier.</h2>
+      <h2 class="titre t2 revele" id="titre-atelier">Ou faites‑le vous‑même, dans l'Atelier.</h2>
       <p class="chapo">C'est le même outil que celui du haut de la page, en complet. Vous changez les textes, les photos et les couleurs, vous ajoutez des pages. Ensuite je vérifie tout et je le mets en ligne.</p>
-      <p class="prix-atelier">Site vitrine : <b>190 €</b>. Site avec réservation : <b>290 €</b>.</p>
+      <p class="prix-atelier">Site vitrine : <b>190 €</b>. Site avec réservation : <b>290 €</b>.</p>
       <div class="combos" id="combos" role="group" aria-label="Combinaisons de couleurs"></div>
       <p class="combo-nom" id="combo-nom" aria-live="polite">Essayez une combinaison de couleurs sur votre site.</p>
       <p class="atelier-cta"><a class="btn" href="atelier/" id="ouvrir-atelier">Ouvrir l'Atelier</a></p>
@@ -128,7 +129,7 @@
             <div class="prix"><b>dès 690 €</b><small>sur devis</small><button class="btn btn--ligne" type="button" data-formule="Sur mesure">En parler</button></div>
           </article>
         </div>
-        <p class="atelier-ligne">Fait par vous dans l'Atelier : vitrine 190 €, réservation 290 €.</p>
+        <p class="atelier-ligne">Fait par vous dans l'Atelier : vitrine 190 €, réservation 290 €.</p>
         <div class="options">
           <h3>Options</h3>
           <dl>
@@ -145,7 +146,7 @@
           <h3 class="t-tete">MOKRANI STUDIO</h3>
           <p class="t-sous">Devis type · Troyes</p>
           <table><tbody id="ticket-lignes"></tbody></table>
-          <p class="t-pied">Les années suivantes : hébergement, environ 5 € par mois.<br>Merci et à bientôt.</p>
+          <p class="t-pied">Les années suivantes : hébergement, environ 5 € par mois.<br>Merci et à bientôt.</p>
           <div class="tampon" id="tampon"><span><b>0 €</b><small>DE COMMISSION</small></span></div>
         </div>
         <div class="choix-formule" id="choix-formule" role="group" aria-label="Formule du ticket"></div>
@@ -174,13 +175,13 @@
   <div class="cadre">
     <h2 class="titre t2 revele" id="titre-faq">Questions fréquentes</h2>
     <div class="faq-liste">
-      <details><summary>Combien de temps pour avoir mon site ?</summary><p>La maquette arrive sous 72 h. Une fois vos textes et photos réunis, le site est en ligne en une à deux semaines. Un logiciel sur mesure prend en général trois à six semaines.</p></details>
-      <details><summary>Le site m'appartient-il vraiment ?</summary><p>Oui. Le nom de domaine est à votre nom et vous recevez tous les fichiers. Si vous changez de prestataire, vous partez avec votre site.</p></details>
-      <details><summary>Quelle différence avec Planity ou Uber Eats ?</summary><p>Ces plateformes prennent un abonnement ou une commission sur chaque commande, et vos clients y voient aussi vos concurrents. Ici, vous payez une fois, la réservation se fait sur votre propre site et les clients restent les vôtres.</p></details>
-      <details><summary>D'où viennent les infos du haut de la page ?</summary><p>De la carte collaborative OpenStreetMap, quand votre commerce y figure. Elles peuvent être incomplètes : vous les vérifiez et les corrigez dans l'Atelier ou avec moi. Les photos sont des photos d'illustration libres de droits, à remplacer par les vôtres.</p></details>
-      <details><summary>Et si je veux changer un prix ou mes horaires ?</summary><p>Pendant le premier mois, c'est inclus. Ensuite, un message suffit pour une petite modification, ou je vous montre comment la faire vous-même.</p></details>
-      <details><summary>Comment se passe le paiement ?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
-      <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un ?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Neuf ou reconditionné, toutes marques. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
+      <details><summary>Combien de temps pour avoir mon site ?</summary><p>La maquette arrive sous 72 h. Une fois vos textes et photos réunis, le site est en ligne en une à deux semaines. Un logiciel sur mesure prend en général trois à six semaines.</p></details>
+      <details><summary>Le site m'appartient-il vraiment ?</summary><p>Oui. Le nom de domaine est à votre nom et vous recevez tous les fichiers. Si vous changez de prestataire, vous partez avec votre site.</p></details>
+      <details><summary>Quelle différence avec Planity ou Uber Eats ?</summary><p>Ces plateformes prennent un abonnement ou une commission sur chaque commande, et vos clients y voient aussi vos concurrents. Ici, vous payez une fois, la réservation se fait sur votre propre site et les clients restent les vôtres.</p></details>
+      <details><summary>D'où viennent les infos du haut de la page ?</summary><p>De la carte collaborative OpenStreetMap, quand votre commerce y figure. Elles peuvent être incomplètes : vous les vérifiez et les corrigez dans l'Atelier ou avec moi. Les photos sont des photos d'illustration libres de droits, à remplacer par les vôtres.</p></details>
+      <details><summary>Et si je veux changer un prix ou mes horaires ?</summary><p>Pendant le premier mois, c'est inclus. Ensuite, un message suffit pour une petite modification, ou je vous montre comment la faire vous-même.</p></details>
+      <details><summary>Comment se passe le paiement ?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
+      <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un ?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Neuf ou reconditionné, toutes marques. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
       <details><summary>Je ne suis pas à l'aise avec l'informatique.</summary><p>C'est justement pour ça que j'existe. Je m'occupe du technique et je vous forme sur place, à votre rythme.</p></details>
     </div>
   </div>
@@ -223,14 +224,14 @@
 
 <footer class="pied">
   <div class="cadre">
-    <a class="logo" href="#essai">Mokrani<span>Studio</span></a>
+    <a class="pied-marque" href="#essai" aria-label="Mokrani Studio, retour en haut"><span class="marque-m" aria-hidden="true"></span><span>Mokrani Studio</span></a>
     <div class="pied-liens">
       <a href="#fonctions">Fonctions</a><a href="atelier/">Atelier</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions</a><a href="#contact">Contact</a><a href="tel:+33782023657">07 82 02 36 57</a>
     </div>
     <div class="pied-liens">
       <a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité et cookies</a><a href="cgv.html">Conditions générales de vente</a>
     </div>
-    <p>TVA non applicable, art. 293 B du CGI. Prix indicatifs : le devis final dépend de votre projet. Les commerces de démonstration sont imaginaires. Données de la carte © les contributeurs OpenStreetMap.</p>
+    <p>TVA non applicable, art. 293 B du CGI. Prix indicatifs : le devis final dépend de votre projet. Les commerces de démonstration sont imaginaires. Données de la carte © les contributeurs OpenStreetMap.</p>
     <p>© 2026 Ali Mokrani, entrepreneur individuel · SIRET 106 632 243 00015 · Ce site ne dépose aucun cookie.</p>
   </div>
 </footer>
