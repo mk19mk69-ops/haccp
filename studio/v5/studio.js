@@ -313,15 +313,15 @@
     ["Bleu égyptien", { fond: "nuit", c1: "#EB2F33", c2: "#639CC5" }, "assets/palette-egyptien.webp"],
     ["Sable et moka", { fond: "sable", c1: "#474329", c2: "#FC75B4" }, "assets/palette-sable.webp"],
     ["Forêt et rose", { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA" }, "assets/palette-foret.webp"],
-    ["Bleu pierre", { fond: "clair", c1: "#03203D", c2: "#639CC5" }],
-    ["Bordeaux et or", { fond: "creme", c1: "#7A1F2B", c2: "#D9A441" }],
-    ["Terracotta", { fond: "sable", c1: "#B4532A", c2: "#2D4A35" }],
-    ["Marine et moutarde", { fond: "clair", c1: "#12355B", c2: "#E0A526" }],
-    ["Olive et pêche", { fond: "creme", c1: "#556B2F", c2: "#F4A27C" }],
-    ["Nuit dorée", { fond: "sombre", c1: "#D4A73A", c2: "#F5F0EA" }],
-    ["Rouge et blanc", { fond: "clair", c1: "#C8102E", c2: "#1B1E22" }],
-    ["Menthe et corail", { fond: "clair", c1: "#0E7C66", c2: "#FF8A73" }],
-    ["Charbon et rouge", { fond: "sombre", c1: "#EB2F33", c2: "#F5F0EA" }]
+    ["Bleu pierre", { fond: "clair", c1: "#03203D", c2: "#639CC5" }, "assets/palette-pierre.webp"],
+    ["Bordeaux et or", { fond: "creme", c1: "#7A1F2B", c2: "#D9A441" }, "assets/palette-bordeaux.webp"],
+    ["Terracotta", { fond: "sable", c1: "#B4532A", c2: "#2D4A35" }, "assets/palette-terracotta.webp"],
+    ["Marine et moutarde", { fond: "clair", c1: "#12355B", c2: "#E0A526" }, "assets/palette-marine.webp"],
+    ["Olive et pêche", { fond: "creme", c1: "#556B2F", c2: "#F4A27C" }, "assets/palette-olive.webp"],
+    ["Nuit dorée", { fond: "sombre", c1: "#D4A73A", c2: "#F5F0EA" }, "assets/palette-nuit.webp"],
+    ["Rouge et blanc", { fond: "clair", c1: "#C8102E", c2: "#1B1E22" }, "assets/palette-rouge.webp"],
+    ["Menthe et corail", { fond: "clair", c1: "#0E7C66", c2: "#FF8A73" }, "assets/palette-menthe.webp"],
+    ["Charbon et rouge", { fond: "sombre", c1: "#EB2F33", c2: "#F5F0EA" }, "assets/palette-charbon.webp"]
   ];
   var combos = $("combos"), apercuPc = $("apercu-pc"), vuePc = $("vue-pc"), maquette = $("vue-maquette");
   /* Les trois premières combinaisons montrent un vrai site dessiné sur mesure dans cette palette */
