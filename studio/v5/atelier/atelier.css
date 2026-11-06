@@ -629,3 +629,27 @@ dialog::backdrop { background: rgba(11,22,34,.45); -webkit-backdrop-filter: blur
 .phl-q:focus { outline: 2px solid var(--bleu, #0B63CE); outline-offset: 1px; }
 .phl-info { margin: 0 0 10px; color: #5B6470; font-size: 14px; }
 .phl-plus[hidden], .phl-info[hidden], .phl-cats[hidden] { display: none; }
+
+/* Icônes en deux tons : trait encre, aplat bleu clair (.t), détail bleu (.a) */
+.rail svg .t, .barre svg .t { fill: #D3E3F8; }
+.rail svg .a, .barre svg .a { fill: var(--bleu); stroke: none; }
+.rail button.actif svg .t, .seg [aria-pressed="true"] svg .t { fill: #fff; }
+.rail button svg { stroke-width: 1.7; }
+/* Métiers : plus grands, dessinés en deux tons */
+.as-metiers { grid-template-columns: repeat(auto-fill, minmax(156px, 1fr)); gap: 8px; }
+.as-metier { grid-template-columns: 50px 1fr; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 10px; }
+.as-plaque { width: 50px; height: 50px; border-radius: 8px; background: var(--papier-2); }
+.as-glyphe { width: 38px; height: 38px; fill: none; stroke: var(--encre); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.as-glyphe .t { fill: #fff; }
+.as-glyphe .t.n { stroke: none; }
+.as-glyphe .a { fill: var(--bleu); stroke: none; }
+.as-glyphe .e { stroke: var(--bleu); stroke-width: 2.6; }
+.as-metier:hover .as-plaque { background: var(--bleu-doux); }
+.as-metier.actif .as-plaque { background: var(--encre); }
+.as-metier.actif .as-glyphe { stroke: #fff; }
+.as-metier.actif .as-glyphe .t { fill: #24303D; }
+.as-metier.actif .as-glyphe .a { fill: #8FC0FA; }
+.as-metier.actif .as-glyphe .e { stroke: #8FC0FA; }
+.as-metier small { font-size: 14px; font-weight: 600; }
+.as-glyphe .p { fill: #fff; stroke: none; }
+.rail button:hover svg .t { fill: #C4DAF6; }

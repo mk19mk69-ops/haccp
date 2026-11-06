@@ -1433,16 +1433,16 @@
         ]));
       }
       var GLYPHE = {
-        barbier: '<circle cx="16" cy="4.5" r="2.6"/><circle cx="16" cy="27.5" r="2.6"/><rect x="11.5" y="6.5" width="9" height="19" rx="1.5"/><path class="a" d="M11.5 10.5l9-4v3.6l-9 4zM11.5 17.5l9-4v3.6l-9 4zM11.5 24.5l9-4v3.6l-9 1.4z"/>',
-        coiffure: '<path d="M4 10a7 7 0 0 1 7-7h10a5 5 0 0 1 0 10h-2l-1.6 2.4h-5L11 17A7 7 0 0 1 4 10z"/><rect x="12" y="15" width="5.5" height="14" rx="2.2"/><circle class="a" cx="11" cy="10" r="3"/>',
-        institut: '<rect class="a" x="12.5" y="2.5" width="7" height="9" rx="1.6"/><rect x="11.5" y="11" width="9" height="3.2" rx="1"/><rect x="7.5" y="14" width="17" height="15.5" rx="4.5"/>',
-        boucherie: '<path fill-rule="evenodd" d="M3 7.5A2.5 2.5 0 0 1 5.5 5H20a2.5 2.5 0 0 1 2.5 2.5v10A2.5 2.5 0 0 1 20 20H7a4 4 0 0 1-4-4zM8 8.5a1.8 1.8 0 1 0 0 3.6a1.8 1.8 0 1 0 0-3.6z"/><rect class="a" x="22" y="10" width="8.5" height="5" rx="2.2"/>',
-        snack: '<path d="M5 14.5C5 9 10 6 16 6s11 3 11 8.5z"/><path class="a" d="M4 16.3h24l-2.2 2.6-2.2-2-2.2 2-2.2-2-2.2 2-2.2-2-2.2 2-2.2-2-2.2 2-2.2-2-2.2 2z"/><rect x="4" y="19.5" width="24" height="4" rx="2"/><path d="M5 24.8h22v.7a3.2 3.2 0 0 1-3.2 3.2H8.2A3.2 3.2 0 0 1 5 25.5z"/>',
-        restaurant: '<path d="M4.5 22a11.5 11.5 0 0 1 23 0z"/><circle class="a" cx="16" cy="8.5" r="2.4"/><rect x="2.5" y="23.2" width="27" height="3.3" rx="1.6"/>',
-        boulangerie: '<rect x="2" y="12" width="28" height="8.5" rx="4.25" transform="rotate(-32 16 16)"/><path class="a s" d="M9.5 19.5l2.5-4.2M14.2 16.6l2.5-4.2M18.9 13.7l2.5-4.2" fill="none" stroke-width="2" stroke-linecap="round"/>',
-        epicerie: '<circle class="a" cx="12" cy="11" r="3.4"/><circle class="a" cx="19.5" cy="10" r="3.8"/><path d="M4 13.5h24l-2.6 13a2.2 2.2 0 0 1-2.2 1.8H8.8a2.2 2.2 0 0 1-2.2-1.8z"/>',
-        fleuriste: '<path class="a" d="M10 5.5l3.2 4.2 2.8-6.2 2.8 6.2 3.2-4.2v6.5a6 6 0 0 1-12 0z"/><rect x="15" y="17" width="2.2" height="12.5" rx="1.1"/><path d="M17.2 25c3-4.2 6.8-5.6 9.3-4.6-1 4.1-5.2 6.3-9.3 5.6z"/>',
-        autre: '<path class="a" d="M4.5 4.5h23l2.5 8H2z"/><path fill-rule="evenodd" d="M4.5 13.5h23v15h-23zM13 19h6v9.5h-6z"/>'
+        barbier: '<circle class="a" cx="24" cy="5" r="2.6"/><rect x="16.5" y="8" width="15" height="4.2" rx="2.1"/><rect class="t n" x="19" y="12.2" width="10" height="23.6"/><path class="a" d="M19 17.5l10-4.2v4.2l-10 4.2zM19 25.6l10-4.2v4.2l-10 4.2zM19 33.6l10-4.2v4.2l-10 2.2z"/><rect x="19" y="12.2" width="10" height="23.6"/><rect x="16.5" y="35.8" width="15" height="4.2" rx="2.1"/><circle class="a" cx="24" cy="43" r="2.6"/>',
+        coiffure: '<path d="M18.5 28.5 32 6.5M29.5 28.5 16 6.5"/><circle class="t" cx="14.5" cy="34" r="6.2"/><circle class="t" cx="33.5" cy="34" r="6.2"/><circle class="a" cx="24" cy="18.6" r="2.3"/>',
+        institut: '<rect class="a" x="19" y="4" width="10" height="13" rx="2.6"/><rect x="16.5" y="17" width="15" height="4.6" rx="1.6"/><rect class="t" x="12.5" y="21.6" width="23" height="22" rx="5"/><path d="M18 28v9"/>',
+        boucherie: '<g transform="rotate(-18 24 24)"><path class="t" d="M4 14h24.5a2.5 2.5 0 0 1 2.5 2.5v11c0 3-2.4 5.5-5.5 5.5H11a7 7 0 0 1-7-7z"/><circle cx="10" cy="19.5" r="2.4"/><rect class="a" x="31" y="18.5" width="14" height="7" rx="3.5"/><circle cx="36" cy="22" r=".9" class="p"/><circle cx="40.5" cy="22" r=".9" class="p"/></g>',
+        snack: '<path class="t" d="M8 21.5a16 11.5 0 0 1 32 0z"/><path d="M18 14.6l1.4.9M25 12.6l1.4.9M29.6 16.4l1.4.9"/><path d="M7.5 25h33"/><rect class="a" x="8" y="27.5" width="32" height="5.6" rx="2.8"/><path class="t" d="M8 36h32v1.5a5 5 0 0 1-5 5H13a5 5 0 0 1-5-5z"/>',
+        restaurant: '<circle class="a" cx="24" cy="15" r="2.8"/><path class="t" d="M8 35a16 16 0 0 1 32 0z"/><path d="M15 30a10 10 0 0 1 5.4-7.6"/><path d="M4.5 39h39"/>',
+        boulangerie: '<path class="t" d="M5.5 33c0-11 8.3-19 18.5-19s18.5 8 18.5 19a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4z"/><path class="e" d="M15 22.5l4 6.5M22.5 20.5l4 7M30 21.5l4 6.5"/>',
+        epicerie: '<path d="M17.5 12.5c.6-3.3 2.8-5.4 6-6"/><circle class="a" cx="17.5" cy="18.5" r="6"/><circle class="t" cx="30" cy="17.5" r="7"/><path class="t" d="M5 23h38l-4.4 17.6a3 3 0 0 1-2.9 2.4H12.3a3 3 0 0 1-2.9-2.4z"/><path d="M17 28.5l.8 9.5M24 28.5V38M31 28.5l-.8 9.5"/>',
+        fleuriste: '<path d="M24 27v17"/><path class="t" d="M24 39.5c0-6.3 4.9-10.6 11.5-10.6-.6 6.2-5 10.6-11.5 10.6z"/><path class="t" d="M24 35c0-5.3-4.2-8.6-9.6-8.6 0 5.2 4.2 8.6 9.6 8.6z"/><path class="a" d="M14.5 8.5l5.2 4.2L24 5l4.3 7.7 5.2-4.2v9.3a9.5 9.5 0 0 1-19 0z"/>',
+        autre: '<path class="a" d="M7 6h34l4 12H3z"/><path class="t" d="M3 18h42v1.6a3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0z"/><path d="M7 25v18h34V25"/><rect class="t" x="12" y="30" width="8" height="13"/><rect x="25" y="30" width="11" height="8" rx="1.2"/>'
       };
       corps.appendChild(h("p", { class: "as-q", text: "Votre métier" }));
       corps.appendChild(h("div", { class: "as-metiers" }, BL.ORDRE_METIERS.map(function (m) {
@@ -1452,7 +1452,7 @@
           if (!A.policeTouchee) Pn.theme.police = BL.M[m].police;
           if (!A.horTouche) i.horaires = HOR[HOR_METIER[m]]();
           dessinerAs(); re();
-        } }, [h("span", { class: "as-plaque", html: '<svg class="as-glyphe" viewBox="0 0 32 32" aria-hidden="true">' + (GLYPHE[m] || GLYPHE.autre) + "</svg>" }), h("small", { text: BL.M[m].nom })]);
+        } }, [h("span", { class: "as-plaque", html: '<svg class="as-glyphe" viewBox="0 0 48 48" aria-hidden="true">' + (GLYPHE[m] || GLYPHE.autre) + "</svg>" }), h("small", { text: BL.M[m].nom })]);
       })));
     } else if (A.pas === 1) {
       titre("Où vous trouver ?", "Ces infos apparaissent sur le site : bouton Appeler, itinéraire, horaires.");
