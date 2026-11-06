@@ -13,6 +13,24 @@
 <link rel="preload" href="assets/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="atelier/site.css">
 <link rel="stylesheet" href="studio.css">
+<style>
+.heros-2 { background: var(--bleu); color: #fff; border-bottom: 0; }
+.heros-2 h1 { font-size: clamp(48px, 7.4vw, 108px); letter-spacing: -.05em; line-height: .92; }
+.heros-2 .chapo { color: rgba(255,255,255,.9); }
+.heros-2 .champ-r { box-shadow: 10px 12px 0 var(--encre); }
+.heros-2 .champ-r .btn { background: var(--encre); }
+.heros-2 .champ-r .btn:hover { background: #24303D; }
+.heros-2 .champ-r:focus-within { box-shadow: 10px 12px 0 var(--encre), 0 0 0 4px rgba(255,255,255,.55); }
+.metiers-select { margin-top: 26px; }
+.metier-select { appearance: none; -webkit-appearance: none; border: 0; border-bottom: 2px solid rgba(255,255,255,.75); background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") right 2px center / 12px no-repeat; color: #fff; font: inherit; font-size: 16px; font-weight: 600; padding: 8px 26px 8px 0; cursor: pointer; max-width: 100%; }
+.metier-select option { color: var(--encre); }
+.metier-select:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.fond-m { position: absolute; z-index: -1; inset: 0; overflow: hidden; pointer-events: none; }
+.fond-m .marque-m { position: absolute; color: rgba(255,255,255,.1); width: 1100px; aspect-ratio: 855 / 613; left: -180px; bottom: -260px; }
+.heros-2 .tel { box-shadow: 0 0 0 1.5px #2C3640, 22px 26px 0 var(--encre); }
+.heros-2 :focus-visible { outline-color: #fff; }
+@media (max-width: 979px) { .fond-m .marque-m { width: 700px; left: -200px; bottom: auto; top: 260px; } .heros-2 .tel { --rot: 0deg; } }
+</style>
 </head>
 <body>
 <a class="cache" href="#contenu">Aller au contenu</a>
@@ -30,11 +48,12 @@
 </header>
 
 <main id="contenu">
-<section class="heros" id="essai" aria-labelledby="titre-essai">
+<section class="heros heros-2" id="essai" aria-labelledby="titre-essai">
+  <div class="fond-m" aria-hidden="true"><div class="marque-m"></div></div>
   <div class="cadre heros-grille">
-    <div>
-      <h1 class="titre" id="titre-essai">Tapez le nom de votre commerce.</h1>
-      <p class="chapo">Votre site se construit sous vos yeux : votre adresse, vos horaires, des photos de votre métier. C'est gratuit et sans inscription.</p>
+    <div class="h-txt">
+      <h1 class="titre" id="titre-essai">Votre commerce. Enfin en ligne.</h1>
+      <p class="chapo">Tapez son nom, et regardez votre site se construire avec votre adresse et vos horaires. C'est gratuit et sans inscription.</p>
       <form class="recherche" id="recherche" role="search" autocomplete="off">
         <label class="cache" for="q">Nom de votre commerce</label>
         <div class="champ-r">
@@ -44,13 +63,9 @@
         </div>
         <div class="suggestions" id="suggestions" role="listbox" aria-label="Commerces trouvés" hidden></div>
       </form>
-      <div class="metiers" id="metiers">
-        <p>Pas encore sur la carte ? Choisissez votre métier :</p>
-      </div>
-      <p class="promesse"><b>Ce que vous voyez vous plaît ?</b> Je le termine avec vous, vous payez une fois et le site est à votre nom.</p>
+      <div class="metiers-select" id="metiers" data-forme="select"></div>
     </div>
     <div class="scene" id="scene">
-      <div class="champ" aria-hidden="true"><div class="marque-m"></div></div>
       <div class="tel" id="tel">
         <div class="ilot" aria-hidden="true"></div>
         <div class="ecran"><div class="ecran-defile" id="defile" tabindex="0" aria-label="Aperçu du site"><div class="site" id="apercu"></div></div>
