@@ -94,6 +94,8 @@
     etapes.push(["Photos : " + M.nom.toLowerCase(), true]);
     etapes.push(["Couleurs et écriture choisies", true]);
     voile.classList.add("on");
+    arreterExemples();
+    var scn = $("scene"); if (scn && scn.classList.contains("endormi")) { scn.classList.remove("endormi"); scn.classList.add("reveil"); }
     if (innerWidth < 980) { var sc = $("scene").getBoundingClientRect(); if (sc.top > innerHeight * .4 || sc.bottom < 0) $("scene").scrollIntoView({ behavior: reduit ? "auto" : "smooth", block: "center" }); }
     var P = projet(o);
     etat.P = P;
@@ -118,17 +120,46 @@
     });
   }
 
-  /* Métiers */
-  var metiers = $("metiers");
-  BL.ORDRE_METIERS.filter(function (m) { return m !== "autre"; }).forEach(function (m) {
-    var b = document.createElement("button"); b.type = "button"; b.className = "puce"; b.textContent = BL.M[m].nom; b.setAttribute("aria-pressed", "false"); b.dataset.m = m;
-    b.addEventListener("click", function () {
-      metiers.querySelectorAll(".puce").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      var nom = q.value.trim();
-      construire({ metier: m, nom: nom || EXEMPLES[m] }, nom ? "nom" : "exemple");
+  /* Métiers : en puces (par défaut), en liens texte, en liste déroulante, ou repliés */
+  var metiers = $("metiers"), forme = metiers ? (metiers.getAttribute("data-forme") || "puces") : "aucune";
+  var LISTE_M = BL.ORDRE_METIERS.filter(function (m) { return m !== "autre"; });
+  function choisirMetier(m) {
+    arreterExemples();
+    if (metiers) metiers.querySelectorAll("[data-m]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.m === m ? "true" : "false"); });
+    var nom = q.value.trim();
+    construire({ metier: m, nom: nom || EXEMPLES[m] }, nom ? "nom" : "exemple");
+  }
+  if (forme === "select") {
+    var sel = document.createElement("select"); sel.className = "metier-select"; sel.setAttribute("aria-label", "Choisir votre métier");
+    sel.innerHTML = '<option value="">Pas sur la carte ? Choisir votre métier</option>' + LISTE_M.map(function (m) { return '<option value="' + m + '">' + K.e(BL.M[m].nom) + "</option>"; }).join("");
+    sel.addEventListener("change", function () { if (sel.value) choisirMetier(sel.value); });
+    metiers.appendChild(sel);
+  } else if (metiers) {
+    LISTE_M.forEach(function (m) {
+      var b = document.createElement("button"); b.type = "button"; b.className = forme === "liens" ? "lien-metier" : "puce"; b.textContent = BL.M[m].nom; b.setAttribute("aria-pressed", "false"); b.dataset.m = m;
+      b.addEventListener("click", function () { choisirMetier(m); });
+      metiers.appendChild(b);
     });
-    metiers.appendChild(b);
-  });
+  }
+
+  /* Exemples qui défilent seuls dans le téléphone, jusqu'au premier geste */
+  var minuteur = 0, kEx = 0;
+  function arreterExemples() { if (minuteur) { clearInterval(minuteur); minuteur = 0; } }
+  function lancerExemples() {
+    if (reduit || !$("essai").hasAttribute("data-exemples")) return;
+    var ordre = ["barbier", "boulangerie", "boucherie", "fleuriste", "restaurant", "institut"];
+    minuteur = setInterval(function () {
+      if (document.hidden || $("essai").getBoundingClientRect().bottom < 0) return;
+      kEx = (kEx + 1) % ordre.length;
+      var m = ordre[kEx];
+      etat.P = projet({ metier: m }); etat.source = "exemple"; etat.fiche = null;
+      montrer(etat.P, true);
+      var leg = $("legende"); if (leg) leg.textContent = "Exemple : " + BL.M[m].nom.toLowerCase() + " imaginaire. Tapez votre nom pour voir le vôtre.";
+      if (metiers) metiers.querySelectorAll("[data-m]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.m === m ? "true" : "false"); });
+    }, 3600);
+    ["pointerdown", "keydown"].forEach(function (t) { $("essai").addEventListener(t, arreterExemples, { once: true }); });
+    $("defile").addEventListener("scroll", arreterExemples, { once: true, passive: true });
+  }
 
   /* Recherche */
   var q = $("q"), liste = $("suggestions"), choixK = -1, resultats = [];
@@ -183,7 +214,7 @@
     if (!v) { q.focus(); return; }
     if (!liste.hidden && resultats.length) { choisir(resultats[Math.max(choixK, 0)]); return; }
     var m = T ? T.metierDe("", "", v, "") : "autre";
-    var actif = metiers.querySelector('[aria-pressed="true"]');
+    var actif = metiers ? metiers.querySelector('[aria-pressed="true"]') : null;
     if (m === "autre" && actif) m = actif.dataset.m;
     construire({ nom: v, metier: m === "autre" ? "barbier" : m }, "nom");
   });
@@ -360,5 +391,6 @@
   etat.P = projet({ metier: "barbier", nom: EXEMPLES.barbier });
   montrer(etat.P, false);
   montrerF(0);
-  metiers.querySelector('[data-m="barbier"]').setAttribute("aria-pressed", "true");
+  if (metiers && forme !== "select") metiers.querySelector('[data-m="barbier"]').setAttribute("aria-pressed", "true");
+  lancerExemples();
 })();

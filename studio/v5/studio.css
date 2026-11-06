@@ -295,3 +295,5 @@ form.devis { display: grid; gap: 14px; align-content: start; background: #fff; p
 /* Barre d'état du téléphone : bande sombre sous l'îlot, le site commence en dessous */
 .ecran { background: #0E141B; }
 .ecran-defile { top: 36px; }
+
+.heros-grille > * { min-width: 0; }
