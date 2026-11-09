@@ -41,6 +41,24 @@ Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 9280243  Enseigne de barbier sur un mur de briques  https://www.pexels.com/photo/9280243/
 
 [boucherie]
+1314041  Steak assaisonné sur une planche, vu de dessus  https://www.pexels.com/photo/1314041/
+27603410  Pièces de bœuf au romarin  https://www.pexels.com/photo/27603410/
+618773  Steak cru assaisonné sur une planche  https://www.pexels.com/photo/618773/
+34003516  Deux pièces de bœuf sur des assiettes  https://www.pexels.com/photo/34003516/
+4661503  Steaks de bœuf sur un plateau en bois  https://www.pexels.com/photo/4661503/
+18973339  Viande hachée fraîche en vitrine  https://www.pexels.com/photo/18973339/
+7368034  Pièce de bœuf, herbes fraîches et légumes  https://www.pexels.com/photo/7368034/
+20187067  Pièce de bœuf sur une planche rouge  https://www.pexels.com/photo/20187067/
+20187068  Pavé de bœuf sur une planche rouge  https://www.pexels.com/photo/20187068/
+31916996  Tranches de bœuf persillé  https://www.pexels.com/photo/31916996/
+31732110  Côtelettes d'agneau persillées, en gros plan  https://www.pexels.com/photo/31732110/
+31612176  Brochettes préparées sur la planche rouge  https://www.pexels.com/photo/31612176/
+31612177  Mains gantées qui préparent une pièce de viande  https://www.pexels.com/photo/31612177/
+35023463  Comptoir d'une boucherie de marché  https://www.pexels.com/photo/35023463/
+6138720  Comptoir réfrigéré garni de viandes  https://www.pexels.com/photo/6138720/
+7883930  Clients au comptoir d'une boucherie  https://www.pexels.com/photo/7883930/
+8477063  Un boucher montre deux entrecôtes  https://www.pexels.com/photo/8477063/
+13279395  Un boucher présente une pièce de bœuf persillée  https://www.pexels.com/photo/13279395/
 128401  Viande hachée fraîche dans un bol en verre  https://www.pexels.com/photo/128401/
 1154643  Un boucher souriant présente une planche de viande  https://www.pexels.com/photo/1154643/
 35811577  Couperet, poids anciens et viande sur un billot  https://www.pexels.com/photo/35811577/
@@ -107,6 +125,24 @@ Chaque fichier : <numéro>.webp (1600 px) et <numéro>-m.webp (760 px).
 9011742  Burger et frites dans un panier  https://www.pexels.com/photo/9011742/
 
 [coiffure]
+8468125  Mèches au pinceau et papier aluminium  https://www.pexels.com/photo/8468125/
+3738359  Lissage au fer sur cheveux blonds  https://www.pexels.com/photo/3738359/
+3993290  Coloriste au travail sur une cliente  https://www.pexels.com/photo/3993290/
+5368632  Lissage au fer devant le miroir  https://www.pexels.com/photo/5368632/
+3993308  Postes de coiffage d'un salon, fauteuils noirs  https://www.pexels.com/photo/3993308/
+8468127  Coiffeur qui pose une couleur  https://www.pexels.com/photo/8468127/
+7755208  Cliente aux cheveux bouclés au fauteuil  https://www.pexels.com/photo/7755208/
+3993449  Shampoing au bac  https://www.pexels.com/photo/3993449/
+15659494  Coupe de cheveux courts mouillés  https://www.pexels.com/photo/15659494/
+10593034  Coupe nette d'un carré, vue de près  https://www.pexels.com/photo/10593034/
+7755223  Coiffeuse qui travaille des boucles brunes  https://www.pexels.com/photo/7755223/
+4981475  Coupe d'un carré blond aux ciseaux  https://www.pexels.com/photo/4981475/
+18186525  Coupe aux ciseaux et au peigne, en gros plan  https://www.pexels.com/photo/18186525/
+4981460  Couleur appliquée au pinceau, mains gantées  https://www.pexels.com/photo/4981460/
+3992879  Coiffeuse qui prépare une cliente au fauteuil  https://www.pexels.com/photo/3992879/
+3992875  Coiffeuse et cliente dans un salon aux miroirs éclairés  https://www.pexels.com/photo/3992875/
+6599031  Coiffeuse qui coiffe un client dans un salon lumineux  https://www.pexels.com/photo/6599031/
+10318038  Coiffeuse qui met en forme un carré au fer  https://www.pexels.com/photo/10318038/
 10028673  Brushing à la brosse ronde  https://www.pexels.com/photo/10028673/
 3356170  Coupe de cheveux mouillés aux ciseaux  https://www.pexels.com/photo/3356170/
 3993320  Coiffeuse au travail dans un salon  https://www.pexels.com/photo/3993320/
