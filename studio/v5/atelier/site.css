@@ -7,6 +7,15 @@
 @font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(polices/archivo-latin-wdth-normal.woff2) format("woff2"); }
 @font-face { font-family: "DM Serif Display"; font-weight: 400; font-display: swap; src: url(polices/dm-serif-display-latin-400-normal.woff2) format("woff2"); }
 @font-face { font-family: "Bricolage Grotesque"; font-weight: 200 800; font-display: swap; src: url(polices/bricolage-grotesque-latin-wght-normal.woff2) format("woff2"); }
+@font-face { font-family: "Bowlby One"; font-weight: 400; font-display: swap; src: url(polices/bowlby-one-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Shrikhand"; font-weight: 400; font-display: swap; src: url(polices/shrikhand-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Young Serif"; font-weight: 400; font-display: swap; src: url(polices/young-serif-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Libre Caslon Display"; font-weight: 400; font-display: swap; src: url(polices/libre-caslon-display-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "League Gothic"; font-weight: 400; font-display: swap; src: url(polices/league-gothic-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Caveat Brush"; font-weight: 400; font-display: swap; src: url(polices/caveat-brush-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Permanent Marker"; font-weight: 400; font-display: swap; src: url(polices/permanent-marker-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Silkscreen"; font-weight: 400; font-display: swap; src: url(polices/silkscreen-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Space Mono"; font-weight: 400; font-display: swap; src: url(polices/space-mono-latin-400-normal.woff2) format("woff2"); }
 /*polices:fin*/
 
 .site {
@@ -718,3 +727,138 @@ a.s-tuile:active { transform: scale(.985); transition-duration: .1s; }
 
 /* Couleur d'accent des combinaisons : un petit trait après les titres de section */
 .s-h2::after { content: ""; display: inline-block; width: var(--c2w, 0); height: .12em; margin-left: calc(var(--c2w, 0px) * .32); vertical-align: .2em; background: var(--c2, transparent); border-radius: 2px; }
+
+/* ---------- Palette « Bleu ciel » : grands titres blancs sur le bleu, texte courant foncé pour rester lisible ---------- */
+.site[data-fond="ciel"] .s-sec:not(.fd-clair):not(.fd-teinte):not(.fd-couleur):not(.fd-sombre) :is(.s-h1, .s-h2) { color: #FCFFFF; }
+
+/* ---------- Styles de design (Atelier > Style > Styles de design) ----------
+   Chaque style change la forme (titres, cartes, photos, boutons) et garde les couleurs choisies. */
+/* Minimalisme : beaucoup d'air, des filets fins, rien qui dépasse */
+.site[data-style="minimal"] .s-sec.esp-m { padding-block: clamp(84px, 13cqi, 168px); }
+.site[data-style="minimal"] :is(.s-h1, .s-h2) { font-weight: 600; letter-spacing: -.045em; }
+.site[data-style="minimal"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { background: transparent; box-shadow: inset 0 0 0 1px var(--sl); }
+.site[data-style="minimal"] .s-tuile--note { background: transparent; color: var(--st); --st2: var(--encre-2); }
+.site[data-style="minimal"] .s-h2::after { display: none; }
+
+/* Maximalisme : contours épais, ombres décalées dans les deux couleurs, rayures */
+.site[data-style="maximal"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i) { box-shadow: inset 0 0 0 3px var(--st), 7px 7px 0 var(--c2, var(--c1)); }
+.site[data-style="maximal"] .s-btn:not(.s-btn--chev) { box-shadow: inset 0 0 0 2.5px var(--st), 4px 4px 0 var(--st); }
+.site[data-style="maximal"] .s-sec.fd-teinte { background-image: repeating-linear-gradient(-45deg, transparent 0 22px, color-mix(in srgb, var(--c2, var(--c1)) 16%, transparent) 22px 30px); }
+.site[data-style="maximal"] .s-sec:nth-of-type(even) .s-h2 { rotate: -1.5deg; }
+.site[data-style="maximal"] .s-h1 { text-shadow: .045em .045em 0 var(--c1); }
+.site[data-style="maximal"] .b-heros.v-aplat .s-h1, .site[data-style="maximal"] .fd-couleur .s-h1 { text-shadow: .045em .045em 0 var(--c2, var(--encre)); }
+
+/* Futuriste : capitales larges, coins coupés, filets fins */
+.site[data-style="futur"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { border-radius: 0; box-shadow: inset 0 0 0 1px var(--sl); clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
+.site[data-style="futur"] .s-btn:not(.s-btn--chev) { border-radius: 0; clip-path: polygon(11px 0, 100% 0, 100% calc(100% - 11px), calc(100% - 11px) 100%, 0 100%, 0 11px); text-transform: uppercase; letter-spacing: .08em; font-size: .88rem; }
+.site[data-style="futur"] .s-sur { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; }
+.site[data-style="futur"] :is(.s-prod-m, .s-gal-i, .s-tuile--photo) { border-radius: 0; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%); }
+
+/* Rétro : titres ombrés, arches, double trait */
+.site[data-style="retro"] :is(.s-h1, .s-h2) { text-shadow: .05em .05em 0 color-mix(in srgb, var(--c1) 55%, transparent); }
+.site[data-style="retro"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { box-shadow: inset 0 0 0 2px var(--st), inset 0 0 0 6px var(--sf2), inset 0 0 0 7px var(--st); }
+.site[data-style="retro"] :is(.s-prod-m, .s-gal-i) { border-radius: 999px 999px var(--rg) var(--rg); }
+.site[data-style="retro"] .s-btn:not(.s-btn--chev) { box-shadow: 0 4px 0 color-mix(in srgb, var(--sb) 60%, #000); }
+
+/* Pop art : traits noirs, trame de points, ombres pleines */
+.site[data-style="popart"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i) { border-radius: 0; box-shadow: inset 0 0 0 3px #111, 6px 6px 0 #111; }
+.site[data-style="popart"] .s-btn:not(.s-btn--chev) { border-radius: 0; box-shadow: inset 0 0 0 3px #111, 4px 4px 0 #111; }
+.site[data-style="popart"] .s-sec:is(.fd-teinte, .fd-couleur), .site[data-style="popart"] .b-heros.v-aplat { background-image: radial-gradient(color-mix(in srgb, #111 20%, transparent) 1.6px, transparent 1.9px); background-size: 13px 13px; }
+.site[data-style="popart"] .s-h2 { width: fit-content; padding: .06em .28em; background: var(--c1); color: var(--c1-txt); box-shadow: 5px 5px 0 #111; rotate: -1deg; }
+.site[data-style="popart"] .s-h2::after { display: none; }
+
+/* Glassmorphisme : cartes en verre sur des halos de couleur */
+.site[data-style="verre"] .s-sec:not(.b-heros) { background-image: radial-gradient(42% 55% at 10% 18%, color-mix(in srgb, var(--c1) 34%, transparent), transparent 72%), radial-gradient(40% 52% at 92% 82%, color-mix(in srgb, var(--c2, var(--c1)) 32%, transparent), transparent 72%); }
+.site[data-style="verre"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { background: color-mix(in srgb, var(--sf2) 52%, transparent); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 38%, transparent), 0 14px 34px -18px rgba(0,0,0,.35); }
+.site[data-style="verre"] .s-tuile--note { background: color-mix(in srgb, var(--c1) 78%, transparent); }
+
+/* Clay : formes gonflées, ombres douces dedans et dehors */
+.site[data-style="clay"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i) { border-radius: 30px; box-shadow: inset 5px 5px 12px rgba(255,255,255,.42), inset -7px -7px 16px rgba(0,0,0,.13), 12px 16px 30px -14px rgba(0,0,0,.32); }
+.site[data-style="clay"] .s-btn:not(.s-btn--chev) { box-shadow: inset 3px 3px 6px rgba(255,255,255,.42), inset -4px -5px 9px rgba(0,0,0,.2), 0 9px 18px -8px rgba(0,0,0,.35); }
+
+/* Pixel art : coins en escalier, bordures en pixels */
+.site[data-style="pixel"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i, .s-btn:not(.s-btn--chev)) { border-radius: 0; box-shadow: 4px 0 0 0 var(--st), -4px 0 0 0 var(--st), 0 4px 0 0 var(--st), 0 -4px 0 0 var(--st); }
+.site[data-style="pixel"] .s-btn:not(.s-btn--chev) { margin: 4px; font-family: var(--f-titre); font-size: .95rem; }
+.site[data-style="pixel"] :is(.s-h1, .s-h2) { line-height: 1.08; }
+.site[data-style="pixel"] .s-h2::after { border-radius: 0; height: .2em; }
+
+/* Éditorial : grand serif, filets de magazine */
+.site[data-style="editorial"] .s-sec:not(.b-heros):not(.fd-couleur) { background-image: linear-gradient(var(--st), var(--st)); background-size: min(1092px, calc(100% - 2 * clamp(20px, 5.2cqi, 44px))) 1px; background-position: top center; background-repeat: no-repeat; }
+.site[data-style="editorial"] .s-h2 { font-size: clamp(2.3rem, 6.4cqi, 4.6rem); max-width: 16ch; }
+.site[data-style="editorial"] .s-lead { font-family: var(--f-titre); font-size: clamp(1.2rem, 2.3cqi, 1.6rem); color: var(--st); }
+.site[data-style="editorial"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { border-radius: 0; background: transparent; box-shadow: inset 0 1px 0 var(--st); }
+.site[data-style="editorial"] .s-tuile--note { background: transparent; color: var(--st); --st2: var(--encre-2); }
+
+/* Y2K : chrome, bulles, boutons brillants */
+.site[data-style="y2k"] .s-btn:not(.s-btn--chev):not(.s-btn--2) { background: linear-gradient(180deg, color-mix(in srgb, #fff 55%, var(--sb)) 0%, var(--sb) 48%, color-mix(in srgb, var(--sb) 72%, #000) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 7px 16px -7px var(--sb); }
+.site[data-style="y2k"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { border-radius: 30px; background: linear-gradient(165deg, color-mix(in srgb, #fff 38%, var(--sf2)), var(--sf2) 60%); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, #fff 60%, transparent), 0 14px 30px -18px rgba(0,0,0,.4); }
+.site[data-style="y2k"] .s-sec.fd-teinte { background-image: radial-gradient(circle at 18% 28%, color-mix(in srgb, var(--c2, var(--c1)) 28%, transparent), transparent 38%), radial-gradient(circle at 84% 70%, color-mix(in srgb, var(--c1) 24%, transparent), transparent 34%); }
+.site[data-style="y2k"] :is(.s-prod-m, .s-gal-i) { border-radius: 30px; }
+
+/* Suisse : grille stricte, gros grotesque, barre de couleur au-dessus de chaque partie */
+.site[data-style="suisse"] :is(.s-h1, .s-h2) { font-weight: 800; letter-spacing: -.05em; line-height: .92; }
+.site[data-style="suisse"] .s-sec:not(.b-heros) > .s-in { border-top: 6px solid var(--c1); padding-top: clamp(22px, 3cqi, 34px); }
+.site[data-style="suisse"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i, .s-btn) { border-radius: 0; }
+.site[data-style="suisse"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { background: transparent; box-shadow: inset 0 0 0 1.5px var(--st); }
+.site[data-style="suisse"] .s-tuile--note { background: var(--c1); box-shadow: none; }
+.site[data-style="suisse"] .s-h2::after { display: none; }
+
+/* Aurora : lueurs colorées qui se fondent */
+.site[data-style="aurora"] .s-sec:not(.b-heros) { background-image: radial-gradient(60% 46% at 14% 0%, color-mix(in srgb, var(--c1) 40%, transparent), transparent 72%), radial-gradient(50% 52% at 92% 34%, color-mix(in srgb, var(--c2, var(--c1)) 36%, transparent), transparent 72%); }
+.site[data-style="aurora"] .s-sec:not(.b-heros):nth-of-type(even) { background-image: radial-gradient(56% 50% at 86% 100%, color-mix(in srgb, var(--c1) 36%, transparent), transparent 72%), radial-gradient(46% 50% at 6% 40%, color-mix(in srgb, var(--c2, var(--c1)) 32%, transparent), transparent 72%); }
+.site[data-style="aurora"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { background: color-mix(in srgb, var(--sf2) 66%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+
+/* Manuscrit : titres écrits au pinceau, formes un peu irrégulières */
+.site[data-style="manuscrit"] :is(.s-h1, .s-h2) { line-height: 1; }
+.site[data-style="manuscrit"] .s-h2 { rotate: -1.2deg; transform-origin: left center; }
+.site[data-style="manuscrit"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i) { border-radius: 20px 30px 18px 34px / 30px 18px 34px 20px; }
+.site[data-style="manuscrit"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { box-shadow: inset 0 0 0 1.75px var(--st); }
+.site[data-style="manuscrit"] .s-btn:not(.s-btn--chev) { border-radius: 14px 22px 12px 24px / 22px 12px 24px 14px; font-family: var(--f-titre); font-size: 1.2rem; }
+
+/* Graffiti : feutre épais, autocollants penchés */
+.site[data-style="graffiti"] .s-h1 { text-shadow: .04em .04em 0 var(--c1), .08em .08em 0 color-mix(in srgb, var(--st) 22%, transparent); }
+.site[data-style="graffiti"] .fd-couleur .s-h1, .site[data-style="graffiti"] .b-heros.v-aplat .s-h1 { text-shadow: .04em .04em 0 var(--c2, #111); }
+.site[data-style="graffiti"] .s-h2 { rotate: -2deg; transform-origin: left center; }
+.site[data-style="graffiti"] :is(.s-tuile, .s-prod-m, .s-gal-i) { rotate: -.7deg; box-shadow: inset 0 0 0 2.5px var(--st); }
+.site[data-style="graffiti"] :is(.s-tuile, .s-prod, .s-gal) > :nth-child(even) { rotate: .8deg; }
+.site[data-style="graffiti"] .s-btn:not(.s-btn--chev) { rotate: -1.5deg; border-radius: 4px; }
+
+/* Victorien : doubles cadres, fleuron, capitales espacées */
+.site[data-style="victorien"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { border-radius: 0; box-shadow: inset 0 0 0 1px var(--st), inset 0 0 0 5px var(--sf2), inset 0 0 0 6px var(--st); }
+.site[data-style="victorien"] .s-h2 { padding-top: 26px; background: radial-gradient(circle, var(--sa) 3.5px, transparent 4px) 31px 0 / 10px 10px no-repeat, linear-gradient(var(--sa), var(--sa)) 0 4.5px / 72px 1px no-repeat; }
+.site[data-style="victorien"] :is(.s-prod-m, .s-gal-i, .s-tuile--photo) { border-radius: 0; outline: 1px solid color-mix(in srgb, #fff 80%, transparent); outline-offset: -10px; }
+.site[data-style="victorien"] .s-btn:not(.s-btn--chev) { border-radius: 0; text-transform: uppercase; letter-spacing: .14em; font-size: .82rem; }
+
+/* Bohème : formes de feuille, serif chaleureux */
+.site[data-style="boheme"] :is(.s-prod-m, .s-gal-i, .s-tuile--photo) { border-radius: 120px 22px 120px 22px; }
+.site[data-style="boheme"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { border-radius: 34px; }
+.site[data-style="boheme"] .s-sec.fd-teinte { background-image: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--c2, var(--c1)) 22%, transparent) 2px, transparent 2.5px); background-size: 26px 26px; }
+
+/* Cyberpunk : néon, quadrillage, coins coupés */
+.site[data-style="cyber"] .s-sec:not(.b-heros) { background-image: linear-gradient(color-mix(in srgb, var(--c1) 9%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--c1) 9%, transparent) 1px, transparent 1px); background-size: 34px 34px; }
+.site[data-style="cyber"] :is(.s-h1, .s-h2) { text-shadow: 0 0 22px color-mix(in srgb, var(--c1) 60%, transparent); }
+.site[data-style="cyber"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i) { border-radius: 0; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c1) 75%, transparent), 0 0 26px -8px color-mix(in srgb, var(--c1) 70%, transparent); }
+.site[data-style="cyber"] .s-btn:not(.s-btn--chev) { border-radius: 0; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); text-transform: uppercase; letter-spacing: .06em; font-family: var(--f-titre); font-size: .9rem; }
+
+/* Typographie géante : les titres prennent toute la place */
+.site[data-style="geante"] .s-h1 { font-size: clamp(4.2rem, 17cqi, 13.5rem); line-height: .84; letter-spacing: 0; }
+.site[data-style="geante"] .s-h2 { font-size: clamp(3.1rem, 9.5cqi, 7rem); line-height: .88; max-width: 14ch; letter-spacing: 0; }
+.site[data-style="geante"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l, .s-prod-m, .s-gal-i, .s-btn) { border-radius: 2px; }
+
+/* Rétrofuturisme : grain d'aérographe, fenêtres en arche, lueur douce */
+.site[data-style="retrofutur"] .s-sec:not(.b-heros) { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), radial-gradient(70% 60% at 82% 0%, color-mix(in srgb, var(--c1) 30%, transparent), transparent 72%); }
+.site[data-style="retrofutur"] :is(.s-prod-m, .s-gal-i) { border-radius: 999px 999px 26px 26px; }
+.site[data-style="retrofutur"] :is(.s-tuile, .s-resa, .s-services, .s-cmd-l) { border-radius: 30px; box-shadow: 0 20px 44px -22px color-mix(in srgb, var(--c1) 65%, transparent); }
+.site[data-style="retrofutur"] img:not(.s-logo) { filter: saturate(1.15) contrast(1.04); }
+
+/* Collage : photos découpées et scotchées, titres en étiquette */
+.site[data-style="collage"] :is(.s-prod-m, .s-gal-i, .s-tuile--photo) { rotate: -1.3deg; border-radius: 0; outline: 7px solid #fff; outline-offset: -7px; box-shadow: 6px 10px 20px -10px rgba(0,0,0,.45); }
+.site[data-style="collage"] :is(.s-prod, .s-gal) > :nth-child(even) .s-prod-m, .site[data-style="collage"] .s-gal > .s-gal-i:nth-child(even) { rotate: 1.5deg; }
+.site[data-style="collage"] :is(.s-prod-m, .s-gal-i, .s-tuile--photo)::after { content: ""; position: absolute; z-index: 3; top: 8px; left: 50%; width: 84px; height: 24px; translate: -50% 0; rotate: -4deg; background: color-mix(in srgb, #F3E7B5 78%, transparent); pointer-events: none; }
+.site[data-style="collage"] .s-h2 { width: fit-content; padding: .04em .3em .1em; background: var(--c1); color: var(--c1-txt); rotate: -1.2deg; }
+.site[data-style="collage"] .s-sec:nth-of-type(even) .s-h2 { background: var(--encre); color: var(--fond); rotate: 1deg; }
+.site[data-style="collage"] .s-h2::after { display: none; }
+/* Réglages communs aux styles : titres en étiquette lisibles, polices larges qui ne coupent pas les mots dans les tuiles */
+.site[data-style="popart"] .s-h2 .s-gris, .site[data-style="collage"] .s-h2 .s-gris { color: inherit; opacity: .78; }
+.site:is([data-style="futur"], [data-style="retrofutur"]) :is(.s-moyen, .s-tuile .s-gros) { font-stretch: 100%; }
+.site:is([data-style="maximal"], [data-style="popart"], [data-style="collage"], [data-style="futur"], [data-style="retrofutur"], [data-style="pixel"], [data-style="retro"], [data-style="cyber"], [data-style="graffiti"]) .s-moyen { font-size: clamp(1.2rem, 2.3cqi, 1.6rem); overflow-wrap: normal; hyphens: manual; }

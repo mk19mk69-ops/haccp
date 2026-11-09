@@ -51,7 +51,7 @@
   }
   function rendre(el, P, secs, avecPied) {
     el.querySelectorAll("[data-sec], .s-entete, .s-pied").forEach(function (b) { if (b._kit) try { b._kit(); } catch (e) {} });
-    el.setAttribute("style", BL.varsTheme(P.theme)); el.setAttribute("data-fond", P.theme.fond); el.setAttribute("data-metier", P.infos.metier);
+    el.setAttribute("style", BL.varsTheme(P.theme)); el.setAttribute("data-fond", P.theme.fond); el.setAttribute("data-metier", P.infos.metier); if (P.theme.style) el.setAttribute("data-style", P.theme.style); else el.removeAttribute("data-style");
     var c = ctx(P);
     el.innerHTML = BL.entete(c) + '<div class="s-corps">' + (secs || P.pages[0].sections).map(function (s) { return BL.section(s, c); }).join("") + "</div>" + (avecPied === false ? "" : BL.pied(c));
     el.querySelectorAll("[data-defile]").forEach(function (x) { x.tabIndex = 0; });
@@ -313,15 +313,14 @@
     ["Bleu égyptien", { fond: "nuit", c1: "#EB2F33", c2: "#639CC5" }, "assets/palette-egyptien.webp"],
     ["Sable et moka", { fond: "sable", c1: "#474329", c2: "#FC75B4" }, "assets/palette-sable.webp"],
     ["Forêt et rose", { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA" }, "assets/palette-foret.webp"],
-    ["Bleu pierre", { fond: "clair", c1: "#03203D", c2: "#639CC5" }, "assets/palette-pierre.webp"],
-    ["Bordeaux et or", { fond: "creme", c1: "#7A1F2B", c2: "#D9A441" }, "assets/palette-bordeaux.webp"],
-    ["Terracotta", { fond: "sable", c1: "#B4532A", c2: "#2D4A35" }, "assets/palette-terracotta.webp"],
-    ["Marine et moutarde", { fond: "clair", c1: "#12355B", c2: "#E0A526" }, "assets/palette-marine.webp"],
-    ["Olive et pêche", { fond: "creme", c1: "#556B2F", c2: "#F4A27C" }, "assets/palette-olive.webp"],
-    ["Nuit dorée", { fond: "sombre", c1: "#D4A73A", c2: "#F5F0EA" }, "assets/palette-nuit.webp"],
-    ["Rouge et blanc", { fond: "clair", c1: "#C8102E", c2: "#1B1E22" }, "assets/palette-rouge.webp"],
-    ["Menthe et corail", { fond: "clair", c1: "#0E7C66", c2: "#FF8A73" }, "assets/palette-menthe.webp"],
-    ["Charbon et rouge", { fond: "sombre", c1: "#EB2F33", c2: "#F5F0EA" }, "assets/palette-charbon.webp"]
+    ["Cobalt et lavande", { fond: "cobalt", c1: "#58F6B1", c2: "#AD96F1" }, "assets/palette-cobalt.webp"],
+    ["Ciel et rose vif", { fond: "ciel", c1: "#D83995", c2: "#FCFFFF" }, "assets/palette-ciel.webp"],
+    ["Rouge et jaune", { fond: "cramoisi", c1: "#FEED65", c2: "#E13A26" }, "assets/palette-cramoisi.webp"],
+    ["Bleu profond et rose", { fond: "royal", c1: "#FD91CC", c2: "#FFFFFF" }, "assets/palette-royal.webp"],
+    ["Bleu doux et corail", { fond: "givre", c1: "#FD6E6E", c2: "#002941" }, "assets/palette-givre.webp"],
+    ["Framboise et beurre", { fond: "framboise", c1: "#FFE164", c2: "#FFD0DF" }, "assets/palette-framboise.webp"],
+    ["Violet et lime", { fond: "charbon", c1: "#B9F500", c2: "#723BFA" }, "assets/palette-charbon.webp"],
+    ["Noir et rouge", { fond: "obsidienne", c1: "#EF233C", c2: "#DFE5EB" }, "assets/palette-obsidienne.webp"]
   ];
   var combos = $("combos"), apercuPc = $("apercu-pc"), vuePc = $("vue-pc"), maquette = $("vue-maquette");
   /* Les trois premières combinaisons montrent un vrai site dessiné sur mesure dans cette palette */

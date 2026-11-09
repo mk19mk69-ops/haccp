@@ -118,7 +118,17 @@
     enseigne: { nom: "Enseigne", titre: "'Archivo', 'Arial Narrow', sans-serif", poids: 800, esp: "0", espG: "-0.01em", casse: "uppercase", large: "72%", fichier: "polices/archivo-latin-wdth-normal.woff2", famille: "Archivo" },
     classique: { nom: "Classique", titre: "'DM Serif Display', Georgia, serif", poids: 400, esp: "-0.005em", espG: "-0.02em", casse: "none", large: "normal", fichier: "polices/dm-serif-display-latin-400-normal.woff2", famille: "DM Serif Display" },
     artisan: { nom: "Artisan", titre: "'Bricolage Grotesque', system-ui, sans-serif", poids: 720, esp: "-0.03em", espG: "-0.045em", casse: "none", large: "normal", fichier: "polices/bricolage-grotesque-latin-wght-normal.woff2", famille: "Bricolage Grotesque" },
-    simple: { nom: "Simple", titre: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", poids: 700, esp: "-0.015em", espG: "-0.035em", casse: "none", large: "normal", fichier: null, famille: null }
+    simple: { nom: "Simple", titre: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", poids: 700, esp: "-0.015em", espG: "-0.035em", casse: "none", large: "normal", fichier: null, famille: null },
+    massif: { nom: "Massif", titre: "'Bowlby One', 'Arial Black', sans-serif", poids: 400, esp: "-0.01em", espG: "-0.025em", casse: "none", large: "normal", fichier: "polices/bowlby-one-latin-400-normal.woff2", famille: "Bowlby One" },
+    futur: { nom: "Futuriste", titre: "'Archivo', 'Arial', sans-serif", poids: 760, esp: "0.02em", espG: "0", casse: "uppercase", large: "125%", fichier: "polices/archivo-latin-wdth-normal.woff2", famille: "Archivo" },
+    retro: { nom: "Rétro", titre: "'Shrikhand', Georgia, serif", poids: 400, esp: "0", espG: "-0.01em", casse: "none", large: "normal", fichier: "polices/shrikhand-latin-400-normal.woff2", famille: "Shrikhand" },
+    vintage: { nom: "Vintage", titre: "'Young Serif', Georgia, serif", poids: 400, esp: "-0.01em", espG: "-0.025em", casse: "none", large: "normal", fichier: "polices/young-serif-latin-400-normal.woff2", famille: "Young Serif" },
+    editorial: { nom: "Éditorial", titre: "'Libre Caslon Display', Georgia, serif", poids: 400, esp: "-0.005em", espG: "-0.02em", casse: "none", large: "normal", fichier: "polices/libre-caslon-display-latin-400-normal.woff2", famille: "Libre Caslon Display" },
+    geante: { nom: "Géante", titre: "'League Gothic', 'Arial Narrow', sans-serif", poids: 400, esp: "0.01em", espG: "0", casse: "uppercase", large: "normal", fichier: "polices/league-gothic-latin-400-normal.woff2", famille: "League Gothic" },
+    manuscrit: { nom: "Manuscrit", titre: "'Caveat Brush', 'Comic Sans MS', cursive", poids: 400, esp: "0", espG: "-0.005em", casse: "none", large: "normal", fichier: "polices/caveat-brush-latin-400-normal.woff2", famille: "Caveat Brush" },
+    graffiti: { nom: "Graffiti", titre: "'Permanent Marker', 'Comic Sans MS', cursive", poids: 400, esp: "0", espG: "-0.01em", casse: "none", large: "normal", fichier: "polices/permanent-marker-latin-400-normal.woff2", famille: "Permanent Marker" },
+    pixel: { nom: "Pixel", titre: "'Silkscreen', 'Courier New', monospace", poids: 400, esp: "0", espG: "-0.02em", casse: "none", large: "normal", fichier: "polices/silkscreen-latin-400-normal.woff2", famille: "Silkscreen" },
+    mono: { nom: "Machine", titre: "'Space Mono', 'Courier New', monospace", poids: 400, esp: "-0.02em", espG: "-0.045em", casse: "none", large: "normal", fichier: "polices/space-mono-latin-400-normal.woff2", famille: "Space Mono" }
   };
   var FONDS = {
     clair: { nom: "Blanc", fond: "#FFFFFF", fond2: "#F5F5F7", encre: "#1D1D1F", encre2: "#6E6E73", ligne: "#E3E3E6", sombre: false },
@@ -127,7 +137,16 @@
     sombre: { nom: "Sombre", fond: "#0E0F11", fond2: "#1A1B1E", encre: "#F5F5F7", encre2: "#A1A1A6", ligne: "#2A2B2F", sombre: true },
     sable: { nom: "Sable", fond: "#F0E5DB", fond2: "#E7D9CA", encre: "#33301C", encre2: "#665F45", ligne: "#DBCAB7", sombre: false },
     nuit: { nom: "Bleu nuit", fond: "#03203D", fond2: "#0A2B4E", encre: "#F3F6FA", encre2: "#A8BBD0", ligne: "#1C3B5C", sombre: true },
-    foret: { nom: "Forêt", fond: "#2D4A35", fond2: "#35563F", encre: "#F5F0EA", encre2: "#C8D2C5", ligne: "#46664F", sombre: true }
+    foret: { nom: "Forêt", fond: "#2D4A35", fond2: "#35563F", encre: "#F5F0EA", encre2: "#C8D2C5", ligne: "#46664F", sombre: true },
+    /* Fonds des palettes d'Ali (couleurs exactes des palettes) : proposés seulement avec leur combinaison */
+    cobalt: { nom: "Noir cobalt", fond: "#010102", fond2: "#141318", encre: "#F4F1FD", encre2: "#ABA6BD", ligne: "#2A2833", sombre: true, palette: true },
+    ciel: { nom: "Bleu ciel", fond: "#0593C6", fond2: "#FCFFFF", encre: "#010D13", encre2: "#04202C", ligne: "#3AA9D3", sombre: false, palette: true },
+    cramoisi: { nom: "Rouge profond", fond: "#831613", fond2: "#931D18", encre: "#FFF4EC", encre2: "#F2C4B8", ligne: "#A02B22", sombre: true, palette: true },
+    royal: { nom: "Bleu profond", fond: "#09318D", fond2: "#0E3A9C", encre: "#FFFFFF", encre2: "#C4D0EE", ligne: "#24489F", sombre: true, palette: true },
+    givre: { nom: "Bleu doux", fond: "#B6DFED", fond2: "#CDEAF4", encre: "#002941", encre2: "#1F4A63", ligne: "#97C8DA", sombre: false, palette: true },
+    framboise: { nom: "Framboise", fond: "#BC164D", fond2: "#A91241", encre: "#FFF5F8", encre2: "#FFDDE7", ligne: "#CC3866", sombre: true, palette: true },
+    charbon: { nom: "Charbon", fond: "#18181C", fond2: "#222228", encre: "#F4F4F6", encre2: "#A6A6B0", ligne: "#303038", sombre: true, palette: true },
+    obsidienne: { nom: "Obsidienne", fond: "#111217", fond2: "#1B1C22", encre: "#DFE5EB", encre2: "#9AA3AD", ligne: "#2B2D35", sombre: true, palette: true }
   };
   var RAYONS = { carre: { nom: "Carrés", r: "3px", b: "3px", g: "4px" }, doux: { nom: "Arrondis", r: "16px", b: "12px", g: "24px" }, rond: { nom: "Très ronds", r: "24px", b: "999px", g: "32px" } };
 

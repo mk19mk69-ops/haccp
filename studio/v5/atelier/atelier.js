@@ -196,6 +196,7 @@
   function opts() { return { mode: etat.mode === "edition" ? "edition" : "apercu", toast: notif, calque: $("calque"), anim: P.theme.anim && etat.mode !== "edition" }; }
   function themer(el, Px) {
     el.setAttribute("style", BL.varsTheme(Px.theme)); el.setAttribute("data-fond", Px.theme.fond); el.setAttribute("data-metier", Px.infos.metier);
+    if (Px.theme.style) el.setAttribute("data-style", Px.theme.style); else el.removeAttribute("data-style");
   }
   function rendreSite(arrivee) {
     var c = ctxPour(P, etat.mode === "edition", etat.page), page = pageCourante();
@@ -558,28 +559,43 @@
 
   /* ---------- Style ---------- */
   var COUL = ["#0B63CE", "#1B1E22", "#8C1D2C", "#2F6B4F", "#B4532A", "#9C7A2E", "#7A3E52", "#3D4F9F", "#0E7C86", "#C08A1E"];
+  /* Styles de design (d'après les styles choisis par Ali) : ils changent l'écriture et les formes, pas les couleurs */
   var AMBIANCES = [
-    ["Enseigne de quartier", { police: "enseigne", fond: "clair", rayon: "carre" }],
-    ["Maison chic", { police: "elegant", fond: "creme", rayon: "doux" }],
-    ["Artisan", { police: "artisan", fond: "creme", rayon: "rond" }],
-    ["Nuit", { police: "moderne", fond: "sombre", rayon: "doux" }],
-    ["Classique", { police: "classique", fond: "clair", rayon: "carre" }],
-    ["Net et simple", { police: "simple", fond: "gris", rayon: "doux" }]
+    ["Sans effet", { police: "moderne", rayon: "doux", style: "" }],
+    ["Minimalisme", { police: "simple", rayon: "carre", style: "minimal" }],
+    ["Maximalisme", { police: "massif", rayon: "carre", style: "maximal" }],
+    ["Futuriste", { police: "futur", rayon: "carre", style: "futur" }],
+    ["Rétro", { police: "retro", rayon: "rond", style: "retro" }],
+    ["Pop art", { police: "massif", rayon: "carre", style: "popart" }],
+    ["Glassmorphisme", { police: "moderne", rayon: "doux", style: "verre" }],
+    ["Clay", { police: "artisan", rayon: "rond", style: "clay" }],
+    ["Pixel art", { police: "pixel", rayon: "carre", style: "pixel" }],
+    ["Éditorial", { police: "editorial", rayon: "carre", style: "editorial" }],
+    ["Y2K", { police: "artisan", rayon: "rond", style: "y2k" }],
+    ["Design suisse", { police: "simple", rayon: "carre", style: "suisse" }],
+    ["Aurora", { police: "moderne", rayon: "doux", style: "aurora" }],
+    ["Manuscrit", { police: "manuscrit", rayon: "doux", style: "manuscrit" }],
+    ["Graffiti", { police: "graffiti", rayon: "carre", style: "graffiti" }],
+    ["Victorien", { police: "editorial", rayon: "carre", style: "victorien" }],
+    ["Bohème", { police: "vintage", rayon: "rond", style: "boheme" }],
+    ["Cyberpunk", { police: "mono", rayon: "carre", style: "cyber" }],
+    ["Typo géante", { police: "geante", rayon: "carre", style: "geante" }],
+    ["Rétrofuturisme", { police: "futur", rayon: "rond", style: "retrofutur" }],
+    ["Collage", { police: "massif", rayon: "carre", style: "collage" }]
   ];
-  /* Combinaisons de couleurs : fond + couleur principale + accent */
+  /* Combinaisons de couleurs : fond + couleur principale + accent. Toutes viennent des palettes données par Ali. */
   var COMBOS = [
     ["Bleu égyptien", { fond: "nuit", c1: "#EB2F33", c2: "#639CC5" }],
     ["Sable et moka", { fond: "sable", c1: "#474329", c2: "#FC75B4" }],
     ["Forêt et rose", { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA" }],
-    ["Bleu pierre", { fond: "clair", c1: "#03203D", c2: "#639CC5" }],
-    ["Bordeaux et or", { fond: "creme", c1: "#7A1F2B", c2: "#D9A441" }],
-    ["Terracotta", { fond: "sable", c1: "#B4532A", c2: "#2D4A35" }],
-    ["Marine et moutarde", { fond: "clair", c1: "#12355B", c2: "#E0A526" }],
-    ["Olive et pêche", { fond: "creme", c1: "#556B2F", c2: "#F4A27C" }],
-    ["Nuit dorée", { fond: "sombre", c1: "#D4A73A", c2: "#F5F0EA" }],
-    ["Rouge et blanc", { fond: "clair", c1: "#C8102E", c2: "#1B1E22" }],
-    ["Menthe et corail", { fond: "clair", c1: "#0E7C66", c2: "#FF8A73" }],
-    ["Charbon et rouge", { fond: "sombre", c1: "#EB2F33", c2: "#F5F0EA" }]
+    ["Cobalt et lavande", { fond: "cobalt", c1: "#58F6B1", c2: "#AD96F1" }],
+    ["Ciel et rose vif", { fond: "ciel", c1: "#D83995", c2: "#FCFFFF" }],
+    ["Rouge et jaune", { fond: "cramoisi", c1: "#FEED65", c2: "#E13A26" }],
+    ["Bleu profond et rose", { fond: "royal", c1: "#FD91CC", c2: "#FFFFFF" }],
+    ["Bleu doux et corail", { fond: "givre", c1: "#FD6E6E", c2: "#002941" }],
+    ["Framboise et beurre", { fond: "framboise", c1: "#FFE164", c2: "#FFD0DF" }],
+    ["Violet et lime", { fond: "charbon", c1: "#B9F500", c2: "#723BFA" }],
+    ["Noir et rouge", { fond: "obsidienne", c1: "#EF233C", c2: "#DFE5EB" }]
   ];
   function vignetteCombo(cb, actif, applique) {
     var f = BL.FONDS[cb[1].fond];
@@ -595,9 +611,9 @@
     c.appendChild(groupe("Combinaisons de couleurs", [h("div", { class: "combos" }, COMBOS.map(function (cb) {
       return vignetteCombo(cb, comboActif(T, cb), function () { Object.assign(P.theme, cb[1]); transition(function () { rendreSite(); }); change(); rendrePanneau(); toast("Combinaison « " + cb[0] + " »"); });
     })), T.c2 ? h("button", { type: "button", class: "btn-lien", text: "Retirer la couleur d'accent", onclick: function () { delete P.theme.c2; rendreSite(); change(); rendrePanneau(); } }) : null].filter(Boolean)));
-    c.appendChild(groupe("Ambiances toutes prêtes", [h("div", { class: "ambiances" }, AMBIANCES.map(function (a) {
-      var pol = BL.POLICES[a[1].police], f = BL.FONDS[a[1].fond], actif = T.police === a[1].police && T.fond === a[1].fond && T.rayon === a[1].rayon;
-      return h("button", { type: "button", class: "ambiance" + (actif ? " actif" : ""), style: "--af:" + f.fond + ";--ae:" + f.encre + ";--ac:" + T.c1 + ";--ar:" + BL.RAYONS[a[1].rayon].r, onclick: function () { Object.assign(P.theme, a[1]); transition(function () { rendreSite(); }); change(); rendrePanneau(); toast("Ambiance « " + a[0] + " » appliquée"); } }, [
+    c.appendChild(groupe("Styles de design", [h("p", { class: "p-mini", text: "Le style change l'écriture et les formes. Vos couleurs restent les mêmes." }), h("div", { class: "ambiances" }, AMBIANCES.map(function (a) {
+      var pol = BL.POLICES[a[1].police], f = BL.FONDS[T.fond] || BL.FONDS.clair, actif = (T.style || "") === a[1].style;
+      return h("button", { type: "button", class: "ambiance" + (actif ? " actif" : ""), "aria-pressed": actif ? "true" : "false", style: "--af:" + f.fond + ";--ae:" + f.encre + ";--ac:" + T.c1 + ";--ar:" + BL.RAYONS[a[1].rayon].r, onclick: function () { Object.assign(P.theme, a[1]); transition(function () { rendreSite(); }); change(); rendrePanneau(); toast("Style « " + a[0] + " » appliqué"); } }, [
         h("span", { class: "amb-ex", style: "font-family:" + pol.titre + ";font-weight:" + pol.poids + ";text-transform:" + pol.casse + ";font-stretch:" + pol.large, text: P.infos.nom ? P.infos.nom.slice(0, 14) : "Chez Sam" }), h("span", { class: "amb-btn" }), h("small", { text: a[0] })
       ]);
     }))]));
@@ -613,7 +629,7 @@
       var p = BL.POLICES[k];
       return h("button", { type: "button", class: "police" + (T.police === k ? " actif" : ""), onclick: function () { theme("police", k); } }, [h("span", { style: "font-family:" + p.titre + ";font-weight:" + p.poids + ";text-transform:" + p.casse + ";font-stretch:" + p.large + ";letter-spacing:" + p.esp, text: "Aa" }), h("small", { text: p.nom })]);
     }))]));
-    c.appendChild(groupe("Fond des pages", [segments(Object.keys(BL.FONDS).map(function (k) { return [k, BL.FONDS[k].nom, BL.FONDS[k].fond]; }), T.fond, function (v) { theme("fond", v); }, true)]));
+    c.appendChild(groupe("Fond des pages", [segments(Object.keys(BL.FONDS).filter(function (k) { return !BL.FONDS[k].palette || k === T.fond; }).map(function (k) { return [k, BL.FONDS[k].nom, BL.FONDS[k].fond]; }), T.fond, function (v) { theme("fond", v); }, true)]));
     c.appendChild(groupe("Coins", [segments(Object.keys(BL.RAYONS).map(function (k) { return [k, BL.RAYONS[k].nom]; }), T.rayon, function (v) { theme("rayon", v); })]));
     c.appendChild(groupe("Mouvement", [interrupteur("Les sections apparaissent en douceur quand on fait défiler", T.anim, function (v) { P.theme.anim = v; change(); toast(v ? "Visible dans l'aperçu" : "Animations coupées"); })]));
   }
@@ -1306,7 +1322,7 @@
       var Pmin = { infos: { horaires: i.horaires, tel: i.tel, email: i.email, nom: i.nom } };
       var html = '<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>' + K.e(titre) + '</title>\n<meta name="description" content="' + K.e(desc) + '">\n<meta property="og:title" content="' + K.e(titre) + '">\n<meta property="og:description" content="' + K.e(desc) + '">\n<meta name="theme-color" content="' + K.e(P.theme.c1) + '">\n' +
         '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "<\/script>\n<style>" + face + css + "\nbody{margin:0;background:" + BL.FONDS[P.theme.fond].fond + "}html{scroll-padding-top:80px}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}\n</style>\n</head>\n<body>\n" +
-        '<div class="site' + (P.theme.anim ? " anim" : "") + '" style="' + BL.varsTheme(P.theme) + '" data-fond="' + P.theme.fond + '" data-metier="' + K.e(i.metier) + '">' + BL.entete(c) + mains + BL.pied(c) + BL.dock(c) + "</div>\n" +
+        '<div class="site' + (P.theme.anim ? " anim" : "") + '" style="' + BL.varsTheme(P.theme) + '" data-fond="' + P.theme.fond + '"' + (P.theme.style ? ' data-style="' + K.e(P.theme.style) + '"' : "") + ' data-metier="' + K.e(i.metier) + '">' + BL.entete(c) + mains + BL.pied(c) + BL.dock(c) + "</div>\n" +
         "<script>" + r[1] + "<\/script>\n<script>(function(){var r=document.querySelector('.site'),P=" + JSON.stringify(Pmin).replace(/</g, "\\u003c") + ";SiteKit.activer(r,P,{mode:'export',anim:" + (!!P.theme.anim) + "});SiteKit.routeur(r);})();<\/script>\n</body>\n</html>\n";
       telecharger((slug(i.nom) || "mon-site") + ".html", html, "text/html");
       toast("Site téléchargé : ouvrez le fichier pour le voir en vrai");
@@ -1322,7 +1338,7 @@
     l.push(["Vue téléphone", "", function () { changerAppareil("tel"); }], ["Vue tablette", "", function () { changerAppareil("tablette"); }], ["Vue ordinateur", "", function () { changerAppareil("ordi"); }]);
     l.push(["Mettre en ligne", "Envoyer votre site à Mokrani Studio", publier], ["Copier le lien du projet", "", copierLien], ["Revoir la visite guidée", "", visite]);
     if (estAli()) l.push(["Télécharger le site (.html)", "Réservé à Ali", exporterHTML]);
-    AMBIANCES.forEach(function (a) { l.push(["Ambiance : " + a[0], "Style", function () { Object.assign(P.theme, a[1]); rendreSite(); change(); }]); });
+    AMBIANCES.forEach(function (a) { l.push(["Style de design : " + a[0], "Style", function () { Object.assign(P.theme, a[1]); rendreSite(); change(); }]); });
     P.pages.concat(BL.pagesLegales(P)).forEach(function (p) { l.push(["Aller à la page : " + p.nom, "", function () { allerPage(p.id); }]); });
     sections().forEach(function (s) { l.push(["Modifier : " + nomBloc(s), "Section de la page", function () { choisir(s.id, { force: true }); defilerVers(Q('[data-sec="' + s.id + '"]', site)); }]); });
     return l;
@@ -1471,7 +1487,7 @@
       })));
       corps.appendChild(h("p", { class: "as-q", text: "Ou une seule couleur" }));
       var cols = BL.M[i.metier].couleurs.concat(COUL.filter(function (x) { return BL.M[i.metier].couleurs.indexOf(x) < 0; })).slice(0, 10);
-      corps.appendChild(h("div", { class: "pastilles" }, cols.map(function (col) { return h("button", { type: "button", class: "pastille" + (Pn.theme.c1 === col ? " actif" : ""), style: "--p:" + col, "aria-label": col, onclick: function () { Pn.theme.c1 = col; delete Pn.theme.c2; if (/nuit|foret|sable/.test(Pn.theme.fond)) Pn.theme.fond = "clair"; A.couleurTouchee = true; dessinerAs(); re(); } }); }).concat([
+      corps.appendChild(h("div", { class: "pastilles" }, cols.map(function (col) { return h("button", { type: "button", class: "pastille" + (Pn.theme.c1 === col ? " actif" : ""), style: "--p:" + col, "aria-label": col, onclick: function () { Pn.theme.c1 = col; delete Pn.theme.c2; if (/nuit|foret|sable/.test(Pn.theme.fond) || (BL.FONDS[Pn.theme.fond] || {}).palette) Pn.theme.fond = "clair"; A.couleurTouchee = true; dessinerAs(); re(); } }); }).concat([
         h("label", { class: "pastille pastille-perso" + (cols.indexOf(Pn.theme.c1) < 0 ? " actif" : ""), style: "--p:" + (cols.indexOf(Pn.theme.c1) < 0 ? Pn.theme.c1 : "conic-gradient(#e03131,#f08c00,#2f9e44,#1971c2,#9c36b5,#e03131)"), title: "Autre couleur" }, [h("input", { type: "color", value: Pn.theme.c1, "aria-label": "Autre couleur", onchange: function (e) { Pn.theme.c1 = e.target.value; A.couleurTouchee = true; dessinerAs(); re(); } })])
       ])));
       corps.appendChild(h("p", { class: "as-q", text: "Écriture des titres" }));
