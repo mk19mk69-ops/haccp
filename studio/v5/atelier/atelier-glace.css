@@ -1,0 +1,48 @@
+/* Atelier, habillage « glace et verre » (version 6 du studio).
+   Cette feuille se charge après atelier.css et ne change que l'apparence. Pour revenir à l'ancien style, retirer sa ligne dans index.html. */
+@font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(../../v6/assets/archivo.woff2) format("woff2"); }
+:root {
+  --papier: #F4F7FA; --papier-2: #E4EAF1; --encre: #070B11; --encre-2: #45525F; --encre-3: #6E7B8C; --ligne: #D2DBE6; --ligne-2: #B9C6D6;
+  --bleu: #0B5BD6; --bleu-f: #083F99; --bleu-doux: #DCE8FB;
+  --tapis: #DCE4ED; --tapis-l: #CDD7E3; --tapis-L: #BFCBDA;
+  --titre: "Archivo", var(--ui);
+  --verre-1: rgba(255,255,255,.72); --verre-2: rgba(255,255,255,.5);
+}
+body { background: #DCE4ED url(../../v6/assets/scene.jpg) center / cover fixed; }
+.app { background: none; }
+.barre-marque span, .panneau-tete h2, .groupe h3, .ins-titre b, .as-corps h1, .as-corps h2, .fenetre h2, .fenetre h3, .as-grand { font-stretch: 120%; letter-spacing: -.015em; }
+
+/* Les barres de l'éditeur : des plaques de verre posées sur la scène */
+.barre, .rail, .panneau, .inspecteur { background: linear-gradient(180deg, var(--verre-1), var(--verre-2)); -webkit-backdrop-filter: blur(26px) saturate(1.6); backdrop-filter: blur(26px) saturate(1.6); border-color: rgba(255,255,255,.7); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.95), inset 0 -12px 22px -16px rgba(47,123,255,.28); }
+.barre { box-shadow: inset 0 1.5px 0 rgba(255,255,255,.95), 0 16px 30px -24px rgba(7,25,55,.5); }
+.barre-marque { border-right-color: rgba(7,11,17,.14); }
+.etabli { background: none; }
+.appareil { border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.9), 0 0 0 7px rgba(255,255,255,.34), 0 0 0 8px rgba(255,255,255,.7), 0 44px 80px -36px rgba(7,25,55,.6); }
+.appareil-barre { background: #EEF2F6; border-bottom-color: #D2DBE6; }
+
+.btn { background: linear-gradient(180deg, #3C86FF, #0B5BD6 55%, #083F99); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.55), inset 0 -8px 14px -8px rgba(2,20,60,.55), 0 10px 20px -12px rgba(11,91,214,.9); }
+.btn:hover { background: linear-gradient(180deg, #5596FF, #1766E0 55%, #0A49AE); }
+.btn-2 { background: rgba(255,255,255,.72); border-color: rgba(255,255,255,.9); box-shadow: inset 0 1.5px 0 #fff, 0 0 0 1px rgba(7,11,17,.1); }
+.btn-2:hover { background: #fff; }
+.seg { background: rgba(7,25,55,.08); box-shadow: inset 0 1px 2px rgba(7,25,55,.12); }
+.seg button[aria-pressed="true"], .seg button[aria-checked="true"], .seg button[aria-selected="true"] { background: linear-gradient(180deg, #fff, rgba(255,255,255,.8)); box-shadow: inset 0 1.5px 0 #fff, 0 6px 12px -8px rgba(7,25,55,.5), 0 0 0 1px rgba(7,11,17,.06); }
+.rail button.actif { background: linear-gradient(180deg, #fff, rgba(255,255,255,.7)); box-shadow: inset 0 1.5px 0 #fff, inset 0 -8px 12px -10px rgba(47,123,255,.6), 0 8px 16px -12px rgba(7,25,55,.6); }
+.tuile, .as-metier { background: rgba(255,255,255,.74); border-color: rgba(255,255,255,.95); box-shadow: 0 0 0 1px rgba(7,11,17,.07); }
+.champ input, .champ textarea, .champ select, .champ-bouton input, .champ-bouton select, .as-grand { background: rgba(255,255,255,.86); }
+.as-plaque { background: linear-gradient(160deg, #fff, #DCE8FB); box-shadow: inset 0 1.5px 0 #fff, inset 0 -6px 10px -8px rgba(47,123,255,.5); }
+.as-metier.actif { border-color: var(--bleu); box-shadow: 0 0 0 1.5px var(--bleu), 0 12px 22px -16px rgba(11,91,214,.9); }
+.as-metier.actif .as-plaque { background: linear-gradient(180deg, #3C86FF, #0B5BD6 55%, #083F99); }
+.as-metier.actif .as-glyphe .t { fill: rgba(255,255,255,.22); }
+.as-metier.actif .as-glyphe .a { fill: #fff; }
+.as-metier.actif .as-glyphe .e { stroke: #fff; }
+
+/* Fenêtres : assistant de départ, mise en ligne, menus */
+.assistant, .fenetre { background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.7)); -webkit-backdrop-filter: blur(30px) saturate(1.6); backdrop-filter: blur(30px) saturate(1.6); box-shadow: inset 0 1.5px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.7), 0 60px 110px -50px rgba(7,25,55,.7); }
+.assistant::backdrop { background: #DCE4ED url(../../v6/assets/scene.jpg) center / cover; }
+.fenetre::backdrop { background: rgba(7,25,55,.35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.as-droite { background: linear-gradient(160deg, rgba(190,215,255,.45), rgba(255,255,255,.2)); background-size: auto; box-shadow: inset 1.5px 0 0 rgba(255,255,255,.9); }
+.as-tel { background: linear-gradient(160deg, rgba(255,255,255,.75), rgba(190,215,255,.5)); box-shadow: inset 0 2px 0 #fff, inset 0 0 0 1.5px rgba(255,255,255,.7), inset 0 -16px 26px -14px rgba(47,123,255,.5), 0 40px 70px -36px rgba(7,25,55,.6); }
+.as-tel-ecran { box-shadow: 0 0 0 1.5px rgba(7,11,17,.85); }
+.menu-pages, .visite-bulle { background: rgba(255,255,255,.9); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); box-shadow: inset 0 1.5px 0 #fff, 0 0 0 1px rgba(7,11,17,.08), 0 26px 50px -22px rgba(7,25,55,.5); }
+.toast { background: rgba(5,8,13,.9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 1.5px 0 rgba(160,200,255,.4), 0 14px 34px -14px rgba(7,25,55,.7); }
+@media (prefers-reduced-transparency: reduce) { .barre, .rail, .panneau, .inspecteur, .assistant, .fenetre { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--papier); } }
