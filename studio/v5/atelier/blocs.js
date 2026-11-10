@@ -155,13 +155,16 @@
   function lum(h) { return rgb(h).map(function (v) { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }).reduce(function (a, v, i) { return a + v * [.2126, .7152, .0722][i]; }, 0); }
   function contraste(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
   function melange(a, b, t) { var A = rgb(a), B = rgb(b); return hex(A.map(function (v, i) { return v + (B[i] - v) * t; })); }
-  function encrePour(c, fond) { var x = c, k = 0; var cible = lum(fond) > .5 ? "#000000" : "#FFFFFF"; while (contraste(x, fond) < 4.5 && k < 12) { x = melange(c, cible, (++k) * .08); } return x; }
+  function encrePour(c, fond) { var x = c, k = 0; var cible = lum(fond) > .5 ? "#000000" : "#FFFFFF"; while (contraste(x, fond) < 4.9 && k < 12) { x = melange(c, cible, (++k) * .08); } return x; }
 
   function varsTheme(T) {
     var F = FONDS[T.fond] || FONDS.clair, P = POLICES[T.police] || POLICES.moderne, R = RAYONS[T.rayon] || RAYONS.doux, c = T.c1 || "#0B63CE";
-    var surC = contraste("#FFFFFF", c) >= 3.2 ? "#FFFFFF" : "#15181C";
+    /* Bouton : si ni le blanc ni le noir ne se lisent assez sur la couleur, on fonce très légèrement le fond du bouton */
+    var btn = c, kb = 0;
+    if (contraste("#FFFFFF", c) < 4.5 && contraste("#15181C", c) < 4.5) while (contraste("#FFFFFF", btn) < 4.5 && kb < 10) btn = melange(c, "#000000", (++kb) * .04);
+    var surC = contraste("#FFFFFF", btn) >= 3.2 ? "#FFFFFF" : "#15181C";
     var v = {
-      "--c1": c, "--c1-txt": surC, "--c1-ink": encrePour(c, F.fond), "--c1-doux": melange(F.sombre ? F.fond2 : (F.fond2 === "#FFFFFF" ? F.fond : F.fond2), c, F.sombre ? .14 : .07), "--c1-ink-c": encrePour(c, "#FFFFFF"), "--c1-ink-s": encrePour(c, "#0E0F11"), "--cs": contraste(c, "#0E0F11") < 2.2 ? "#FFFFFF" : c, "--cs-txt": contraste(c, "#0E0F11") < 2.2 ? "#111111" : surC,
+      "--c1": c, "--c1-btn": btn, "--c1-txt": surC, "--c1-ink": encrePour(c, F.fond), "--c1-doux": melange(F.sombre ? F.fond2 : (F.fond2 === "#FFFFFF" ? F.fond : F.fond2), c, F.sombre ? .14 : .07), "--c1-ink-c": encrePour(c, "#FFFFFF"), "--c1-ink-s": encrePour(c, "#0E0F11"), "--cs": contraste(c, "#0E0F11") < 2.2 ? "#FFFFFF" : c, "--cs-txt": contraste(c, "#0E0F11") < 2.2 ? "#111111" : surC,
       "--fond": F.fond, "--fond-2": F.fond2, "--encre": F.encre, "--encre-2": F.encre2, "--ligne": F.ligne,
       "--r": R.r, "--rb": R.b, "--rg": R.g, "--f-titre": P.titre, "--t-poids": P.poids, "--t-esp": P.esp, "--t-esp-g": P.espG, "--t-casse": P.casse, "--t-large": P.large
     };

@@ -28,17 +28,18 @@
   /* L'allure de chaque exemple : une palette d'Ali, un style de design de l'Atelier et une forme de bannière.
      Un commerce trouvé sur la carte reçoit aussi l'allure de son métier. */
   var LOOK = {
-    barbier: { theme: { fond: "obsidienne", c1: "#EF233C", c2: "#DFE5EB", style: "geante", police: "geante", rayon: "carre" }, heros: "cinema" },
+    barbier: { theme: { fond: "obsidienne", c1: "#EF233C", c2: "#DFE5EB", style: "suisse", police: "simple", rayon: "carre" }, heros: "partage" },
     coiffure: { theme: { fond: "framboise", c1: "#FFE164", c2: "#FFD0DF", style: "editorial", police: "editorial", rayon: "carre" }, heros: "partage" },
     institut: { theme: { fond: "givre", c1: "#FD6E6E", c2: "#002941", style: "minimal", police: "simple", rayon: "carre" }, heros: "partage" },
-    boucherie: { theme: { fond: "cramoisi", c1: "#FEED65", c2: "#E13A26", style: "maximal", police: "massif", rayon: "carre" }, heros: "cinema" },
-    snack: { theme: { fond: "charbon", c1: "#B9F500", c2: "#723BFA", style: "graffiti", police: "graffiti", rayon: "carre" }, heros: "aplat" },
-    restaurant: { theme: { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA", style: "editorial", police: "editorial", rayon: "carre" }, heros: "photo" },
-    boulangerie: { theme: { fond: "sable", c1: "#474329", c2: "#FC75B4", style: "retro", police: "retro", rayon: "rond" }, heros: "partage" },
-    epicerie: { theme: { fond: "ciel", c1: "#D83995", c2: "#FCFFFF", style: "collage", police: "massif", rayon: "carre" }, heros: "aplat" },
-    fleuriste: { theme: { fond: "royal", c1: "#FD91CC", c2: "#FFFFFF", style: "boheme", police: "vintage", rayon: "rond" }, heros: "partage" },
-    autre: { theme: { fond: "cobalt", c1: "#58F6B1", c2: "#AD96F1", style: "futur", police: "futur", rayon: "carre" }, heros: "aplat" }
+    boucherie: { theme: { fond: "nuit", c1: "#EB2F33", c2: "#639CC5", style: "suisse", police: "simple", rayon: "carre" }, heros: "partage" },
+    snack: { theme: { fond: "charbon", c1: "#B9F500", c2: "#723BFA", style: "minimal", police: "moderne", rayon: "doux" }, heros: "partage" },
+    restaurant: { theme: { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA", style: "editorial", police: "editorial", rayon: "carre" }, heros: "partage" },
+    boulangerie: { theme: { fond: "sable", c1: "#474329", c2: "#FC75B4", style: "editorial", police: "vintage", rayon: "doux" }, heros: "partage" },
+    epicerie: { theme: { fond: "ciel", c1: "#D83995", c2: "#FCFFFF", style: "minimal", police: "moderne", rayon: "doux" }, heros: "partage" },
+    fleuriste: { theme: { fond: "royal", c1: "#FD91CC", c2: "#FFFFFF", style: "editorial", police: "vintage", rayon: "doux" }, heros: "partage" },
+    autre: { theme: { fond: "cobalt", c1: "#58F6B1", c2: "#AD96F1", style: "minimal", police: "simple", rayon: "doux" }, heros: "partage" }
   };
+
   var n = 0; function uid() { return "s" + Date.now().toString(36) + (n++).toString(36); }
   function srcDe(id, t) { if (!id) return null; if (String(id).indexOf("px:") === 0) return BL.photoInfo(id) ? BL.urlPhoto(id, t) : null; return null; }
   function ctx(P) { return { P: P, edition: false, media: srcDe, M: BL.M[P.infos.metier] || BL.M.autre, metier: P.infos.metier, pageId: "accueil" }; }
