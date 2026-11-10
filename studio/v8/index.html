@@ -6,12 +6,12 @@
 <title>Mokrani Studio · Sites et logiciels pour commerçants</title>
 <meta name="description" content="Sites, réservation en ligne et logiciels pour les commerçants de Troyes, Paris et des Yvelines. Payé une fois, sans commission.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#070A10">
+<meta name="theme-color" content="#E8EDF3">
 <link rel="icon" href="../v6/icones/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../v6/icones/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../v6/icones/apple-touch-icon.png">
 <link rel="preload" href="../v6/assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="v8.css?v=2">
+<link rel="stylesheet" href="v8.css?v=4">
 <meta property="og:title" content="Mokrani Studio · Sites et logiciels pour commerçants">
 <meta property="og:description" content="Sites, réservation en ligne et logiciels pour commerçants. Payé une fois, sans commission.">
 </head>
@@ -22,9 +22,9 @@
 <header class="nav">
   <a class="marque" href="#ouverture"><img src="../v6/assets/logo-mokrani.svg" alt="Mokrani Studio" width="150" height="22"></a>
   <nav class="liens" aria-label="Navigation principale">
-    <a href="#fonctions">Fonctions</a>
     <a href="#tarifs">Tarifs</a>
     <a href="#atelier">Atelier</a>
+    <a href="#fonctions">Fonctions</a>
     <a href="#questions">Questions</a>
   </nav>
   <a class="btn btn--clair" href="#contact">Devis gratuit</a>
@@ -38,51 +38,12 @@
     <p class="chapo">Sites, réservation en ligne et logiciels pour les commerçants de Troyes, Paris et des Yvelines. Vous payez une fois, sans commission sur vos clients.</p>
     <form class="essai" id="essai" action="../v5/atelier/" method="get">
       <label class="cache" for="nom">Nom de votre commerce</label>
-      <input id="nom" name="nom" type="text" placeholder="Nom de votre commerce" autocomplete="organization" spellcheck="false" required>
+      <input id="nom" name="nom" type="text" placeholder="Votre commerce" autocomplete="organization" spellcheck="false" required>
       <button class="btn btn--clair" type="submit">Créer mon site</button>
     </form>
     <p class="petit">Gratuit et sans inscription : le site se prépare dans l'Atelier, vous le modifiez à votre goût.</p>
   </div>
-  <p class="defiler" aria-hidden="true">Faites défiler</p>
-</section>
-
-<div id="fonctions">
-<section class="ch" data-scene="metier" data-metier="barbier" aria-labelledby="t-f1">
-  <div class="txt">
-    <p class="metier">Pour un barbier</p>
-    <h2 class="t2" id="t-f1">Réservation en ligne</h2>
-    <p class="chapo">Le client choisit sa prestation, son jour et son heure. Vous recevez la demande, il reçoit la confirmation.</p>
-  </div>
-</section>
-<section class="ch" data-scene="metier" data-metier="boucherie" aria-labelledby="t-f2">
-  <div class="txt">
-    <p class="metier">Pour une boucherie</p>
-    <h2 class="t2" id="t-f2">Commande à retirer</h2>
-    <p class="chapo">Il compose sa commande au prix affiché et choisit l'heure de retrait. Vous la préparez à l'avance.</p>
-  </div>
-</section>
-<section class="ch" data-scene="metier" data-metier="restaurant" aria-labelledby="t-f3">
-  <div class="txt">
-    <p class="metier">Pour un restaurant</p>
-    <h2 class="t2" id="t-f3">Votre carte et vos prix</h2>
-    <p class="chapo">Plats ou prestations, avec les prix. Vous les changez vous-même en une minute.</p>
-  </div>
-</section>
-<section class="ch" data-scene="metier" data-metier="boulangerie" aria-labelledby="t-f4">
-  <div class="txt">
-    <p class="metier">Pour une boulangerie</p>
-    <h2 class="t2" id="t-f4">Carte de fidélité</h2>
-    <p class="chapo">Un tampon à chaque passage, sans carte en carton à perdre.</p>
-  </div>
-</section>
-<section class="ch" data-scene="metier" data-metier="snack" aria-labelledby="t-f5">
-  <div class="txt">
-    <p class="metier">Pour un snack</p>
-    <h2 class="t2" id="t-f5">Horaires et « ouvert maintenant »</h2>
-    <p class="chapo">Les horaires sont à jour et le site dit si vous êtes ouvert en ce moment.</p>
-  </div>
-</section>
-</div>
+  </section>
 
 <section class="ch ch--tarifs" id="tarifs" data-scene="tarifs" aria-labelledby="t-tarifs">
   <div class="txt txt--large">
@@ -127,19 +88,20 @@
     <p class="chapo">Vous changez les textes, les photos et les couleurs, vous ajoutez des pages. Ensuite je vérifie tout et je le mets en ligne.</p>
     <p class="duo"><span><b>190 €</b> site vitrine</span><span><b>290 €</b> avec réservation</span></p>
     <a class="btn btn--clair" href="../v5/atelier/">Ouvrir l'Atelier</a>
+    <p class="petit">Dans la glace : un site fait dans l'Atelier pour un barbier imaginaire, aux couleurs Bleu égyptien.</p>
   </div>
 </section>
 
-<section class="ch ch--texte" id="moi" data-scene="calme" aria-labelledby="t-moi">
-  <div class="txt">
-    <h2 class="t2" id="t-moi">Un seul interlocuteur, du devis au dépannage.</h2>
-    <p class="chapo">Je m'appelle Ali Mokrani, élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants qui n'ont pas le temps. Mes outils servent chaque jour dans une boucherie de demi-gros.</p>
-    <ol class="etapes">
-      <li><b>Vous m'appelez ou m'écrivez.</b> Je réponds sous 24 h avec une idée et un prix, et je peux passer vous voir.</li>
-      <li><b>Je vous montre la maquette.</b> Sous 72 h, gratuite et sans engagement.</li>
-      <li><b>Vous validez, je mets en ligne.</b> 30 % à la validation, le reste à la mise en ligne, une à deux semaines après.</li>
-      <li><b>Je reste là.</b> Un mois de suivi inclus. Le nom de domaine et les fichiers sont à votre nom.</li>
-    </ol>
+<section class="ch" id="fonctions" data-scene="fonctions" aria-labelledby="t-fonctions">
+  <div class="txt txt--large">
+    <h2 class="t2" id="t-fonctions">Votre site travaille pendant que vous servez.</h2>
+    <ul class="fonctions">
+      <li><b>Réservation en ligne</b>Le client choisit sa prestation, son jour et son heure. Vous recevez la demande.</li>
+      <li><b>Commande à retirer</b>Il compose sa commande au prix affiché et choisit l'heure de retrait.</li>
+      <li><b>Votre carte et vos prix</b>Vous les changez vous-même, en une minute.</li>
+      <li><b>Carte de fidélité</b>Un tampon à chaque passage, sans carte en carton à perdre.</li>
+      <li><b>« Ouvert maintenant »</b>Les horaires sont à jour et le site dit si vous êtes ouvert.</li>
+    </ul>
   </div>
 </section>
 
@@ -150,11 +112,9 @@
       <details><summary>Combien de temps pour avoir mon site ?</summary><p>La maquette arrive sous 72 h. Une fois vos textes et photos réunis, le site est en ligne en une à deux semaines. Un logiciel sur mesure prend en général trois à six semaines.</p></details>
       <details><summary>Le site m'appartient-il vraiment ?</summary><p>Oui. Le nom de domaine est à votre nom et vous recevez tous les fichiers. Si vous changez de prestataire, vous partez avec votre site.</p></details>
       <details><summary>Quelle différence avec Planity ou Uber Eats ?</summary><p>Ces plateformes prennent un abonnement ou une commission sur chaque commande, et vos clients y voient aussi vos concurrents. Ici, vous payez une fois, la réservation se fait sur votre propre site et les clients restent les vôtres.</p></details>
-      <details><summary>Et si je veux changer un prix ou mes horaires ?</summary><p>Pendant le premier mois, c'est inclus. Ensuite, un message suffit pour une petite modification, ou je vous montre comment la faire vous-même.</p></details>
-      <details><summary>Comment se passe le paiement ?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
+            <details><summary>Comment se passe le paiement ?</summary><p>30 % à la validation de la maquette, le reste à la mise en ligne. Virement ou espèces, avec facture.</p></details>
       <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un ?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Neuf ou reconditionné, toutes marques. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
-      <details><summary>Je ne suis pas à l'aise avec l'informatique.</summary><p>C'est justement pour ça que j'existe. Je m'occupe du technique et je vous forme sur place, à votre rythme.</p></details>
-    </div>
+          </div>
   </div>
 </section>
 
@@ -162,7 +122,7 @@
   <div class="txt txt--centre">
     <h2 class="t2" id="t-contact">Parlons de votre commerce.</h2>
     <a class="gros-tel" href="tel:+33782023657">07 82 02 36 57</a>
-    <p class="chapo">Je réponds sous 24 h avec une idée et un prix. Troyes, Paris et les Yvelines.</p>
+    <p class="chapo">Je m'appelle Ali Mokrani, élève ingénieur à l'EPF. Je réponds sous 24 h avec une idée et un prix, et je passe vous voir à Troyes, Paris ou dans les Yvelines. La maquette est gratuite, sous 72 h.</p>
     <form class="devis" id="devis" novalidate>
       <div class="lignes">
         <label>Votre nom<input id="f-nom" autocomplete="name"></label>
@@ -191,8 +151,7 @@
   <p><a href="../v6/mentions-legales.html">Mentions légales</a><a href="../v6/confidentialite.html">Confidentialité</a><a href="../v6/cgv.html">Conditions de vente</a><a href="mailto:ali@mokranistudio.fr">ali@mokranistudio.fr</a></p>
 </footer>
 
-<script src="../v6/glyphes.js?v=2"></script>
-<script src="v8.js?v=2"></script>
-<script type="module" src="assets/scene8.js?v=2"></script>
+<script src="v8.js?v=4"></script>
+<script type="module" src="assets/scene8.js?v=4"></script>
 </body>
 </html>
