@@ -140,3 +140,10 @@ main, .pied { position: relative; z-index: 1; }
   .defiler { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } #glace { transition: none; } }
+
+/* Le glaçon se tourne à la main */
+body.survol-glace { cursor: grab; }
+body.tourne, body.tourne * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }
+.tourner { margin-top: 22px; font-size: .9rem; color: var(--glacier); display: flex; align-items: center; gap: 10px; }
+.tourner::before { content: ""; width: 18px; height: 18px; flex: none; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; }
+@media (hover: none) { .tourner { font-size: .86rem; } }

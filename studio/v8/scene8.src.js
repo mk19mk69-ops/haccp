@@ -1,6 +1,7 @@
 /* Mokrani Studio v8 : la scène, en bleu nuit.
    Un bloc de glace (réfraction, dispersion, fêlures fines, cristaux et bulles). Dedans, une vraie page prise dans la glace :
-   un site d'exemple en haut, la réservation pour les fonctions, un site Bleu égyptien pour l'Atelier.
+   six sites d'exemple, un par face : on fait tourner le bloc au doigt ou à la souris et il se cale sur une face.
+   L'Atelier montre la face Bleu égyptien, les fonctions la réservation.
    Aux tarifs, le bloc se fend en trois, un bloc au-dessus de chaque formule.
    Au contact, le givre qui flotte depuis le début se rassemble en anneau autour du numéro.
    Lit window.MS8 { mode, cibles } et l'événement "ms8" (v8.js). */
@@ -23,15 +24,6 @@ float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n21(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
   return mix(mix(h21(i), h21(i + vec2(1., 0.)), f.x), mix(h21(i + vec2(0., 1.)), h21(i + 1.), f.x), f.y); }`;
 
-/* Ce que chaque bloc contient selon le chapitre : [bloc du milieu, bloc gauche, bloc droit] */
-const CONTENU = {
-  ouverture: ["site-foret", null, null],
-  tarifs: [null, null, null],
-  atelier: ["site-egyptien", null, null],
-  fonctions: ["resa", null, null],
-  calme: [null, null, null],
-  contact: [null, null, null]
-};
 
 function lancer() {
   let renderer;
@@ -102,12 +94,12 @@ function lancer() {
   }
   const { tn, tr } = cartes();
   const glace = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff, transmission: 1, thickness: 1.0, ior: 1.31, dispersion: 3.5,
+    color: 0xffffff, transmission: 1, thickness: 1.5, ior: 1.31, dispersion: 3.5,
     roughness: 0.14, roughnessMap: tr, normalMap: tn, normalScale: new THREE.Vector2(0.16, 0.16),
     attenuationColor: new THREE.Color(0xc4dcff), attenuationDistance: 4.5,
     specularIntensity: 0.55, clearcoat: 0.18, clearcoatRoughness: 0.2, envMapIntensity: 0.55
   });
-  const geoBloc = new RoundedBoxGeometry(2.1, 2.1, 1.15, 6, 0.16);
+  const geoBloc = new RoundedBoxGeometry(2, 2, 2, 6, 0.16);
 
   /* Cristaux fins et bulles, poussés vers les coins pour laisser la page lisible */
   const geoCristal = new THREE.OctahedronGeometry(1, 0), matCristal = new THREE.MeshStandardMaterial({ color: 0xa9c3e6, roughness: 0.25, emissive: 0x4a76c9, emissiveIntensity: 0.06 });
@@ -115,19 +107,16 @@ function lancer() {
   function interieur(graine) {
     let s = graine; const rr = () => (s = (s * 16807) % 2147483647) / 2147483647;
     const g = new THREE.Group(), m = new THREE.Matrix4(), q = new THREE.Quaternion(), p = new THREE.Vector3(), sc = new THREE.Vector3();
-    const NC = 22, NB = 120;
+    const NC = 30, NB = 160;
     const cr = new THREE.InstancedMesh(geoCristal, matCristal, NC), bu = new THREE.InstancedMesh(geoBulle, matBulle, NB);
-    const coins = [[1, 1, 1], [-1, 1, -1], [1, -1, -1], [-1, -1, 1]].map(v => new THREE.Vector3(v[0] * 0.66, v[1] * 0.66, v[2] * 0.3));
+    /* un point dans la couche de glace entre les pages et la surface */
+    const coque = () => { const ax = (rr() * 3) | 0, sg = rr() < 0.5 ? -1 : 1, v = [(rr() - 0.5) * 1.7, (rr() - 0.5) * 1.7, (rr() - 0.5) * 1.7]; v[ax] = sg * (0.84 + rr() * 0.1); return p.set(v[0], v[1], v[2]); };
     for (let i = 0; i < NC; i++) {
-      const o = coins[i % 4], dir = new THREE.Vector3(rr() - 0.5, rr() - 0.5, rr() - 0.5).normalize();
-      p.copy(o).addScaledVector(dir, 0.05 + rr() * 0.2);
-      q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); const e = 0.006 + rr() * 0.012; sc.set(e, 0.05 + rr() * 0.15, e);
+      coque(); const dir = new THREE.Vector3(rr() - 0.5, rr() - 0.5, rr() - 0.5).normalize();
+      q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); const e = 0.005 + rr() * 0.01; sc.set(e, 0.04 + rr() * 0.12, e);
       cr.setMatrixAt(i, m.compose(p, q, sc));
     }
-    for (let i = 0; i < NB; i++) {
-      p.set((rr() - 0.5) * 1.8, (rr() - 0.5) * 1.8, (rr() - 0.5) * 0.9); if (Math.abs(p.z) < 0.1) p.z += 0.18 * Math.sign(p.z || 1);
-      const e = 0.003 + rr() * rr() * 0.018; sc.set(e, e, e); bu.setMatrixAt(i, m.compose(p, q.identity(), sc));
-    }
+    for (let i = 0; i < NB; i++) { coque(); const e = 0.003 + rr() * rr() * 0.014; sc.set(e, e, e); bu.setMatrixAt(i, m.compose(p, q.identity(), sc)); }
     g.add(cr, bu); return g;
   }
 
@@ -154,24 +143,40 @@ function lancer() {
     im.src = "assets/" + fichier;
     images[cle] = t; return t;
   }
-  texImage("site-foret", "site-foret.jpg"); texImage("site-egyptien", "site-egyptien.jpg"); texImage("resa", "resa.jpg");
+  ["site-foret", "site-egyptien", "site-sable", "site-royal", "site-cramoisi", "site-givre", "resa"].forEach(c => texImage(c, c + ".jpg"));
 
-  function bloc(graine) {
-    const g = new THREE.Group(); g.add(new THREE.Mesh(geoBloc, glace)); g.add(interieur(graine));
-    const mat = new THREE.MeshBasicMaterial({ alphaTest: 0.5, side: THREE.DoubleSide });
-    const plan = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); plan.visible = false; plan.position.z = 0.05; g.add(plan);
-    g.userData = { s: graine === 11 ? 1 : 0, x: 0, y: 0, plan, cle: null, voulu: null, bascule: 1 };
+  /* Les six faces du bloc principal : un site d'exemple par face. On fait tourner le bloc pour les voir. */
+  const FACES = [
+    { cle: "site-foret", n: [0, 0, 1], up: [0, 1, 0] },
+    { cle: "site-egyptien", n: [1, 0, 0], up: [0, 1, 0] },
+    { cle: "site-sable", n: [0, 0, -1], up: [0, 1, 0] },
+    { cle: "site-royal", n: [-1, 0, 0], up: [0, 1, 0] },
+    { cle: "site-cramoisi", n: [0, 1, 0], up: [0, 0, -1] },
+    { cle: "site-givre", n: [0, -1, 0], up: [0, 0, 1] }
+  ];
+  function bloc(graine, avecFaces) {
+    const g = new THREE.Group(); const cube = new THREE.Mesh(geoBloc, glace); g.add(cube); g.add(interieur(graine));
+    const faces = [];
+    if (avecFaces) FACES.forEach(f => {
+      const pl = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ alphaTest: 0.5 }));
+      const n = new THREE.Vector3(...f.n); pl.position.copy(n).multiplyScalar(0.78); pl.up.set(...f.up); pl.lookAt(n.clone().multiplyScalar(3));
+      pl.visible = false; pl.userData.cle = f.cle; g.add(pl); faces.push(pl);
+    });
+    g.userData = { s: graine === 11 ? 1 : 0, x: 0, y: 0, cube, faces, montre: avecFaces, voulu: avecFaces, avantVu: "site-foret", avantVoulu: "site-foret", bascule: 1, applique: true };
     scene.add(g); return g;
   }
-  const blocs = [bloc(11), bloc(23), bloc(37)];
-  function poserPlan(b) {
-    const u = b.userData, t = u.cle && images[u.cle];
-    if (!t || !t.image) { u.plan.visible = false; return; }
-    u.plan.material.map = t; u.plan.material.needsUpdate = true; u.plan.visible = true;
-    const ratio = t.userData.ratio || 1.6, long = 1.74;
-    if (ratio >= 1) u.plan.scale.set(long, long / ratio, 1); else u.plan.scale.set(long * 1.05 * ratio, long * 1.05, 1);
+  const blocs = [bloc(11, true), bloc(23, false), bloc(37, false)];
+  function majFaces(b) {
+    const u = b.userData;
+    u.faces.forEach((pl, k) => {
+      const t = images[k === 0 ? u.avantVu : pl.userData.cle];
+      if (!u.montre || !t || !t.image) { pl.visible = false; return; }
+      pl.material.map = t; pl.material.needsUpdate = true; pl.visible = true;
+      const ratio = t.userData.ratio || 1.6;
+      if (ratio >= 1) pl.scale.set(1.5, 1.5 / ratio, 1); else pl.scale.set(1.45 * ratio, 1.45, 1);
+    });
   }
-  function majPlans() { blocs.forEach(poserPlan); }
+  function majPlans() { majFaces(blocs[0]); }
 
   /* ---------- Givre qui flotte : discret partout, en anneau au contact ---------- */
   const N = petit ? 1100 : 2200, Hh = 16, W = 26;
@@ -253,17 +258,61 @@ function lancer() {
     return t;
   }
 
-  /* Ce que contient chaque bloc : le changement passe par un coup de givre */
+  /* Orientation du bloc principal : on le tourne au doigt ou à la souris, il se cale sur une face, toujours à l'endroit */
+  const K = Math.PI / 340, AX = new THREE.Vector3(1, 0, 0), AY = new THREE.Vector3(0, 1, 0);
+  const faceQ = FACES.map(f => {
+    const N = new THREE.Vector3(...f.n), U = new THREE.Vector3(...f.up), R = new THREE.Vector3().crossVectors(U, N);
+    return new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(R, U, N).transpose());
+  });
+  const ori = { q: faceQ[0].clone(), cible: faceQ[0].clone(), wx: 0, wy: 0, drag: false, lx: 0, ly: 0, lt: 0, calme: 1 };
+  const qa = new THREE.Quaternion(), qb = new THREE.Quaternion(), qo = new THREE.Quaternion(), eo = new THREE.Euler(), vn = new THREE.Vector3();
+  function tourner(q, ax, ay) { qa.setFromAxisAngle(AY, ay); qb.setFromAxisAngle(AX, ax); q.premultiply(qb).premultiply(qa); }
+  function faceProche(q) { let meilleur = 0, z = -2; FACES.forEach((f, k) => { vn.set(...f.n).applyQuaternion(q); if (vn.z > z) { z = vn.z; meilleur = k; } }); return meilleur; }
+  function viserMode() {
+    if (E.mode === "atelier") ori.cible.copy(faceQ[1]);
+    else if (E.mode === "fonctions") ori.cible.copy(faceQ[0]);
+  }
+
+  /* Ce que montre le bloc : le changement passe par un coup de givre */
   function surChapitre() {
-    const portrait = innerWidth / innerHeight < 0.85;
-    const voulu = (CONTENU[E.mode] || CONTENU.calme).slice();
-    
-    blocs.forEach((b, i) => { const u = b.userData; if (voulu[i] !== u.voulu) { u.voulu = voulu[i]; u.bascule = 0; } });
+    const u = blocs[0].userData, m = E.mode;
+    const voulu = m === "ouverture" || m === "atelier" || m === "fonctions", avant = m === "fonctions" ? "resa" : "site-foret";
+    if (voulu !== u.voulu || avant !== u.avantVoulu) { u.voulu = voulu; u.avantVoulu = avant; u.bascule = 0; u.applique = false; }
+    viserMode();
   }
   addEventListener("ms8", surChapitre); surChapitre();
 
   const sx = { x: 0, y: 0, tx: 0, ty: 0 };
   addEventListener("pointermove", e => { sx.tx = e.clientX / innerWidth - 0.5; sx.ty = e.clientY / innerHeight - 0.5; }, { passive: true });
+
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  const tournable = () => (E.mode === "ouverture" || E.mode === "atelier") && blocs[0].userData.s > 0.3;
+  function touche(x, y) { if (!tournable()) return false; ndc.set(x / innerWidth * 2 - 1, -(y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); return ray.intersectObject(blocs[0].userData.cube, false).length > 0; }
+  const INTERACTIF = "a, button, input, select, textarea, summary, label, details";
+  addEventListener("pointerdown", e => {
+    if (e.button > 0 || (e.target.closest && e.target.closest(INTERACTIF)) || !touche(e.clientX, e.clientY)) return;
+    ori.drag = true; ori.lx = e.clientX; ori.ly = e.clientY; ori.lt = performance.now(); ori.wx = ori.wy = 0;
+    document.body.classList.add("tourne"); if (e.pointerType === "mouse") e.preventDefault();
+  });
+  addEventListener("touchstart", e => { if (ori.drag) e.preventDefault(); }, { passive: false });
+  addEventListener("touchmove", e => { if (ori.drag) e.preventDefault(); }, { passive: false });
+  addEventListener("pointermove", e => {
+    if (ori.drag) {
+      const now = performance.now(), dtp = Math.max((now - ori.lt) / 1000, 0.004);
+      const dx = (e.clientX - ori.lx) * K, dy = (e.clientY - ori.ly) * K;
+      tourner(ori.q, dy, dx);
+      ori.wy = ori.wy * 0.5 + (dx / dtp) * 0.5; ori.wx = ori.wx * 0.5 + (dy / dtp) * 0.5;
+      ori.lx = e.clientX; ori.ly = e.clientY; ori.lt = now;
+    } else if (e.pointerType === "mouse") document.body.classList.toggle("survol-glace", touche(e.clientX, e.clientY));
+  }, { passive: true });
+  function lacher() {
+    if (!ori.drag) return; ori.drag = false; document.body.classList.remove("tourne");
+    if (performance.now() - ori.lt > 90) { ori.wx = 0; ori.wy = 0; }
+    /* on prolonge l'élan du geste, puis le bloc se cale sur la face la plus proche, remise à l'endroit */
+    const p = ori.q.clone(); tourner(p, ori.wx * 0.22, ori.wy * 0.22);
+    ori.cible.copy(faceQ[faceProche(p)]);
+  }
+  addEventListener("pointerup", lacher); addEventListener("pointercancel", lacher);
   let yAvant = scrollY, vitesse = 0, forme = 0, givre = 0;
 
   let nbImages = 0, cumul = 0, allege = false;
@@ -279,19 +328,29 @@ function lancer() {
     sx.x += (sx.tx - sx.x) * lisse; sx.y += (sx.ty - sx.y) * lisse;
 
     const t = cible(); let pic = 0;
+    /* le bloc garde l'élan du geste un court instant, puis glisse sans rebond vers la face visée */
+    if (!ori.drag) {
+      const f = Math.exp(-dtR * 6); ori.wx *= f; ori.wy *= f; tourner(ori.q, ori.wx * dtR * 0.6, ori.wy * dtR * 0.6);
+      ori.q.slerp(ori.cible, 1 - Math.exp(-dtR * 6.5));
+    }
+    ori.calme += ((ori.drag ? 0 : 1) - ori.calme) * lisse;
     blocs.forEach((b, i) => {
       const u = b.userData; u.x += (t[i].x - u.x) * lisse; u.y += (t[i].y - u.y) * lisse; u.s += (t[i].s - u.s) * lisse;
       b.position.set(u.x, u.y, 0); b.scale.setScalar(Math.max(u.s, 0.0001)); b.visible = u.s > 0.01;
-      /* le bloc oscille sans tourner sur lui-même : la page reste lisible */
-      b.rotation.y = -0.24 + Math.sin(temps * 0.22 + i * 1.3) * 0.12 + sx.x * 0.3;
-      b.rotation.x = -0.16 + Math.sin(temps * 0.17 + i) * 0.06 + sx.y * 0.22;
-      b.rotation.z = Math.sin(temps * 0.12 + i * 2) * 0.03;
-      if (u.bascule < 1) {
-        u.bascule = Math.min(1, u.bascule + dtR / (reduit ? 0.01 : 0.85));
-        if (u.cle !== u.voulu && u.bascule > 0.45) { u.cle = u.voulu; poserPlan(b); }
+      if (i === 0) {
+        const c = ori.calme;
+        eo.set((-0.14 + Math.sin(temps * 0.17) * 0.05 + sx.y * 0.14) * c, (-0.32 + Math.sin(temps * 0.22) * 0.09 + sx.x * 0.2) * c, Math.sin(temps * 0.12) * 0.02 * c);
+        b.quaternion.setFromEuler(eo).multiply(ori.q);
+        if (u.bascule < 1) {
+          u.bascule = Math.min(1, u.bascule + dtR / (reduit ? 0.01 : 0.85));
+          if (!u.applique && u.bascule > 0.45) { u.applique = true; u.montre = u.voulu; u.avantVu = u.avantVoulu; majFaces(b); }
+        }
+        if (b.visible) pic = Math.max(pic, Math.sin(u.bascule * Math.PI));
+      } else {
+        b.rotation.y = -0.3 + Math.sin(temps * 0.22 + i * 1.3) * 0.14 + sx.x * 0.3;
+        b.rotation.x = -0.18 + Math.sin(temps * 0.17 + i) * 0.06 + sx.y * 0.2;
+        b.rotation.z = Math.sin(temps * 0.12 + i * 2) * 0.03;
       }
-      if (b.visible) pic = Math.max(pic, Math.sin(u.bascule * Math.PI));
-      u.plan.rotation.y = -b.rotation.y * 0.9; u.plan.rotation.x = -b.rotation.x * 0.85;
     });
 
     forme += ((E.mode === "contact" ? 1 : 0) - forme) * (1 - Math.exp(-dtR * 1.4));

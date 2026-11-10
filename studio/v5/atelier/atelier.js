@@ -1203,7 +1203,7 @@
     var formules = h("div", { class: "formules", role: "radiogroup" }, F.map(function (f) {
       return h("button", { type: "button", role: "radio", class: "formule", "aria-checked": f[0] === choixF ? "true" : "false", onclick: function (e) { choixF = f[0]; QA(".formule", formules).forEach(function (x) { x.setAttribute("aria-checked", x === e.currentTarget ? "true" : "false"); }); } }, [h("b", { text: f[0] }), h("span", { class: "formule-p", text: f[1] }), h("small", { text: f[2] })]);
     }));
-    c.appendChild(h("div", { class: "pub-bloc" }, [h("h3", { text: "Formule" }), formules, P.pages.length > 1 ? h("p", { class: "p-mini", text: "Votre site a " + P.pages.length + " pages : Ali vous dira si cela change le tarif." }) : null, h("p", { class: "p-mini", text: "Prix Atelier : moins cher, car c'est vous qui avez construit le site. Payé une fois. Hébergement : 50 € la première année, environ 5 € par mois ensuite." }), h("p", { class: "p-mini", text: "Besoin d'un outil fait pour votre métier (stocks, HACCP, planning) ? Ali le fait pour vous, dès 690 €." })]));
+    c.appendChild(h("div", { class: "pub-bloc" }, [h("h3", { text: "Formule" }), formules, P.pages.length > 1 ? h("p", { class: "p-mini", text: "Votre site a " + P.pages.length + " pages : Ali vous dira si cela change le tarif." }) : null, h("p", { class: "p-mini", text: "Prix Atelier : moins cher, car c'est vous qui avez construit le site. Payé une fois. Hébergement : 50 € la première année, environ 5 € par mois ensuite." }), h("p", { class: "p-mini", text: "Besoin d'un outil fait pour votre métier (stocks, HACCP, planning) ? Ali le fait pour vous, dès 550 €." })]));
     var envoi = h("div", { class: "pub-envoi" });
     c.appendChild(envoi);
     function dessinerEnvoi() {
