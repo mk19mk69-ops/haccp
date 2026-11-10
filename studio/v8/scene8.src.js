@@ -1,7 +1,7 @@
-/* Mokrani Studio v8 : la scène, version claire.
+/* Mokrani Studio v8 : la scène, en bleu nuit.
    Un bloc de glace (réfraction, dispersion, fêlures fines, cristaux et bulles). Dedans, une vraie page prise dans la glace :
    un site d'exemple en haut, la réservation pour les fonctions, un site Bleu égyptien pour l'Atelier.
-   Aux tarifs, le bloc se fend en trois et chaque prix est gravé dans son bloc.
+   Aux tarifs, le bloc se fend en trois, un bloc au-dessus de chaque formule.
    Au contact, le givre qui flotte depuis le début se rassemble en anneau autour du numéro.
    Lit window.MS8 { mode, cibles } et l'événement "ms8" (v8.js). */
 import * as THREE from "three";
@@ -26,7 +26,7 @@ float n21(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
 /* Ce que chaque bloc contient selon le chapitre : [bloc du milieu, bloc gauche, bloc droit] */
 const CONTENU = {
   ouverture: ["site-foret", null, null],
-  tarifs: ["p490", "p350", "p690"],
+  tarifs: [null, null, null],
   atelier: ["site-egyptien", null, null],
   fonctions: ["resa", null, null],
   calme: [null, null, null],
@@ -49,8 +49,8 @@ function lancer() {
   camera.position.set(0, 0, 9);
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 0.6;
-  const cle = new THREE.DirectionalLight(0xffffff, 1.3); cle.position.set(4, 6, 5); scene.add(cle);
+  scene.environmentIntensity = 0.75;
+  const cle = new THREE.DirectionalLight(0xdcecff, 1.8); cle.position.set(4, 6, 5); scene.add(cle);
   const contre = new THREE.DirectionalLight(0x9db8ff, 1.0); contre.position.set(-5, -2, -4); scene.add(contre);
 
   /* ---------- Fond clair : ciel d'hiver et voiles de brume que la glace déforme ---------- */
@@ -61,11 +61,11 @@ function lancer() {
       varying vec2 vUv; uniform float uT;
       void main(){
         vec2 p = vUv;
-        vec3 c = mix(vec3(.36, .43, .55), vec3(.8, .84, .9), smoothstep(.0, 1., p.y));
+        vec3 c = mix(vec3(.004, .008, .02), vec3(.02, .05, .12), smoothstep(.0, 1., p.y));
         float b = n21(vec2(p.x * 2.4 + uT * .02, p.y * 1.3 - uT * .012));
         float voile = smoothstep(.45, .95, sin((p.x * 2. + b * 1.8 + uT * .015) * 3.1416) * .5 + .5) * smoothstep(.05, .55, p.y) * smoothstep(1., .45, p.y);
-        c = mix(c, vec3(.22, .33, .58), voile * .45);
-        c += vec3(.9, .95, 1.) * pow(n21(p * vec2(4., 38.) + vec2(uT * .01, 0.)), 9.) * .08;
+        c += vec3(.05, .17, .48) * voile * .6;
+        c += vec3(.3, .55, 1.) * pow(n21(p * vec2(4., 38.) + vec2(uT * .01, 0.)), 9.) * .05;
         gl_FragColor = vec4(c, 1.);
       }`,
     depthWrite: false
@@ -110,18 +110,18 @@ function lancer() {
   const geoBloc = new RoundedBoxGeometry(2.1, 2.1, 1.15, 6, 0.16);
 
   /* Cristaux fins et bulles, poussés vers les coins pour laisser la page lisible */
-  const geoCristal = new THREE.OctahedronGeometry(1, 0), matCristal = new THREE.MeshStandardMaterial({ color: 0xf2f7ff, roughness: 0.3, emissive: 0x9fbfff, emissiveIntensity: 0.08 });
+  const geoCristal = new THREE.OctahedronGeometry(1, 0), matCristal = new THREE.MeshStandardMaterial({ color: 0xa9c3e6, roughness: 0.25, emissive: 0x4a76c9, emissiveIntensity: 0.06 });
   const geoBulle = new THREE.SphereGeometry(1, 8, 6), matBulle = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1 });
   function interieur(graine) {
     let s = graine; const rr = () => (s = (s * 16807) % 2147483647) / 2147483647;
     const g = new THREE.Group(), m = new THREE.Matrix4(), q = new THREE.Quaternion(), p = new THREE.Vector3(), sc = new THREE.Vector3();
-    const NC = 26, NB = 110;
+    const NC = 22, NB = 120;
     const cr = new THREE.InstancedMesh(geoCristal, matCristal, NC), bu = new THREE.InstancedMesh(geoBulle, matBulle, NB);
     const coins = [[1, 1, 1], [-1, 1, -1], [1, -1, -1], [-1, -1, 1]].map(v => new THREE.Vector3(v[0] * 0.66, v[1] * 0.66, v[2] * 0.3));
     for (let i = 0; i < NC; i++) {
       const o = coins[i % 4], dir = new THREE.Vector3(rr() - 0.5, rr() - 0.5, rr() - 0.5).normalize();
       p.copy(o).addScaledVector(dir, 0.05 + rr() * 0.2);
-      q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); const e = 0.01 + rr() * 0.02; sc.set(e, 0.08 + rr() * 0.22, e);
+      q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); const e = 0.006 + rr() * 0.012; sc.set(e, 0.05 + rr() * 0.15, e);
       cr.setMatrixAt(i, m.compose(p, q, sc));
     }
     for (let i = 0; i < NB; i++) {
@@ -154,21 +154,7 @@ function lancer() {
     im.src = "assets/" + fichier;
     images[cle] = t; return t;
   }
-  function texPrix(cle, texte) {
-    const w = 640, h = 400, { k, g } = cadre(w, h, 0);
-    const t = new THREE.CanvasTexture(k); t.colorSpace = THREE.SRGBColorSpace; t.userData = { ratio: w / h };
-    const dessiner = () => {
-      g.clearRect(0, 0, w, h);
-      g.font = "650 172px Archivo, system-ui, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle";
-      g.fillStyle = "rgba(255,255,255,.9)"; g.fillText(texte, w / 2 + 2, h / 2 + 3);
-      g.fillStyle = "#13233F"; g.fillText(texte, w / 2, h / 2);
-      t.needsUpdate = true;
-    };
-    dessiner(); if (document.fonts) document.fonts.ready.then(dessiner);
-    images[cle] = t; return t;
-  }
   texImage("site-foret", "site-foret.jpg"); texImage("site-egyptien", "site-egyptien.jpg"); texImage("resa", "resa.jpg");
-  texPrix("p350", "350 €"); texPrix("p490", "490 €"); texPrix("p690", "690 €");
 
   function bloc(graine) {
     const g = new THREE.Group(); g.add(new THREE.Mesh(geoBloc, glace)); g.add(interieur(graine));
@@ -207,10 +193,10 @@ function lancer() {
         vec4 mv = modelViewMatrix * vec4(mix(p, anneau, k), 1.);
         gl_Position = projectionMatrix * mv;
         gl_PointSize = (1. + aRnd.x * 2.4) * uPx * (9. / -mv.z) * (1. + k * .3);
-        vA = (.12 + aRnd.y * .3) * (.6 + k * 1.1);
+        vA = (.16 + aRnd.y * .4) * (.6 + k * 1.);
       }`,
-    fragmentShader: `varying float vA; void main(){ float d = length(gl_PointCoord - .5); float a = smoothstep(.5, 0., d) * vA; gl_FragColor = vec4(vec3(.25, .36, .58), a); }`,
-    transparent: true, depthWrite: false
+    fragmentShader: `varying float vA; void main(){ float d = length(gl_PointCoord - .5); float a = smoothstep(.5, 0., d) * vA; gl_FragColor = vec4(vec3(.72, .86, 1.) * a, a); }`,
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
   });
   const neige = new THREE.Points(geoNeige, neigeMat); neige.frustumCulled = false; scene.add(neige);
 
@@ -230,8 +216,8 @@ function lancer() {
         uv += (vec2(n21(uv * ar * 23.), n21(uv * ar * 23. + 7.)) - .5) * .008 * m;
         vec2 dir = c * (uAb + m * .008);
         vec3 col = vec3(texture2D(tDiffuse, uv + dir).r, texture2D(tDiffuse, uv).g, texture2D(tDiffuse, uv - dir).b);
-        col = mix(col, vec3(.86, .9, .96) * (.75 + fn * .3), m * .55);
-        col *= 1. - smoothstep(.55, 1.15, length(c) * 1.3) * .18;
+        col = mix(col, vec3(.5, .62, .8) * (.3 + fn * .4), m * .55);
+        col *= 1. - smoothstep(.45, 1.1, length(c) * 1.3) * .45;
         col += (h21(uv * uRes + fract(uT) * 91.) - .5) * .018;
         gl_FragColor = vec4(col, 1.);
       }`
@@ -271,7 +257,7 @@ function lancer() {
   function surChapitre() {
     const portrait = innerWidth / innerHeight < 0.85;
     const voulu = (CONTENU[E.mode] || CONTENU.calme).slice();
-    if (E.mode === "tarifs" && portrait) voulu[0] = "p350";
+    
     blocs.forEach((b, i) => { const u = b.userData; if (voulu[i] !== u.voulu) { u.voulu = voulu[i]; u.bascule = 0; } });
   }
   addEventListener("ms8", surChapitre); surChapitre();
