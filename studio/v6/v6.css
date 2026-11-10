@@ -336,6 +336,7 @@ html:not(.gl) .cube { border-radius: 26px; background: linear-gradient(160deg, #
 #demo .s-sec { padding-block: 22px !important; border: 0 !important; }
 #demo .s-sec::before, #demo .s-sec::after { display: none; }
 #demo .s-in { padding-inline: 22px; }
+#demo .s-in > :first-child:not(.s-tete), #demo .s-tete + * { margin-top: 0 !important; }
 .note-tel { font-family: var(--police) !important; font-size: .84rem !important; color: var(--encre-3); text-align: center; justify-self: center; }
 @media (min-width: 980px) { .demo-zone { position: sticky; top: 110px; } }
 
