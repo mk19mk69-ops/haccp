@@ -373,6 +373,7 @@ a.s-tuile:active { transform: scale(.985); transition-duration: .1s; }
 .s-puce b { font-size: 1.25rem; font-weight: 650; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
 .s-puce:active { transform: scale(.94); transition-duration: .08s; }
 .s-puce.on { background: var(--sb); color: var(--sbt); box-shadow: none; }
+.s-puce.on small { opacity: 1; }
 .s-resa-heures { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; }
 .s-heure { padding: 11px 0; border: 0; border-radius: min(var(--rb), 12px); background: var(--sf); box-shadow: inset 0 0 0 1px var(--sl); font-weight: 600; font-size: .94rem; cursor: pointer; font-variant-numeric: tabular-nums; transition: background-color .2s, color .2s, transform .4s var(--amorti); }
 .s-heure:active:not(:disabled) { transform: scale(.93); transition-duration: .08s; }

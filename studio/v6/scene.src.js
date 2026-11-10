@@ -27,7 +27,9 @@ function lancer() {
 
   /* Fond : perle le jour, graphite la nuit */
   const c = document.createElement("canvas"); c.width = 8; c.height = 256; const g = c.getContext("2d");
-  const JOUR = [[245, 245, 246], [234, 235, 238], [218, 221, 227]], NUIT = [[22, 24, 28], [17, 19, 22], [12, 13, 16]];
+  const EGY = racine.classList.contains("egyptien");
+  const JOUR = EGY ? [[238, 244, 249], [221, 233, 242], [199, 218, 233]] : [[245, 245, 246], [234, 235, 238], [218, 221, 227]];
+  const NUIT = EGY ? [[6, 40, 74], [3, 32, 61], [2, 24, 47]] : [[22, 24, 28], [17, 19, 22], [12, 13, 16]];
   const fond = new THREE.CanvasTexture(c); fond.colorSpace = THREE.SRGBColorSpace; scene.background = fond;
   function peindre(n) {
     const d = g.createLinearGradient(0, 0, 0, 256);
@@ -47,7 +49,7 @@ function lancer() {
     const d = x.createRadialGradient(128, 128, 0, 128, 128, 128); d.addColorStop(0, couleur); d.addColorStop(1, "rgba(0,0,0,0)");
     x.fillStyle = d; x.fillRect(0, 0, 256, 256); const t = new THREE.CanvasTexture(k); t.colorSpace = THREE.SRGBColorSpace; return t;
   }
-  const chaud = halo("rgba(255,178,128,.95)"), froid = halo("rgba(120,150,255,.95)");
+  const chaud = halo(EGY ? "rgba(235,47,51,.55)" : "rgba(255,178,128,.95)"), froid = halo(EGY ? "rgba(99,156,197,.95)" : "rgba(120,150,255,.95)");
   const halos = [[chaud, 1.2, 1.4, 6.5], [froid, 3.6, -0.6, 7.5], [froid, -6, 3.5, 7]].map(([t, x, y, l]) => {
     const m = new THREE.Mesh(new THREE.PlaneGeometry(l, l), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, opacity: 0.85 }));
     m.position.set(x, y, -5); m.userData = { x, y }; scene.add(m); return m;

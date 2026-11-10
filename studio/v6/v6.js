@@ -73,22 +73,7 @@
     document.querySelectorAll("[data-verre]").forEach(function (el) { ro.observe(el); });
   }
 
-  /* 4. Titres qui se décodent */
-  if (!reduit && window.IntersectionObserver) {
-    var SIGNES = "ABCDEFGHJKLMNPRSTUVXZ0123456789/+";
-    var decoder = function (el) {
-      var final = el.textContent, n = final.length, debut = performance.now(), duree = Math.min(1100, 380 + n * 22);
-      el.setAttribute("aria-label", final);
-      (function pas(t) {
-        var p = Math.min(1, (t - debut) / duree), fixe = Math.floor(p * n), s = "";
-        for (var i = 0; i < n; i++) { var c = final.charAt(i); s += i < fixe || c === " " || c === " " ? c : SIGNES.charAt((Math.random() * SIGNES.length) | 0); }
-        el.textContent = s;
-        if (p < 1) requestAnimationFrame(pas); else { el.textContent = final; el.removeAttribute("aria-label"); }
-      })(debut);
-    };
-    var ioD = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { ioD.unobserve(e.target); decoder(e.target); } }); }, { rootMargin: "0px 0px -12% 0px" });
-    document.querySelectorAll("[data-decode]").forEach(function (el) { ioD.observe(el); });
-  }
+  /* 4. (Titres décodés retirés : effet trop appuyé) */
 
   /* Icône nette du métier, posée au centre de son bloc de glace */
   if (window.GLYPHES) document.querySelectorAll("#metiers .puce").forEach(function (b) {

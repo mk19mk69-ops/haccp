@@ -73,7 +73,7 @@ a.cache:focus { left: 12px; top: 12px; z-index: 100; background: var(--encre); c
 
 .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 22px; border: 0; border-radius: 12px; color: var(--sur-encre); background: var(--encre); font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer; white-space: nowrap;
   box-shadow: 0 8px 18px -14px rgba(20,22,28,.5); transition: transform .12s ease, background-color .2s ease, color .2s ease; }
-.btn:hover { background: var(--accent); color: #fff; }
+.btn:hover { background: var(--accent); color: var(--sur-encre); }
 .btn:active { transform: scale(.97); }
 .btn--verre { color: var(--encre); background: var(--v-fort); -webkit-backdrop-filter: blur(20px) saturate(1.1); backdrop-filter: blur(20px) saturate(1.1); box-shadow: inset 0 1px 0 var(--arete), inset 0 0 0 1px var(--lisere), 0 8px 18px -14px var(--ombre); }
 .btn--verre:hover { background: var(--encre); color: var(--sur-encre); }
@@ -326,8 +326,35 @@ html:not(.gl) .cube { border-radius: 26px; background: linear-gradient(160deg, #
 .resultat .legende-tel { text-align: left; max-width: none; color: var(--encre-3); }
 
 /* ---------- Démonstration des fonctions : un simple cadre, sans appareil ---------- */
-.demo-zone { display: grid; gap: 12px; justify-items: center; }
-.demo-cadre { width: 100%; max-width: 460px; padding: 8px; border-radius: 22px; background: var(--v-fort); box-shadow: inset 0 0 0 1px var(--lisere), 0 30px 60px -36px var(--ombre); }
-.demo-defile { height: min(560px, 70vh); overflow-y: auto; overscroll-behavior: contain; border-radius: 15px; background: #fff; scrollbar-width: thin; }
-.demo-defile .site { min-height: 100%; }
+.demo-zone { display: grid; gap: 10px; justify-items: stretch; }
+/* Un panneau blanc net : seulement la fonction, sans en-tête de site ni titre */
+.demo-cadre { width: 100%; max-width: 520px; justify-self: center; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px var(--lisere), 0 24px 50px -34px var(--ombre); overflow: hidden; }
+.demo-defile { max-height: min(620px, 74vh); overflow-y: auto; overscroll-behavior: contain; background: #fff; scrollbar-width: none; }
+.demo-defile::-webkit-scrollbar { display: none; }
+.demo-defile .site { min-height: 0; }
+#demo .s-entete, #demo .s-tete, #demo .s-pied { display: none; }
+#demo .s-sec { padding-block: 22px !important; border: 0 !important; }
+#demo .s-sec::before, #demo .s-sec::after { display: none; }
+#demo .s-in { padding-inline: 22px; }
+.note-tel { font-family: var(--police) !important; font-size: .84rem !important; color: var(--encre-3); text-align: center; justify-self: center; }
 @media (min-width: 980px) { .demo-zone { position: sticky; top: 110px; } }
+
+/* ---------- Essai « Bleu égyptien » (?couleurs=egyptien) ----------
+   Palette d'Ali : bleu nuit #03203D, rouge #EB2F33, bleu ciel #639CC5.
+   Le jour : ciel pâle et encre bleu nuit, le rouge pour signaler. La nuit (Atelier, tarifs) : bleu nuit profond. */
+:root { --demo-c1: #3550E8; --demo-c2: #15171A; }
+html.egyptien { --glace: #EEF4F9; --nuit: #03203D; --encre: #03203D; --encre-2: #2C4A68; --encre-3: #46617F; --accent: #C21F24; --sur-encre: #FFFFFF;
+  --v1: rgba(248,251,253,.76); --v2: rgba(240,246,250,.68); --v-fort: rgba(250,252,254,.92); --arete: rgba(255,255,255,.6); --lisere: rgba(3,32,61,.1);
+  --trait: rgba(3,32,61,.12); --champ: rgba(255,255,255,.94); --ombre: rgba(3,32,61,.2); --reflet: rgba(255,255,255,0);
+  --demo-c1: #EB2F33; --demo-c2: #03203D;
+  background: linear-gradient(180deg, #EEF4F9, #DDE9F2 55%, #C7DAE9) fixed; }
+html.egyptien.nuit { --encre: #F3F6FA; --encre-2: #C3D3E3; --encre-3: #A8BBD0; --accent: #8DBEE3; --sur-encre: #03203D; --v1: rgba(255,255,255,.07); --v2: rgba(255,255,255,.03); --v-fort: rgba(255,255,255,.12); --arete: rgba(255,255,255,.14); --lisere: rgba(255,255,255,.09); --trait: rgba(255,255,255,.13); --champ: rgba(255,255,255,.08); --ombre: rgba(0,8,20,.6); --reflet: rgba(255,255,255,0); }
+html.egyptien.gl { background: #DDE9F2; }
+html.egyptien.gl.nuit, html.egyptien.nuit { background: #03203D; }
+html.egyptien .cube svg { stroke: #03203D; }
+html.egyptien .journal li::before { background: #EB2F33; }
+html.egyptien .ticket .zero td:last-child { color: #C21F24; }
+html.egyptien .tampon { color: #C21F24; box-shadow: inset 0 0 0 2px #C21F24, inset 0 0 0 5px #F7F7F8, inset 0 0 0 6px #C21F24; }
+html.egyptien .etape-n { box-shadow: 0 0 0 4px #DDE9F2; }
+html.egyptien .t-tete, html.egyptien .ticket .total td { color: #03203D; }
+html.egyptien .pied { background: radial-gradient(70% 60% at 85% 0%, rgba(235,47,51,.16), transparent 60%), radial-gradient(60% 60% at 10% 0%, rgba(99,156,197,.22), transparent 60%), #021A33; color: #A8BBD0; }

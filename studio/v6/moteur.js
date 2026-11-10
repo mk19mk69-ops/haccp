@@ -309,6 +309,9 @@
     var f = FONCTIONS[k];
     choixF.querySelectorAll("button").forEach(function (b, i) { b.setAttribute("aria-selected", i === k ? "true" : "false"); b.tabIndex = i === k ? 0 : -1; });
     var P = projet({ metier: f.m });
+    /* La démo prend les couleurs du studio (fond clair), pas celles du commerce : on montre la fonction, pas un site */
+    var cs = getComputedStyle(document.documentElement);
+    P.theme = Object.assign({}, P.theme, { fond: "clair", c1: (cs.getPropertyValue("--demo-c1") || "#3550E8").trim(), c2: (cs.getPropertyValue("--demo-c2") || "#15171A").trim(), style: "simple", rayon: "doux" });
     var s = section(f.s[0], f.s[1], P); s.s.fond = "auto";
     rendre(demo, P, [s], false);
     var dd = $("demo-defile"); if (dd) dd.scrollTop = 0;
