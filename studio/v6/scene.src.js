@@ -22,7 +22,7 @@ function lancer(svg) {
   renderer.setPixelRatio(dpr);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.08;
-  renderer.transmissionResolutionScale = petit ? 0.5 : 0.75;
+  renderer.transmissionResolutionScale = petit ? 0.75 : 1;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
@@ -31,7 +31,7 @@ function lancer(svg) {
   /* Brume : un dégradé repeint quand on passe du jour à la nuit */
   const c = document.createElement("canvas"); c.width = 8; c.height = 256;
   const g = c.getContext("2d");
-  const JOUR = [[244, 247, 250], [227, 234, 242], [191, 206, 223]], NUIT = [[3, 6, 12], [6, 16, 38], [10, 44, 104]];
+  const JOUR = [[248, 251, 254], [222, 234, 249], [168, 199, 240]], NUIT = [[3, 6, 12], [6, 16, 38], [10, 44, 104]];
   const fond = new THREE.CanvasTexture(c); fond.colorSpace = THREE.SRGBColorSpace; scene.background = fond;
   function peindre(n) {
     const d = g.createLinearGradient(0, 0, 0, 256);
@@ -46,6 +46,17 @@ function lancer(svg) {
 
   const soleil = new THREE.DirectionalLight(0xffffff, 2.2); soleil.position.set(4, 6, 8); scene.add(soleil);
   const lueur = new THREE.PointLight(0x2f7bff, 60, 30); lueur.position.set(-5, -2, 4); scene.add(lueur);
+
+  /* Grandes taches de lumière froide, loin derrière : elles donnent au verre de la couleur à réfracter */
+  function tache(couleur) {
+    const k = document.createElement("canvas"); k.width = k.height = 256; const x = k.getContext("2d");
+    const d = x.createRadialGradient(128, 128, 0, 128, 128, 128); d.addColorStop(0, couleur); d.addColorStop(1, "rgba(0,0,0,0)");
+    x.fillStyle = d; x.fillRect(0, 0, 256, 256); const t = new THREE.CanvasTexture(k); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  const taches = [["rgba(47,107,255,.85)", -5.5, 2.2, 13], ["rgba(120,220,255,.9)", 5.5, -2.6, 12], ["rgba(47,107,255,.55)", 6, 3.4, 8]].map(([c, x, y, l]) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(l, l), new THREE.MeshBasicMaterial({ map: tache(c), transparent: true, depthWrite: false }));
+    m.position.set(x, y, -9); m.userData = { x, y }; scene.add(m); return m;
+  });
 
   /* Ce que le M réfracte en haut de page : un anneau bleu, des traits fins, un disque pâle */
   const decor = new THREE.Group(); scene.add(decor);
@@ -72,40 +83,28 @@ function lancer(svg) {
   const glace = verre.clone(); glace.roughness = 0.1; glace.dispersion = 3; glace.thickness = 0.6; glace.attenuationDistance = 3;
   const eclats = [];
   let graine = 7; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
-  for (let i = 0; i < (petit ? 5 : 11); i++) {
-    const e = new THREE.Mesh(new THREE.IcosahedronGeometry(0.22 + alea() * 0.38, 0), glace);
+  for (let i = 0; i < (petit ? 3 : 6); i++) {
+    const e = new THREE.Mesh(new THREE.IcosahedronGeometry(0.2 + alea() * 0.3, 0), glace);
     e.scale.set(0.6 + alea() * 0.8, 1 + alea() * 1.4, 0.5 + alea() * 0.6);
-    e.userData = { x: (alea() - 0.5) * 13, y: (alea() - 0.5) * 7, z: -2.5 + alea() * 4.5, v: 0.15 + alea() * 0.3, p: alea() * 6.28 };
+    e.userData = { x: (alea() - 0.5) * 13, y: (alea() - 0.5) * 7, z: -7 + alea() * 3, v: 0.15 + alea() * 0.3, p: alea() * 6.28 };
     e.rotation.set(alea() * 3, alea() * 3, alea() * 3);
     eclats.push(e); scene.add(e);
   }
 
-  /* Un bloc de glace par métier, chacun d'une forme différente, avec l'icône du métier prise dedans.
+  /* Un bloc de glace par métier, tous de la même forme. L'icône est dessinée en HTML par-dessus, pour rester nette ;
+     derrière chaque bloc, une tache de lumière que le verre déforme sur ses arêtes.
      Chaque bloc suit à l'écran son bouton (.puce) : le bouton reste un vrai bouton, le bloc est son image. */
-  const FORMES = [
-    () => new RoundedBoxGeometry(1, 1, 0.62, 3, 0.09), () => new THREE.CylinderGeometry(0.56, 0.56, 0.62, 6).rotateX(Math.PI / 2),
-    () => new THREE.CylinderGeometry(0.54, 0.54, 0.6, 40).rotateX(Math.PI / 2), () => new RoundedBoxGeometry(0.86, 1.08, 0.6, 3, 0.2),
-    () => new THREE.CylinderGeometry(0.58, 0.58, 0.62, 8).rotateX(Math.PI / 2).rotateZ(Math.PI / 8), () => new RoundedBoxGeometry(1.08, 0.86, 0.6, 3, 0.04),
-    () => new THREE.CylinderGeometry(0.6, 0.6, 0.6, 5).rotateX(Math.PI / 2).rotateZ(Math.PI), () => new RoundedBoxGeometry(0.98, 0.98, 0.66, 4, 0.3),
-    () => new THREE.CylinderGeometry(0.5, 0.6, 0.66, 4).rotateX(Math.PI / 2).rotateZ(Math.PI / 4)
-  ];
-  const matBloc = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.09, transmission: 1, thickness: 0.7, ior: 1.31, dispersion: 3, attenuationColor: new THREE.Color(0x5b9bff), attenuationDistance: 1.3, envMapIntensity: 0.7 });
-  const matChoisi = matBloc.clone(); matChoisi.attenuationColor = new THREE.Color(0x1257d6); matChoisi.attenuationDistance = 0.55; matChoisi.roughness = 0.04;
+  const geoBloc = new RoundedBoxGeometry(1, 1, 0.72, 6, 0.2);
+  const matBloc = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.02, transmission: 1, thickness: 0.55, ior: 1.42, dispersion: 6, specularIntensity: 0.7, attenuationColor: new THREE.Color(0x6fa6ff), attenuationDistance: 1.25, envMapIntensity: 0.55 });
+  const matChoisi = matBloc.clone(); matChoisi.attenuationColor = new THREE.Color(0x2f6bff); matChoisi.attenuationDistance = 0.85;
+  const texDerriere = tache("rgba(47,107,255,1)"), texDerriereC = tache("rgba(120,220,255,1)");
   const blocs = [];
-  function icone(m) {
-    const G = window.GLYPHES || {}, corps = G[m] || G.autre; if (!corps) return null;
-    const src = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 60 60" width="256" height="256"><style>*{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.t{fill:rgba(255,255,255,.28)}.a{fill:#fff;stroke:none}.e{stroke:#fff}.p{fill:#fff;stroke:none}</style>' + corps + "</svg>";
-    const tex = new THREE.Texture(); const im = new Image();
-    im.onload = () => { const k = document.createElement("canvas"); k.width = k.height = 256; k.getContext("2d").drawImage(im, 0, 0, 256, 256); tex.image = k; tex.colorSpace = THREE.SRGBColorSpace; tex.needsUpdate = true; sale = true; };
-    im.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(src);
-    return tex;
-  }
   function relierBlocs() {
     document.querySelectorAll("#metiers .puce").forEach((b, i) => {
       if (b._bloc) return;
-      const grp = new THREE.Group(), corps = new THREE.Mesh(FORMES[i % FORMES.length](), matBloc); grp.add(corps);
-      const tex = icone(b.dataset.m);
-      if (tex) { const ic = new THREE.Mesh(new THREE.PlaneGeometry(0.74, 0.74), new THREE.MeshBasicMaterial({ map: tex, alphaTest: 0.35, side: THREE.DoubleSide, color: 0x062a78 })); grp.add(ic); grp.userData.ic = ic; }
+      const grp = new THREE.Group(), corps = new THREE.Mesh(geoBloc, matBloc); grp.add(corps);
+      const derriere = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.5), new THREE.MeshBasicMaterial({ map: i % 2 ? texDerriereC : texDerriere, transparent: true, depthWrite: false, opacity: 0.9 }));
+      derriere.position.set(0.3, -0.3, -0.5); grp.add(derriere); grp.userData.derriere = derriere;
       grp.visible = false; scene.add(grp);
       const o = { el: b, grp, corps, tour: 0, cible: 0, survol: 0, p: i * 1.7 }; b._bloc = o; blocs.push(o);
       const tourner = () => { if (!reduit) o.cible += Math.PI * 2; sale = true; };
@@ -155,6 +154,7 @@ function lancer(svg) {
     anneau.rotation.z = t * 0.05; anneau.rotation.x = 0.5 + defileC * 3; anneau2.rotation.y = defileC * 4;
     if (pose === "og") { pivot.position.set(2.6, 0, 0); pivot.rotation.set(0.12, -0.5, 0); pivot.scale.setScalar(1.25); decor.position.set(2.2, 0, 0); decor.visible = true; decor.scale.setScalar(1.1); }
     if (pose === "m") { pivot.position.set(0, 0, 2); pivot.rotation.set(0.2, -0.55, 0.05); pivot.scale.setScalar(1.5); decor.position.set(0, 0, 0); decor.visible = true; decor.scale.setScalar(1.2); }
+    taches.forEach((m, i) => { m.position.x = m.userData.x + Math.sin(t * 0.07 + i * 2) * 0.8; m.position.y = m.userData.y + Math.cos(t * 0.05 + i) * 0.6 - defileC * 2; m.material.opacity = 1 - 0.45 * nuit; });
     eclats.forEach(e => {
       const u = e.userData;
       e.position.set(u.x + Math.sin(t * u.v + u.p) * 0.3, ((u.y + defileC * 16 + 40) % 9) - 4.5 + Math.cos(t * u.v * 0.8 + u.p) * 0.2, u.z);
@@ -172,10 +172,10 @@ function lancer(svg) {
       v3.set((px / L) * 2 - 1, -(py / H) * 2 + 1, 0.5).unproject(camera).sub(camera.position).normalize();
       const d = -camera.position.z / v3.z; o.grp.position.copy(camera.position).addScaledVector(v3, d);
       const choisi = o.el.getAttribute("aria-pressed") === "true";
-      o.corps.material = choisi ? matChoisi : matBloc; if (o.grp.userData.ic) o.grp.userData.ic.material.color.setHex(choisi ? 0xffffff : 0x062a78);
+      o.corps.material = choisi ? matChoisi : matBloc; o.grp.userData.derriere.material.opacity = choisi ? 1 : 0.9;
       o.tour += (o.cible - o.tour) * (reduit ? 1 : 1 - Math.exp(-dt * 4)); if (Math.abs(o.cible - o.tour) > 0.01) actifs = true;
-      o.grp.scale.setScalar(cote2 * parPixel * 0.78 * (choisi ? 1.12 : 1));
-      o.grp.rotation.set(Math.sin(t * 0.6 + o.p) * 0.14, o.tour + Math.sin(t * 0.45 + o.p) * 0.3, Math.sin(t * 0.37 + o.p) * 0.05);
+      o.grp.scale.setScalar(cote2 * parPixel * 0.8 * (choisi ? 1.08 : 1));
+      o.grp.rotation.set(-0.12 + Math.sin(t * 0.6 + o.p) * 0.06, 0.32 + o.tour + Math.sin(t * 0.45 + o.p) * 0.12, Math.sin(t * 0.37 + o.p) * 0.03);
       o.grp.position.y += Math.sin(t * 0.8 + o.p) * 0.03;
     });
     if (actifs) sale = true;

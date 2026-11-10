@@ -90,6 +90,14 @@
     document.querySelectorAll("[data-decode]").forEach(function (el) { ioD.observe(el); });
   }
 
+  /* Icône nette du métier, posée au centre de son bloc de glace */
+  if (window.GLYPHES) document.querySelectorAll("#metiers .puce").forEach(function (b) {
+    if (b.querySelector(".cube")) return;
+    var c = document.createElement("span"); c.className = "cube"; c.setAttribute("aria-hidden", "true");
+    c.innerHTML = '<svg viewBox="0 0 48 48">' + (window.GLYPHES[b.dataset.m] || window.GLYPHES.autre) + "</svg>";
+    b.insertBefore(c, b.firstChild);
+  });
+
   /* 5. Métier choisi : le téléphone revient à l'écran */
   var metiers = document.getElementById("metiers"), scene = document.getElementById("scene");
   if (metiers && scene) metiers.addEventListener("click", function (e) {
