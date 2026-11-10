@@ -70,11 +70,6 @@
     <p class="glacons-t">Pas sur la carte ? Touchez votre métier : son site se construit dans le téléphone.</p>
     <div class="metiers" id="metiers" data-forme="puces"></div>
   </div>
-  <ul class="promesses cadre">
-    <li class="verre"><b>Payé une fois.</b> Pas d'abonnement au site, pas de commission sur vos clients.</li>
-    <li class="verre"><b>Tout est à votre nom.</b> Le nom de domaine et les fichiers vous appartiennent.</li>
-    <li class="verre"><b>Une maquette sous 72 h.</b> Gratuite, sans engagement.</li>
-  </ul>
 </section>
 
 <section class="bloc fonctions" id="fonctions" aria-labelledby="titre-fonctions">
@@ -117,40 +112,44 @@
 <section class="bloc tarifs" id="tarifs" data-ton="nuit" aria-labelledby="titre-tarifs">
   <div class="cadre">
     <div class="tete">
-      <p class="hud" aria-hidden="true"><span>03</span><span>Tarifs</span></p>
+      <p class="hud" aria-hidden="true"><span>03</span><span>Tarifs, payés une seule fois</span></p>
       <h2 class="titre t2" data-decode id="titre-tarifs">Vous payez une fois.</h2>
-      <p class="chapo">Le prix comprend le site, sa mise en ligne et un mois de suivi. Ensuite, seul l'hébergement continue, environ 5 € par mois.</p>
+      <p class="chapo">Le prix comprend le site, sa mise en ligne et un mois de suivi. Ensuite, seul l'hébergement continue, environ 5 € par mois. Pas d'abonnement au site, pas de commission sur vos clients.</p>
     </div>
-    <div class="tarifs-grille">
-      <div>
-        <div class="formules">
-          <article class="formule">
-            <h3>Vitrine<small>Être trouvé et bien présenté.</small></h3>
-            <ul><li>Un site d'une page, sur téléphone et ordinateur</li><li>Appel, itinéraire et avis Google en un geste</li><li>Suivi inclus pendant un mois</li></ul>
-            <div class="prix"><b>350 €</b><small>payé une fois</small><button class="btn btn--verre" type="button" data-formule="Vitrine">Choisir</button></div>
-          </article>
-          <article class="formule">
-            <h3>Réservation<small>Vos clients réservent ou commandent seuls.</small></h3>
-            <ul><li>Tout ce qu'offre la formule Vitrine</li><li>Réservation ou commande en ligne, mail de confirmation au client</li><li>Vous êtes prévenu à chaque demande</li><li>Rappel par SMS la veille, en option</li></ul>
-            <div class="prix"><b>490 €</b><small>payé une fois</small><button class="btn btn--verre" type="button" data-formule="Réservation">Choisir</button></div>
-          </article>
-          <article class="formule">
-            <h3>Sur mesure<small>L'outil exact de votre métier.</small></h3>
-            <ul><li>HACCP, stocks, commandes, planning</li><li>Sur tablette, ordinateur ou téléphone</li><li>Alertes adaptées à votre activité</li><li>Formation de l'équipe incluse</li></ul>
-            <div class="prix"><b><i>dès</i> 690 €</b><small>sur devis</small><button class="btn btn--verre" type="button" data-formule="Sur mesure">En parler</button></div>
-          </article>
-        </div>
-        <p class="atelier-ligne">Fait par vous dans l'Atelier : vitrine 190 €, réservation 290 €.</p>
-        <div class="options">
-          <h3>Options</h3>
-          <dl>
+    <div class="dalles">
+      <article class="dalle" data-verre="22">
+        <h3>Vitrine</h3>
+        <p class="dalle-but">Être trouvé et bien présenté.</p>
+        <p class="dalle-prix"><b>350 €</b><small>payé une fois</small></p>
+        <ul><li>Un site d'une page, sur téléphone et ordinateur</li><li>Appel, itinéraire et avis Google en un geste</li><li>Suivi inclus pendant un mois</li></ul>
+        <button class="btn btn--verre" type="button" data-formule="Vitrine">Choisir Vitrine</button>
+      </article>
+      <article class="dalle dalle--forte" data-verre="22">
+        <h3>Réservation</h3>
+        <p class="dalle-but">Vos clients réservent ou commandent seuls.</p>
+        <p class="dalle-prix"><b>490 €</b><small>payé une fois</small></p>
+        <ul><li>Tout ce qu'offre la formule Vitrine</li><li>Réservation ou commande en ligne, mail de confirmation au client</li><li>Vous êtes prévenu à chaque demande</li><li>Rappel par SMS la veille, en option</li></ul>
+        <button class="btn" type="button" data-formule="Réservation">Choisir Réservation</button>
+      </article>
+      <article class="dalle" data-verre="22">
+        <h3>Sur mesure</h3>
+        <p class="dalle-but">L'outil exact de votre métier.</p>
+        <p class="dalle-prix"><b><i>dès</i> 690 €</b><small>sur devis</small></p>
+        <ul><li>HACCP, stocks, commandes, planning</li><li>Sur tablette, ordinateur ou téléphone</li><li>Alertes adaptées à votre activité</li><li>Formation de l'équipe incluse</li></ul>
+        <button class="btn btn--verre" type="button" data-formule="Sur mesure">En parler</button>
+      </article>
+    </div>
+    <p class="atelier-ligne">Fait par vous dans l'Atelier : vitrine 190 €, réservation 290 €.</p>
+    <div class="tarifs-bas">
+      <div class="options">
+        <h3>Options</h3>
+        <dl>
             <div><dt>Domaine et hébergement</dt><dd>Première année. Ensuite environ 5 € par mois, à votre nom.</dd><dd class="p">50 €</dd></div>
             <div><dt>Carte NFC avis Google</dt><dd>Personnalisée, avec un QR code au dos.</dd><dd class="p">dès 25 €</dd></div>
             <div><dt>Carte de fidélité</dt><dd>Ajoutée à votre site, ou seule.</dd><dd class="p">dès 150 €</dd></div>
             <div><dt>Rappels par SMS</dt><dd>Confirmation et rappel la veille. 100 SMS par mois inclus, puis 0,09 € le SMS.</dd><dd class="p">dès 9 € / mois</dd></div>
             <div><dt>Accompagnement</dt><dd>Installation, fiche Google, formation, dépannage, ordinateur préparé pour la caisse.</dd><dd class="p">30 € / h</dd></div>
           </dl>
-        </div>
       </div>
       <div class="ticket-zone">
         <div class="ticket" id="ticket" aria-live="polite">
@@ -166,27 +165,29 @@
   </div>
 </section>
 
-<section class="bloc moi" id="moi" aria-labelledby="titre-moi">
-  <div class="cadre moi-grille">
-    <div>
-      <p class="hud" aria-hidden="true"><span>04</span><span>Qui fait le travail</span></p>
+<section class="bloc deroule" id="moi" aria-labelledby="titre-moi">
+  <div class="cadre">
+    <div class="tete">
+      <p class="hud" aria-hidden="true"><span>04</span><span>De l'appel à la mise en ligne</span></p>
       <h2 class="titre t2" data-decode id="titre-moi">Un seul interlocuteur, du devis au dépannage.</h2>
-      <p class="chapo">Je m'appelle Ali Mokrani, élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants qui n'ont pas le temps.</p>
+      <p class="chapo">Je m'appelle Ali Mokrani, élève ingénieur à l'EPF. Je construis des outils simples qui marchent, pour des commerçants qui n'ont pas le temps. Mes outils servent chaque jour dans une boucherie de demi-gros.</p>
     </div>
-    <ul class="engagements">
-      <li><b>Je viens vous voir.</b>À Troyes, en région parisienne ou dans les Yvelines.</li>
-      <li><b>Je réponds vite.</b>Réponse sous 24 h, maquette sous 72 h.</li>
-      <li><b>Je parle simplement.</b>Tout est expliqué, et vous gardez la main sur votre site.</li>
-      <li><b>Je connais le terrain.</b>Mes outils servent chaque jour dans une boucherie de demi-gros.</li>
-      <li><b>Tout est à votre nom.</b>Le nom de domaine et tous les fichiers vous appartiennent.</li>
-    </ul>
+    <ol class="piste" id="piste">
+      <li class="etape" data-verre="18"><span class="etape-n">1</span><h3>Vous m'appelez ou m'écrivez</h3><p>Je vous réponds sous 24 h avec une idée et un prix. Je peux venir vous voir à Troyes, en région parisienne ou dans les Yvelines.</p></li>
+      <li class="etape" data-verre="18"><span class="etape-n">2</span><h3>Je vous montre la maquette</h3><p>Sous 72 h, gratuite et sans engagement. Tout est expliqué simplement.</p></li>
+      <li class="etape" data-verre="18"><span class="etape-n">3</span><h3>Vous validez, je mets en ligne</h3><p>30 % à la validation, le reste à la mise en ligne. Une à deux semaines une fois vos textes et photos réunis.</p></li>
+      <li class="etape" data-verre="18"><span class="etape-n">4</span><h3>Je reste là</h3><p>Un mois de suivi inclus. Le nom de domaine et tous les fichiers sont à votre nom.</p></li>
+    </ol>
   </div>
 </section>
 
 <section class="bloc faq" id="faq" aria-labelledby="titre-faq">
   <div class="cadre faq-grille">
-    <div class="faq-tete"><p class="hud" aria-hidden="true"><span>05</span><span>Questions</span></p>
-      <h2 class="titre t2" data-decode id="titre-faq">Questions fréquentes</h2></div>
+    <div class="faq-tete">
+      <p class="hud" aria-hidden="true"><span>05</span><span>Questions</span></p>
+      <h2 class="titre t2" data-decode id="titre-faq">Questions fréquentes</h2>
+      <p class="chapo">Une autre question ? Appelez-moi au <a href="tel:+33782023657">07 82 02 36 57</a>.</p>
+    </div>
     <div class="faq-liste">
       <details><summary>Combien de temps pour avoir mon site ?</summary><p>La maquette arrive sous 72 h. Une fois vos textes et photos réunis, le site est en ligne en une à deux semaines. Un logiciel sur mesure prend en général trois à six semaines.</p></details>
       <details><summary>Le site m'appartient-il vraiment ?</summary><p>Oui. Le nom de domaine est à votre nom et vous recevez tous les fichiers. Si vous changez de prestataire, vous partez avec votre site.</p></details>
@@ -197,22 +198,21 @@
       <details><summary>Je n'ai pas d'ordinateur. Vous pouvez m'en fournir un ?</summary><p>Oui. Je vous conseille le bon modèle selon votre usage (caisse, factures, commandes), je le commande, je le préconfigure et je l'installe chez vous. Neuf ou reconditionné, toutes marques. Vous payez le prix du matériel plus 59 € de préconfiguration et d'installation.</p></details>
       <details><summary>Je ne suis pas à l'aise avec l'informatique.</summary><p>C'est justement pour ça que j'existe. Je m'occupe du technique et je vous forme sur place, à votre rythme.</p></details>
     </div>
+
   </div>
 </section>
 
 <section class="bloc contact" id="contact" aria-labelledby="titre-contact">
-  <div class="cadre contact-grille">
-    <div>
-      <p class="hud" aria-hidden="true"><span>06</span><span>Contact</span></p>
-      <h2 class="titre t2" data-decode id="titre-contact">Parlons de votre commerce.</h2>
-      <p class="chapo">Décrivez votre activité en quelques mots. Je vous réponds sous 24 h avec une idée et un prix.</p>
-      <div class="coord">
-        <p><small>Téléphone</small><a href="tel:+33782023657">07 82 02 36 57</a></p>
-        <p><small>Mail</small><a href="mailto:ali@mokranistudio.fr">ali@mokranistudio.fr</a></p>
-        <p><small>Je me déplace</small>Troyes, Paris et les Yvelines</p>
+  <div class="cadre">
+    <div class="contact-dalle" data-verre="28">
+      <div class="contact-txt">
+        <p class="hud" aria-hidden="true"><span>06</span><span>Contact</span></p>
+        <h2 class="titre t2" data-decode id="titre-contact">Parlons de votre commerce.</h2>
+        <p class="chapo">Décrivez votre activité en quelques mots. Je vous réponds sous 24 h avec une idée et un prix.</p>
+        <a class="gros-tel" href="tel:+33782023657">07 82 02 36 57</a>
+        <p class="coord-l"><a href="mailto:ali@mokranistudio.fr">ali@mokranistudio.fr</a><span>Troyes, Paris et les Yvelines</span></p>
       </div>
-    </div>
-    <form class="devis" id="devis" novalidate>
+      <form class="devis" id="devis" novalidate>
       <div class="rang">
         <label>Votre nom<input id="f-nom" autocomplete="name"></label>
         <label>Votre commerce<input id="f-commerce" autocomplete="organization"></label>
@@ -232,21 +232,25 @@
       </div>
       <p class="rgpd">Vos informations servent uniquement à vous répondre. Rien n'est enregistré sur ce site. <a href="confidentialite.html">Confidentialité</a></p>
     </form>
+    </div>
   </div>
 </section>
 </main>
 
 <footer class="pied">
   <div class="cadre">
-    <a class="pied-marque" href="#essai" aria-label="Mokrani Studio, retour en haut">Mokrani Studio</a>
-    <div class="pied-liens">
-      <a href="#fonctions">Fonctions</a><a href="../v5/atelier/">Atelier</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions</a><a href="#contact">Contact</a><a href="tel:+33782023657">07 82 02 36 57</a>
+    <a class="pied-marque" href="#essai" aria-label="Mokrani Studio, retour en haut">Mokrani<br>Studio</a>
+    <div class="pied-cols">
+      <div class="pied-liens">
+        <a href="#fonctions">Fonctions</a><a href="../v5/atelier/">Atelier</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions</a><a href="#contact">Contact</a>
+      </div>
+      <div class="pied-liens">
+        <a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité et cookies</a><a href="cgv.html">Conditions générales de vente</a>
+      </div>
+      <div class="pied-liens"><a href="tel:+33782023657">07 82 02 36 57</a><a href="mailto:ali@mokranistudio.fr">ali@mokranistudio.fr</a></div>
     </div>
-    <div class="pied-liens">
-      <a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité et cookies</a><a href="cgv.html">Conditions générales de vente</a>
-    </div>
-    <p>TVA non applicable, art. 293 B du CGI. Prix indicatifs : le devis final dépend de votre projet. Les commerces de démonstration sont imaginaires. Données de la carte © les contributeurs OpenStreetMap.</p>
-    <p>© 2026 Ali Mokrani, entrepreneur individuel · SIRET 106 632 243 00015 · Ce site ne dépose aucun cookie.</p>
+    <p>TVA non applicable, art. 293 B du CGI. Prix indicatifs : le devis final dépend de votre projet. Les commerces de démonstration sont imaginaires et leurs photos sont des photos d'illustration. Données de la carte © les contributeurs OpenStreetMap.</p>
+    <p>© 2026 Ali Mokrani, entrepreneur individuel. SIRET 106 632 243 00015. Ce site ne dépose aucun cookie.</p>
   </div>
 </footer>
 <svg class="filtres" aria-hidden="true" width="0" height="0"><defs id="filtres-verre"></defs></svg>

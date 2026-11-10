@@ -22,7 +22,7 @@
 
   /* 2. Reflet qui suit la souris */
   if (window.matchMedia("(pointer: fine)").matches) {
-    var PLAQUES = ".verre, .formule, .devis, .ticket, .choix, .faq-liste, .engagements, .options, .coord", derniere = null, attente = 0, ev = null;
+    var PLAQUES = ".verre, .dalle, .etape, .contact-dalle, .ticket, .choix, .faq-liste, .options", derniere = null, attente = 0, ev = null;
     document.addEventListener("pointermove", function (e) {
       ev = e; if (attente) return;
       attente = requestAnimationFrame(function () {
@@ -97,6 +97,13 @@
     c.innerHTML = '<svg viewBox="0 0 48 48">' + (window.GLYPHES[b.dataset.m] || window.GLYPHES.autre) + "</svg>";
     b.insertBefore(c, b.firstChild);
   });
+
+  /* Le fil des étapes se remplit en défilant (au repos s'il n'y a pas de mouvement) */
+  var piste = document.getElementById("piste");
+  if (piste) {
+    if (reduit) piste.style.setProperty("--fil", 1);
+    else { var majFil = function () { var r = piste.getBoundingClientRect(), p = (innerHeight * .78 - r.top) / (r.height * (innerWidth >= 900 ? .9 : 1)); piste.style.setProperty("--fil", Math.max(0, Math.min(1, p)).toFixed(3)); }; addEventListener("scroll", majFil, { passive: true }); majFil(); }
+  }
 
   /* 5. Métier choisi : le téléphone revient à l'écran */
   var metiers = document.getElementById("metiers"), scene = document.getElementById("scene");

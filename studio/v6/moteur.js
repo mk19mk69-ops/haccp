@@ -25,6 +25,20 @@
   var FOND_DEF = { reservation: "teinte", commande: "teinte", avis: "teinte", contact: "teinte", fidelite: "auto" };
   var MENU_DEF = { prestations: 1, produits: 1, reservation: 1, commande: 1, galerie: 1, horaires: 1, contact: 1 };
   var EXEMPLES = { barbier: "Chez Sam", coiffure: "Atelier Lila", institut: "Institut Rose", boucherie: "Boucherie du Marché", snack: "Le Spot", restaurant: "Le Comptoir", boulangerie: "Fournil du Centre", epicerie: "Épicerie Nour", fleuriste: "Fleurs d'Iris", autre: "Votre commerce" };
+  /* L'allure de chaque exemple : une palette d'Ali, un style de design de l'Atelier et une forme de bannière.
+     Un commerce trouvé sur la carte reçoit aussi l'allure de son métier. */
+  var LOOK = {
+    barbier: { theme: { fond: "obsidienne", c1: "#EF233C", c2: "#DFE5EB", style: "geante", police: "geante", rayon: "carre" }, heros: "cinema" },
+    coiffure: { theme: { fond: "framboise", c1: "#FFE164", c2: "#FFD0DF", style: "editorial", police: "editorial", rayon: "carre" }, heros: "partage" },
+    institut: { theme: { fond: "givre", c1: "#FD6E6E", c2: "#002941", style: "minimal", police: "simple", rayon: "carre" }, heros: "partage" },
+    boucherie: { theme: { fond: "cramoisi", c1: "#FEED65", c2: "#E13A26", style: "maximal", police: "massif", rayon: "carre" }, heros: "cinema" },
+    snack: { theme: { fond: "charbon", c1: "#B9F500", c2: "#723BFA", style: "graffiti", police: "graffiti", rayon: "carre" }, heros: "aplat" },
+    restaurant: { theme: { fond: "foret", c1: "#FC75B4", c2: "#F5F0EA", style: "editorial", police: "editorial", rayon: "carre" }, heros: "photo" },
+    boulangerie: { theme: { fond: "sable", c1: "#474329", c2: "#FC75B4", style: "retro", police: "retro", rayon: "rond" }, heros: "partage" },
+    epicerie: { theme: { fond: "ciel", c1: "#D83995", c2: "#FCFFFF", style: "collage", police: "massif", rayon: "carre" }, heros: "aplat" },
+    fleuriste: { theme: { fond: "royal", c1: "#FD91CC", c2: "#FFFFFF", style: "boheme", police: "vintage", rayon: "rond" }, heros: "partage" },
+    autre: { theme: { fond: "cobalt", c1: "#58F6B1", c2: "#AD96F1", style: "futur", police: "futur", rayon: "carre" }, heros: "aplat" }
+  };
   var n = 0; function uid() { return "s" + Date.now().toString(36) + (n++).toString(36); }
   function srcDe(id, t) { if (!id) return null; if (String(id).indexOf("px:") === 0) return BL.photoInfo(id) ? BL.urlPhoto(id, t) : null; return null; }
   function ctx(P) { return { P: P, edition: false, media: srcDe, M: BL.M[P.infos.metier] || BL.M.autre, metier: P.infos.metier, pageId: "accueil" }; }
@@ -38,7 +52,7 @@
     var P = {
       v: 1, cree: Date.now(),
       infos: { nom: o.nom || EXEMPLES[m], metier: m, ville: o.ville || "Troyes", adresse: o.adresse || "", cp: o.cp || "", tel: o.tel || "", email: "", insta: o.insta || "", facebook: o.facebook || "", tiktok: "", forme: "", responsable: "", siret: "", mediateur: "", horaires: o.horaires || HOR[HOR_METIER[m]]() },
-      theme: Object.assign({ c1: M.couleurs[0], police: M.police, fond: "clair", rayon: "doux", anim: false }, o.theme || {}),
+      theme: Object.assign({ c1: M.couleurs[0], police: M.police, fond: "clair", rayon: "doux", anim: false }, (LOOK[m] || {}).theme || {}, o.theme || {}),
       logo: null, domaine: "", publi: { hebergeur: "" },
       entete: { v: "classique", cta: { t: "Réserver", a: "resa" }, tel: true, fixe: false, logoSeul: false },
       pied: { v: "complet", texte: "", credit: true },
@@ -46,6 +60,7 @@
     };
     var vus = {};
     P.pages[0].sections = BL.recette(m, obj).map(function (x) { var p = x.split(":"), s = section(p[0], p[1], P); if (vus[s.menu]) s.menu = ""; vus[s.menu] = 1; return s; });
+    var lk = LOOK[m]; if (lk && lk.heros) P.pages[0].sections.forEach(function (x) { if (x.t === "heros") x.v = lk.heros; });
     P.entete.cta = obj === "rdv" ? { t: "Réserver", a: "resa" } : obj === "commande" ? { t: "Commander", a: "cmd" } : { t: "Appeler", a: "tel" };
     return P;
   }
@@ -147,7 +162,7 @@
   function arreterExemples() { if (minuteur) { clearInterval(minuteur); minuteur = 0; } }
   function lancerExemples() {
     if (reduit || !$("essai").hasAttribute("data-exemples")) return;
-    var ordre = ["barbier", "boulangerie", "boucherie", "fleuriste", "restaurant", "institut"];
+    var ordre = ["barbier", "boulangerie", "boucherie", "fleuriste", "restaurant", "institut", "snack", "coiffure", "epicerie"];
     minuteur = setInterval(function () {
       if (document.hidden || $("essai").getBoundingClientRect().bottom < 0) return;
       kEx = (kEx + 1) % ordre.length;
@@ -397,6 +412,7 @@
 
   /* ===================== Départ ===================== */
   etat.P = projet({ metier: "barbier", nom: EXEMPLES.barbier });
+  window.MS_RENDU = { projet: projet, rendre: rendre, LOOK: LOOK };
   montrer(etat.P, false);
   montrerF(0);
   if (metiers && forme !== "select") metiers.querySelector('[data-m="barbier"]').setAttribute("aria-pressed", "true");
