@@ -38,7 +38,7 @@ function lancer() {
 
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 0.75;
+  scene.environmentIntensity = 0.6;
   const cle = new THREE.DirectionalLight(0xfff4ea, 1.6); cle.position.set(5, 7, 6); scene.add(cle);
 
   /* Deux halos de lumière : c'est ce que le verre dépoli diffuse */
@@ -54,15 +54,15 @@ function lancer() {
   });
 
   /* Le galet de verre dépoli */
-  const verre = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.12, transmission: 1, thickness: 2.4, ior: 1.45, dispersion: 2.5,
-    attenuationColor: new THREE.Color(0xdde4ff), attenuationDistance: 2.6, clearcoat: 1, clearcoatRoughness: 0.06, specularIntensity: 0.9, envMapIntensity: 0.45 });
+  const verre = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.38, transmission: 1, thickness: 2.4, ior: 1.4, dispersion: 0,
+    attenuationColor: new THREE.Color(0xe3e7f2), attenuationDistance: 3, specularIntensity: 0.35, envMapIntensity: 0.3 });
   const geoGalet = new THREE.SphereGeometry(1, 96, 64); geoGalet.scale(1.75, 1.6, 0.62);
   const galet = new THREE.Mesh(geoGalet, verre); scene.add(galet);
 
   /* Les métiers : de petits galets carrés en verre dépoli, un par bouton (.puce), qui suivent leur bouton à l'écran */
   const geoBloc = new RoundedBoxGeometry(1, 1, 0.5, 8, 0.28);
-  const matBloc = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.2, transmission: 1, thickness: 0.6, ior: 1.42, dispersion: 1,
-    attenuationColor: new THREE.Color(0xf1f3f8), attenuationDistance: 6, clearcoat: 1, clearcoatRoughness: 0.1, envMapIntensity: 0.8 });
+  const matBloc = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.42, transmission: 1, thickness: 0.6, ior: 1.4,
+    attenuationColor: new THREE.Color(0xf1f3f8), attenuationDistance: 6, specularIntensity: 0.3, envMapIntensity: 0.45 });
   const matChoisi = matBloc.clone(); matChoisi.attenuationColor = new THREE.Color(0x8aa2ff); matChoisi.attenuationDistance = 1.2;
   const blocs = [];
   function relierBlocs() {
@@ -95,7 +95,7 @@ function lancer() {
     const k = reduit ? 1 : 1 - Math.exp(-dt * 4);
     defileC += (defile - defileC) * k; cx += (sx - cx) * k; cy += (sy - cy) * k;
     nuit += ((window.MS_NUIT ? 1 : 0) - nuit) * (reduit ? 1 : 1 - Math.exp(-dt * 2.4));
-    if (Math.abs(nuit - nuitPeinte) > 0.004) { nuitPeinte = nuit; peindre(nuit); scene.environmentIntensity = 0.75 - 0.4 * nuit; }
+    if (Math.abs(nuit - nuitPeinte) > 0.004) { nuitPeinte = nuit; peindre(nuit); scene.environmentIntensity = 0.6 - 0.3 * nuit; }
 
     const etroit = L / H < 0.8, ecran = scrollY / H, debut = Math.max(0, 1 - ecran * 1.4);
     /* En haut : le galet se tient derrière le téléphone ; ensuite il glisse doucement d'un bord à l'autre */

@@ -83,6 +83,7 @@
   var etat = window.MS_ETAT = { P: null, source: "exemple", fiche: null };
   var apercu = $("apercu"), defile = $("defile");
   function montrer(P, anim) {
+    if (!apercu) { majPortable(); return; }
     rendre(apercu, P);
     defile.scrollTop = 0;
     if (anim && !reduit) {
@@ -111,8 +112,8 @@
     etapes.push(["Couleurs et écriture choisies", true]);
     voile.classList.add("on");
     arreterExemples();
-    var scn = $("scene"); if (scn && scn.classList.contains("endormi")) { scn.classList.remove("endormi"); scn.classList.add("reveil"); }
-    if (innerWidth < 980) { var sc = $("scene").getBoundingClientRect(); if (sc.top > innerHeight * .4 || sc.bottom < 0) $("scene").scrollIntoView({ behavior: reduit ? "auto" : "smooth", block: "center" }); }
+    var scn = $("scene"); if (scn) scn.hidden = false; if (scn && scn.classList.contains("endormi")) { scn.classList.remove("endormi"); scn.classList.add("reveil"); }
+    if (innerWidth < 980 && scn) { var sc = scn.getBoundingClientRect(); if (sc.top > innerHeight * .4 || sc.bottom < 0) $("scene").scrollIntoView({ behavior: reduit ? "auto" : "smooth", block: "center" }); }
     var P = projet(o);
     etat.P = P;
     var suite = Promise.resolve();
@@ -162,7 +163,7 @@
   var minuteur = 0, kEx = 0;
   function arreterExemples() { if (minuteur) { clearInterval(minuteur); minuteur = 0; } }
   function lancerExemples() {
-    if (reduit || !$("essai").hasAttribute("data-exemples")) return;
+    if (reduit || !$("essai").hasAttribute("data-exemples") || !$("defile")) return;
     var ordre = ["barbier", "boulangerie", "boucherie", "fleuriste", "restaurant", "institut", "snack", "coiffure", "epicerie"];
     minuteur = setInterval(function () {
       if (document.hidden || $("essai").getBoundingClientRect().bottom < 0) return;
@@ -265,7 +266,7 @@
       else { b.textContent = "Copier le lien"; prompt("Copiez ce lien :", url); }
     });
   });
-  $("vers-devis").addEventListener("click", function () {
+  if ($("vers-devis")) $("vers-devis").addEventListener("click", function () {
     if (!etat.P) return;
     if (etat.source !== "exemple") $("f-commerce").value = etat.P.infos.nom;
     var msg = $("f-msg");
@@ -274,7 +275,7 @@
   });
 
   /* Téléphone qui suit la souris (souris uniquement) */
-  var heros = $("essai"), tel = $("tel");
+  var heros = $("essai"), tel = $("tel") || document.createElement("div");
   if (!reduit && matchMedia("(pointer: fine)").matches) {
     var raf = 0;
     heros.addEventListener("pointermove", function (e) {
@@ -310,7 +311,7 @@
     var P = projet({ metier: f.m });
     var s = section(f.s[0], f.s[1], P); s.s.fond = "auto";
     rendre(demo, P, [s], false);
-    $("demo-defile").scrollTop = 0;
+    var dd = $("demo-defile"); if (dd) dd.scrollTop = 0;
     if (!reduit) { demo.classList.remove("construit"); void demo.offsetWidth; demo.classList.add("construit"); }
   }
   FONCTIONS.forEach(function (f, k) {
@@ -362,6 +363,7 @@
   });
   if (montrerMaquette(COMBOS[0])) $("combo-nom").textContent = "Bleu égyptien\u00a0: un site dessiné sur mesure dans cette palette. Touchez une autre combinaison pour l'essayer sur votre site.";
   function majPortable() {
+    if (!vuePc || !apercuPc) return;
     if (!etat.P) return;
     var ech = vuePc.clientWidth / 1280; apercuPc.style.setProperty("--ech", ech.toFixed(4));
     rendre(apercuPc, etat.P);

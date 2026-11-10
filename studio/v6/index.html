@@ -11,8 +11,8 @@
 <link rel="icon" href="icones/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
 <link rel="preload" href="assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../v5/atelier/site.css?v=11101435">
-<link rel="stylesheet" href="v6.css?v=11101435">
+<link rel="stylesheet" href="../v5/atelier/site.css?v=11101448">
+<link rel="stylesheet" href="v6.css?v=11101448">
 <meta property="og:title" content="Mokrani Studio · Sites et logiciels pour commerçants">
 <meta property="og:description" content="Écrivez le nom de votre commerce et voyez votre site se construire. Payé une fois, sans commission.">
 <meta property="og:image" content="assets/partage.jpg">
@@ -36,7 +36,7 @@
 </header>
 
 <main id="contenu">
-<section class="heros" id="essai" data-exemples aria-labelledby="titre-essai">
+<section class="heros" id="essai" aria-labelledby="titre-essai">
   <div class="cadre heros-grille">
     <div class="h-txt">
       <p class="hud" aria-hidden="true"><span>Mokrani Studio</span><span>Troyes 48.2973° N, 4.0744° E</span></p>
@@ -50,24 +50,20 @@
         </div>
         <div class="suggestions" id="suggestions" role="listbox" aria-label="Commerces trouvés" hidden></div>
       </form>
-    </div>
-    <div class="scene" id="scene">
-      <div class="tel" id="tel" data-verre="26">
-        <div class="ilot" aria-hidden="true"></div>
-        <div class="ecran"><div class="ecran-defile" id="defile" tabindex="0" aria-label="Aperçu du site"><div class="site" id="apercu"></div></div>
-          <div class="voile" id="voile"><div class="balayage"></div><div class="voile-corps"><p id="voile-txt">Je construis votre site…</p><ul class="journal" id="journal" aria-live="polite"></ul></div></div>
+      <div class="resultat verre" id="scene" data-verre="18" hidden>
+        <div class="voile" id="voile"><p id="voile-txt">Je construis votre site…</p></div>
+        <ul class="journal" id="journal" aria-live="polite"></ul>
+        <div class="apres" id="apres">
+          <a class="btn" id="vers-atelier" href="../v5/atelier/">Ouvrir mon site dans l'Atelier</a>
+          <a class="btn btn--verre" href="#atelier">Le voir en grand</a>
+          <button class="btn btn--verre" type="button" id="partager">Copier le lien</button>
         </div>
+        <p class="legende-tel" id="legende"></p>
       </div>
-      <div class="apres" id="apres">
-        <a class="btn" id="vers-atelier" href="../v5/atelier/">Le modifier dans l'Atelier</a>
-        <button class="btn btn--verre" type="button" id="partager">Copier le lien</button>
-        <a class="btn btn--verre" href="#contact" id="vers-devis">Je le veux</a>
-      </div>
-      <p class="legende-tel" id="legende">Commerce imaginaire, pour l'exemple. Faites défiler l'écran du téléphone.</p>
     </div>
   </div>
   <div class="cadre glacons">
-    <p class="glacons-t">Pas sur la carte ? Touchez votre métier : son site se construit dans le téléphone.</p>
+    <p class="glacons-t">Pas sur la carte ? Touchez votre métier pour construire un site d'exemple.</p>
     <div class="metiers" id="metiers" data-forme="puces"></div>
   </div>
 </section>
@@ -77,12 +73,12 @@
     <div class="tete">
       <p class="hud" aria-hidden="true"><span>01</span><span>Fonctions</span></p>
       <h2 class="titre t2" data-decode id="titre-fonctions">Votre site travaille pendant que vous servez.</h2>
-      <p class="chapo">Touchez une fonction : le téléphone montre la vraie, et vous pouvez l'essayer.</p>
+      <p class="chapo">Touchez une fonction : la vraie s'affiche à côté, et vous pouvez l'essayer.</p>
     </div>
     <div class="fonctions-grille">
       <div class="choix" role="tablist" aria-label="Fonctions" id="choix"></div>
-      <div class="scene scene--demo">
-        <div class="tel"><div class="ilot" aria-hidden="true"></div><div class="ecran"><div class="ecran-defile" tabindex="0" aria-label="Démonstration" id="demo-defile"><div class="site" id="demo"></div></div></div></div>
+      <div class="demo-zone">
+        <div class="demo-cadre" data-verre="16"><div class="demo-defile" id="demo-defile" tabindex="0" aria-label="Démonstration"><div class="site" id="demo"></div></div></div>
         <p class="note-tel">Démonstration : aucune demande n'est envoyée.</p>
       </div>
     </div>
@@ -256,13 +252,13 @@
 <svg class="filtres" aria-hidden="true" width="0" height="0"><defs id="filtres-verre"></defs></svg>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="../v5/atelier/runtime.js?v=11101435"></script>
-<script src="../v5/atelier/photos/photos.js?v=11101435"></script>
-<script src="../v5/atelier/blocs.js?v=11101435"></script>
-<script src="../v5/atelier/trouver.js?v=11101435"></script>
-<script src="glyphes.js?v=11101435"></script>
-<script src="moteur.js?v=11101435"></script>
-<script src="v6.js?v=11101435"></script>
-<script type="module" src="assets/scene.js?v=11101435"></script>
+<script src="../v5/atelier/runtime.js?v=11101448"></script>
+<script src="../v5/atelier/photos/photos.js?v=11101448"></script>
+<script src="../v5/atelier/blocs.js?v=11101448"></script>
+<script src="../v5/atelier/trouver.js?v=11101448"></script>
+<script src="glyphes.js?v=11101448"></script>
+<script src="moteur.js?v=11101448"></script>
+<script src="v6.js?v=11101448"></script>
+<script type="module" src="assets/scene.js?v=11101448"></script>
 </body>
 </html>
