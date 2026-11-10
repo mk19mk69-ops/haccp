@@ -98,3 +98,14 @@
     if (r.top < 70 || r.bottom > innerHeight) scene.scrollIntoView({ behavior: reduit ? "auto" : "smooth", block: "center" });
   });
 })();
+
+/* Formulaire de contact pré-rempli quand on arrive de l'Atelier (?formule=&commerce=&msg=) */
+(function () {
+  var q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
+  if (!q.get("msg") && !q.get("formule")) return;
+  var f = document.getElementById("f-formule"), c = document.getElementById("f-commerce"), m = document.getElementById("f-msg");
+  if (f && q.get("formule")) [].forEach.call(f.options, function (o) { if (o.textContent === q.get("formule")) f.value = o.value || o.textContent; });
+  if (c && q.get("commerce")) c.value = q.get("commerce").slice(0, 80);
+  if (m && q.get("msg")) m.value = q.get("msg").slice(0, 4000);
+  setTimeout(function () { var s = document.getElementById("contact"); if (s) s.scrollIntoView(); var n = document.getElementById("f-nom"); if (n) n.focus({ preventScroll: true }); }, 400);
+})();
