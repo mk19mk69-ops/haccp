@@ -11,13 +11,10 @@
 
   /* ---------- La vitrine : chaque page pivote et laisse place au site suivant ---------- */
   var DEMOS = [
-    { img: "site-egyptien.jpg", nom: "Chez Sam", metier: "barbier", palette: "Bleu égyptien" },
-    { img: "site-obsidienne.jpg", nom: "Boucherie du Marché", metier: "boucherie", palette: "Noir et rouge" },
-    { img: "site-foret.jpg", nom: "Le Comptoir", metier: "restaurant", palette: "Forêt et rose" },
-    { img: "site-sable.jpg", nom: "Fournil du Centre", metier: "boulangerie", palette: "Sable et moka" },
-    { img: "site-cramoisi.jpg", nom: "Le Spot", metier: "snack", palette: "Rouge et jaune" },
-    { img: "site-royal.jpg", nom: "Fleurs d'Iris", metier: "fleuriste", palette: "Bleu profond et rose" },
-    { img: "site-givre.jpg", nom: "Atelier Lila", metier: "salon de coiffure", palette: "Bleu doux et corail" }
+    { img: "moi-bleu.jpg", nom: "Mokrani Studio", palette: "en bleu Mokrani, la version actuelle" },
+    { img: "moi-egyptien.jpg", nom: "Mokrani Studio", palette: "en Bleu égyptien, bleu nuit et rouge" },
+    { img: "moi-foret.jpg", nom: "Mokrani Studio", palette: "en vert forêt et beige" },
+    { img: "moi-beige.jpg", nom: "Mokrani Studio", palette: "en beige et vert forêt" }
   ];
   var vitrine = $("vitrine"), carte = $("carte"), legende = $("legende"), points = $("points");
   var faces = [carte.querySelector(".face--avant img"), carte.querySelector(".face--arriere img")];
@@ -28,7 +25,7 @@
   DEMOS.forEach(function (d) { var im = new Image(); im.src = "assets/" + d.img; d.pret = im.decode ? im.decode().catch(function () {}) : Promise.resolve(); });
   DEMOS.forEach(function (d, n) { var p = document.createElement("i"); if (n === 0) p.className = "on"; points.appendChild(p); });
 
-  function ecrireLegende(d) { legende.innerHTML = "<b>" + d.nom + "</b>, " + d.metier + ", palette " + d.palette; }
+  function ecrireLegende(d) { legende.innerHTML = "<b>" + d.nom + "</b> " + d.palette; }
   function majPoints() { [].forEach.call(points.children, function (p, n) { p.classList.toggle("on", n === i); }); }
   function cachee() { return (Math.round(angle / 180) % 2 === 0) ? 1 : 0; }
 
