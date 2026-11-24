@@ -350,11 +350,11 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
         <div class="etape-emoji">👇</div>
       </div>
       <div class="appareils">
-        <button class="app-btn" onclick="selAppareil('chambre',this)"><i class="ti ti-snowflake"></i><span>Chambre froide</span></button>
-        <button class="app-btn" onclick="selAppareil('vitrine',this)"><i class="ti ti-fridge"></i><span>Vitrine</span></button>
         <button class="app-btn" onclick="selAppareil('armoire',this)"><i class="ti ti-box"></i><span>Armoire +</span></button>
+        <button class="app-btn" onclick="selAppareil('chambre',this)"><i class="ti ti-snowflake"></i><span>Chambre froide</span></button>
         <button class="app-btn" onclick="selAppareil('neg1',this)"><i class="ti ti-temperature-minus"></i><span>Négative 1</span></button>
         <button class="app-btn" onclick="selAppareil('neg2',this)"><i class="ti ti-temperature-minus"></i><span>Négative 2</span></button>
+        <button class="app-btn" onclick="selAppareil('vitrine',this)"><i class="ti ti-fridge"></i><span>Vitrine</span></button>
       </div>
     </div>
 
@@ -814,11 +814,11 @@ html,body{height:100%;font-family:"DM Sans",Arial,sans-serif;background:var(--cl
     <!-- TEMPERATURES ADMIN -->
     <div class="psection" id="psection-temperatures">
       <div class="ptabs">
-        <button class="ptab active" onclick="pSwitchTT('chambre')" id="pttab-chambre">Chambre froide</button>
-        <button class="ptab" onclick="pSwitchTT('vitrine')" id="pttab-vitrine">Vitrine</button>
-        <button class="ptab" onclick="pSwitchTT('armoire')" id="pttab-armoire">Armoire +</button>
+        <button class="ptab active" onclick="pSwitchTT('armoire')" id="pttab-armoire">Armoire +</button>
+        <button class="ptab" onclick="pSwitchTT('chambre')" id="pttab-chambre">Chambre froide</button>
         <button class="ptab" onclick="pSwitchTT('neg1')" id="pttab-neg1">Négative 1</button>
         <button class="ptab" onclick="pSwitchTT('neg2')" id="pttab-neg2">Négative 2</button>
+        <button class="ptab" onclick="pSwitchTT('vitrine')" id="pttab-vitrine">Vitrine</button>
       </div>
       <div id="ptemp-fiches"></div>
     </div>
@@ -1272,11 +1272,11 @@ var dbReceptions=[],dbNettoyages=[],dbNonconfs=[],dbAlgos=[],dbTemps={},dbNuisib
 var nzEmpState={},pnzState={};
 var curAppareil=null;
 var TESP=[
-  {id:'chambre',nom:'Chambre froide',min:0,max:4,ch:['Temp (°C)'],chMin:[0],chMax:[4]},
-  {id:'vitrine',nom:'Vitrine réfrigérée',min:0,max:4,ch:['Temp (°C)'],chMin:[0],chMax:[4]},
   {id:'armoire',nom:'Armoire +',min:0,max:4,ch:['Temp (°C)'],chMin:[0],chMax:[4]},
+  {id:'chambre',nom:'Chambre froide',min:0,max:4,ch:['Temp (°C)'],chMin:[0],chMax:[4]},
   {id:'neg1',nom:'Vitrine Négative 1',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]},
-  {id:'neg2',nom:'Vitrine Négative 2',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]}
+  {id:'neg2',nom:'Vitrine Négative 2',min:-22,max:-15,ch:['Temp (°C)'],chMin:[-21],chMax:[-16]},
+  {id:'vitrine',nom:'Vitrine réfrigérée',min:0,max:4,ch:['Temp (°C)'],chMin:[0],chMax:[4]}
 ];
 TESP.forEach(function(e){dbTemps[e.id]=[];});
 
